@@ -1,4 +1,5 @@
 Help = require "./steroids/Help"
+Weinre = require "./steroids/Weinre"
 
 
 class Steroids
@@ -22,6 +23,10 @@ class Steroids
         projectCreator = new ProjectCreator(otherOptions)
         
         projectCreator.clone(otherOptions[0])
+
+      when "debug"
+        weinre = new Weinre
+        weinre.run()
 
       else
         Help.usage()
