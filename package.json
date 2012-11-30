@@ -17,6 +17,11 @@
     "steroids.js", "appgyver", "client", "cli", "phonegap"
   ],
 
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/AppGyver/steroids.git"
+  },
+
   "engines": {
     "node": ">=0.8.14",
     "npm":  ">=1.1.65"
