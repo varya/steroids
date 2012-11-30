@@ -11,8 +11,6 @@ class ProjectCreator
 		unless targetDirectory
 			return steroids.Help.usage();
 
-		console.log steroids.paths.templates
-		
 		wrench.copyDirSyncRecursive path.join(steroids.paths.templates, template), targetDirectory
 
 module.exports = ProjectCreator
