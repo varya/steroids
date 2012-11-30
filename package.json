@@ -5,9 +5,13 @@
   "version": "0.0.1",
   "license": "MIT",
   "author": "Matti Paksula <matti.paksula@appgyver.com>",
-  "description": "Steroids.js tool",
+  "description": "AppGyver Steroids command line interface",
   "contributors": [
   ],
+
+  "bin": {
+      "steroids":        "./bin/steroids"
+  },
 
   "keywords": [
     "steroids.js", "appgyver", "client", "cli", "phonegap"
@@ -22,7 +26,7 @@
     "coffee-script": ">=1.4.0",
     "optimist": ">=0.3.5",
     "wrench": ">=1.4.3",
-    "weinre": "*"
+    "weinre": "2.0.0-pre-H9PU2WST-incubating"
   }
 
 }
