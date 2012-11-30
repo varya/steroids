@@ -19,7 +19,9 @@
   },
 
   "dependencies" : {
-    "coffee-script": ">=1.4.0"
+    "coffee-script": ">=1.4.0",
+    "optimist": ">=0.3.5",
+    "wrench": ">=1.4.3"
   }
 
 }
