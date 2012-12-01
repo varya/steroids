@@ -4,13 +4,12 @@ Weinre = require "./steroids/Weinre"
 
 class Steroids
   
-
-  @npmPath = __dirname
+  @server = undefined
 
   constructor: ->
 
 
-  parseOptions: ->
+  parseOptions: =>
 
     argv = require('optimist').argv
 
@@ -28,8 +27,23 @@ class Steroids
         weinre = new Weinre
         weinre.run()
 
+      when "transfer"
+        @startServer()
+        console.log "Waiting for client to connect, this may take a while.."
+
       else
         Help.usage()
+
+
+  startServer: =>
+    Server = require "./steroids/Server"
+
+    @server = new Server
+                    port: 4567
+
+    @server.listen()    
+
+
 
 
 module.exports =
