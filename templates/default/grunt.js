@@ -1,6 +1,6 @@
 path = require("path");
 fs = require("fs");
-coffee = require("coffee-script");
+coffee = (typeof(steroidsPath) !== "undefined") ? require(path.join(steroidsPath, "node_modules", "coffee-script")) : require("coffee-script");
 
 module.exports = function(grunt) {
 

@@ -8,6 +8,9 @@ class Grunt
 
 
   run: ->
+    # set steroids path to global namespace for grunt requires
+    global.steroidsPath = paths.npm
+
     require(paths.includedGrunt).tasks ["default"],
       gruntfile: path.join @workingPath, 'grunt.js'
       verbose: true
