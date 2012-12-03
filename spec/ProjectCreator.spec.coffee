@@ -16,7 +16,6 @@ describe 'ProjectCreator', ->
       @projectCreator.clone @projectName
 
       expect( fs.existsSync(@projectName) ).toBe(true)
-      
-      wrench.rmdirSyncRecursive @projectName
 
+      wrench.rmdirSyncRecursive @projectName
 
