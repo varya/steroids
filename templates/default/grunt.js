@@ -1,6 +1,5 @@
 path = require("path");
 fs = require("fs");
-wrench = require("wrench");
 coffee = require("coffee-script");
 
 module.exports = function(grunt) {
@@ -39,6 +38,20 @@ module.exports = function(grunt) {
       grunt.file.write(fileBuildPath, compiledSource);
 
     }
+
+    rmDir = function(dirPath) {
+      try { var files = fs.readdirSync(dirPath); }
+      catch(e) { return; }
+      if (files.length > 0)
+        for (var i = 0; i < files.length; i++) {
+          var filePath = dirPath + '/' + files[i];
+          if (fs.statSync(filePath).isFile())
+            fs.unlinkSync(filePath);
+          else
+            rmDir(filePath);
+        }
+      fs.rmdirSync(dirPath);
+    };
 
     grunt.registerTask('steroids-compile-coffeescripts', "Compiles coffeescripts from app/models/* app/controllers/* and vendor/appgyver/*", function(){
 
@@ -82,7 +95,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('steroids-clean-dist', 'Removes dist/ recursively and creates it again ', function(){
 
-      wrench.rmdirSyncRecursive(buildDirectory, true);
+      rmDir(buildDirectory);
 
       grunt.file.mkdir(buildDirectory);
 
