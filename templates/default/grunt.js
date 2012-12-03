@@ -136,7 +136,6 @@ module.exports = function(grunt) {
 
       viewDirectories.forEach(function(viewDir){
 
-
         // resolve layout file for these views
         var controllerName = path.basename(viewDir).replace(path.sep, "") + "Controller",
             layoutFileName = path.basename(viewDir).replace(path.sep, ".html"),
@@ -153,14 +152,14 @@ module.exports = function(grunt) {
           var filePath = path.resolve(filePathPart),
               buildFilePath = path.resolve(filePathPart.replace("app"+path.sep, "dist"+path.sep));
 
+          var yieldObj = {
+            view: grunt.file.read(filePath, "utf8"),
+            controller: controllerName
+          }
 
           // put layout+yields together
-          var yieldedFile = grunt.template.process(applicationLayoutFile.toString(), {
-            yield: {
-              view: grunt.file.read(filePath, "utf8"),
-              controller: controllerName
-            }
-          });
+          var yieldedFile = grunt.util._.template(applicationLayoutFile.toString())({yield: yieldObj})
+
           // write the file
           grunt.file.write(buildFilePath, yieldedFile);
 
