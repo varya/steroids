@@ -1,6 +1,7 @@
 path = require("path");
 fs = require("fs");
 coffee = (typeof(steroidsPath) !== "undefined") ? require(path.join(steroidsPath, "node_modules", "coffee-script")) : require("coffee-script");
+wrench = (typeof(steroidsPath) !== "undefined") ? require(path.join(steroidsPath, "node_modules", "wrench")) : require("wrench");
 
 module.exports = function(grunt) {
 
@@ -39,20 +40,6 @@ module.exports = function(grunt) {
 
     }
 
-    rmDir = function(dirPath) {
-      try { var files = fs.readdirSync(dirPath); }
-      catch(e) { return; }
-      if (files.length > 0)
-        for (var i = 0; i < files.length; i++) {
-          var filePath = dirPath + '/' + files[i];
-          if (fs.statSync(filePath).isFile())
-            fs.unlinkSync(filePath);
-          else
-            rmDir(filePath);
-        }
-      fs.rmdirSync(dirPath);
-    };
-
     grunt.registerTask('steroids-compile-coffeescripts', "Compiles coffeescripts from app/models/* app/controllers/* and vendor/appgyver/*", function(){
 
       [appModelsDirectory, appControllersDirectory].forEach(function(directory){
@@ -72,7 +59,6 @@ module.exports = function(grunt) {
 
       });
 
-
     });
 
     grunt.registerTask('steroids-concat', 'Concat steroids project files in dist/', function(){
@@ -85,17 +71,14 @@ module.exports = function(grunt) {
 
     grunt.registerTask('steroids-copy-www', 'Copy www/ content over dist/', function(){
 
-      grunt.file.expand(grunt.file.expandFiles(wwwDirectory + path.sep + "**" + path.sep + "*")).forEach(function(filePath){
+      wrench.copyDirSyncRecursive(wwwDirectory, buildDirectory)
 
-        grunt.file.copy(filePath, buildDirectory)
-
-      });
     });
 
 
     grunt.registerTask('steroids-clean-dist', 'Removes dist/ recursively and creates it again ', function(){
 
-      rmDir(buildDirectory);
+      wrench.rmdirSyncRecursive(buildDirectory, true);
 
       grunt.file.mkdir(buildDirectory);
 
