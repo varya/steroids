@@ -9,7 +9,7 @@ module.exports = function(grunt) {
 
   });
 
-  grunt.registerTask('default', ['steroids-clean-dist', 'steroids-generate-views', 'steroids-compile-coffeescripts', 'steroids-concat', 'steroids-remove-dist-models', 'steroids-copy-www']);
+  grunt.registerTask('default', ['steroids-clean-dist', 'steroids-copy-www', 'steroids-copy-vendor', 'steroids-generate-views', 'steroids-compile-coffeescripts', 'steroids-concat', 'steroids-remove-dist-models']);
 
 
   /* Steroids Tasks & functions: */
@@ -75,6 +75,22 @@ module.exports = function(grunt) {
 
     });
 
+    grunt.registerTask('steroids-copy-vendor', 'Copy vendor/ to dist/vendor', function(){
+
+      grunt.file.expandFiles(vendorDirectory + path.sep + "**" + path.sep + "*").forEach(function(filePathPart){
+        if ( !/\.coffee$/.test( path.basename(filePathPart) ) ) {
+          var filePath = path.resolve(filePathPart),
+              buildFilePath = path.resolve(filePathPart.replace("vendor"+path.sep, "dist"+path.sep+"vendor"+path.sep));
+
+
+          grunt.file.copy(filePath, buildFilePath);
+
+        }
+
+      })
+
+    });
+
 
     grunt.registerTask('steroids-clean-dist', 'Removes dist/ recursively and creates it again ', function(){
 
@@ -112,7 +128,6 @@ module.exports = function(grunt) {
           viewDirectories.push(dirPath);
 
           grunt.file.mkdir(path.join(buildViewsDirectory, path.basename(dirPath)));
-
         }
       });
 
@@ -143,7 +158,9 @@ module.exports = function(grunt) {
           // put layout+yields together
           var yieldedFile = grunt.util._.template(applicationLayoutFile.toString())({yield: yieldObj})
 
+
           // write the file
+          grunt.file.mkdir(path.dirname(buildFilePath));
           grunt.file.write(buildFilePath, yieldedFile);
 
         });
