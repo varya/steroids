@@ -1,3 +1,4 @@
+###
 wrench = require "wrench"
 fs = require "fs"
 
@@ -19,3 +20,4 @@ describe 'ProjectCreator', ->
 
       wrench.rmdirSyncRecursive @projectName
 
+###

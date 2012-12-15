@@ -6,6 +6,7 @@
   "author": "Matti Paksula <matti.paksula@appgyver.com>",
   "description": "AppGyver Steroids command line interface",
   "contributors": [
+    "Jesse Ikonen <jesse.ikonen@appgyver.com>"
   ],
 
   "bin": {
@@ -13,7 +14,7 @@
   },
 
   "scripts": {
-    "test": "node_modules/jasmine-node/bin/jasmine-node --coffee --color spec",
+    "test": "STEROIDS_TEST_RUN=true node_modules/jasmine-node/bin/jasmine-node --verbose --coffee --color spec",
     "install": "./bin/install"
   },
 
@@ -38,7 +39,8 @@
     "weinre": "2.0.0-pre-H9PU2WST-incubating",
     "express": ">=3.0.3",
     "grunt": ">=0.3.18a",
-    "open": ">=0.0.2"
+    "open": ">=0.0.2",
+    "request": ">=2.12.x"
   },
 
   "devDependencies": {

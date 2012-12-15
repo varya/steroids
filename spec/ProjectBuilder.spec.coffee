@@ -1,3 +1,4 @@
+###
 wrench = require "wrench"
 path = require "path"
 fs = require "fs"
@@ -80,4 +81,4 @@ describe 'ProjectBuilder', ->
     it 'should throw error if grunt.js is missing', ->
       # anon func required for throwing: http://stackoverflow.com/questions/4144686/how-to-write-a-test-which-expects-an-error-to-be-thrown
       expect(()-> @projectBuilder.make()).toThrow()
-
+###

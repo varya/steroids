@@ -30,7 +30,7 @@ class Server
 
 
   mount: (appToMount) =>
-    appToMount.setRoutes() 
+    appToMount.setRoutes()
     @app.use appToMount.options.path, appToMount.app
 
   interfaces: =>

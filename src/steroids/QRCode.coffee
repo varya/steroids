@@ -6,6 +6,7 @@ class QRCode
 
 
   show: =>
+    return if process.env.STEROIDS_TEST_RUN
     open "http://localhost:4567/qrcode.html?qrCodeData=#{encodeURIComponent(@data)}"
 
 

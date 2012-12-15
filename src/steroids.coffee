@@ -46,11 +46,11 @@ class Steroids
 
         interfaces = server.interfaces()
         ips = server.ipAddresses()
-        
+
         QRCode = require "./steroids/QRCode"
         qrcode = new QRCode("appgyver://?ips=#{encodeURIComponent(JSON.stringify(ips))}")
         qrcode.show()
-        
+
         util.log "Waiting for client to connect, this may take a while ..."
       else
         Help.usage()

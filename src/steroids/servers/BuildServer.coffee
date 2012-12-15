@@ -1,5 +1,9 @@
 Server = require "../Server"
+Converter = require "../Converter"
 util = require "util"
+
+fs = require "fs"
+Paths = require "../paths"
 
 class BuildServer extends Server
 
@@ -10,15 +14,17 @@ class BuildServer extends Server
   setRoutes: =>
 
     @app.get "/appgyver/api/applications/1.json", (req, res) ->
-      
+
       client =
         userAgent: req.headers["user-agent"]
 
       util.log "Client connected: #{client.userAgent}"
 
-      response = {}
+      json = fs.readFileSync Paths.steroidsJSON, "utf8"
 
-      res.send JSON.stringify(response)
+      response = Converter.steroidsToAnkaFormat JSON.parse( json )
+
+      res.json response
 
 
     @app.get "/refresh_client", (req, res) ->
