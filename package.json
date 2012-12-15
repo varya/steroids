@@ -37,7 +37,8 @@
     "wrench": ">=1.4.3",
     "weinre": "2.0.0-pre-H9PU2WST-incubating",
     "express": ">=3.0.3",
-    "grunt": ">=0.3.18a"
+    "grunt": ">=0.3.18a",
+    "open": ">=0.0.2"
   },
 
   "devDependencies": {

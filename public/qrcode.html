@@ -1,0 +1,26 @@
+<script src="/javascripts/jquery-1.8.3.min.js"></script>
+<script src="/javascripts/jquery.qrcode.js"></script>
+<script src="/javascripts/qrcode.js"></script>
+
+
+<div id="qrcodeCanvas"></div>
+
+<script>
+
+  function getQueryStringByKey(key) {
+    key = key.replace(/[*+?^$.\[\]{}()|\\\/]/g, "\\$&"); // escape RegEx meta chars
+    var match = location.search.match(new RegExp("[?&]"+key+"=([^&]+)(&|$)"));
+    return match && decodeURIComponent(match[1].replace(/\+/g, " "));
+  }
+
+
+
+  jQuery('#qrcodeCanvas').qrcode({
+    width: 256,
+    height: 256,
+    text  : getQueryStringByKey("qrCodeData")
+  }); 
+
+</script>
+
+
