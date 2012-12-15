@@ -1,9 +1,10 @@
 Help = require "./steroids/Help"
 Weinre = require "./steroids/Weinre"
 
+util = require "util"
+
 
 class Steroids
-  @server = undefined
 
   constructor: ->
 
@@ -33,21 +34,40 @@ class Steroids
         weinre = new Weinre
         weinre.run()
 
-      when "transfer"
-        @startServer()
-        console.log "Waiting for client to connect, this may take a while.."
+      when "build"
+        BuildServer = require "./steroids/servers/BuildServer"
 
+        server = @startServer()
+
+        buildServer = new BuildServer
+                            path: "/"
+
+        server.mount(buildServer)
+
+        interfaces = server.interfaces()
+        ips = server.ipAddresses()
+        
+        QRCode = require "./steroids/QRCode"
+        qrcode = new QRCode("appgyver://?ips=#{encodeURIComponent(JSON.stringify(ips))}")
+        qrcode.show()
+        
+        util.log "Waiting for client to connect, this may take a while ..."
       else
         Help.usage()
+
+
 
 
   startServer: =>
     Server = require "./steroids/Server"
 
-    @server = new Server
+    server = new Server
                     port: 4567
+                    path: "/"
 
-    @server.listen()
+    server.listen()
+
+    return server
 
   install: =>
     fs = require "fs"
