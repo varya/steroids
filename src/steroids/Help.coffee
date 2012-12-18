@@ -2,7 +2,9 @@
 class Help
 
 	@usage: ->
-		console.log "TODO: USAGE INFORMATION"
+    fs = require "fs"
+    paths = require "./paths"
+    console.log fs.readFileSync(paths.usage).toString()
 
 
 module.exports = Help

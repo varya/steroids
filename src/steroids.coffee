@@ -64,15 +64,29 @@ class Steroids
         qrcode.show()
 
         util.log "Waiting for client to connect, this may take a while ..."
+
+      when "serve"
+        WebServer = require "./steroids/servers/WebServer"
+
+        server = @startServer
+                    port: 3000
+
+        webServer = new WebServer
+                          path: "/"
+
+        server.mount(webServer)
+
+        util.log "Serving application in http://localhost:3000"
+
       else
         Help.usage()
 
 
-  startServer: =>
+  startServer: (options) =>
     Server = require "./steroids/Server"
 
     server = new Server
-                    port: 4567
+                    port: options.port || 4567
                     path: "/"
 
     server.listen()
@@ -82,6 +96,10 @@ class Steroids
 
 module.exports =
   run: ->
+    fs = require "fs"
+    paths = require "./steroids/paths"
+    console.log fs.readFileSync(paths.banner).toString()
+
     s = new Steroids
     s.parseOptions()
   config: new Config
