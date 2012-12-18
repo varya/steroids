@@ -13,6 +13,9 @@ class Server
 
     @app.use express.static(paths.staticFiles)
 
+    @port = @options.port
+
+  port: undefined
 
   setRoutes: () =>
     console.log "Server setRoutes"

@@ -15,7 +15,8 @@ class Converter
     ankaLikeJSON.appearance = @appearanceObject(config)
 
     ankaLikeJSON.files = []
-    ankaLikeJSON.archives = [] # TODO: käyppä hakee zippi
+    ankaLikeJSON.archives = []
+
     ankaLikeJSON.bottom_bars = @tabsObject(config) # TODO: asetappa bottombars
 
     # legacy stuff

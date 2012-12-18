@@ -22,11 +22,15 @@ class BuildServer extends Server
 
       util.log "Client connected: #{client.userAgent}"
 
-      response = @converter.configToAnkaFormat()
-#      response = Converter.steroidsToAnkaFormat JSON.parse( json )
+      config = @converter.configToAnkaFormat()
 
-      res.json response
+      config.archives.push {url: "#{req.protocol}://#{req.host}:4567/appgyver/zips/project.zip"}
 
+      res.json config
+
+
+    @app.get "/appgyver/zips/project.zip", (req, res)->
+      res.sendfile Paths.temporaryZip
 
     @app.get "/refresh_client", (req, res) ->
 
