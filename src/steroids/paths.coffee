@@ -14,5 +14,6 @@ class Paths
   @temporaryZip: path.join pathExtra.tempdir(), "ag_project.zip"
   @dist: path.join process.cwd(), "dist"
   @banner: path.join @npm, "support", "banner"
+  @usage: path.join @npm, "support", "usage"
 
 module.exports = Paths
