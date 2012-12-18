@@ -9,6 +9,8 @@
     "Jesse Ikonen <jesse.ikonen@appgyver.com>"
   ],
 
+  "main": "./src/main.js",
+
   "bin": {
     "steroids": "./bin/steroids"
   },
