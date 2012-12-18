@@ -8,6 +8,7 @@ class Steroids
 
   constructor: ->
 
+  config: new require("./steroids/Config")
 
   parseOptions: =>
 
