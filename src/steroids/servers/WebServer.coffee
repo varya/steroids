@@ -16,8 +16,8 @@ class WebServer extends Server
 
     @app.get "*", (req, res) ->
 
-      if req.path == "/"
-        filePath = "index.html"
+      if /\/$/.test(req.path)
+        filePath = path.join(req.path.substring(1), "index.html")
       else
         filePath = req.path
 
@@ -28,7 +28,7 @@ class WebServer extends Server
       else
         res.status(status = 200).sendfile(fileDistPath)
 
-      util.log "GET -- #{status} -- #{req.path}"
+      util.log "GET -- #{status} -- #{fileDistPath}"
 
 
 
