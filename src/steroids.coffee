@@ -2,6 +2,7 @@ Help = require "./steroids/Help"
 Weinre = require "./steroids/Weinre"
 
 util = require "util"
+Config = require "./steroids/config"
 
 
 class Steroids
@@ -98,6 +99,8 @@ module.exports =
   install: ->
     s = new Steroids
     s.install()
+  config: new Config
+
 
   Help: Help
   paths: require "./steroids/paths"
