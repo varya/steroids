@@ -135,10 +135,16 @@ module.exports = function(grunt) {
       viewDirectories.forEach(function(viewDir){
 
         // resolve layout file for these views
-        var controllerName = path.basename(viewDir).replace(path.sep, "") + "Controller",
-            layoutFileName = path.basename(viewDir).replace(path.sep, ".html"),
-            layoutFilePath = path.join(appLayoutsDirectory, layoutFileName);
+        var layoutFileName;
 
+        // Some machines report folder/ as basename while others do not
+        if(path.basename(viewDir).indexOf(path.sep) != -1) {
+          layoutFileName = path.basename(viewDir).replace(path.sep, ".html")
+        } else {
+          layoutFileName = path.basename(viewDir) + ".html"
+        }
+
+        var layoutFilePath = path.join(appLayoutsDirectory, layoutFileName);
 
         if (!fs.existsSync(layoutFilePath)) layoutFilePath = path.join(appLayoutsDirectory, "application.html");
 
@@ -150,6 +156,7 @@ module.exports = function(grunt) {
           var filePath = path.resolve(filePathPart),
               buildFilePath = path.resolve(filePathPart.replace("app"+path.sep, "dist"+path.sep));
 
+          var controllerName = path.basename(viewDir).replace(path.sep, "") + "Controller";
           var yieldObj = {
             view: grunt.file.read(filePath, "utf8"),
             controller: controllerName
