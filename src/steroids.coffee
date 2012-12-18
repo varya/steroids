@@ -82,7 +82,7 @@ class Steroids
         Help.usage()
 
 
-  startServer: (options) =>
+  startServer: (options={}) =>
     Server = require "./steroids/Server"
 
     server = new Server
