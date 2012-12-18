@@ -10,8 +10,9 @@ class Paths
   @gruntFileTemplate: path.join @templates, "default", "grunt.js"
   @includedGrunt: path.join @npm, "node_modules", "grunt", "lib", "grunt"
   @staticFiles: path.join @npm, "public"
-  @steroidsJSON: path.join process.cwd(), "config", "steroids.json"
+  @appPath: path.join process.cwd()
+  @appConfigCoffee: path.join @appPath, "config", "config.coffee"
   @temporaryZip: path.join pathExtra.tempdir(), "ag_project.zip"
-  @dist: path.join process.cwd(), "dist"
+  @dist: path.join @appPath, "dist"
 
 module.exports = Paths

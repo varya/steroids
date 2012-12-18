@@ -8,21 +8,22 @@ Paths = require "../paths"
 class BuildServer extends Server
 
   constructor: (@options) ->
+    @converter = new Converter Paths.appConfigCoffee
     super(@options)
+
 
 
   setRoutes: =>
 
-    @app.get "/appgyver/api/applications/1.json", (req, res) ->
+    @app.get "/appgyver/api/applications/1.json", (req, res) =>
 
       client =
         userAgent: req.headers["user-agent"]
 
       util.log "Client connected: #{client.userAgent}"
 
-      json = fs.readFileSync Paths.steroidsJSON, "utf8"
-
-      response = Converter.steroidsToAnkaFormat JSON.parse( json )
+      response = @converter.configToAnkaFormat()
+#      response = Converter.steroidsToAnkaFormat JSON.parse( json )
 
       res.json response
 

@@ -53,7 +53,7 @@
     "grunt": ">=0.3.18a",
     "open": ">=0.0.2",
     "request": ">=2.12.x",
-    "steroids-simulators": "git://github.com/AppGyver/steroids-simulators.git"
+    "steroids-simulators": "git://github.com/AppGyver/steroids-simulators.git",
     "request": ">=2.12.x",
     "watch": "0.5.x",
     "path-extra": "0.0.3"
