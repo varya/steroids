@@ -3,12 +3,22 @@
   "preferGlobal": "true",
   "version": "0.0.1",
   "license": "MIT",
-  "author": "Matti Paksula <matti.paksula@appgyver.com>",
+  "author": "AppGyver <contact@appgyver.com>",
   "description": "AppGyver Steroids command line interface",
   "contributors": [
-    "Jesse Ikonen <jesse.ikonen@appgyver.com>"
+    {
+      "name": "Matti Paksula",
+      "email": "matti.paksula@appgyver.com"
+    },
+    {
+      "name": "Jesse Ikonen",
+      "email": "jesse.ikonen@appgyver.com"
+    },
+    {
+      "name": "Juha Suuraho",
+      "email": "juha.suuraho@appgyver.com"
+    }
   ],
-
   "main": "./src/main.js",
 
   "bin": {
@@ -42,7 +52,8 @@
     "express": ">=3.0.3",
     "grunt": ">=0.3.18a",
     "open": ">=0.0.2",
-    "request": ">=2.12.x"
+    "request": ">=2.12.x",
+    "steroids-simulators": "git://github.com/AppGyver/steroids-simulators.git"
   },
 
   "devDependencies": {

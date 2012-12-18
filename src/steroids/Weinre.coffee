@@ -1,9 +1,9 @@
 weinre = require "weinre"
 
 class Weinre
-  
+
   DEFAULTS =
-    httpPort: 8080
+    httpPort: 31173
     boundHost: "-all-"
     verbose: true
     debug: true
