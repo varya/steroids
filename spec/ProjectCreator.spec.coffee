@@ -1,4 +1,3 @@
-###
 wrench = require "wrench"
 fs = require "fs"
 
@@ -19,5 +18,3 @@ describe 'ProjectCreator', ->
       expect( fs.existsSync(@projectName) ).toBe(true)
 
       wrench.rmdirSyncRecursive @projectName
-
-###
