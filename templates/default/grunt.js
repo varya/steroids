@@ -24,7 +24,7 @@ module.exports = function(grunt) {
         appModelsDirectory        = path.join(appDirectory, "models"),
         appControllersDirectory   = path.join(appDirectory, "controllers"),
         appLayoutsDirectory       = path.join(appDirectory, "views", "layouts"),
-        vendorDirectory           = path.join(process.cwd(), "vendor");
+        vendorDirectory           = path.join(process.cwd(), "vendor"),
         wwwDirectory              = path.join(process.cwd(), "www");
 
 

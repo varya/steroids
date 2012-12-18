@@ -8,7 +8,7 @@ class Zip
     @zipRecursively callback
 
   zipRecursively: (callback)->
-    child = childProcess.exec "zip -R -FS #{@to} ./**/* ./*", {
+    child = childProcess.exec "zip -R -FS #{@to} ./* ./**/* ./**/**/* ./**/**/**/*", {
       cwd: @from
     }, (error, stdout, stderr)->
       throw error if error?
