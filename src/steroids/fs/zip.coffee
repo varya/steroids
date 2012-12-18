@@ -8,19 +8,13 @@ class Zip
     @zipRecursively callback
 
   zipRecursively: (callback)->
-    childProcess.exec "echo LOL", (err, stdout)->
-      console.log err
-      console.log stdout
+    child = childProcess.exec "zip -R -FS #{@to} ./**/* ./*", {
+      cwd: @from
+    }, (error, stdout, stderr)->
+      throw error if error?
+      console.log "#{stdout}"
 
-    #console.log "TO: #{@to} FROM: #{@from}"
-    #child = childProcess.exec "zip -R -FS #{@to} ./**/* ./*", {
-    #  cwd: @from
-    #}, (error, stdout, stderr)->
-    #  console.log "#{error}"
-    #  console.log "#{stdout}"
-    #  console.log "#{stderr}"
-    #  timestamp = (new Date).getTime()
-    #  callback.apply(null, [timestamp]) if callback?
-    ##console.log child
+      timestamp = (new Date).getTime()
+      callback.apply(null, [timestamp]) if callback?
 
 module.exports = Zip

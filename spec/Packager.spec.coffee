@@ -1,12 +1,15 @@
+Paths = require "../src/steroids/paths"
 wrench = require "wrench"
 path = require "path"
 fs = require "fs"
 spawn = require("child_process").spawn
 request = require "request"
 
-describe 'BuildServer', ->
+describe 'Packager', ->
 
   beforeEach ->
+
+    fs.unlinkSync Paths.temporaryZip if fs.existsSync Paths.temporaryZip
 
     # create test directory where we can play around
 
@@ -51,53 +54,33 @@ describe 'BuildServer', ->
 
     , 'Grunt file exists', 5000)
 
-
-    # run build
-    runs ()=>
-      @buildProcess = spawn("..#{path.sep}..#{path.sep}bin#{path.sep}steroids", ["build"], [{cwd: @testWorkingDirectory}])
-      @built = false
-
-      @intervalleri = setInterval(()=>
-        request.get 'http://localhost:4567', (err, res, body)=>
-          if err is null
-            @built = true
-            clearInterval @intervalleri
-      , 250)
-
-    waitsFor(()=>
-
-      return @built
-
-    , "Command 'build' should complete", 10000)
-
-
   afterEach ->
 
     # clean up
-    if @buildProcess?
-      @buildProcess.kill('SIGKILL')
+    fs.unlinkSync Paths.temporaryZip if fs.existsSync Paths.temporaryZip
 
     process.chdir path.join __dirname, ".."
 
     wrench.rmdirSyncRecursive @testWorkingDirectory, false
 
 
+  describe 'zip', ->
 
-  describe 'server', ->
+    it 'should be created', ->
+      packaged = false
+      # run build
+      runs ()=>
+        packageProcess = spawn("..#{path.sep}..#{path.sep}bin#{path.sep}steroids", ["package"], [{cwd: @testWorkingDirectory}])
 
-    it 'serves application.json', ->
-      json = undefined
-      done = false
 
-      runs ()->
-        request.get {url: 'http://localhost:4567/appgyver/api/applications/1.json', json: true}, (err, res, body)=>
-          if body?
-            json = body
-            done = true
+        packageProcess.on "exit", ()->
+          packaged = true
 
       waitsFor(()->
-        return done
-      , "application.json request to complete", 2000)
 
-      runs ()->
-        expect( json.configuration.fullscreen ).toEqual "true"
+        return packaged
+
+      , "Command 'package' should complete", 10000)
+
+      runs ()=>
+        expect(fs.existsSync Paths.temporaryZip).toBe true

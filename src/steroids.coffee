@@ -8,7 +8,6 @@ class Steroids
 
   constructor: ->
 
-
   parseOptions: =>
 
     argv = require('optimist').argv
@@ -29,6 +28,13 @@ class Steroids
 
         projectBuilder.ensureBuildFile()
         projectBuilder.make()
+
+      when "package"
+        Packager = require "./steroids/Packager"
+
+        packager = new Packager
+
+        packager.create()
 
       when "debug"
         weinre = new Weinre
