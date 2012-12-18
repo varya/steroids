@@ -1,4 +1,7 @@
 path = require "path"
+pathExtra = require "path-extra"
+
+pathExtra.tempdir()
 
 class Paths
 
@@ -8,5 +11,7 @@ class Paths
   @includedGrunt: path.join @npm, "node_modules", "grunt", "lib", "grunt"
   @staticFiles: path.join @npm, "public"
   @steroidsJSON: path.join process.cwd(), "config", "steroids.json"
+  @temporaryZip: path.join pathExtra.tempdir(), "ag_project.zip"
+  @dist: path.join process.cwd(), "dist"
 
 module.exports = Paths
