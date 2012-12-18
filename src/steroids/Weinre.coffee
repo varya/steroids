@@ -10,15 +10,12 @@ class Weinre
     readTimeout: 5
     deathTimeout: (3 * 5)
 
-
   constructor: (@options = {}) ->
-
     for key of DEFAULTS
       @options[key] = DEFAULTS[key] unless @options[key]
 
   run: ->
     weinre.run @options
-
 
 
 module.exports = Weinre
