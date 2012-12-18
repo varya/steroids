@@ -1,5 +1,6 @@
 Help = require "./steroids/Help"
 Weinre = require "./steroids/Weinre"
+Simulator = require "./steroids/Simulator"
 
 util = require "util"
 Config = require "./steroids/config"
@@ -41,6 +42,10 @@ class Steroids
         weinre = new Weinre
         weinre.run()
 
+      when "simulator"
+        simulator = new Simulator
+        simulator.run()
+
       when "build"
         BuildServer = require "./steroids/servers/BuildServer"
 
@@ -63,8 +68,6 @@ class Steroids
         Help.usage()
 
 
-
-
   startServer: =>
     Server = require "./steroids/Server"
 
@@ -76,33 +79,13 @@ class Steroids
 
     return server
 
-  install: =>
-    fs = require "fs"
-
-    banner = (fs.readFileSync("./support/banner")).toString()
-
-    console.log banner
-
-    console.log "installing ..."
-
-    Installer = require "./steroids/Installer"
-
-    installer = new Installer()
-    installer.install()
-
-
 
 module.exports =
   run: ->
     s = new Steroids
     s.parseOptions()
-  install: ->
-    s = new Steroids
-    s.install()
   config: new Config
 
 
   Help: Help
   paths: require "./steroids/paths"
-
-
