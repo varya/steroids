@@ -8,10 +8,6 @@ class Installer
 
     fs = require "fs"
 
-    banner = (fs.readFileSync("./support/banner")).toString()
-
-    console.log banner
-
     console.log "installing ..."
 
     console.log "TODO: Installing in Installer"

@@ -96,6 +96,10 @@ class Steroids
 
 module.exports =
   run: ->
+    fs = require "fs"
+    paths = require "./steroids/paths"
+    console.log fs.readFileSync(paths.banner).toString()
+
     s = new Steroids
     s.parseOptions()
   config: new Config
