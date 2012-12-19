@@ -1,3 +1,6 @@
+Paths = require "./paths"
+fs = require "fs"
+
 class Converter
   constructor: (@configPath)->
 
@@ -10,6 +13,9 @@ class Converter
     ankaLikeJSON =
       id: 1
       name: config.name||"Default name"
+
+    if fs.existsSync Paths.temporaryZip
+      ankaLikeJSON.build_timestamp = fs.lstatSync(Paths.temporaryZip).mtime.getTime()
 
     ankaLikeJSON.configuration = @configurationObject(config)
     ankaLikeJSON.appearance = @appearanceObject(config)

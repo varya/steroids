@@ -40,8 +40,18 @@ class BuildServer extends Server
     @app.get "/appgyver/zips/project.zip", (req, res)->
       res.sendfile Paths.temporaryZip
 
-    @app.get "/refresh_client", (req, res) ->
-      res.send "false"
+    @app.get "/refresh_client?:timestamp", (req, res) ->
+      timestamp = key for key,val of req.query
+
+      if fs.existsSync Paths.temporaryZip
+        filestamp = fs.lstatSync(Paths.temporaryZip).mtime.getTime()
+      else
+        filestamp = 0
+
+      if parseInt(filestamp,10) > parseInt(timestamp,10)
+        res.send "true"
+      else
+        res.send "false"
 
 
 module.exports = BuildServer
