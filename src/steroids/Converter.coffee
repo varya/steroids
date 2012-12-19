@@ -47,7 +47,7 @@ class Converter
       background_eval_js_string: ""
       wait_for_document_ready_before_open: "true"
       open_clicked_links_in_new_layer: "false"
-      shake_gesture_enabled_during_development: "true"
+      shake_gesture_enabled_during_development: "false"
     }
 
   appearanceObject: (config)->
