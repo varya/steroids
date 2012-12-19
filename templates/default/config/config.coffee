@@ -27,6 +27,7 @@ Steroids.config.location = "http://localhost:13101/index.html"
 #Steroids.config.navigationBar.titleColor = ""
 #Steroids.config.navigationBar.titleShadowColor = ""
 
+#Steroids.config.navigationBar.buttonTintColor = ""
 #Steroids.config.navigationBar.buttonTitleColor = ""
 #Steroids.config.navigationBar.buttonShadowColor = ""
 
