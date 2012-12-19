@@ -2,7 +2,6 @@ class Converter
   constructor: (@configPath)->
 
   configToAnkaFormat: ->
-    console.log "CONFIG COFFEE PATH: #{@configPath}"
     delete require.cache[@configPath] if require.cache[@configPath]
 
     config = require @configPath
