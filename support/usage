@@ -20,15 +20,15 @@ Basic usage commands:
 
 Other usage commands:
 
-  debugger
-  
-    Starts Weinre debugger and waits for connections.  
-  
   simulator
 
     Launches iOS Simulator, requires xCode.
+
+  debug [--port=31173]
   
-  serve [--port=3000]
+    Starts Weinre debugger and waits for connections.  
+    
+  serve [--port=13101]
 
     Starts a web server in localhost:13101 that serves files from dist/
     

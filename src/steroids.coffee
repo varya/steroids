@@ -8,6 +8,8 @@ Config = require "./steroids/config"
 execSync = require "exec-sync"
 
 argv = require('optimist').argv
+open = require "open"
+
 
 class Steroids
 
@@ -62,8 +64,13 @@ class Steroids
         packager.create()
 
       when "debug"
-        weinre = new Weinre
+        options = {}
+        options.httpPort = argv.port
+
+        weinre = new Weinre options
         weinre.run()
+        
+        open "http://localhost:#{weinre.options.httpPort}/client/#anonymous"
 
       when "simulator"
         simulator = new Simulator
@@ -104,7 +111,6 @@ class Steroids
 
         util.log "Serving application in #{url}"
 
-        open = require "open"
         open url
 
       when "update"
