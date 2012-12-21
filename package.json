@@ -57,7 +57,8 @@
     "request": ">=2.12.x",
     "watch": "0.5.x",
     "path-extra": "0.0.3",
-    "exec-sync": ">=0.1.5"
+    "exec-sync": ">=0.1.5",
+    "colorize": ">=0.1.0"
   },
 
   "devDependencies": {

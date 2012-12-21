@@ -1,5 +1,8 @@
 paths = require "./paths"
 
+colorize = require "colorize"
+cconsole = colorize.console
+
 class Help
 
 	@usage: ->
@@ -13,6 +16,6 @@ class Help
 
   @printBanner: (filename) ->
     fs = require "fs"
-    console.log fs.readFileSync(filename).toString()    
+    cconsole.log fs.readFileSync(filename).toString()    
 
 module.exports = Help

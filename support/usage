@@ -1,33 +1,25 @@
-Usage:
+Synopsis:
 
   steroids <command> [arguments]
 
-Commands:
+Basic usage commands:
 
   create APP_PATH
 
     Creates a new application from default template.
 
-  make
-
-    Runs grunt tasks and creates files in dist.
-
-  package
-
-    Packages application for build.
-
-  build
+  connect
 
     Starts server and shows a QR-code for AppGyver Scanner.
+    Also serves application for iOS Simulator.
 
-  serve
+  push
 
-    Starts a web server that serves files from dist directory.
+    Push application to connected clients (Scanner or Simulator)
 
-  debug
 
-    Starts Weinre debugger and waits for connections.
+Other usage commands:
 
-  simulator
-
-    Launches iOS Simulator, requires xCode.
+  debug - Starts Weinre debugger and waits for connections.
+  simulator - Launches iOS Simulator, requires xCode.
+  serve - Starts a web server in localhost:13101 that serves files from dist/
