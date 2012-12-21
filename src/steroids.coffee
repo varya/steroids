@@ -86,6 +86,9 @@ class Steroids
 
         server.mount(buildServer)
 
+
+        console.log execSync "steroids push"
+
         interfaces = server.interfaces()
         ips = server.ipAddresses()
 
