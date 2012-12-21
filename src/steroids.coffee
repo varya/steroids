@@ -5,6 +5,7 @@ Simulator = require "./steroids/Simulator"
 util = require "util"
 Config = require "./steroids/config"
 
+execSync = require "exec-sync"
 
 class Steroids
 
@@ -23,7 +24,16 @@ class Steroids
         projectCreator = new ProjectCreator(otherOptions)
 
         projectCreator.clone(otherOptions[0])
+
+      when "push"
+        output = execSync "steroids make"
+        console.log output
+
+        output = execSync "steroids package"
+        console.log output
+
       when "make"
+
         ProjectBuilder = require("./steroids/ProjectBuilder")
 
         projectBuilder = new ProjectBuilder(otherOptions)
@@ -46,7 +56,7 @@ class Steroids
         simulator = new Simulator
         simulator.run()
 
-      when "build"
+      when "connect"
         BuildServer = require "./steroids/servers/BuildServer"
 
         server = @startServer()
