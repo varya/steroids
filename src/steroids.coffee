@@ -28,8 +28,12 @@ class Steroids
         console.log "Initializing project ... "
         process.chdir(folder)
 
+        output = execSync "steroids update --noLogo"
+        console.log output
+
         output = execSync "steroids push --noLogo"
         console.log output
+
 
         Help.logo()
         Help.welcome()
