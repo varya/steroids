@@ -14,7 +14,8 @@ class Paths
   @appConfigCoffee: path.join @appPath, "config", "application.coffee"
   @temporaryZip: path.join pathExtra.tempdir(), "steroids_project.zip"
   @dist: path.join @appPath, "dist"
-  @banner: path.join @npm, "support", "banner"
-  @usage: path.join @npm, "support", "usage"
+  @logoBanner: path.join @npm, "support", "logo"
+  @usageBanner: path.join @npm, "support", "usage"
+  @welcomeBanner: path.join @npm, "support", "welcome"
 
 module.exports = Paths

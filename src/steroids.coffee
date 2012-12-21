@@ -7,29 +7,38 @@ Config = require "./steroids/config"
 
 execSync = require "exec-sync"
 
+argv = require('optimist').argv
+
 class Steroids
 
   constructor: ->
 
   parseOptions: =>
 
-    argv = require('optimist').argv
-
     [firstOption, otherOptions...] = argv._
 
     switch firstOption
       when "create"
+        folder = otherOptions[0]
+
         ProjectCreator = require("./steroids/ProjectCreator")
-
         projectCreator = new ProjectCreator(otherOptions)
+        projectCreator.clone(folder)
 
-        projectCreator.clone(otherOptions[0])
+        console.log "Initializing project ... "
+        process.chdir(folder)
 
-      when "push"
-        output = execSync "steroids make"
+        output = execSync "steroids push --noLogo"
         console.log output
 
-        output = execSync "steroids package"
+        Help.logo()
+        Help.welcome()
+
+      when "push"
+        output = execSync "steroids make --noLogo"
+        console.log output
+
+        output = execSync "steroids package --noLogo"
         console.log output
 
       when "make"
@@ -106,9 +115,7 @@ class Steroids
 
 module.exports =
   run: ->
-    fs = require "fs"
-    paths = require "./steroids/paths"
-    console.log fs.readFileSync(paths.banner).toString()
+    Help.logo() unless argv.noLogo
 
     s = new Steroids
     s.parseOptions()
