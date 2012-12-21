@@ -69,7 +69,9 @@ class Steroids
 
         weinre = new Weinre options
         weinre.run()
-        
+
+        execSync "steroids push"
+
         open "http://localhost:#{weinre.options.httpPort}/client/#anonymous"
 
       when "simulator"
