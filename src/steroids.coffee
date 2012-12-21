@@ -85,17 +85,23 @@ class Steroids
         util.log "Waiting for client to connect, this may take a while ..."
 
       when "serve"
+        port = (argv.port || 13101)
+        url = "http://localhost:#{port}"
+
         WebServer = require "./steroids/servers/WebServer"
 
         server = @startServer
-                    port: 3000
+                    port: port
 
         webServer = new WebServer
                           path: "/"
 
         server.mount(webServer)
 
-        util.log "Serving application in http://localhost:3000"
+        util.log "Serving application in #{url}"
+
+        open = require "open"
+        open url
 
       when "update"
         DependencyUpdater = require "./steroids/DependencyUpdater"

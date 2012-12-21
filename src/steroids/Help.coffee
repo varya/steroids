@@ -1,7 +1,6 @@
 paths = require "./paths"
-
 colorize = require "colorize"
-cconsole = colorize.console
+
 
 class Help
 
@@ -9,13 +8,24 @@ class Help
     @printBanner(paths.usageBanner)
 
   @welcome: ->
-    @printBanner(paths.welcomeBanner)
+    @printBanner(paths.welcomeBanner, true)
 
   @logo: ->
-    @printBanner(paths.logoBanner)
+    @printBanner(paths.logoBanner, true)
 
-  @printBanner: (filename) ->
+  @readContentsSync: (filename) ->
     fs = require "fs"
-    cconsole.log fs.readFileSync(filename).toString()    
+    return fs.readFileSync(filename).toString()
+
+  @printBanner: (filename, color=false) ->
+
+    contents = @readContentsSync(filename)
+
+    if color
+      colorize.console.log  contents
+    else
+      console.log contents
+
+
 
 module.exports = Help
