@@ -6,7 +6,6 @@ spawn = require("child_process").spawn
 class Grunt
   constructor: (@workingPath)->
 
-
   run: ->
     # set steroids path to global namespace for grunt requires
     global.steroidsPath = paths.npm
@@ -14,7 +13,6 @@ class Grunt
     require(paths.includedGrunt).tasks ["default"],
       gruntfile: path.join @workingPath, 'grunt.js'
       verbose: true
-
 
   configFilePath: (workingPath = @workingPath) ->
     path.join workingPath, "grunt.js"
@@ -28,11 +26,8 @@ class Grunt
     console.log "Creating config file #{@configFilePath()}"
     fs.writeFileSync @configFilePath(), @defaultConfigFileContent(), "utf8"
 
-
   defaultConfigFileContent: ->
     fs.readFileSync(@steroidsConfigFilePath, "utf8")
-
-
 
 
 module.exports = Grunt
