@@ -32,17 +32,29 @@ class Converter
 
   tabsObject: (config)->
     return [] unless config.tabBar.tabs.length
+    return [] if @fullscreen
     ({position: i, title: tab.title, image_path: tab.icon, target_url: tab.location} for tab, i in config.tabBar.tabs)
 
   configurationObject: (config)->
+
+    if config.statusBar.enabled == false or config.statusBar.enabled == undefined
+      statusBar = "hidden"
+    else
+      statusBar = config.statusBar.style
+
+    if config.tabBar.enabled == true
+      @fullscreen = false
+    else
+      @fullscreen = true
+
     return {
       request_user_location: "false"
-      fullscreen: "#{!config.tabBar.enabled}"
+      fullscreen: "#{@fullscreen}"
       fullscreen_start_url: "#{config.location}"
       splashscreen_duration_in_seconds: 0
       client_version: "edge"
       navigation_bar_style: "#{config.theme}"
-      status_bar_style: "#{config.statusBar.style}"
+      status_bar_style: statusBar
       initial_eval_js_string: ""
       background_eval_js_string: ""
       wait_for_document_ready_before_open: "true"
