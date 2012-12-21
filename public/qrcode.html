@@ -2,6 +2,34 @@
 <script src="/javascripts/jquery.qrcode.js"></script>
 <script src="/javascripts/qrcode.js"></script>
 
+<style>
+  body {
+    margin: 4em;
+    font-family: "Helvetica Neue", "Helvetica", "Arial"
+  }
+
+  div {
+    float: left;
+    margin-left: 2em;
+  }
+
+</style>
+
+<h1>AppGyver Steroids</h1>
+
+<div><img src="/images/steroids_logo.png" /></div>
+
+<div>
+  <p>Connect AppGyver Scanner or Simulator to your application.</p>
+
+  <p>As you make changes, keep connect running and run:</p>
+
+<pre>
+  $ steroids push
+</pre>
+
+  <p>to see your changes.</p>
+</div>
 
 <div id="qrcodeCanvas"></div>
 
@@ -12,7 +40,6 @@
     var match = location.search.match(new RegExp("[?&]"+key+"=([^&]+)(&|$)"));
     return match && decodeURIComponent(match[1].replace(/\+/g, " "));
   }
-
 
 
   jQuery('#qrcodeCanvas').qrcode({
