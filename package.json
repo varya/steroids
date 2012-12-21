@@ -54,6 +54,7 @@
     "open": ">=0.0.2",
     "request": ">=2.12.x",
     "steroids-simulators": "git://github.com/AppGyver/steroids-simulators.git",
+    "steroids-js": "git://github.com/AppGyver/steroids-js.git",
     "request": ">=2.12.x",
     "watch": "0.5.x",
     "path-extra": "0.0.3",

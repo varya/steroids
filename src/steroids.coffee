@@ -97,6 +97,13 @@ class Steroids
 
         util.log "Serving application in http://localhost:3000"
 
+      when "update"
+        DependencyUpdater = require "./steroids/DependencyUpdater"
+
+        dependencyUpdater = new DependencyUpdater
+
+        dependencyUpdater.update()
+
       else
         Help.usage()
 
