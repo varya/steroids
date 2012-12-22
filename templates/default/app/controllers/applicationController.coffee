@@ -10,14 +10,14 @@ document.addEventListener "deviceready", ()->
     layer = new Steroids.Layer { location: "http://localhost:13101" + @getAttribute("data-location") }
 
     # ... Open on top of this document and pushes to the navigation stack
-    Steroids.layers.push layer
+    Steroids.layers.push layer: layer
 
   $(".opensModal").on "tap", () ->
 
     # TODO: FIXME get rid off localhost setting
     layer = new Steroids.Layer { location: "http://localhost:13101" + @getAttribute("data-location") }
 
-    Steroids.Modal.show(layer)
+    Steroids.Modal.show layer:layer
 
   $(".closesModal").on "tap", () ->
 
