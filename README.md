@@ -15,7 +15,9 @@ Xcode(and OS X platform) is not required, but installing Xcode on OS X gives you
 ## Usage
 
   $ steroids create <project_name>
+  
   $ cd <project_name>
+  
   $ steroids connect
 
 More usage information is available in
