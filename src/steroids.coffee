@@ -10,7 +10,6 @@ execSync = require "exec-sync"
 argv = require('optimist').argv
 open = require "open"
 
-
 class Steroids
 
   constructor: ->
@@ -149,6 +148,6 @@ module.exports =
     s.parseOptions()
   config: new Config
 
-
+  GruntDefaults: require "./steroids/GruntDefaults"
   Help: Help
   paths: require "./steroids/paths"
