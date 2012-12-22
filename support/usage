@@ -30,7 +30,9 @@ Other usage commands:
 
   update
 
-    Downloads latest steroids.js to www/javascripts/steroids.js
+    Updates latest steroids.js to www/javascripts/steroids.js
+
+    Run `npm update steroids` beforehand to update your steroids npm package.
 
   serve [--port=13101]
 
