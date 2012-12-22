@@ -28,6 +28,10 @@ Other usage commands:
 
     Starts Weinre debugger and waits for connections.
 
+  update
+
+    Downloads latest steroids.js to www/javascripts/steroids.js
+
   serve [--port=13101]
 
     Starts a web server in localhost:13101 that serves files from dist/
