@@ -24,6 +24,15 @@ More usage information is available in
   $ steroids usage
 
 
+## Debug
+
+Steroids comes bundled with Weinre.
+
+  $ steroids debug
+
+Starts Weinre server and opens your browser.  Once devices are connected, you can select a target document to inspect from the first page.
+
+
 ## Bugs, feedback
 
 We want to get your feedback, send it to contact@appgyver.com
