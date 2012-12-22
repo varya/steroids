@@ -9,7 +9,7 @@ Steroids.config.location = "index.html"
 
 # A boolean to enable tab bar (on bottom)
 # This will override Steroids.config.location (that is for single webview apps, like in PhoneGap)
-# Default: true
+# Default: false
 #
 # Steroids.config.tabBar.enabled = true
 
@@ -22,8 +22,6 @@ Steroids.config.location = "index.html"
 #   - file URL (relative to www, f.e. index.html)
 #   - http://localhost:13101/ (serves files locally from www, f.e. http://localhost:13101/ would serve index.html)
 #   - http://www.google.com (directly from internet)
-#
-#  Default: []
 #
 # Steroids.config.tabBar.tabs = [
 #   {
@@ -47,7 +45,7 @@ Steroids.config.location = "index.html"
 
 # -- Status bar --
 # Sets status bar visible (carrier, clock, battery status)
-# Default: true
+# Default: false
 #
 # Steroids.config.statusBar.enabled = true
 
