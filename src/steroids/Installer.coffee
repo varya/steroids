@@ -10,7 +10,4 @@ class Installer
 
     console.log "installing ..."
 
-    console.log "TODO: Installing in Installer"
-
-
 module.exports = Installer
