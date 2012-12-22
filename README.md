@@ -1,7 +1,7 @@
 AppGyver Steroids
 -----------------
 
-AppGyver Steroids is PhoneGap on Steroids, providing native UI elements, multiple WebViews and enhancements for better developer productivity.
+AppGyver Steroids is like PhoneGap on Steroids, providing native UI elements, multiple WebViews and enhancements for better developer productivity.
 
 
 ## Installation and requirements
