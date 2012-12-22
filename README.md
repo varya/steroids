@@ -14,27 +14,33 @@ Xcode(and OS X platform) is not required, but installing Xcode on OS X gives you
 
 ## Usage
 
-  $ steroids create <project_name>
-  
-  $ cd <project_name>
-  
+```
+  $ steroids create project_name
+  $ cd project_name
   $ steroids connect
+```
 
 More usage information is available in
 
+```
   $ steroids usage
+```
 
 ## Debug
 
 Steroids comes bundled with Weinre.
 
+```
   $ steroids debug
+```
 
 Starts Weinre server and opens your browser.  Once devices are connected, you can select a target document to inspect from the first page.
+
 
 ## Javascript API documentation
 
 http://appgyver.github.com/steroids-js/steroids-js-latest.html
+
 
 ## Bugs, feedback
 
