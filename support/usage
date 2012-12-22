@@ -22,13 +22,12 @@ Other usage commands:
 
   simulator
 
-    Launches iOS Simulator, requires xCode.
+    Launches iOS Simulator, requires Xcode.
 
   debug [--port=31173]
-  
-    Starts Weinre debugger and waits for connections.  
-    
+
+    Starts Weinre debugger and waits for connections.
+
   serve [--port=13101]
 
     Starts a web server in localhost:13101 that serves files from dist/
-    
