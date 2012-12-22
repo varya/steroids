@@ -10,3 +10,7 @@ h1 {
 p + p {
   margin-top: 1em;
 }
+
+div.ratchetFix {
+  margin-top: 3em;
+}
