@@ -10,12 +10,13 @@ Basic usage commands:
 
   connect
 
-    Starts server and shows a QR-code for AppGyver Scanner.
-    Also serves application for iOS Simulator.
+    Starts server and allows to connect your iOS device or iOS Simulator to see your application.
+    Provides further instructions for connecting.
 
   push
 
-    Push application to connected clients (Scanner or Simulator)
+    Pushes new version of your application to connected clients (iOS device or iOS Simulator).
+    Notice: connect needs to be running for push to work.
 
 
 Other usage commands:

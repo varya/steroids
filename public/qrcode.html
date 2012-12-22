@@ -1,3 +1,8 @@
+<html>
+<head>
+	<title>AppGyver Steroids: Connect running</title>
+</head>
+<body>
 <script src="/javascripts/jquery-1.8.3.min.js"></script>
 <script src="/javascripts/jquery.qrcode.js"></script>
 <script src="/javascripts/qrcode.js"></script>
@@ -20,9 +25,23 @@
 <div><img src="/images/steroids_logo.png" /></div>
 
 <div>
-  <p>Connect AppGyver Scanner or Simulator to your application.</p>
+  <p>The Steroids server is now running. Server stays alive as long as the <br>
+	<code>$ steroids connect</code> command is running in the terminal window.</p>
+  <p>You can now connect your iOS device or iOS Simulator to see your application.</p>
 
-  <p>As you make changes, keep connect running and run:</p>
+  <p><strong>To connect an iOS device:</strong></p>
+	<ul>
+	  	<li>Make sure your device is in the same WLAN with this computer</li>
+		<li>Scan the QR code on the right with <a href="https://itunes.apple.com/us/app/appgyver-preview/id479747411?mt=8" target="_blank">AppGyver Scanner</a> for iOS</li>
+	</ul>
+  </p>
+  <p><strong>To connect iOS Simulator (you need to have Xcode installed):</strong></p>
+	<ul>
+		<li>Open another terminal window and run: <code>$ steroids simulator</code></li>
+	</ul>
+  </p>
+
+  <p>As you make changes to your project, keep connect running and run:</p>
 
 <pre>
   $ steroids push
@@ -30,7 +49,6 @@
 
   <p>to see your changes.</p>
 
-  <p><strong>Device and server needs to be in the same WLAN!</strong></p>
 </div>
 
 <div id="qrcodeCanvas"></div>
@@ -52,4 +70,4 @@
 
 </script>
 
-
+</body>
