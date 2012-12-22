@@ -42,7 +42,7 @@ describe 'ProjectBuilder', ->
 
       waitsFor(()=>
         return @testAppDirectory
-      , "Test App Directory should be created", 2000)
+      , "Test App Directory should be created", 10000)
 
 
       runs ()=>
