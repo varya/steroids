@@ -10,8 +10,7 @@ Steroids requires node and npm package management. Install with ```-g``` to make
 
   $ npm install steroids -g
 
-xCode is not required, but installing xCode gives you iOS Simulator.
-
+Xcode(and OS X platform) is not required, but installing Xcode on OS X gives you iOS Simulator. Xcode is available for download at the Mac App Store.
 
 ## Usage
 
@@ -23,7 +22,6 @@ More usage information is available in
 
   $ steroids usage
 
-
 ## Debug
 
 Steroids comes bundled with Weinre.
@@ -31,7 +29,6 @@ Steroids comes bundled with Weinre.
   $ steroids debug
 
 Starts Weinre server and opens your browser.  Once devices are connected, you can select a target document to inspect from the first page.
-
 
 ## Bugs, feedback
 
