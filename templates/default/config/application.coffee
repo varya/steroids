@@ -28,17 +28,17 @@ Steroids.config.location = "index.html"
 # Steroids.config.tabBar.tabs = [
 #   {
 #     title: "File URL"
-#     icon: "images/first@2x.png"
+#     icon: "icons/shoebox@2x.png"
 #     location: "index.html"
 #   },
 #   {
 #     title: "Localhost"
-#     icon: "images/first@2x.png"
+#     icon: "icons/pill@2x.png"
 #     location: "http://localhost:13101/views/pills/index.html"
 #   }
 #   {
 #     title: "Internet"
-#     icon: "images/first@2x.png"
+#     icon: "icons/telescope@2x.png"
 #     location: "http://www.google.com"
 #   }
 # ]
