@@ -34,7 +34,7 @@ Steroids.config.location = "index.html"
 #   {
 #     title: "Localhost"
 #     icon: "images/first@2x.png"
-#     location: "http://localhost:13101/index.html"
+#     location: "http://localhost:13101/views/pills/index.html"
 #   }
 #   {
 #     title: "Internet"
