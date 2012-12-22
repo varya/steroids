@@ -30,6 +30,10 @@ Steroids comes bundled with Weinre.
 
 Starts Weinre server and opens your browser.  Once devices are connected, you can select a target document to inspect from the first page.
 
+## Javascript API documentation
+
+http://appgyver.github.com/steroids-js/steroids-js-latest.html
+
 ## Bugs, feedback
 
 We want to get your feedback, send it to contact@appgyver.com
