@@ -17,8 +17,8 @@ document.addEventListener "deviceready", ()->
     # TODO: FIXME get rid off localhost setting
     layer = new Steroids.Layer { location: "http://localhost:13101" + @getAttribute("data-location") }
 
-    Steroids.Modal.show layer:layer
+    Steroids.modal.show layer:layer
 
   $(".closesModal").on "tap", () ->
 
-     Steroids.Modal.hide()
+     Steroids.modal.hide()
