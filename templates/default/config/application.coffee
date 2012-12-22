@@ -39,7 +39,7 @@ Steroids.config.location = "index.html"
 #   {
 #     title: "Internet"
 #     icon: "images/first@2x.png"
-#     location: "http://www.appgyver.com/steroids"
+#     location: "http://www.google.com"
 #   }
 # ]
 
