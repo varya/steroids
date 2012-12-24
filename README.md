@@ -12,12 +12,13 @@ Steroids requires node and npm package management. Install with ```-g``` to make
 *IMPORTANT NOTE:* brew installed node and npm might are somewhat broken, fix this by setting both:
 
 ```
-export NODE_PATH="/usr/local/share/npm/lib/node_modules/"
 export PATH="/usr/local/share/npm/bin:$PATH"
+export NODE_PATH="/usr/local/share/npm/lib/node_modules/"
 ```
 
+If PATH is not set, steroids command wont work.
 
-If NODE_PATH is not set and npm is installed with brew, you will following when the client connects
+If NODE_PATH is not set and npm is installed with brew, you will get following when trying to preview application in a device or Simulator.
 
 ```
 
@@ -32,7 +33,6 @@ stack:
             module.js:378 - require()
 ```
 
-if PATH is not set, steroids command wont work.
 
 
 This all being said, install it as global 
