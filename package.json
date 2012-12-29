@@ -62,7 +62,8 @@
     "watch": "0.5.x",
     "path-extra": "0.0.3",
     "exec-sync": ">=0.1.5",
-    "colorize": ">=0.1.0"
+    "colorize": ">=0.1.0",
+    "http-proxy": ">=0.8.7"
   },
 
   "devDependencies": {

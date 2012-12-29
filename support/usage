@@ -35,6 +35,10 @@ Other usage commands:
 
     Run `npm update steroids` beforehand to update your steroids npm package.
 
-  serve [--port=13101]
+  serve [--port=13101, --db=false]
 
     Starts a web server in localhost:13101 that serves files from dist/
+
+    Use --db=true option to set up a proxy between localhost:13101/db/* -> localhost:5984/* (fixes CORS issues with Couch DB support)
+
+

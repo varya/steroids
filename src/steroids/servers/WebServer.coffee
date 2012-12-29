@@ -25,6 +25,7 @@ class WebServer extends Server
 
       unless fs.existsSync(fileDistPath)
         res.status(status = 404)
+        res.end()
       else
         res.status(status = 200).sendfile(fileDistPath)
 

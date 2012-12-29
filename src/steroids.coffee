@@ -101,12 +101,21 @@ class Steroids
 
       when "serve"
         port = (argv.port || 13101)
+        proxyCouch = (argv.db || false)
         url = "http://localhost:#{port}"
 
         WebServer = require "./steroids/servers/WebServer"
+        CouchProxyServer = require "./steroids/servers/CouchProxyServer"
 
         server = @startServer
                     port: port
+
+        if proxyCouch
+          couchProxyServer = new CouchProxyServer path: "/db"
+
+          server.mount(couchProxyServer)
+
+          util.log "Proxying Couch DB requests from #{url}/db"
 
         webServer = new WebServer
                           path: "/"
