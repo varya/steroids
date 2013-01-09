@@ -1,9 +1,12 @@
+sass = require 'node-sass'
+
 defaultConfig = {}
 
 registerDefaultTasks = (grunt)->
   grunt.registerTask 'steroids-default', [
     'steroids-clean-dist',
     'steroids-copy-www',
+    'steroids-compile-sass',
     'steroids-copy-vendor',
     'steroids-generate-views',
     'steroids-compile-coffeescripts',
@@ -16,6 +19,7 @@ registerDefaultTasks = (grunt)->
   buildViewsDirectory       = path.join buildDirectory, "views"
   buildModelsDirectory      = path.join buildDirectory, "models"
   buildcontrollersDirectory = path.join buildDirectory, "controllers"
+  buildStylesheetsDirectory = path.join buildDirectory, "stylesheets"
   appDirectory              = path.join process.cwd(), "app"
   appViewsDirectory         = path.join appDirectory, "views"
   appModelsDirectory        = path.join appDirectory, "models"
@@ -32,6 +36,15 @@ registerDefaultTasks = (grunt)->
       fileBuildPath = filePath.replace(baseDir, path.join(buildDirectory, newDirPrefix)).replace /\.coffee/, ".js"
 
       grunt.file.write fileBuildPath, compiledSource
+
+  compileSass = (filePath)->
+    sass.render(grunt.file.read(filePath, "utf8"), (err, css)->
+
+      cssFilePath = filePath.replace(path.extname(filePath), ".css")
+      grunt.file.write cssFilePath, css
+
+    , {output_style: "compressed"})
+
 
   grunt.registerTask 'steroids-compile-coffeescripts',
     "Compiles coffeescripts from app/models/* app/controllers/* and vendor/appgyver/*",
@@ -57,6 +70,13 @@ registerDefaultTasks = (grunt)->
     'Copy www/ content over dist/',
     ()->
       wrench.copyDirSyncRecursive wwwDirectory, buildDirectory
+
+  grunt.registerTask 'steroids-compile-sass',
+    'Compile sass files in dist/stylesheets',
+    ()->
+      compileSass filePath for filePath in grunt.file.expandFiles path.join(buildStylesheetsDirectory, "**", "*.sass")
+      compileSass filePath for filePath in grunt.file.expandFiles path.join(buildStylesheetsDirectory, "**", "*.scss")
+
 
   grunt.registerTask 'steroids-copy-vendor',
     'Copy vendor/ to dist/vendor',

@@ -43,7 +43,7 @@
   },
 
   "engines": {
-    "node": ">=0.8.14",
+    "node": ">=0.8.16",
     "npm":  ">=1.1.65"
   },
 
@@ -62,7 +62,8 @@
     "watch": "0.5.x",
     "path-extra": "0.0.3",
     "exec-sync": ">=0.1.5",
-    "colorize": ">=0.1.0"
+    "colorize": ">=0.1.0",
+    "node-sass": ">=0.2.5"
   },
 
   "devDependencies": {
