@@ -1,6 +1,6 @@
 {
   "name": "steroids",
-  "version": "0.2.2",
+  "version": "0.2.3",
 
   "preferGlobal": "true",
 
@@ -43,30 +43,30 @@
   },
 
   "engines": {
-    "node": ">=0.8.16",
-    "npm":  ">=1.1.65"
+    "node": "0.8.x",
+    "npm":  "1.1.x"
   },
 
   "dependencies": {
-    "coffee-script": ">=1.4.0",
-    "optimist": ">=0.3.5",
-    "wrench": ">=1.4.3",
+    "coffee-script": "1.4.x",
+    "optimist": "0.3.x",
+    "wrench": "1.4.x",
     "weinre": "2.0.0-pre-H9PU2WST-incubating",
-    "express": ">=3.0.3",
-    "grunt": ">=0.3.18a",
-    "open": ">=0.0.2",
-    "request": ">=2.12.x",
+    "express": "3.0.x",
+    "grunt": "0.3.x",
+    "open": "0.0.x",
+    "request": "2.12.x",
     "steroids-simulators": "git://github.com/AppGyver/steroids-simulators.git",
     "steroids-js": "*",
-    "request": ">=2.12.x",
+    "request": "2.12.x",
     "watch": "0.5.x",
-    "path-extra": "0.0.3",
-    "exec-sync": ">=0.1.5",
-    "colorize": ">=0.1.0",
-    "node-sass": ">=0.2.5"
+    "path-extra": "0.0.x",
+    "exec-sync": "0.1.x",
+    "colorize": "0.1.x",
+    "node-sass": "0.2.x"
   },
 
   "devDependencies": {
-    "jasmine-node": ">=1.0.26"
+    "jasmine-node": "1.0.x"
   }
 }
