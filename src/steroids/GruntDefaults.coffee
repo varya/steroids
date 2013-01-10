@@ -144,7 +144,7 @@ registerDefaultTasks = (grunt)->
             controller: controllerName
 
           # put layout+yields together
-          yieldedFile = grunt.util._.template(
+          yieldedFile = grunt.utils._.template(
             applicationLayoutFile.toString()
           )({ yield: yieldObj })
 
