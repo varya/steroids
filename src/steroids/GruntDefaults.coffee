@@ -37,11 +37,15 @@ registerDefaultTasks = (grunt)->
 
       grunt.file.write fileBuildPath, compiledSource
 
-  compileSass = (filePath)->
-    sass.render(grunt.file.read(filePath, "utf8"), (err, css)->
-
+  compileSass = (filePath, callback)->
+    sass.render(grunt.file.read(filePath, "utf8").toString(), (err, css)->
+      throw err if err
       cssFilePath = filePath.replace(path.extname(filePath), ".css")
+
       grunt.file.write cssFilePath, css
+      fs.unlinkSync filePath
+
+      callback()
 
     , {output_style: "compressed"})
 
@@ -74,8 +78,8 @@ registerDefaultTasks = (grunt)->
   grunt.registerTask 'steroids-compile-sass',
     'Compile sass files in dist/stylesheets',
     ()->
-      compileSass filePath for filePath in grunt.file.expandFiles path.join(buildStylesheetsDirectory, "**", "*.sass")
-      compileSass filePath for filePath in grunt.file.expandFiles path.join(buildStylesheetsDirectory, "**", "*.scss")
+      compileSass filePath, this.async() for filePath in grunt.file.expandFiles path.join(buildStylesheetsDirectory, "**", "*.sass")
+      compileSass filePath, this.async() for filePath in grunt.file.expandFiles path.join(buildStylesheetsDirectory, "**", "*.scss")
 
 
   grunt.registerTask 'steroids-copy-vendor',
