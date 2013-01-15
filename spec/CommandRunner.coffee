@@ -11,20 +11,34 @@ class CommandRunner
 
     @stdout = ""
     @stderr = ""
-    @done = false
+    @done = false   # always true after exit, even in failure
+    @success = false
     @code = null
 
   run:() =>
-    @spawned = spawn @cmd, @args, [ cwd: @cwd ]
+    @spawned = spawn @cmd, @args, { cwd: @cwd }
 
     @spawned.stdout.on "data", (buffer) =>
-      @stdout = @stdout + buffer.toString()
+      newData = buffer.toString()
+      @stdout = @stdout + newData
+
+      console.log newData if @options.debug
 
     @spawned.stderr.on "data", (buffer) =>
-      @stderr = @stderr + buffer.toString()
+      newData = buffer.toString()
+
+      if /^execvp\(\)/.test(newData)
+        console.log "!!! CommandRunner: failed to start process #{@cmd}"
+        @done = true
+        return
+
+      @stderr = @stderr + newData
+      console.log newData if @options.debug
+
 
     @spawned.on "exit", (code) =>
       @code = code
+      @success = true
       @done = true
 
     waitsFor(()=>
