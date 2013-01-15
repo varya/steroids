@@ -42,7 +42,6 @@ class TestHelper
       expect( @createRun.code ).toBe(0)
 
 
-
   runMakeInProjectSync: () =>
     @makeRun = new CommandRunner
       cmd: TestHelper.steroidsBinPath
@@ -54,5 +53,18 @@ class TestHelper
 
     runs () =>
       expect( @makeRun.code ).toBe(0)
+
+
+  runPackageInProjectSync: () =>
+    @packageRun = new CommandRunner
+      cmd: TestHelper.steroidsBinPath
+      args: ["package"]
+      cwd: @testAppPath
+
+    runs () =>
+      @packageRun.run()
+
+    runs () =>
+      expect( @packageRun.code ).toBe(0)
 
 module.exports = TestHelper
