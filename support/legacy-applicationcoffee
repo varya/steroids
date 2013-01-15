@@ -1,0 +1,17 @@
+
+  #red[PROBLEMS]
+
+  Sorry, but in this projects config/application.coffee
+
+  There seems to be a line that says
+
+    Steroids = require "steroids"
+
+  remove this line, and the last line
+
+    module.exports = Steroids.config
+
+  This is due our recent changes that made "Steroids" to be global in node environment.
+
+  Thanks,
+    - Matti (matti.paksula@appgyver.com)

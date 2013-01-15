@@ -15,6 +15,17 @@ class Steroids
 
   constructor: ->
 
+  detectLegacyProject: ->
+    fs = require("fs")
+
+    applicationConfig = "config/application.coffee"
+
+    if fs.existsSync(applicationConfig)
+      contents = fs.readFileSync(applicationConfig).toString()
+      if contents.match('Steroids = require "steroids"') or contents.match('module.exports = Steroids.config')
+        Help.legacyDetected()
+        process.exit(1)
+
   parseOptions: =>
 
     [firstOption, otherOptions...] = argv._
@@ -156,6 +167,7 @@ class Steroids
 module.exports =
   run: ->
     s = new Steroids
+    s.detectLegacyProject()
     s.parseOptions()
 
   config: new Config

@@ -41,6 +41,11 @@ class CommandRunner
       @success = true
       @done = true
 
+    if @options.waitsFor
+      setTimeout ()=>
+        @done = true
+      , @options.waitsFor
+
     waitsFor(()=>
       return @done
     , "CommandRunner: cmd never exited", @timeout)

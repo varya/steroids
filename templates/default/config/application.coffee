@@ -1,5 +1,3 @@
-Steroids = require "steroids"
-
 # -- Required settings --
 
 Steroids.config.name = "Hello World"
@@ -77,5 +75,3 @@ Steroids.config.location = "index.html"
 # Default: "default"
 #
 # Steroids.config.theme = "default"
-
-module.exports = Steroids.config

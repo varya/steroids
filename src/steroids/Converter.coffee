@@ -7,7 +7,7 @@ class Converter
   configToAnkaFormat: ->
     delete require.cache[@configPath] if require.cache[@configPath]
 
-    config = require @configPath
+    require @configPath
 
     ankaLikeJSON =
       id: 1

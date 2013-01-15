@@ -1,104 +1,69 @@
 wrench = require "wrench"
 path = require "path"
 fs = require "fs"
-spawn = require("child_process").spawn
 request = require "request"
+
+TestHelper = require "./TestHelper"
+CommandRunner = require "./CommandRunner"
 
 describe 'BuildServer', ->
 
-  # COPYPASTA starts
-
   beforeEach ->
+    @testHelper = new TestHelper
 
-    # create test directory where we can play around
-    @testWorkingDirectory = path.join process.cwd(), "__test"
-
-    wrench.rmdirSyncRecursive @testWorkingDirectory, true
-
-    fs.mkdirSync @testWorkingDirectory
-
-    process.chdir @testWorkingDirectory
-
-    # create project
-    runs ()=>
-      # create new app
-      create = spawn("..#{path.sep}bin#{path.sep}steroids", ["create", "testApp"], [{cwd: @testWorkingDirectory}])
-
-      create.on "exit", ()=>
-        @testAppDirectory = path.join(@testWorkingDirectory, "testApp")
-
-    waitsFor(()=>
-      return @testAppDirectory
-    , "Test App Directory should be created", 10000)
-
-    # build it
-
-    runs ()=>
-
-      binaryPath = path.join process.cwd(), "..", "bin", "steroids"
-
-      process.chdir @testAppDirectory
-
-      make = spawn(binaryPath, ["make"], [{cwd: @testAppDirectory}])
-      #make.stdout.on "data", (data)-> console.log "#{data.toString()}"
-      #make.stderr.on "data", (data)-> console.log "#{data.toString()}"
-
-      make.on "exit", ()=>
-        @makeRun = true
-
-    waitsFor(()=>
-
-      return @makeRun
-
-    , 'Grunt file exists', 10000)
-
-
-    # run build
-    runs ()=>
-      @buildProcess = spawn("..#{path.sep}..#{path.sep}bin#{path.sep}steroids", ["connect"], [{cwd: @testWorkingDirectory}])
-      @built = false
-
-      @requestServerInterval = setInterval(()=>
-        request.get 'http://localhost:4567', (err, res, body)=>
-          if err is null
-            @built = true
-            clearInterval @requestServerInterval
-      , 250)
-
-    waitsFor(()=>
-
-      return @built
-
-    , "Command 'connect' should complete", 10000)
+    @testHelper.bootstrap()
+    @testHelper.changeToWorkingDirectory()
+    @testHelper.createProjectSync()
 
 
   afterEach ->
-
     # clean up
     if @buildProcess?
       @buildProcess.kill('SIGKILL')
 
-    process.chdir path.join __dirname, ".."
+    @testHelper.cleanUp()
 
-    wrench.rmdirSyncRecursive @testWorkingDirectory, false
 
-  # COPYPASTA ends
+  it "should start", ->
 
-  describe 'server', ->
+    @connectRun = new CommandRunner
+      cmd: TestHelper.steroidsBinPath
+      args: ["connect"]
+      cwd: @testHelper.testAppPath
+      debug: true
+      waitsFor: 3000
 
-    it 'serves application.json', ->
-      json = undefined
-      done = false
+    runs () =>
+      @connectRun.run()
 
-      runs ()->
-        request.get {url: 'http://localhost:4567/appgyver/api/applications/1.json', json: true}, (err, res, body)=>
-          if body?
-            json = body
-            done = true
+    runs () =>
+      @requestServerInterval = setInterval(()=>
+        request.get 'http://localhost:4567/appgyver/api/applications/1.json', (err, res, body)=>
+          console.log err
+          console.log res
+          console.log body
+          console.log "---"
+          if err is null
+            @running = true
+            clearInterval @requestServerInterval
+      , 250)
 
-      waitsFor(()->
-        return done
-      , "application.json request to complete", 2000)
+    waitsFor(()=>
+      return @running
+    , "Command 'connect' should complete", 4000)
 
-      runs ()->
-        expect( json.configuration.fullscreen ).toEqual "true"
+    json = undefined
+    gotResponse = false
+    runs () =>
+      request.get {url: 'http://localhost:4567/appgyver/api/applications/1.json', json: true}, (err, res, body)=>
+        json = body
+        gotResponse = true
+
+
+    waitsFor(()=>
+      return gotResponse
+    , "Did not get json", 4000)
+
+    runs () ->
+      expect( json.configuration.fullscreen ).toEqual "true"
+
