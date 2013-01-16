@@ -121,6 +121,35 @@ class Steroids
 
         util.log "Waiting for client to connect, this may take a while ..."
 
+
+
+
+        getInput = () ->
+          prompt = require('prompt')
+          prompt.message = "Steroids [hit enter to push] ".magenta
+          prompt.delimiter = " > "
+          prompt.start();
+
+          prompt.get
+            properties:
+              input:
+                message: "input"
+          , (err, result) =>
+            if result == undefined or result.input == "quit" or result.input == "exit" or result.input == "q"
+              console.log "Bye"
+              process.exit(0)
+
+            switch result.input
+              when "", "push"
+                console.log "Updating code to all connected devices"
+                execSync "steroids push"
+              else
+                console.log "Did not recognize input: #{result.input}"
+
+            getInput()
+
+        getInput()
+
       when "serve"
 
         port = (argv.port || 13101)

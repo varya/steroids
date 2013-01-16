@@ -17,7 +17,7 @@ class BuildServer extends Server
       client =
         userAgent: req.headers["user-agent"]
 
-      util.log "Client connected: #{client.userAgent}"
+      console.log "\nClient connected: #{client.userAgent}"
 
       config = @converter.configToAnkaFormat()
 
