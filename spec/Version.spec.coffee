@@ -25,7 +25,7 @@ describe 'Version', ->
         @versionRun.run()
 
       runs ()=>
-        expect( @versionRun.stdout ).toBe("AppGyver Steroids 0.2.5\n")  # <--- intentionally hardcoded!
+        expect( @versionRun.stdout ).toBe("AppGyver Steroids 0.2.7\n")  # <--- intentionally hardcoded!
 
 
     it 'prints version with version', ->
@@ -38,5 +38,5 @@ describe 'Version', ->
         @versionRun.run()
 
       runs ()=>
-        expect( @versionRun.stdout ).toBe("AppGyver Steroids 0.2.5\n")  # <--- intentionally hardcoded!
+        expect( @versionRun.stdout ).toBe("AppGyver Steroids 0.2.7\n")  # <--- intentionally hardcoded!
 
