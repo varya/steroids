@@ -73,7 +73,7 @@ registerDefaultTasks = (grunt)->
   grunt.registerTask 'steroids-copy-www',
     'Copy www/ content over dist/',
     ()->
-      wrench.copyDirSyncRecursive wwwDirectory, buildDirectory
+      wrench.copyDirSyncRecursive wwwDirectory, buildDirectory, inflateSymlinks: true
 
   grunt.registerTask 'steroids-compile-sass',
     'Compile sass files in dist/stylesheets',
