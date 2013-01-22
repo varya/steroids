@@ -4,6 +4,7 @@ path = require "path"
 
 CommandRunner = require "./CommandRunner"
 
+AFTER_VERSION_BUMB = "0.2.8" # <--- intentionally hardcoded!
 describe 'Version', ->
 
   it "represents the version in package.json", ->
@@ -25,8 +26,7 @@ describe 'Version', ->
         @versionRun.run()
 
       runs ()=>
-        expect( @versionRun.stdout ).toBe("AppGyver Steroids 0.2.7\n")  # <--- intentionally hardcoded!
-
+        expect( @versionRun.stdout ).toBe("AppGyver Steroids #{AFTER_VERSION_BUMB}\n")
 
     it 'prints version with version', ->
 
@@ -38,5 +38,5 @@ describe 'Version', ->
         @versionRun.run()
 
       runs ()=>
-        expect( @versionRun.stdout ).toBe("AppGyver Steroids 0.2.7\n")  # <--- intentionally hardcoded!
+        expect( @versionRun.stdout ).toBe("AppGyver Steroids #{AFTER_VERSION_BUMB}\n")
 

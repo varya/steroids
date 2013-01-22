@@ -17,40 +17,13 @@ describe 'BuildServer', ->
 
 
   afterEach ->
-    # clean up
-    if @buildProcess?
-      @buildProcess.kill('SIGKILL')
-
     @testHelper.cleanUp()
+    @testHelper.killConnect()
 
 
   it "should start", ->
 
-    @connectRun = new CommandRunner
-      cmd: TestHelper.steroidsBinPath
-      args: ["connect"]
-      cwd: @testHelper.testAppPath
-      debug: true
-      waitsFor: 3000
-
-    runs () =>
-      @connectRun.run()
-
-    runs () =>
-      @requestServerInterval = setInterval(()=>
-        request.get 'http://localhost:4567/appgyver/api/applications/1.json', (err, res, body)=>
-          console.log err
-          console.log res
-          console.log body
-          console.log "---"
-          if err is null
-            @running = true
-            clearInterval @requestServerInterval
-      , 250)
-
-    waitsFor(()=>
-      return @running
-    , "Command 'connect' should complete", 4000)
+    @testHelper.runConnect()
 
     json = undefined
     gotResponse = false

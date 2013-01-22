@@ -67,4 +67,30 @@ class TestHelper
     runs () =>
       expect( @packageRun.code ).toBe(0)
 
+
+  runConnect: () =>
+    @connectRun = new CommandRunner
+      cmd: TestHelper.steroidsBinPath
+      args: ["connect"]
+      cwd: @testAppPath
+      waitsFor: 3000
+
+    runs () =>
+      @connectRun.run()
+
+    runs () =>
+      @requestServerInterval = setInterval(()=>
+        require("request").get 'http://localhost:4567/appgyver/api/applications/1.json', (err, res, body)=>
+          if err is null
+            @running = true
+            clearInterval @requestServerInterval
+      , 250)
+
+    waitsFor(()=>
+      return @running
+    , "Command 'connect' should complete", 6000)
+
+  killConnect: () =>
+    @connectRun.kill() if @connectRun
+
 module.exports = TestHelper

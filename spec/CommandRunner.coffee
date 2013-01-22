@@ -50,4 +50,7 @@ class CommandRunner
       return @done
     , "CommandRunner: cmd never exited", @timeout)
 
+  kill:() =>
+    @spawned.kill('SIGKILL')
+
 module.exports = CommandRunner
