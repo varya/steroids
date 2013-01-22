@@ -6,42 +6,19 @@ AppGyver Steroids is like PhoneGap on Steroids, providing native UI elements, mu
 
 ## Installation and requirements
 
-Steroids requires node and npm package management. Install with ```-g``` to make it work.
 
+### Requirements
 
-*IMPORTANT NOTE:* brew installed node and npm might are somewhat broken, fix this by setting both:
+* Node.js and NPM package management http://nodejs.org/
+* Git
 
-```
-export PATH="/usr/local/share/npm/bin:$PATH"
-export NODE_PATH="/usr/local/share/npm/lib/node_modules/"
-```
-
-If PATH is not set, steroids command wont work.
-
-If NODE_PATH is not set and npm is installed with brew, you will get following when trying to preview application in a device or Simulator.
+Once your environment is set up, run
 
 ```
-
-23 Dec 15:43:45 - Client connected: Mozilla/5.0 (iPhone; CPU iPhone OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Mobile/10A403
----------------------------------------------------------
-error: Error: Cannot find module 'steroids'
----------------------------------------------------------
-stack: 
-            module.js:338 - Module._resolveFilename()
-            module.js:280 - Module._load()
-            module.js:362 - Module.require()
-            module.js:378 - require()
+  $ [sudo] npm install steroids -g
 ```
 
-
-
-This all being said, install it as global 
-
-```
-  $ npm install steroids -g
-```
-
-Xcode(and OS X platform) is not required, but installing Xcode on OS X gives you iOS Simulator. Xcode is available for download at the Mac App Store.
+Xcode (and OS X platform) is not required, but installing Xcode on OS X gives you iOS Simulator. Xcode is available for download at the Mac App Store.
 
 
 ## Usage
