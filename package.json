@@ -58,7 +58,6 @@
     "request": "2.12.x",
     "steroids-simulators": "git://github.com/AppGyver/steroids-simulators.git",
     "steroids-js": "*",
-    "request": "2.12.x",
     "watch": "0.5.x",
     "path-extra": "0.0.x",
     "exec-sync": "0.1.x",
