@@ -20,6 +20,7 @@ Once your environment is set up, run
 
 Xcode (and OS X platform) is not required, but installing Xcode on OS X gives you iOS Simulator. Xcode is available for download at the Mac App Store.
 
+If you are having issues with the install, you should maybe remove your (old) node installation and install the latest node.  There is a [remove-node.sh](https://raw.github.com/AppGyver/steroids/master/remove-node.sh) script to help with that.
 
 ## Usage
 
