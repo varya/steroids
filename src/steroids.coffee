@@ -61,11 +61,11 @@ class Steroids
         Help.welcome()
 
       when "push"
-        output = execSync "steroids make"
-        console.log output
+        output = execSync "steroids make", true
+        console.log output.stdout
 
-        output = execSync "steroids package"
-        console.log output
+        output = execSync "steroids package", true
+        console.log output.stdout
 
       when "make"
 
@@ -142,7 +142,8 @@ class Steroids
             switch result.input
               when "", "push"
                 console.log "Updating code to all connected devices"
-                execSync "steroids push"
+                output = execSync "steroids push", true
+                console.log output.stdout
               else
                 console.log "Did not recognize input: #{result.input}"
 
