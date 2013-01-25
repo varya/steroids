@@ -7,22 +7,22 @@ class Converter
   configToAnkaFormat: ->
     delete require.cache[@configPath] if require.cache[@configPath]
 
-    config = require @configPath
+    require @configPath
 
     ankaLikeJSON =
       id: 1
-      name: config.name||"Default name"
+      name: Steroids.config.name||"Default name"
 
     if fs.existsSync Paths.temporaryZip
       ankaLikeJSON.build_timestamp = fs.lstatSync(Paths.temporaryZip).mtime.getTime()
 
-    ankaLikeJSON.configuration = @configurationObject(config)
-    ankaLikeJSON.appearance = @appearanceObject(config)
+    ankaLikeJSON.configuration = @configurationObject(Steroids.config)
+    ankaLikeJSON.appearance = @appearanceObject(Steroids.config)
 
     ankaLikeJSON.files = []
     ankaLikeJSON.archives = []
 
-    ankaLikeJSON.bottom_bars = @tabsObject(config) # TODO: asetappa bottombars
+    ankaLikeJSON.bottom_bars = @tabsObject(Steroids.config) # TODO: asetappa bottombars
 
     # legacy stuff
     ankaLikeJSON.authentication = @legacyAuthenticationObject()

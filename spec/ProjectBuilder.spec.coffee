@@ -4,81 +4,49 @@ path = require "path"
 fs = require "fs"
 spawn = require("child_process").spawn
 
+TestHelper = require("./TestHelper")
+
 describe 'ProjectBuilder', ->
 
-
   beforeEach ->
+    @testHelper = new TestHelper
 
-    @testWorkingDirectory = path.join process.cwd(), "__test"
-
-    wrench.rmdirSyncRecursive @testWorkingDirectory, true
-
-    fs.mkdirSync @testWorkingDirectory
-
-    process.chdir @testWorkingDirectory
-
+    @testHelper.bootstrap()
+    @testHelper.changeToWorkingDirectory()
 
   afterEach ->
-
-    process.chdir path.join __dirname, ".."
-
-    wrench.rmdirSyncRecursive @testWorkingDirectory, false
+    @testHelper.cleanUp()
 
 
-  describe 'make()', ->
+
+  describe 'make', ->
+
+    beforeEach ->
+      @testHelper.createProjectSync()
 
 
-    it 'should generate grunt.js if not found and create dist', ->
-      @testAppDirectory = undefined
-      @makeRun = false
-      @gruntFileExists = false
-      @distFolderExists = false
+    it 'should create grunt.js if missing', ->
 
-      runs ()=>
-        # create new app
-        create = spawn("..#{path.sep}bin#{path.sep}steroids", ["create", "testApp"], [{cwd: @testWorkingDirectory}])
-        create.on "exit", ()=>
-          @testAppDirectory = path.join(@testWorkingDirectory, "testApp")
+      pathToGruntFile = path.join @testHelper.testAppPath, "grunt.js"
 
-      waitsFor(()=>
-        return @testAppDirectory
-      , "Test App Directory should be created", 10000)
+      fs.unlinkSync pathToGruntFile
+      expect( fs.existsSync(pathToGruntFile) ).toBe(false)
 
+      @testHelper.runMakeInProjectSync()
 
       runs ()=>
+        expect( fs.existsSync(pathToGruntFile) ).toBe(true)
 
-        binaryPath = path.join process.cwd(), "..", "bin", "steroids"
 
-        process.chdir @testAppDirectory
+    it 'should create dist/ if missing', ->
 
-        make = spawn(binaryPath, ["make"], [{cwd: @testAppDirectory}])
-        make.stdout.on "data", (data)->
-          console.log "#{data.toString()}"
-        make.stderr.on "data", (data)->
-          console.log "#{data.toString()}"
+      pathToDist = path.join @testHelper.testAppPath, "dist"
+      wrench.rmdirSyncRecursive pathToDist, true
 
-        make.on "exit", ()=>
-          @makeRun = true
+      expect( fs.existsSync(pathToDist) ).toBe(false)
 
-      waitsFor(()=>
-        return @makeRun
-      , 'Grunt file exists', 5000)
-
+      @testHelper.runMakeInProjectSync()
 
       runs ()=>
-        @gruntFileExists = fs.existsSync path.join @testAppDirectory, "grunt.js"
-        @distFolderExists = fs.existsSync path.join @testAppDirectory, "dist"
-        expect(@gruntFileExists).toBe true
-        expect(@distFolderExists).toBe true
-
-
-
-
-
-
-  describe 'make()', ->
-
-    it 'should throw error if grunt.js is missing', ->
-      # anon func required for throwing: http://stackoverflow.com/questions/4144686/how-to-write-a-test-which-expects-an-error-to-be-thrown
-      expect(()-> @projectBuilder.make()).toThrow()
+        expect( fs.existsSync(pathToDist) ).toBe(true)
 

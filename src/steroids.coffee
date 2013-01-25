@@ -4,6 +4,7 @@ Simulator = require "./steroids/Simulator"
 
 util = require "util"
 Config = require "./steroids/config"
+Version = require("./steroids/Version")
 
 execSync = require "exec-sync"
 
@@ -14,11 +15,32 @@ class Steroids
 
   constructor: ->
 
+  detectLegacyProject: ->
+    fs = require("fs")
+
+    applicationConfig = "config/application.coffee"
+
+    if fs.existsSync(applicationConfig)
+      contents = fs.readFileSync(applicationConfig).toString()
+      if contents.match('Steroids = require "steroids"') or contents.match('module.exports = Steroids.config')
+        Help.legacyDetected()
+        process.exit(1)
+
   parseOptions: =>
 
     [firstOption, otherOptions...] = argv._
 
+    if firstOption in ["create", "serve", "connect"]
+      Help.logo() unless argv.noLogo
+
+    if argv.version
+      firstOption = "version"
+
+
     switch firstOption
+      when "version"
+        console.log "AppGyver Steroids #{Version.getVersion()}"
+
       when "create"
         folder = otherOptions[0]
 
@@ -29,21 +51,20 @@ class Steroids
         console.log "Initializing project ... "
         process.chdir(folder)
 
-        output = execSync "steroids update --noLogo"
+        output = execSync "steroids update"
         console.log output
 
-        output = execSync "steroids push --noLogo"
+        output = execSync "steroids push"
         console.log output
-
 
         Help.logo()
         Help.welcome()
 
       when "push"
-        output = execSync "steroids make --noLogo"
+        output = execSync "steroids make"
         console.log output
 
-        output = execSync "steroids package --noLogo"
+        output = execSync "steroids package"
         console.log output
 
       when "make"
@@ -78,6 +99,7 @@ class Steroids
         simulator.run()
 
       when "connect"
+
         BuildServer = require "./steroids/servers/BuildServer"
 
         server = @startServer()
@@ -99,7 +121,37 @@ class Steroids
 
         util.log "Waiting for client to connect, this may take a while ..."
 
+
+
+
+        getInput = () ->
+          prompt = require('prompt')
+          prompt.message = "Steroids [hit enter to push] ".magenta
+          prompt.delimiter = " > "
+          prompt.start();
+
+          prompt.get
+            properties:
+              input:
+                message: "input"
+          , (err, result) =>
+            if result == undefined or result.input == "quit" or result.input == "exit" or result.input == "q"
+              console.log "Bye"
+              process.exit(0)
+
+            switch result.input
+              when "", "push"
+                console.log "Updating code to all connected devices"
+                execSync "steroids push"
+              else
+                console.log "Did not recognize input: #{result.input}"
+
+            getInput()
+
+        getInput()
+
       when "serve"
+
         port = (argv.port || 13101)
         url = "http://localhost:#{port}"
 
@@ -125,6 +177,7 @@ class Steroids
         dependencyUpdater.update()
 
       else
+        Help.logo() unless argv.noLogo
         Help.usage()
 
 
@@ -142,12 +195,14 @@ class Steroids
 
 module.exports =
   run: ->
-    Help.logo() unless argv.noLogo
-
     s = new Steroids
+    s.detectLegacyProject()
     s.parseOptions()
+
   config: new Config
 
   GruntDefaults: require "./steroids/GruntDefaults"
   Help: Help
   paths: require "./steroids/paths"
+
+  version: Version.getVersion()

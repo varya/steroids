@@ -17,5 +17,6 @@ class Paths
   @logoBanner: path.join @npm, "support", "logo"
   @usageBanner: path.join @npm, "support", "usage"
   @welcomeBanner: path.join @npm, "support", "welcome"
+  @legacyApplicationCoffeeBanner: path.join @npm, "support", "legacy-applicationcoffee"
 
 module.exports = Paths

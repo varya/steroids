@@ -13,6 +13,9 @@ class Help
   @logo: ->
     @printBanner(paths.logoBanner, true)
 
+  @legacyDetected: ->
+    @printBanner(paths.legacyApplicationCoffeeBanner, true)
+
   @readContentsSync: (filename) ->
     fs = require "fs"
     return fs.readFileSync(filename).toString()
