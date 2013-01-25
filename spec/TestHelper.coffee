@@ -29,11 +29,10 @@ class TestHelper
 
 
   createProjectSync: () =>
-
     @createRun = new CommandRunner
       cmd: TestHelper.steroidsBinPath
       args: ["create", @testAppName]
-      timeout: 4000
+      timeout: 20000
 
     runs ()=>
       @createRun.run()
@@ -44,6 +43,7 @@ class TestHelper
 
   runMakeInProjectSync: () =>
     @makeRun = new CommandRunner
+      debug: true
       cmd: TestHelper.steroidsBinPath
       args: ["make"]
       cwd: @testAppPath
@@ -58,6 +58,7 @@ class TestHelper
   runPackageInProjectSync: () =>
     @packageRun = new CommandRunner
       cmd: TestHelper.steroidsBinPath
+      debug: true
       args: ["package"]
       cwd: @testAppPath
 
@@ -71,6 +72,7 @@ class TestHelper
   runConnect: () =>
     @connectRun = new CommandRunner
       cmd: TestHelper.steroidsBinPath
+      debug: true
       args: ["connect"]
       cwd: @testAppPath
       waitsFor: 3000
