@@ -12,7 +12,7 @@ class Grunt
 
     require(paths.includedGrunt).tasks ["default"],
       gruntfile: path.join @workingPath, 'grunt.js'
-      verbose: true
+      verbose: false
 
   configFilePath: (workingPath = @workingPath) ->
     path.join workingPath, "grunt.js"
