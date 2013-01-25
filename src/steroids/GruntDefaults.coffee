@@ -35,7 +35,12 @@ registerDefaultTasks = (grunt)->
       newDirPrefix = ""
 
       coffeeContent = grunt.file.read(filePath, "utf8").toString()
-      errors = coffeelint.lint coffeeContent
+      errors = coffeelint.lint coffeeContent,
+        max_line_length:
+          level: "ignore"
+        no_backticks:
+          level: "ignore"
+
       if errors.length > 0
         text = "#red[#{errors.length} errors in #underline[#{filePath}]]\n\n"
         for error in errors
