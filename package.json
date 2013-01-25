@@ -63,7 +63,8 @@
     "path-extra": "0.0.x",
     "exec-sync": "0.1.x",
     "colorize": "0.1.x",
-    "node-sass": "0.2.x"
+    "node-sass": "0.2.x",
+    "coffeelint": "0.5.4"
   },
 
   "devDependencies": {

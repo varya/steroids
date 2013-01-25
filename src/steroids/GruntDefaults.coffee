@@ -1,4 +1,6 @@
 sass = require 'node-sass'
+coffeelint = require 'coffeelint'
+colorize = require "colorize"
 
 defaultConfig = {}
 
@@ -32,18 +34,34 @@ registerDefaultTasks = (grunt)->
     if typeof(newDirPrefix) is "undefined"
       newDirPrefix = ""
 
-      compiledSource = coffee.compile grunt.file.read(filePath, "utf8").toString()
-      fileBuildPath = filePath.replace(baseDir, path.join(buildDirectory, newDirPrefix)).replace /\.coffee/, ".js"
+      coffeeContent = grunt.file.read(filePath, "utf8").toString()
+      errors = coffeelint.lint coffeeContent
+      if errors.length > 0
+        text = "#red[#{errors.length} errors in #underline[#{filePath}]]\n\n"
+        for error in errors
+          text += "#red[#{path.basename(filePath)}:#{error.lineNumber}] > #yellow[#{error.message if error.message?}] #green[#{'('+error.context+')' if error.context?}]\n\n"
+          if error.line?
+            text += "\n#{error.line}\n\n\n"
+        console.error colorize.ansify("#{text}\n\nWhat would Richard Dean Anderson do?\n")
 
-      grunt.file.write fileBuildPath, compiledSource
+      try
+        compiledSource = coffee.compile(grunt.file.read(filePath, "utf8").toString())
+        fileBuildPath = filePath.replace(baseDir, path.join(buildDirectory, newDirPrefix)).replace /\.coffee/, ".js"
+        grunt.file.write fileBuildPath, compiledSource
+      catch err
+        grunt.warn err
 
   compileSass = (filePath, callback)->
     sass.render(grunt.file.read(filePath, "utf8").toString(), (err, css)->
-      throw err if err
-      cssFilePath = filePath.replace(path.extname(filePath), ".css")
+      if err
+        text = "#red[Errors in #underline[#{filePath}]]\n\n"
+        text += "#red[#{path.basename(filePath)}]#yellow[#{err}]"
+        grunt.warn colorize.ansify(text)
+      else
+        cssFilePath = filePath.replace(path.extname(filePath), ".css")
 
-      grunt.file.write cssFilePath, css
-      fs.unlinkSync filePath
+        grunt.file.write cssFilePath, css
+        fs.unlinkSync filePath
 
       callback()
 
