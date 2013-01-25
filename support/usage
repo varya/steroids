@@ -8,6 +8,10 @@ Basic usage commands:
 
     Creates a new application from default template.
 
+  create tutorial APP_PATH
+
+    Creates a new application from tutorial template.
+
   connect
 
     Starts server and allows to connect your iOS device or iOS Simulator to see your application.

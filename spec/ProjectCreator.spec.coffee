@@ -11,9 +11,16 @@ describe 'ProjectCreator', ->
 
   describe 'create', ->
 
-    it 'can clone a project', ->
+    it 'can clone a default project', ->
 
       @projectCreator.clone @projectName
+
+      expect( fs.existsSync(@projectName) ).toBe(true)
+
+      wrench.rmdirSyncRecursive @projectName
+
+    it 'can clone a tutorial project', ->
+      @projectCreator.clone @projectName, 'tutorial'
 
       expect( fs.existsSync(@projectName) ).toBe(true)
 

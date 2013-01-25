@@ -4,13 +4,13 @@ path = require "path"
 
 class ProjectCreator
 
-	constructor: ->
+  constructor: ->
 
-	clone: (targetDirectory, template = "default") ->
+  clone: (targetDirectory, template = "default") ->
 
-		unless targetDirectory
-			return steroids.Help.usage();
+    unless targetDirectory
+      return steroids.Help.usage();
 
-		wrench.copyDirSyncRecursive path.join(steroids.paths.templates, template), targetDirectory
+    wrench.copyDirSyncRecursive path.join(steroids.paths.applicationTemplates, template), targetDirectory
 
 module.exports = ProjectCreator

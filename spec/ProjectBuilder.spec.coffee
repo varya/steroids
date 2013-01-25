@@ -24,20 +24,6 @@ describe 'ProjectBuilder', ->
     beforeEach ->
       @testHelper.createProjectSync()
 
-
-    it 'should create grunt.js if missing', ->
-
-      pathToGruntFile = path.join @testHelper.testAppPath, "grunt.js"
-
-      fs.unlinkSync pathToGruntFile
-      expect( fs.existsSync(pathToGruntFile) ).toBe(false)
-
-      @testHelper.runMakeInProjectSync()
-
-      runs ()=>
-        expect( fs.existsSync(pathToGruntFile) ).toBe(true)
-
-
     it 'should create dist/ if missing', ->
 
       pathToDist = path.join @testHelper.testAppPath, "dist"
