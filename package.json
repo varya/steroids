@@ -1,5 +1,5 @@
 { "name": "steroids"
-, "version": "0.2.9"
+, "version": "0.3.0"
 
 , "preferGlobal": "true"
 
@@ -61,7 +61,7 @@
   , "prompt": "0.2.9"
   , "request": "2.12.0"
   , "steroids-js": ">=0.2.1"
-  , "steroids-simulators": "git://github.com/AppGyver/steroids-simulators.git"
+  , "steroids-simulators": "http://appgyver.production.steroids.simulators.s3.amazonaws.com/steroids-simulators.tar.gz"
   , "watch": "0.5.1"
   , "weinre": "2.0.0-pre-H9PU2WST-incubating"
   , "wrench": "1.4.4"
