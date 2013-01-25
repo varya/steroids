@@ -42,11 +42,16 @@ class Steroids
         console.log "AppGyver Steroids #{Version.getVersion()}"
 
       when "create"
-        folder = otherOptions[0]
+        if otherOptions[1]?
+          template = otherOptions[0]
+          folder = otherOptions[1]
+        else
+          template = "default"
+          folder = otherOptions[0]
 
         ProjectCreator = require("./steroids/ProjectCreator")
-        projectCreator = new ProjectCreator(otherOptions)
-        projectCreator.clone(folder)
+        projectCreator = new ProjectCreator()
+        projectCreator.clone(folder, template)
 
         console.log "Initializing project ... "
         process.chdir(folder)
@@ -73,7 +78,6 @@ class Steroids
 
         projectBuilder = new ProjectBuilder(otherOptions)
 
-        projectBuilder.ensureBuildFile()
         projectBuilder.make()
 
       when "package"

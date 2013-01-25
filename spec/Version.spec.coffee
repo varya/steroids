@@ -4,7 +4,7 @@ path = require "path"
 
 CommandRunner = require "./CommandRunner"
 
-AFTER_VERSION_BUMB = "0.2.8" # <--- intentionally hardcoded!
+AFTER_VERSION_BUMB = "0.3.0" # <--- intentionally hardcoded!
 describe 'Version', ->
 
   it "represents the version in package.json", ->
