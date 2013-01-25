@@ -42,7 +42,7 @@ registerDefaultTasks = (grunt)->
           text += "#red[#{path.basename(filePath)}:#{error.lineNumber}] > #yellow[#{error.message if error.message?}] #green[#{'('+error.context+')' if error.context?}]\n\n"
           if error.line?
             text += "\n#{error.line}\n\n\n"
-        console.error colorize.ansify("#{text}\n\nWhat would Richard Dean Anderson do?\n")
+        grunt.warn colorize.ansify("#{text}\n\nWhat would Richard Dean Anderson do?\n")
 
       try
         compiledSource = coffee.compile(grunt.file.read(filePath, "utf8").toString())
