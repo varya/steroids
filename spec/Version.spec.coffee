@@ -2,9 +2,11 @@
 #fs = require "fs"
 path = require "path"
 
+TestHelper = require "./TestHelper"
 CommandRunner = require "./CommandRunner"
 
-AFTER_VERSION_BUMB = "0.2.8" # <--- intentionally hardcoded!
+
+AFTER_VERSION_BUMB = "0.3.1" # <--- intentionally hardcoded!
 describe 'Version', ->
 
   it "represents the version in package.json", ->
@@ -19,7 +21,7 @@ describe 'Version', ->
     it 'prints version with --version', ->
 
       @versionRun = new CommandRunner
-        cmd: "bin/steroids"
+        cmd: TestHelper.steroidsBinPath
         args: ["--version"]
 
       runs ()=>
@@ -31,7 +33,7 @@ describe 'Version', ->
     it 'prints version with version', ->
 
       @versionRun = new CommandRunner
-        cmd: "bin/steroids"
+        cmd: TestHelper.steroidsBinPath
         args: ["version"]
 
       runs ()=>
