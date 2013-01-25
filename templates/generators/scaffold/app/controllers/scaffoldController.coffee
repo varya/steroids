@@ -1,0 +1,1 @@
+class ScaffoldController extends ApplicationController

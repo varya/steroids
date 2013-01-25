@@ -191,6 +191,18 @@ class Steroids
 
         dependencyUpdater.update()
 
+      when "generate"
+        [generator, generatorOptions...] = otherOptions
+
+        unless generator?
+          Help.usage()
+
+        Generator = require "./steroids/Generator"
+
+        generator = new Generator(generator)
+
+        generator.generate(generatorOptions)
+
       when "login"
         Help.logo()
 
