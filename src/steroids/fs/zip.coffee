@@ -12,7 +12,7 @@ class Zip
       cwd: @from
     }, (error, stdout, stderr)->
       throw error if error?
-      console.log "#{stdout}"
+      #console.log "#{stdout}"
 
       timestamp = (new Date).getTime()
       callback.apply(null, [timestamp]) if callback?
