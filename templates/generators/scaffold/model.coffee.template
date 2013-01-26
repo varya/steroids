@@ -1,0 +1,21 @@
+class window.<%= options.resourceClassName %>
+  angular.module('<%= options.resourceClassName %>Resource', ['ngResource']).factory @.name, ($resource) =>
+    resourceName = "#{@.name.toLowerCase()}s"
+    @.resource = $resource "http://localhost\\:13131/#{resourceName}/:id", {id: "@id"},
+      createDB: { method: "PUT", params: { }, isArray:false },
+      dropDB: { method: "DELETE", params: { }, isArray:false }
+    return @
+
+  constructor: (@options) ->
+
+  @all: (callback)->
+    @resource.get({id: "_all_docs", include_docs: true}, (obj)->
+      callback(row.doc for row in obj.rows)
+    )
+
+  @find: (id)->
+    @resource.get({id: id})
+
+  save: () ->
+    new @constructor.resource(@options).$save()
+    return true

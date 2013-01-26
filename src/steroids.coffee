@@ -192,12 +192,15 @@ class Steroids
         dependencyUpdater.update()
 
       when "generate"
-        [generatorType, generatorOptions...] = otherOptions
+        [generatorType, generatorArgs...] = otherOptions
 
         unless generatorType?
           Help.usage()
 
         Generators = require "./steroids/Generators"
+
+        generatorOptions =
+          resourceName: generatorArgs[0]
 
         generator = new Generators[generatorType](generatorOptions)
 

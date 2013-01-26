@@ -24,11 +24,18 @@ describe 'Generator', ->
       @testHelper.createProjectSync()
 
       cmd = @testHelper.runInProjectSync "generate",
-        args: ["scaffold", "cars"]
+        args: ["scaffold", "car"]
 
       runs ()=>
         expect( cmd.code ).toBe(0)
 
-        expect(fs.existsSync path.join(@testHelper.testAppPath, "app", "controllers", "scaffoldController.coffee")).toBe true
-        expect(fs.existsSync path.join(@testHelper.testAppPath, "app", "views", "scaffold", "index.html")).toBe true
-        expect(fs.existsSync path.join(@testHelper.testAppPath, "app", "views", "scaffold", "show.html")).toBe true
+        ctrlPath = path.join(@testHelper.testAppPath, "app", "controllers", "carsController.coffee")
+        expect(fs.existsSync ctrlPath).toBe true
+        expect(fs.readFileSync(ctrlPath).toString()).toMatch(/class window.CarsController/)
+
+        modelPath = path.join(@testHelper.testAppPath, "app", "models", "car.coffee")
+        expect(fs.existsSync modelPath).toBe true
+        expect(fs.readFileSync(modelPath).toString()).toMatch(/class window.Car/)
+
+        expect(fs.existsSync path.join(@testHelper.testAppPath, "app", "views", "cars", "index.html")).toBe true
+        expect(fs.existsSync path.join(@testHelper.testAppPath, "app", "views", "cars", "show.html")).toBe true
