@@ -4,7 +4,7 @@ Simulator = require "./steroids/Simulator"
 
 util = require "util"
 Config = require "./steroids/config"
-Version = require("./steroids/Version")
+Version = require "./steroids/Version"
 
 execSync = require "exec-sync"
 
@@ -163,10 +163,10 @@ class Steroids
         WebServer = require "./steroids/servers/WebServer"
 
         server = @startServer
-                    port: port
+          port: port
 
         webServer = new WebServer
-                          path: "/"
+          path: "/"
 
         server.mount(webServer)
 
@@ -181,6 +181,27 @@ class Steroids
 
         dependencyUpdater.update()
 
+      when "login"
+        Help.logo()
+
+        Login = require "./steroids/Login"
+
+        if Login.authTokenExists()
+          util.log "Already logged in."
+          return
+
+        util.log "Starting login process"
+
+        port = argv.port || 4567
+
+        server = @startServer
+          port: port
+
+        login = new Login
+          server: server
+          port: port
+        login.authorize()
+
       else
         Help.logo() unless argv.noLogo
         Help.usage()
@@ -190,8 +211,8 @@ class Steroids
     Server = require "./steroids/Server"
 
     server = new Server
-                    port: options.port || 4567
-                    path: "/"
+      port: options.port || 4567
+      path: "/"
 
     server.listen()
 

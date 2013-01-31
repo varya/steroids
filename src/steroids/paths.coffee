@@ -10,6 +10,7 @@ class Paths
   @applicationTemplates: path.join @templates, "applications"
   @includedGrunt: path.join @npm, "node_modules", "grunt", "lib", "grunt"
   @staticFiles: path.join @npm, "public"
+  @oauthSuccessHTML: path.join @staticFiles, "oauth2_success.html"
   @appPath: path.join process.cwd()
   @appConfigCoffee: path.join @appPath, "config", "application.coffee"
   @temporaryZip: path.join pathExtra.tempdir(), "steroids_project.zip"
@@ -18,5 +19,8 @@ class Paths
   @usageBanner: path.join @npm, "support", "usage"
   @welcomeBanner: path.join @npm, "support", "welcome"
   @legacyApplicationCoffeeBanner: path.join @npm, "support", "legacy-applicationcoffee"
+  @userHome: if process.platform == 'win32' then process.env.USERPROFILE else process.env.HOME
+  @storedSettings:path.join @userHome, ".appgyver"
+  @oauthTokenPath: path.join @storedSettings, "token.json"
 
 module.exports = Paths
