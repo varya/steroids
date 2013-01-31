@@ -1,0 +1,19 @@
+<script>
+  <%= options.className %>.resource.dropDB({}, function() {
+
+    // Drop Database Success
+    <%= options.className %>.resource.createDB({}, function() {
+
+      // Create Database Success
+      fixture1 = new <%= options.className %>({
+        title: "Fixture 1"
+      });
+      fixture1.save()
+
+      fixture2 = new <%= options.className %>({
+        title: "Fixture 2"
+      });
+      fixture2.save()
+    });
+  });
+</script>

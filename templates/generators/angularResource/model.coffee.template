@@ -1,0 +1,27 @@
+CouchDB = angular.module('CouchDB', ['ngResource'])
+
+CouchDB.factory "CouchDBModel", ($resource) =>
+  class CouchDBModel
+    constructor: (@options)->
+      resourceName = "#{@options.name.toLowerCase()}s"
+      @resource = $resource "http://.touchdb./#{resourceName}/:id", { id: "@id" },
+        createDB: { method: "PUT", params: { }, isArray:false },
+        dropDB: { method: "DELETE", params: { }, isArray:false }
+
+  return CouchDBModel
+
+class window.<%= options.className %>
+
+  constructor: (@options) ->
+
+  @all: (callback)->
+    @resource.get({id: "_all_docs", include_docs: true}, (obj)->
+      callback(row.doc for row in obj.rows)
+    )
+
+  @find: (id)->
+    @resource.get({id: id})
+
+  save: () ->
+    new @constructor.resource(@options).$save()
+    return true

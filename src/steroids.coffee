@@ -200,7 +200,7 @@ class Steroids
         Generators = require "./steroids/Generators"
 
         generatorOptions =
-          resourceName: generatorArgs[0]
+          name: generatorArgs[0]
 
         generator = new Generators[generatorType](generatorOptions)
 
