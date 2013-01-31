@@ -13,68 +13,60 @@
       margin: 4em;
       font-family: "Helvetica Neue", "Helvetica", "Arial"
     }
-  
+
     div {
       float: left;
       margin-left: 2em;
     }
 
-  	hr {
-	  margin-bottom: 30px;
-	}
+    hr {
+      margin-bottom: 30px;
+    }
   </style>
-
 </head>
 <body>
-
   <h1>AppGyver Steroids</h1>
   <hr>
   <div><img src="/images/steroids_logo.png" /></div>
-  
+
   <div>
     <p>The Steroids server is now running. Server stays alive as long as the <br>
-  	<code>$ steroids connect</code> command is running in the terminal window.</p>
+    <code>$ steroids connect</code> command is running in the terminal window.</p>
     <p>You can now connect your iOS device or iOS Simulator to see your application.</p>
-  
+
     <p><strong>To connect an iOS device:</strong></p>
-  	<ul>
-  	  	<li>Make sure your device is in the same WLAN with this computer</li>
-  		<li>Scan the QR code on the right with <a href="https://itunes.apple.com/us/app/appgyver-preview/id479747411?mt=8" target="_blank">AppGyver Scanner</a> for iOS</li>
-  	</ul>
+    <ul>
+      <li>Make sure your device is in the same WLAN with this computer</li>
+      <li>Scan the QR code on the right with <a href="https://itunes.apple.com/us/app/appgyver-preview/id479747411?mt=8" target="_blank">AppGyver Scanner</a> for iOS</li>
+    </ul>
     </p>
     <p><strong>To connect iOS Simulator (you need to have Xcode installed):</strong></p>
-  	<ul>
-  		<li>Open another terminal window and run: <code>$ steroids simulator</code></li>
-  	</ul>
+    <ul>
+      <li>Open another terminal window and run: <code>$ steroids simulator</code></li>
+    </ul>
     </p>
-  
+
     <p>As you make changes to your project, keep connect running and run:</p>
-  
-  <pre>
-    $ steroids push
-  </pre>
-  
+
+    <pre>$ steroids push</pre>
+
     <p>to see your changes.</p>
-  
   </div>
-  
+
   <div id="qrcodeCanvas"></div>
-  
+
   <script>
-  
     function getQueryStringByKey(key) {
       key = key.replace(/[*+?^$.\[\]{}()|\\\/]/g, "\\$&"); // escape RegEx meta chars
       var match = location.search.match(new RegExp("[?&]"+key+"=([^&]+)(&|$)"));
       return match && decodeURIComponent(match[1].replace(/\+/g, " "));
     }
-  
-  
+
+
     jQuery('#qrcodeCanvas').qrcode({
       width: 256,
       height: 256,
       text  : getQueryStringByKey("qrCodeData")
     });
-  
   </script>
-
 </body>

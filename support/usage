@@ -42,3 +42,7 @@ Other usage commands:
   serve [--port=13101]
 
     Starts a web server in localhost:13101 that serves files from dist/
+
+  login [--port=4567]
+
+    Logs you in to the AppGyver Cloud. Allows for cloud builds. Use --port option to switch the local port used if it is already in use.
