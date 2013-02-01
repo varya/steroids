@@ -15,21 +15,21 @@ class Deploy
 
     @converter = new DeployConverter paths.appConfigCoffee
 
+    @client = restify.createJsonClient
+      # url: 'https://appgyver-staging.herokuapp.com'
+      url: 'https://anka.appgyver.com'
+
   uploadToCloud: ()->
     unless Login.authTokenExists()
       execSync "steroids login"
 
     unless Login.authTokenExists()
-      util.log "Canceling cloud build due to login failure"
+      util.log "ERROR: Canceling cloud build due to login failure"
       return
 
-    execSync "steroids push"
-
-    @client = restify.createJsonClient
-      # url: 'https://appgyver-staging.herokuapp.com'
-      url: 'https://anka.appgyver.com'
-
     @client.basicAuth Login.currentAccessToken(), 'X'
+
+    execSync "steroids push"
 
     @uploadApplicationJSON ()=>
       @uploadApplicationTabs ()=>
@@ -37,58 +37,74 @@ class Deploy
           @updateConfigurationFile()
 
   uploadApplicationJSON: (callback)->
-    util.log "Updating application configuration"
+    # util.log "Updating application configuration"
 
     @app = @converter.applicationCloudSchemaRepresentation()
 
-    util.log "Uploading #{JSON.stringify(@app)}"
+    # util.log "Uploading #{JSON.stringify(@app)}"
 
     requestData =
       application: @app
 
     restifyCallback = (err, req, res, obj)=>
-      util.log "RECEIVED SYNC RESPONSE"
+      # util.log "RECEIVED APPJSON SYNC RESPONSE"
       # util.log "err: #{util.inspect(err)}"
       # util.log "req: #{util.inspect(req)}"
       # util.log "res: #{util.inspect(res)}"
       # util.log "obj: #{util.inspect(obj)}"
 
       unless err
-        util.log "RECEIVED APPJSON SYNC SUCCESS"
+        # util.log "RECEIVED APPJSON SYNC SUCCESS"
         @cloudApp = obj
         callback()
       else
-        util.log "RECEIVED APPJSON SYNC FAILURE"
+        # util.log "RECEIVED APPJSON SYNC FAILURE"
         process.exit 1
 
     if @cloudConfig
-      util.log "PUT"
-      client.put "/studio_api/applications/#{cloudConfig.application_id}", requestData, restifyCallback
+      # util.log "PUT"
+      @client.put "/studio_api/applications/#{cloudConfig.application_id}", requestData, restifyCallback
     else
-      util.log "POST"
-      client.post "/studio_api/applications", requestData, restifyCallback
+      # util.log "POST"
+      @client.post "/studio_api/applications", requestData, restifyCallback
 
 
   uploadApplicationTabs: (callback)->
-    util.log("Updating application tabs")
+    util.log "Updating application tabs"
 
     @tabs = @converter.tabsCloudSchemaRepresentation()
 
-    @updateAndRemoveCloudTabs ()=>
-      @createNewLocalTabs ()=>
-        callback()
+    @fetchCloudTabs ()=>
+      @updateAndRemoveCloudTabs ()=>
+        @createNewLocalTabs ()=>
+          callback()
 
   updateAndRemoveCloudTabs: (callback)->
-    @fetchCloudTabs ()=>
-
+    util.log "Updating and removing cloud tabs"
     # application_id: app.id
     # position: => @get "position"
 
-    util.log "Uploading #{JSON.stringify(@tabs)}"
     callback()
 
   fetchCloudTabs: (callback)->
-    util.log "fetching cloud tabs"
+    util.log "Fetching cloud tabs"
+
+    restifyCallback = (err, req, req, obj)=>
+      # util.log "RECEIVED TABS GET RESPONSE"
+      # util.log "err: #{util.inspect(err)}"
+      # util.log "req: #{util.inspect(req)}"
+      # util.log "res: #{util.inspect(res)}"
+      # util.log "obj: #{util.inspect(obj)}"
+
+      unless err
+        # util.log "RECEIVED TABS GET SUCCESS"
+        @cloudTabs = obj
+        callback()
+      else
+        # util.log "RECEIVED TABS GET FAILURE"
+        process.exit 1
+
+    @client.get "/studio_api/bottom_bars?application_id=#{@cloudApp.id}", restifyCallback
 
   uploadApplicationZip: (callback)->
     util.log "Updating application build"
