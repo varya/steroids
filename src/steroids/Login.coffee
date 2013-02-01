@@ -18,6 +18,12 @@ class Login
   @authTokenExists: ()->
     fs.existsSync paths.oauthTokenPath
 
+  @currentAccessToken: ()->
+    tokenJSON = fs.readFileSync(paths.oauthTokenPath, 'utf8')
+    token = JSON.parse(tokenJSON)
+
+    return token.access_token
+
   constructor: (@options={})->
     @oauth = new OAuth2(
       @settings.clientId, @settings.clientSecret,

@@ -202,6 +202,13 @@ class Steroids
           port: port
         login.authorize()
 
+      when "deploy"
+        Help.logo()
+
+        Deploy = require "./steroids/deploy"
+        deploy = new Deploy()
+        deploy.uploadToCloud()
+
       else
         Help.logo() unless argv.noLogo
         Help.usage()
