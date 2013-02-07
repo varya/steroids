@@ -5,6 +5,7 @@ execSync = require "exec-sync"
 restify = require "restify"
 restler = require "restler"
 async = require "async"
+open = require "open"
 
 paths = require "./paths"
 DeployConverter = require "./DeployConverter"
@@ -121,6 +122,9 @@ class Deploy
     fs.writeFileSync paths.cloudConfigJSON, JSON.stringify(config)
 
     util.log "Deployment complete"
+
+    open "http://share.appgyver.com/?id=#{config.id}&hash=#{config.identification_hash}"
+
     process.exit 0
 
 module.exports = Deploy
