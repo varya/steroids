@@ -28,7 +28,7 @@ class Deploy
       util.log "ERROR: Canceling cloud build due to login failure"
       process.exit 1
 
-    util.log "Refreshing application"
+    util.log "Building application locally"
     pushOutput = execSync "steroids push", true
 
     if pushOutput.stderr != ""
