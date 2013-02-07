@@ -18,7 +18,7 @@ class Paths
   @welcomeBanner: path.join @npm, "support", "welcome"
   @legacyApplicationCoffeeBanner: path.join @npm, "support", "legacy-applicationcoffee"
 
-  @application: "/Users/juhazi/git/AppGyver/kitchensink" # path.join process.cwd()
+  @application: process.cwd()
   @appConfigCoffee: path.join @application, "config", "application.coffee"
   @cloudConfigJSON: path.join @application, "config", "cloud.json"
   @dist: path.join @application, "dist"
