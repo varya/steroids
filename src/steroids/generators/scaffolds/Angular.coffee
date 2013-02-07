@@ -4,46 +4,45 @@ path = require "path"
 fs = require "fs"
 ejs = require "ejs"
 
-class Angular
+Base = require "../Base"
+
+class Angular extends Base
+  @usageParams: ->
+    "<scaffold>"
+
+  @usage: ()->
+    """
+    Generates a scaffold build on top of angular.js. Includes a controller, a model and CRUD views.
+
+    Options:
+      - scaffold: name of scaffold to use
+    """
+
   constructor: (@options)->
+    super(@options)
+
     @templatePath = path.join(steroids.paths.templates.scaffolds, "angular")
 
-    @options.className = @options.name[0].toUpperCase() + @options.name[1..-1]
-
   generate: () ->
-    controllerTemplate = fs.readFileSync(path.join(@templatePath, "controller.coffee.template")).toString()
-    controller = ejs.render controllerTemplate,
-      options: @options
+    @addFile path.join(@applicationPath, "app", "controllers", "#{@options.name}sController.coffee"),
+      @renderTemplate(path.join(@templatePath, "controller.coffee.template"))
 
-    modelTemplate = fs.readFileSync(path.join(@templatePath, "model.coffee.template")).toString()
-    model = ejs.render modelTemplate,
-      options: @options
+    @ensureDirectory path.join(@applicationPath, "app", "models")
 
-    indexViewTemplate = fs.readFileSync(path.join(@templatePath, "index.html.template")).toString()
-    indexView = ejs.render indexViewTemplate,
-      options: @options
+    @addFile path.join(@applicationPath, "app", "models", "#{@options.name}.coffee"),
+      @renderTemplate(path.join(@templatePath, "model.coffee.template"))
 
-    showViewTemplate = fs.readFileSync(path.join(@templatePath, "show.html.template")).toString()
-    showView = ejs.render showViewTemplate,
-      options: @options
+    @ensureDirectory path.join(@applicationPath, "app", "views", "#{@options.name}s")
 
-    bootstrapViewTemplate = fs.readFileSync(path.join(@templatePath, "bootstrap.html.template")).toString()
-    bootstrapView = ejs.render bootstrapViewTemplate,
-      options: @options
+    @addFile path.join(@applicationPath, "app", "views", "#{@options.name}s", "index.html"),
+      @renderTemplate(path.join(@templatePath, "index.html.template"))
 
-    applicationPath = steroids.paths.application
 
-    fs.writeFileSync path.join(applicationPath, "app", "controllers", "#{@options.name}sController.coffee"), controller, "utf8"
+    @addFile path.join(@applicationPath, "app", "views", "#{@options.name}s", "show.html"),
+      @renderTemplate(path.join(@templatePath, "show.html.template"))
 
-    if !fs.existsSync path.join(applicationPath, "app", "models")
-      fs.mkdirSync path.join(applicationPath, "app", "models")
+    @addFile path.join(@applicationPath, "app", "views", "#{@options.name}s", "bootstrap.html"),
+      @renderTemplate(path.join(@templatePath, "bootstrap.html.template"))
 
-    fs.writeFileSync path.join(applicationPath, "app", "models", "#{@options.name}.coffee"), model, "utf8"
-
-    fs.mkdirSync path.join(applicationPath, "app", "views", "#{@options.name}s")
-
-    fs.writeFileSync path.join(applicationPath, "app", "views", "#{@options.name}s", "index.html"), indexView, "utf8"
-    fs.writeFileSync path.join(applicationPath, "app", "views", "#{@options.name}s", "show.html"), showView, "utf8"
-    fs.writeFileSync path.join(applicationPath, "app", "views", "#{@options.name}s", "bootstrap.html"), bootstrapView, "utf8"
 
 module.exports = Angular

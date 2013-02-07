@@ -18,13 +18,13 @@ describe 'Generator', ->
     @testHelper.cleanUp()
 
 
-  describe 'ng-resource', ->
+  describe 'ng-scaffold', ->
 
     it 'should be created', ->
       @testHelper.createProjectSync()
 
       cmd = @testHelper.runInProjectSync "generate",
-        args: ["ng-resource", "car"]
+        args: ["ng-scaffold", "car"]
 
       runs ()=>
         expect( cmd.code ).toBe(0)

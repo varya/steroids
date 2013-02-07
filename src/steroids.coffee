@@ -195,7 +195,8 @@ class Steroids
         [generatorType, generatorArgs...] = otherOptions
 
         unless generatorType?
-          Help.usage()
+          Help.listGenerators()
+          process.exit 0
 
         Generators = require "./steroids/Generators"
 
