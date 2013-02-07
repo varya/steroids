@@ -21,6 +21,8 @@ class Config
     tabTitleShadowColor:        ""
     selectedTabTintColor:       ""
     selectedTabBackgroundImage: ""
+
+    # tabs: [{title: "default", icon:"icon.png", location: "http://localhost/index.html"}]
     tabs: []
   }
   worker: {}
