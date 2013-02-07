@@ -201,6 +201,7 @@ class Steroids
 
         generatorOptions =
           name: generatorArgs[0]
+          otherOptions: generatorArgs
 
         generator = new Generators[generatorType](generatorOptions)
 

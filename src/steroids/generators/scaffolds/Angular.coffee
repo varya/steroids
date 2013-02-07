@@ -1,13 +1,12 @@
-steroids = require "../../steroids"
+steroids = require "../../../steroids"
 spawn = require("child_process").spawn
 path = require "path"
 fs = require "fs"
 ejs = require "ejs"
 
-
-class AngularResource
+class Angular
   constructor: (@options)->
-    @templatePath = path.join(steroids.paths.templates.generators, "angularResource")
+    @templatePath = path.join(steroids.paths.templates.scaffolds, "angular")
 
     @options.className = @options.name[0].toUpperCase() + @options.name[1..-1]
 
@@ -32,18 +31,19 @@ class AngularResource
     bootstrapView = ejs.render bootstrapViewTemplate,
       options: @options
 
+    applicationPath = steroids.paths.application
 
-    fs.writeFileSync path.join(process.cwd(), "app", "controllers", "#{@options.name}sController.coffee"), controller, "utf8"
+    fs.writeFileSync path.join(applicationPath, "app", "controllers", "#{@options.name}sController.coffee"), controller, "utf8"
 
-    if !fs.existsSync path.join(process.cwd(), "app", "models")
-      fs.mkdirSync path.join(process.cwd(), "app", "models")
+    if !fs.existsSync path.join(applicationPath, "app", "models")
+      fs.mkdirSync path.join(applicationPath, "app", "models")
 
-    fs.writeFileSync path.join(process.cwd(), "app", "models", "#{@options.name}.coffee"), model, "utf8"
+    fs.writeFileSync path.join(applicationPath, "app", "models", "#{@options.name}.coffee"), model, "utf8"
 
-    fs.mkdirSync path.join(process.cwd(), "app", "views", "#{@options.name}s")
+    fs.mkdirSync path.join(applicationPath, "app", "views", "#{@options.name}s")
 
-    fs.writeFileSync path.join(process.cwd(), "app", "views", "#{@options.name}s", "index.html"), indexView, "utf8"
-    fs.writeFileSync path.join(process.cwd(), "app", "views", "#{@options.name}s", "show.html"), showView, "utf8"
-    fs.writeFileSync path.join(process.cwd(), "app", "views", "#{@options.name}s", "bootstrap.html"), bootstrapView, "utf8"
+    fs.writeFileSync path.join(applicationPath, "app", "views", "#{@options.name}s", "index.html"), indexView, "utf8"
+    fs.writeFileSync path.join(applicationPath, "app", "views", "#{@options.name}s", "show.html"), showView, "utf8"
+    fs.writeFileSync path.join(applicationPath, "app", "views", "#{@options.name}s", "bootstrap.html"), bootstrapView, "utf8"
 
-module.exports = AngularResource
+module.exports = Angular

@@ -9,7 +9,8 @@ class Paths
 
   @templates:
     applications: path.join @npm, "templates", "applications"
-    generators: path.join @npm, "templates", "generators"
+    resources: path.join @npm, "templates", "resources"
+    scaffolds: path.join @npm, "templates", "scaffolds"
 
   @includedGrunt: path.join @npm, "node_modules", "grunt", "lib", "grunt"
 

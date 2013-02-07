@@ -1,0 +1,11 @@
+<script>
+  <%= options.className %>sController.index();
+</script>
+
+<h1><%= options.name %>s</h1>
+
+<ul class="list">
+  <li>
+    <span class="chevron"/>
+  </li>
+</ul>

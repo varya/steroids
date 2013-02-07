@@ -1,0 +1,9 @@
+class window.<%= options.className %>sController
+
+  @index: ->
+
+    # always put everything inside PhoneGap deviceready
+    document.addEventListener "deviceready", ->
+
+      # Make Navigation Bar to appear with a custom title text
+      Steroids.navigationBar.show { title: "<%= options.name %>" }
