@@ -45,4 +45,8 @@ Other usage commands:
 
   login [--port=4567]
 
-    Logs you in to the AppGyver Cloud. Allows for cloud builds. Use --port option to switch the local port used if it is already in use.
+    Logs you in to AppGyver Cloud. Use --port option to switch the local port used if it is already in use.
+
+  deploy
+
+    Deploys your application to AppGyver Cloud.
