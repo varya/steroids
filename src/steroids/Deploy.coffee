@@ -3,11 +3,12 @@ path = require "path"
 util = require "util"
 execSync = require "exec-sync"
 restify = require "restify"
+restler = require "restler"
 async = require "async"
 
 paths = require "./paths"
 DeployConverter = require "./DeployConverter"
-Login = require("./Login")
+Login = require "./Login"
 
 class Deploy
   constructor: (@options={})->
@@ -25,21 +26,36 @@ class Deploy
 
     unless Login.authTokenExists()
       util.log "ERROR: Canceling cloud build due to login failure"
-      return
+      process.exit 1
+
+    util.log "Refreshing application"
+    pushOutput = execSync "steroids push", true
+
+    if pushOutput.stderr != ""
+      console.log pushOutput.stderr
+      util.log "ERROR: Canceling cloud build due to push failure"
+      process.exit 1
+
+    # util.log "steroids push output:"
+    console.log pushOutput.stdout
 
     @client.basicAuth Login.currentAccessToken(), 'X'
 
-    execSync "steroids push"
-
     @uploadApplicationJSON ()=>
-      @uploadApplicationTabs ()=>
-        @uploadApplicationZip ()=>
-          @updateConfigurationFile()
+      @uploadApplicationZip ()=>
+        @updateConfigurationFile()
 
   uploadApplicationJSON: (callback)->
     # util.log "Updating application configuration"
+    util.log "Uploading Application to cloud"
 
     @app = @converter.applicationCloudSchemaRepresentation()
+
+    if fs.existsSync paths.cloudConfigJSON
+      # util.log "Application has been deployed before"
+      cloudConfig = JSON.parse fs.readFileSync(paths.cloudConfigJSON, 'utf8')
+      @app.id = cloudConfig.id
+      # util.log "Using cloud ID: #{cloudConfig.id}"
 
     # util.log "Uploading #{JSON.stringify(@app)}"
 
@@ -59,60 +75,52 @@ class Deploy
         callback()
       else
         # util.log "RECEIVED APPJSON SYNC FAILURE"
+        # util.log "err: #{util.inspect(err)}"
+        # util.log "obj: #{util.inspect(obj)}"
         process.exit 1
 
-    if @cloudConfig
+    if @app.id?
       # util.log "PUT"
-      @client.put "/studio_api/applications/#{cloudConfig.application_id}", requestData, restifyCallback
+      @client.put "/studio_api/applications/#{@app.id}", requestData, restifyCallback
     else
       # util.log "POST"
       @client.post "/studio_api/applications", requestData, restifyCallback
 
-
-  uploadApplicationTabs: (callback)->
-    util.log "Updating application tabs"
-
-    @tabs = @converter.tabsCloudSchemaRepresentation()
-
-    @fetchCloudTabs ()=>
-      @updateAndRemoveCloudTabs ()=>
-        @createNewLocalTabs ()=>
-          callback()
-
-  updateAndRemoveCloudTabs: (callback)->
-    util.log "Updating and removing cloud tabs"
-    # application_id: app.id
-    # position: => @get "position"
-
-    callback()
-
-  fetchCloudTabs: (callback)->
-    util.log "Fetching cloud tabs"
-
-    restifyCallback = (err, req, req, obj)=>
-      # util.log "RECEIVED TABS GET RESPONSE"
-      # util.log "err: #{util.inspect(err)}"
-      # util.log "req: #{util.inspect(req)}"
-      # util.log "res: #{util.inspect(res)}"
-      # util.log "obj: #{util.inspect(obj)}"
-
-      unless err
-        # util.log "RECEIVED TABS GET SUCCESS"
-        @cloudTabs = obj
-        callback()
-      else
-        # util.log "RECEIVED TABS GET FAILURE"
-        process.exit 1
-
-    @client.get "/studio_api/bottom_bars?application_id=#{@cloudApp.id}", restifyCallback
-
   uploadApplicationZip: (callback)->
-    util.log "Updating application build"
-    callback()
+    sourcePath = paths.temporaryZip
+    # util.log "Updating application build from #{sourcePath} to #{@cloudApp.custom_code_zip_upload_url}"
+    # util.log "key #{@cloudApp.custom_code_zip_upload_key}"
+
+    params =
+      success_action_status: "201"
+      utf8: ""
+      key: @cloudApp.custom_code_zip_upload_key
+      acl: @cloudApp.custom_code_zip_upload_acl
+      policy: @cloudApp.custom_code_zip_upload_policy
+      signature: @cloudApp.custom_code_zip_upload_signature
+      AWSAccessKeyId: @cloudApp.custom_code_zip_upload_access_key
+      file: restler.file(
+        sourcePath, # source path
+        "custom_code.zip", # filename
+        fs.statSync(sourcePath).size, # file size
+        "binary", # file encoding
+        'application/octet-stream') # file content type
+
+    uploadRequest = restler.post @cloudApp.custom_code_zip_upload_url, { multipart: true, data:params }
+    uploadRequest.on 'success', ()=>
+      # util.log "Updated application build"
+      callback()
 
   updateConfigurationFile: ()->
-    util.log "Updating #{paths.cloudConfigJSON}"
+    # util.log "Updating #{paths.cloudConfigJSON}"
 
+    config =
+      id: @cloudApp.id
+      identification_hash: @cloudApp.identification_hash
+
+    fs.writeFileSync paths.cloudConfigJSON, JSON.stringify(config)
+
+    util.log "Deployment complete"
     process.exit 0
 
 module.exports = Deploy

@@ -7,7 +7,7 @@ Zip = require("./fs/zip")
 
 class ProjectBuilder
   constructor: ->
-    @grunt = new Grunt process.cwd()
+    @grunt = new Grunt Paths.application
 
   make: ->
     throw "Cannot perform build: grunt.js file does not exist." unless @grunt.doesConfigFileExist()

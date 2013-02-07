@@ -2,6 +2,7 @@ class Config
 
   statusBar: {
     style: "black"
+    enabled: false
   }
   navigationBar: {
     tintColor:                  ""

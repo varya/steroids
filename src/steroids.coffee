@@ -67,9 +67,19 @@ class Steroids
 
       when "push"
         output = execSync "steroids make", true
+
+        if output.stderr != ""
+          console.log output.stderr
+          process.exit 1
+
         console.log output.stdout
 
         output = execSync "steroids package", true
+
+        if output.stderr != ""
+          console.log output.stderr
+          process.exit 1
+
         console.log output.stdout
 
       when "make"
@@ -206,7 +216,7 @@ class Steroids
         Help.logo()
 
         Deploy = require "./steroids/deploy"
-        deploy = new Deploy()
+        deploy = new Deploy(otherOptions)
         deploy.uploadToCloud()
 
       else

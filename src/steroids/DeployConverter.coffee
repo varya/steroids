@@ -31,18 +31,16 @@ class DeployConverter
     wait_for_document_ready_before_open: Steroids.config.wait_for_document_ready_before_open ? "true"
     open_clicked_links_in_new_layer: Steroids.config.open_clicked_links_in_new_layer ? "false"
     shake_gesture_enabled_during_development: Steroids.config.shake_gesture_enabled_during_development ? "false"
+    tabs: @tabsCloudSchemaRepresentation()
 
   tabsCloudSchemaRepresentation: ->
-    if Steroids.config.tabBar.tabs?
-      return ( @tabCloudSchemaRepresentation(tab) for tab in Steroids.config.tabBar.tabs )
-
-  tabCloudSchemaRepresentation: (tab)->
-    title: tab.title
-    target_url: tab.location
-    image_path: tab.icon
+    if Steroids.config.tabBar?.tabs?
+      Steroids.config.tabBar.tabs
+    else
+      []
 
   statusBarStyle: ->
-    if Steroids.config.statusBar.enabled == false or Steroids.config.statusBar.enabled == undefined
+    unless Steroids.config.statusBar?.enabled? && Steroids.config.statusBar.enabled == true
       "hidden"
     else
       Steroids.config.statusBar.style

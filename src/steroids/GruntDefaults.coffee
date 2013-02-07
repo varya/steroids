@@ -2,6 +2,8 @@ sass = require 'node-sass'
 coffeelint = require 'coffeelint'
 colorize = require "colorize"
 
+Paths = require "./paths"
+
 defaultConfig = {}
 
 registerDefaultTasks = (grunt)->
@@ -17,18 +19,22 @@ registerDefaultTasks = (grunt)->
   ]
 
   # Steroids Tasks & functions:
-  buildDirectory            = path.join process.cwd(), "dist"
+  projectDirectory          = Paths.application
+
+  buildDirectory            = path.join projectDirectory, "dist"
   buildViewsDirectory       = path.join buildDirectory, "views"
   buildModelsDirectory      = path.join buildDirectory, "models"
   buildcontrollersDirectory = path.join buildDirectory, "controllers"
   buildStylesheetsDirectory = path.join buildDirectory, "stylesheets"
-  appDirectory              = path.join process.cwd(), "app"
+
+  appDirectory              = path.join projectDirectory, "app"
   appViewsDirectory         = path.join appDirectory, "views"
   appModelsDirectory        = path.join appDirectory, "models"
   appControllersDirectory   = path.join appDirectory, "controllers"
   appLayoutsDirectory       = path.join appDirectory, "views", "layouts"
-  vendorDirectory           = path.join process.cwd(), "vendor"
-  wwwDirectory              = path.join process.cwd(), "www"
+
+  vendorDirectory           = path.join projectDirectory, "vendor"
+  wwwDirectory              = path.join projectDirectory, "www"
 
   compileCoffee = (filePath, baseDir, newDirPrefix)->
     if typeof(newDirPrefix) is "undefined"
