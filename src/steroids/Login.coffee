@@ -18,6 +18,10 @@ class Login
   @authTokenExists: ()->
     fs.existsSync paths.oauthTokenPath
 
+  @removeAuthToken: ()->
+    if @authTokenExists
+      fs.unlinkSync paths.oauthTokenPath
+
   @currentAccessToken: ()->
     tokenJSON = fs.readFileSync(paths.oauthTokenPath, 'utf8')
     token = JSON.parse(tokenJSON)

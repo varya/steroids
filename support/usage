@@ -47,6 +47,10 @@ Other usage commands:
 
     Logs you in to AppGyver Cloud. Use --port option to switch the local port used if it is already in use.
 
+  logout
+
+    Logs you out from the AppGyver Cloud.
+
   deploy
 
     Deploys your application to AppGyver Cloud.

@@ -212,6 +212,19 @@ class Steroids
           port: port
         login.authorize()
 
+      when "logout"
+        Help.logo()
+
+        Login = require "./steroids/Login"
+
+        unless Login.authTokenExists()
+          util.log "You're not logged in. Not logging out."
+          return
+
+        Login.removeAuthToken()
+
+        util.log "Logged out."
+
       when "deploy"
         Help.logo()
 
