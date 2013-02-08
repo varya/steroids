@@ -6,7 +6,7 @@ TestHelper = require "./TestHelper"
 CommandRunner = require "./CommandRunner"
 
 
-AFTER_VERSION_BUMB = "0.4.2" # <--- intentionally hardcoded!
+AFTER_VERSION_BUMB = "0.5.2" # <--- intentionally hardcoded!
 describe 'Version', ->
 
   it "represents the version in package.json", ->

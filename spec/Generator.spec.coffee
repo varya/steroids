@@ -33,7 +33,7 @@ describe 'Generator', ->
       @testHelper.createProjectSync()
 
       cmd = @testHelper.runInProjectSync "generate",
-        args: ["resource", "car"]
+        args: ["resource", "cars"]
 
       runs ()=>
         expect( cmd.code ).toBe(0)
