@@ -1,4 +1,4 @@
-class window.<%= options.className %>sController
+class window.<%= options.className %>Controller
 
   @index: ->
 

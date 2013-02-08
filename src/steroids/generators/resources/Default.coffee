@@ -15,18 +15,18 @@ class Default extends Base
     Generates a stub resource consisting of a controller and a single index view.
 
     Options:
-      - resource: name of resource to use
+      - resource: name of resource to use. example: car will result in a carController and views/car/index.html
     """
 
   templatePath: ->
     path.join(steroids.paths.templates.resources, "default")
 
   generate: ->
-    @addFile path.join("app", "controllers", "#{@options.name}sController.coffee"), "controller.coffee.template"
+    @addFile path.join("app", "controllers", "#{@options.name}Controller.coffee"), "controller.coffee.template"
 
-    @ensureDirectory path.join("app", "views", "#{@options.name}s")
+    @ensureDirectory path.join("app", "views", "#{@options.name}")
 
-    @addFile path.join("app", "views", "#{@options.name}s", "index.html"), "index.html.template"
+    @addFile path.join("app", "views", "#{@options.name}", "index.html"), "index.html.template"
 
 
 module.exports = Default
