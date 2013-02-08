@@ -1,3 +1,4 @@
+path = require "path"
 paths = require "./paths"
 colorize = require "colorize"
 
@@ -5,13 +6,26 @@ colorize = require "colorize"
 class Help
 
 	@usage: ->
-    @printBanner(paths.usageBanner)
+    @printBanner(paths.banners.usage)
 
   @welcome: ->
-    @printBanner(paths.welcomeBanner, true)
+    @printBanner(paths.banners.welcome, true)
 
   @logo: ->
-    @printBanner(paths.logoBanner, true)
+    @printBanner(paths.banners.logo, true)
+
+  @listGenerators: ->
+    Generators = require "./Generators"
+
+    for name, generator of Generators
+      console.log "-------------------------"
+      console.log ""
+      console.log "#{name}:"
+      console.log ""
+      console.log "Usage: steroids generate #{name} #{generator.usageParams()}"
+      console.log ""
+      console.log generator.usage()
+      console.log ""
 
   @legacyDetected: ->
     @printBanner(paths.legacyApplicationCoffeeBanner, true)

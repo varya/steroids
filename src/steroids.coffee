@@ -191,6 +191,23 @@ class Steroids
 
         dependencyUpdater.update()
 
+      when "generate"
+        [generatorType, generatorArgs...] = otherOptions
+
+        unless generatorType?
+          Help.listGenerators()
+          process.exit 0
+
+        Generators = require "./steroids/Generators"
+
+        generatorOptions =
+          name: generatorArgs[0]
+          otherOptions: generatorArgs
+
+        generator = new Generators[generatorType](generatorOptions)
+
+        generator.generate()
+
       when "login"
         Help.logo()
 

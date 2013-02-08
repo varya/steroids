@@ -1,7 +1,7 @@
 # -- Required settings --
 
 Steroids.config.name = "New Application"
-Steroids.config.location = "index.html"
+Steroids.config.location = "http://localhost:13101/index.html"
 
 # -- Tabs --
 

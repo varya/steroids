@@ -7,16 +7,23 @@ class Paths
 
   @npm: path.join __dirname, "..", ".."
 
-  @templates: path.join @npm, "templates"
-  @applicationTemplates: path.join @templates, "applications"
+  @templatesDir: path.join @npm, "templates"
+  @templates:
+    applications: path.join @templatesDir, "applications"
+    resources: path.join @templatesDir, "resources"
+    scaffolds: path.join @templatesDir, "scaffolds"
 
   @includedGrunt: path.join @npm, "node_modules", "grunt", "lib", "grunt"
+
   @staticFiles: path.join @npm, "public"
   @oauthSuccessHTML: path.join @staticFiles, "oauth2_success.html"
-  @logoBanner: path.join @npm, "support", "logo"
-  @usageBanner: path.join @npm, "support", "usage"
-  @welcomeBanner: path.join @npm, "support", "welcome"
-  @legacyApplicationCoffeeBanner: path.join @npm, "support", "legacy-applicationcoffee"
+
+  @bannersDir: path.join @npm, "support"
+  @banners:
+    logo: path.join @bannersDir, "logo"
+    usage: path.join @bannersDir, "usage"
+    welcome: path.join @bannersDir, "welcome"
+    legacyApplicationCoffee: path.join @bannersDir, "legacy-applicationcoffee"
 
   @application: process.cwd()
   @appConfigCoffee: path.join @application, "config", "application.coffee"

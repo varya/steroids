@@ -25,6 +25,12 @@ Basic usage commands:
 
 Other usage commands:
 
+  generate
+    Lists all code generators.
+
+  generate GENERATOR
+    Provides usage instructions on the selected generator.
+
   simulator
 
     Launches iOS Simulator, requires Xcode.

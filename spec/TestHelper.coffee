@@ -29,6 +29,7 @@ class TestHelper
 
 
   createProjectSync: () =>
+
     @createRun = new CommandRunner
       cmd: TestHelper.steroidsBinPath
       args: ["create", @testAppName]
@@ -40,45 +41,33 @@ class TestHelper
     runs ()=>
       expect( @createRun.code ).toBe(0)
 
+  runInProjectSync: (command, options={})=>
+    options.cmd ?= TestHelper.steroidsBinPath
+    options.args = [command].concat options.args
+    options.cwd ?= @testAppPath
+
+    commandRun = new CommandRunner options
+
+    runs ()=>
+      commandRun.run()
+
+    return commandRun
 
   runMakeInProjectSync: () =>
-    @makeRun = new CommandRunner
-      debug: true
-      cmd: TestHelper.steroidsBinPath
-      args: ["make"]
-      cwd: @testAppPath
+    cmd = @runInProjectSync "make"
 
-    runs () =>
-      @makeRun.run()
-
-    runs () =>
-      expect( @makeRun.code ).toBe(0)
-
+    runs ()=>
+      expect( cmd.code ).toBe(0)
 
   runPackageInProjectSync: () =>
-    @packageRun = new CommandRunner
-      cmd: TestHelper.steroidsBinPath
-      debug: true
-      args: ["package"]
-      cwd: @testAppPath
+    cmd = @runInProjectSync "package"
 
-    runs () =>
-      @packageRun.run()
-
-    runs () =>
-      expect( @packageRun.code ).toBe(0)
-
+    runs ()=>
+      expect( cmd.code ).toBe(0)
 
   runConnect: () =>
-    @connectRun = new CommandRunner
-      cmd: TestHelper.steroidsBinPath
-      debug: true
-      args: ["connect"]
-      cwd: @testAppPath
+    @runInProjectSync "connect",
       waitsFor: 3000
-
-    runs () =>
-      @connectRun.run()
 
     runs () =>
       @requestServerInterval = setInterval(()=>

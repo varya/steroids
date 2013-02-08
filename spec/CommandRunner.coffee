@@ -16,6 +16,11 @@ class CommandRunner
     @code = null
 
   run:() =>
+    if @options.debug
+      console.log "starting cmd: #{@cmd}"
+      console.log "args: #{@args}"
+      console.log "cwd: #{@cwd}"
+
     @spawned = spawn @cmd, @args, { cwd: @cwd }
 
     @spawned.stdout.on "data", (buffer) =>
