@@ -1,4 +1,0 @@
-class window.<%= options.className %>sController extends ApplicationController
-  @index: ($scope, <%= options.className %>)->
-    <%= options.className %>.all (rows)->
-      $scope.<%= options.name %>s = rows

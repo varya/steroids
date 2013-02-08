@@ -1,9 +1,0 @@
-<div ng-app="<%= options.className %>Resource">
-  <h1>Listing <%= options.name %>s</h1>
-
-  <div ng-controller="<%= options.className %>sController.index">
-    <ul ng-repeat="<%= options.name %> in <%= options.name %>s">
-      <li>{{<%= options.name %>.title}}</li>
-    </ul>
-  </div>
-</div>
