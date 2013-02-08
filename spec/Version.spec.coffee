@@ -5,10 +5,7 @@ path = require "path"
 TestHelper = require "./TestHelper"
 CommandRunner = require "./CommandRunner"
 
-
-AFTER_VERSION_BUMB = "0.5.2" # <--- intentionally hardcoded!
 describe 'Version', ->
-
   it "represents the version in package.json", ->
     Steroids = require "../src/steroids"
     packageJSON = require "../package.json"
@@ -28,7 +25,8 @@ describe 'Version', ->
         @versionRun.run()
 
       runs ()=>
-        expect( @versionRun.stdout ).toBe("AppGyver Steroids #{AFTER_VERSION_BUMB}\n")
+        packageJSON = require "../package.json"
+        expect( @versionRun.stdout ).toBe("AppGyver Steroids #{packageJSON.version}\n")
 
     it 'prints version with version', ->
 
@@ -40,5 +38,6 @@ describe 'Version', ->
         @versionRun.run()
 
       runs ()=>
-        expect( @versionRun.stdout ).toBe("AppGyver Steroids #{AFTER_VERSION_BUMB}\n")
+        packageJSON = require "../package.json"
+        expect( @versionRun.stdout ).toBe("AppGyver Steroids #{packageJSON.version}\n")
 
