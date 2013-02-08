@@ -18,31 +18,23 @@ class Angular extends Base
       - scaffold: name of scaffold to use
     """
 
-  constructor: (@options)->
-    super(@options)
-
-    @templatePath = path.join(steroids.paths.templates.scaffolds, "angular")
+  templatePath: ->
+    path.join(steroids.paths.templates.scaffolds, "angular")
 
   generate: () ->
-    @addFile path.join(@applicationPath, "app", "controllers", "#{@options.name}sController.coffee"),
-      @renderTemplate(path.join(@templatePath, "controller.coffee.template"))
+    @addFile path.join("app", "controllers", "#{@options.name}sController.coffee"), "controller.coffee.template"
 
-    @ensureDirectory path.join(@applicationPath, "app", "models")
+    @ensureDirectory path.join("app", "models")
 
-    @addFile path.join(@applicationPath, "app", "models", "#{@options.name}.coffee"),
-      @renderTemplate(path.join(@templatePath, "model.coffee.template"))
+    @addFile path.join("app", "models", "#{@options.name}.coffee"), "model.coffee.template"
 
-    @ensureDirectory path.join(@applicationPath, "app", "views", "#{@options.name}s")
+    @ensureDirectory path.join("app", "views", "#{@options.name}s")
 
-    @addFile path.join(@applicationPath, "app", "views", "#{@options.name}s", "index.html"),
-      @renderTemplate(path.join(@templatePath, "index.html.template"))
+    @addFile path.join("app", "views", "#{@options.name}s", "index.html"), "index.html.template"
 
+    @addFile path.join("app", "views", "#{@options.name}s", "show.html"), "show.html.template"
 
-    @addFile path.join(@applicationPath, "app", "views", "#{@options.name}s", "show.html"),
-      @renderTemplate(path.join(@templatePath, "show.html.template"))
-
-    @addFile path.join(@applicationPath, "app", "views", "#{@options.name}s", "bootstrap.html"),
-      @renderTemplate(path.join(@templatePath, "bootstrap.html.template"))
+    @addFile path.join("app", "views", "#{@options.name}s", "bootstrap.html"), "bootstrap.html.template"
 
 
 module.exports = Angular

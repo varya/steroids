@@ -20,14 +20,22 @@ class Base
     return ejs.render template,
       options: @options
 
-  addFile: (filePath, contents)->
-    fs.writeFileSync filePath, contents, "utf8"
+  addFile: (filePath, templatePath)->
+    destinationPath = path.join @applicationPath, filePath
+    sourcePath = path.join @templatePath(), templatePath
+
+    fs.writeFileSync destinationPath, @renderTemplate(sourcePath), "utf8"
 
   ensureDirectory: (dirPath)->
-    if !fs.existsSync dirPath
-      fs.mkdirSync dirPath
+    destinationPath = path.join @applicationPath, dirPath
 
-  generate: () ->
+    if !fs.existsSync destinationPath
+      fs.mkdirSync destinationPath
+
+  templatePath: ->
+    throw "generators.Base#templatePath not overridden by subclass!"
+
+  generate: ->
     throw "generators.Base#generate not overridden by subclass!"
 
 module.exports = Base
