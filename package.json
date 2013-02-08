@@ -1,79 +1,73 @@
-{ "name": "steroids"
-, "version": "0.4.3"
-
-, "preferGlobal": "true"
-
-, "license": "MIT"
-, "author": "AppGyver <contact@appgyver.com>"
-, "description": "AppGyver Steroids command line interface"
-, "contributors":
-  [ { "name": "Matti Paksula"
-    , "email": "matti.paksula@appgyver.com"
+{
+  "name": "steroids",
+  "version": "0.5.0",
+  "preferGlobal": "true",
+  "license": "MIT",
+  "author": "AppGyver <contact@appgyver.com>",
+  "description": "AppGyver Steroids command line interface",
+  "contributors": [
+    {
+      "name": "Matti Paksula",
+      "email": "matti.paksula@appgyver.com"
+    },
+    {
+      "name": "Jesse Ikonen",
+      "email": "jesse.ikonen@appgyver.com"
+    },
+    {
+      "name": "Juha Suuraho",
+      "email": "juha.suuraho@appgyver.com"
     }
-  , { "name": "Jesse Ikonen"
-    , "email": "jesse.ikonen@appgyver.com"
-    }
-  , { "name": "Juha Suuraho"
-    , "email": "juha.suuraho@appgyver.com"
-    }
-  ]
-
-, "main": "./src/main.js"
-
-, "bin":
-  { "steroids": "./bin/steroids"
-  }
-
-, "scripts":
-  { "test": "./bin/test"
-  , "install": "./bin/install"
-  }
-
-, "keywords":
-  [ "steroids.js"
-  , "appgyver"
-  , "client"
-  , "cli"
-  , "phonegap"
-  , "cordova"
-  ]
-
-, "repository":
-  { "type": "git"
-  , "url": "git://github.com/AppGyver/steroids.git"
-  }
-
-, "engines":
-  { "node": ">=0.8.0"
-  , "npm":  ">=1.1.0"
-  }
-
-, "dependencies":
-  { "async": "0.1.22"
-  , "coffeelint": "0.5.4"
-  , "coffee-script": "1.4.0"
-  , "colorize": "0.1.0"
-  , "ejs": "0.8.3"
-  , "exec-sync": "0.1.5"
-  , "express": "3.0.6"
-  , "grunt": "0.3.17"
-  , "node-sass": "0.2.6"
-  , "oauth": "0.9.8"
-  , "open": "0.0.2"
-  , "optimist": "0.3.5"
-  , "path-extra": "0.0.3"
-  , "prompt": "0.2.9"
-  , "request": "2.12.0"
-  , "restify": "2.1.1"
-  , "restler": "2.0.1"
-  , "steroids-js": ">=0.2.1"
-  , "steroids-simulators": "http://appgyver.production.steroids.simulators.s3.amazonaws.com/steroids-simulators.tar.gz"
-  , "watch": "0.5.1"
-  , "weinre": "2.0.0-pre-H9PU2WST-incubating"
-  , "wrench": "1.4.4"
-  }
-
-, "devDependencies":
-  { "jasmine-node": "1.0.28"
+  ],
+  "main": "./src/main.js",
+  "bin": {
+    "steroids": "./bin/steroids"
+  },
+  "scripts": {
+    "test": "./bin/test",
+    "install": "./bin/install"
+  },
+  "keywords": [
+    "steroids.js",
+    "appgyver",
+    "client",
+    "cli",
+    "phonegap",
+    "cordova"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/AppGyver/steroids.git"
+  },
+  "engines": {
+    "node": ">=0.8.0",
+    "npm": ">=1.1.0"
+  },
+  "dependencies": {
+    "async": "0.1.22",
+    "coffeelint": "0.5.4",
+    "coffee-script": "1.4.0",
+    "colorize": "0.1.0",
+    "ejs": "0.8.3",
+    "exec-sync": "0.1.5",
+    "express": "3.0.6",
+    "grunt": "0.3.17",
+    "node-sass": "0.2.6",
+    "oauth": "0.9.8",
+    "open": "0.0.2",
+    "optimist": "0.3.5",
+    "path-extra": "0.0.3",
+    "prompt": "0.2.9",
+    "request": "2.12.0",
+    "restify": "2.1.1",
+    "restler": "2.0.1",
+    "steroids-js": ">=0.2.1",
+    "steroids-simulators": "http://appgyver.production.steroids.simulators.s3.amazonaws.com/steroids-simulators.tar.gz",
+    "watch": "0.5.1",
+    "weinre": "2.0.0-pre-H9PU2WST-incubating",
+    "wrench": "1.4.4"
+  },
+  "devDependencies": {
+    "jasmine-node": "1.0.28"
   }
 }
