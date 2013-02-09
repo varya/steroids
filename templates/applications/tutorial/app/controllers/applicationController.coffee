@@ -1,24 +1,19 @@
 # always put everything inside PhoneGap deviceready
 
-document.addEventListener "deviceready", ()->
+document.addEventListener "deviceready", ->
 
-  $(".opensLayer").on "tap", () ->
+  $(".opensLayer").on "tap", ->
+    # Create a new webview that ...
+    webview = new steroids.views.WebView { location: @getAttribute("data-location") }
 
-    # Create a new layer that ...
-
-    layer = new Steroids.Layer { location: @getAttribute("data-location") }
-
-    # ... Open on top of this document and pushes to the navigation stack
-    Steroids.layers.push layer: layer
+    # Open on top of this document and pushes to the navigation stack
+    steroids.layers.push layer: webview
 
 
-  $(".opensModal").on "tap", () ->
-
-    layer = new Steroids.Layer { location: @getAttribute("data-location") }
-
-    Steroids.modal.show { layer: layer }
+  $(".opensModal").on "tap", ->
+    webview = new steroids.views.WebView { location: @getAttribute("data-location") }
+    steroids.modal.show { layer: webview }
 
 
-  $(".closesModal").on "tap", () ->
-
-     Steroids.modal.hide()
+  $(".closesModal").on "tap", ->
+    steroids.modal.hide()

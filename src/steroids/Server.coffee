@@ -55,4 +55,3 @@ class Server
     @interfaces().map((e) -> return e.ip )
 
 module.exports = Server
-

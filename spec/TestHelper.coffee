@@ -66,7 +66,7 @@ class TestHelper
       expect( cmd.code ).toBe(0)
 
   runConnect: () =>
-    @runInProjectSync "connect",
+    @connectRun = @runInProjectSync "connect",
       waitsFor: 3000
 
     runs () =>

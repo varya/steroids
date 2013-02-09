@@ -1,5 +1,7 @@
-Paths = require "./paths"
 fs = require "fs"
+
+Paths = require "./paths"
+Config = require "./config"
 
 class Converter
   constructor: (@configPath)->
@@ -7,22 +9,27 @@ class Converter
   configToAnkaFormat: ->
     delete require.cache[@configPath] if require.cache[@configPath]
 
+    global.steroids =
+      config: new Config
+
     require @configPath
+
+    configObject = global.steroids.config
 
     ankaLikeJSON =
       id: 1
-      name: Steroids.config.name||"Default name"
+      name: configObject.name||"Default name"
 
     if fs.existsSync Paths.temporaryZip
       ankaLikeJSON.build_timestamp = fs.lstatSync(Paths.temporaryZip).mtime.getTime()
 
-    ankaLikeJSON.configuration = @configurationObject(Steroids.config)
-    ankaLikeJSON.appearance = @appearanceObject(Steroids.config)
+    ankaLikeJSON.configuration = @configurationObject(configObject)
+    ankaLikeJSON.appearance = @appearanceObject(configObject)
 
     ankaLikeJSON.files = []
     ankaLikeJSON.archives = []
 
-    ankaLikeJSON.bottom_bars = @tabsObject(Steroids.config) # TODO: asetappa bottombars
+    ankaLikeJSON.bottom_bars = @tabsObject(steroids.config) # TODO: asetappa bottombars
 
     # legacy stuff
     ankaLikeJSON.authentication = @legacyAuthenticationObject()

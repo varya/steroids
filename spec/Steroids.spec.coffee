@@ -8,4 +8,5 @@ describe 'Steroids', ->
 
     it 'provides config with initial tabs', ->
       Config = require "../src/steroids/Config"
-      expect(Steroids.config.tabBar.tabs).toEqual([])
+      config = new Config()
+      expect(config.tabBar.tabs).toEqual([])

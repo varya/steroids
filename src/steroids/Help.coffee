@@ -27,8 +27,12 @@ class Help
       console.log generator.usage()
       console.log ""
 
-  @legacyDetected: ->
-    @printBanner(paths.legacyApplicationCoffeeBanner, true)
+  @legacy:
+    requiresDetected: ->
+      Help.printBanner(paths.banners.legacy.requiresDetected, true)
+
+    capitalizationDetected: ->
+      Help.printBanner(paths.banners.legacy.capitalizationDetected, true)
 
   @readContentsSync: (filename) ->
     fs = require "fs"

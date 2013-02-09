@@ -3,8 +3,8 @@ Weinre = require "./steroids/Weinre"
 Simulator = require "./steroids/Simulator"
 
 util = require "util"
-Config = require "./steroids/config"
 Version = require "./steroids/Version"
+paths = require "./steroids/paths"
 
 execSync = require "exec-sync"
 
@@ -18,13 +18,18 @@ class Steroids
   detectLegacyProject: ->
     fs = require("fs")
 
-    applicationConfig = "config/application.coffee"
+    applicationConfig = path.join paths.application, "config", "application.coffee"
 
     if fs.existsSync(applicationConfig)
       contents = fs.readFileSync(applicationConfig).toString()
       if contents.match('Steroids = require "steroids"') or contents.match('module.exports = Steroids.config')
-        Help.legacyDetected()
+        Help.legacy.requiresDetected()
         process.exit(1)
+
+      if contents.match('Steroids.config')
+        Help.legacy.capitalizationDetected()
+        process.exit(1)
+
 
   parseOptions: =>
 
@@ -272,10 +277,8 @@ module.exports =
     s.detectLegacyProject()
     s.parseOptions()
 
-  config: new Config
-
   GruntDefaults: require "./steroids/GruntDefaults"
   Help: Help
-  paths: require "./steroids/paths"
+  paths: paths
 
   version: Version.getVersion()

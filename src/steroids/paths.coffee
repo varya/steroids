@@ -23,7 +23,9 @@ class Paths
     logo: path.join @bannersDir, "logo"
     usage: path.join @bannersDir, "usage"
     welcome: path.join @bannersDir, "welcome"
-    legacyApplicationCoffee: path.join @bannersDir, "legacy-applicationcoffee"
+    legacy:
+      requiresDetected: path.join @bannersDir, "legacy-requiresdetected"
+      capitalizationDetected: path.join @bannersDir, "legacy-capitalizationdetected"
 
   @application: process.cwd()
   @appConfigCoffee: path.join @application, "config", "application.coffee"

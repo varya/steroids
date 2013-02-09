@@ -1,0 +1,17 @@
+
+#red[PROBLEMS]
+
+Sorry, but in this projects config/application.coffee
+
+There seems to be lines that include:
+
+  Steroids.config
+
+All occurrences of variable Steroids must be changed to steroids, f.e.:
+
+  steroids.config
+
+This is due to our recent changes that renamed the "Steroids" namespace to "steroids".
+
+Thanks,
+  - Juha (juha.suuraho@appgyver.com)

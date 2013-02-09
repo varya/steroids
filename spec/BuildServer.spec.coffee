@@ -39,4 +39,3 @@ describe 'BuildServer', ->
 
     runs () ->
       expect( json.configuration.fullscreen ).toEqual "true"
-

@@ -1,13 +1,13 @@
-steroids_simulators = require "steroids-simulators"
+steroidsSimulators = require "steroids-simulators"
 spawn = require("child_process").spawn
 
 class Simulator
   constructor: (@options = {}) ->
 
   run: ->
-    console.log "running #{steroids_simulators.iosSimPath}"
-    console.log "with params -app #{steroids_simulators.latestSimulatorPath}"
-    @simulatorProcess = spawn(steroids_simulators.iosSimPath, ["-app", steroids_simulators.latestSimulatorPath])
+    console.log "running #{steroidsSimulators.iosSimPath}"
+    console.log "with params -app #{steroidsSimulators.latestSimulatorPath}"
+    @simulatorProcess = spawn(steroidsSimulators.iosSimPath, ["-app", steroidsSimulators.latestSimulatorPath])
 
     @simulatorProcess.stdout.on "data", (d) ->
       console.log d.toString()
