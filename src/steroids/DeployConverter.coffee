@@ -12,7 +12,7 @@ class DeployConverter
     framework_id: 13
     navigation_bar_style: Steroids.config.theme
     status_bar_style: @statusBarStyle()
-    fullscreen: Steroids.config.tabBar.enabled
+    fullscreen: not Steroids.config.tabBar.enabled
     fullscreen_start_url: Steroids.config.location
     client_version: "edge"
     initial_eval_js_string: ""
