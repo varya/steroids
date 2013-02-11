@@ -22,7 +22,7 @@ class Default extends Base
     path.join(steroids.paths.templates.resources, "default")
 
   generate: ->
-    @addFile path.join("app", "controllers", "#{@options.name}Controller.coffee"), "controller.coffee.template"
+    @addFile path.join("app", "controllers", "#{@options.name}.coffee"), "controller.coffee.template"
 
     @ensureDirectory path.join("app", "views", "#{@options.name}")
 

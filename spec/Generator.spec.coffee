@@ -38,7 +38,7 @@ describe 'Generator', ->
       runs ()=>
         expect( cmd.code ).toBe(0)
 
-        ctrlPath = path.join(@testHelper.testAppPath, "app", "controllers", "carsController.coffee")
+        ctrlPath = path.join(@testHelper.testAppPath, "app", "controllers", "cars.coffee")
         expect(fs.existsSync ctrlPath).toBe true
         expect(fs.readFileSync(ctrlPath).toString()).toMatch(/class window.CarsController/)
 
