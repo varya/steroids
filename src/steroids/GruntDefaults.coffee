@@ -171,15 +171,19 @@ registerDefaultTasks = (grunt)->
           filePath = path.resolve filePathPart
           buildFilePath = path.resolve filePathPart.replace("app"+path.sep, "dist"+path.sep)
 
-          controllerName = path.basename(viewDir).replace(path.sep, "") + "Controller"
-          yieldObj =
-            view: grunt.file.read(filePath, "utf8")
-            controller: controllerName
+          # skip "partial" files that begin with underscore
+          if /^_/.test path.basename(filePath)
+            yieldedFile = grunt.file.read(filePath, "utf8")
+          else
+            controllerName = path.basename(viewDir).replace(path.sep, "") + "Controller"
+            yieldObj =
+              view: grunt.file.read(filePath, "utf8")
+              controller: controllerName
 
-          # put layout+yields together
-          yieldedFile = grunt.utils._.template(
-            applicationLayoutFile.toString()
-          )({ yield: yieldObj })
+            # put layout+yields together
+            yieldedFile = grunt.utils._.template(
+              applicationLayoutFile.toString()
+            )({ yield: yieldObj })
 
           # write the file
           grunt.file.mkdir path.dirname(buildFilePath)
