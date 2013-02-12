@@ -1,0 +1,41 @@
+class window.<%= options.className %>Controller
+
+  @index: ($scope, <%= options.className %>)->
+    document.addEventListener "deviceready", ->
+      steroids.view.navigationBar.show { title: "<%= options.className %> List" }
+
+      newButton = new steroids.buttons.NavigationBarButton
+        title: "New <%= options.className %>"
+        onTap: =>
+          webview = new steroids.views.WebView { location: "/views/<%= options.name %>/new.html" }
+          steroids.modal.show view: webview
+
+      steroids.view.navigationBar.setButtons { right: [newButton] }
+
+    $scope.goShow = (id)->
+      webview = new steroids.views.WebView { location: "/views/<%= options.name %>/show.html?id=#{id}" }
+      steroids.layers.push view: webview
+
+    $scope.refreshCollection = =>
+      <%= options.className %>.all (rows)->
+        $scope.<%= options.name %>Collection = rows
+
+    <%= options.className %>.ensureDBExists =>
+      $scope.refreshCollection()
+      <%= options.className %>.listenForChanges $scope.refreshCollection
+
+  @show: ($scope, <%= options.className %>)->
+    <%= options.className %>.ensureDBExists =>
+      <%= options.className %>.find steroids.view.params.id, (obj)=>
+        $scope.<%= options.name %> = obj
+
+        document.addEventListener "deviceready", ->
+          steroids.view.navigationBar.show { title: "#{obj.name}" }
+
+  @new: ($scope, <%= options.className %>)->
+    $scope.create = ->
+      <%= options.name %> = new <%= options.className %>
+        name: $scope.<%= options.name %>Name
+
+      <%= options.name %>.save()
+      steroids.modal.hide()
