@@ -1,0 +1,37 @@
+class window.<%= options.className %>
+  @resourceName: "#{@.name.toLowerCase()}s"
+
+  angular.module('<%= options.className %>Resource', ['ngResource']).factory @.name, ($resource) =>
+    @.resource = $resource "http://.touchdb./#{@resourceName}/:id", {id: "@id"},
+      createDB: { method: "PUT", params: { }, isArray:false }
+      dropDB: { method: "DELETE", params: { }, isArray:false }
+
+    return @
+
+  @listenForChanges: (callback)->
+    adapter = new steroids.data.TouchDB name: @resourceName
+    adapter.startMonitoringChanges {},
+      onChange: callback
+
+  @ensureDBExists: (callback)->
+    # params, postData, success, error
+    @resource.createDB {}, {}, callback, callback
+
+  @all: (callback)->
+    @resource.get({id: "_all_docs", include_docs: true}, (obj)->
+      callback (row.doc for row in obj.rows)
+    )
+
+  @find: (id, callback)->
+    @resource.get {id: id}, (obj)=>
+      callback obj
+
+  @delete: (id, rev, callback)->
+    @resource.remove {id: id, rev: rev}, {}, =>
+      callback()
+
+  constructor: (@options) ->
+
+  save: () ->
+    new @constructor.resource(@options).$save()
+    return true

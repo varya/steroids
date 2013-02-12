@@ -7,22 +7,22 @@ util = require "util"
 
 Base = require "../Base"
 
-class Default extends Base
+class TouchDB extends Base
   @usageParams: ->
     "<resource>"
 
   @usage: ()->
     """
-    Generates an angular scaffold consisting of a controller, a model and index, show, new and edit views.
+    Generates a scaffold consisting of a controller, a model and index, show, new and edit views.
 
-    The scaffold model can use any JSON REST API as backend that plays well with angular.
+    The scaffold model uses steroids provided TouchDB service as the backend.
 
     Options:
       - resource: name of resource to use. example: car will result in a CarController, a Car model and views/car/*.html
     """
 
   templatePath: ->
-    path.join(steroids.paths.templates.scaffolds, "angular")
+    path.join(steroids.paths.templates.scaffolds, "touchdb")
 
   generate: ->
     @checkForPreExistingFiles [
@@ -59,4 +59,4 @@ class Default extends Base
     util.log "Command completed successfully."
 
 
-module.exports = Default
+module.exports = TouchDB
