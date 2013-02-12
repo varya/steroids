@@ -244,7 +244,7 @@ class Steroids
 
         util.log "Starting login process"
 
-        port = argv.port || 4567
+        port = argv.port || 13303
 
         server = @startServer
           port: port
