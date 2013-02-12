@@ -60,7 +60,7 @@ class Steroids
       errorCallback: errorCb
 
     server.listen ()=>
-      util.log "Server started on port #{@options.port}"
+      util.log "Server started on port #{selectedPort}"
       options.callback()
 
     return server
