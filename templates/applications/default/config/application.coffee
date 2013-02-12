@@ -1,22 +1,31 @@
 # -- Required settings --
 
 steroids.config.name = "New Application"
+
+# -- Location --
+# Defines starting location for applications without a tab bar.
+# Tabs will override this value.
+# Can be one of these:
+#   - file URL (relative to www, f.e. index.html)
+#   - http://localhost:13101/ (serves files locally from www, f.e. http://localhost:13101/ would serve index.html)
+#   - http://www.google.com (directly from internet)
+
 steroids.config.location = "http://localhost:13101/index.html"
 
 # -- Tabs --
-
+#
 # A boolean to enable tab bar (on bottom)
 # This will override steroids.config.location (that is for single webview apps, like in PhoneGap)
 # Default: false
 #
 # steroids.config.tabBar.enabled = true
-
+#
 # Array with objects to specify which tabs are created on app startup
 #
 # Tab object properties are:
 # - title: text to show in tab title
 # - icon: path to icon file (f.e. images/icon@2x.png)
-# - location: can be one of these
+# - location: like steroids.config.location, can be one of these:
 #   - file URL (relative to www, f.e. index.html)
 #   - http://localhost:13101/ (serves files locally from www, f.e. http://localhost:13101/ would serve index.html)
 #   - http://www.google.com (directly from internet)
@@ -34,38 +43,34 @@ steroids.config.location = "http://localhost:13101/index.html"
 #   }
 # ]
 
-
-
 # -- Status bar --
 # Sets status bar visible (carrier, clock, battery status)
 # Default: false
-#
+
 steroids.config.statusBar.enabled = true
-
-
 
 # -- Colors --
 # Color values can be set in hex codes, eg. #ffbb20
 # Setting these values override values set by the application theme in steroids.config.theme
 # Default for all attributes: ""
 
-# steroids.config.navigationBar.tintColor = ""
-# steroids.config.navigationBar.titleColor = ""
-# steroids.config.navigationBar.titleShadowColor = ""
+steroids.config.navigationBar.tintColor = "#00aeef"
+steroids.config.navigationBar.titleColor = "#ffffff"
+steroids.config.navigationBar.titleShadowColor = "#000000"
 
-# steroids.config.navigationBar.buttonTintColor = ""
-# steroids.config.navigationBar.buttonTitleColor = ""
-# steroids.config.navigationBar.buttonShadowColor = ""
+steroids.config.navigationBar.buttonTintColor = "#363636"
+steroids.config.navigationBar.buttonTitleColor = "#ffffff"
+steroids.config.navigationBar.buttonShadowColor = "#000000"
 
 # steroids.config.tabBar.tintColor = ""
 # steroids.config.tabBar.tabTitleColor = ""
 # steroids.config.tabBar.tabTitleShadowColor = ""
 # steroids.config.tabBar.selectedTabTintColor = ""
-
+#
 # Can be used to set an indicator image for the selected tab (can be bigger than the tab)
 # Default: ""
 # steroids.config.tabBar.selectedTabBackgroundImage = ""
-
+#
 # Built-in iOS theme, values: black and default
 # Default: "default"
 #
