@@ -211,7 +211,13 @@ class Steroids
 
         generator = new Generators[generatorType](generatorOptions)
 
-        generator.generate()
+        try
+          generator.generate()
+        catch error
+          throw error unless error.fromSteroids?
+
+          util.log "ERROR: #{error.message}"
+          process.exit 1
 
       when "login"
         Help.logo()

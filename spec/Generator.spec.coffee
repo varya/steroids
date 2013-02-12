@@ -43,3 +43,21 @@ describe 'Generator', ->
         expect(fs.readFileSync(ctrlPath).toString()).toMatch(/class window.CarsController/)
 
         expect(fs.existsSync path.join(@testHelper.testAppPath, "app", "views", "cars", "index.html")).toBe true
+
+    it "fails when trying to overwrite existing files", ->
+      @testHelper.createProjectSync()
+
+      cmd1 = @testHelper.runInProjectSync "generate",
+        args: ["resource", "cars"]
+
+      cmd2 = @testHelper.runInProjectSync "generate",
+        args: ["resource", "cars"]
+
+      runs ()=>
+        expect( cmd1.code ).toBe(0)
+        expect( cmd2.code ).toBe(1)
+
+        ctrlPath = path.join(@testHelper.testAppPath, "app", "controllers", "cars.coffee")
+        expect(fs.existsSync ctrlPath).toBe true
+
+        expect(cmd2.stdout).toMatch(/would be overwritten by this command/)
