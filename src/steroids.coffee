@@ -158,7 +158,7 @@ class Steroids
 
           util.log "Waiting for client to connect, this may take a while ..."
 
-          getInput = () ->
+          getInput = =>
             prompt = require('prompt')
             prompt.message = "Steroids [hit enter to push] ".magenta
             prompt.delimiter = " > "
