@@ -30,8 +30,44 @@ class Steroids
         Help.legacy.capitalizationDetected()
         process.exit(1)
 
+  runSteroidsCommandSync: (cmd, options={})->
+    # no merging objects :(
+    options.exitOnFailure ?= true
 
-  parseOptions: =>
+    output = execSync "steroids #{cmd}", true
+
+    if output.stderr != ""
+      console.log output.stderr
+      if options.exitOnFailure
+        process.exit 1
+
+    console.log output.stdout
+
+  startServer: (options={}) =>
+    Server = require "./steroids/Server"
+    selectedPort = options.port ? 4567
+
+    errorCb = (err)=>
+      if err.message.match /EADDRINUSE/
+        util.log "ERROR: Port #{selectedPort} is already in use. You probably have another `steroids connect` command running already."
+        process.exit 1
+      else
+        throw err
+
+    server = new Server
+      port: selectedPort
+      path: "/"
+      errorCallback: errorCb
+
+    server.listen ()=>
+      util.log "Server started on port #{@options.port}"
+      options.callback()
+
+    return server
+
+
+  execute: =>
+    @detectLegacyProject()
 
     [firstOption, otherOptions...] = argv._
 
@@ -40,7 +76,6 @@ class Steroids
 
     if argv.version
       firstOption = "version"
-
 
     switch firstOption
       when "version"
@@ -61,31 +96,17 @@ class Steroids
         console.log "Initializing project ... "
         process.chdir(folder)
 
-        output = execSync "steroids update"
-        console.log output
+        @runSteroidsCommandSync "update"
 
-        output = execSync "steroids push"
-        console.log output
+        @runSteroidsCommandSync "push"
 
         Help.logo()
         Help.welcome()
 
       when "push"
-        output = execSync "steroids make", true
+        @runSteroidsCommandSync "make"
 
-        if output.stderr != ""
-          console.log output.stderr
-          process.exit 1
-
-        console.log output.stdout
-
-        output = execSync "steroids package", true
-
-        if output.stderr != ""
-          console.log output.stderr
-          process.exit 1
-
-        console.log output.stdout
+        @runSteroidsCommandSync "package"
 
       when "make"
         Grunt = require("./steroids/Grunt")
@@ -108,7 +129,7 @@ class Steroids
         weinre = new Weinre options
         weinre.run()
 
-        execSync "steroids push"
+        @runSteroidsCommandSync "push"
 
         open "http://localhost:#{weinre.options.httpPort}/client/#anonymous"
 
@@ -120,54 +141,48 @@ class Steroids
 
         BuildServer = require "./steroids/servers/BuildServer"
 
-        server = @startServer()
+        server = @startServer callback: ()=>
+          buildServer = new BuildServer
+                              path: "/"
 
-        buildServer = new BuildServer
-                            path: "/"
+          server.mount(buildServer)
 
-        server.mount(buildServer)
+          @runSteroidsCommandSync "push"
 
+          interfaces = server.interfaces()
+          ips = server.ipAddresses()
 
-        console.log execSync "steroids push"
+          QRCode = require "./steroids/QRCode"
+          qrcode = new QRCode("appgyver://?ips=#{encodeURIComponent(JSON.stringify(ips))}")
+          qrcode.show()
 
-        interfaces = server.interfaces()
-        ips = server.ipAddresses()
+          util.log "Waiting for client to connect, this may take a while ..."
 
-        QRCode = require "./steroids/QRCode"
-        qrcode = new QRCode("appgyver://?ips=#{encodeURIComponent(JSON.stringify(ips))}")
-        qrcode.show()
+          getInput = () ->
+            prompt = require('prompt')
+            prompt.message = "Steroids [hit enter to push] ".magenta
+            prompt.delimiter = " > "
+            prompt.start();
 
-        util.log "Waiting for client to connect, this may take a while ..."
+            prompt.get
+              properties:
+                input:
+                  message: "input"
+            , (err, result) =>
+              if result == undefined or result.input == "quit" or result.input == "exit" or result.input == "q"
+                console.log "Bye"
+                process.exit(0)
 
+              switch result.input
+                when "", "push"
+                  console.log "Updating code to all connected devices"
+                  @runSteroidsCommandSync "push", exitOnFailure: false
+                else
+                  console.log "Did not recognize input: #{result.input}"
 
+              getInput()
 
-
-        getInput = () ->
-          prompt = require('prompt')
-          prompt.message = "Steroids [hit enter to push] ".magenta
-          prompt.delimiter = " > "
-          prompt.start();
-
-          prompt.get
-            properties:
-              input:
-                message: "input"
-          , (err, result) =>
-            if result == undefined or result.input == "quit" or result.input == "exit" or result.input == "q"
-              console.log "Bye"
-              process.exit(0)
-
-            switch result.input
-              when "", "push"
-                console.log "Updating code to all connected devices"
-                output = execSync "steroids push", true
-                console.log output.stdout
-              else
-                console.log "Did not recognize input: #{result.input}"
-
-            getInput()
-
-        getInput()
+          getInput()
 
       when "serve"
 
@@ -178,15 +193,15 @@ class Steroids
 
         server = @startServer
           port: port
+          callback: ()=>
+            webServer = new WebServer
+              path: "/"
 
-        webServer = new WebServer
-          path: "/"
+            server.mount(webServer)
 
-        server.mount(webServer)
+            util.log "Serving application in #{url}"
 
-        util.log "Serving application in #{url}"
-
-        open url
+            open url
 
       when "update"
         DependencyUpdater = require "./steroids/DependencyUpdater"
@@ -233,11 +248,11 @@ class Steroids
 
         server = @startServer
           port: port
-
-        login = new Login
-          server: server
-          port: port
-        login.authorize()
+          callback: ()=>
+            login = new Login
+              server: server
+              port: port
+            login.authorize()
 
       when "logout"
         Help.logo()
@@ -255,32 +270,32 @@ class Steroids
       when "deploy"
         Help.logo()
 
+        Login = require "./steroids/Login"
+        unless Login.authTokenExists()
+          @runSteroidsCommandSync "login"
+
+        unless Login.authTokenExists()
+          util.log "ERROR: Canceling cloud build due to login failure"
+          process.exit 1
+
+        util.log "Building application locally"
+        @runSteroidsCommandSync "push"
+
         Deploy = require "./steroids/deploy"
         deploy = new Deploy(otherOptions)
-        deploy.uploadToCloud()
+        deploy.uploadToCloud ()=>
+          # all complete
+          process.exit 0
 
       else
         Help.logo() unless argv.noLogo
         Help.usage()
 
 
-  startServer: (options={}) =>
-    Server = require "./steroids/Server"
-
-    server = new Server
-      port: options.port || 4567
-      path: "/"
-
-    server.listen()
-
-    return server
-
-
 module.exports =
   run: ->
     s = new Steroids
-    s.detectLegacyProject()
-    s.parseOptions()
+    s.execute()
 
   GruntDefaults: require "./steroids/GruntDefaults"
   Help: Help

@@ -1,12 +1,11 @@
 paths = require "./paths"
 util = require "util"
-
+express = require "express"
+http = require 'http'
 
 class Server
 
   constructor: (@options) ->
-    express = require "express"
-
     throw "path must be specified" unless @options.path
 
     @app = express()
@@ -24,13 +23,13 @@ class Server
       util.log "No route for path: #{req.path}"
       res.send 404
 
-  listen: () =>
+  listen: (callback=->) =>
     throw "port must be set in constructor options before calling listen" unless @options.port
 
-    @app.listen(@options.port)
-
-    util.log "Server started on port #{@options.port}"
-
+    @server = http.createServer(@app)
+    @server.on "listening", callback
+    @server.on "error", @options.errorCallback
+    @server.listen @options.port
 
   mount: (appToMount) =>
     appToMount.setRoutes()

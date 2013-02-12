@@ -21,30 +21,12 @@ class Deploy
       # url: 'https://appgyver-staging.herokuapp.com'
       url: 'https://anka.appgyver.com'
 
-  uploadToCloud: ()->
-    unless Login.authTokenExists()
-      execSync "steroids login"
-
-    unless Login.authTokenExists()
-      util.log "ERROR: Canceling cloud build due to login failure"
-      process.exit 1
-
-    util.log "Building application locally"
-    pushOutput = execSync "steroids push", true
-
-    if pushOutput.stderr != ""
-      console.log pushOutput.stderr
-      util.log "ERROR: Canceling cloud build due to push failure"
-      process.exit 1
-
-    # util.log "steroids push output:"
-    console.log pushOutput.stdout
-
+  uploadToCloud: (callback=->)->
     @client.basicAuth Login.currentAccessToken(), 'X'
 
     @uploadApplicationJSON ()=>
       @uploadApplicationZip ()=>
-        @updateConfigurationFile()
+        @updateConfigurationFile(callback)
 
   uploadApplicationJSON: (callback)->
     # util.log "Updating application configuration"
@@ -112,7 +94,7 @@ class Deploy
       # util.log "Updated application build"
       callback()
 
-  updateConfigurationFile: ()->
+  updateConfigurationFile: (callback)->
     # util.log "Updating #{paths.cloudConfigJSON}"
 
     config =
@@ -125,6 +107,6 @@ class Deploy
 
     open "http://share.appgyver.com/?id=#{config.id}&hash=#{config.identification_hash}"
 
-    process.exit 0
+    callback()
 
 module.exports = Deploy
