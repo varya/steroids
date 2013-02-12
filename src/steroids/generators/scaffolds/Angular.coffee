@@ -7,7 +7,7 @@ util = require "util"
 
 Base = require "../Base"
 
-class Default extends Base
+class Angular extends Base
   @usageParams: ->
     "<resource>"
 
@@ -26,12 +26,11 @@ class Default extends Base
 
   generate: ->
     @checkForPreExistingFiles [
-      path.join("app", "controllers", "#{@options.name}.coffee"),
-      path.join("app", "models", "#{@options.name}.coffee"),
-      path.join("app", "views", "#{@options.name}", "index.html"),
-      path.join("app", "views", "#{@options.name}", "show.html"),
-      path.join("app", "views", "#{@options.name}", "new.html")
-      # path.join("app", "views", "#{@options.name}", "edit.html")
+      path.join("app", "controllers", "#{@options.name}.coffee")
+      path.join("app", "models", "#{@options.name}.coffee")
+      path.join("app", "views", "#{@options.name}", "index.html")
+      path.join("app", "views", "#{@options.name}", "list.html")
+      path.join("app", "views", "#{@options.name}", "details.html")
     ]
 
     @addFile path.join("www", "javascripts", "angular.min.js"), "angular.min.js"
@@ -45,9 +44,8 @@ class Default extends Base
     @ensureDirectory path.join("app", "views", "#{@options.name}")
 
     @addFile path.join("app", "views", "#{@options.name}", "index.html"), "index.html.template"
-    @addFile path.join("app", "views", "#{@options.name}", "show.html"), "show.html.template"
-    @addFile path.join("app", "views", "#{@options.name}", "new.html"), "new.html.template"
-    # @addFile path.join("app", "views", "#{@options.name}", "edit.html"), "edit.html.template"
+    @addFile path.join("app", "views", "#{@options.name}", "_list.html"), "list.html.template"
+    @addFile path.join("app", "views", "#{@options.name}", "_details.html"), "details.html.template"
 
     console.log ""
     console.log "NOTICE: Add the following lines to your application layout <head> element:"
@@ -59,4 +57,4 @@ class Default extends Base
     util.log "Command completed successfully."
 
 
-module.exports = Default
+module.exports = Angular
