@@ -7,5 +7,7 @@
         Name: {{<%= options.name %>.name}}
       </li>
     </ul>
+
+    <a class="button-negative button-block" ng-click="delete()">Delete</a>
   </div>
 </div>

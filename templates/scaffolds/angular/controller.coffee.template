@@ -25,6 +25,10 @@ class window.<%= options.className %>Controller
       <%= options.className %>.listenForChanges $scope.refreshCollection
 
   @show: ($scope, <%= options.className %>)->
+    $scope.delete = =>
+      <%= options.className %>.delete $scope.car._id, $scope.car._rev, ->
+        steroids.layers.pop()
+
     <%= options.className %>.ensureDBExists =>
       <%= options.className %>.find steroids.view.params.id, (obj)=>
         $scope.<%= options.name %> = obj

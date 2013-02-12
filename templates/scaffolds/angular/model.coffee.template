@@ -26,6 +26,10 @@ class window.<%= options.className %>
     @resource.get {id: id}, (obj)=>
       callback obj
 
+  @delete: (id, rev, callback)->
+    @resource.remove {id: id, rev: rev}, {}, =>
+      callback()
+
   constructor: (@options) ->
 
   save: () ->
