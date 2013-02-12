@@ -13,7 +13,9 @@ class Paths
     resources: path.join @templatesDir, "resources"
     scaffolds: path.join @templatesDir, "scaffolds"
 
-  @includedGrunt: path.join @npm, "node_modules", "grunt", "lib", "grunt"
+  @grunt:
+    library: path.join @npm, "node_modules", "grunt", "lib", "grunt"
+    gruntFile: path.join @npm, "src", "steroids", "grunt", "grunt.js"
 
   @staticFiles: path.join @npm, "public"
   @oauthSuccessHTML: path.join @staticFiles, "oauth2_success.html"

@@ -88,12 +88,11 @@ class Steroids
         console.log output.stdout
 
       when "make"
+        Grunt = require("./steroids/Grunt")
 
-        ProjectBuilder = require("./steroids/ProjectBuilder")
+        grunt = new Grunt
 
-        projectBuilder = new ProjectBuilder(otherOptions)
-
-        projectBuilder.make()
+        grunt.run()
 
       when "package"
         Packager = require "./steroids/Packager"

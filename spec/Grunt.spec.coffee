@@ -6,7 +6,7 @@ spawn = require("child_process").spawn
 
 TestHelper = require("./TestHelper")
 
-describe 'ProjectBuilder', ->
+describe 'Grunt', ->
 
   beforeEach ->
     @testHelper = new TestHelper
@@ -19,8 +19,7 @@ describe 'ProjectBuilder', ->
 
 
 
-  describe 'make', ->
-
+  describe 'running it', ->
     beforeEach ->
       @testHelper.createProjectSync()
 
@@ -35,4 +34,3 @@ describe 'ProjectBuilder', ->
 
       runs ()=>
         expect( fs.existsSync(pathToDist) ).toBe(true)
-
