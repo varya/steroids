@@ -1,0 +1,28 @@
+<form name="<%= options.name %>Form">
+
+  <div class="input-group" ng-class="{error: <%= options.name %>Form.name.$invalid}">
+    <div class="input-row">
+      <label>Name</label>
+      <input type="text" name="name" ng-model="<%= options.name %>.name" required></input>
+      <span ng-show="<%= options.name %>Form.name.$error.required" class="help-inline">
+        Required
+      </span>
+    </div>
+  </div>
+
+  <label>Description</label>
+  <textarea name="description" ng-model="<%= options.name %>.description"></textarea>
+  <br>
+
+  <a class="button-main button-block" ng-click="save()" ng-disabled="isClean() || <%= options.name %>Form.$invalid">
+    Save
+  </a>
+
+  <a class="button-negative button-block closesModal" ng-hide="<%= options.name %>._id">
+    Cancel
+  </a>
+
+  <a class="button-negative button-block" ng-click="destroy()" ng-show="<%= options.name %>._id">
+    Delete
+  </a>
+</form>

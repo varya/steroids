@@ -1,0 +1,24 @@
+module = angular.module '<%= options.name %>-model', [
+  # dependencies
+  'ngResource'
+]
+
+module.factory '<%= options.className %>', ($resource)->
+  baseURL = 'https://api.mongolab.com/api/1/databases/angularjs/collections/projects/:id'
+
+  defaultParameters =
+    apiKey: '4f847ad3e4b08a2eed5f3b54'
+
+  <%= options.className %> = $resource baseURL, defaultParameters,
+    update:
+      method: 'PUT'
+
+  <%= options.className %>.prototype.update = (cb)->
+    updateBody = angular.extend { }, @, { _id: undefined }
+
+    <%= options.className %>.update { id: @_id.$oid }, updateBody, cb
+
+  <%= options.className %>.prototype.destroy = (cb)->
+    <%= options.className %>.remove { id: @_id.$oid }, cb
+
+  return <%= options.className %>

@@ -1,0 +1,63 @@
+module = angular.module '<%= options.name %>', [
+  # dependencies
+  '<%= options.name %>-model'
+]
+
+module.config ($routeProvider)->
+  $routeProvider.when '/',
+    controller:<%= options.className %>Controller.index,
+    templateUrl:'_list.html'
+
+  $routeProvider.when '/new',
+    controller:<%= options.className %>Controller.new,
+    templateUrl:'_details.html'
+
+  $routeProvider.when '/edit/:id',
+    controller:<%= options.className %>Controller.edit,
+    templateUrl:'_details.html'
+
+  $routeProvider.otherwise redirectTo:'/'
+
+class <%= options.className %>Controller
+  @index: ($scope, <%= options.className %>)->
+    document.addEventListener "deviceready", ->
+      steroids.view.navigationBar.show { title: "<%= options.className %> List" }
+
+      newButton = new steroids.buttons.NavigationBarButton
+        title: "New <%= options.className %>"
+        onTap: =>
+          webview = new steroids.views.WebView { location: "/views/<%= options.name %>/index.html#/new" }
+          steroids.modal.show view: webview
+
+      steroids.view.navigationBar.setButtons { right: [newButton] }
+
+      document.addEventListener "visibilitychange", =>
+        $scope.<%= options.name %>Collection = <%= options.className %>.query()
+
+    $scope.pushDetailsLayer = (id)=>
+      webview = new steroids.views.WebView { location: "/views/<%= options.name %>/index.html#/edit/#{id}" }
+      steroids.layers.push view: webview
+
+    $scope.<%= options.name %>Collection = <%= options.className %>.query()
+
+  @new: ($scope, <%= options.className %>)->
+    $scope.save = ()=>
+      <%= options.className %>.save $scope.<%= options.name %>, (result)->
+        id = <%= options.name %>._id.$oid
+        steroids.modal.hide()
+
+  @edit: ($scope, $routeParams, <%= options.className %>)->
+    <%= options.className %>.get { id: $routeParams.id }, (<%= options.name %>)=>
+      @original = <%= options.name %>
+      $scope.<%= options.name %> = new <%= options.className %>(<%= options.name %>)
+
+    $scope.isClean = =>
+      angular.equals @original, $scope.<%= options.name %>
+
+    $scope.destroy = =>
+      @original.destroy =>
+        steroids.layers.pop()
+
+    $scope.save = =>
+      $scope.<%= options.name %>.update =>
+        steroids.layers.pop()
