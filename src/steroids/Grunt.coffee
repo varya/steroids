@@ -11,7 +11,7 @@ class Grunt
     global.steroidsPath = paths.npm
 
     require(paths.grunt.library).tasks ["default"],
-      gruntfile: paths.grunt.gruntFile
+      config: paths.grunt.gruntFile
       verbose: false
 
 module.exports = Grunt
