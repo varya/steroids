@@ -36,12 +36,13 @@ class Steroids
 
     output = execSync "steroids #{cmd}", true
 
+    console.log output.stdout
+
     if output.stderr != ""
       console.log output.stderr
       if options.exitOnFailure
         process.exit 1
 
-    console.log output.stdout
 
   startServer: (options={}) =>
     Server = require "./steroids/Server"

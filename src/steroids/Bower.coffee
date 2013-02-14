@@ -12,6 +12,6 @@ class Bower
       console.log data if data
 
     bower.on "error", (err)=>
-      console.log err.message
+      process.stderr.write err.message
 
 module.exports = Bower
