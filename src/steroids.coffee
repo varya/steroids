@@ -204,11 +204,11 @@ class Steroids
             open url
 
       when "update"
-        DependencyUpdater = require "./steroids/DependencyUpdater"
+        Bower = require "./steroids/Bower"
 
-        dependencyUpdater = new DependencyUpdater
+        bower = new Bower
 
-        dependencyUpdater.update()
+        bower.update()
 
       when "generate"
         [generatorType, generatorArgs...] = otherOptions

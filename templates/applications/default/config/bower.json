@@ -1,0 +1,7 @@
+{
+  "name": "myProject",
+  "version": "0.0.1",
+  "dependencies": {
+    "steroids-js": "git://github.com/steroidsjs/steroids-js.git#0.3.4"
+  }
+}

@@ -45,6 +45,7 @@
   },
   "dependencies": {
     "async": "0.2.5",
+    "bower": "0.7.0",
     "coffeelint": "0.5.4",
     "coffee-script": "1.4.0",
     "colorize": "0.1.0",
