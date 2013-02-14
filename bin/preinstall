@@ -1,6 +1,44 @@
 #!/bin/sh
+NODE_MODULES_PATH="/usr/local/lib/node_modules"
 
-echo "AppGyver Steroids checking for required components ...\n"
+
+echo "AppGyver Steroids"
+
+CHOWN_NODE_MODULES_CMD="sudo chown -R "$USER" /usr/local/lib/node_modules"
+
+NODE_OWNED_BY=$(stat -f "%Su" $NODE_MODULES_PATH)
+
+if [ "$USER" != "$NODE_OWNED_BY" ]; then
+  echo "WARNING: $NODE_MODULES_PATH is owned by '$NODE_OWNED_BY' and not by '$USER'"
+  echo
+  echo "We recommend that you change the owner to '$USER' so that node NPM packages can be installed globally without sudo."
+  echo
+  echo "You can do this by:"
+  echo '  sudo chown -R "$USER" /usr/local/lib/node_modules'
+  echo
+  echo "Do you want us to do this now? (yes/no)"
+  read SHALL_WE_DO_IT
+
+  if [ "$SHALL_WE_DO_IT" == "yes" ] || [ "$SHALL_WE_DO_IT" == "y" ]; then
+    echo
+    echo "OK, doing it, we this might ask your password."
+
+    $CHOWN_NODE_MODULES_CMD
+    echo "\ndone."
+  else
+    echo "\nNot doing it, you can do it later."
+    sleep 1
+  fi
+
+  echo "\n\nContinuing with the install.\n\n"
+  sleep 1
+fi
+
+
+
+
+
+echo "checking for required components ...\n"
 
 REQUIRED_CMDS="git"
 
