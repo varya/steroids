@@ -26,9 +26,11 @@ Basic usage commands:
 Other usage commands:
 
   generate
+
     Lists all code generators.
 
   generate GENERATOR
+
     Provides usage instructions on the selected generator.
 
   simulator
@@ -41,9 +43,9 @@ Other usage commands:
 
   update
 
-    Updates latest steroids.js to www/javascripts/steroids.js
+    Updates your bower components as defined in config/bower.json
 
-    Run `npm update steroids` beforehand to update your steroids npm package.
+    Equal to running `bower install` in your project directory. If you wish to use bower more, see installation instructions at: https://github.com/twitter/bower
 
   serve [--port=13101]
 
