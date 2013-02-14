@@ -49,6 +49,9 @@ class TouchDB extends Base
     @addFile path.join("app", "views", "#{@options.name}", "new.html"), "new.html.template"
     # @addFile path.join("app", "views", "#{@options.name}", "edit.html"), "edit.html.template"
 
+    @addBowerDependency "angular", "1.0.4"
+    @addBowerDependency "angular-resource", "1.0.4"
+
     console.log ""
     console.log "NOTICE: Add the following lines to your application layout <head> element:"
     console.log ""

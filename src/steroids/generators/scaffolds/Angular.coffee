@@ -33,9 +33,6 @@ class Angular extends Base
       path.join("app", "views", "#{@options.name}", "details.html")
     ]
 
-    @addFile path.join("www", "javascripts", "angular.min.js"), "angular.min.js"
-    @addFile path.join("www", "javascripts", "angular-resource.min.js"), "angular-resource.min.js"
-
     @addFile path.join("app", "controllers", "#{@options.name}.coffee"), "controller.coffee.template"
 
     @ensureDirectory path.join("app", "models")
@@ -47,11 +44,14 @@ class Angular extends Base
     @addFile path.join("app", "views", "#{@options.name}", "_list.html"), "list.html.template"
     @addFile path.join("app", "views", "#{@options.name}", "_details.html"), "details.html.template"
 
+    @addBowerDependency "angular", "1.0.4"
+    @addBowerDependency "angular-resource", "1.0.4"
+
     console.log ""
     console.log "NOTICE: Add the following lines to your application layout <head> element:"
     console.log ""
-    console.log "<script src=\"/javascripts/angular.min.js\"></script>"
-    console.log "<script src=\"/javascripts/angular-resource.min.js\"></script>"
+    console.log "<script src=\"/components/angular/angular.min.js\"></script>"
+    console.log "<script src=\"/components/angular-resource/angular-resource.min.js\"></script>"
     console.log ""
 
     util.log "Command completed successfully."

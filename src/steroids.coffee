@@ -232,6 +232,8 @@ class Steroids
           util.log "ERROR: #{error.message}"
           process.exit 1
 
+        @runSteroidsCommandSync "update"
+
       when "login"
         Help.logo()
 
