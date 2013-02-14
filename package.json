@@ -46,6 +46,7 @@
   },
   "dependencies": {
     "async": "0.2.5",
+    "bower": "0.7.0",
     "coffeelint": "0.5.4",
     "coffee-script": "1.4.0",
     "colorize": "0.1.0",
@@ -62,7 +63,6 @@
     "request": "2.12.0",
     "restify": "2.2.1",
     "restler": "2.0.1",
-    "steroids-js": "*",
     "steroids-simulators": "http://appgyver.production.steroids.simulators.s3.amazonaws.com/steroids-simulators.tar.gz",
     "watch": "0.5.1",
     "weinre": "2.0.0-pre-HA5N9T49",

@@ -36,12 +36,13 @@ class Steroids
 
     output = execSync "steroids #{cmd}", true
 
+    console.log output.stdout
+
     if output.stderr != ""
       console.log output.stderr
       if options.exitOnFailure
         process.exit 1
 
-    console.log output.stdout
 
   startServer: (options={}) =>
     Server = require "./steroids/Server"
@@ -204,11 +205,11 @@ class Steroids
             open url
 
       when "update"
-        DependencyUpdater = require "./steroids/DependencyUpdater"
+        Bower = require "./steroids/Bower"
 
-        dependencyUpdater = new DependencyUpdater
+        bower = new Bower
 
-        dependencyUpdater.update()
+        bower.update()
 
       when "generate"
         [generatorType, generatorArgs...] = otherOptions
