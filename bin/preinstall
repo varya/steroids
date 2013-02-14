@@ -1,0 +1,23 @@
+#!/bin/sh
+
+echo "AppGyver Steroids checking for required components ...\n"
+
+REQUIRED_CMDS="git"
+
+ERRORS=false
+for REQUIRED_CMD in $REQUIRED_CMDS
+do
+  command -v "$REQUIRED_CMD" > /dev/null && continue || {
+    ERRORS=true
+    echo "  ERROR: command '$REQUIRED_CMD' not found, please install it first."
+  }
+done
+
+if [ "$ERRORS" == true ]; then
+  echo "\nWe recommend using homebrew to install git, see http://mxcl.github.com/homebrew/"
+  echo "\n\nHit [enter] to continue and install the dependencies.  Then run the installation again."
+  read
+  exit 1
+fi
+
+echo "... dependencies ok, proceeding with install."
