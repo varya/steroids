@@ -10,16 +10,17 @@ AppGyver Steroids is like PhoneGap on Steroids, providing native UI elements, mu
 ### Requirements
 
 * Node.js and NPM package management http://nodejs.org/
-* Git
+* Xcode and command-line tools (mac app store)
+* Git with homebrew or git mac installer (but with the installer, remember to set in $PATH)
 
 Once your environment is set up, run
 
 ```
-  $ [sudo] npm install steroids -g
+  $ sudo chown -R $USER /usr/local
+  $ npm install steroids -g
 ```
 
 
-Xcode (and OS X platform) is not required, but installing Xcode on OS X gives you iOS Simulator. Xcode is available for download at the Mac App Store.
 
 #### Troubleshooting
 
