@@ -28,7 +28,7 @@ echo "$NODE_MODULES_PATH is owned by $LOGGED_IN_USERNAME, good.\n"
 
 echo "Checking for required components ..."
 
-REQUIRED_CMDS="xcodebuild make git"
+REQUIRED_CMDS="gcc make git"
 
 ERRORS=false
 for REQUIRED_CMD in $REQUIRED_CMDS
@@ -42,7 +42,7 @@ do
 done
 
 if [ "$ERRORS" == true ]; then
-  echo "\nInstall xcodebuild by installing Xcode from the Mac App Store."
+  echo "\nInstall gcc by installing Xcode from the Mac App Store."
   echo "\nInstall make by installing 'Command Line Tools for Xcode' from Xcode preferences -> downloads."
   echo "\nWe recommend using homebrew to install git, see http://mxcl.github.com/homebrew/"
 
