@@ -2,13 +2,14 @@ class window.PillsController
 
   @index: ->
 
-    steroids.on('ready', () ->
+    document.addEventListener "deviceready", () ->
+
       # Make Navigation Bar to appear with a custom title text
       steroids.view.navigationBar.show { title: "Steroids" }
 
   @show: ->
 
-    steroids.on('ready', () ->
+    document.addEventListener "deviceready", () ->
 
       steroids.view.navigationBar.show { title: "show.html" }
 

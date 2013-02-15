@@ -1,5 +1,5 @@
 
-steroids.on 'ready', () ->
+document.addEventListener "deviceready", () ->
 
   $(".opensLayer").on "tap", ->
     # Create a new webview that ...
