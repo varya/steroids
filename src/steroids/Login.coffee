@@ -9,7 +9,7 @@ class Login
   settings:
     clientId:      "3ceba0084a474f1502c20ef05e0489546a1f89c1b5fb0e7e6666e720c7977c96"
     clientSecret:  "f635ef74e2c759134f968d801a35e075f8a9c250292f1793e22141827d327777"
-    baseUrl:       "http://accounts.appgyver.com"
+    baseUrl:       "https://accounts.appgyver.com"
     authPath:      "/auth/appgyver_id/authorize"
     tokenPath:     "/auth/appgyver_id/access_token"
     userPath:      "/auth/appgyver_id/user.json"
