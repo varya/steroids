@@ -97,8 +97,6 @@ class Steroids
         console.log "Initializing project ... "
         process.chdir(folder)
 
-        @runSteroidsCommandSync "update"
-
         @runSteroidsCommandSync "push"
 
         Help.logo()
