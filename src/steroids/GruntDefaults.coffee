@@ -217,9 +217,9 @@ registerDefaultTasks = (grunt)->
           yieldedFile = grunt.file.read(filePath, "utf8")
         else
           controllerName = path.basename(viewDir).replace(path.sep, "")
-          unless fs.existsSync path.join(appControllersDirectory, "#{controllerName}.coffee")
+          unless fs.existsSync path.join(buildcontrollersDirectory, "#{controllerName}.js")
             # project haz legacy
-            text = "#red[Deprecation Warning:] controller filenames should no longer include Controller. Rename #underline[#{path.join("app", "controllers", "#{controllerName}Controller.coffee")}] to #underline[#{path.join("app", "controllers", "#{controllerName}.coffee")}]"
+            text = "#red[Deprecation Warning:] controller filenames should no longer include Controller. Rename #underline[#{path.join("app", "controllers", "#{controllerName}Controller.{coffee|js}")}] to #underline[#{path.join("app", "controllers", "#{controllerName}.{coffee|js}")}]"
             grunt.log.writeln colorize.ansify(text)
 
             # work around legacy and continue

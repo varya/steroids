@@ -24,15 +24,17 @@ class Default extends Base
 
   generate: ->
     @checkForPreExistingFiles [
-      path.join("app", "controllers", "#{@options.name}.coffee"),
+      path.join("app", "controllers", "#{@options.name}.js"),
       path.join("app", "views", "#{@options.name}", "index.html")
+      path.join("app", "views", "#{@options.name}", "show.html")
     ]
 
-    @addFile path.join("app", "controllers", "#{@options.name}.coffee"), "controller.coffee.template"
+    @addFile path.join("app", "controllers", "#{@options.name}.js"), "controller.js.template"
 
     @ensureDirectory path.join("app", "views", "#{@options.name}")
 
     @addFile path.join("app", "views", "#{@options.name}", "index.html"), "index.html.template"
+    @addFile path.join("app", "views", "#{@options.name}", "show.html"), "show.html.template"
 
     util.log "Command completed successfully."
 

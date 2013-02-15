@@ -1,0 +1,19 @@
+window.<%= options.className %>Controller = {
+
+  index: function () {
+
+    document.addEventListener("deviceready", function() {
+      steroids.view.navigationBar.show("<%= options.name %>");
+    });
+
+  },
+
+  show: function () {
+
+    document.addEventListener("deviceready", function() {
+      alert("show with id: " + steroids.view.params["id"] );
+    });
+
+  }
+
+};
