@@ -34,7 +34,7 @@ ERRORS=false
 for REQUIRED_CMD in $REQUIRED_CMDS
 do
   command -v "$REQUIRED_CMD" > /dev/null && {
-    echo "Found '$REQUIRED_CMD', good."
+    echo "  Found '$REQUIRED_CMD', good."
   } || {
     ERRORS=true
     echo "  ERROR: command '$REQUIRED_CMD' not found, please install it first."
