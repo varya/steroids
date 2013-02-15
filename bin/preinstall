@@ -26,21 +26,24 @@ fi
 
 echo "$NODE_MODULES_PATH is owned by $LOGGED_IN_USERNAME, good.\n"
 
-echo "Checking for required components ...\n"
+echo "Checking for required components ..."
 
-REQUIRED_CMDS="xcode-select git"
+REQUIRED_CMDS="xcodebuild make git"
 
 ERRORS=false
 for REQUIRED_CMD in $REQUIRED_CMDS
 do
-  command -v "$REQUIRED_CMD" > /dev/null && continue || {
+  command -v "$REQUIRED_CMD" > /dev/null && {
+    echo "Found '$REQUIRED_CMD', good."
+  } || {
     ERRORS=true
     echo "  ERROR: command '$REQUIRED_CMD' not found, please install it first."
   }
 done
 
 if [ "$ERRORS" == true ]; then
-  echo "\nInstall Xcode from the Mac App Store."
+  echo "\nInstall xcodebuild by installing Xcode from the Mac App Store."
+  echo "\nInstall make by installing 'Command Line Tools for Xcode' from Xcode preferences -> downloads."
   echo "\nWe recommend using homebrew to install git, see http://mxcl.github.com/homebrew/"
 
   echo "\n\nHit [enter] to quit and install the dependencies.  Then run the installation again."
@@ -48,4 +51,4 @@ if [ "$ERRORS" == true ]; then
   exit 1
 fi
 
-echo "... dependencies ok, proceeding with install."
+echo "... dependencies ok, proceeding with install.\n"
