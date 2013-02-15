@@ -157,11 +157,11 @@ class Steroids
           qrcode = new QRCode("appgyver://?ips=#{encodeURIComponent(JSON.stringify(ips))}")
           qrcode.show()
 
-          util.log "Waiting for client to connect, this may take a while ..."
+          util.log "Waiting for client to connect, scan the QR code that is visible in the browser ..."
 
           getInput = =>
             prompt = require('prompt')
-            prompt.message = "Steroids [hit enter to push] ".magenta
+            prompt.message = "Steroids [hit enter to update code] ".magenta
             prompt.delimiter = " > "
             prompt.start();
 
@@ -176,7 +176,7 @@ class Steroids
 
               switch result.input
                 when "", "push"
-                  console.log "Updating code to all connected devices"
+                  console.log "Updating code to all connected devices ..."
                   @runSteroidsCommandSync "push", exitOnFailure: false
                 else
                   console.log "Did not recognize input: #{result.input}"
