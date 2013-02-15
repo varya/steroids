@@ -28,7 +28,7 @@ echo "$NODE_MODULES_PATH is owned by $LOGGED_IN_USERNAME, good.\n"
 
 echo "Checking for required components ...\n"
 
-REQUIRED_CMDS="gcc git"
+REQUIRED_CMDS="xcode-select git"
 
 ERRORS=false
 for REQUIRED_CMD in $REQUIRED_CMDS
@@ -40,7 +40,7 @@ do
 done
 
 if [ "$ERRORS" == true ]; then
-  echo "\nInstall 'Command Line Tools for Xcode' see http://connect.apple.com.  Requires a free Apple ID."
+  echo "\nInstall Xcode from the Mac App Store."
   echo "\nWe recommend using homebrew to install git, see http://mxcl.github.com/homebrew/"
 
   echo "\n\nHit [enter] to quit and install the dependencies.  Then run the installation again."
