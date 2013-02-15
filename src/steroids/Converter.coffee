@@ -40,7 +40,19 @@ class Converter
   tabsObject: (config)->
     return [] unless config.tabBar.tabs.length
     return [] if @fullscreen
-    ({position: i, title: tab.title, image_path: tab.icon, target_url: tab.location} for tab, i in config.tabBar.tabs)
+
+    tabs = []
+    for configTab, i in config.tabBar.tabs
+      tab =
+        position: i,
+        title: configTab.title
+        image_path: configTab.icon
+        target_url: configTab.location.replace("http://localhost/", "http://localhost:13101/")
+
+      tabs.push tab
+
+    return tabs
+
 
   configurationObject: (config)->
 
@@ -54,10 +66,12 @@ class Converter
     else
       @fullscreen = true
 
+    @betterFullScreenStartUrl = config.location.replace("http://localhost/", "http://localhost:13101/") if config.location?
+
     return {
       request_user_location: "false"
       fullscreen: "#{@fullscreen}"
-      fullscreen_start_url: "#{config.location}"
+      fullscreen_start_url: "#{@betterFullScreenStartUrl}"
       splashscreen_duration_in_seconds: 0
       client_version: "edge"
       navigation_bar_style: "#{config.theme}"

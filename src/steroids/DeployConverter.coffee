@@ -15,6 +15,9 @@ class DeployConverter
     @config = global.steroids.config
 
   applicationCloudSchemaRepresentation: ->
+
+    betterFullscreenStartUrl = @config.location.replace("http://localhost/", "http://localhost:13101/") if @config.location
+
     name: @config.name || "New project"
     framework_id: 13
     navigation_bar_style: @config.theme
@@ -42,7 +45,17 @@ class DeployConverter
 
   tabsCloudSchemaRepresentation: ->
     if @config.tabBar?.tabs?
-      @config.tabBar.tabs
+
+      betterTabs = []
+      for configTab, i in @config.tabBar.tabs
+        tab =
+          title: configTab.title
+          icon: configTab.icon
+          location: configTab.location.replace("http://localhost/", "http://localhost:13101/")
+
+        betterTabs.push tab
+
+      betterTabs
     else
       []
 
