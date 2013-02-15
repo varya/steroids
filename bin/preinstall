@@ -4,18 +4,6 @@ NODE_MODULES_PATH="/usr/local/lib/node_modules"
 
 echo "AppGyver Steroids\n"
 
-if [ "$USER" == "root" ]; then
-  echo "ERROR: do NOT run this as root (or use sudo)"
-  echo
-  echo "Hit [enter] and re-run installation:"
-  echo
-  echo "  npm install -g steroids"
-
-  read
-
-  exit 1
-fi
-
 
 LOGGED_IN_USERNAME=$(logname)
 CHOWN_NODE_MODULES_CMD="sudo chown -R $LOGGED_IN_USERNAME $NODE_MODULES_PATH"
@@ -30,12 +18,30 @@ if [ "$LOGGED_IN_USERNAME" != "$NODE_OWNED_BY" ]; then
   echo "You can do this by:"
   echo "  sudo chown -R $LOGGED_IN_USERNAME $NODE_MODULES_PATH"
   echo
+  echo "Then, re-run the installer without sudo:"
+  echo "  npm install -g steroids"
+  echo
   echo "Hit [enter] to do this now (ignore the few errors below and run this installer again)."
   read
 
   exit 1
 
 fi
+
+
+if [ "$USER" == "root" ]; then
+  echo "ERROR: Now, to do the actual installation -- do NOT run this as root (or use sudo)"
+  echo
+  echo "Hit [enter] and re-run installation:"
+  echo
+  echo "  npm install -g steroids"
+
+  read
+
+  exit 1
+fi
+
+
 
 echo "$NODE_MODULES_PATH is owned by $LOGGED_IN_USERNAME, good.\n"
 
