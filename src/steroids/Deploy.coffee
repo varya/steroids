@@ -13,9 +13,9 @@ Login = require "./Login"
 
 class Deploy
   constructor: (@options={})->
-    @cloudConfig = JSON.parse(fs.readFileSync(paths.cloudConfigJSON, "utf8")) if fs.existsSync paths.cloudConfigJSON
+    @cloudConfig = JSON.parse(fs.readFileSync(paths.application.configs.cloud, "utf8")) if fs.existsSync paths.application.configs.cloud
 
-    @converter = new DeployConverter paths.appConfigCoffee
+    @converter = new DeployConverter paths.application.configs.application
 
     @client = restify.createJsonClient
       # url: 'https://appgyver-staging.herokuapp.com'
@@ -34,9 +34,9 @@ class Deploy
 
     @app = @converter.applicationCloudSchemaRepresentation()
 
-    if fs.existsSync paths.cloudConfigJSON
+    if fs.existsSync paths.application.configs.cloud
       # util.log "Application has been deployed before"
-      cloudConfig = JSON.parse fs.readFileSync(paths.cloudConfigJSON, 'utf8')
+      cloudConfig = JSON.parse fs.readFileSync(paths.application.configs.cloud, 'utf8')
       @app.id = cloudConfig.id
       # util.log "Using cloud ID: #{cloudConfig.id}"
 
@@ -95,13 +95,13 @@ class Deploy
       callback()
 
   updateConfigurationFile: (callback)->
-    # util.log "Updating #{paths.cloudConfigJSON}"
+    # util.log "Updating #{paths.application.configs.cloud}"
 
     config =
       id: @cloudApp.id
       identification_hash: @cloudApp.identification_hash
 
-    fs.writeFileSync paths.cloudConfigJSON, JSON.stringify(config)
+    fs.writeFileSync paths.application.configs.cloud, JSON.stringify(config)
 
     util.log "Deployment complete"
 

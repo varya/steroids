@@ -8,7 +8,7 @@ Paths = require "../paths"
 class BuildServer extends Server
 
   constructor: (@options) ->
-    @converter = new Converter Paths.appConfigCoffee
+    @converter = new Converter Paths.application.configs.application
     super(@options)
 
   setRoutes: =>

@@ -1,6 +1,7 @@
 sass = require 'node-sass'
 coffeelint = require 'coffeelint'
 colorize = require "colorize"
+events = require "events"
 
 Paths = require "./paths"
 
@@ -9,193 +10,234 @@ defaultConfig = {}
 registerDefaultTasks = (grunt)->
   grunt.registerTask 'steroids-default', [
     'steroids-clean-dist',
-    'steroids-copy-www',
-    'steroids-compile-sass',
-    'steroids-copy-vendor',
-    'steroids-generate-views',
-    'steroids-compile-coffeescripts',
-    'steroids-concat',
-    'steroids-remove-dist-models'
+    'steroids-build-controllers',
+    'steroids-build-models',
+    'steroids-build-statics',
+    'steroids-compile-coffeescript-files',
+    'steroids-compile-sass-files',
+    'steroids-compile-models'
+    'steroids-compile-views',
   ]
 
-  # Steroids Tasks & functions:
-  projectDirectory          = Paths.application
+  # -------------------------------------------
+  # CLEAN TASKS
 
-  buildDirectory            = path.join projectDirectory, "dist"
-  buildViewsDirectory       = path.join buildDirectory, "views"
-  buildModelsDirectory      = path.join buildDirectory, "models"
-  buildcontrollersDirectory = path.join buildDirectory, "controllers"
-  buildStylesheetsDirectory = path.join buildDirectory, "stylesheets"
+  grunt.registerTask 'steroids-clean-dist', 'Removes dist/ recursively and creates it again ', ->
+    wrench.rmdirSyncRecursive Paths.application.distDir, true
+    grunt.file.mkdir Paths.application.distDir
 
-  appDirectory              = path.join projectDirectory, "app"
-  appViewsDirectory         = path.join appDirectory, "views"
-  appModelsDirectory        = path.join appDirectory, "models"
-  appControllersDirectory   = path.join appDirectory, "controllers"
-  appLayoutsDirectory       = path.join appDirectory, "views", "layouts"
+  # -------------------------------------------
+  # BUILD TASKS
 
-  vendorDirectory           = path.join projectDirectory, "vendor"
-  wwwDirectory              = path.join projectDirectory, "www"
+  copyFilesSyncRecursive = (options)->
+    grunt.verbose.writeln "Copying files from #{options.sourcePath} to #{options.destinationDir} using #{options.relativeDir} as basedir"
 
-  compileCoffee = (filePath, baseDir, newDirPrefix)->
-    if typeof(newDirPrefix) is "undefined"
-      newDirPrefix = ""
+    for filePath in grunt.file.expandFiles options.sourcePath
+      grunt.verbose.writeln "Copying file #{filePath}"
 
-      coffeeContent = grunt.file.read(filePath, "utf8").toString()
-      errors = coffeelint.lint coffeeContent,
+      relativePath = path.relative options.relativeDir, filePath
+      destinationPath = path.join options.destinationDir, relativePath
+
+      grunt.verbose.writeln "Copying file #{filePath} to #{destinationPath}"
+
+      grunt.file.copy filePath, destinationPath
+
+  grunt.registerTask 'steroids-build-controllers', "Build controllers", ->
+    copyFilesSyncRecursive {
+      sourcePath: Paths.application.sources.controllers
+      destinationDir: Paths.application.distDir
+      relativeDir: Paths.application.appDir
+    }
+
+  grunt.registerTask 'steroids-build-models', "Build models", ->
+    copyFilesSyncRecursive {
+      sourcePath: Paths.application.sources.models
+      destinationDir: Paths.application.distDir
+      relativeDir: Paths.application.appDir
+    }
+
+  grunt.registerTask 'steroids-build-statics', "Build static files", ->
+    copyFilesSyncRecursive {
+      sourcePath: Paths.application.sources.statics
+      destinationDir: Paths.application.distDir
+      relativeDir: Paths.application.sources.staticDir
+    }
+
+  # -------------------------------------------
+  # COMPILE TASKS
+
+  grunt.registerTask 'steroids-compile-coffeescript-files', "Compile built coffeescript files", ->
+    grunt.verbose.writeln "Compiling coffeescripts #{Paths.application.compiles.coffeescripts}"
+    coffeeFiles = grunt.file.expandFiles Paths.application.compiles.coffeescripts
+
+    for filePath in coffeeFiles
+      grunt.verbose.writeln "Compiling coffeescript at #{filePath}"
+      coffeeFile = new CoffeeScriptFile(filePath: filePath)
+
+      coffeeFile.on "compiled", =>
+        fs.unlinkSync filePath
+
+      coffeeFile.compile()
+
+  grunt.registerTask 'steroids-compile-sass-files', "Compile build sass files", ->
+    sassFiles = grunt.file.expandFiles Paths.application.compiles.sassfiles
+    scssFiles = grunt.file.expandFiles Paths.application.compiles.scssfiles
+
+    for filePath in sassFiles + scssFiles
+      grunt.verbose.writeln "Compiling sass file at #{filePath}"
+      sassFile = new SassFile(filePath: filePath)
+
+      sassFile.on "compiled", =>
+        fs.unlinkSync filePath
+        @async()
+
+      sassFile.compile()
+
+  grunt.registerTask 'steroids-compile-models', "Compile models", ->
+    javascripts = []
+    sourceFiles = grunt.file.expand Paths.application.compiles.models
+
+    for filePath in sourceFiles
+      grunt.verbose.writeln "Compiling model file at #{filePath}"
+      javascripts.push grunt.file.read(filePath, "utf8").toString()
+      fs.unlinkSync filePath
+
+    grunt.file.write Paths.application.compileProducts.models, javascripts.join("\n\n")
+
+  class CoffeeScriptFile extends events.EventEmitter
+    constructor: (@options)->
+      @sourcePath = @options.filePath
+      @destinationPath = @sourcePath.replace path.extname(@sourcePath), ".js"
+      @contents = grunt.file.read(@sourcePath, "utf8").toString()
+
+    compile: ()->
+      @checkWithLint()
+
+      if @lintErrors.length > 0
+        @reportLintErrors()
+        return false
+
+      try
+        compiledSource = coffee.compile(@contents)
+        grunt.file.write @destinationPath, compiledSource
+        @emit "compiled"
+      catch err
+        grunt.warn err
+
+    checkWithLint: ->
+      @lintErrors = coffeelint.lint @contents,
         max_line_length:
           level: "ignore"
         no_backticks:
           level: "ignore"
 
-      if errors.length > 0
-        text = "#red[#{errors.length} errors in #underline[#{filePath}]]\n\n"
-        for error in errors
-          text += "#red[#{path.basename(filePath)}:#{error.lineNumber}] > #yellow[#{error.message if error.message?}] #green[#{'('+error.context+')' if error.context?}]\n\n"
-          if error.line?
-            text += "\n#{error.line}\n\n\n"
-        grunt.warn colorize.ansify("#{text}\n\nWhat would Richard Dean Anderson do?\n")
+    reportLintErrors: ->
+      text = "#red[#{@lintErrors.length} errors in #underline[#{@sourcePath}]]\n\n"
 
-      try
-        compiledSource = coffee.compile(grunt.file.read(filePath, "utf8").toString())
-        fileBuildPath = filePath.replace(baseDir, path.join(buildDirectory, newDirPrefix)).replace /\.coffee/, ".js"
-        grunt.file.write fileBuildPath, compiledSource
-      catch err
-        grunt.warn err
+      for error in @lintErrors
+        text += "#red[#{path.basename(@sourcePath)}:#{error.lineNumber}] > #yellow[#{error.message if error.message?}] #green[#{'('+error.context+')' if error.context?}]\n\n"
+        if error.line?
+          text += "\n#{error.line}\n\n\n"
 
-  compileSass = (filePath, callback)->
-    sass.render(grunt.file.read(filePath, "utf8").toString(), (err, css)->
-      if err
-        text = "#red[Errors in #underline[#{filePath}]]\n\n"
-        text += "#red[#{path.basename(filePath)}]#yellow[#{err}]"
-        grunt.warn colorize.ansify(text)
-      else
-        cssFilePath = filePath.replace(path.extname(filePath), ".css")
-
-        grunt.file.write cssFilePath, css
-        fs.unlinkSync filePath
-
-      callback()
-
-    , {output_style: "compressed"})
+      grunt.warn colorize.ansify text
 
 
-  grunt.registerTask 'steroids-compile-coffeescripts',
-    "Compiles coffeescripts from app/models/* app/controllers/* and vendor/appgyver/*",
-    ()->
-      for directory in [appModelsDirectory, appControllersDirectory]
-        for filePath in grunt.file.expand(path.join(directory, "**", "*.coffee"))
-          compileCoffee filePath, appDirectory
+  class SassFile extends events.EventEmitter
+    constructor: (@options)->
+      @sourcePath = @options.filePath
+      @destinationPath = @sourcePath.replace path.extname(@sourcePath), ".css"
+      @contents = grunt.file.read(@sourcePath, "utf8").toString()
 
-    for filePath in grunt.file.expand(path.join(vendorDirectory, "**", "*.coffee"))
-      compileCoffee filePath, vendorDirectory, "vendor"
+    compile: ()->
+      sassCallback = (err, css)=>
+        if err
+          text = "#red[Errors in #underline[#{@sourcePath}]]\n\n"
+          text += "#red[#{path.basename(@sourcePath)}]#yellow[#{err}]"
+          grunt.warn colorize.ansify(text)
+        else
+          grunt.file.write @destinationPath, css
 
-  grunt.registerTask 'steroids-concat',
-    'Concatenate steroids project files in dist/',
-    ()->
-      jsArr = []
+        @emit "compiled"
 
-      for filePath in grunt.file.expand(grunt.file.expandFiles(path.join(buildModelsDirectory, "**", "*")))
-        jsArr.push grunt.file.read(filePath, "utf8").toString()
-
-      grunt.file.write path.join(buildModelsDirectory, "models.js"), jsArr.join("\n")
-
-  grunt.registerTask 'steroids-copy-www',
-    'Copy www/ content over dist/',
-    ()->
-      wrench.copyDirSyncRecursive wwwDirectory, buildDirectory, inflateSymlinks: true
-
-  grunt.registerTask 'steroids-compile-sass',
-    'Compile sass files in dist/stylesheets',
-    ()->
-      compileSass filePath, this.async() for filePath in grunt.file.expandFiles path.join(buildStylesheetsDirectory, "**", "*.sass")
-      compileSass filePath, this.async() for filePath in grunt.file.expandFiles path.join(buildStylesheetsDirectory, "**", "*.scss")
+      sass.render @contents, sassCallback,
+        output_style: "compressed"
 
 
-  grunt.registerTask 'steroids-copy-vendor',
-    'Copy vendor/ to dist/vendor',
-    ()->
-      for filePathPart in grunt.file.expandFiles(path.join(vendorDirectory,"**","*"))
-        if !/\.coffee$/.test(path.basename(filePathPart))
-          filePath = path.resolve filePathPart
-          buildFilePath = path.resolve filePathPart.replace("vendor"+path.sep, "dist"+path.sep+"vendor"+path.sep)
+  grunt.registerTask 'steroids-compile-views', "Compile views", ->
+    projectDirectory          = Paths.applicationDir
 
-          grunt.file.copy filePath, buildFilePath
+    buildDirectory            = path.join projectDirectory, "dist"
+    buildViewsDirectory       = path.join buildDirectory, "views"
+    buildModelsDirectory      = path.join buildDirectory, "models"
+    buildcontrollersDirectory = path.join buildDirectory, "controllers"
+    buildStylesheetsDirectory = path.join buildDirectory, "stylesheets"
 
-  grunt.registerTask 'steroids-clean-dist',
-    'Removes dist/ recursively and creates it again ',
-    ()->
-      wrench.rmdirSyncRecursive buildDirectory, true
-      grunt.file.mkdir buildDirectory
+    appDirectory              = path.join projectDirectory, "app"
+    appViewsDirectory         = path.join appDirectory, "views"
+    appModelsDirectory        = path.join appDirectory, "models"
+    appControllersDirectory   = path.join appDirectory, "controllers"
+    appLayoutsDirectory       = path.join appDirectory, "views", "layouts"
 
-      for suffix in ["views", "models", "controllers", "vendor"]
-        grunt.file.mkdir path.join(buildDirectory, suffix)
+    vendorDirectory           = path.join projectDirectory, "vendor"
+    wwwDirectory              = path.join projectDirectory, "www"
 
-  grunt.registerTask 'steroids-remove-dist-models',
-    'Remove single model files from build dir',
-    ()->
-      for filePath in grunt.file.expandFiles path.join(buildModelsDirectory, "**", "*")
-        unless path.basename(filePath) is "models.js"
-          fs.unlink filePath
+    viewDirectories = []
 
-  grunt.registerTask 'steroids-generate-views',
-    'HTML files from app/layouts/application & app/**/* files',
-    ()->
-      viewDirectories = []
+    # get each view folder (except layout)
+    for dirPath in grunt.file.expandDirs(path.join(appViewsDirectory, "*"))
+      basePath = path.basename(dirPath)
+      unless basePath is "layouts" + path.sep or basePath is "layouts"
+        viewDirectories.push dirPath
+        grunt.file.mkdir path.join(buildViewsDirectory, path.basename(dirPath))
 
-      # get each view folder (except layout)
-      for dirPath in grunt.file.expandDirs(path.join(appViewsDirectory, "*"))
-        basePath = path.basename(dirPath)
-        unless basePath is "layouts" + path.sep or basePath is "layouts"
-          viewDirectories.push dirPath
-          grunt.file.mkdir path.join(buildViewsDirectory, path.basename(dirPath))
+    for viewDir in viewDirectories
+      # resolve layout file for these views
+      layoutFileName = "";
 
-      for viewDir in viewDirectories
-        # resolve layout file for these views
-        layoutFileName = "";
+      # Some machines report folder/ as basename while others do not
+      viewBasename = path.basename viewDir
+      unless viewBasename.indexOf(path.sep) is -1
+        viewBasename = viewBasename.replace path.sep, ""
 
-        # Some machines report folder/ as basename while others do not
-        viewBasename = path.basename viewDir
-        unless viewBasename.indexOf(path.sep) is -1
-          viewBasename = viewBasename.replace path.sep, ""
+      layoutFileName = "#{viewBasename}.html"
 
-        layoutFileName = "#{viewBasename}.html"
+      layoutFilePath = path.join appLayoutsDirectory, layoutFileName
 
-        layoutFilePath = path.join appLayoutsDirectory, layoutFileName
+      unless fs.existsSync(layoutFilePath)
+        layoutFilePath = path.join appLayoutsDirectory, "application.html"
 
-        unless fs.existsSync(layoutFilePath)
-          layoutFilePath = path.join appLayoutsDirectory, "application.html"
+      applicationLayoutFile = grunt.file.read layoutFilePath, "utf8"
 
-        applicationLayoutFile = grunt.file.read layoutFilePath, "utf8"
+      for filePathPart in grunt.file.expand(path.join(viewDir, "**", "*"))
+        filePath = path.resolve filePathPart
+        buildFilePath = path.resolve filePathPart.replace("app"+path.sep, "dist"+path.sep)
 
-        for filePathPart in grunt.file.expand(path.join(viewDir, "**", "*"))
-          filePath = path.resolve filePathPart
-          buildFilePath = path.resolve filePathPart.replace("app"+path.sep, "dist"+path.sep)
+        # skip "partial" files that begin with underscore
+        if /^_/.test path.basename(filePath)
+          yieldedFile = grunt.file.read(filePath, "utf8")
+        else
+          controllerName = path.basename(viewDir).replace(path.sep, "")
+          unless fs.existsSync path.join(appControllersDirectory, "#{controllerName}.coffee")
+            # project haz legacy
+            text = "#red[Deprecation Warning:] controller filenames should no longer include Controller. Rename #underline[#{path.join("app", "controllers", "#{controllerName}Controller.coffee")}] to #underline[#{path.join("app", "controllers", "#{controllerName}.coffee")}]"
+            grunt.log.writeln colorize.ansify(text)
 
-          # skip "partial" files that begin with underscore
-          if /^_/.test path.basename(filePath)
-            yieldedFile = grunt.file.read(filePath, "utf8")
-          else
-            controllerName = path.basename(viewDir).replace(path.sep, "")
-            unless fs.existsSync path.join(appControllersDirectory, "#{controllerName}.coffee")
-              # project haz legacy
-              text = "#red[Deprecation Warning:] controller filenames should no longer include Controller. Rename #underline[#{path.join("app", "controllers", "#{controllerName}Controller.coffee")}] to #underline[#{path.join("app", "controllers", "#{controllerName}.coffee")}]"
-              grunt.log.writeln colorize.ansify(text)
+            # work around legacy and continue
+            controllerName += "Controller"
 
-              # work around legacy and continue
-              controllerName += "Controller"
+          yieldObj =
+            view: grunt.file.read(filePath, "utf8")
+            controller: controllerName
 
-            yieldObj =
-              view: grunt.file.read(filePath, "utf8")
-              controller: controllerName
+          # put layout+yields together
+          yieldedFile = grunt.utils._.template(
+            applicationLayoutFile.toString()
+          )({ yield: yieldObj })
 
-            # put layout+yields together
-            yieldedFile = grunt.utils._.template(
-              applicationLayoutFile.toString()
-            )({ yield: yieldObj })
+        # write the file
+        grunt.file.mkdir path.dirname(buildFilePath)
+        grunt.file.write buildFilePath, yieldedFile
 
-          # write the file
-          grunt.file.mkdir path.dirname(buildFilePath)
-          grunt.file.write buildFilePath, yieldedFile
 
 module.exports =
   registerDefaultTasks: registerDefaultTasks

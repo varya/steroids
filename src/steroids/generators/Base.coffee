@@ -1,5 +1,4 @@
 steroids = require "../../steroids"
-spawn = require("child_process").spawn
 path = require "path"
 fs = require "fs"
 ejs = require "ejs"
@@ -14,7 +13,7 @@ class Base
 
   constructor: (@options)->
     @options.className = @options.name[0].toUpperCase() + @options.name[1..-1]
-    @applicationPath = steroids.paths.application
+    @applicationPath = steroids.paths.applicationDir
 
   checkForPreExistingFiles: (pathList)->
     for filePath in pathList
@@ -42,6 +41,15 @@ class Base
     if !fs.existsSync destinationPath
       util.log "Creating directory #{destinationPath}"
       fs.mkdirSync destinationPath
+
+    bowerJSONString = fs.readFileSync steroids.paths.application.configs.bower, 'utf8'
+    bowerJSON = JSON.parse bowerJSONString
+
+    util.log "Adding bower dependency in config/bower.json to #{packageName} at version #{version}"
+    bowerJSON.dependencies ||= {}
+    bowerJSON.dependencies[packageName] = version
+
+    fs.writeFileSync steroids.paths.application.configs.bower, JSON.stringify(bowerJSON)
 
   templatePath: ->
     throw "generators.Base#templatePath not overridden by subclass!"

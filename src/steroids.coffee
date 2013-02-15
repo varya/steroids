@@ -18,7 +18,7 @@ class Steroids
   detectLegacyProject: ->
     fs = require("fs")
 
-    applicationConfig = path.join paths.application, "config", "application.coffee"
+    applicationConfig = paths.application.configs.application
 
     if fs.existsSync(applicationConfig)
       contents = fs.readFileSync(applicationConfig).toString()
