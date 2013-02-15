@@ -2,15 +2,13 @@ class window.PillsController
 
   @index: ->
 
-    # always put everything inside PhoneGap deviceready
-    document.addEventListener "deviceready", ()->
-
+    steroids.on('ready', () ->
       # Make Navigation Bar to appear with a custom title text
       steroids.view.navigationBar.show { title: "Steroids" }
 
   @show: ->
 
-    document.addEventListener "deviceready", ()->
+    steroids.on('ready', () ->
 
       steroids.view.navigationBar.show { title: "show.html" }
 
