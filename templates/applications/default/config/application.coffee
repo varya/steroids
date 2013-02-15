@@ -7,10 +7,10 @@ steroids.config.name = "New Application"
 # Tabs will override this value.
 # Can be one of these:
 #   - file URL (relative to www, f.e. index.html)
-#   - http://localhost:13101/ (serves files locally from www, f.e. http://localhost:13101/ would serve index.html)
+#   - http://localhost/ (serves files locally from www, f.e. http://localhost/index.html would serve index.html)
 #   - http://www.google.com (directly from internet)
 
-steroids.config.location = "http://localhost:13101/index.html"
+steroids.config.location = "http://localhost/index.html"
 
 # -- Tabs --
 #
@@ -27,14 +27,14 @@ steroids.config.location = "http://localhost:13101/index.html"
 # - icon: path to icon file (f.e. images/icon@2x.png)
 # - location: like steroids.config.location, can be one of these:
 #   - file URL (relative to www, f.e. index.html)
-#   - http://localhost:13101/ (serves files locally from www, f.e. http://localhost:13101/ would serve index.html)
+#   - http://localhost/index.html (serves files locally from www, f.e. http://localhost/index.html would serve www/index.html)
 #   - http://www.google.com (directly from internet)
 #
 # steroids.config.tabBar.tabs = [
 #   {
 #     title: "Index"
 #     icon: "icons/shoebox@2x.png"
-#     location: "http://localhost:13101/index.html"
+#     location: "http://localhost/index.html"
 #   },
 #   {
 #     title: "Internet"
