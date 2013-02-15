@@ -13,10 +13,10 @@ class Default extends Base
 
   @usage: ()->
     """
-    Generates a stub resource consisting of a controller and a single index view.
+    Generates a stub resource consisting of a controller and index show views.
 
     Options:
-      - resource: name of resource to use. example: car will result in a carController and views/car/index.html
+      - resource: name of resource to use. example: car will result in a app/controllers/car.js and views/car/index.html & show.html
     """
 
   templatePath: ->
