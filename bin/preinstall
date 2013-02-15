@@ -1,22 +1,22 @@
 #!/bin/sh
 
-NODE_MODULES_PATH="/usr/local/lib/node_modules"
+USR_LOCAL_PATH="/usr/local"
 
 echo "AppGyver Steroids\n"
 
 
 LOGGED_IN_USERNAME=$(logname)
-CHOWN_NODE_MODULES_CMD="sudo chown -R $LOGGED_IN_USERNAME $NODE_MODULES_PATH"
+CHOWN_USR_LOCAL_CMD="sudo chown -R $LOGGED_IN_USERNAME $USR_LOCAL_PATH"
 
-NODE_OWNED_BY=$(stat -f "%Su" $NODE_MODULES_PATH)
+NODE_OWNED_BY=$(stat -f "%Su" $USR_LOCAL_PATH)
 
 if [ "$LOGGED_IN_USERNAME" != "$NODE_OWNED_BY" ]; then
-  echo "ERROR: $NODE_MODULES_PATH is owned by '$NODE_OWNED_BY' and not by '$LOGGED_IN_USERNAME'"
+  echo "ERROR: $USR_LOCAL_PATH is owned by '$NODE_OWNED_BY' and not by '$LOGGED_IN_USERNAME'"
   echo
   echo "Change user to '$LOGGED_IN_USERNAME' so that node NPM packages can be installed globally without sudo."
   echo
   echo "You can do this by:"
-  echo "  sudo chown -R $LOGGED_IN_USERNAME $NODE_MODULES_PATH"
+  echo "  sudo chown -R $LOGGED_IN_USERNAME $USR_LOCAL_PATH"
   echo
   echo "Then, re-run the installer without sudo:"
   echo "  npm install -g steroids"
@@ -43,7 +43,7 @@ fi
 
 
 
-echo "$NODE_MODULES_PATH is owned by $LOGGED_IN_USERNAME, good.\n"
+echo "$USR_LOCAL_PATH is owned by $LOGGED_IN_USERNAME, good.\n"
 
 echo "Checking for required components ..."
 
