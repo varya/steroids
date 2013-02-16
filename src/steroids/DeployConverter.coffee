@@ -23,7 +23,7 @@ class DeployConverter
     navigation_bar_style: @config.theme
     status_bar_style: @statusBarStyle()
     fullscreen: not @config.tabBar.enabled
-    fullscreen_start_url: @config.location
+    fullscreen_start_url: betterFullscreenStartUrl
     client_version: "edge"
     initial_eval_js_string: ""
     background_eval_js_string: ""
