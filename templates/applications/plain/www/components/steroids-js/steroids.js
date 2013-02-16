@@ -1,5 +1,5 @@
 (function(window){
-/*! steroids-js - v0.3.4 - 2013-02-13 */
+/*! steroids-js - v0.3.5 - 2013-02-15 */
 ;var Bridge,
   __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
@@ -399,6 +399,9 @@ Animation = (function() {
     this.perform = __bind(this.perform, this);
 
     this.transition = options.constructor.name === "String" ? options : (_ref = options.transition) != null ? _ref : "curlUp";
+    if (this.transition == null) {
+      throw "transition required";
+    }
     this.reversedTransition = this.constructor.TRANSITION_REVERSION_MAPPING[this.transition];
     this.duration = options.duration || 0.7;
     this.reversedDuration = this.duration;
@@ -415,7 +418,6 @@ Animation = (function() {
     return steroids.nativeBridge.nativeCall({
       method: "performTransition",
       parameters: {
-        transition: options.transition || this.transition,
         curve: options.curve || this.curve,
         duration: options.duration || this.duration
       },
@@ -432,6 +434,8 @@ Animation = (function() {
 App = (function() {
 
   App.prototype.path = void 0;
+
+  App.prototype.userFilesPath = "";
 
   App.prototype.absolutePath = void 0;
 
@@ -502,7 +506,7 @@ Modal = (function() {
         return steroids.nativeBridge.nativeCall({
           method: "previewFile",
           parameters: {
-            filenameWithPath: view.file
+            filenameWithPath: view.getNativeFilePath()
           },
           successCallbacks: [callbacks.onSuccess],
           failureCallbacks: [callbacks.onFailure]
@@ -760,11 +764,17 @@ WebView = (function() {
 PreviewFileView = (function() {
 
   function PreviewFileView(options) {
+    var _ref;
     if (options == null) {
       options = {};
     }
-    this.file = options.constructor.name === "String" ? options : options.file;
+    this.filePath = options.constructor.name === "String" ? options : options.filePath;
+    this.relativeTo = (_ref = options.relativeTo) != null ? _ref : steroids.app.path;
   }
+
+  PreviewFileView.prototype.getNativeFilePath = function() {
+    return "" + this.relativeTo + "/" + this.filePath;
+  };
 
   return PreviewFileView;
 
@@ -790,8 +800,9 @@ Audio = (function() {
       callbacks = {};
     }
     return steroids.on("ready", function() {
-      var mediaPath, _ref;
-      mediaPath = options.constructor.name === "String" ? "" + steroids.app.path + "/" + options : (_ref = options.absolutePath) != null ? _ref : "" + steroids.app.path + "/" + options.path;
+      var mediaPath, relativeTo, _ref;
+      relativeTo = (_ref = options.relativeTo) != null ? _ref : steroids.app.path;
+      mediaPath = options.constructor.name === "String" ? "" + relativeTo + "/" + options : "" + relativeTo + "/" + options.path;
       return steroids.nativeBridge.nativeCall({
         method: "play",
         parameters: {
@@ -1219,20 +1230,20 @@ XHR = (function() {
   };
 
   XHR.prototype.fetch = function(options, callbacks) {
-    var fullPath;
+    var destinationPath;
     if (options == null) {
       options = {};
     }
     if (callbacks == null) {
       callbacks = {};
     }
-    fullPath = "" + Steroids.app.path + "/" + options.filename;
+    destinationPath = options.constructor.name === "String" ? options : options.absoluteDestinationPath;
     return steroids.nativeBridge.nativeCall({
       method: "downloadFile",
       parameters: {
         url: options.url || this.url,
         headers: options.headers || this.headers,
-        filenameWithPath: fullPath
+        filenameWithPath: destinationPath
       },
       successCallbacks: [callbacks.onSuccess],
       failureCallbacks: [callbacks.onFailure]
@@ -1328,35 +1339,46 @@ Screen = (function() {
 File = (function() {
 
   function File(options) {
-    this.path = options;
+    var _ref;
+    this.path = options.constructor.name === "String" ? options : options.path;
+    this.relativeTo = (_ref = options.relativeTo) != null ? _ref : steroids.app.path;
   }
 
   File.prototype.resizeImage = function(options, callbacks) {
-    var parameters, _ref, _ref1;
+    var nativeCompression, parameters, userCompression, _ref, _ref1, _ref2, _ref3;
     if (options == null) {
       options = {};
     }
     if (callbacks == null) {
       callbacks = {};
     }
+    if (this.relativeTo !== steroids.app.userFilesPath) {
+      throw "Cannot resize images outside `steroids.app.userFilesPath`. Files must first be copied under application document root and then resized.";
+    }
+    userCompression = (_ref = (_ref1 = options.format) != null ? _ref1.compression : void 0) != null ? _ref : 100;
+    nativeCompression = 1 - (userCompression / 100);
     parameters = {
-      filenameWithPath: this.path,
-      format: (_ref = options.format) != null ? _ref : "png",
-      compression: (_ref1 = options.compression) != null ? _ref1 : 1.0
+      filenameWithPath: "" + this.relativeTo + "/" + this.path,
+      format: (_ref2 = (_ref3 = options.format) != null ? _ref3.type : void 0) != null ? _ref2 : "jpg",
+      compression: nativeCompression
     };
-    switch (options.constraint) {
-      case "width":
-        parameters.size = {
-          width: options.constraintLength
-        };
-        break;
-      case "height":
-        parameters.size = {
-          height: options.constraintLength
-        };
-        break;
-      default:
-        throw "unknown constraint name for steroids.file#resizeImage";
+    if (options.constraint != null) {
+      switch (options.constraint.dimension) {
+        case "width":
+          parameters.size = {
+            width: options.constraint.length
+          };
+          break;
+        case "height":
+          parameters.size = {
+            height: options.constraint.length
+          };
+          break;
+        default:
+          throw "unknown constraint name";
+      }
+    } else {
+      throw "constraint not specified";
     }
     return steroids.nativeBridge.nativeCall({
       method: "resizeImage",
@@ -1367,16 +1389,17 @@ File = (function() {
   };
 
   File.prototype.unzip = function(options, callbacks) {
-    var destinationPath, parameters;
+    var destinationPath, parameters, sourcePath;
     if (options == null) {
       options = {};
     }
     if (callbacks == null) {
       callbacks = {};
     }
+    sourcePath = "" + this.relativeTo + "/" + this.path;
     destinationPath = options.constructor.name === "String" ? options : options.destinationPath;
     parameters = {
-      filenameWithPath: this.path,
+      filenameWithPath: sourcePath,
       path: destinationPath
     };
     return steroids.nativeBridge.nativeCall({
@@ -1420,7 +1443,7 @@ OpenURL = (function() {
 })();
 ;
 window.steroids = {
-  version: "0.3.4",
+  version: "0.3.5",
   Animation: Animation,
   XHR: XHR,
   File: File,

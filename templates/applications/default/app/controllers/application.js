@@ -1,5 +1,4 @@
 // always put everything inside PhoneGap deviceready
-
 document.addEventListener("deviceready", function() {
 
   $(".opensLayer").on("tap", function() {

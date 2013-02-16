@@ -2,7 +2,7 @@
   "name": "myProject",
   "version": "0.0.1",
   "dependencies": {
-    "steroids-js": "git://github.com/steroidsjs/steroids-js.git#0.3.4",
+    "steroids-js": "git://github.com/steroidsjs/steroids-js.git#0.3.5",
     "zepto": "1.0.0rc1"
   }
 }
