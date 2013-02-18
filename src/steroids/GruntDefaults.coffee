@@ -83,7 +83,7 @@ registerDefaultTasks = (grunt)->
     sassFiles = grunt.file.expandFiles Paths.application.compiles.sassfiles
     scssFiles = grunt.file.expandFiles Paths.application.compiles.scssfiles
 
-    for filePath in sassFiles + scssFiles
+    for filePath in sassFiles.concat(scssFiles)
       grunt.verbose.writeln "Compiling sass file at #{filePath}"
       sassFile = new SassFile(filePath: filePath)
 
