@@ -80,11 +80,12 @@ registerDefaultTasks = (grunt)->
       coffeeFile.compile()
 
   grunt.registerTask 'steroids-compile-sass-files', "Compile build sass files", ->
-    done = @async()
     sassFiles = grunt.file.expandFiles Paths.application.compiles.sassfiles
     scssFiles = grunt.file.expandFiles Paths.application.compiles.scssfiles
 
     allFiles = sassFiles.concat(scssFiles)
+
+    done = @async() if allFiles.length > 0
 
     for filePath in allFiles
       do (filePath)->
@@ -187,6 +188,7 @@ registerDefaultTasks = (grunt)->
     wwwDirectory              = path.join projectDirectory, "www"
 
     viewDirectories = []
+
 
     # get each view folder (except layout)
     for dirPath in grunt.file.expandDirs(path.join(appViewsDirectory, "*"))
