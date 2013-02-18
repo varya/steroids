@@ -84,15 +84,19 @@ registerDefaultTasks = (grunt)->
     sassFiles = grunt.file.expandFiles Paths.application.compiles.sassfiles
     scssFiles = grunt.file.expandFiles Paths.application.compiles.scssfiles
 
-    for filePath in sassFiles.concat(scssFiles)
-      grunt.verbose.writeln "Compiling sass file at #{filePath}"
-      sassFile = new SassFile(filePath: filePath)
+    allFiles = sassFiles.concat(scssFiles)
 
-      sassFile.on "compiled", =>
-        fs.unlinkSync filePath
-        done()
+    for filePath in allFiles
+      do (filePath)->
+        grunt.verbose.writeln "Compiling sass file at #{filePath}"
+        sassFile = new SassFile(filePath: filePath)
 
-      sassFile.compile()
+        sassFile.on "compiled", =>
+          fs.unlinkSync filePath
+          allFiles.pop()
+          done() if allFiles.length is 0
+
+        sassFile.compile()
 
   grunt.registerTask 'steroids-compile-models', "Compile models", ->
     javascripts = []
