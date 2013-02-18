@@ -87,17 +87,19 @@ registerDefaultTasks = (grunt)->
 
     done = @async() if allFiles.length > 0
 
-    for filePath in allFiles
-      do (filePath)->
+    for filePath, i in allFiles
+      do (filePath, i)->
         grunt.verbose.writeln "Compiling sass file at #{filePath}"
         sassFile = new SassFile(filePath: filePath)
 
         sassFile.on "compiled", =>
-          fs.unlinkSync filePath
-          allFiles.pop()
-          done() if allFiles.length is 0
+          # because lets support sass imports (when node-sass does..)
+          if i+1 is allFiles.length
+            fs.unlinkSync filePath for filePath in allFiles
+            done()
 
         sassFile.compile()
+
 
   grunt.registerTask 'steroids-compile-models', "Compile models", ->
     javascripts = []
