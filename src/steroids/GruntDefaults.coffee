@@ -80,6 +80,7 @@ registerDefaultTasks = (grunt)->
       coffeeFile.compile()
 
   grunt.registerTask 'steroids-compile-sass-files', "Compile build sass files", ->
+    done = @async()
     sassFiles = grunt.file.expandFiles Paths.application.compiles.sassfiles
     scssFiles = grunt.file.expandFiles Paths.application.compiles.scssfiles
 
@@ -89,7 +90,7 @@ registerDefaultTasks = (grunt)->
 
       sassFile.on "compiled", =>
         fs.unlinkSync filePath
-        @async()
+        done()
 
       sassFile.compile()
 
