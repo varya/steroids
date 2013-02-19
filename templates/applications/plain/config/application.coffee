@@ -12,6 +12,13 @@ steroids.config.name = "New Application"
 
 steroids.config.location = "http://localhost/index.html"
 
+# -- Hosts --
+# Defines the hostnames that the application will capture and serve application files from.
+# F.e. adding mobileapp.on.steroids to the list, http://mobileapp.on.steroids/index.html will be served locally just like http://localhost/index.html
+# Default: []
+#
+# steroids.config.hosts = ["mobileapp.on.steroids"]
+
 # -- Tabs --
 #
 # A boolean to enable tab bar (on bottom)

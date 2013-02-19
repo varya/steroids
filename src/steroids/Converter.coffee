@@ -29,11 +29,13 @@ class Converter
     ankaLikeJSON.files = []
     ankaLikeJSON.archives = []
 
-    ankaLikeJSON.bottom_bars = @tabsObject(steroids.config) # TODO: asetappa bottombars
+    ankaLikeJSON.bottom_bars = @tabsObject(configObject)
 
     # legacy stuff
     ankaLikeJSON.authentication = @legacyAuthenticationObject()
     ankaLikeJSON.update = @legacyUpdateObject()
+
+    ankaLikeJSON.hosts = @hostsObject(configObject)
 
     return ankaLikeJSON
 
@@ -53,6 +55,17 @@ class Converter
 
     return tabs
 
+  hostsObject: (config)->
+    return [] unless config.hosts.length
+
+    hosts = []
+    for configHost in config.hosts
+      host =
+        host: configHost
+
+      hosts.push host
+
+    return hosts
 
   configurationObject: (config)->
 

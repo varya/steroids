@@ -42,6 +42,19 @@ class DeployConverter
     open_clicked_links_in_new_layer: @config.open_clicked_links_in_new_layer ? "false"
     shake_gesture_enabled_during_development: @config.shake_gesture_enabled_during_development ? "false"
     tabs: @tabsCloudSchemaRepresentation()
+    hosts: @hostsCloudSchemaRepresentation()
+
+  hostsCloudSchemaRepresentation: ->
+    return [] unless @config.hosts?
+
+    hosts = []
+    for configHost in @config.hosts
+      host =
+        host: configHost.host
+
+      hosts.push host
+
+    return hosts
 
   tabsCloudSchemaRepresentation: ->
     if @config.tabBar?.tabs?
@@ -55,9 +68,9 @@ class DeployConverter
 
         betterTabs.push tab
 
-      betterTabs
+      return betterTabs
     else
-      []
+      return []
 
   statusBarStyle: ->
     unless @config.statusBar?.enabled? && @config.statusBar.enabled == true

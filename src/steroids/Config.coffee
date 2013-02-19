@@ -15,6 +15,8 @@ class Config
   }
   theme:                        "black"
   location:                     "http://localhost/index.html"
+  # ["mobileapp.test.com"]
+  hosts: []
   tabBar: {
     enabled:                    false
     tintColor:                  ""
