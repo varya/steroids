@@ -12,7 +12,7 @@ steroids.config.name = "New Application"
 
 steroids.config.location = "http://localhost/index.html"
 
-# -- Hosts --
+# -- Remote hosts --
 # Defines the hostnames that the application will capture and serve application files from.
 # F.e. adding mobileapp.example.com to the list, http://mobileapp.example.com/index.html will be served locally just like http://localhost/index.html
 # Default: []
