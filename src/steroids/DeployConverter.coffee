@@ -50,7 +50,7 @@ class DeployConverter
     hosts = []
     for configHost in @config.hosts
       host =
-        host: configHost.host
+        host: configHost
 
       hosts.push host
 
