@@ -1,5 +1,5 @@
 (function(window){
-/*! steroids-js - v0.3.5 - 2013-02-15 */
+/*! steroids-js - v0.3.6 - 2013-02-19 */
 ;var Bridge,
   __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
@@ -239,20 +239,79 @@ Events = (function() {
 
   function Events() {}
 
-  Events.extend = function(element, callbacks) {
-    var dispatchVisibilitychangedEvent, focusAdded,
+  Events.dispatchVisibilitychangedEvent = function(options) {
+    var visibilityChangeCustomEvent;
+    if (options == null) {
+      options = {};
+    }
+    steroids.debug({
+      msg: "dispatched visibilitychanged"
+    });
+    visibilityChangeCustomEvent = document.createEvent("CustomEvent");
+    visibilityChangeCustomEvent.initCustomEvent("visibilitychange", true, true);
+    return document.dispatchEvent(visibilityChangeCustomEvent);
+  };
+
+  Events.initializeVisibilityState = function(options) {
+    if (options == null) {
+      options = {};
+    }
+    steroids.debug({
+      msg: "set document.visibilityState to unloaded"
+    });
+    document.visibilityState = "unloaded";
+    return document.addEventListener("DOMContentLoaded", function() {
+      steroids.debug({
+        msg: "got DOMContentLoaded, setting document.visibilityState to prerender"
+      });
+      return document.visibilityState = "prerender";
+    });
+  };
+
+  Events.extend = function(options, callbacks) {
+    var becomeHiddenEvent, becomeVisibleEvent, focusAdded, lostFocusAdded,
       _this = this;
+    if (options == null) {
+      options = {};
+    }
     if (callbacks == null) {
       callbacks = {};
     }
+    this.initializeVisibilityState();
     focusAdded = function() {
+      steroids.debug({
+        msg: "focus added"
+      });
+      return steroids.nativeBridge.nativeCall({
+        method: "addEventListener",
+        parameters: {
+          event: "lostFocus"
+        },
+        successCallbacks: [lostFocusAdded, callbacks.onSuccess],
+        recurringCallbacks: [becomeHiddenEvent, callbacks.onFailure]
+      });
+    };
+    lostFocusAdded = function() {
+      steroids.debug({
+        msg: "lostfocus added"
+      });
       return steroids.markComponentReady("Events");
     };
-    dispatchVisibilitychangedEvent = function() {
-      var visibilityChangeCustomEvent;
-      visibilityChangeCustomEvent = document.createEvent("CustomEvent");
-      visibilityChangeCustomEvent.initCustomEvent("visibilitychange", true, true);
-      return element.dispatchEvent(visibilityChangeCustomEvent);
+    becomeVisibleEvent = function() {
+      steroids.debug({
+        msg: "become visible"
+      });
+      document.visibilityState = "visible";
+      document.hidden = false;
+      return _this.dispatchVisibilitychangedEvent();
+    };
+    becomeHiddenEvent = function() {
+      steroids.debug({
+        msg: "document become hidden"
+      });
+      document.visibilityState = "hidden";
+      document.hidden = true;
+      return _this.dispatchVisibilitychangedEvent();
     };
     return steroids.nativeBridge.nativeCall({
       method: "addEventListener",
@@ -260,13 +319,13 @@ Events = (function() {
         event: "focus"
       },
       successCallbacks: [focusAdded, callbacks.onSuccess],
-      recurringCallbacks: [dispatchVisibilitychangedEvent, callbacks.onFailure]
+      recurringCallbacks: [becomeVisibleEvent, callbacks.onFailure]
     });
   };
 
   return Events;
 
-})();
+}).call(this);
 ;var Torch;
 
 Torch = (function() {
@@ -418,6 +477,7 @@ Animation = (function() {
     return steroids.nativeBridge.nativeCall({
       method: "performTransition",
       parameters: {
+        transition: this.transition,
         curve: options.curve || this.curve,
         duration: options.duration || this.duration
       },
@@ -1443,7 +1503,7 @@ OpenURL = (function() {
 })();
 ;
 window.steroids = {
-  version: "0.3.5",
+  version: "0.3.6",
   Animation: Animation,
   XHR: XHR,
   File: File,
@@ -1460,11 +1520,17 @@ window.steroids = {
   },
   eventCallbacks: {},
   waitingForComponents: [],
+  debugMessages: [],
   debugEnabled: false,
-  debug: function(msg) {
-    if (steroids.debugEnabled) {
-      return console.log(msg);
+  debug: function(options) {
+    var debugMessage, msg;
+    if (!steroids.debugEnabled) {
+      return;
     }
+    msg = options.constructor.name === "String" ? options : options.msg;
+    debugMessage = "" + window.location.href + " - " + msg;
+    window.steroids.debugMessages.push(debugMessage);
+    return console.log(debugMessage);
   },
   on: function(event, callback) {
     var _base;
@@ -1505,7 +1571,7 @@ window.steroids.app = new App;
 
 window.steroids.waitingForComponents.push("Events");
 
-Events.extend(document);
+Events.extend();
 
 window.steroids.layers = new LayerCollection;
 
@@ -1518,14 +1584,6 @@ window.steroids.modal = new Modal;
 window.steroids.audio = new Audio;
 
 window.steroids.navigationBar = new NavigationBar;
-
-window.steroids.waitingForComponents.push("App");
-
-window.steroids.waitingForComponents.push("Events");
-
-window.steroids.app = new App;
-
-Events.extend(document);
 
 window.steroids.openURL = OpenURL.open;
 
