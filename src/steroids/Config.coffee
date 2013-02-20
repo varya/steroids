@@ -1,10 +1,9 @@
 class Config
 
-  statusBar: {
+  statusBar:
     style: "black"
     enabled: false
-  }
-  navigationBar: {
+  navigationBar:
     tintColor:                  ""
     titleColor:                 ""
     titleShadowColor:           ""
@@ -12,12 +11,11 @@ class Config
     buttonTitleColor:           ""
     buttonShadowColor:          ""
     buttonTintColor:            ""
-  }
   theme:                        "black"
   location:                     "http://localhost/index.html"
   # ["mobileapp.test.com"]
   hosts: []
-  tabBar: {
+  tabBar:
     enabled:                    false
     tintColor:                  ""
     tabTitleColor:              ""
@@ -27,7 +25,6 @@ class Config
 
     # tabs: [{title: "default", icon:"icon.png", location: "http://localhost/index.html"}]
     tabs: []
-  }
   worker: {}
 
 
