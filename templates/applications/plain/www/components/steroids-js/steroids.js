@@ -1,5 +1,5 @@
 (function(window){
-/*! steroids-js - v0.3.6 - 2013-02-19 */
+/*! steroids-js - v0.3.7 - 2013-02-25 */
 ;var Bridge,
   __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
@@ -560,7 +560,7 @@ Modal = (function() {
     if (callbacks == null) {
       callbacks = {};
     }
-    view = options.constructor.name === "String" ? options : options.view;
+    view = options.constructor.name === "Object" ? options.view : options;
     switch (view.constructor.name) {
       case "PreviewFileView":
         return steroids.nativeBridge.nativeCall({
@@ -581,7 +581,7 @@ Modal = (function() {
           failureCallbacks: [callbacks.onFailure]
         });
       default:
-        throw "Unsupported view sent to steroids.modal.show";
+        throw "Unsupported view sent to steroids.modal.show - " + view.constructor.name;
     }
   };
 
@@ -648,6 +648,9 @@ LayerCollection = (function() {
     } : {
       url: view.location
     };
+    if (options.navigationBar === false) {
+      parameters.hidesNavigationBar = true;
+    }
     if (options.animation != null) {
       parameters.pushAnimation = options.animation.transition;
       parameters.pushAnimationDuration = options.animation.duration;
@@ -788,7 +791,7 @@ WebView = (function() {
       callbacks = {};
     }
     steroids.debug("preload called for WebView " + (JSON.stringify(this)));
-    proposedId = this.location || options.id;
+    proposedId = options.id || this.location;
     setIdOnSuccess = function() {
       steroids.debug("preload success: setting id");
       return _this.id = proposedId;
@@ -797,7 +800,7 @@ WebView = (function() {
       method: "preloadLayer",
       parameters: {
         id: proposedId,
-        url: this.location || options.location
+        url: options.location || this.location
       },
       successCallbacks: [setIdOnSuccess, callbacks.onSuccess],
       failureCallbacks: [callbacks.onFailure]
@@ -1503,7 +1506,7 @@ OpenURL = (function() {
 })();
 ;
 window.steroids = {
-  version: "0.3.6",
+  version: "0.3.7",
   Animation: Animation,
   XHR: XHR,
   File: File,
