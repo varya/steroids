@@ -1,0 +1,12 @@
+APPLICATION_TEMPLATES_PATH="templates/applications"
+
+APPLICATIONS=$(ls $APPLICATION_TEMPLATES_PATH)
+
+for APPLICATION in $APPLICATIONS; do
+  pushd .
+
+  cd "$APPLICATION_TEMPLATES_PATH/$APPLICATION"
+  steroids update
+
+  popd
+done
