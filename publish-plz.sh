@@ -2,7 +2,19 @@
 
 echo "updating template projects to latest version with steroids-js"
 
-sh update-steroidsjs-templates.sh 
+sh update-steroidsjs-templates.sh
+
+echo "ok?"
+read
+
+git add templates
+git commit -m "updated templates to use latest steroids-js"
+
+git st
+
+echo "ok?"
+
+read
 
 echo "versioning the npm"
 
