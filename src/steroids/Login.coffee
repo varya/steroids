@@ -23,8 +23,8 @@ class Login
       fs.unlinkSync paths.oauthTokenPath
 
   @currentAccessToken: ()->
-    tokenJSON = fs.readFileSync(paths.oauthTokenPath, 'utf8')
-    token = JSON.parse(tokenJSON)
+    tokenJSON = fs.readFileSync paths.oauthTokenPath, 'utf8'
+    token = JSON.parse tokenJSON
 
     return token.access_token
 

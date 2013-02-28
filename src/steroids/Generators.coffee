@@ -1,6 +1,6 @@
 DefaultResource = require './generators/resources/Default'
+AngularResource = require './generators/resources/Angular'
 
-generators =
+module.exports =
   "resource": DefaultResource
-
-module.exports = generators
+  "ng-resource": AngularResource

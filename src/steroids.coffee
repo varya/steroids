@@ -38,11 +38,12 @@ class Steroids
 
     console.log output.stdout
 
-    if output.stderr != ""
+    unless output.stderr == ""
       console.log output.stderr
       if options.exitOnFailure
         process.exit 1
 
+    return output.stderr == ""
 
   startServer: (options={}) =>
     Server = require "./steroids/Server"
@@ -103,9 +104,8 @@ class Steroids
         Help.welcome()
 
       when "push"
-        @runSteroidsCommandSync "make"
-
-        @runSteroidsCommandSync "package"
+        if @runSteroidsCommandSync "make"
+          @runSteroidsCommandSync "package"
 
       when "make"
         Grunt = require("./steroids/Grunt")
@@ -231,6 +231,8 @@ class Steroids
 
           util.log "ERROR: #{error.message}"
           process.exit 1
+
+        @runSteroidsCommandSync "update"
 
       when "login"
         Help.logo()
