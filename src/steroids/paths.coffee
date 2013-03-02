@@ -28,6 +28,7 @@ class Paths
     legacy:
       requiresDetected: path.join @bannersDir, "legacy-requiresdetected"
       capitalizationDetected: path.join @bannersDir, "legacy-capitalizationdetected"
+      specificSteroidsJSDetected: path.join @bannersDir, "legacy-specificsteroidsjsdetected"
 
   @applicationDir: process.cwd()
   @application:

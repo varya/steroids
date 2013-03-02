@@ -34,6 +34,10 @@ class Help
     capitalizationDetected: ->
       Help.printBanner(paths.banners.legacy.capitalizationDetected, true)
 
+    specificSteroidsJSDetected: ->
+      Help.printBanner(paths.banners.legacy.specificSteroidsJSDetected, true)
+
+
   @readContentsSync: (filename) ->
     fs = require "fs"
     return fs.readFileSync(filename).toString()

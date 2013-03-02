@@ -30,6 +30,18 @@ class Steroids
         Help.legacy.capitalizationDetected()
         process.exit(1)
 
+  detectLegacyBowerJSON: ->
+    fs = require("fs")
+
+    bowerConfig = paths.application.configs.bower
+
+    if fs.existsSync(bowerConfig)
+      contents = fs.readFileSync(bowerConfig).toString()
+      if contents.match('steroids-js.git#0.3.5') or contents.match('steroids-js.git#0.3.6')
+        Help.legacy.specificSteroidsJSDetected()
+        process.exit(1)
+
+
   runSteroidsCommandSync: (cmd, options={})->
     # no merging objects :(
     options.exitOnFailure ?= true
@@ -69,6 +81,7 @@ class Steroids
 
   execute: =>
     @detectLegacyProject()
+    @detectLegacyBowerJSON()
 
     [firstOption, otherOptions...] = argv._
 
