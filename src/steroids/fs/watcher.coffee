@@ -1,19 +1,20 @@
-watch = require "watch"
+watchr = require "watchr"
 
 class Watcher
 
   constructor:(@options) ->
 
   watch: (path)=>
-    watch.watchTree path, (f, curr, prev)=>
-      if typeof f is "object" and prev is null and curr is null
-      else if prev is null
-        @options.emitter.emit @options.onChange, f
-      else if curr.nlink is 0
-        @options.emitter.emit @options.onChange, f
-      else
-        @options.emitter.emit @options.onChange, f
-
-    console.log "Monitoring directory: #{path}"
+    watchr.watch
+      paths: [path]
+      listeners:
+        change: (changeType, filePath, fileCurrentStat, filePreviousStat) =>
+          switch changeType
+            when "delete"
+              @options.onDelete(filePath, fileCurrentStat, filePreviousStat)
+            when "create"
+              @options.onCreate(filePath, fileCurrentStat, filePreviousStat)
+            when "update"
+              @options.onUpdate(filePath, fileCurrentStat, filePreviousStat)
 
 module.exports = Watcher

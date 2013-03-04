@@ -8,6 +8,9 @@ class Help
 	@usage: ->
     @printBanner(paths.banners.usage)
 
+  @connect: ->
+    @printBanner(paths.banners.connect)
+
   @welcome: ->
     @printBanner(paths.banners.welcome, true)
 
@@ -33,6 +36,10 @@ class Help
 
     capitalizationDetected: ->
       Help.printBanner(paths.banners.legacy.capitalizationDetected, true)
+
+    specificSteroidsJSDetected: ->
+      Help.printBanner(paths.banners.legacy.specificSteroidsJSDetected, true)
+
 
   @readContentsSync: (filename) ->
     fs = require "fs"

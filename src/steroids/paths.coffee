@@ -23,11 +23,13 @@ class Paths
   @bannersDir: path.join @npm, "support"
   @banners:
     logo: path.join @bannersDir, "logo"
+    connect: path.join @bannersDir, "connect"
     usage: path.join @bannersDir, "usage"
     welcome: path.join @bannersDir, "welcome"
     legacy:
       requiresDetected: path.join @bannersDir, "legacy-requiresdetected"
       capitalizationDetected: path.join @bannersDir, "legacy-capitalizationdetected"
+      specificSteroidsJSDetected: path.join @bannersDir, "legacy-specificsteroidsjsdetected"
 
   @applicationDir: process.cwd()
   @application:

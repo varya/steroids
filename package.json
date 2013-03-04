@@ -1,6 +1,6 @@
 {
   "name": "steroids",
-  "version": "0.6.25",
+  "version": "0.6.26",
   "preferGlobal": "true",
   "license": "MIT",
   "author": "AppGyver <contact@appgyver.com>",
@@ -64,7 +64,7 @@
     "restify": "2.2.1",
     "restler": "2.0.1",
     "steroids-simulators": "http://appgyver.production.steroids.simulators.s3.amazonaws.com/steroids-simulators.tar.gz",
-    "watch": "0.5.1",
+    "watchr": "2.3.7",
     "weinre": "2.0.0-pre-HA5N9T49",
     "wrench": "1.4.4"
   },

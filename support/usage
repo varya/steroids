@@ -12,10 +12,12 @@ Basic usage commands:
 
     Creates a new application from tutorial template.
 
-  connect
+  connect [--no-qrcode] [--watch]
 
     Starts server and allows to connect your iOS device or iOS Simulator to see your application.
     Provides further instructions for connecting.
+
+    Use --watch option to automatically push code to connected devices on file updates in app/, config/ or www/ directiories.
 
   push
 

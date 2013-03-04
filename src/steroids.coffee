@@ -30,11 +30,26 @@ class Steroids
         Help.legacy.capitalizationDetected()
         process.exit(1)
 
+  detectLegacyBowerJSON: ->
+    fs = require("fs")
+
+    bowerConfig = paths.application.configs.bower
+
+    if fs.existsSync(bowerConfig)
+      contents = fs.readFileSync(bowerConfig).toString()
+      if contents.match('steroids-js.git#0.3.5') or contents.match('steroids-js.git#0.3.6')
+        Help.legacy.specificSteroidsJSDetected()
+        process.exit(1)
+
+
   runSteroidsCommandSync: (cmd, options={})->
     # no merging objects :(
     options.exitOnFailure ?= true
 
-    output = execSync "steroids #{cmd}", true
+    fullCmd = "steroids #{cmd}"
+    util.log "Running: #{fullCmd}"
+
+    output = execSync fullCmd, true
 
     console.log output.stdout
 
@@ -70,6 +85,7 @@ class Steroids
 
   execute: =>
     @detectLegacyProject()
+    @detectLegacyBowerJSON()
 
     [firstOption, otherOptions...] = argv._
 
@@ -140,6 +156,31 @@ class Steroids
 
         BuildServer = require "./steroids/servers/BuildServer"
 
+        Prompt = require("./steroids/Prompt")
+        prompt = new Prompt
+          context: @
+
+        if argv.watch
+          Watcher = require("./steroids/fs/watcher")
+
+          pushAndPrompt = =>
+            console.log ""
+            util.log "File system change detected, pushing code to connected devices ..."
+
+            @runSteroidsCommandSync "push", exitOnFailure: false
+            prompt.refresh()
+
+          watcher = new Watcher
+            onCreate: pushAndPrompt
+            onUpdate: pushAndPrompt
+
+          watcher.watch("./app")
+          watcher.watch("./www")
+          watcher.watch("./config")
+
+
+
+
         server = @startServer callback: ()=>
           buildServer = new BuildServer
                               path: "/"
@@ -151,37 +192,17 @@ class Steroids
           interfaces = server.interfaces()
           ips = server.ipAddresses()
 
-          QRCode = require "./steroids/QRCode"
-          qrcode = new QRCode("appgyver://?ips=#{encodeURIComponent(JSON.stringify(ips))}")
-          qrcode.show()
 
-          util.log "Waiting for client to connect, scan the QR code that is visible in the browser ..."
+          unless argv.qrcode?
+            QRCode = require "./steroids/QRCode"
+            qrcode = new QRCode("appgyver://?ips=#{encodeURIComponent(JSON.stringify(ips))}")
+            qrcode.show()
 
-          getInput = =>
-            prompt = require('prompt')
-            prompt.message = "Steroids [hit enter to update code] ".magenta
-            prompt.delimiter = " > "
-            prompt.start();
+            util.log "Waiting for client to connect, scan the QR code that is visible in the browser ..."
 
-            prompt.get
-              properties:
-                input:
-                  message: "input"
-            , (err, result) =>
-              if result == undefined or result.input == "quit" or result.input == "exit" or result.input == "q"
-                console.log "Bye"
-                process.exit(0)
+          prompt.connectLoop()
 
-              switch result.input
-                when "", "push"
-                  console.log "Updating code to all connected devices ..."
-                  @runSteroidsCommandSync "push", exitOnFailure: false
-                else
-                  console.log "Did not recognize input: #{result.input}"
 
-              getInput()
-
-          getInput()
 
       when "serve"
 

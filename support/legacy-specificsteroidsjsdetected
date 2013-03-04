@@ -1,0 +1,24 @@
+
+  #red[PROBLEMS]
+
+  Sorry to bother you, but in this projects config/bower.json is wrong (and that's our fault)
+
+  There seems to be a line that says
+
+    "steroids-js": "git://github.com/steroidsjs/steroids-js.git#0.3.5"
+
+  or
+
+    "steroids-js": "git://github.com/steroidsjs/steroids-js.git#0.3.6",
+
+  change this line so that, the version tag is not specific to the minor, but instead to "x"
+
+    "steroids-js": "git://github.com/steroidsjs/steroids-js.git#0.3.x",
+
+  now you get bugfix updates for steroids.js library with
+
+    steroids update
+
+
+  Thanks,
+    - Matti (matti.paksula@appgyver.com)
