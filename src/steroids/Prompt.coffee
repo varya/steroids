@@ -9,6 +9,9 @@ class Prompt
 
     @prompt.start();
 
+  refresh: ->
+    process.stdout.write @prompt.message + @prompt.delimiter + "command  ".grey
+
   connectLoop: ->
     console.log "\nHit [enter] to update code, type help for usage"
 

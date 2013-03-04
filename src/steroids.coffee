@@ -46,7 +46,10 @@ class Steroids
     # no merging objects :(
     options.exitOnFailure ?= true
 
-    output = execSync "steroids #{cmd}", true
+    fullCmd = "steroids #{cmd}"
+    util.log "Running: #{fullCmd}"
+
+    output = execSync fullCmd, true
 
     console.log output.stdout
 
@@ -156,6 +159,27 @@ class Steroids
         Prompt = require("./steroids/Prompt")
         prompt = new Prompt
           context: @
+
+        if argv.watch
+          Watcher = require("./steroids/fs/watcher")
+
+          pushAndPrompt = =>
+            console.log ""
+            util.log "File system change detected, pushing code to connected devices ..."
+
+            @runSteroidsCommandSync "push", exitOnFailure: false
+            prompt.refresh()
+
+          watcher = new Watcher
+            onCreate: pushAndPrompt
+            onUpdate: pushAndPrompt
+
+          watcher.watch("./app")
+          watcher.watch("./www")
+          watcher.watch("./config")
+
+
+
 
         server = @startServer callback: ()=>
           buildServer = new BuildServer
