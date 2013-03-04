@@ -88,7 +88,7 @@ class Steroids
 
     [firstOption, otherOptions...] = argv._
 
-    if firstOption in ["create", "serve", "connect"]
+    if firstOption in ["serve", "connect"]
       Help.logo() unless argv.noLogo
 
     if argv.version
@@ -110,10 +110,11 @@ class Steroids
         projectCreator = new ProjectCreator()
         projectCreator.clone(folder, template)
 
-        console.log "Initializing project ... "
+        console.log "Initializing Steroids project ... "
         process.chdir(folder)
 
-        @runSteroidsCommandSync "push"
+        @runSteroidsCommandSync "make"
+        @runSteroidsCommandSync "package"
 
         Help.logo()
         Help.welcome()
