@@ -9,15 +9,12 @@ class BuildServer extends Server
 
   constructor: (@options) ->
     @converter = new Converter Paths.application.configs.application
+    @clients = {}
+
     super(@options)
 
   setRoutes: =>
     @app.get "/appgyver/api/applications/1.json", (req, res) =>
-
-      client =
-        userAgent: req.headers["user-agent"]
-
-      console.log "\nClient connected: #{client.userAgent}"
 
       config = @converter.configToAnkaFormat()
 
@@ -40,7 +37,21 @@ class BuildServer extends Server
     @app.get "/appgyver/zips/project.zip", (req, res)->
       res.sendfile Paths.temporaryZip
 
-    @app.get "/refresh_client?:timestamp", (req, res) ->
+    @app.get "/refresh_client?:timestamp", (req, res) =>
+
+      client = if @clients[req.ip]
+        @clients[req.ip]
+      else
+        {
+          ipAddress: req.ip
+          firstSeen: Date.now()
+          userAgent: req.headers["user-agent"]
+          new: true
+        }
+
+      client.lastSeen = Date.now()
+      @clients[req.ip] = client
+
       timestamp = key for key,val of req.query
 
       if fs.existsSync Paths.temporaryZip

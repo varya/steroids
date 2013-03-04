@@ -180,8 +180,6 @@ class Steroids
           watcher.watch("./config")
 
 
-
-
         server = @startServer callback: ()=>
           buildServer = new BuildServer
                               path: "/"
@@ -200,6 +198,34 @@ class Steroids
             qrcode.show()
 
             util.log "Waiting for client to connect, scan the QR code that is visible in the browser ..."
+
+          setInterval () ->
+            activeClients = 0;
+            needsRefresh = false
+
+            for ip, client of buildServer.clients
+              delta = Date.now() - client.lastSeen
+
+              if (delta > 2000)
+                needsRefresh = true
+                delete buildServer.clients[ip]
+                console.log ""
+                util.log "Client disconnected: #{client.ipAddress} - #{client.userAgent}"
+              else if client.new
+                needsRefresh = true
+                activeClients++
+                client.new = false
+
+                console.log ""
+                util.log "New client: #{client.ipAddress} - #{client.userAgent}"
+              else
+                activeClients++
+
+            if needsRefresh
+              util.log "Number of clients connected: #{activeClients}"
+              prompt.refresh()
+
+          , 1000
 
           prompt.connectLoop()
 
