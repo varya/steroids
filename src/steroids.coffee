@@ -153,6 +153,10 @@ class Steroids
 
         BuildServer = require "./steroids/servers/BuildServer"
 
+        Prompt = require("./steroids/Prompt")
+        prompt = new Prompt
+          context: @
+
         server = @startServer callback: ()=>
           buildServer = new BuildServer
                               path: "/"
@@ -170,33 +174,11 @@ class Steroids
             qrcode = new QRCode("appgyver://?ips=#{encodeURIComponent(JSON.stringify(ips))}")
             qrcode.show()
 
-          util.log "Waiting for client to connect, scan the QR code that is visible in the browser ..."
+            util.log "Waiting for client to connect, scan the QR code that is visible in the browser ..."
 
-          getInput = =>
-            prompt = require('prompt')
-            prompt.message = "Steroids [hit enter to update code] ".magenta
-            prompt.delimiter = " > "
-            prompt.start();
+          prompt.connectLoop()
 
-            prompt.get
-              properties:
-                input:
-                  message: "input"
-            , (err, result) =>
-              if result == undefined or result.input == "quit" or result.input == "exit" or result.input == "q"
-                console.log "Bye"
-                process.exit(0)
 
-              switch result.input
-                when "", "push"
-                  console.log "Updating code to all connected devices ..."
-                  @runSteroidsCommandSync "push", exitOnFailure: false
-                else
-                  console.log "Did not recognize input: #{result.input}"
-
-              getInput()
-
-          getInput()
 
       when "serve"
 

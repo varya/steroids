@@ -8,6 +8,9 @@ class Help
 	@usage: ->
     @printBanner(paths.banners.usage)
 
+  @connect: ->
+    @printBanner(paths.banners.connect)
+
   @welcome: ->
     @printBanner(paths.banners.welcome, true)
 
