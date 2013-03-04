@@ -9,7 +9,7 @@ class Prompt
 
     @prompt.start();
 
-  refresh: ->
+  refresh: () ->
     process.stdout.write @prompt.message + @prompt.delimiter + "command  ".grey
 
   connectLoop: ->
