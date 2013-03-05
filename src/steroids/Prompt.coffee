@@ -4,7 +4,7 @@ class Prompt
   constructor: (@options) ->
     @prompt = require('prompt')
 
-    @prompt.message = "Steroids".magenta
+    @prompt.message = " í ½í²Š  Steroids".magenta
     @prompt.delimiter = " "
 
     @prompt.start();
