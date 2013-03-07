@@ -1,22 +1,27 @@
 steroidsSimulators = require "steroids-simulators"
 spawn = require("child_process").spawn
 
+sbawn = require("./sbawn")
+
 class Simulator
   constructor: (@options = {}) ->
 
   run: ->
     console.log "running #{steroidsSimulators.iosSimPath}"
     console.log "with params -app #{steroidsSimulators.latestSimulatorPath}"
-    @simulatorProcess = spawn(steroidsSimulators.iosSimPath, ["-app", steroidsSimulators.latestSimulatorPath])
 
-    @simulatorProcess.stdout.on "data", (d) ->
-      console.log d.toString()
+    sbawned = sbawn
+      cmd: steroidsSimulators.iosSimPath
+      args: ["-app", steroidsSimulators.latestSimulatorPath]
+      stdout: true
+      stderr: true
 
-    @simulatorProcess.stderr.on "data", (d) ->
-      console.log d.toString()
+    sbawned.on "exit", () =>
+      console.log "Killing iPhone Simulator ..."
+      sbawn
+        cmd: "/usr/bin/killall"
+        args: ["iPhone Simulator"]
 
-    @simulatorProcess.on 'exit', (code, signal)=>
-      #TODO WHAT TO DO
 
 
 module.exports = Simulator
