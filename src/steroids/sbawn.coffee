@@ -49,7 +49,7 @@ class Sbawned
 
   _performEvents: (event) =>
     for i of @_events[event]
-      @_events[event][i].call()
+      @_events[event][i].call() if @_events[event][i]
 
 sbawn = (options={}) ->
   s = new Sbawned(options)
