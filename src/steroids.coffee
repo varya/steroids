@@ -111,13 +111,15 @@ class Steroids
         projectCreator.clone(folder, template)
 
         console.log "Initializing Steroids project ... "
-        process.chdir(folder)
+        ProjectInitializer = require("./steroids/ProjectInitializer")
+        projectInitializer = new ProjectInitializer
+                                   folder: folder
 
-        @runSteroidsCommandSync "make"
-        @runSteroidsCommandSync "package"
+        projectInitializer.initialize
+          onSuccess: () ->
+            Help.logo()
+            Help.welcome()
 
-        Help.logo()
-        Help.welcome()
 
       when "push"
         @runSteroidsCommandSync "make"
