@@ -14,25 +14,28 @@ class Simulator
 
     @running = true
 
-    console.log "running #{steroidsSimulators.iosSimPath}"
-    console.log "with params -app #{steroidsSimulators.latestSimulatorPath}"
+    cmd = steroidsSimulators.iosSimPath
+    args = ["-app", steroidsSimulators.latestSimulatorPath]
+
+    steroidsCli.debug "Spawning #{cmd}"
+    steroidsCli.debug "with params: #{args}"
 
     @simulatorSession = sbawn
-      cmd: steroidsSimulators.iosSimPath
-      args: ["-app", steroidsSimulators.latestSimulatorPath]
+      cmd: cmd
+      args: args
       stdout: true
       stderr: true
 
     @simulatorSession.on "exit", () =>
       @running = false
-      console.log "Killing iPhone Simulator ..." if @options.debug
+      steroidsCli.debug "Killing iPhone Simulator ..."
 
       killSimulator = sbawn
         cmd: "/usr/bin/killall"
         args: ["iPhone Simulator"]
 
       killSimulator.on "exit", () =>
-        console.log "killed." if @options.debug
+        steroidsCli.debug "killed."
 
   stop: () =>
     return false unless @running

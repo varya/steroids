@@ -15,8 +15,9 @@ class Steroids
 
   simulator: null
 
-  constructor: ->
+  constructor: (@options = {}) ->
     @simulator = new Simulator
+      debug: @options.debug
 
   detectLegacyProject: ->
     fs = require("fs")
@@ -60,6 +61,16 @@ class Steroids
       console.log output.stderr
       if options.exitOnFailure
         process.exit 1
+
+  debug: (options = {}) =>
+    return unless @options.debug
+
+    message = if options.constructor.name == "String"
+      options
+    else
+      options.message
+
+    util.log "DEBUG: #{message}"
 
 
   startServer: (options={}) =>
@@ -346,6 +357,8 @@ class Steroids
 module.exports =
   run: ->
     global.steroidsCli = new Steroids
+      debug: argv.debug
+
     steroidsCli.execute()
 
   GruntDefaults: require "./steroids/GruntDefaults"
