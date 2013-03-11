@@ -3,8 +3,16 @@ path = require "path"
 
 class Version
 
-  @getVersion: () ->
-    packageJSON = require path.join paths.npm, "package.json"
+  constructor: (@options = {})->
+    @pathToPackageJSON = path.join paths.npm, "package.json"
+
+  getVersion: =>
+    steroidsCli.debug "requiring #{@pathToPackageJSON}"
+
+    packageJSON = require @pathToPackageJSON
+    steroidsCli.debug "package.json#version: #{packageJSON.version}"
+
     return packageJSON.version
+
 
 module.exports = Version

@@ -19,6 +19,8 @@ class Steroids
     @simulator = new Simulator
       debug: @options.debug
 
+    @version = new Version
+
   detectLegacyProject: ->
     fs = require("fs")
 
@@ -110,7 +112,7 @@ class Steroids
 
     switch firstOption
       when "version"
-        console.log "AppGyver Steroids #{Version.getVersion()}"
+        console.log "AppGyver Steroids #{@version.getVersion()}"
 
       when "create"
         if otherOptions[1]?
@@ -364,5 +366,3 @@ module.exports =
   GruntDefaults: require "./steroids/GruntDefaults"
   Help: Help
   paths: paths
-
-  version: Version.getVersion()
