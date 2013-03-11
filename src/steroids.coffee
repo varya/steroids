@@ -1,6 +1,7 @@
 Help = require "./steroids/Help"
 Weinre = require "./steroids/Weinre"
 Simulator = require "./steroids/Simulator"
+Project = require "./steroids/Project"
 
 util = require "util"
 Version = require "./steroids/Version"
@@ -123,24 +124,29 @@ class Steroids
           folder = otherOptions[0]
 
         ProjectCreator = require("./steroids/ProjectCreator")
-        projectCreator = new ProjectCreator()
+        projectCreator = new ProjectCreator
+          debug: @options.debug
+
         projectCreator.clone(folder, template)
 
         console.log "Initializing Steroids project ... "
-        ProjectInitializer = require("./steroids/ProjectInitializer")
-        projectInitializer = new ProjectInitializer
-                                   folder: folder
 
-        projectInitializer.initialize
+        project = new Project
+                    folder: folder
+                    debug: @options.debug
+
+        project.initialize
           onSuccess: () ->
             Help.logo()
             Help.welcome()
 
 
       when "push"
-        @runSteroidsCommandSync "make"
+        project = new Project
+        project.push
+          onSuccess: ->
+            steroidsCli.debug "steroids make && steroids package ok."
 
-        @runSteroidsCommandSync "package"
 
       when "make"
         Grunt = require("./steroids/Grunt")
@@ -163,9 +169,13 @@ class Steroids
         weinre = new Weinre options
         weinre.run()
 
-        @runSteroidsCommandSync "push"
+        project = new Project
+        project.push
+          onSuccess: () =>
+            url = "http://localhost:#{weinre.options.httpPort}/client/#anonymous"
+            steroidsCli.debug "pushed, opening browser to #{url}"
+            open url
 
-        open "http://localhost:#{weinre.options.httpPort}/client/#anonymous"
 
       when "simulator"
         steroidsCli.simulator.run()
