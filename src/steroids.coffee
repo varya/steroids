@@ -13,7 +13,10 @@ open = require "open"
 
 class Steroids
 
+  simulator: null
+
   constructor: ->
+    @simulator = new Simulator
 
   detectLegacyProject: ->
     fs = require("fs")
@@ -152,8 +155,7 @@ class Steroids
         open "http://localhost:#{weinre.options.httpPort}/client/#anonymous"
 
       when "simulator"
-        simulator = new Simulator
-        simulator.run()
+        steroidsCli.simulator.run()
 
       when "connect"
 
@@ -343,8 +345,8 @@ class Steroids
 
 module.exports =
   run: ->
-    s = new Steroids
-    s.execute()
+    global.steroidsCli = new Steroids
+    steroidsCli.execute()
 
   GruntDefaults: require "./steroids/GruntDefaults"
   Help: Help
