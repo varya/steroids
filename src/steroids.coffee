@@ -48,23 +48,6 @@ class Steroids
         Help.legacy.specificSteroidsJSDetected()
         process.exit(1)
 
-
-  runSteroidsCommandSync: (cmd, options={})->
-    # no merging objects :(
-    options.exitOnFailure ?= true
-
-    fullCmd = "steroids #{cmd}"
-    util.log "Running: #{fullCmd}"
-
-    output = execSync fullCmd, true
-
-    console.log output.stdout
-
-    if output.stderr != ""
-      console.log output.stderr
-      if options.exitOnFailure
-        process.exit 1
-
   debug: (options = {}) =>
     return unless steroidsCli.options.debug
 
