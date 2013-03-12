@@ -359,8 +359,10 @@ class Steroids
         Help.logo()
 
         Login = require "./steroids/Login"
+
         unless Login.authTokenExists()
-          @runSteroidsCommandSync "login"
+          util.log "ERROR: no authentication found, run steroids login first."
+          process.exit 1
 
         unless Login.authTokenExists()
           util.log "ERROR: Canceling cloud build due to login failure"
