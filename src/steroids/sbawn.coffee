@@ -31,7 +31,10 @@ class Sbawned
     @done = true
 
   sbawn: () =>
-    @spawned = spawn @options.cmd, @options.args, { cwd: @options.cwd }
+    args = @options.args
+    args << "--debug" if steroidsCli.options.debug?
+
+    @spawned = spawn @options.cmd, args, { cwd: @options.cwd }
 
     @spawned.stdout.on "data", @onStdoutData
     @spawned.stderr.on "data", @onStderrData

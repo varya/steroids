@@ -4,7 +4,6 @@ class Project
 
   constructor: (@options={}) ->
 
-
   initialize: (options={}) =>
     process.chdir(@options.folder)
 
@@ -20,18 +19,26 @@ class Project
         @package
           onSuccess: () =>
             options.onSuccess.call() if options.onSuccess?
+      onFailure: options.onFailure
 
 
   make: (options = {}) =>
-    steroidsCli.debug "Spawning steroids make"
 
-    makeSbawn = sbawn
+    steroidsCli.debug "Spawning steroids grunt"
+
+    gruntSbawn = sbawn
       cmd: "steroids"
-      args: ["make"]
+      args: ["grunt"]
       stdout: true
       stderr: true
 
-    makeSbawn.on "exit", options.onSuccess
+    gruntSbawn.on "exit", () =>
+      if gruntSbawn.code == 137
+        options.onSuccess.call() if options.onSuccess?
+      else
+        steroidsCli.debug "grunt spawn exited with code #{gruntSbawn.code}"
+        options.onFailure.call() if options.onFailure?
+
 
   package: (options = {}) =>
     steroidsCli.debug "Spawning steroids package"

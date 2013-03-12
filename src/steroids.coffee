@@ -66,7 +66,7 @@ class Steroids
         process.exit 1
 
   debug: (options = {}) =>
-    return unless @options.debug
+    return unless steroidsCli.options.debug
 
     message = if options.constructor.name == "String"
       options
@@ -149,11 +149,8 @@ class Steroids
 
 
       when "make"
-        Grunt = require("./steroids/Grunt")
-
-        grunt = new Grunt
-
-        grunt.run()
+        project = new Project
+        project.make()
 
       when "package"
         Packager = require "./steroids/Packager"
@@ -161,6 +158,13 @@ class Steroids
         packager = new Packager
 
         packager.create()
+
+      when "grunt"
+        # Grunt steals the whole node process ...
+        Grunt = require("./steroids/Grunt")
+
+        grunt = new Grunt
+        grunt.run()
 
       when "debug"
         options = {}
@@ -182,79 +186,89 @@ class Steroids
 
       when "connect"
 
-        BuildServer = require "./steroids/servers/BuildServer"
+        project = new Project
+        project.push
+          onFailure: =>
+            steroidsCli.debug "Can not continue on starting server, push failed."
+          onSuccess: =>
+            BuildServer = require "./steroids/servers/BuildServer"
 
-        Prompt = require("./steroids/Prompt")
-        prompt = new Prompt
-          context: @
+            Prompt = require("./steroids/Prompt")
+            prompt = new Prompt
+              context: @
 
-        if argv.watch
-          Watcher = require("./steroids/fs/watcher")
+            if argv.watch
+              Watcher = require("./steroids/fs/watcher")
 
-          pushAndPrompt = =>
-            console.log ""
-            util.log "File system change detected, pushing code to connected devices ..."
-
-            @runSteroidsCommandSync "push", exitOnFailure: false
-            prompt.refresh()
-
-          watcher = new Watcher
-            onCreate: pushAndPrompt
-            onUpdate: pushAndPrompt
-
-          watcher.watch("./app")
-          watcher.watch("./www")
-          watcher.watch("./config")
-
-
-        server = @startServer callback: ()=>
-          buildServer = new BuildServer
-                              path: "/"
-
-          server.mount(buildServer)
-
-          @runSteroidsCommandSync "push"
-
-          interfaces = server.interfaces()
-          ips = server.ipAddresses()
-
-
-          unless argv.qrcode?
-            QRCode = require "./steroids/QRCode"
-            qrcode = new QRCode("appgyver://?ips=#{encodeURIComponent(JSON.stringify(ips))}")
-            qrcode.show()
-
-            util.log "Waiting for client to connect, scan the QR code that is visible in the browser ..."
-
-          setInterval () ->
-            activeClients = 0;
-            needsRefresh = false
-
-            for ip, client of buildServer.clients
-              delta = Date.now() - client.lastSeen
-
-              if (delta > 2000)
-                needsRefresh = true
-                delete buildServer.clients[ip]
+              pushAndPrompt = =>
                 console.log ""
-                util.log "Client disconnected: #{client.ipAddress} - #{client.userAgent}"
-              else if client.new
-                needsRefresh = true
-                activeClients++
-                client.new = false
+                util.log "File system change detected, pushing code to connected devices ..."
 
-                console.log ""
-                util.log "New client: #{client.ipAddress} - #{client.userAgent}"
-              else
-                activeClients++
+                project = new Project
+                project.push
+                  onSuccess: =>
+                    prompt.refresh()
+                  onFailure: =>
+                    prompt.refresh()
 
-            if needsRefresh
-              util.log "Number of clients connected: #{activeClients}"
-              prompt.refresh()
+              watcher = new Watcher
+                onCreate: pushAndPrompt
+                onUpdate: pushAndPrompt
+                onDelete: (file) =>
+                  steroidsCli.debug "Deleted watched file #{file}"
 
-          , 1000
+              watcher.watch("./app")
+              watcher.watch("./www")
+              watcher.watch("./config")
 
-          prompt.connectLoop()
+
+            server = @startServer callback: ()=>
+              buildServer = new BuildServer
+                                  path: "/"
+
+              server.mount(buildServer)
+
+              interfaces = server.interfaces()
+              ips = server.ipAddresses()
+
+
+              unless argv.qrcode?
+                QRCode = require "./steroids/QRCode"
+                qrcode = new QRCode("appgyver://?ips=#{encodeURIComponent(JSON.stringify(ips))}")
+                qrcode.show()
+
+                util.log "Waiting for client to connect, scan the QR code that is visible in the browser ..."
+
+              setInterval () ->
+                activeClients = 0;
+                needsRefresh = false
+
+                for ip, client of buildServer.clients
+                  delta = Date.now() - client.lastSeen
+
+                  if (delta > 2000)
+                    needsRefresh = true
+                    delete buildServer.clients[ip]
+                    console.log ""
+                    util.log "Client disconnected: #{client.ipAddress} - #{client.userAgent}"
+                  else if client.new
+                    needsRefresh = true
+                    activeClients++
+                    client.new = false
+
+                    console.log ""
+                    util.log "New client: #{client.ipAddress} - #{client.userAgent}"
+                  else
+                    activeClients++
+
+                if needsRefresh
+                  util.log "Number of clients connected: #{activeClients}"
+                  prompt.refresh()
+
+              , 1000
+
+              prompt.connectLoop()
+
 
 
 
