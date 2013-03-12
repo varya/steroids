@@ -42,7 +42,11 @@ class Prompt
           process.exit(0)
         when "", "push"
           console.log "Updating code to all connected devices ..."
-          @options.context.runSteroidsCommandSync "push", exitOnFailure: false
+          Project = require "./Project"
+          project = new Project
+          project.push
+            onSuccess: => @refresh()
+            onFailure: => @refresh()
 
         when "s", "sim", "simulator"
           console.log "Starting iPhone Simulator"
