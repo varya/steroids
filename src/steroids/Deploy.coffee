@@ -1,7 +1,7 @@
 fs = require "fs"
 path = require "path"
 util = require "util"
-execSync = require "exec-sync"
+
 restify = require "restify"
 restler = require "restler"
 async = require "async"

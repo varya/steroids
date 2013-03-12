@@ -7,8 +7,6 @@ util = require "util"
 Version = require "./steroids/Version"
 paths = require "./steroids/paths"
 
-execSync = require "exec-sync"
-
 argv = require('optimist').argv
 open = require "open"
 
