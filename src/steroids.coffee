@@ -367,13 +367,17 @@ class Steroids
           process.exit 1
 
         util.log "Building application locally"
-        @runSteroidsCommandSync "push"
 
-        Deploy = require "./steroids/deploy"
-        deploy = new Deploy(otherOptions)
-        deploy.uploadToCloud ()=>
-          # all complete
-          process.exit 0
+        project = new Project
+        project.make
+          onSuccess: =>
+            Deploy = require "./steroids/deploy"
+            deploy = new Deploy(otherOptions)
+            deploy.uploadToCloud ()=>
+              # all complete
+              process.exit 0
+          onFailure: =>
+            console.log "Can not build project locally, not deploying to cloud."
 
       else
         Help.logo() unless argv.noLogo
