@@ -16,7 +16,9 @@ echo "ok?"
 
 read
 
-echo "versioning the npm"
+echo "versioning the npm, now it's a good time to control+c if you don't want to patch ?"
+
+read
 
 DEFAULTSEVERITY=patch
 SEVERITY=${1:-$DEFAULTSEVERITY}
