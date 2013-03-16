@@ -1,5 +1,5 @@
 (function(window){
-/*! steroids-js - v0.3.7 - 2013-02-25 */
+/*! steroids-js - v0.3.9 - 2013-03-15 */
 ;var Bridge,
   __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
@@ -37,6 +37,9 @@ Bridge = (function() {
   }
 
   Bridge.prototype.sendMessageToNative = function(options) {
+    if (options == null) {
+      options = {};
+    }
     throw "ERROR: Bridge#sendMessageToNative not overridden by subclass!";
   };
 
@@ -56,6 +59,9 @@ Bridge = (function() {
 
   Bridge.prototype.nativeCall = function(options) {
     var _this = this;
+    if (options == null) {
+      options = {};
+    }
     return this.send({
       method: options.method,
       parameters: options.parameters,
@@ -102,6 +108,9 @@ Bridge = (function() {
 
   Bridge.prototype.send = function(options) {
     var callbacks, request;
+    if (options == null) {
+      options = {};
+    }
     callbacks = this.storeCallbacks(options);
     request = {
       method: options.method,
@@ -111,12 +120,16 @@ Bridge = (function() {
     request.parameters["view"] = window.top.AG_VIEW_ID;
     request.parameters["screen"] = window.top.AG_SCREEN_ID;
     request.parameters["layer"] = window.top.AG_LAYER_ID;
+    request.parameters["udid"] = window.top.AG_WEBVIEW_UDID;
     return this.sendMessageToNative(JSON.stringify(request));
   };
 
   Bridge.prototype.storeCallbacks = function(options) {
     var callback_prefix, callbacks,
       _this = this;
+    if (options == null) {
+      options = {};
+    }
     if ((options != null ? options.callbacks : void 0) == null) {
       return {};
     }
@@ -159,7 +172,7 @@ AndroidBridge = (function(_super) {
   __extends(AndroidBridge, _super);
 
   function AndroidBridge() {
-    AndroidAPIBridge.registerHandler("Steroids.nativeBridge.message_handler");
+    AndroidAPIBridge.registerHandler("steroids.nativeBridge.message_handler");
     window.AG_SCREEN_ID = AndroidAPIBridge.getAGScreenId();
     window.AG_LAYER_ID = AndroidAPIBridge.getAGLayerId();
     window.AG_VIEW_ID = AndroidAPIBridge.getAGViewId();
@@ -260,11 +273,32 @@ Events = (function() {
       msg: "set document.visibilityState to unloaded"
     });
     document.visibilityState = "unloaded";
+    document.hidden = "true";
     return document.addEventListener("DOMContentLoaded", function() {
       steroids.debug({
         msg: "got DOMContentLoaded, setting document.visibilityState to prerender"
       });
       return document.visibilityState = "prerender";
+    });
+  };
+
+  Events.checkInitialVisibility = function(options, callbacks) {
+    var setVisibilityStatus;
+    if (options == null) {
+      options = {};
+    }
+    if (callbacks == null) {
+      callbacks = {};
+    }
+    setVisibilityStatus = function(event) {
+      document.hidden = event.currentVisibility === "hidden";
+      document.visibilityState = event.currentVisibility;
+      return steroids.markComponentReady("Events.initialVisibility");
+    };
+    return steroids.nativeBridge.nativeCall({
+      method: "getCurrentVisibility",
+      successCallbacks: [setVisibilityStatus, callbacks.onSuccess],
+      failureCallbacks: [callbacks.onFailure]
     });
   };
 
@@ -278,6 +312,7 @@ Events = (function() {
       callbacks = {};
     }
     this.initializeVisibilityState();
+    this.checkInitialVisibility();
     focusAdded = function() {
       steroids.debug({
         msg: "focus added"
@@ -295,7 +330,7 @@ Events = (function() {
       steroids.debug({
         msg: "lostfocus added"
       });
-      return steroids.markComponentReady("Events");
+      return steroids.markComponentReady("Events.focuslisteners");
     };
     becomeVisibleEvent = function() {
       steroids.debug({
@@ -468,11 +503,18 @@ Animation = (function() {
   }
 
   Animation.prototype.perform = function(options, callbacks) {
+    var _ref, _ref1;
     if (options == null) {
       options = {};
     }
     if (callbacks == null) {
       callbacks = {};
+    }
+    if (window.orientation !== 0 && ((_ref = this.transition) === "slideFromRight" || _ref === "slideFromLeft" || _ref === "slideFromTop" || _ref === "slideFromBottom")) {
+      if ((_ref1 = callbacks.onFailure) != null) {
+        _ref1.call();
+      }
+      return;
     }
     return steroids.nativeBridge.nativeCall({
       method: "performTransition",
@@ -511,6 +553,12 @@ App = (function() {
   }
 
   App.prototype.getPath = function(options, callbacks) {
+    if (options == null) {
+      options = {};
+    }
+    if (callbacks == null) {
+      callbacks = {};
+    }
     return steroids.nativeBridge.nativeCall({
       method: "getApplicationPath",
       parameters: {},
@@ -519,31 +567,17 @@ App = (function() {
     });
   };
 
-  return App;
-
-})();
-;var Button;
-
-Button = (function() {
-
-  function Button() {}
-
-  Button.prototype.show = function(options, callbacks) {
+  App.prototype.getLaunchURL = function(options, callbacks) {
+    if (options == null) {
+      options = {};
+    }
     if (callbacks == null) {
       callbacks = {};
     }
-    return steroids.nativeBridge.nativeCall({
-      method: "showNavigationBarRightButton",
-      parameters: {
-        title: options.title
-      },
-      successCallbacks: [callbacks.onSuccess],
-      failureCallbacks: [callbacks.onFailure],
-      recurringCallbacks: [callbacks.onRecurring]
-    });
+    return window.AG_STEROIDS_SCANNER_URL;
   };
 
-  return Button;
+  return App;
 
 })();
 ;var Modal;
@@ -553,7 +587,7 @@ Modal = (function() {
   function Modal() {}
 
   Modal.prototype.show = function(options, callbacks) {
-    var view;
+    var parameters, view;
     if (options == null) {
       options = {};
     }
@@ -572,11 +606,17 @@ Modal = (function() {
           failureCallbacks: [callbacks.onFailure]
         });
       case "WebView":
+        parameters = view.id != null ? {
+          id: view.id
+        } : {
+          url: view.location
+        };
+        if (options.keepLoading === true) {
+          parameters.keepTransitionHelper = true;
+        }
         return steroids.nativeBridge.nativeCall({
           method: "openModal",
-          parameters: {
-            url: view.location
-          },
+          parameters: parameters,
           successCallbacks: [callbacks.onSuccess],
           failureCallbacks: [callbacks.onFailure]
         });
@@ -630,6 +670,20 @@ LayerCollection = (function() {
     });
   };
 
+  LayerCollection.prototype.popAll = function(options, callbacks) {
+    if (options == null) {
+      options = {};
+    }
+    if (callbacks == null) {
+      callbacks = {};
+    }
+    return steroids.nativeBridge.nativeCall({
+      method: "popAllLayers",
+      successCallbacks: [callbacks.onSuccess],
+      failureCallbacks: [callbacks.onFailure]
+    });
+  };
+
   LayerCollection.prototype.push = function(options, callbacks) {
     var defaultOnSuccess, parameters, view,
       _this = this;
@@ -650,6 +704,9 @@ LayerCollection = (function() {
     };
     if (options.navigationBar === false) {
       parameters.hidesNavigationBar = true;
+    }
+    if (options.keepLoading === true) {
+      parameters.keepTransitionHelper = true;
     }
     if (options.animation != null) {
       parameters.pushAnimation = options.animation.transition;
@@ -756,7 +813,8 @@ NavigationBar = (function() {
   return NavigationBar;
 
 })();
-;var WebView;
+;var WebView,
+  __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
 WebView = (function() {
 
@@ -765,6 +823,8 @@ WebView = (function() {
   WebView.prototype.id = null;
 
   WebView.prototype.location = null;
+
+  WebView.prototype.allowedRotations = null;
 
   WebView.prototype.navigationBar = new NavigationBar;
 
@@ -779,6 +839,7 @@ WebView = (function() {
       }
     }
     this.params = this.getParams();
+    this.setAllowedRotations([]);
   }
 
   WebView.prototype.preload = function(options, callbacks) {
@@ -819,6 +880,40 @@ WebView = (function() {
     return params;
   };
 
+  WebView.prototype.removeLoading = function(options, callbacks) {
+    if (options == null) {
+      options = {};
+    }
+    if (callbacks == null) {
+      callbacks = {};
+    }
+    return steroids.nativeBridge.nativeCall({
+      method: "removeTransitionHelper",
+      successCallbacks: [callbacks.onSuccess],
+      failureCallbacks: [callbacks.onFailure]
+    });
+  };
+
+  WebView.prototype.setAllowedRotations = function(options, callbacks) {
+    var _ref,
+      _this = this;
+    if (options == null) {
+      options = {};
+    }
+    if (callbacks == null) {
+      callbacks = {};
+    }
+    this.allowedRotations = options.constructor.name === "Array" ? options : options.allowedRotations;
+    window.shouldRotateToOrientation = function(orientation) {
+      if (__indexOf.call(_this.allowedRotations, orientation) >= 0) {
+        return true;
+      } else {
+        return false;
+      }
+    };
+    return (_ref = callbacks.onSuccess) != null ? _ref.call() : void 0;
+  };
+
   return WebView;
 
 })();
@@ -842,15 +937,6 @@ PreviewFileView = (function() {
   return PreviewFileView;
 
 })();
-;var Tab;
-
-Tab = (function() {
-
-  function Tab() {}
-
-  return Tab;
-
-})();
 ;var Audio;
 
 Audio = (function() {
@@ -858,12 +944,24 @@ Audio = (function() {
   function Audio() {}
 
   Audio.prototype.play = function(options, callbacks) {
-    var _this = this;
+    var readyCapableDevice,
+      _this = this;
+    if (options == null) {
+      options = {};
+    }
     if (callbacks == null) {
       callbacks = {};
     }
+    readyCapableDevice = false;
+    setTimeout(function() {
+      if (readyCapableDevice) {
+        return;
+      }
+      return navigator.notification.alert("Audio playback requires a newer version of Scanner, please update from the App Store.", null, "Update Required");
+    }, 500);
     return steroids.on("ready", function() {
       var mediaPath, relativeTo, _ref;
+      readyCapableDevice = true;
       relativeTo = (_ref = options.relativeTo) != null ? _ref : steroids.app.path;
       mediaPath = options.constructor.name === "String" ? "" + relativeTo + "/" + options : "" + relativeTo + "/" + options.path;
       return steroids.nativeBridge.nativeCall({
@@ -895,21 +993,12 @@ Audio = (function() {
   return Audio;
 
 })();
-;var Camera;
-
-Camera = (function() {
-
-  function Camera() {}
-
-  return Camera;
-
-})();
 ;var OAuth2Flow;
 
 OAuth2Flow = (function() {
 
   function OAuth2Flow(options) {
-    this.options = options;
+    this.options = options != null ? options : {};
     this.options.callbackUrl = "http://localhost:13101/" + this.options.callbackPath;
   }
 
@@ -1108,7 +1197,7 @@ TouchDB = (function() {
   TouchDB.baseURL = "http://.touchdb.";
 
   function TouchDB(options) {
-    this.options = options;
+    this.options = options != null ? options : {};
     if (!this.options.name) {
       throw "Database name required";
     }
@@ -1403,6 +1492,9 @@ File = (function() {
 
   function File(options) {
     var _ref;
+    if (options == null) {
+      options = {};
+    }
     this.path = options.constructor.name === "String" ? options : options.path;
     this.relativeTo = (_ref = options.relativeTo) != null ? _ref : steroids.app.path;
   }
@@ -1504,9 +1596,68 @@ OpenURL = (function() {
   return OpenURL;
 
 })();
+;var Notifications;
+
+Notifications = (function() {
+
+  function Notifications() {}
+
+  Notifications.prototype.post = function(options, callbacks) {
+    var message;
+    if (options == null) {
+      options = {};
+    }
+    if (callbacks == null) {
+      callbacks = {};
+    }
+    message = options.constructor.name === "String" ? options : options.message;
+    return steroids.nativeBridge.nativeCall({
+      method: "postNotification",
+      parameters: {
+        body: message
+      },
+      successCallbacks: [callbacks.onSuccess],
+      failureCallbacks: [callbacks.onFailure]
+    });
+  };
+
+  return Notifications;
+
+})();
+;var PostMessage;
+
+PostMessage = (function() {
+
+  function PostMessage() {}
+
+  PostMessage.postMessage = function(message, targetOrigin) {
+    var callbacks, escapedJSONMessage;
+    callbacks = {};
+    escapedJSONMessage = escape(JSON.stringify(message));
+    return steroids.nativeBridge.nativeCall({
+      method: "broadcastJavascript",
+      parameters: {
+        javascript: "steroids.PostMessage.dispatchMessageEvent('" + escapedJSONMessage + "', '*');"
+      },
+      successCallbacks: [callbacks.onSuccess],
+      recurringCallbacks: [callbacks.onFailure]
+    });
+  };
+
+  PostMessage.dispatchMessageEvent = function(escapedJSONMessage, targetOrigin) {
+    var e, message;
+    message = JSON.parse(unescape(escapedJSONMessage));
+    e = document.createEvent("MessageEvent");
+    e.initMessageEvent("message", false, false, message, "", "", window, null);
+    return window.dispatchEvent(e);
+  };
+
+  return PostMessage;
+
+}).call(this);
 ;
 window.steroids = {
-  version: "0.3.7",
+  version: "0.3.9",
   Animation: Animation,
   XHR: XHR,
   File: File,
@@ -1527,6 +1678,9 @@ window.steroids = {
   debugEnabled: false,
   debug: function(options) {
     var debugMessage, msg;
+    if (options == null) {
+      options = {};
+    }
     if (!steroids.debugEnabled) {
       return;
     }
@@ -1572,7 +1726,9 @@ window.steroids.waitingForComponents.push("App");
 
 window.steroids.app = new App;
 
-window.steroids.waitingForComponents.push("Events");
+window.steroids.waitingForComponents.push("Events.focuslisteners");
+
+window.steroids.waitingForComponents.push("Events.initialVisibility");
 
 Events.extend();
 
@@ -1595,5 +1751,11 @@ window.steroids.device = new Device;
 window.steroids.analytics = new Analytics;
 
 window.steroids.screen = new Screen;
+
+window.steroids.notifications = new Notifications;
+
+window.steroids.PostMessage = PostMessage;
+
+window.postMessage = PostMessage.postMessage;
 
 })(window)
