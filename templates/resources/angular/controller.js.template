@@ -1,0 +1,58 @@
+module = angular.module('<%= options.name %>', []);
+
+module.config(function($routeProvider) {
+  $routeProvider.when( '/', {
+    controller:<%= options.className %>Controller.index,
+    templateUrl:'_list.html'
+  });
+
+  $routeProvider.when( '/show/:id', {
+    controller:<%= options.className %>Controller.show,
+    templateUrl:'_details.html'
+  });
+
+  $routeProvider.otherwise({ redirectTo: '/' });
+});
+
+<%= options.name %>s = [{
+  id: 1,
+  name: "First"
+},{
+  id: 2,
+  name: "Second"
+}];
+
+<%= options.className %>Controller = {
+  index: function($scope) {
+    document.addEventListener("deviceready", function() {
+      steroids.view.navigationBar.show({ title: "<%= options.className %> List" });
+
+      document.addEventListener("visibilitychange", function() {
+        $scope.<%= options.name %>Collection = <%= options.name %>s;
+      });
+    });
+
+    $scope.pushDetailsLayer = function(id) {
+      webview = new steroids.views.WebView({ location: "/views/<%= options.name %>/index.html#/show/" + id });
+      steroids.layers.push({ view: webview });
+    }
+
+    $scope.<%= options.name %>Collection = <%= options.name %>s;
+  },
+
+  show: function($scope, $routeParams) {
+    id = $routeParams.id;
+
+    document.addEventListener( "deviceready", function() {
+      steroids.view.navigationBar.show({ title: "<%= options.className %> Show: " + id });
+    });
+
+    // Find correct <%= options.name %>
+    for (i = 0; i < <%= options.name %>s.length; i++) {
+      <%= options.name %> = <%= options.name %>s[i];
+      if (<%= options.name %>.id == id) {
+        $scope.<%= options.name %> = <%= options.name %>;
+      }
+    }
+  }
+};
