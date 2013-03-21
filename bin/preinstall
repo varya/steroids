@@ -1,14 +1,58 @@
 #!/bin/sh
 
-USR_LOCAL_PATH="/usr/local"
 
 echo "AppGyver Steroids\n"
 
 
+echo "Checking for required components ..."
+
+REQUIRED_CMDS="gcc make git"
+
+ERRORS=false
+for REQUIRED_CMD in $REQUIRED_CMDS
+do
+  command -v "$REQUIRED_CMD" > /dev/null && {
+    echo "  Found '$REQUIRED_CMD', good."
+  } || {
+    ERRORS=true
+    echo "  ERROR: command '$REQUIRED_CMD' not found, please install it first."
+  }
+done
+
+if [ "$ERRORS" == true ]; then
+  echo "\nInstall gcc and make by installing Xcode from the Mac App Store."
+  echo "\nThen install 'Command Line Tools' from Xcode preferences -> downloads."
+  echo "\nFor Git installation, we recommend using homebrew, see http://mxcl.github.com/homebrew/"
+  echo "\nOnce homebrew is installed, install git with: brew install git"
+
+  echo "\n\nHit [enter] to quit and install the dependencies.  Then run the installation again."
+  read
+  exit 1
+fi
+
+echo "... dependencies ok.\n"
+
+USR_LOCAL_PATH="/usr/local"
 LOGGED_IN_USERNAME=$(logname)
 CHOWN_USR_LOCAL_CMD="sudo chown -R $LOGGED_IN_USERNAME $USR_LOCAL_PATH"
 
-NODE_OWNED_BY=$(stat -f "%Su" $USR_LOCAL_PATH)
+NODE_OWNERSHIP_COMMAND="stat -f %Su $USR_LOCAL_PATH"
+
+$NODE_OWNERSHIP_COMMAND > /dev/null || {
+  echo "ERROR: command $NODE_OWNERSHIP_COMMAND failed on your system."
+  echo
+  echo "Ensure that user '$LOGGED_IN_USERNAME' owns the directory /usr/local"
+  echo
+  echo "You can do this by:"
+  echo "  sudo chown -R $LOGGED_IN_USERNAME $USR_LOCAL_PATH"
+  echo
+  echo "Hit [Ctrl-C] to do this now (ignore the few errors below and run this installer again)."
+  echo "Hit [enter] to continue with the installation process."
+  read
+  exit 0
+}
+
+NODE_OWNED_BY=$($NODE_OWNERSHIP_COMMAND)
 
 if [ "$LOGGED_IN_USERNAME" != "$NODE_OWNED_BY" ]; then
   echo "ERROR: $USR_LOCAL_PATH is owned by '$NODE_OWNED_BY' and not by '$LOGGED_IN_USERNAME'"
@@ -41,34 +85,4 @@ if [ "$USER" == "root" ]; then
   exit 1
 fi
 
-
-
 echo "$USR_LOCAL_PATH is owned by $LOGGED_IN_USERNAME, good.\n"
-
-echo "Checking for required components ..."
-
-REQUIRED_CMDS="gcc make git"
-
-ERRORS=false
-for REQUIRED_CMD in $REQUIRED_CMDS
-do
-  command -v "$REQUIRED_CMD" > /dev/null && {
-    echo "  Found '$REQUIRED_CMD', good."
-  } || {
-    ERRORS=true
-    echo "  ERROR: command '$REQUIRED_CMD' not found, please install it first."
-  }
-done
-
-if [ "$ERRORS" == true ]; then
-  echo "\nInstall gcc and make by installing Xcode from the Mac App Store."
-  echo "\nThen install 'Command Line Tools' from Xcode preferences -> downloads."
-  echo "\nFor Git installation, we recommend using homebrew, see http://mxcl.github.com/homebrew/"
-  echo "\nOnce homebrew is installed, install git with: brew install git"
-
-  echo "\n\nHit [enter] to quit and install the dependencies.  Then run the installation again."
-  read
-  exit 1
-fi
-
-echo "... dependencies ok, proceeding with install.\n"
