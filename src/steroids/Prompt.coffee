@@ -40,7 +40,7 @@ class Prompt
           console.log "Bye"
 
           process.exit(0)
-        when "", "push"
+        when "", "push", "p"
           console.log "Updating code to all connected devices ..."
           Project = require "./Project"
           project = new Project
