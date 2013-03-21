@@ -1,11 +1,11 @@
-## 0.2.8 (2013-01-22)
+## 0.7.2 (2013-03-20)
 
-Changelog started.
+Changelog started (again)
 
 Features:
-  -
+  - QR code can be shown from connect prompt
+  - Initial support for launching editors from connect prompt, currently hardcoded "mate"
+  - p for push in connect prompt
 
 Bugfixes:
-  - Interagtion tests pass, run with `npm test`
-  - If Steroids project contains symlinks, running steroids make would throw wrench errors. Should be fixed now.
-
+  -
