@@ -63,6 +63,10 @@ class Prompt
 
           console.log "... done."
 
+        when "qr", "qr-code", "qrcode"
+          QRCode = require "./QRCode"
+          QRCode.showLocal()
+
         when "help", "?", "usage"
           Help.connect()
         else
