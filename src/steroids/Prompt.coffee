@@ -67,6 +67,15 @@ class Prompt
           QRCode = require "./QRCode"
           QRCode.showLocal()
 
+        when "mate"
+          paths = require("./paths")
+
+          sbawn = require "./sbawn"
+          sbawn
+            cmd: "mate"
+            args: [paths.applicationDir]
+            debug: true
+
         when "help", "?", "usage"
           Help.connect()
         else

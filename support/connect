@@ -1,3 +1,7 @@
 
+[enter], push       - Push code to connected devices
+simulator           - Launch iOS Simulator
+simulator stop      - Stop iOS Simulator
 qrcode              - Show the QR code for connecting devices
+mate                - Launch TextMate with project folder as first parameter (working on to support $EDITOR)
 quit                - exit
