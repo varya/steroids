@@ -203,19 +203,16 @@ class Steroids
 
 
             server = @startServer callback: ()=>
+              global.steroidsCli.server = server
+
               buildServer = new BuildServer
                                   path: "/"
 
               server.mount(buildServer)
 
-              interfaces = server.interfaces()
-              ips = server.ipAddresses()
-
-
               unless argv.qrcode?
                 QRCode = require "./steroids/QRCode"
-                qrcode = new QRCode("appgyver://?ips=#{encodeURIComponent(JSON.stringify(ips))}")
-                qrcode.show()
+                QRCode.showLocal()
 
                 util.log "Waiting for client to connect, scan the QR code that is visible in the browser ..."
 
