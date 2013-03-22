@@ -17,6 +17,15 @@ class BuildServer extends Server
   setRoutes: =>
     @app.get "/appgyver/api/applications/1.json", (req, res) =>
 
+      clientVersion233 = req.query["client_version"] == "2.3.3"
+      fromBackgroundJS = req.url.match("invisible")
+      clientIsIOS = req.headers["user-agent"].match("AppleWebKit")
+      seenBefore = @clients[req.ip]?
+
+      if clientIsIOS? and not fromBackgroundJS? and not seenBefore and not clientVersion233
+        throw "ERROR: Older client than 2.3.3 tried to connect, please update from the App Store"
+        return
+
       config = @converter.configToAnkaFormat()
 
       config.archives.push {url: "#{req.protocol}://#{req.host}:4567/appgyver/zips/project.zip"}
