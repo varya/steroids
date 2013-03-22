@@ -19,7 +19,7 @@ class BuildServer extends Server
 
       clientVersion233 = req.query["client_version"] == "2.3.3"
       fromBackgroundJS = req.url.match("invisible")
-      clientIsIOS = req.headers["user-agent"].match("AppleWebKit")
+      clientIsIOS = req.headers["user-agent"].match("iPhone|iPad|iPod")
       seenBefore = @clients[req.ip]?
 
       if clientIsIOS? and not fromBackgroundJS? and not seenBefore and not clientVersion233
