@@ -1,3 +1,14 @@
+## 0.8.0 (2013-03-22)
+
+Support for iOS Scanner 2.3.3
+
+Features
+  - Support for iOS Scanner 2.3.3, refuses to work with 2.2.2 (steroids.js 0.5.0 requires 2.3.3)
+
+Bugfixes:
+  -
+
+
 ## 0.7.2 (2013-03-20)
 
 Changelog started (again)
