@@ -1,5 +1,5 @@
 (function(window){
-/*! steroids-js - v0.4.0 - 2013-03-15 */
+/*! steroids-js - v0.5.0 - 2013-03-22 */
 ;var Bridge,
   __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
@@ -486,7 +486,7 @@ Animation = (function() {
   };
 
   function Animation(options) {
-    var _ref;
+    var _ref, _ref1, _ref2, _ref3, _ref4, _ref5;
     if (options == null) {
       options = {};
     }
@@ -496,10 +496,11 @@ Animation = (function() {
     if (this.transition == null) {
       throw "transition required";
     }
-    this.reversedTransition = this.constructor.TRANSITION_REVERSION_MAPPING[this.transition];
-    this.duration = options.duration || 0.7;
-    this.reversedDuration = this.duration;
-    this.curve = options.curve || "easeInOut";
+    this.reversedTransition = (_ref1 = options.reversedTransition) != null ? _ref1 : this.constructor.TRANSITION_REVERSION_MAPPING[this.transition];
+    this.duration = (_ref2 = options.duration) != null ? _ref2 : 0.7;
+    this.reversedDuration = (_ref3 = options.reversedDuration) != null ? _ref3 : this.duration;
+    this.curve = (_ref4 = options.curve) != null ? _ref4 : "easeInOut";
+    this.reversedCurve = (_ref5 = options.reversedCurve) != null ? _ref5 : "easeInOut";
   }
 
   Animation.prototype.perform = function(options, callbacks) {
@@ -713,6 +714,8 @@ LayerCollection = (function() {
       parameters.pushAnimationDuration = options.animation.duration;
       parameters.popAnimation = options.animation.reversedTransition;
       parameters.popAnimationDuration = options.animation.reversedDuration;
+      parameters.pushAnimationCurve = options.animation.curve;
+      parameters.popAnimationCurve = options.animation.reversedCurve;
     }
     return steroids.nativeBridge.nativeCall({
       method: "openLayer",
@@ -1657,7 +1660,7 @@ PostMessage = (function() {
 }).call(this);
 ;
 window.steroids = {
-  version: "0.4.0",
+  version: "0.5.0",
   Animation: Animation,
   XHR: XHR,
   File: File,
