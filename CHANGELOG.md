@@ -1,3 +1,14 @@
+## 0.8.1 (2013-03-25)
+
+Linux compatibility fix
+
+Features
+  - none
+
+Bugfixes:
+  - Fixes `error: Error: Cannot find module './config'` on Linux, we used case insensitive filesystems.
+    Thanks to Itzcoatl Calva.
+
 ## 0.8.0 (2013-03-22)
 
 Support for iOS Scanner 2.3.3
