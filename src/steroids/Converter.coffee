@@ -1,7 +1,7 @@
 fs = require "fs"
 
 Paths = require "./paths"
-Config = require "./config"
+Config = require "./Config"
 
 class Converter
   constructor: (@configPath)->
