@@ -1,3 +1,11 @@
+## 0.8.2 (2013-04-05)
+
+Support for iOS Scanner 2.3.4
+
+Changes:
+  - new projects have a bower dependency to steroids-js package, instead of a github url
+  - new projects are created with steroids-js 0.6.x dependencies
+
 ## 0.8.1 (2013-03-25)
 
 Linux compatibility fix
