@@ -2,6 +2,7 @@ Server = require "../Server"
 Converter = require "../Converter"
 util = require "util"
 request = require "request"
+semver = require "semver"
 
 fs = require "fs"
 Paths = require "../paths"
@@ -17,16 +18,22 @@ class BuildServer extends Server
   setRoutes: =>
     @app.get "/appgyver/api/applications/1.json", (req, res) =>
 
-      clientVersion233 = req.query["client_version"] == "2.3.3"
-      clientVersionMatch = req.headers["user-agent"].match(/AppGyverSteroids\/(\d+\.\d+\.\d+|\d+\.\d+)/)
+      #TODO joutuu varmaan siivoomaan
+
+      firstGoodVersion = "2.3.3"
+      clientVersion = req.query["client_version"]
+
+      clientVersionMatch = req.headers["user-agent"].match(/AppGyverSteroids\/([^\s]+)/)
       clientVersion = clientVersionMatch[1] if clientVersionMatch
 
-      fromBackgroundJS = req.url.match("invisible")
+      clientVersionGood = semver.satisfies(semver.clean(clientVersion), ">=#{firstGoodVersion}")
+
       clientIsIOS = req.headers["user-agent"].match("iPhone|iPad|iPod")
+      fromBackgroundJS = req.url.match("invisible")
       seenBefore = @clients[req.ip]?
 
-      if clientIsIOS? and not fromBackgroundJS? and not seenBefore and not clientVersion == "2.4" and not clientVersion233
-        throw "ERROR: Older client than 2.3.3 tried to connect, please update from the App Store"
+      if clientIsIOS? and not fromBackgroundJS? and not seenBefore and not clientVersionGood
+        throw "ERROR: Connecting client is version #{clientVersion}, but atleast #{firstGoodVersion} is required. Update the client from the iOS App Store"
         return
 
       config = @converter.configToAnkaFormat()
