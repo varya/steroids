@@ -1,3 +1,7 @@
+## 0.9.0 (2013-04-08)
+
+Released iOS Scanner 2.3.4 to App Store, updated minor to reflect that.
+
 ## 0.8.2 (2013-04-05)
 
 Support for iOS Scanner 2.3.4
