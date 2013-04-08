@@ -1,5 +1,5 @@
 (function(window){
-/*! steroids-js - v0.6.0 - 2013-04-08 */
+/*! steroids-js - v0.6.1 - 2013-04-08 */
 ;var Bridge,
   __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
@@ -203,6 +203,8 @@ WebsocketBridge = (function(_super) {
     this.message_handler = __bind(this.message_handler, this);
 
     this.map_context = __bind(this.map_context, this);
+
+    this.open = __bind(this.open, this);
 
     this.reopen = __bind(this.reopen, this);
     this.reopen();
@@ -1772,7 +1774,7 @@ PostMessage = (function() {
 }).call(this);
 ;
 window.steroids = {
-  version: "0.6.0",
+  version: "0.6.1",
   Animation: Animation,
   XHR: XHR,
   File: File,
