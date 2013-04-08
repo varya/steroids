@@ -1,3 +1,10 @@
+## 0.9.1 (2013-04-08)
+
+0.9.0 contained 0.6.0 steroids-js that was immediately updated to 0.6.1.
+
+Bugfixes:
+  - Sample projects use 0.6.1 that works (0.6.0 was broken)
+
 ## 0.9.0 (2013-04-08)
 
 Released iOS Scanner 2.3.4 to App Store, updated minor to reflect that.

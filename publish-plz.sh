@@ -1,5 +1,10 @@
 #!/bin/sh
 
+head CHANGELOG.md
+
+echo "is changelog ok?"
+read
+
 echo "updating template projects to latest version with steroids-js"
 
 sh update-steroidsjs-templates.sh
