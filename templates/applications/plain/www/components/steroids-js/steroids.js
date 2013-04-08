@@ -1,5 +1,5 @@
 (function(window){
-/*! steroids-js - v0.5.0 - 2013-03-22 */
+/*! steroids-js - v0.6.0 - 2013-04-08 */
 ;var Bridge,
   __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
@@ -213,12 +213,46 @@ WebsocketBridge = (function(_super) {
   };
 
   WebsocketBridge.prototype.reopen = function() {
-    this.websocket = new WebSocket("ws://localhost:31337");
+    window.steroids.debug("websocket reopen");
+    this.websocket = null;
+    if (window.AG_CLIENT_VERSION && window.AG_CLIENT_VERSION !== "2.3.3") {
+      return this.requestWebSocketPort(this.open);
+    } else {
+      return this.open("31337");
+    }
+  };
+
+  WebsocketBridge.prototype.open = function(port) {
+    var _this = this;
+    this.websocket = new WebSocket("ws://localhost:" + port);
     this.websocket.onmessage = this.message_handler;
     this.websocket.onclose = this.reopen;
-    this.websocket.addEventListener("open", this.map_context);
-    this.map_context();
-    return false;
+    this.websocket.onopen = function() {
+      window.steroids.debug("websocket websocket opened");
+      _this.map_context();
+      return _this.markWebsocketUsable();
+    };
+    return window.steroids.debug("websocket websocket connecting");
+  };
+
+  WebsocketBridge.prototype.requestWebSocketPort = function(callback) {
+    var xmlhttp,
+      _this = this;
+    window.steroids.debug("websocket request port");
+    xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+      if (xmlhttp.readyState === 4) {
+        window.steroids.debug("websocket request port success: " + xmlhttp.responseText);
+        return callback(xmlhttp.responseText);
+      }
+    };
+    xmlhttp.open("GET", "http://dolans.inetrnul.do.nut.cunnoct.localhost/");
+    return xmlhttp.send();
+  };
+
+  WebsocketBridge.prototype.markWebsocketUsable = function() {
+    window.steroids.debug("websocket open, marking usable");
+    return window.steroids.fireSteroidsEvent("websocketUsable");
   };
 
   WebsocketBridge.prototype.map_context = function() {
@@ -229,13 +263,14 @@ WebsocketBridge = (function(_super) {
   };
 
   WebsocketBridge.prototype.sendMessageToNative = function(message) {
-    var _this = this;
-    if (this.websocket.readyState === 0) {
-      return this.websocket.addEventListener("open", function() {
+    var _ref,
+      _this = this;
+    if (((_ref = this.websocket) != null ? _ref.readyState : void 0) === 1) {
+      return this.websocket.send(message);
+    } else {
+      return window.steroids.on("websocketUsable", function() {
         return _this.websocket.send(message);
       });
-    } else {
-      return this.websocket.send(message);
     }
   };
 
@@ -538,16 +573,20 @@ App = (function() {
 
   App.prototype.path = void 0;
 
-  App.prototype.userFilesPath = "";
+  App.prototype.userFilesPath = void 0;
 
   App.prototype.absolutePath = void 0;
+
+  App.prototype.absoluteUserFilesPath = void 0;
 
   function App() {
     var _this = this;
     this.getPath({}, {
       onSuccess: function(params) {
         _this.path = params.applicationPath;
+        _this.userFilesPath = params.userFilesPath;
         _this.absolutePath = params.applicationFullPath;
+        _this.absoluteUserFilesPath = params.userFilesFullPath;
         return steroids.markComponentReady("App");
       }
     });
@@ -816,6 +855,58 @@ NavigationBar = (function() {
   return NavigationBar;
 
 })();
+;var BounceShadow;
+
+BounceShadow = (function() {
+
+  function BounceShadow() {}
+
+  BounceShadow.prototype.hide = function(options, callbacks) {
+    if (options == null) {
+      options = {};
+    }
+    if (callbacks == null) {
+      callbacks = {};
+    }
+    return this.setVisibility({
+      visibility: false
+    }, callbacks);
+  };
+
+  BounceShadow.prototype.show = function(options, callbacks) {
+    if (options == null) {
+      options = {};
+    }
+    if (callbacks == null) {
+      callbacks = {};
+    }
+    return this.setVisibility({
+      visibility: true
+    }, callbacks);
+  };
+
+  BounceShadow.prototype.setVisibility = function(options, callbacks) {
+    var visibility;
+    if (options == null) {
+      options = {};
+    }
+    if (callbacks == null) {
+      callbacks = {};
+    }
+    visibility = options.constructor.name === "String" ? options : options.visibility;
+    return steroids.nativeBridge.nativeCall({
+      method: "setWebViewBounceShadowVisibility",
+      parameters: {
+        visibility: visibility
+      },
+      successCallbacks: [callbacks.onSuccess],
+      failureCallbacks: [callbacks.onFailure]
+    });
+  };
+
+  return BounceShadow;
+
+})();
 ;var WebView,
   __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
@@ -830,6 +921,8 @@ WebView = (function() {
   WebView.prototype.allowedRotations = null;
 
   WebView.prototype.navigationBar = new NavigationBar;
+
+  WebView.prototype.bounceShadow = new BounceShadow;
 
   function WebView(options) {
     if (options == null) {
@@ -915,6 +1008,25 @@ WebView = (function() {
       }
     };
     return (_ref = callbacks.onSuccess) != null ? _ref.call() : void 0;
+  };
+
+  WebView.prototype.setBackgroundColor = function(options, callbacks) {
+    var newColor;
+    if (options == null) {
+      options = {};
+    }
+    if (callbacks == null) {
+      callbacks = {};
+    }
+    newColor = options.constructor.name === "String" ? options : options.color;
+    return steroids.nativeBridge.nativeCall({
+      method: "setWebViewBackgroundColor",
+      parameters: {
+        color: newColor
+      },
+      successCallbacks: [callbacks.onSuccess],
+      failureCallbacks: [callbacks.onFailure]
+    });
   };
 
   return WebView;
@@ -1660,7 +1772,7 @@ PostMessage = (function() {
 }).call(this);
 ;
 window.steroids = {
-  version: "0.5.0",
+  version: "0.6.0",
   Animation: Animation,
   XHR: XHR,
   File: File,
@@ -1694,30 +1806,36 @@ window.steroids = {
   },
   on: function(event, callback) {
     var _base;
+    this.debug("on event " + event);
     if (this["" + event + "_has_fired"] != null) {
+      this.debug("on event " + event + ", alrueady fierd");
       return callback();
     } else {
+      this.debug("on event " + event + ", waiting");
       (_base = this.eventCallbacks)[event] || (_base[event] = []);
       return this.eventCallbacks[event].push(callback);
     }
   },
   fireSteroidsEvent: function(event) {
-    var callback, _i, _len, _ref, _results;
+    var callback, callbacks, _i, _len, _results;
+    this.debug("firign event " + event);
     this["" + event + "_has_fired"] = new Date().getTime();
     if (this.eventCallbacks[event] != null) {
-      _ref = this.eventCallbacks[event];
+      callbacks = this.eventCallbacks[event].splice(0);
       _results = [];
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        callback = _ref[_i];
-        callback();
-        _results.push(this.eventCallbacks[event].splice(this.eventCallbacks[event].indexOf(callback), 1));
+      for (_i = 0, _len = callbacks.length; _i < _len; _i++) {
+        callback = callbacks[_i];
+        this.debug("firing event callback");
+        _results.push(callback());
       }
       return _results;
     }
   },
   markComponentReady: function(model) {
+    this.debug("" + model + " is ready");
     this.waitingForComponents.splice(this.waitingForComponents.indexOf(model), 1);
     if (this.waitingForComponents.length === 0) {
+      this.debug("steroids is ready");
       return this.fireSteroidsEvent("ready");
     }
   }
