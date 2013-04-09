@@ -1,3 +1,10 @@
+## 0.9.2 (2013-04-09)
+
+Linux compatibility
+
+Bugfixes:
+  - Only interfaces starting with "en" were embedded in QR code. Now everything but localhost is added.
+
 ## 0.9.1 (2013-04-08)
 
 0.9.0 contained 0.6.0 steroids-js that was immediately updated to 0.6.1.
