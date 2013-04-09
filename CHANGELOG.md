@@ -1,3 +1,11 @@
+## 0.9.3 (2013-04-09)
+
+Deploy did not make a new deployment package.
+
+Bugfixes:
+  - `steroids deploy` did not make a new package in `/tmp/steroids_project.zip` that resulted in
+    failure if no previous package was found or deploy was done with an older build.
+
 ## 0.9.2 (2013-04-09)
 
 Linux compatibility
