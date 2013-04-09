@@ -352,11 +352,15 @@ class Steroids
         project = new Project
         project.make
           onSuccess: =>
-            Deploy = require "./steroids/deploy"
-            deploy = new Deploy(otherOptions)
-            deploy.uploadToCloud ()=>
-              # all complete
-              process.exit 0
+            project.package
+              onSuccess: =>
+                Deploy = require "./steroids/deploy"
+                deploy = new Deploy(otherOptions)
+                deploy.uploadToCloud ()=>
+                  # all complete
+                  process.exit 0
+              onFailure: =>
+                console.log "Can not make package, not deploying to cloud."
           onFailure: =>
             console.log "Can not build project locally, not deploying to cloud."
 
