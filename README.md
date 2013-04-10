@@ -6,54 +6,52 @@ AppGyver Steroids is like PhoneGap on Steroids, providing native UI elements, mu
 
 ## Installation and requirements
 
-
 ### Requirements
 
-* Node.js and NPM package management http://nodejs.org/
+* Node.js 0.8.x and NPM package management http://nodejs.org/
 * Xcode and command-line tools (mac app store)
-* Git with homebrew or git mac installer (but with the installer, remember to set in $PATH)
 
-Once your environment is set up, run
+### With Node Version Manager
 
-```
-  $ sudo chown -R $USER /usr/local
-  $ npm install steroids -g
-```
+We recommend installing with NVM, see https://github.com/creationix/nvm.
 
+    $ curl https://raw.github.com/creationix/nvm/master/install.sh | sh
+  
+Note that by default NVM adds initialization lines to `.bash_profile`, so you need to make sure these lines are loaded.
 
+Install node 0.8.x
 
-#### Troubleshooting
+    $ nvm install 0.8
+    $ nvm use 0.8
 
-If you are having issues with the install, you should maybe remove your (old) node installation and install the latest node.  There is a [remove-node.sh](https://raw.github.com/AppGyver/steroids/master/remove-node.sh) script to help with that.
+Now install Steroids
+
+    $ npm install steroids -g
+  
+Note that there might be some warnings in the install from various NPM packages.  The installation should fine though.
 
 ## Usage
 
-```
-  $ steroids create tutorial directory_name
-  $ cd directory_name
-  $ steroids connect
-```
+    $ steroids create tutorial directory_name
+    $ cd directory_name
+    $ steroids connect
 
 More usage information is available in
 
-```
-  $ steroids usage
-```
+    $ steroids usage
 
 ## Debug
 
 Steroids comes bundled with Weinre.
 
-```
-  $ steroids debug
-```
+    $ steroids debug
 
 Starts Weinre server and opens your browser.  Once devices are connected, you can select a target document to inspect from the first page.
 
 
 ## Javascript API documentation
 
-http://appgyver.github.com/steroids-js/steroids-js-latest.html
+http://docs.appgyver.com
 
 
 ## Bugs, feedback
