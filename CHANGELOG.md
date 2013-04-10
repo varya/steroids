@@ -1,3 +1,10 @@
+## 0.9.4 (2013-04-10)
+
+Start recommending NVM, the Node Version Manager
+
+Changes:
+  - Installation does not force user to chown `/usr/local`, readme recommends to use NVM.
+
 ## 0.9.3 (2013-04-09)
 
 Deploy did not make a new deployment package.
