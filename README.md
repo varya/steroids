@@ -10,6 +10,8 @@ AppGyver Steroids is like PhoneGap on Steroids, providing native UI elements, mu
 
 * Node.js 0.8.x and NPM package management http://nodejs.org/
 * Xcode and command-line tools (mac app store)
+* Git with homebrew or git mac installer (but with the installer, remember to set in $PATH)
+
 
 ### With Node Version Manager
 
