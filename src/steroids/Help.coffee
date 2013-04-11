@@ -8,6 +8,9 @@ class Help
 	@usage: ->
     @printBanner(paths.banners.usage)
 
+  @attention: ->
+    @printBanner(paths.banners.attention, true)
+
   @connect: ->
     @printBanner(paths.banners.connect)
 
@@ -40,6 +43,9 @@ class Help
     specificSteroidsJSDetected: ->
       Help.printBanner(paths.banners.legacy.specificSteroidsJSDetected, true)
 
+
+  @resetiOSSim: ->
+    @printBanner(paths.banners.resetiOSSim, true)
 
   @readContentsSync: (filename) ->
     fs = require "fs"

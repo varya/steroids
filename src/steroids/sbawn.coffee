@@ -5,6 +5,9 @@ class Sbawned
   constructor: (@options)->
     @_events = {}
 
+    @stderr = ""
+    @stdout = ""
+
     @done = false
 
   onStdoutData: (buffer) =>

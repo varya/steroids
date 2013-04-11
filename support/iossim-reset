@@ -1,0 +1,13 @@
+
+	#cyan[iOS Simulator reset needed.]
+
+	Sorry, but we could not start the AppGyver Scanner in your iOS Simulator.
+
+	We have launched iOS Simulator without an application.  Now switch to that
+	application, select #bold[iOS Simulator] from the menu top menu bar and then
+	select #bold[Reset Contents and Settings...]
+
+	After you have done this, please start the steroids simulator again.
+
+	Sorry about the trouble, we're trying to find a better way to do this.
+

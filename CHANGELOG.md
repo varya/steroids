@@ -1,3 +1,11 @@
+## 0.9.5 (2013-04-11)
+
+Usability improvments.
+
+Changes:
+  - Opening http://youripaddress:4567 gives more friendlier.
+  - Simulator detects if it failed to launch and instructs on how to reset it.
+
 ## 0.9.4 (2013-04-10)
 
 Start recommending NVM, the Node Version Manager
