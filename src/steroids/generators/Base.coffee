@@ -34,6 +34,14 @@ class Base
 
     util.log "Adding file #{destinationPath}"
     fs.writeFileSync destinationPath, @renderTemplate(sourcePath), "utf8"
+    
+  addLayout: (filePath, templatePath)->
+    destinationPath = path.join @applicationPath, filePath
+    sourcePath = path.join @templatePath(), templatePath
+
+    util.log "Adding layout #{destinationPath}"
+    if !fs.existsSync destinationPath
+      fs.writeFileSync destinationPath, fs.readFileSync(sourcePath), "utf8"
 
   ensureDirectory: (dirPath)->
     destinationPath = path.join @applicationPath, dirPath

@@ -1,5 +1,4 @@
-<ul class="list">
-  <li>
-    Name: {{<%= options.name %>.name}}
-  </li>
-</ul>
+<div>
+  <h2>{{ankka.name}}</h2>
+  <p>{{ankka.description}}</p>
+</div>

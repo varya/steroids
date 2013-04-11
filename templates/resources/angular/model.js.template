@@ -1,0 +1,20 @@
+angular.module('<%= options.className %>Model', []).
+
+  factory('<%= options.className %>', function() {
+
+    var <%= options.className %> = {}
+
+    <%= options.className %>.all = {
+      "1": {
+        name: "First",
+        description: "The first <%= options.className %> document is awesome."
+      },
+      "2": {
+        name: "Second",
+        description: "The second <%= options.className %> document is also okay."
+      }
+    };
+
+    return <%= options.className %>;
+    
+  });

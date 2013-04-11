@@ -1,5 +1,5 @@
 {
-  "name": "myProject",
+  "name": "mySteroidsProject",
   "version": "0.0.1",
   "dependencies": {
     "steroids-js": "0.6.x"

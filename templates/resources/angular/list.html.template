@@ -1,10 +1,7 @@
-<h1>Listing <%= options.name %>s</h1>
+<h1><%= options.className %> list</h1>
 
-<input type="search" ng-model="search" class="search-query" placeholder="Search">
-
-<ul class="list">
-  <li ng-click="pushDetailsLayer(<%= options.name %>.id)" ng-repeat="<%= options.name %> in <%= options.name %>Collection | filter:search | orderBy:'name'">
-    {{<%= options.name %>.name}}
-    <span class="chevron"/>
+<ul>
+  <li ng-repeat="(id, <%= options.name %>) in <%= options.name %>Collection | filter:search | orderBy:'name'">
+    <button ng-click="open(id)">{{<%= options.name %>.name}}</button>
   </li>
 </ul>
