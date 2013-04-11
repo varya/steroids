@@ -2,19 +2,15 @@
   <%= options.className %>Controller.index();
 </script>
 
-<div class="content content-padded">
+<h1><%= options.name %></h1>
 
-  <h1><%= options.name %></h1>
-
-  <ul class="list">
-    <li ontouchstart="openWebView('/views/<%= options.name %>/show.html?id=1')">
-      Show first <%= options.name %>
-      <span class="chevron"/>
-    </li>
-    <li ontouchstart="openWebView('/views/<%= options.name %>/show.html?id=2')">
-      Show second <%= options.name %>
-      <span class="chevron"/>
-    </li>
-  </ul>
+<ul>
+  <li>
+    <button ontouchstart="openWebView('/views/<%= options.name %>/show.html?id=1')">Show first <%= options.name %></button>
+  </li>
+  <li>
+    <button ontouchstart="openWebView('/views/<%= options.name %>/show.html?id=2')">Show second <%= options.name %></button>
+  </li>
+</ul>
   
 </div>

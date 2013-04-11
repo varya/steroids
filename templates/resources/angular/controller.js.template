@@ -7,7 +7,7 @@ angular.module('<%= options.name %>', ['<%= options.className %>Model']).
       templateUrl: '_list.html'
     });
 
-    $routeProvider.when( '/:action', {
+    $routeProvider.when( '/:show_id', {
       controller:<%= options.className %>Controller.show,
       templateUrl:'_details.html'
     });
@@ -20,27 +20,23 @@ angular.module('<%= options.name %>', ['<%= options.className %>Model']).
 var <%= options.className %>Controller = {
   index: function($scope, <%= options.className %>) {
 
-    $scope.open = function(action) {
-      webView = new steroids.views.WebView("/views/<%= options.name %>/index.html#"+action);
+    $scope.open = function(show_id) {
+      webView = new steroids.views.WebView("/views/<%= options.name %>/index.html#"+show_id);
       steroids.layers.push(webView);
     };
 
     $scope.<%= options.name %>Collection = <%= options.className %>.all;
     steroids.view.navigationBar.show("<%= options.className %> index");
 
-    document.addEventListener("visibilitychange", function() {
-      $scope.<%= options.name %>Collection = <%= options.className %>.all;
-    });
-
   },
 
   show: function($scope, $routeParams, <%= options.className %>) {
 
-    var action = $routeParams.action;
+    var show_id = $routeParams.show_id;
 
-    steroids.view.navigationBar.show("<%= options.className %> action: " + action);
+    steroids.view.navigationBar.show("<%= options.className %> #" + show_id);
 
-    $scope.<%= options.name %> = <%= options.className %>.all[action]
+    $scope.<%= options.name %> = <%= options.className %>.all[show_id]
   }
 };
 

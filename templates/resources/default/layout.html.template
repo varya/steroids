@@ -5,7 +5,6 @@
   <title>Steroids App</title>
 
   <link rel="stylesheet" href="/stylesheets/application.css" />
-  <link rel="stylesheet" href="/stylesheets/ratchet-fixed.css" />
 
   <script src="http://localhost/appgyver/cordova.js"></script>
   <script src="/components/steroids-js/steroids.js"></script>

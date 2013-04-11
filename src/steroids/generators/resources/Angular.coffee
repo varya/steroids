@@ -26,14 +26,15 @@ class Angular extends Base
     @checkForPreExistingFiles [
       path.join("app", "controllers", "#{@options.name}.js"),
       path.join("app", "models", "#{@options.name}.js"),
-      path.join("app", "views", "#{@options.name}", "index.html")
-      path.join("app", "views", "#{@options.name}", "_list.html")
+      path.join("app", "views", "#{@options.name}", "index.html"),
+      path.join("app", "views", "#{@options.name}", "_list.html"),
       path.join("app", "views", "#{@options.name}", "_details.html")
     ]
 
     @ensureDirectory path.join("app")
 
     @ensureDirectory path.join("app", "controllers")
+    @copyFile path.join("app", "controllers", "application.js"), "application_controller.js.template"
     @addFile path.join("app", "controllers", "#{@options.name}.js"), "controller.js.template"
     
     @ensureDirectory path.join("app", "models")
@@ -42,7 +43,7 @@ class Angular extends Base
     @ensureDirectory path.join("app", "views")
     
     @ensureDirectory path.join("app", "views", "layouts")
-    @addLayout path.join("app", "views", "layouts", "application.html"), "layout.html.template"
+    @copyFile path.join("app", "views", "layouts", "application.html"), "layout.html.template"
     
     @ensureDirectory path.join("app", "views", "#{@options.name}")
     @addFile path.join("app", "views", "#{@options.name}", "index.html"), "index.html.template"
