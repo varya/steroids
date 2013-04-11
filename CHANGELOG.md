@@ -3,7 +3,7 @@
 Usability improvments.
 
 Changes:
-  - Opening http://youripaddress:4567 gives more friendlier.
+  - Opening http://youripaddress:4567 gives more friendlier page.
   - Simulator detects if it failed to launch and instructs on how to reset it.
 
 ## 0.9.4 (2013-04-10)
