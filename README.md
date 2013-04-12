@@ -18,18 +18,19 @@ AppGyver Steroids is like PhoneGap on Steroids, providing native UI elements, mu
 We recommend installing with NVM, see https://github.com/creationix/nvm.
 
     $ curl https://raw.github.com/creationix/nvm/master/install.sh | sh
-  
+
 Note that by default NVM adds initialization lines to `.bash_profile`, so you need to make sure these lines are loaded.
 
-Install node 0.8.x
+To install node.js 0.8.x with nvm and set it as default:
 
     $ nvm install 0.8
     $ nvm use 0.8
+    $ nvm alias default 0.8
 
 Now install Steroids
 
     $ npm install steroids -g
-  
+
 Note that there might be some warnings in the install from various NPM packages.  The installation should fine though.
 
 ## Usage
