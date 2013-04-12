@@ -13,10 +13,19 @@ class Angular extends Base
 
   @usage: ()->
     """
-    Generates a stub angular resource consisting of a controller, a model, an index view and associated list/details partials.
+    Generates a stub angular resource consisting of a controller, a model, an index view and associated partials for a list and details views. 
+    
+    When used for the first time, the app/ folder is created with following default files
+     - app/controllers/application.js
+     - app/views/layouts/application.html 
 
     Options:
-      - resource: name of resource to use. example: car will result in the files app/controllers/car.js, app/models/car.js and views/car/index.html (and _list.html and _details.html)
+      - resource: name of resource to use. Example: 'car' will result in the following files: 
+        - app/controllers/car.js
+        - app/models/car.js
+        - app/views/car/index.html
+        - app/views/car/_list.html
+        - app/views/car/_details.html
     """
 
   templatePath: ->
