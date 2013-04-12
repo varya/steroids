@@ -1,0 +1,9 @@
+
+	#cyan[New version available]
+
+	There is a new version available of Steroids NPM.
+
+	Please update with
+
+	$ #bold[npm update steroids -g]
+

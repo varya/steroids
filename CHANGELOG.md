@@ -1,3 +1,11 @@
+## 0.9.6 (2013-04-12)
+
+Notifies on updates.
+
+Changes:
+  - When running `steroids connect`, steroids will connect to npm repository to check for a newer version.
+    If a newer version is found, a banner is printed with upgrade notice.
+
 ## 0.9.5 (2013-04-11)
 
 Usability improvments.

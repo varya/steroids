@@ -28,6 +28,7 @@ class Paths
     usage: path.join @bannersDir, "usage"
     welcome: path.join @bannersDir, "welcome"
     resetiOSSim: path.join @bannersDir, "iossim-reset"
+    newVersionAvailable: path.join @bannersDir, "new-version-available"
     legacy:
       requiresDetected: path.join @bannersDir, "legacy-requiresdetected"
       capitalizationDetected: path.join @bannersDir, "legacy-capitalizationdetected"

@@ -20,6 +20,10 @@ class Help
   @logo: ->
     @printBanner(paths.banners.logo, true)
 
+  @newVersionAvailable: (version) ->
+    @attention()
+    @printBanner(paths.banners.newVersionAvailable, true)
+
   @listGenerators: ->
     Generators = require "./Generators"
 

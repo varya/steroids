@@ -2,6 +2,8 @@ Help = require "./steroids/Help"
 Weinre = require "./steroids/Weinre"
 Simulator = require "./steroids/Simulator"
 Project = require "./steroids/Project"
+Updater = require "./steroids/Updater"
+
 
 util = require "util"
 Version = require "./steroids/Version"
@@ -165,6 +167,8 @@ class Steroids
         steroidsCli.simulator.run()
 
       when "connect"
+        updater = new Updater
+        updater.check()
 
         project = new Project
         project.push
