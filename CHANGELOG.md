@@ -1,3 +1,10 @@
+## 0.9.7 (2013-04-15)
+
+Linux compatibility.
+
+Bugfixes:
+  - Fixes `error: Error: Cannot find module './steroids/deploy'` on Linux, we used case insensitive filesystems.
+
 ## 0.9.6 (2013-04-12)
 
 Notifies on updates.

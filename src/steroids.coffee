@@ -358,7 +358,7 @@ class Steroids
           onSuccess: =>
             project.package
               onSuccess: =>
-                Deploy = require "./steroids/deploy"
+                Deploy = require "./steroids/Deploy"
                 deploy = new Deploy(otherOptions)
                 deploy.uploadToCloud ()=>
                   # all complete
