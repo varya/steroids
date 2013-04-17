@@ -1,19 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf8">
+  <title>Steroids Tutorial</title>
+
+  <link rel="stylesheet" href="/stylesheets/application.css" />
+
+  <script src="http://localhost/appgyver/cordova.js"></script>
+  <script src="/components/steroids-js/steroids.js"></script>
 </head>
 <body>
   <h1>Hello world!</h1>
 
-  <p>This file is located in <code>www/index.html</code> and it's also missing a proper layout and CSS. If you have an existing PhoneGap project you can place it in <code>www/</code>.  But wait until you see what it means to put your project <em>on Steroids</em>.</p>
+  <p>This file is located in <code>www/index.html</code>. It loads only a basic CSS file and both the Cordova and Steroids.js libraries. (Note that <code>cordova.js</code> is served from outside the project files to ensure that the version compatible with the current version of Steroids is used.)</p> 
+  
+  <p>If you have an existing PhoneGap project, you can simply place it in the <code>www/</code> folder and enjoy the Steroids toolset, e.g. <code>$ steroids simulator</code> and <code>$ steroids deploy</code>. (Write <code>$ steroids</code> in your terminal to see the full list of available commands.)</p>
+  
+  <p>Let's not stop there, though. Let's put your project <strong>on Steroids</strong>.</p>
 
-  <strong>Let's do that!</strong>
+  <p>Edit the <code>config/application.coffee</code> file to enable tabs by uncommenting few preconfigured lines:
+    <code>steroids.config.tabBar.enabled</code>, <code>steroids.config.tabBar.tabs</code> and the array that defines the tabs.</p>
 
-  <p>Edit <code>config/application.coffee</code> to enable tabs by uncommenting few preconfigured lines:
-    <code>steroids.config.tabBar.enabled</code> and <code>steroids.config.tabBar.tabs</code> and the array that defines the tabs.</p>
-
-  <p>Then, hit enter to the console where <code>$ steroids connect</code> is running and this will get more interesting.</p>
+  <p>Then, hit enter in the console where <code>$ steroids connect</code> is running, and this will get more interesting.</p>
 
 </body>
 </html>

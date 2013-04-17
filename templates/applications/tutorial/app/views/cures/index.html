@@ -1,14 +1,10 @@
-<div class="ratchetFix"></div>
+<p>This page is generated from <code>app/views/<em>cures</em>/index.html</code>, this time with a different layout, <code>app/views/layouts/cures.html</code>. If a layout file with the same name as the current resource exists, it will be used instead of the generic <code>layouts/application.html</code> layout.</p>
 
-<p>This page is generated from <code>app/views/<em>cures</em>/index.html</code>, this time with a different layout.  The layout is automatically applied based on the <em>resource</em> name.</p>
+<p>Steroids supports automatic compilation of CoffeeScript and SASS files: our controller is at <code>app/controllers/cures.coffee</code> and our resource-specific stylesheet is at <code>www/stylesheets/cures.scss</code>.</p>
 
-<p>As you make new folders in app, the built in make command care of the layouts.</p>
+<p>Steroids has an internal <code>make</code> command, which creates complete .html documents by merging the layouts and associated views, compiles CoffeeScript and SASS files and copies everything in the <code>www/</code> and <code>app/</code> to the <code>dist/</code> folder. The <code>make</code> command is run when you press enter in the terminal running <code>$ steroids connect</code>. You can see the end result in the <code>dist/</code> folder.</p>
 
-<p>So, <code>www/</code> and <code>app/</code> folders merge together nicely in a folder named <code>dist/</code>.</p>
-
-<p>Steroids also compiles .coffee files for you, so <code>app</code> can contain <code>.coffee</code> files directly or just <code>.js</code>.</p>
-
-<p>There is so much more to come in near future.</p>
+<p>There's much more to come in the near future, so stay tuned!</p>
 
 <p>Happy hacking,<br/>
 Let's keep in touch!</p>
@@ -21,10 +17,10 @@ Let's keep in touch!</p>
 <img src="/images/team.jpg" />
 </div>
 
-<p><em>- Juha, Marko, Jesse, Harri and Matti</em></p>
+<p><em>&emdash; Juha, Marko, Jesse, Harri and Matti</em></p>
 
 <br/><br/>
 
-<a class="button button-negative closesModal">Close Modal</a>
+<a class="button button-negative" id="closesModal">Close Modal</a>
 
 <br/><br/>

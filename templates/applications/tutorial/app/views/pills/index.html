@@ -2,19 +2,34 @@
   PillsController.index();
 </script>
 
+<div class="content content-padded">
+
 <h1>Awesome, welcome!</h1>
 
 <p>Now, this page is a Steroids style resource from<br/>
+  <br/>
   <code>app/views/pills/index.html</code><br/>
   <br/>
   and it uses a layout from<br/>
-  <code>app/views/layouts/application.html</code>.</p>
+  <br/>
+  <code>app/views/layouts/application.html</code>.
+</p>
 
-<p>And this page is also served from <code>http://localhost</code>, that is part of our secret sauce.</p>
+<p>We've also enabled the tab bar: the <strong>Welcome</strong> tab shows our previous <code>www/index.html</code> document, and the <strong>Internet</strong> tab shows Google's front page.</p>
 
-<p>Now, dig deeper by opening an another document:</p>
+<p>If you look at the code for the <code>app/views/pills/index.html</code> document, you'll note that the controller for our index is initiated by calling <code>PillsController.index();</code>. This allows us to have a shared controller .js file for all views of a certain resource.</p>
+
+<p>In addition, this page is served from <code>http://localhost</code> (instead of via the <code>file://</code> protocol), which is part of our secret sauce.</p>
+
+<p>One instant benefit of this: if you look at the <code>app/views/layouts/application.html</code> file, you'll notice that we don't have to use explicit relative paths for our .css and .js files, e.g. we can say <code>/stylesheets/applcation.css</code> instead of <code>../../stylesheets/application.css</code>.</p>
+
+<p>We've also included the Ratchet CSS library to give nice formatting to our document, and the Hammer.js library for handling touch events.</p>
+
+<p>Now, let's dig deeper by opening an another document:</p>
 
 <br/>
+
+</div>
 
 <ul class="list">
   <li class="opensLayer" data-location="/views/pills/show.html">
