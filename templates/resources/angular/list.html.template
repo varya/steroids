@@ -1,5 +1,3 @@
-<h1><%= options.className %> list</h1>
-
 <ul>
   <li ng-repeat="(id, <%= options.name %>) in <%= options.name %>Collection | filter:search | orderBy:'name'">
     <button ng-click="open(id)">{{<%= options.name %>.name}}</button>

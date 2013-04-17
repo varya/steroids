@@ -1,20 +1,28 @@
-angular.module('<%= options.className %>Model', []).
+(function() {
 
-  factory('<%= options.className %>', function() {
+var module = angular.module('<%= options.className %>Model', []);
 
-    var <%= options.className %> = {}
+module.factory('<%= options.className %>', function() {
 
-    <%= options.className %>.all = {
-      "1": {
-        name: "First",
-        description: "The first <%= options.className %> document is awesome."
-      },
-      "2": {
-        name: "Second",
-        description: "The second <%= options.className %> document is also okay."
-      }
-    };
+  var <%= options.className %> = {}
 
-    return <%= options.className %>;
+  <%= options.className %>.all = {
+    "1": {
+      name: "First",
+      description: "The first <%= options.className %> document is awesome."
+    },
+    "2": {
+      name: "Second",
+      description: "The second <%= options.className %> document is also okay."
+    }
+  };
+  
+  <%= options.className %>.find = function(id) {
+    return Batta.all[id];
+  }
+
+  return <%= options.className %>;
     
-  });
+});
+
+})();

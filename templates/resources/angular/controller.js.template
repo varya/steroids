@@ -1,27 +1,27 @@
 (function() {
 
-angular.module('<%= options.name %>', ['<%= options.className %>Model']).
-  config(function($routeProvider) {
-    $routeProvider.when( '/', {
-      controller: <%= options.className %>Controller.index,
-      templateUrl: '_list.html'
-    });
+var app = angular.module('<%= options.name %>App', ['<%= options.className %>Model']);
 
-    $routeProvider.when( '/:show_id', {
-      controller:<%= options.className %>Controller.show,
-      templateUrl:'_details.html'
-    });
+app.config(function($routeProvider) {
+  $routeProvider.when( '/', {
+    controller: <%= options.className %>Controller.index,
+    templateUrl: '_list.html'
+  });
+
+  $routeProvider.when( '/:id', {
+    controller:<%= options.className %>Controller.show,
+    templateUrl:'_details.html'
+  });
 
   $routeProvider.otherwise({ redirectTo: '/' });
 });
 
 
-
 var <%= options.className %>Controller = {
-  index: function($scope, <%= options.className %>) {
+  index: function($scope, <%= options.className %>App) {
 
-    $scope.open = function(show_id) {
-      webView = new steroids.views.WebView("/views/<%= options.name %>/index.html#"+show_id);
+    $scope.open = function(id) {
+      webView = new steroids.views.WebView("/views/<%= options.name %>/index.html#"+id);
       steroids.layers.push(webView);
     };
 
@@ -30,13 +30,13 @@ var <%= options.className %>Controller = {
 
   },
 
-  show: function($scope, $routeParams, <%= options.className %>) {
+  show: function($scope, $routeParams, <%= options.className %>App) {
 
-    var show_id = $routeParams.show_id;
+    var id = $routeParams.id;
 
-    steroids.view.navigationBar.show("<%= options.className %> #" + show_id);
+    steroids.view.navigationBar.show("<%= options.className %> #" + id);
 
-    $scope.<%= options.name %> = <%= options.className %>.all[show_id]
+    $scope.<%= options.name %> = <%= options.className %>.find(id)
   }
 };
 

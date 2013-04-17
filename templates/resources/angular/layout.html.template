@@ -6,7 +6,7 @@
 
   <link rel="stylesheet" href="/stylesheets/application.css" />
 
-  <script src="http://localhost/appgyver/cordova.js"></script>
+  <script src="/appgyver/cordova.js"></script>
   <script src="/components/steroids-js/steroids.js"></script>
   <script src="/components/angular/angular.min.js"></script>
 
