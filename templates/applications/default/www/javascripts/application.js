@@ -1,1 +1,1 @@
-steroids.navigationBar.show("Hello World"};
+steroids.navigationBar.show("Hello World");
