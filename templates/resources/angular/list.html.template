@@ -1,5 +1,6 @@
-<ul>
-  <li ng-repeat="(id, <%= options.name %>) in <%= options.name %>Collection | filter:search | orderBy:'name'">
-    <button ng-click="open(id)">{{<%= options.name %>.name}}</button>
+<ul class="list">
+  <li ng-click="open(id)" ng-repeat="(id, <%= options.name %>) in <%= options.name %>Collection | filter:search | orderBy:'name'">
+    {{<%= options.name %>.name}}
+    <span class="chevron"></span>
   </li>
 </ul>

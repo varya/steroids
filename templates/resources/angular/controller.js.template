@@ -1,6 +1,6 @@
 (function() {
 
-var app = angular.module('<%= options.name %>App', ['<%= options.className %>Model']);
+var app = angular.module('<%= options.name %>', ['<%= options.className %>Model']);
 
 app.config(function($routeProvider) {
   $routeProvider.when( '/', {
@@ -18,7 +18,7 @@ app.config(function($routeProvider) {
 
 
 var <%= options.className %>Controller = {
-  index: function($scope, <%= options.className %>App) {
+  index: function($scope, <%= options.className %>) {
 
     $scope.open = function(id) {
       webView = new steroids.views.WebView("/views/<%= options.name %>/index.html#"+id);
@@ -30,7 +30,7 @@ var <%= options.className %>Controller = {
 
   },
 
-  show: function($scope, $routeParams, <%= options.className %>App) {
+  show: function($scope, $routeParams, <%= options.className %>) {
 
     var id = $routeParams.id;
 
