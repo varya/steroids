@@ -2,14 +2,14 @@
   <%= options.className %>Controller.index();
 </script>
 
-<h1><%= options.name %></h1>
-
-<ul>
-  <li>
-    <button ontouchstart="openWebView('/views/<%= options.name %>/show.html?id=1')">Show first <%= options.name %></button>
+<ul class="list">
+  <li class="opensLayer" data-location="/views/<%= options.name %>/show.html?id=1">
+    Show first {{<%= options.name %>.name}}
+    <span class="chevron"></span>
   </li>
-  <li>
-    <button ontouchstart="openWebView('/views/<%= options.name %>/show.html?id=2')">Show second <%= options.name %></button>
+  <li class="opensLayer" data-location="/views/<%= options.name %>/show.html?id=2">
+    Show second {{<%= options.name %>.name}}
+    <span class="chevron"></span>
   </li>
 </ul>
   

@@ -8,7 +8,10 @@ window.<%= options.className %>Controller = {
 
   show: function () {
     
-    steroids.view.navigationBar.show("<%= options.name %> #" + steroids.view.params["id"]);
+    var showId = steroids.view.params["id"];
+    
+    steroids.view.navigationBar.show("<%= options.name %> #" + showId);
+    document.getElementById("show_id").textContent = showId;
 
   }
 

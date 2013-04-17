@@ -4,9 +4,10 @@
   <meta charset="utf8">
   <title>Steroids App</title>
 
+  <link rel="stylesheet" href="/stylesheets/ratchet-steroids.css" />
   <link rel="stylesheet" href="/stylesheets/application.css" />
 
-  <script src="http://localhost/appgyver/cordova.js"></script>
+  <script src="/appgyver/cordova.js"></script>
   <script src="/components/steroids-js/steroids.js"></script>
 
   <script src="/models/models.js"></script>
