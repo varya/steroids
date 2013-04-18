@@ -39,6 +39,9 @@ class Angular extends Base
       path.join("app", "views", "#{@options.name}", "_list.html"),
       path.join("app", "views", "#{@options.name}", "_details.html")
     ]
+    
+    @ensureDirectory path.join("www", "vendor", "angular-hammer")
+    @copyFile path.join("www", "vendor", "angular-hammer", "angular-hammer.js"), "angular-hammer.js.template"
 
     @ensureDirectory path.join("app")
 
