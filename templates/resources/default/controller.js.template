@@ -11,7 +11,9 @@ window.<%= options.className %>Controller = {
     var showId = steroids.view.params["id"];
     
     steroids.view.navigationBar.show("<%= options.name %> #" + showId);
-    document.getElementById("show_id").textContent = showId;
+    document.addEventListener("DOMContentLoaded", function() {
+      document.getElementById("show-id").textContent = showId;
+    });
 
   }
 

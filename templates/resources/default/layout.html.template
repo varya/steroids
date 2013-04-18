@@ -10,6 +10,9 @@
   <script src="/appgyver/cordova.js"></script>
   <script src="/components/steroids-js/steroids.js"></script>
 
+  <script src="/components/jquery/jquery.min.js"></script>
+  <script src="/vendor/hammerjs/jquery.hammer.min.js"></script>
+
   <script src="/models/models.js"></script>
 
   <script src="/controllers/application.js"></script>
