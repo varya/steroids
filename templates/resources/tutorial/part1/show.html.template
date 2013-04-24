@@ -1,0 +1,41 @@
+<div class="content content-padded">
+
+<h1>Nice transition, eh?</h1>
+
+<p>That was <em>native</em>, not CSS3.  Also, the application wide layout file is applied in this document.</p>
+
+<p>That previous view is still living under this document: you can go back there by tapping the native back button.</p>
+
+<p>Cordova (PhoneGap) is included, try it out:</p>
+
+<p>
+  <a class="button button-positive" onClick="askForConfirm()">navigator.notification.confirm</a>
+</p>
+
+<h2>Lessons learned</h2>
+
+<p>So far you have mastered that</p>
+
+<p><code>config/application.coffee</code> configures your project settings</p>
+<p><code>app/</code> folder has Steroids benefits, it's a good place for your applications views</p>
+<p><code>www/</code> folder is for your other files</p>
+<p><code>app/</code> and <code>www/</code> are brought together as <code>dist/</code> folder</p>
+<p><code>http://localhost</code> serves your project files from <code>dist/</code></p>
+<p><code>Everything that works in PhoneGap, works in Steroids</code></p>
+
+
+<h2>Next part</h2>
+
+<p>In the next part we learn TODO</p>
+
+<code>$ steroids generate tutorial part2</code>
+
+
+</div>
+
+<script>
+function askForConfirm() {
+  // Cordova documentation is at http://docs.cordova.io
+  navigator.notification.confirm("", null, "Cool, huh?", "Yes,No");
+}
+</script>

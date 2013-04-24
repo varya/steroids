@@ -1,0 +1,62 @@
+<div class="content content-padded">
+
+<h1>Awesome, welcome!</h1>
+
+<p>Now, this page is a Steroids style <em>resource</em> from two files: <br/>
+  <br/>
+  <code>app/views/pills/index.html</code><br/>
+  <br/>
+  that is wrapped inside<br/>
+  <br/>
+  <code>app/views/layouts/application.html</code>.
+</p>
+
+<h2>Tabs</h2>
+
+<p>You also enabled tabs by uncommenting those lines in <code>config/application.coffee</code>.</p>
+
+<p>We're on the first tab, the second tab shows the previous document, and in the tab named Internet comes directly from Google.</p>
+
+<p>We've also enabled the tab bar: the <strong>Welcome</strong> tab shows our previous <code>www/index.html</code> document, and the <strong>Internet</strong> tab shows Google's front page.</p>
+
+<h2>Localhost</h2>
+
+<p>In addition, this page is served from <code>http://localhost</code> (instead of via the <code>file://</code> protocol), which is part of our secret sauce.  You can still use <code>file://</code> protocol (that allows easy cross-domain AJAX) by just specifying the file without the <code>http://localhost</code> prefix.</p>
+
+<p>One instant benefit of localhost is that if you look at the <code>app/views/layouts/application.html</code> file, you'll notice that we don't have to use explicit relative paths. You can always use <code>/stylesheets/applcation.css</code> instead of <code>../../stylesheets/application.css</code>. The same applies for images etc.</p>
+
+<h2>Exercise</h2>
+
+<p>Notice how that this page sets title to "PhoneGap on Steroids", find how we set it from this document.</p>
+
+<h2>Then</h2>
+
+<p>Now, let's dig deeper by opening an another document:</p>
+
+
+</div>
+
+<ul class="list">
+  <li id="opener">
+    To the next document!
+    <span class="chevron"/>
+  </li>
+</ul>
+
+
+<script>
+  // You found it!  To inline JavaScript here is suboptimal and only used in this tutorial.
+  // The Steroids.js API documentation is in http://docs.appgyver.com
+
+  steroids.view.navigationBar.show("PhoneGap on Steroids")
+
+  // In the next part of this tutorial we learn how to do this properly with Hammer.JS and external JavaScript files
+
+  var element = document.getElementById("opener");
+
+  element.addEventListener("click", function() {
+    var otherView = new steroids.views.WebView("/views/tutorial/show.html");
+    steroids.layers.push(otherView);
+  });
+
+</script>
