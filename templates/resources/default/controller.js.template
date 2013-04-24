@@ -1,17 +1,17 @@
 window.<%= options.className %>Controller = {
 
   index: function () {
-    
     steroids.view.navigationBar.show("Index of <%= options.name %>");
-    
   },
 
   show: function () {
-    
+
+  	// Fetch a value from query parameters ?id=x
     var showId = steroids.view.params["id"];
-    
     steroids.view.navigationBar.show("<%= options.name %> #" + showId);
-    document.addEventListener("DOMContentLoaded", function() {
+
+    // Just to demonstrate the control flow of the application, hook your own code here
+    document.addEventListener("DOMContentLoaded", function() {
       document.getElementById("show-id").textContent = showId;
     });
 

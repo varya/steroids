@@ -18,13 +18,13 @@ module.factory('<%= options.className %>', function() {
       description: "The second <%= options.className %> document is also okay."
     }
   };
-  
+
   <%= options.className %>.find = function(id) {
-    return Batta.all[id];
+    return <%= options.className %>.all[id];
   }
 
   return <%= options.className %>;
-    
+
 });
 
 })();
