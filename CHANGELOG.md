@@ -1,3 +1,14 @@
+## 0.9.8 (2013-04-24)
+
+Default project structure is improved.
+
+Changes:
+  - Improved Angular.js generator (ng-resource)
+  - loading.html looks better
+  - Tutorial project is more informative
+  - Everything works also with Android
+  - Matches latest steroids.js conventions
+
 ## 0.9.7 (2013-04-15)
 
 Linux compatibility.
