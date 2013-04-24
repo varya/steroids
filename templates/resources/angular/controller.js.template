@@ -1,12 +1,14 @@
-module = angular.module('<%= options.name %>', []);
+(function() {
 
-module.config(function($routeProvider) {
+var app = angular.module('<%= options.name %>', ['<%= options.className %>Model', 'hmTouchevents']);
+
+app.config(function($routeProvider) {
   $routeProvider.when( '/', {
-    controller:<%= options.className %>Controller.index,
-    templateUrl:'_list.html'
+    controller: <%= options.className %>Controller.index,
+    templateUrl: '_list.html'
   });
 
-  $routeProvider.when( '/show/:id', {
+  $routeProvider.when( '/:id', {
     controller:<%= options.className %>Controller.show,
     templateUrl:'_details.html'
   });
@@ -14,45 +16,28 @@ module.config(function($routeProvider) {
   $routeProvider.otherwise({ redirectTo: '/' });
 });
 
-<%= options.name %>s = [{
-  id: 1,
-  name: "First"
-},{
-  id: 2,
-  name: "Second"
-}];
 
-<%= options.className %>Controller = {
-  index: function($scope) {
-    document.addEventListener("deviceready", function() {
-      steroids.view.navigationBar.show({ title: "<%= options.className %> List" });
+var <%= options.className %>Controller = {
+  index: function($scope, <%= options.className %>) {
 
-      document.addEventListener("visibilitychange", function() {
-        $scope.<%= options.name %>Collection = <%= options.name %>s;
-      });
-    });
+    $scope.open = function(id) {
+      webView = new steroids.views.WebView("/views/<%= options.name %>/index.html#"+id);
+      steroids.layers.push(webView);
+    };
 
-    $scope.pushDetailsLayer = function(id) {
-      webview = new steroids.views.WebView({ location: "/views/<%= options.name %>/index.html#/show/" + id });
-      steroids.layers.push({ view: webview });
-    }
+    $scope.<%= options.name %>Collection = <%= options.className %>.all;
+    steroids.view.navigationBar.show("<%= options.className %> index");
 
-    $scope.<%= options.name %>Collection = <%= options.name %>s;
   },
 
-  show: function($scope, $routeParams) {
-    id = $routeParams.id;
+  show: function($scope, $routeParams, <%= options.className %>) {
 
-    document.addEventListener( "deviceready", function() {
-      steroids.view.navigationBar.show({ title: "<%= options.className %> Show: " + id });
-    });
+    var id = $routeParams.id;
 
-    // Find correct <%= options.name %>
-    for (i = 0; i < <%= options.name %>s.length; i++) {
-      <%= options.name %> = <%= options.name %>s[i];
-      if (<%= options.name %>.id == id) {
-        $scope.<%= options.name %> = <%= options.name %>;
-      }
-    }
+    steroids.view.navigationBar.show("<%= options.className %> #" + id);
+
+    $scope.<%= options.name %> = <%= options.className %>.find(id)
   }
 };
+
+})();

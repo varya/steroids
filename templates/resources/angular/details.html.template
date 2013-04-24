@@ -1,5 +1,4 @@
-<ul class="list">
-  <li>
-    Name: {{<%= options.name %>.name}}
-  </li>
-</ul>
+<div class="content-padded">
+  <h2>{{<%= options.name %>.name}}</h2>
+  <p>{{<%= options.name %>.description}}</p>
+</div>

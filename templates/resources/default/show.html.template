@@ -2,4 +2,6 @@
   <%= options.className %>Controller.show();
 </script>
 
-<h1>Showing <%= options.name %></h1>
+<div class="content-padded">
+  <h1>Showing <%= options.name %> number <span id="show-id"></span></h1>
+</div>

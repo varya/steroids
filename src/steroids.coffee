@@ -301,8 +301,10 @@ class Steroids
 
           util.log "ERROR: #{error.message}"
           process.exit 1
-
-        @runSteroidsCommandSync "update"
+        
+        Bower = require "./steroids/Bower"
+        bower = new Bower
+        bower.update()
 
       when "login"
         Help.logo()
