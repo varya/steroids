@@ -11,6 +11,13 @@ class Help
   @attention: ->
     @printBanner(paths.banners.attention, true)
 
+  @awesome: ->
+    @printBanner(paths.banners.awesome, true)
+
+  @SUCCESS: ->
+    @printBanner(paths.banners.SUCCESS, true)
+
+
   @connect: ->
     @printBanner(paths.banners.connect)
 

@@ -1,0 +1,22 @@
+<div class="content content-padded">
+
+	<h1>Done!</h1>
+
+	<p>Currently we don't have any more tutorials here, but check out stuff at <a href="http://academy.appgyver.com">academy.appgyver.com</a></p>
+
+
+	<h2>PROTIP</h2>
+
+	<p>Try out out resource generation:</p>
+
+	<p><small>$ steroids generate resource cars</small></p>
+
+	<p>and</p>
+
+	<p><small>$ steroids generate ng-resource cars</small></p>
+
+	<p>for Angular.js style resources.</p>
+
+	<p>Happy Hacking!</p>
+
+</div>

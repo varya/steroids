@@ -25,6 +25,8 @@ class Paths
     logo: path.join @bannersDir, "logo"
     connect: path.join @bannersDir, "connect"
     attention: path.join @bannersDir, "attention"
+    SUCCESS: path.join @bannersDir, "success-caps"
+    awesome: path.join @bannersDir, "awesome"
     usage: path.join @bannersDir, "usage"
     welcome: path.join @bannersDir, "welcome"
     resetiOSSim: path.join @bannersDir, "iossim-reset"

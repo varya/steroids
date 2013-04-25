@@ -50,11 +50,9 @@
 
   steroids.view.navigationBar.show("PhoneGap on Steroids")
 
-  // In the next part of this tutorial we learn how to do this properly with Hammer.JS and external JavaScript files
+  // In the next part of this tutorial we learn how to do this properly with external JavaScript files
 
-  var element = document.getElementById("opener");
-
-  element.addEventListener("click", function() {
+  $("#opener").hammer().on("tap", function() {
     var otherView = new steroids.views.WebView("/views/tutorial/show.html");
     steroids.layers.push(otherView);
   });

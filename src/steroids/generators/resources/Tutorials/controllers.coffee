@@ -9,16 +9,7 @@ Base = require "../../Base"
 Help = require "../../../Help"
 
 
-class Part2 extends Base
-  @usageParams: ->
-    ""
-
-  @usage: ()->
-    """
-    Generates a walkthrough tutorial of Steroids
-
-    TODO: better expl.
-    """
+class Controllers extends Base
 
   templatePath: ->
     path.join(steroids.paths.templates.resources, path.join("tutorial", @options.name))
@@ -29,18 +20,32 @@ class Part2 extends Base
     #   path.join("app", "controllers", "application.js")
     #   path.join("app", "controllers", "tutorial.js")
     #   path.join("app", "views", "tutorial", "controllers.html")
+    #   path.join("app", "views", "tutorial", "controllers-completed.html")
     # ]
 
-
     @ensureDirectory path.join("app", "controllers")
+
     @copyFile path.join("app", "controllers", "application.js"), "application.js.template"
     @copyFile path.join("app", "controllers", "tutorial.js"), "tutorial.js.template"
+
 
     @copyFile path.join("app", "views", "tutorial", "controllers.html"), "controllers.html.template"
     @copyFile path.join("app", "views", "tutorial", "controllers-completed.html"), "controllers-completed.html.template"
 
-    Help.attention()
-    console.log "part 2 generated"
-    console.log "now edit your first tab to point to http://localhost/views/tutorial/controllers.html"
 
-module.exports = Part2
+    Help.SUCCESS()
+
+    console.log """
+
+    Now change the first tab in config/application.coffee to point to
+
+      http://localhost/views/tutorial/controllers.html
+
+    Then reload the application.
+
+
+    Bower, do your dance:
+
+    """
+
+module.exports = Controllers

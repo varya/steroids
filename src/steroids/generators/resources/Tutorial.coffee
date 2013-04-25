@@ -8,8 +8,8 @@ util = require "util"
 Base = require "../Base"
 
 tutorials =
-  "part1": require("./Tutorials/part1")
-  "part2": require("./Tutorials/part2")
+  "begin": require("./Tutorials/begin")
+  "controllers": require("./Tutorials/controllers")
 
 class Tutorial extends Base
   @usageParams: ->
@@ -17,7 +17,14 @@ class Tutorial extends Base
 
   @usage: ()->
     """
-    tutorialtodo
+    Generates the Steroids tutorials.
+
+    It is highly recommended that tutorials are created and completed in order, see ordering below.
+
+    Options:
+      - tutorialName: name of the tutorial to generate.  Available tutorials:
+        - begin -- The very basics of AppGyver Steroids, start here.
+        - controllers -- Basics of Controllers
     """
 
   generate: ->
