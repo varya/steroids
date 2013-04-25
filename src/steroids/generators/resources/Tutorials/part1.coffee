@@ -37,6 +37,7 @@ class Part1 extends Base
     @ensureDirectory path.join("app", "views")
 
     @ensureDirectory path.join("app", "views", "layouts")
+    @copyFile path.join("app", "views", "layouts", "application.html"), "application.html.template"
 
     @ensureDirectory path.join("app", "views", "tutorial")
     @copyFile path.join("app", "views", "tutorial", "index.html"), "index.html.template"

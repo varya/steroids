@@ -13,14 +13,14 @@ class Angular extends Base
 
   @usage: ()->
     """
-    Generates a stub Angular.js resource consisting of a controller, a model, an index view and associated partials for a list and details views. 
-    
+    Generates a stub Angular.js resource consisting of a controller, a model, an index view and associated partials for a list and details views.
+
     When used for the first time, the app/ folder is created with following default files
      - app/controllers/application.js
-     - app/views/layouts/application.html 
+     - app/views/layouts/application.html
 
     Options:
-      - resource: name of resource to use. Example: 'car' will result in the following files: 
+      - resource: name of resource to use. Example: 'car' will result in the following files:
         - app/controllers/car.js
         - app/models/car.js
         - app/views/car/index.html
@@ -39,7 +39,7 @@ class Angular extends Base
       path.join("app", "views", "#{@options.name}", "_list.html"),
       path.join("app", "views", "#{@options.name}", "_details.html")
     ]
-    
+
     @ensureDirectory path.join("www", "vendor", "angular-hammer")
     @copyFile path.join("www", "vendor", "angular-hammer", "angular-hammer.js"), "angular-hammer.js.template"
 
@@ -47,16 +47,17 @@ class Angular extends Base
 
     @ensureDirectory path.join("app", "controllers")
     @copyFile path.join("app", "controllers", "application.js"), "application_controller.js.template"
+
     @addFile path.join("app", "controllers", "#{@options.name}.js"), "controller.js.template"
-    
+
     @ensureDirectory path.join("app", "models")
     @addFile path.join("app", "models", "#{@options.name}.js"), "model.js.template"
 
     @ensureDirectory path.join("app", "views")
-    
+
     @ensureDirectory path.join("app", "views", "layouts")
-    @copyFile path.join("app", "views", "layouts", "application.html"), "layout.html.template"
-    
+    @copyFile path.join("app", "views", "layouts", "#{@options.name}.html"), "angular-layout.html.template"
+
     @ensureDirectory path.join("app", "views", "#{@options.name}")
     @addFile path.join("app", "views", "#{@options.name}", "index.html"), "index.html.template"
     @addFile path.join("app", "views", "#{@options.name}", "_list.html"), "list.html.template"
