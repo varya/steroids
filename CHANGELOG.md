@@ -1,11 +1,11 @@
-## 0.9.8 (2013-04-24)
+## 0.9.8 (2013-04-25)
 
 Default project structure is improved.
 
 Changes:
   - Improved Angular.js generator (ng-resource)
   - loading.html looks better
-  - Tutorial project is more informative
+  - Tutorial project is more informative: $ steroids generate tutorial begin
   - Everything works also with Android
   - Matches latest steroids.js conventions
 

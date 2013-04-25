@@ -105,6 +105,19 @@ class Steroids
           template = "default"
           folder = otherOptions[0]
 
+        if template == "tutorial"
+          Help.attention()
+          console.log """
+
+          We changed the way tutorials work.  Start tutorials by creating a normal project and then
+          in the project directory:
+
+            $ steroids generate tutorial begin
+
+          """
+
+          process.exit(1)
+
         ProjectCreator = require("./steroids/ProjectCreator")
         projectCreator = new ProjectCreator
           debug: @options.debug
