@@ -27,6 +27,8 @@ class Part1 extends Base
 
     @checkForPreExistingFiles [
       path.join("config", "application.coffee")
+      path.join("app", "views", "tutorial", "index.html")
+      path.join("app", "views", "tutorial", "show.html")
     ]
 
     @copyFile path.join("config", "application.coffee"), "application.coffee.template"
@@ -35,7 +37,6 @@ class Part1 extends Base
     @ensureDirectory path.join("app", "views")
 
     @ensureDirectory path.join("app", "views", "layouts")
-    @copyFile path.join("app", "views", "layouts", "application.html"), "layout.html.template"
 
     @ensureDirectory path.join("app", "views", "tutorial")
     @copyFile path.join("app", "views", "tutorial", "index.html"), "index.html.template"

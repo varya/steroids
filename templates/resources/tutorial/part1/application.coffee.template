@@ -26,7 +26,7 @@ steroids.config.location = "http://localhost/index.html"
 # Enabling tabs will override steroids.config.location (which is inteded for single WebView apps, i.e. PhoneGap's default behavior) and show the first tab of the tab array on startup.
 # Default: false
 #
-steroids.config.tabBar.enabled = true
+# steroids.config.tabBar.enabled = true
 
 # -- Defining tabs via the tab array --
 # An array of tab objects that specify which tabs are created on app startup.

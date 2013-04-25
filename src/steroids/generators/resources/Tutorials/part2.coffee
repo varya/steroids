@@ -25,7 +25,22 @@ class Part2 extends Base
 
   generate: ->
 
+    # @checkForPreExistingFiles [
+    #   path.join("app", "controllers", "application.js")
+    #   path.join("app", "controllers", "tutorial.js")
+    #   path.join("app", "views", "tutorial", "controllers.html")
+    # ]
+
+
+    @ensureDirectory path.join("app", "controllers")
+    @copyFile path.join("app", "controllers", "application.js"), "application.js.template"
+    @copyFile path.join("app", "controllers", "tutorial.js"), "tutorial.js.template"
+
+    @copyFile path.join("app", "views", "tutorial", "controllers.html"), "controllers.html.template"
+    @copyFile path.join("app", "views", "tutorial", "controllers-completed.html"), "controllers-completed.html.template"
+
 
     console.log "part 2 generated"
+    console.log "now edit your first tab to point to http://localhost/views/tutorial/controllers.html"
 
 module.exports = Part2
