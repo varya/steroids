@@ -1,3 +1,11 @@
+## 0.9.10 (2013-04-26)
+
+Android compatibility
+
+Changes:
+  - www/javascripts/onerror.js.android overrides default onerror.js to prevent errors before
+    the Android runtime doesn't throw an error on non-existing JavaScript files
+
 ## 0.9.8 (2013-04-25)
 
 Default project structure is improved.
