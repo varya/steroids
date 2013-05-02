@@ -1,5 +1,5 @@
 (function(window){
-/*! steroids-js - v0.6.1 - 2013-04-08 */
+/*! steroids-js - v0.6.2 - 2013-05-02 */
 ;var Bridge,
   __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
@@ -683,6 +683,192 @@ Modal = (function() {
   };
 
   return Modal;
+
+})();
+;var DrawerCollection;
+
+DrawerCollection = (function() {
+
+  function DrawerCollection() {
+    this.defaultAnimations = {
+      LEFT: new Animation("slideFromLeft"),
+      RIGHT: new Animation("slideFromRight"),
+      TOP: new Animation("slideFromTop"),
+      BOTTOM: new Animation("slideFromBottom")
+    };
+    this.defaultWidth = Math.floor(75 / 100 * window.screen.width);
+  }
+
+  DrawerCollection.prototype.takeParamsFromAnimation = function(animation, parameters) {
+    parameters.pushAnimation = animation.transition;
+    parameters.pushAnimationDuration = animation.duration;
+    parameters.popAnimation = animation.reversedTransition;
+    parameters.popAnimationDuration = animation.reversedDuration;
+    parameters.pushAnimationCurve = animation.curve;
+    return parameters.popAnimationCurve = animation.reversedCurve;
+  };
+
+  DrawerCollection.prototype.hide = function(options, callbacks) {
+    var parameters;
+    if (options == null) {
+      options = {};
+    }
+    if (callbacks == null) {
+      callbacks = {};
+    }
+    steroids.debug("steroids.drawers.hide called");
+    parameters = {
+      edge: "left"
+    };
+    if (options.animation != null) {
+      steroids.debug("steroids.drawers.show using custom animation");
+      this.takeParamsFromAnimation(options.animation, parameters);
+    } else {
+      steroids.debug("steroids.drawers.show using default animation");
+      this.takeParamsFromAnimation(window.steroids.drawers.defaultAnimations.LEFT, parameters);
+    }
+    return steroids.nativeBridge.nativeCall({
+      method: "closeDrawer",
+      parameters: parameters,
+      successCallbacks: [callbacks.onSuccess],
+      failureCallbacks: [callbacks.onFailure]
+    });
+  };
+
+  DrawerCollection.prototype.hideAll = function(options, callbacks) {
+    if (options == null) {
+      options = {};
+    }
+    if (callbacks == null) {
+      callbacks = {};
+    }
+    return this.hide(options, callbacks);
+  };
+
+  DrawerCollection.prototype.show = function(options, callbacks) {
+    var parameters, view;
+    if (options == null) {
+      options = {};
+    }
+    if (callbacks == null) {
+      callbacks = {};
+    }
+    steroids.debug("steroids.drawers.show called");
+    view = options.constructor.name === "WebView" ? (steroids.debug("steroids.drawers.show using view shorthand"), options) : (steroids.debug("steroids.drawers.show using longhand"), options.view);
+    parameters = {
+      edge: "left"
+    };
+    if (view.id != null) {
+      steroids.debug("steroids.drawers.show using preloaded view");
+      parameters.id = view.id;
+    } else {
+      steroids.debug("steroids.drawers.show using new view");
+      parameters.url = view.location;
+    }
+    if (options.keepLoading === true) {
+      steroids.debug("steroids.drawers.show using keepLoading");
+      parameters.keepTransitionHelper = true;
+    }
+    if (options.animation != null) {
+      steroids.debug("steroids.drawers.show using custom animation");
+      this.takeParamsFromAnimation(options.animation, parameters);
+    } else {
+      steroids.debug("steroids.drawers.show using default animation");
+      this.takeParamsFromAnimation(this.defaultAnimations.LEFT, parameters);
+    }
+    if (options.widthOfDrawerInPixels != null) {
+      steroids.debug("steroids.drawers.show using custom width of drawer to determine cutoff point");
+      parameters.widthOfDrawerInPixels = options.widthOfDrawerInPixels;
+    } else {
+      steroids.debug("steroids.drawers.show using default width of drawer to determine cutoff point");
+      parameters.widthOfDrawerInPixels = this.defaultWidth;
+    }
+    if (options.widthOfLayerInPixels != null) {
+      steroids.debug("steroids.drawers.show using custom width of layer to determine cutoff point");
+      parameters.widthOfLayerInPixels = options.widthOfLayerInPixels;
+    }
+    if (options.edge != null) {
+      steroids.debug("steroids.drawers.show using custom edge to show drawer from");
+      parameters.edge = options.edge;
+    } else {
+      steroids.debug("steroids.drawers.show using default edge to show drawer from");
+      parameters.edge = steroids.screen.edges.LEFT;
+    }
+    return steroids.nativeBridge.nativeCall({
+      method: "openDrawer",
+      parameters: parameters,
+      successCallbacks: [callbacks.onSuccess],
+      failureCallbacks: [callbacks.onFailure]
+    });
+  };
+
+  DrawerCollection.prototype.enableGesture = function(options, callbacks) {
+    var parameters, view;
+    if (options == null) {
+      options = {};
+    }
+    if (callbacks == null) {
+      callbacks = {};
+    }
+    steroids.debug("steroids.drawers.enableGesture called");
+    view = options.constructor.name === "WebView" ? (steroids.debug("steroids.drawers.enableGesture using view shorthand"), options) : (steroids.debug("steroids.drawers.enableGesture using longhand"), options.view);
+    parameters = {
+      edge: "left"
+    };
+    if (view.id != null) {
+      steroids.debug("steroids.drawers.enableGesture using preloaded view");
+      parameters.id = view.id;
+    } else {
+      steroids.debug("steroids.drawers.enableGesture using new view");
+      parameters.url = view.location;
+    }
+    if (options.keepLoading === true) {
+      steroids.debug("steroids.drawers.enableGesture using keepLoading");
+      parameters.keepTransitionHelper = true;
+    }
+    if (options.widthOfDrawerInPixels != null) {
+      steroids.debug("steroids.drawers.enableGesture using custom width of drawer to determine cutoff point");
+      parameters.widthOfDrawerInPixels = options.widthOfDrawerInPixels;
+    } else {
+      steroids.debug("steroids.drawers.enableGesture using default width of drawer to determine cutoff point");
+      parameters.widthOfDrawerInPixels = this.defaultWidth;
+    }
+    if (options.widthOfLayerInPixels != null) {
+      steroids.debug("steroids.drawers.enableGesture using custom width of layer to determine cutoff point");
+      parameters.widthOfLayerInPixels = options.widthOfLayerInPixels;
+    }
+    if (options.edge != null) {
+      steroids.debug("steroids.drawers.enableGesture using custom edge to show drawer from");
+      parameters.edge = options.edge;
+    } else {
+      steroids.debug("steroids.drawers.enableGesture using default edge to show drawer from");
+      parameters.edge = steroids.screen.edges.LEFT;
+    }
+    return steroids.nativeBridge.nativeCall({
+      method: "enableDrawerGesture",
+      parameters: parameters,
+      successCallbacks: [callbacks.onSuccess],
+      failureCallbacks: [callbacks.onFailure]
+    });
+  };
+
+  DrawerCollection.prototype.disableGesture = function(options, callbacks) {
+    if (options == null) {
+      options = {};
+    }
+    if (callbacks == null) {
+      callbacks = {};
+    }
+    steroids.debug("steroids.drawers.disableGesture called");
+    return steroids.nativeBridge.nativeCall({
+      method: "disableDrawerGesture",
+      parameters: {},
+      successCallbacks: [callbacks.onSuccess],
+      failureCallbacks: [callbacks.onFailure]
+    });
+  };
+
+  return DrawerCollection;
 
 })();
 ;var LayerCollection;
@@ -1555,6 +1741,13 @@ Screen = (function() {
 
   function Screen() {}
 
+  Screen.prototype.edges = {
+    LEFT: "left",
+    RIGHT: "right",
+    TOP: "top",
+    BOTTOM: "bottom"
+  };
+
   Screen.prototype.freeze = function(options, callbacks) {
     if (options == null) {
       options = {};
@@ -1774,7 +1967,7 @@ PostMessage = (function() {
 }).call(this);
 ;
 window.steroids = {
-  version: "0.6.1",
+  version: "0.6.2",
   Animation: Animation,
   XHR: XHR,
   File: File,
@@ -1789,6 +1982,7 @@ window.steroids = {
     TouchDB: TouchDB,
     OAuth2: OAuth2
   },
+  openURL: OpenURL.open,
   eventCallbacks: {},
   waitingForComponents: [],
   debugMessages: [],
@@ -1847,13 +2041,15 @@ window.steroids.nativeBridge = Bridge.getBestNativeBridge();
 
 window.steroids.waitingForComponents.push("App");
 
-window.steroids.app = new App;
-
 window.steroids.waitingForComponents.push("Events.focuslisteners");
 
 window.steroids.waitingForComponents.push("Events.initialVisibility");
 
+window.steroids.app = new App;
+
 Events.extend();
+
+window.steroids.drawers = new DrawerCollection;
 
 window.steroids.layers = new LayerCollection;
 
@@ -1866,8 +2062,6 @@ window.steroids.modal = new Modal;
 window.steroids.audio = new Audio;
 
 window.steroids.navigationBar = new NavigationBar;
-
-window.steroids.openURL = OpenURL.open;
 
 window.steroids.device = new Device;
 

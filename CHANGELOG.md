@@ -1,3 +1,7 @@
+## 0.9.10 (2013-05-02)
+
+Updated Steroids.js references to 0.6.2
+
 ## 0.9.9 (2013-04-26)
 
 Android compatibility
