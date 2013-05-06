@@ -1,3 +1,7 @@
+## 0.10.0 (2013-05-06)
+
+Versioned to 0.10.0 with 0.7.0 Steroids.js because of Scanner dependency on iOS (2.3.5)
+
 ## 0.9.10 (2013-05-02)
 
 Updated Steroids.js references to 0.6.2

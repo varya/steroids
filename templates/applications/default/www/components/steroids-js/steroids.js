@@ -1,5 +1,5 @@
 (function(window){
-/*! steroids-js - v0.6.2 - 2013-05-02 */
+/*! steroids-js - v0.7.0 - 2013-05-06 */
 ;var Bridge,
   __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
@@ -1967,7 +1967,7 @@ PostMessage = (function() {
 }).call(this);
 ;
 window.steroids = {
-  version: "0.6.2",
+  version: "0.7.0",
   Animation: Animation,
   XHR: XHR,
   File: File,
