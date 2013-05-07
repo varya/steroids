@@ -1,3 +1,7 @@
+* {
+    -webkit-user-select: none;    /* Disable selection/Copy of UIWebView when tapping for a long time */
+}
+
 p {
-  margin: 1em 0;
+  margin: 1em 0em;
 }
