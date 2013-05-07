@@ -315,6 +315,12 @@ class Steroids
           util.log "ERROR: #{error.message}"
           process.exit 1
 
+        console.log """
+
+         -- Running bower update --
+
+        """
+
         Bower = require "./steroids/Bower"
         bower = new Bower
         bower.update()

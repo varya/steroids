@@ -1,5 +1,5 @@
 (function(window){
-/*! steroids-js - v0.7.0 - 2013-05-06 */
+/*! steroids-js - v0.7.1 - 2013-05-07 */
 ;var Bridge,
   __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
@@ -691,7 +691,10 @@ DrawerCollection = (function() {
 
   function DrawerCollection() {
     this.defaultAnimations = {
-      LEFT: new Animation("slideFromLeft"),
+      LEFT: new Animation({
+        transition: "slideFromLeft",
+        duration: 0.2
+      }),
       RIGHT: new Animation("slideFromRight"),
       TOP: new Animation("slideFromTop"),
       BOTTOM: new Animation("slideFromBottom")
@@ -1967,7 +1970,7 @@ PostMessage = (function() {
 }).call(this);
 ;
 window.steroids = {
-  version: "0.7.0",
+  version: "0.7.1",
   Animation: Animation,
   XHR: XHR,
   File: File,
