@@ -18,6 +18,7 @@ class Drawer extends Base
 
     Options:
       - name: name of the folder to create. Example: 'drawerExample' will result in the following files:
+        - app/layouts/drawerExample.html
         - app/views/drawerExample/index.html
         - app/views/drawerExample/show.html
     """
@@ -37,8 +38,8 @@ class Drawer extends Base
     @ensureDirectory path.join("app", "views", "layouts")
 
     @copyFile path.join("app", "views", "layouts", "#{@options.name}.html"), "layout.html.template"
-    @copyFile path.join("app", "views", @options.name, "index.html"), "index.html.template"
-    @copyFile path.join("app", "views", @options.name, "index.html"), "show.html.template"
+    @addFile path.join("app", "views", @options.name, "index.html"), "index.html.template"
+    @addFile path.join("app", "views", @options.name, "show.html"), "show.html.template"
 
     Help.SUCCESS()
     console.log """

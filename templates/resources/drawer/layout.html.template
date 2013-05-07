@@ -9,6 +9,7 @@
 
   <script src="/javascripts/onerror.js"></script>
 
+  <script src="/appgyver/cordova.js"></script>
   <script src="/components/steroids-js/steroids.js"></script>
 
 </head>
