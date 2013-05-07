@@ -1,9 +1,10 @@
 ## 0.10.3 (2013-05-07)
 
-Modal example generator
+Modal and animation example generators
 
 Changes:
   - `steroids generate modal modalExample` creates an example of using modal windows.
+  - `steroids generate animation animationExample` creates an example of using animations.
 
 ## 0.10.2 (2013-05-07)
 

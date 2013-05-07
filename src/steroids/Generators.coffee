@@ -5,6 +5,7 @@ TutorialResource = require './generators/resources/Tutorial'
 DrawerExample = require './generators/resources/Drawer'
 PreloadExample = require './generators/resources/Preload'
 ModalExample = require './generators/resources/Modal'
+AnimationExample = require './generators/resources/Animation'
 
 module.exports =
   "resource": DefaultResource
@@ -13,3 +14,4 @@ module.exports =
   "drawer": DrawerExample
   "preload": PreloadExample
   "modal": ModalExample
+  "animation": AnimationExample
