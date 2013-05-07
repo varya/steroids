@@ -1,3 +1,14 @@
+## 0.10.2 (2013-05-07)
+
+Preload example generator
+
+Changes:
+  - `steroids generate preload preloadExample` creates an example of preloading webviews.
+
+Bugfixes:
+  - Default `application.css` fixed to work with input elements while disabling other callouts.
+
+
 ## 0.10.1 (2013-05-07)
 
 Drawer example generator
