@@ -1,3 +1,13 @@
+## 0.10.1 (2013-05-07)
+
+Drawer example generator
+
+Changes:
+  - `steroids generate drawer drawerExample` creates an example of the new native Facebook-like drawer.
+  - Default `application.css` disables WebKit callouts on long press in new projects.
+  - `steroids make` no longer complains about controllers named `xxxController`
+
+
 ## 0.10.0 (2013-05-06)
 
 Versioned to 0.10.0 with 0.7.0 Steroids.js because of Scanner dependency on iOS (2.3.5)
