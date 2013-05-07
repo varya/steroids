@@ -8,23 +8,23 @@ util = require "util"
 Base = require "../Base"
 Help = require "../../Help"
 
-class Drawer extends Base
+class Preload extends Base
   @usageParams: ->
     "<name>"
 
   @usage: ()->
     """
-    Generates an example of Facebook style native drawer.
+    Generates an example of preloading web views.
 
     Options:
-      - name: name of the folder to create. Example: 'drawerExample' will result in the following files:
-        - app/layouts/drawerExample.html
-        - app/views/drawerExample/index.html
-        - app/views/drawerExample/show.html
+      - name: name of the folder to create. Example: 'preloadExample' will result in the following files:
+        - app/layouts/preloadExample.html
+        - app/views/preloadExample/index.html
+        - app/views/preloadExample/show.html
     """
 
   templatePath: ->
-    path.join(steroids.paths.templates.resources, "drawer")
+    path.join(steroids.paths.templates.resources, "preload")
 
   generate: ->
     @checkForPreExistingFiles [
@@ -51,4 +51,4 @@ class Drawer extends Base
 
     """
 
-module.exports = Drawer
+module.exports = Preload
