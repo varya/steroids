@@ -1,3 +1,10 @@
+## 0.10.3 (2013-05-07)
+
+Modal example generator
+
+Changes:
+  - `steroids generate modal modalExample` creates an example of using modal windows.
+
 ## 0.10.2 (2013-05-07)
 
 Preload example generator
