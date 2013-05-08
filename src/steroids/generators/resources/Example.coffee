@@ -10,8 +10,8 @@ Base = require "../Base"
 examples =
   "animation": require("./Examples/animation")
   "drawer": require("./Examples/drawer")
-  # "layerStack": require("./Tutorials/layerStack")
-  # "modal": require("./Tutorials/modal")
+  "layerStack": require("./Examples/layerStack")
+  "modal": require("./Examples/modal")
   # "navbar": require("./Tutorials/navigationBar")
   # "preload": require("./Tutorials/preload")
 

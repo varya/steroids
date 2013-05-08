@@ -1,12 +1,12 @@
 <script>
 
   function showCat() {
-    var webView = new steroids.views.WebView("showCat.html");
+    var webView = new steroids.views.WebView("/views/layerStackExample/showCat.html");
     steroids.layers.push(webView);
   }
 
   function showCatNoNavBar() {
-    var webView = new steroids.views.WebView("showCat.html");
+    var webView = new steroids.views.WebView("/views/layerStackExample/showCat.html");
     steroids.layers.push( {
       view: webView,
       navigationBar: false
@@ -14,7 +14,7 @@
   }
 
   function showCatWithAnimation() {
-    var webView = new steroids.views.WebView("showCat.html");
+    var webView = new steroids.views.WebView("/views/layerStackExample/showCat.html");
     steroids.layers.push( {
       view: webView,
       animation: {
@@ -25,6 +25,8 @@
       }
     } );
   }
+  
+  steroids.view.navigationBar.show("Layer Stack");
 
 </script>
 
