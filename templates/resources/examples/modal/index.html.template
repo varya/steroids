@@ -12,7 +12,7 @@
 
   // Initialize the modal
 
-  var modalView = new steroids.views.WebView("/views/<%= options.name %>/show.html");
+  var modalView = new steroids.views.WebView("/views/modalExample/show.html");
 
 
   steroids.view.navigationBar.show("Modal Example");
