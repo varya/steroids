@@ -11,7 +11,7 @@ Help = require "../../../Help"
 class Modal extends Base
 
   templatePath: ->
-    path.join(steroids.paths.templates.resources, "modal")
+    path.join(steroids.paths.templates.resources, path.join("examples", "modal"))
 
   generate: ->
     @checkForPreExistingFiles [

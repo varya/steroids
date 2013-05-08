@@ -11,7 +11,7 @@ Help = require "../../../Help"
 class NavigationBar extends Base
 
   templatePath: ->
-    path.join(steroids.paths.templates.resources, "navigationBar")
+    path.join(steroids.paths.templates.resources, path.join("examples", "navigationBar"))
 
   generate: ->
     @checkForPreExistingFiles [

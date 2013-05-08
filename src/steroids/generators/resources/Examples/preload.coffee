@@ -11,7 +11,7 @@ Help = require "../../../Help"
 class Preload extends Base
 
   templatePath: ->
-    path.join(steroids.paths.templates.resources, "preload")
+    path.join(steroids.paths.templates.resources, path.join("examples", "preload"))
 
   generate: ->
     @checkForPreExistingFiles [

@@ -11,7 +11,7 @@ Help = require "../../../Help"
 class Animation extends Base
 
   templatePath: ->
-    path.join(steroids.paths.templates.resources, "animation")
+    path.join(steroids.paths.templates.resources, path.join("examples", "animation"))
 
   generate: ->
     @checkForPreExistingFiles [

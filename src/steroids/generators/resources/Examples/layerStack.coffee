@@ -11,7 +11,7 @@ Help = require "../../../Help"
 class LayerStack extends Base
 
   templatePath: ->
-    path.join(steroids.paths.templates.resources, "layerStack")
+    path.join(steroids.paths.templates.resources, path.join("examples", "layerStack"))
 
   generate: ->
     @checkForPreExistingFiles [

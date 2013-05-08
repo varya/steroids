@@ -11,7 +11,7 @@ Help = require "../../../Help"
 class Drawer extends Base
 
   templatePath: ->
-    path.join(steroids.paths.templates.resources, "drawer")
+    path.join(steroids.paths.templates.resources, path.join("examples", "drawer"))
 
   generate: ->
     @checkForPreExistingFiles [
