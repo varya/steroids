@@ -1,0 +1,23 @@
+<script>
+  steroids.view.navigationBar.show("Phoenix Foundation");
+  
+  var rightButton = new steroids.buttons.NavigationBarButton();
+  rightButton.title = "Log in";
+  rightButton.onTap = function() {
+    alert("Angus M. logged in!");
+    steroids.view.navigationBar.setButtons({
+      right: null
+    });
+  };
+
+  steroids.view.navigationBar.setButtons({
+    right: [rightButton]
+  });
+  
+</script>
+
+<div class="content-padded">
+
+  <h1>Welcome to the Phoenix Foundation intra!</h1>
+
+</div>
