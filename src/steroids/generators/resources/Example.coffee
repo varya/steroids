@@ -12,7 +12,7 @@ examples =
   "drawer": require("./Examples/drawer")
   "layerStack": require("./Examples/layerStack")
   "modal": require("./Examples/modal")
-  # "navbar": require("./Tutorials/navigationBar")
+  "navigationBar": require("./Examples/navigationBar")
   # "preload": require("./Tutorials/preload")
 
 class Example extends Base

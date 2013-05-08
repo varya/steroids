@@ -1,52 +1,44 @@
-steroids = require "../../../steroids"
+steroids = require "../../../../steroids"
 spawn = require("child_process").spawn
 path = require "path"
 fs = require "fs"
 ejs = require "ejs"
 util = require "util"
 
-Base = require "../Base"
-Help = require "../../Help"
+Base = require "../../Base"
+Help = require "../../../Help"
 
-class Navbar extends Base
-  @usageParams: ->
-    "<name>"
-
-  @usage: ()->
-    """
-    Generates an example of using the navigation bars view.
-
-    Options:
-      - name: name of the folder to create. Example: 'navbarExample' will result in the following files:
-        - app/layouts/navbarExample.html
-        - app/views/navbarExample/index.html
-        - app/views/navbarExample/show.html
-    """
+class NavigationBar extends Base
 
   templatePath: ->
-    path.join(steroids.paths.templates.resources, "navbar")
+    path.join(steroids.paths.templates.resources, "navigationBar")
 
   generate: ->
     @checkForPreExistingFiles [
-      path.join("app", "layouts", "#{@options.name}.html"),
-      path.join("app", "views", "#{@options.name}", "index.html")
+      path.join("app", "layouts", "navigationBarExample.html"),
+      path.join("app", "views", "navigationBarExample", "index.html")
     ]
 
     @ensureDirectory path.join("app")
     @ensureDirectory path.join("app", "views")
-    @ensureDirectory path.join("app", "views", @options.name)
+    @ensureDirectory path.join("app", "views", "navigationBarExample")
     @ensureDirectory path.join("app", "views", "layouts")
 
-    @copyFile path.join("app", "views", "layouts", "#{@options.name}.html"), "layout.html.template"
-    @addFile path.join("app", "views", @options.name, "index.html"), "index.html.template"
+    @copyFile path.join("app", "views", "layouts", "navigationBarExample.html"), "layout.html.template"
+    @addFile path.join("app", "views", "navigationBarExample", "index.html"), "index.html.template"
 
     Help.SUCCESS()
     console.log """
 
-    Command completed successfully, now set the location of your app to:
+    Modal example generated successfully! The following files were created:
+    
+      - app/layouts/navigationBarExample.html
+      - app/views/navigationBarExample/index.html
+    
+    To see the example in action, set the location of your app to:
 
-      http://localhost/views/#{@options.name}/index.html
+      http://localhost/views/navigationBarExample/index.html
 
     """
 
-module.exports = Navbar
+module.exports = NavigationBar
