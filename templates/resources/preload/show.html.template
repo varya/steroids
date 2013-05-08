@@ -11,7 +11,7 @@
     var uptimeElem = document.querySelector("#uptime");
     uptimeElem.textContent = uptime;
 
-    // Sends message for the main view that listens with addEventListener()
+    // Sends message for the main view that listens with addEventListener("message")
 
     var msg = { uptime: uptime };
     window.postMessage(msg, "*");

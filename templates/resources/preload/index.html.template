@@ -10,10 +10,10 @@
 
   });
 
-  // Initialize the view
+  // Initialize and preload the view
 
-  var showView = new steroids.views.WebView("/views/<%= options.name %>/show.html");
-
+  var showView = new steroids.views.WebView("/views/preloadExample/show.html");
+  
   showView.preload();
 
   // Helper functions

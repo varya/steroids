@@ -13,7 +13,7 @@ examples =
   "layerStack": require("./Examples/layerStack")
   "modal": require("./Examples/modal")
   "navigationBar": require("./Examples/navigationBar")
-  # "preload": require("./Tutorials/preload")
+  "preload": require("./Examples/preload")
 
 class Example extends Base
   @usageParams: ->
