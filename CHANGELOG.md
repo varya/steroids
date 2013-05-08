@@ -1,3 +1,10 @@
+## 0.10.4 (2013-05-TODO)
+
+SUMMARY
+
+Bugfixes:
+  - modal generator had some copy-pasta, fixed.
+
 ## 0.10.3 (2013-05-07)
 
 Modal and animation example generators

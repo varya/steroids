@@ -4,7 +4,7 @@
 
   window.addEventListener("message", function(msg) {
 
-    if ( msg.data.action = "closeModal" ) {
+    if ( msg.data.action == "closeModal" ) {
       steroids.modal.hide();
     }
   });
