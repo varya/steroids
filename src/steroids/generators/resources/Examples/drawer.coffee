@@ -32,7 +32,7 @@ class Drawer extends Base
     Help.SUCCESS()
     console.log """
 
-    Animation example generated successfully! The following files were created:
+    Drawer example generated successfully! The following files were created:
     
       - app/layouts/drawerExample.html
       - app/views/drawerExample/index.html

@@ -8,7 +8,6 @@ util = require "util"
 Base = require "../../Base"
 Help = require "../../../Help"
 
-
 class Modal extends Base
 
   templatePath: ->
@@ -33,7 +32,7 @@ class Modal extends Base
     Help.SUCCESS()
     console.log """
 
-    Animation example generated successfully! The following files were created:
+    Modal example generated successfully! The following files were created:
     
       - app/layouts/modalExample.html
       - app/views/modalExample/index.html

@@ -32,7 +32,7 @@ class LayerStack extends Base
     Help.SUCCESS()
     console.log """
 
-    Animation example generated successfully! The following files were created:
+    Layer stack example generated successfully! The following files were created:
     
       - app/layouts/layerStackExample.html
       - app/views/layerStackExample/index.html
