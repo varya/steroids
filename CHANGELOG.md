@@ -1,6 +1,11 @@
-## 0.10.4 (2013-05-TODO)
+## 0.10.4 (2013-05-08)
 
-SUMMARY
+New example generation syntax, new examples
+
+Changes:
+  - Example generator now uses following syntax:
+    `steroids generate example modal`
+  - New examples: layerStack, navigationBar
 
 Bugfixes:
   - modal generator had some copy-pasta, fixed.
