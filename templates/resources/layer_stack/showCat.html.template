@@ -1,0 +1,5 @@
+<div class="content-padded">
+
+  <a class="button" ontouchstart="steroids.layers.pop()">Pop topmost layer</a>
+
+</div>

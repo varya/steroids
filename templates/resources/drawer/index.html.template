@@ -9,7 +9,7 @@
 
   // Initialize the left drawer
 
-  var leftDrawer = new steroids.views.WebView("/views/<%= options.name %>/show.html");
+  var leftDrawer = new steroids.views.WebView("/views/drawerExample/drawer.html");
 
   leftDrawer.preload({},{
     onSuccess: initGesture  // When the view has loaded, enable finger tracking

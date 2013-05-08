@@ -1,0 +1,39 @@
+<script>
+
+  function showCat() {
+    var webView = new steroids.views.WebView("showCat.html");
+    steroids.layers.push(webView);
+  }
+
+  function showCatNoNavBar() {
+    var webView = new steroids.views.WebView("showCat.html");
+    steroids.layers.push( {
+      view: webView,
+      navigationBar: false
+    } );
+  }
+
+  function showCatWithAnimation() {
+    var webView = new steroids.views.WebView("showCat.html");
+    steroids.layers.push( {
+      view: webView,
+      animation: {
+        transition: "slideFromTop",
+        duration: 1.2,
+        reversedTransition: "slideFromBottom",
+        reversedDuration: 1.2
+      }
+    } );
+  }
+
+</script>
+
+<div class="content-padded">
+
+  <a class="button" ontouchstart="showCat()">Open showCat.html</a>
+  <br><br>
+  <a class="button" ontouchstart="showCatNoNavBar()">Open showCat.html and hide the navigation bar</a>
+  <br><br>
+  <a class="button" ontouchstart="showCatWithAnimation()">Open showCat.html with custom animation</a>
+
+</div>
