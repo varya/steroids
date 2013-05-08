@@ -1,28 +1,17 @@
 <script>
 
+  // Initialize a new WebView and push it to the layer stack
   function showCat() {
     var webView = new steroids.views.WebView("/views/layerStackExample/showCat.html");
     steroids.layers.push(webView);
   }
 
+  // Same as above, but hide the navigation bar
   function showCatNoNavBar() {
     var webView = new steroids.views.WebView("/views/layerStackExample/showCat.html");
     steroids.layers.push( {
       view: webView,
       navigationBar: false
-    } );
-  }
-
-  function showCatWithAnimation() {
-    var webView = new steroids.views.WebView("/views/layerStackExample/showCat.html");
-    steroids.layers.push( {
-      view: webView,
-      animation: {
-        transition: "slideFromTop",
-        duration: 1.2,
-        reversedTransition: "slideFromBottom",
-        reversedDuration: 1.2
-      }
     } );
   }
   
@@ -35,7 +24,5 @@
   <a class="button" ontouchstart="showCat()">Open showCat.html</a>
   <br><br>
   <a class="button" ontouchstart="showCatNoNavBar()">Open showCat.html and hide the navigation bar</a>
-  <br><br>
-  <a class="button" ontouchstart="showCatWithAnimation()">Open showCat.html with custom animation</a>
 
 </div>

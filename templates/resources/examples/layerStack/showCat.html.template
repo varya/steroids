@@ -1,5 +1,17 @@
+<script>
+
+// Initialize a new WebView and push it to the layer stack
+function showCat() {
+  var webView = new steroids.views.WebView("/views/layerStackExample/showCat.html");
+  steroids.layers.push(webView);
+}
+
+</script>
+
 <div class="content-padded">
 
   <a class="button" ontouchstart="steroids.layers.pop()">Pop topmost layer</a>
+  <br><br>
+  <a class="button" ontouchstart="showCat()">Open another instance of showCat.html</a>
 
 </div>
