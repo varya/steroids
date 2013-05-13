@@ -25,9 +25,12 @@
   </style>
 </head>
 <body>
-  <h1>AppGyver Steroids</h1>
+  <h1><img src="/images/steroids_logo.png" /> AppGyver Steroids</h1>
+
   <hr>
-  <div><img src="/images/steroids_logo.png" /></div>
+  <div id="qrcodeCanvas"></div>
+
+
 
   <div>
     <p>The Steroids server is now running. The server stays alive as long as the <br>
@@ -52,7 +55,7 @@
     <p>(You can also manually type in <code>$ steroids push</code> in another terminal window.)</p>
   </div>
 
-  <div id="qrcodeCanvas"></div>
+
 
   <script>
     function getQueryStringByKey(key) {
@@ -63,8 +66,8 @@
 
 
     jQuery('#qrcodeCanvas').qrcode({
-      width: 256,
-      height: 256,
+      width: 448,
+      height: 448,
       text  : getQueryStringByKey("qrCodeData")
     });
   </script>

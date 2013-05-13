@@ -1,3 +1,12 @@
+## 0.10.TODO (2013-05-TODO)
+
+TODO
+
+Changes:
+  - QR Code in `steroids connect` is bigger by default (improves scanning with iOS)
+
+
+
 ## 0.10.4 (2013-05-08)
 
 New example generation syntax, new examples
