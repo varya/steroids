@@ -5,6 +5,11 @@ events = require "events"
 
 Paths = require "./paths"
 
+
+fs = require "fs"
+wrench = require "wrench"
+coffee = require "coffee-script"
+
 defaultConfig = {}
 
 registerDefaultTasks = (grunt)->
@@ -172,6 +177,7 @@ registerDefaultTasks = (grunt)->
 
 
   grunt.registerTask 'steroids-compile-views', "Compile views", ->
+
     projectDirectory          = Paths.applicationDir
 
     buildDirectory            = path.join projectDirectory, "dist"
@@ -191,13 +197,13 @@ registerDefaultTasks = (grunt)->
 
     viewDirectories = []
 
-
     # get each view folder (except layout)
     for dirPath in grunt.file.expandDirs(path.join(appViewsDirectory, "*"))
       basePath = path.basename(dirPath)
       unless basePath is "layouts" + path.sep or basePath is "layouts"
         viewDirectories.push dirPath
         grunt.file.mkdir path.join(buildViewsDirectory, path.basename(dirPath))
+
 
     for viewDir in viewDirectories
       # resolve layout file for these views
@@ -217,7 +223,9 @@ registerDefaultTasks = (grunt)->
 
       applicationLayoutFile = grunt.file.read layoutFilePath, "utf8"
 
+
       for filePathPart in grunt.file.expand(path.join(viewDir, "**", "*"))
+
         filePath = path.resolve filePathPart
         buildFilePath = path.resolve filePathPart.replace("app"+path.sep, "dist"+path.sep)
 
@@ -227,6 +235,13 @@ registerDefaultTasks = (grunt)->
         else
 
           controllerName = path.basename(viewDir).replace(path.sep, "")
+          controllerBasenameWithPath = path.join(buildcontrollersDirectory, "#{controllerName}")
+
+
+
+          unless fs.existsSync "#{controllerBasenameWithPath}.js"
+            warningMessage = "#red[Warning:] There is no controller for resource #{controllerName}.  Please add file #{controllerBasenameWithPath}.{js|coffee}"
+            grunt.log.writeln colorize.ansify(warningMessage)
 
           yieldObj =
             view: grunt.file.read(filePath, "utf8")

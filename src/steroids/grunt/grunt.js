@@ -1,9 +1,5 @@
-path = require("path");
-fs = require("fs");
-coffee = (typeof(steroidsPath) !== "undefined") ? require(path.join(steroidsPath, "node_modules", "coffee-script")) : require("coffee-script");
-wrench = (typeof(steroidsPath) !== "undefined") ? require(path.join(steroidsPath, "node_modules", "wrench")) : require("wrench");
 
-gruntSteroidsDefaults = (typeof(steroidsPath) !== "undefined") ? require(path.join(steroidsPath, "src", "steroids")).GruntDefaults : require("steroids").GruntDefaults;
+var gruntSteroidsDefaults = require("../GruntDefaults");
 
 module.exports = function(grunt) {
   config = gruntSteroidsDefaults.defaultConfig;
