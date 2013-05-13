@@ -5,7 +5,9 @@ TODO
 Changes:
   - QR Code in `steroids connect` is bigger by default (improves scanning with iOS)
 
-
+Bugfixes:
+  - Steroids no longer assumes that command is always named `steroids`
+  - Built-in grunt always used globally installed steroids
 
 ## 0.10.4 (2013-05-08)
 
