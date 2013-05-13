@@ -21,6 +21,7 @@ class Steroids
       debug: @options.debug
 
     @version = new Version
+    @pathToSelf = process.argv[1]
 
   detectLegacyProject: ->
     fs = require("fs")

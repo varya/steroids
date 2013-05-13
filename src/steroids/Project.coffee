@@ -27,7 +27,7 @@ class Project
     steroidsCli.debug "Spawning steroids grunt"
 
     gruntSbawn = sbawn
-      cmd: "steroids"
+      cmd: steroidsCli.pathToSelf
       args: ["grunt"]
       stdout: true
       stderr: true
@@ -44,7 +44,7 @@ class Project
     steroidsCli.debug "Spawning steroids package"
 
     packageSbawn = sbawn
-      cmd: "steroids"
+      cmd: steroidsCli.pathToSelf
       args: ["package"]
       stdout: true
       stderr: true
