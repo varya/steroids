@@ -26,7 +26,8 @@ describe 'Generator', ->
         args: []
 
       runs ()=>
-        expect( cmd.code ).toBe(0)
+        expect( cmd.stdout ).toMatch(/Usage: steroids generate resource/)
+
 
   describe "resource", ->
     it "creates a resource", ->
@@ -38,11 +39,12 @@ describe 'Generator', ->
       runs ()=>
         expect( cmd.code ).toBe(0)
 
-        ctrlPath = path.join(@testHelper.testAppPath, "app", "controllers", "cars.coffee")
+        ctrlPath = path.join(@testHelper.testAppPath, "app", "controllers", "cars.js")
         expect(fs.existsSync ctrlPath).toBe true
-        expect(fs.readFileSync(ctrlPath).toString()).toMatch(/class window.CarsController/)
+        expect(fs.readFileSync(ctrlPath).toString()).toMatch(/window.CarsController/)
 
         expect(fs.existsSync path.join(@testHelper.testAppPath, "app", "views", "cars", "index.html")).toBe true
+
 
     it "fails when trying to overwrite existing files", ->
       @testHelper.createProjectSync()
@@ -57,7 +59,7 @@ describe 'Generator', ->
         expect( cmd1.code ).toBe(0)
         expect( cmd2.code ).toBe(1)
 
-        ctrlPath = path.join(@testHelper.testAppPath, "app", "controllers", "cars.coffee")
+        ctrlPath = path.join(@testHelper.testAppPath, "app", "controllers", "cars.js")
         expect(fs.existsSync ctrlPath).toBe true
 
         expect(cmd2.stdout).toMatch(/would be overwritten by this command/)
