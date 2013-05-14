@@ -19,14 +19,26 @@ describe 'Generator', ->
 
 
   describe 'usage', ->
-    it "prints usage instructions when no parameters", ->
+    beforeEach ->
       @testHelper.createProjectSync()
+
+    it "prints usage instructions when no parameters", ->
 
       cmd = @testHelper.runInProjectSync "generate",
         args: []
 
-      runs ()=>
+      runs =>
         expect( cmd.stdout ).toMatch(/Usage: steroids generate resource/)
+
+    it "gives friendly error message when generator is not found", ->
+
+      cmd = @testHelper.runInProjectSync "generate",
+        args: ["neverGonnaExistGenerator"]
+
+      runs =>
+        expect( cmd.code ).toBe(1)
+        expect( cmd.stderr ).toEqual ""
+        expect( cmd.stdout ).toMatch(/No such generator: neverGonnaExistGenerator/)
 
 
   describe "resource", ->

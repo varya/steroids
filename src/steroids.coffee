@@ -119,6 +119,12 @@ class Steroids
 
           process.exit(1)
 
+        unless folder
+
+          console.log "Usage: steroids create <directoryName>"
+
+          process.exit(1)
+
         ProjectCreator = require("./steroids/ProjectCreator")
         projectCreator = new ProjectCreator
           debug: @options.debug
@@ -305,6 +311,10 @@ class Steroids
         generatorOptions =
           name: generatorArgs[0]
           otherOptions: generatorArgs
+
+        unless Generators[generatorType]
+          console.log "No such generator: #{generatorType}"
+          process.exit(1)
 
         generator = new Generators[generatorType](generatorOptions)
 

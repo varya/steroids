@@ -33,6 +33,19 @@ describe 'Steroids', ->
         expect( @createRun.code ).toBe(0)
         expect( fs.existsSync "myApp" ).toBe true
 
+    it "gives usage information when no params are given", ->
+      @createRun = new CommandRunner
+        cmd: TestHelper.steroidsBinPath
+        args: ["create"]
+
+      runs ()=>
+        @createRun.run()
+
+      runs ()=>
+        expect( @createRun.code ).toBe(1)
+        expect( @createRun.stdout ).toMatch /Usage: steroids create <directoryName>/
+
+
   describe 'project default files', ->
 
     beforeEach ->
@@ -63,6 +76,11 @@ describe 'Steroids', ->
 
       contents = fs.readFileSync(cordovaPlistPath).toString()
       expect( contents ).toMatch(/<key>UIWebViewBounce/)
+
+    it "does not have a folder named app", ->
+      appPath = path.join @testHelper.testAppPath, "app"
+
+      expect( fs.existsSync(appPath) ).not.toBe true
 
 
   # describe 'create', ->
