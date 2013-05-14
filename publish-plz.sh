@@ -1,6 +1,6 @@
 #!/bin/sh
 
-head CHANGELOG.md
+head -n 20 CHANGELOG.md
 
 echo "is changelog ok?"
 read
