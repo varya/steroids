@@ -8,7 +8,7 @@ class QRCode
   show: =>
     return if process.env.STEROIDS_TEST_RUN
 
-    open "http://localhost:4567/qrcode.html?qrCodeData=#{encodeURIComponent(@data)}"
+    open "http://localhost:4567/__appgyver/connect/qrcode.html?qrCodeData=#{encodeURIComponent(@data)}"
 
   @showLocal: =>
     interfaces = steroidsCli.server.interfaces()

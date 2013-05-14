@@ -18,7 +18,8 @@ class Paths
     gruntFile: path.join @npm, "src", "steroids", "grunt", "grunt.js"
 
   @staticFiles: path.join @npm, "public"
-  @oauthSuccessHTML: path.join @staticFiles, "oauth2_success.html"
+  @appgyverStaticFiles: path.join @staticFiles, "__appgyver"
+  @oauthSuccessHTML: path.join @appgyverStaticFiles, "login", "oauth2_success.html"
 
   @bannersDir: path.join @npm, "support"
   @banners:

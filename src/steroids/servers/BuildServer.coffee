@@ -16,6 +16,9 @@ class BuildServer extends Server
     super(@options)
 
   setRoutes: =>
+    @app.get "/", (req, res) =>
+      res.redirect("/__appgyver/index.html")
+
     @app.get "/appgyver/api/applications/1.json", (req, res) =>
 
       #TODO joutuu varmaan siivoomaan
