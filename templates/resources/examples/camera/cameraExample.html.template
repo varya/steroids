@@ -14,40 +14,39 @@
   
   <script>
   
-    // Get the image element and show the captured photo
-    function onPhotoURISuccess(imageURI) {
-      var photoURIImage = document.querySelector('#photo-uri-image');
-      photoURIImage.src = imageURI;
+    // Show the selected image
+    function imageURIReceived(imageURI) {
+      var imgElement = document.querySelector('#image-uri');
+      imgElement.src = imageURI;
+    }s
+  
+    // Show the Base64-encoded image
+    function imageDataReceived(imageData) {  
+      var imgElement = document.querySelector('#base64');
+      imgElement.src = "data:image/jpeg;base64," + imageData;
     }
   
-    // Get the image element and show the Base64-encoded photo
-    function onPhotoDataSuccess(imageData) {  
-      var base64Image = document.querySelector('#base64-image');
-      base64Image.src = "data:image/jpeg;base64," + imageData;
-    }
-  
-    // Generic failure callback
-    function onFail(message) {
+    // Camera failure callback
+    function cameraError(message) {
       alert('Capturing the photo failed! Cordova says: ' + message);
     }
   
-    // Choose photo from photo library, return photo's file URI
-    function getPhoto() {
-      navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50, 
+    // Choose an image from the device's photo library, the callback receives the image's file URI
+    function chooseImage() {
+      navigator.camera.getPicture(imageURIReceived, cameraError, { quality: 50, 
         destinationType: navigator.camera.DestinationType.IMAGE_URI,
         sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY });
     }
   
-    // Take picture using device camera and retrieve the image as a Base64-encoded string
+    // Take a photo using the device's camera, the callback receives the image as a Base64-encoded string
     function capturePhoto() {
-      navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 30, allowEdit: true,
+      navigator.camera.getPicture(imageDataReceived, cameraError, { quality: 30, allowEdit: true,
         destinationType: navigator.camera.DestinationType.DATA_URL });
     }  
     
   </script>
   
   <style>
-    /* Set images to take up entire screen width */
     img {
       width:100%;
     }
@@ -60,10 +59,10 @@
     <h1>Camera Example</h1>
     <hr>
     <a class="button-block" ontouchstart="capturePhoto()">Capture editable photo</a>
-    <a class="button-block" ontouchstart="getPhoto()">Choose from Photo Library</a>
+    <a class="button-block" ontouchstart="chooseImage()">Choose from Photo Library</a>
     
-    <img id="base64-image">
-    <img id="photo-uri-image">
+    <img id="base64">
+    <img id="image-uri">
   </div>
 
 </body>
