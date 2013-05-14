@@ -8,6 +8,7 @@ util = require "util"
 Base = require "../Base"
 
 examples =
+  "accelerometer": require("./Examples/accelerometer")
   "animation": require("./Examples/animation")
   "camera": require("./Examples/camera")
   "compass": require("./Examples/compass")
@@ -37,8 +38,9 @@ class Example extends Base
         - preload -- Preload WebViews to have them available immediately.
         
         Available Cordova examples:
-        - camera -- using Cordova to access the device's camera and photo library.
-        - compass -- using Cordova to access the device's compass.
+        - accelerometer -- Using Cordova to access the device's accelerometer.
+        - camera -- Using Cordova to access the device's camera and photo library.
+        - compass -- Using Cordova to access the device's compass.
     """
 
   generate: ->
