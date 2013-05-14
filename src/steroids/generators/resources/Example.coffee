@@ -9,6 +9,7 @@ Base = require "../Base"
 
 examples =
   "animation": require("./Examples/animation")
+  "camera": require("./Examples/camera")
   "drawer": require("./Examples/drawer")
   "layerStack": require("./Examples/layerStack")
   "modal": require("./Examples/modal")
@@ -24,13 +25,18 @@ class Example extends Base
     Generates an example demonstrating a Steroids feature.
 
     Options:
-      - exampleName: name of the example to generate.  Available examples:
+      - exampleName: name of the example to generate.  
+        
+        Available Steroids examples:
         - animation -- Using native animations without moving to another document.
         - drawer -- Using the native Facebook-style drawer.
         - layerStack -- Native navigation, page transitions and backstack handling.
         - modal -- Using the modal window.
         - navigationBar -- Using the native navigation bar.
         - preload -- Preload WebViews to have them available immediately.
+        
+        Available Cordova examples:
+        - camera -- using Cordova to access the device's camera and photo library.
     """
 
   generate: ->

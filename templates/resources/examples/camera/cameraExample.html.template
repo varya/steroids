@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf8">
+  <title>Cordova Camera Example</title>
+
+  <link rel="stylesheet" href="stylesheets/ratchet-steroids.css" />
+  <link rel="stylesheet" href="stylesheets/application.css" />
+
+  <script src="javascripts/onerror.js"></script>
+
+  <!-- cordova.js is served from localhost to ensure the correct version -->
+  <script src="http://localhost/appgyver/cordova.js"></script>
+  
+  <script>
+  
+    // Get the image element and show the captured photo
+    function onPhotoURISuccess(imageURI) {
+      var photoURIImage = document.querySelector('#photo-uri-image');
+      photoURIImage.src = imageURI;
+    }
+  
+    // Get the image element and show the Base64-encoded photo
+    function onPhotoDataSuccess(imageData) {  
+      var base64Image = document.querySelector('#base64-image');
+      base64Image.src = "data:image/jpeg;base64," + imageData;
+    }
+  
+    // Generic failure callback
+    function onFail(message) {
+      alert('Capturing the photo failed! Cordova says: ' + message);
+    }
+  
+    // Choose photo from photo library, return photo's file URI
+    function getPhoto() {
+      navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50, 
+        destinationType: navigator.camera.DestinationType.IMAGE_URI,
+        sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY });
+    }
+  
+    // Take picture using device camera and retrieve the image as a Base64-encoded string
+    function capturePhoto() {
+      navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 30, allowEdit: true,
+        destinationType: navigator.camera.DestinationType.DATA_URL });
+    }  
+    
+  </script>
+  
+  <style>
+    /* Set images to take up entire screen width */
+    img {
+      width:100%;
+    }
+  </style>
+
+</head>
+<body>
+
+  <div class="content-padded">
+    <h1>Camera Example</h1>
+    <hr>
+    <a class="button-block" ontouchstart="capturePhoto()">Capture editable photo</a>
+    <a class="button-block" ontouchstart="getPhoto()">Choose from Photo Library</a>
+    
+    <img id="base64-image">
+    <img id="photo-uri-image">
+  </div>
+
+</body>
+</html>
