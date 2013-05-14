@@ -4,29 +4,28 @@
   <meta charset="utf8">
   <title>Cordova Compass Example</title>
 
-  <link rel="stylesheet" href="/stylesheets/ratchet-steroids.css" />
-  <link rel="stylesheet" href="/stylesheets/application.css" />
+  <link rel="stylesheet" href="stylesheets/ratchet-steroids.css" />
+  <link rel="stylesheet" href="stylesheets/application.css" />
 
-  <script src="/javascripts/onerror.js"></script>
+  <script src="javascripts/onerror.js"></script>
 
   <!-- cordova.js is served from localhost to ensure the correct version -->
-  <script src="/appgyver/cordova.js"></script>
+  <script src="http://localhost/appgyver/cordova.js"></script>
   
   <script>
   
-  // Wait for Cordova to load (failure callback is kept empty)
+  // ID of the active compass watcher
+  var watchID = null;
+  
+  // Wait for Cordova to load, then start watching the compass
   document.addEventListener("deviceready", startWatch, false);
 
-  // Start watching the compass
   function startWatch() {
-
     // Query the compass for a new heading every 120 ms
     var options = { frequency: 120 };
-
-    watchID = navigator.compass.watchHeading(onSuccess, onError, options);
+    watchID = navigator.compass.watchHeading(headingReceived, compassError, options);
   }
 
-  // Stop watching the compass
   function stopWatch() {
     if (watchID) {
       navigator.compass.clearWatch(watchID);
@@ -35,13 +34,13 @@
   }
 
   // Display the current heading in the DOM
-  function onSuccess(heading) {
+  function headingReceived(heading) {
     var element = document.querySelector('#heading');
     element.textContent = 'Heading: ' + heading.magneticHeading;
   }
   
-  // Failed to get the heading
-  function onError(compassError) {
+  // Failed to get the heading or access the compass
+  function compassError(compassError) {
     alert('Compass error! Error code: ' + compassError.code);
   }
   
