@@ -7,7 +7,7 @@ class SupportChat
 
   open: () ->
     encodedName = encodeURIComponent(@name)
-    chatURL = "https://ninchat.com/embed?name=#{encodedName}#/c/10opaevm008"
+    chatURL = "http://steroids.chat.appgyver.com?nickName=#{encodedName}"
 
     open(chatURL)
 
