@@ -3,7 +3,7 @@ Weinre = require "./steroids/Weinre"
 Simulator = require "./steroids/Simulator"
 Project = require "./steroids/Project"
 Updater = require "./steroids/Updater"
-
+SupportChat = require "./steroids/SupportChat"
 
 util = require "util"
 Version = require "./steroids/Version"
@@ -389,6 +389,16 @@ class Steroids
                 console.log "Can not make package, not deploying to cloud."
           onFailure: =>
             console.log "Can not build project locally, not deploying to cloud."
+
+      when "chat"
+        [nickName, otherChatArgs...] = otherOptions
+
+        unless nickName
+          console.log "Usage: steroids chat <yournickname>"
+          process.exit(1)
+
+        supportChat = new SupportChat(nickName)
+        supportChat.open()
 
       else
         Help.logo() unless argv.noLogo
