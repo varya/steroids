@@ -21,7 +21,7 @@ describe 'BuildServer', ->
     @testHelper.killConnect()
 
 
-  it "should start", ->
+  xit "should start", ->
 
     @testHelper.runConnect()
 
