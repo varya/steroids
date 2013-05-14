@@ -1,3 +1,16 @@
+## 0.10.x (2013-05-TODO)
+
+TODO
+
+Changes:
+  - All steroids http callbacks are now prefixed with `/__appgyver`
+  - `steroids connect` screen now links to AppGyver Scanner for Android also.
+
+Bugfixes:
+  - When using `steroids serve` it no longer serves usage document for `/index.html`
+
+
+
 ## 0.10.5 (2013-05-14)
 
 Bigger QR code for improved scanning.
