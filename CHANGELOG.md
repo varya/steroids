@@ -1,6 +1,6 @@
-## 0.10.TODO (2013-05-TODO)
+## 0.10.5 (2013-05-14)
 
-TODO
+Bigger QR code for improved scanning.
 
 Changes:
   - QR Code in `steroids connect` is bigger by default (improves scanning with iOS)
@@ -8,6 +8,9 @@ Changes:
 Bugfixes:
   - Steroids no longer assumes that command is always named `steroids`
   - Built-in grunt always used globally installed steroids
+
+Experimental:
+  - `steroids chat <nickName>` opens a support chat session
 
 ## 0.10.4 (2013-05-08)
 
