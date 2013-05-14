@@ -10,6 +10,7 @@ Base = require "../Base"
 examples =
   "animation": require("./Examples/animation")
   "camera": require("./Examples/camera")
+  "compass": require("./Examples/compass")
   "drawer": require("./Examples/drawer")
   "layerStack": require("./Examples/layerStack")
   "modal": require("./Examples/modal")
@@ -37,6 +38,7 @@ class Example extends Base
         
         Available Cordova examples:
         - camera -- using Cordova to access the device's camera and photo library.
+        - compass -- using Cordova to access the device's compass.
     """
 
   generate: ->
