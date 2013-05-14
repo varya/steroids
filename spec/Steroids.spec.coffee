@@ -1,6 +1,6 @@
-Steroids = require "../src/steroids"
+steroids = require "../src/steroids"
 
-describe 'Steroids', ->
+describe 'steroids', ->
 
   beforeEach ->
 
