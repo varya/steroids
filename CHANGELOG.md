@@ -8,7 +8,7 @@ Changes:
 
 Bugfixes:
   - When using `steroids serve` it no longer serves usage document for `/index.html`
-
+  - Friendlier error messages for `steroids create` and `steroids generate`
 
 
 ## 0.10.5 (2013-05-14)
