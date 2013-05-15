@@ -109,17 +109,19 @@ describe 'Generator', ->
     it "fails when trying to overwrite existing files", ->
       @testHelper.createProjectSync()
 
-      cmd1 = @testHelper.runInProjectSync "generate",
-        args: ["resource", "cars"]
+      runs ->
+        @cmd1 = @testHelper.runInProjectSync "generate",
+          args: ["resource", "cars"]
 
-      cmd2 = @testHelper.runInProjectSync "generate",
-        args: ["resource", "cars"]
+      runs ->
+        @cmd2 = @testHelper.runInProjectSync "generate",
+          args: ["resource", "cars"]
 
       runs ()=>
-        expect( cmd1.code ).toBe(0)
-        expect( cmd2.code ).toBe(1)
+        expect( @cmd1.code ).toBe(0)
+        expect( @cmd2.code ).toBe(1)
 
         ctrlPath = path.join(@testHelper.testAppPath, "app", "controllers", "cars.js")
         expect(fs.existsSync ctrlPath).toBe true
 
-        expect(cmd2.stdout).toMatch(/would be overwritten by this command/)
+        expect(@cmd2.stdout).toMatch(/would be overwritten by this command/)

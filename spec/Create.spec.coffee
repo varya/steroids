@@ -33,6 +33,27 @@ describe 'Steroids', ->
         expect( @createRun.code ).toBe(0)
         expect( fs.existsSync "myApp" ).toBe true
 
+    it "does not overwrite existing directory", ->
+      @createRun1 = new CommandRunner
+        cmd: TestHelper.steroidsBinPath
+        args: ["create", "importantDirectoryDoNotOverwrite"]
+
+      @createRun2 = new CommandRunner
+        cmd: TestHelper.steroidsBinPath
+        args: ["create", "importantDirectoryDoNotOverwrite"]
+
+      runs ->
+        @createRun1.run()
+
+      runs ->
+        @createRun2.run()
+
+      runs ->
+        expect( @createRun1.code ).toBe(0)
+        expect( @createRun2.code ).toBe(1)
+        expect( @createRun2.stdout ).toMatch /Error: 'importantDirectoryDoNotOverwrite' already exists/
+
+
     it "gives usage information when no params are given", ->
       @createRun = new CommandRunner
         cmd: TestHelper.steroidsBinPath

@@ -13,6 +13,7 @@ Bugfixes:
   - Friendlier error messages for `steroids generate tutorial` and `steroids generate example`
   - Checks if `steroids <cmd>` needs to be run in steroids project directory
   - Any IP address that is not for localhost is okay
+  - `steroids create projectName` refuses to overwrite existing folder
 
 ## 0.10.5 (2013-05-14)
 
