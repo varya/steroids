@@ -12,6 +12,7 @@ examples =
   "animation": require("./Examples/animation")
   "camera": require("./Examples/camera")
   "compass": require("./Examples/compass")
+  "device": require("./Examples/device")
   "drawer": require("./Examples/drawer")
   "layerStack": require("./Examples/layerStack")
   "media": require("./Examples/media")
@@ -41,9 +42,12 @@ class Example extends Base
         - preload -- Preload WebViews to have them available immediately.
         
         Available Cordova examples:
-        - accelerometer -- Using Cordova to access the device's accelerometer.
-        - camera -- Using Cordova to access the device's camera and photo library.
-        - compass -- Using Cordova to access the device's compass.
+        - accelerometer -- Access the device's accelerometer.
+        - camera -- Access the device's camera and photo library.
+        - compass -- Access the device's compass.
+        - device -- Access the device properties.
+        - media -- Play back audio files through Cordova's Media API.
+        - storage -- Use Cordova's SQL Storage API.
     """
 
   generate: ->
