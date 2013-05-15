@@ -121,7 +121,7 @@ class Steroids
 
     switch firstOption
       when "version"
-        console.log "AppGyver Steroids #{@version.getVersion()}"
+        console.log @version.formattedVersion()
 
       when "create"
         if otherOptions[1]?

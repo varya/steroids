@@ -14,5 +14,7 @@ class Version
 
     return packageJSON.version
 
+  formattedVersion: =>
+    return "AppGyver Steroids #{@getVersion()}"
 
 module.exports = Version
