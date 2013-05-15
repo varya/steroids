@@ -44,7 +44,7 @@ class Server
       unless k.indexOf("lo") == 0     # everything else but localhost is okay for the device to connect
         for k2 of interfaces[k]
           address = interfaces[k][k2]
-          if address.family == 'IPv4' && !address.internal
+          if address.family == 'IPv4'
             addresses.push { ip: address.address, name: k }
 
     return addresses
