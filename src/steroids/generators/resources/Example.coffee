@@ -14,6 +14,7 @@ examples =
   "compass": require("./Examples/compass")
   "drawer": require("./Examples/drawer")
   "layerStack": require("./Examples/layerStack")
+  "media": require("./Examples/media")
   "modal": require("./Examples/modal")
   "navigationBar": require("./Examples/navigationBar")
   "preload": require("./Examples/preload")

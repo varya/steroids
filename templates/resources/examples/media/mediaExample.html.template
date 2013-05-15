@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cordova Media Example</title>
+    
+    <link rel="stylesheet" href="stylesheets/ratchet-steroids.css" />
+    <link rel="stylesheet" href="stylesheets/application.css" />
+
+    <script src="javascripts/onerror.js"></script>
+
+    <!-- cordova.js is served from localhost to ensure the correct version -->
+    <script type="text/javascript" charset="utf-8" src="http://localhost/appgyver/cordova.js"></script>
+    <script type="text/javascript" charset="utf-8">
+
+    // Wait for Cordova to load
+    document.addEventListener("deviceready", onDeviceReady, false);
+
+    // Define our Media object, a timer that updates and the audio position DOM element
+    var myMedia = null;
+    var mediaTimer = null;
+    var audioPosition = null;
+
+    function onDeviceReady() {
+      // Success callback left as null
+      myMedia = new Media("http://audio.ibeat.org/content/p1rj1s/p1rj1s_-_rockGuitar.mp3", null, mediaError);
+  
+      // onDeviceReady fires after DOM is loaded, so we are safe to set our element
+      audioPosition = document.querySelector('#audio_position');
+  
+    }
+
+    // Play audio
+    function playAudio() {
+      // myMedia is defined on deviceready; this ensures that Cordova is loaded before the audio API is accessed.
+    	if (myMedia) {
+        myMedia.play();
+        // Update the audio position every 50 ms; getCurrentPosition() updates the _position attribute of the media object.
+        if (mediaTimer == null) {
+          mediaTimer = setInterval(function() { 
+            myMedia.getCurrentPosition();
+            updateAudioPosition();
+          }, 50);
+        }
+      }
+    }
+
+    function pauseAudio() {
+      if (myMedia) {
+        myMedia.pause();
+      }
+    }
+
+    function stopAudio() {
+      if (myMedia) {
+        myMedia.stop();
+    
+        // Stop polling for an updated audio position
+        clearInterval(mediaTimer);
+        mediaTimer = null;
+  
+        audioPosition.textContent = "Not playing";
+      }
+    }
+
+    function updateAudioPosition() {
+      // Calling getCurrentPosition when Media is stopped or paused sets
+      // Media._position to -1, so only update when there's meaningful info to be had.
+      if (myMedia._position > 0) {
+        audioPosition.textContent = myMedia._position;
+      }
+    }
+
+    function mediaError(code, message) {
+      alert("Error accessing the Media object!\n"+
+            "Error code: " + code + "\n" +
+            "Error message: " + message);
+    }
+
+    </script>
+  </head>
+  <body>
+    <div class="content-padded">
+      
+      <h1>Media Example</h1>
+
+      <p>Audio position: <span id="audio_position">Not playing</span></p>
+
+      <a class="button-block" ontouchstart="playAudio()">Play</a>
+      <a class="button-block" ontouchstart="pauseAudio()">Pause</a>
+      <a class="button-block" ontouchstart="stopAudio()">Stop</a>
+      
+    </div>
+  </body>
+</html>
