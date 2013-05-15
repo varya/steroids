@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cordova Media Example</title>
+    
+    <link rel="stylesheet" href="stylesheets/ratchet-steroids.css" />
+    <link rel="stylesheet" href="stylesheets/application.css" />
+
+    <script src="javascripts/onerror.js"></script>
+
+    <!-- cordova.js is served from localhost to ensure the correct version -->
+    <script src="http://localhost/appgyver/cordova.js"></script>
+    <script>
+
+    function alertDismissed() {
+      console.log("Alert dismissed!");
+    }
+
+    function showAlert() {
+      navigator.notification.alert(
+        'You are the winner!',  // message
+        alertDismissed,         // callback
+        'Game Over',            // title
+        'Done'                  // buttonName
+      );
+    }
+    
+    function confirmDismissed(buttonIndex) {
+      alert('You selected button number ' + buttonIndex);
+    }
+
+    function showConfirm() {
+      navigator.notification.confirm(
+        'You are the winner!',  // message
+        confirmDismissed,       // callback
+        'Game Over',            // title
+        'Restart,Exit'          // buttonLabels
+      );
+    }
+    
+    function promptDismissed(results) {
+      alert("You selected button number " + results.buttonIndex + " and entered the text " + results.input1);
+    }
+
+    function showPrompt() {
+      navigator.notification.prompt(
+        'Please enter your name',  // message
+        promptDismissed,           // callback
+        'Registration',            // title
+        ['Ok','Exit'],             // buttonLabels
+        'Dolan Duck'               // defaultText
+      );
+    }
+    
+    function vibrate() {
+      // Vibration duration set in milliseconds
+      navigator.notification.vibrate(500);
+    }
+    
+    </script>
+  </head>
+  <body>
+    <div class="content-padded">
+      
+      <h1>Notification Examples</h1>
+
+      <a class="button-block" ontouchstart="showAlert()">Show alert dialogue</a>
+      <a class="button-block" ontouchstart="showConfirm()">Show confirm dialogue</a>
+      <a class="button-block" ontouchstart="showPrompt()">Show prompt dialogue</a>
+      <a class="button-block" ontouchstart="vibrate()">Vibrate the device</a>
+      
+    </div>
+  </body>
+</html>

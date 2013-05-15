@@ -16,6 +16,7 @@ examples =
   "layerStack": require("./Examples/layerStack")
   "media": require("./Examples/media")
   "modal": require("./Examples/modal")
+  "notification": require("./Examples/notification")
   "navigationBar": require("./Examples/navigationBar")
   "preload": require("./Examples/preload")
 
