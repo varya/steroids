@@ -23,20 +23,30 @@ class Steroids
     @version = new Version
     @pathToSelf = process.argv[1]
 
-  detectLegacyProject: ->
+  readApplicationConfig: ->
     fs = require("fs")
 
     applicationConfig = paths.application.configs.application
 
     if fs.existsSync(applicationConfig)
       contents = fs.readFileSync(applicationConfig).toString()
-      if contents.match('Steroids = require "steroids"') or contents.match('module.exports = Steroids.config')
-        Help.legacy.requiresDetected()
-        process.exit(1)
 
-      if contents.match('Steroids.config')
-        Help.legacy.capitalizationDetected()
-        process.exit(1)
+    return contents
+
+  detectSteroidsProject: ->
+    return @readApplicationConfig()? == true
+
+  detectLegacyProject: ->
+    contents = @readApplicationConfig()
+    return unless contents
+
+    if contents.match('Steroids = require "steroids"') or contents.match('module.exports = Steroids.config')
+      Help.legacy.requiresDetected()
+      process.exit(1)
+
+    if contents.match('Steroids.config')
+      Help.legacy.capitalizationDetected()
+      process.exit(1)
 
   detectLegacyBowerJSON: ->
     fs = require("fs")
@@ -82,17 +92,32 @@ class Steroids
     return server
 
 
+  ensureProjectIfNeededFor: (command) ->
+    if command in ["push", "make", "package", "grunt", "debug", "simulator", "connect", "serve", "update", "generate", "deploy"]
+
+      return if @detectSteroidsProject()
+
+      console.log """
+        Error: command '#{command}' requires to be run in a Steroids project directory.
+      """
+
+      process.exit(1)
+
   execute: =>
     @detectLegacyProject()
     @detectLegacyBowerJSON()
 
     [firstOption, otherOptions...] = argv._
 
+    if argv.version
+      firstOption = "version"
+
+    @ensureProjectIfNeededFor(firstOption)
+
     if firstOption in ["serve", "connect"]
       Help.logo() unless argv.noLogo
 
-    if argv.version
-      firstOption = "version"
+
 
     switch firstOption
       when "version"

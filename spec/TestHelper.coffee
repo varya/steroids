@@ -5,7 +5,7 @@ path = require "path"
 CommandRunner = require "./CommandRunner"
 
 class TestHelper
-
+  @CommandRunner: CommandRunner
   @steroidsBinPath: path.join __dirname, "..", "bin", "steroids"
 
   constructor: (@options = {}) ->
