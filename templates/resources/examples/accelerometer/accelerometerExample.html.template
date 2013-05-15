@@ -9,9 +9,9 @@
     <script src="javascripts/onerror.js"></script>
 
     <!-- cordova.js is served from localhost to ensure the correct version -->
-    <script type="text/javascript" charset="utf-8" src="http://localhost/appgyver/cordova.js"></script>
+    <script src="http://localhost/appgyver/cordova.js"></script>
 
-    <script type="text/javascript" charset="utf-8">
+    <script>
 
     // The watch id references the current `watchAcceleration`
     var watchID = null;
