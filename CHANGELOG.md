@@ -6,6 +6,7 @@ Changes:
   - All steroids http callbacks are now prefixed with `/__appgyver`
   - `steroids connect` screen now links to AppGyver Scanner for Android also.
   - More verbose output on CoffeeScript and Sass compiliation (to see error messages in context)
+  - Shows logo in `steroids create newProject`
 
 Bugfixes:
   - When using `steroids serve` it no longer serves usage document for `/index.html`

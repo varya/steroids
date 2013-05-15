@@ -114,9 +114,8 @@ class Steroids
 
     @ensureProjectIfNeededFor(firstOption)
 
-    if firstOption in ["serve", "connect"]
+    if firstOption in ["serve", "connect", "create"]
       Help.logo() unless argv.noLogo
-
 
 
     switch firstOption
