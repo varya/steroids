@@ -76,7 +76,8 @@ registerDefaultTasks = (grunt)->
     coffeeFiles = grunt.file.expandFiles Paths.application.compiles.coffeescripts
 
     for filePath in coffeeFiles
-      grunt.verbose.writeln "Compiling coffeescript at #{filePath}"
+      grunt.log.writeln colorize.ansify(" #yellow[Compiling CoffeeScript:] #reset[#{filePath}]")
+
       coffeeFile = new CoffeeScriptFile(filePath: filePath)
 
       coffeeFile.on "compiled", =>
@@ -94,7 +95,8 @@ registerDefaultTasks = (grunt)->
 
     for filePath, i in allFiles
       do (filePath, i)->
-        grunt.verbose.writeln "Compiling sass file at #{filePath}"
+        grunt.log.writeln colorize.ansify(" #yellow[Compiling Sass:] #reset[#{filePath}]")
+
         sassFile = new SassFile(filePath: filePath)
 
         sassFile.on "compiled", =>
