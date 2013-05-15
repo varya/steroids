@@ -19,6 +19,7 @@ examples =
   "notification": require("./Examples/notification")
   "navigationBar": require("./Examples/navigationBar")
   "preload": require("./Examples/preload")
+  "storage": require("./Examples/storage")
 
 class Example extends Base
   @usageParams: ->
