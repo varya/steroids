@@ -17,8 +17,54 @@ describe 'Generator', ->
   afterEach ->
     @testHelper.cleanUp()
 
+  describe 'tutorials', ->
+
+    beforeEach ->
+      @testHelper.createProjectSync()
+
+    it "prints usage instructions when no parameters are given", ->
+
+      cmd = @testHelper.runInProjectSync "generate",
+        args: ["tutorial"]
+
+      runs ->
+        expect( cmd.stdout ).toMatch(/Error: missing name of the generator, see 'steroids generate' for help./)
+
+    it "gives a friendly error message when tutorial is not found", ->
+
+      cmd = @testHelper.runInProjectSync "generate",
+        args: ["tutorial", "neverGonnaExistTutorial"]
+
+      runs ->
+        expect( cmd.stdout ).toMatch(/Error: No such tutorial neverGonnaExistTutorial, see 'steroids generate' for help./)
+
+
+
+  describe 'examples', ->
+
+    beforeEach ->
+      @testHelper.createProjectSync()
+
+    it "prints usage instructions when no parameters are given", ->
+
+      cmd = @testHelper.runInProjectSync "generate",
+        args: ["example"]
+
+      runs ->
+        expect( cmd.stdout ).toMatch(/Error: missing name of the generator, see 'steroids generate' for help./)
+
+    it "gives a friendly error message when example is not found", ->
+
+      cmd = @testHelper.runInProjectSync "generate",
+        args: ["example", "neverGonnaExistExample"]
+
+      runs ->
+        expect( cmd.stdout ).toMatch(/Error: No such example neverGonnaExistExample, see 'steroids generate' for help./)
+
+
 
   describe 'usage', ->
+
     beforeEach ->
       @testHelper.createProjectSync()
 
@@ -28,7 +74,8 @@ describe 'Generator', ->
         args: []
 
       runs =>
-        expect( cmd.stdout ).toMatch(/Usage: steroids generate resource/)
+        expect( cmd.stdout ).toMatch(/Usage: steroids generate resource <resource>/)
+
 
     it "gives friendly error message when generator is not found", ->
 
@@ -39,6 +86,7 @@ describe 'Generator', ->
         expect( cmd.code ).toBe(1)
         expect( cmd.stderr ).toEqual ""
         expect( cmd.stdout ).toMatch(/No such generator: neverGonnaExistGenerator/)
+
 
 
   describe "resource", ->

@@ -36,6 +36,11 @@ class Example extends Base
   generate: ->
 
     ExampleClass = examples[@options.name]
+
+    unless ExampleClass
+      console.log "Error: No such example #{@options.name}, see 'steroids generate' for help."
+      process.exit(1)
+
     example = new ExampleClass @options
     example.generate()
 

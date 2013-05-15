@@ -12,6 +12,10 @@ class Base
     throw "generators.Base.usage not overridden by subclass!"
 
   constructor: (@options)->
+    unless @options.name
+      console.log "Error: missing name of the generator, see 'steroids generate' for help."
+      process.exit(1)
+
     @options.className = @options.name[0].toUpperCase() + @options.name[1..-1]
     @applicationPath = steroids.paths.applicationDir
 
@@ -34,7 +38,7 @@ class Base
 
     util.log "Adding file #{destinationPath}"
     fs.writeFileSync destinationPath, @renderTemplate(sourcePath), "utf8"
-    
+
   copyFile: (filePath, templatePath)->
     destinationPath = path.join @applicationPath, filePath
     sourcePath = path.join @templatePath(), templatePath

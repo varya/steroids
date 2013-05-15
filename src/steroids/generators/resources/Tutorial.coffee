@@ -28,8 +28,12 @@ class Tutorial extends Base
     """
 
   generate: ->
-
     TutorialClass = tutorials[@options.name]
+
+    unless TutorialClass
+      console.log "Error: No such tutorial #{@options.name}, see 'steroids generate' for help."
+      process.exit(1)
+
     tutorial = new TutorialClass @options
     tutorial.generate()
 
