@@ -1,6 +1,6 @@
-## 0.10.x (2013-05-TODO)
+## 0.10.7 (2013-05-16)
 
-TODO
+Tutorial flow fixed, updated generators
 
 Changes:
   - Default generators no longer generate application.html or application.js files
