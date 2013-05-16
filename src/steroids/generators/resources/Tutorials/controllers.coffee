@@ -16,18 +16,19 @@ class Controllers extends Base
 
   generate: ->
 
-    # @checkForPreExistingFiles [
-    #   path.join("app", "controllers", "application.js")
-    #   path.join("app", "controllers", "tutorial.js")
-    #   path.join("app", "views", "tutorial", "controllers.html")
-    #   path.join("app", "views", "tutorial", "controllers-completed.html")
-    # ]
+    @checkForPreExistingFiles [
+      path.join("app", "controllers", "application.js")
+      path.join("app", "controllers", "tutorial.js")
+      path.join("app", "views", "tutorial", "controllers.html")
+      path.join("app", "views", "tutorial", "controllers-completed.html")
+    ]
 
     @ensureDirectory path.join("app", "controllers")
 
     @copyFile path.join("app", "controllers", "application.js"), "application.js.template"
     @copyFile path.join("app", "controllers", "tutorial.js"), "tutorial.js.template"
 
+    @ensureDirectory path.join("app", "views", "tutorial")
 
     @copyFile path.join("app", "views", "tutorial", "controllers.html"), "controllers.html.template"
     @copyFile path.join("app", "views", "tutorial", "controllers-completed.html"), "controllers-completed.html.template"

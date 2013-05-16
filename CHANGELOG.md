@@ -1,3 +1,14 @@
+## 0.10.x (2013-05-TODO)
+
+TODO
+
+Changes:
+  - Default generators no longer generate application.html or application.js files
+
+Bugfixes:
+  - Tutorial had typos and flow was broken.
+  - Controllers tutorial did not check for file overwrites
+
 ## 0.10.6 (2013-05-16)
 
 Friendlier error messages, error handling and bugfixes
