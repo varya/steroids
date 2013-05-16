@@ -125,3 +125,43 @@ describe 'Generator', ->
         expect(fs.existsSync ctrlPath).toBe true
 
         expect(@cmd2.stdout).toMatch(/would be overwritten by this command/)
+
+    describe "ng-resource", ->
+
+      it "creates a angular resource", ->
+        @testHelper.createProjectSync()
+
+        cmd = @testHelper.runInProjectSync "generate",
+          args: ["ng-resource", "ngCars"]
+
+        runs ()=>
+          expect( cmd.code ).toBe(0)
+
+          ctrlPath = path.join(@testHelper.testAppPath, "app", "controllers", "ngCars.js")
+          expect(fs.existsSync ctrlPath).toBe true
+          expect(fs.readFileSync(ctrlPath).toString()).toMatch(/angular\.module\('ngCars/)
+
+          expect(fs.existsSync path.join(@testHelper.testAppPath, "app", "views", "ngCars", "index.html")).toBe true
+          expect(fs.existsSync path.join(@testHelper.testAppPath, "app", "views", "ngCars", "_details.html")).toBe true
+
+
+      it "fails when trying to overwrite existing files", ->
+        @testHelper.createProjectSync()
+
+        runs ->
+          @cmd1 = @testHelper.runInProjectSync "generate",
+            args: ["ng-resource", "ngCars"]
+
+        runs ->
+          @cmd2 = @testHelper.runInProjectSync "generate",
+            args: ["ng-resource", "ngCars"]
+
+        runs ->
+          expect( @cmd1.code ).toBe(0)
+          expect( @cmd2.code ).toBe(1)
+
+          ctrlPath = path.join(@testHelper.testAppPath, "app", "controllers", "ngCars.js")
+          expect(fs.existsSync ctrlPath).toBe true
+
+          expect(@cmd2.stdout).toMatch(/would be overwritten by this command/)
+
