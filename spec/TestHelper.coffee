@@ -39,7 +39,7 @@ class TestHelper
       @createRun.run()
 
     runs ()=>
-      expect( @createRun.code ).toBe(0)
+      expect( @createRun.done ).toBe(true)
 
   runInProjectSync: (command, options={})=>
     options.cmd ?= TestHelper.steroidsBinPath
@@ -57,13 +57,14 @@ class TestHelper
     cmd = @runInProjectSync "make"
 
     runs ()=>
-      expect( cmd.code ).toBe(0)
+      expect( cmd.done ).toBe(true)
+
 
   runPackageInProjectSync: () =>
     cmd = @runInProjectSync "package"
 
     runs ()=>
-      expect( cmd.code ).toBe(0)
+      expect( cmd.done ).toBe(true)
 
   runConnect: () =>
     @connectRun = @runInProjectSync "connect",
