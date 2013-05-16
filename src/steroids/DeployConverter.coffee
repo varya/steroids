@@ -27,6 +27,7 @@ class DeployConverter
     client_version: "edge"
     initial_eval_js_string: ""
     background_eval_js_string: ""
+    latest_build_built_by: "steroids"
     nav_bar_tint_color: @config.navigationBar.tintColor
     nav_bar_title_text_color: @config.navigationBar.titleColor
     nav_bar_title_shadow_color: @config.navigationBar.titleShadowColor
