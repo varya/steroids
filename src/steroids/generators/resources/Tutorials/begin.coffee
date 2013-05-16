@@ -18,10 +18,12 @@ class Begin extends Base
 
     @checkForPreExistingFiles [
       path.join("config", "application.coffee")
+      path.join("app", "views", "layouts", "application.html")
       path.join("app", "views", "tutorial", "index.html")
       path.join("app", "views", "tutorial", "show.html")
     ]
 
+    @ensureDirectory path.join("config")
     @copyFile path.join("config", "application.coffee"), "application.coffee.template"
 
     @ensureDirectory path.join("app")

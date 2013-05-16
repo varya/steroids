@@ -20,14 +20,14 @@
 
 <h2>Lessons learned</h2>
 
-<p>So far you have mastered that</p>
+<p>So far you have mastered that:</p>
 
-<p><code>config/application.coffee</code> configures your project settings</p>
-<p><code>app/</code> folder has Steroids benefits, it's a good place for your applications views</p>
-<p><code>www/</code> folder is for your other files</p>
-<p><code>app/</code> and <code>www/</code> are brought together as <code>dist/</code> folder</p>
-<p><code>http://localhost</code> serves your project files from <code>dist/</code></p>
-<p>Everything that works in PhoneGap, works in Steroids</p>
+<p><code>config/application.coffee</code> configures your project settings.</p>
+<p><code>app/</code> folder has Steroids benefits, it's a good place for your applications views.</p>
+<p><code>www/</code> folder is for your other files.</p>
+<p><code>app/</code> and <code>www/</code> are brought together as <code>dist/</code> folder.</p>
+<p><code>http://localhost</code> serves your project files from <code>dist/</code>.</p>
+<p>Everything that works in PhoneGap, works in Steroids.</p>
 
 
 <h2>Next up</h2>

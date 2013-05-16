@@ -4,7 +4,7 @@
 
 <p>Now, this page is a Steroids style <em>resource</em> from two files: <br/>
   <br/>
-  <code>app/views/pills/index.html</code><br/>
+  <code>app/views/tutorial/index.html</code><br/>
   <br/>
   that is wrapped inside<br/>
   <br/>
@@ -14,8 +14,6 @@
 <h2>Tabs</h2>
 
 <p>You also enabled tabs by uncommenting those lines in <code>config/application.coffee</code>.</p>
-
-<p>We're on the first tab, the second tab shows the previous document, and in the tab named Internet comes directly from Google.</p>
 
 <p>We've also enabled the tab bar: the <strong>Welcome</strong> tab shows our previous <code>www/index.html</code> document, and the <strong>Internet</strong> tab shows Google's front page.</p>
 

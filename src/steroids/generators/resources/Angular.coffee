@@ -15,10 +15,6 @@ class Angular extends Base
     """
     Generates a stub Angular.js resource consisting of a controller, a model, an index view and associated partials for a list and details views.
 
-    When used for the first time, the app/ folder is created with following default files
-     - app/controllers/application.js
-     - app/views/layouts/application.html
-
     Options:
       - resource: name of resource to use. Example: 'car' will result in the following files:
         - app/controllers/car.js
@@ -40,14 +36,14 @@ class Angular extends Base
       path.join("app", "views", "#{@options.name}", "_details.html")
     ]
 
+    @ensureDirectory path.join("www", "vendor")
+
     @ensureDirectory path.join("www", "vendor", "angular-hammer")
     @copyFile path.join("www", "vendor", "angular-hammer", "angular-hammer.js"), "angular-hammer.js.template"
 
     @ensureDirectory path.join("app")
 
     @ensureDirectory path.join("app", "controllers")
-    @copyFile path.join("app", "controllers", "application.js"), "application_controller.js.template"
-
     @addFile path.join("app", "controllers", "#{@options.name}.js"), "controller.js.template"
 
     @ensureDirectory path.join("app", "models")
