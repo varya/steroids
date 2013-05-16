@@ -1,6 +1,6 @@
-## 0.10.x (2013-05-TODO)
+## 0.10.6 (2013-05-16)
 
-TODO
+Friendlier error messages, error handling and bugfixes
 
 Changes:
   - All steroids http callbacks are now prefixed with `/__appgyver`
@@ -15,6 +15,7 @@ Bugfixes:
   - Checks if `steroids <cmd>` needs to be run in steroids project directory
   - Any IP address that is not for localhost is okay
   - `steroids create projectName` refuses to overwrite existing folder
+  - Default index.html had old tutorial generator command
 
 ## 0.10.5 (2013-05-14)
 

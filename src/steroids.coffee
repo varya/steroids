@@ -12,6 +12,8 @@ paths = require "./steroids/paths"
 argv = require('optimist').argv
 open = require "open"
 
+fs = require("fs")
+
 class Steroids
 
   simulator: null
@@ -24,8 +26,6 @@ class Steroids
     @pathToSelf = process.argv[1]
 
   readApplicationConfig: ->
-    fs = require("fs")
-
     applicationConfig = paths.application.configs.application
 
     if fs.existsSync(applicationConfig)
@@ -34,7 +34,7 @@ class Steroids
     return contents
 
   detectSteroidsProject: ->
-    return @readApplicationConfig()? == true
+    return fs.existsSync(paths.application.configDir) and fs.existsSync(paths.application.wwwDir)
 
   detectLegacyProject: ->
     contents = @readApplicationConfig()
