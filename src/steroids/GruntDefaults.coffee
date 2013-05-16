@@ -242,7 +242,7 @@ registerDefaultTasks = (grunt)->
 
 
           unless fs.existsSync "#{controllerBasenameWithPath}.js"
-            warningMessage = "#red[Warning:] There is no controller for resource #{controllerName}.  Please add file #{controllerBasenameWithPath}.{js|coffee}"
+            warningMessage = "#red[Warning:] There is no controller for resource '#{controllerName}'.  Add file app/controllers/#{controllerName}.{js|coffee}"
             grunt.log.writeln colorize.ansify(warningMessage)
 
           yieldObj =
