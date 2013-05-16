@@ -14,6 +14,7 @@ examples =
   "compass": require("./Examples/compass")
   "device": require("./Examples/device")
   "drawer": require("./Examples/drawer")
+  "geolocation": require("./Examples/geolocation")
   "layerStack": require("./Examples/layerStack")
   "media": require("./Examples/media")
   "modal": require("./Examples/modal")
@@ -46,6 +47,7 @@ class Example extends Base
         - camera -- Access the device's camera and photo library.
         - compass -- Access the device's compass.
         - device -- Access the device properties.
+        - geolocation -- Access the device's geolocation data.
         - media -- Play back audio files through Cordova's Media API.
         - storage -- Use Cordova's SQL Storage API.
     """

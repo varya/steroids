@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cordova Geolocation Example</title>
+    
+    <link rel="stylesheet" href="stylesheets/ratchet-steroids.css" />
+    <link rel="stylesheet" href="stylesheets/application.css" />
+
+    <script src="javascripts/onerror.js"></script>
+
+    <!-- cordova.js is served from localhost to ensure the correct version -->
+    <script src="http://localhost/appgyver/cordova.js"></script>
+    <script>
+
+    // Define our results DOM element object
+    var resultsElem = null;
+
+    // Wait for Cordova to load
+    document.addEventListener("deviceready", onDeviceReady, false);
+
+    function onDeviceReady() {
+        navigator.geolocation.watchPosition(geolocationDataReceived, geolocationError, { enableHighAccuracy: true });
+        resultsElem = document.querySelector('#geolocation-results');
+    }
+
+    function geolocationDataReceived(position) {
+        resultsElem.innerHTML = 'Latitude: '           + position.coords.latitude              + '<br>' +
+                                'Longitude: '          + position.coords.longitude             + '<br>' +
+                                'Altitude: '           + position.coords.altitude              + '<br>' +
+                                'Accuracy: '           + position.coords.accuracy              + '<br>' +
+                                'Altitude Accuracy: '  + position.coords.altitudeAccuracy      + '<br>' +
+                                'Heading: '            + position.coords.heading               + '<br>' +
+                                'Speed: '              + position.coords.speed                 + '<br>' +
+                                'Timestamp: '          + position.timestamp                    + '<br>';
+    }
+
+    // The error callback receives a PositionError object
+    function geolocationError(error) {
+        alert('Geolocation error! \n\n Error code: ' + error.code + '\n' + 'Error message: ' + error.message);
+    }
+
+    </script>
+  </head>
+  <body>
+    <div class="content-padded">
+      <h1>Geolocation Example</h1>
+      <p id="geolocation-results">Waiting for geolocation data...</p>
+    </div>
+  </body>
+</html>
