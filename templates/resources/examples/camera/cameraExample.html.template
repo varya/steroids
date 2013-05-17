@@ -18,7 +18,7 @@
     function imageURIReceived(imageURI) {
       var imgElement = document.querySelector('#image-uri');
       imgElement.src = imageURI;
-    }s
+    }
   
     // Show the Base64-encoded image
     function imageDataReceived(imageData) {  

@@ -42,6 +42,7 @@
   // Failed to get the heading or access the compass
   function compassError(compassError) {
     alert('Compass error! Error code: ' + compassError.code);
+    stopWatch();
   }
   
   </script>
