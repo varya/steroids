@@ -14,6 +14,7 @@ examples =
   "compass": require("./Examples/compass")
   "device": require("./Examples/device")
   "drawer": require("./Examples/drawer")
+  "drumMachine": require("./Examples/drumMachine")
   "geolocation": require("./Examples/geolocation")
   "layerStack": require("./Examples/layerStack")
   "media": require("./Examples/media")
@@ -38,6 +39,7 @@ class Example extends Base
         Available Steroids examples:
         - animation -- Using native animations without moving to another document.
         - drawer -- Using the native Facebook-style drawer.
+        - drumMachine -- Demonstrate Steroids Audio API via a kicking drum machine.
         - layerStack -- Native navigation, page transitions and backstack handling.
         - modal -- Using the modal window.
         - navigationBar -- Using the native navigation bar.

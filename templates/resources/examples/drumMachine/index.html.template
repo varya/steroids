@@ -1,0 +1,60 @@
+<style>
+
+html, body, .drumpad-container {
+  height:100%;
+  width:100%;
+}
+
+.drumpad-container > div {
+  height:34%;
+  width:50%;
+  float:left;
+  -webkit-box-sizing: border-box;
+
+  font-weight: bold;
+  color:#9DA2A4;
+  font-size:24px;
+  text-shadow: 0px 2px 3px #DDD;
+
+  display: -webkit-box;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+}
+
+</style>
+<script>
+
+steroids.view.navigationBar.show("AGDM-3000");
+
+window.addEventListener("DOMContentLoaded", function() {
+  
+  // Disable user scrolling
+  document.addEventListener("touchmove", function(e) { e.preventDefault(); });
+  
+  // Prime audio system for instant playback
+  steroids.audio.prime();
+
+  // Make drum pads change color and play a sound when tapped
+  pads = document.querySelectorAll("div.drumpad-container > div");
+
+  for (var i = 0; i < pads.length; i++) {
+    
+    pads[i].addEventListener("touchstart", function() {
+      var soundPath = "sounds/drumMachineExample/" + this.getAttribute('data-sound');
+      steroids.audio.play(soundPath);
+    });
+    
+  }
+  
+});  
+  
+</script>
+
+<div class="drumpad-container">
+  <div class="button" data-sound="kick.wav">KICK</div>
+  <div class="button" data-sound="snare.wav">SNARE</div>
+  <div class="button" data-sound="hihat.wav">HI-HAT</div>
+  <div class="button" data-sound="clap.wav">CLAP</div>
+  <div class="button" data-sound="perc.wav">PERC 1</div>
+  <div class="button" data-sound="perc2.wav">PERC 2</div>
+</div>
