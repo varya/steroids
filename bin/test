@@ -1,3 +1,12 @@
 #!/bin/sh
 
-STEROIDS_TEST_RUN=true node_modules/jasmine-node/bin/jasmine-node --verbose --coffee --color spec
+FILES=$(ls spec/*.spec.*)
+
+for FILE in $FILES; do
+  echo "Running $FILE"
+
+  STEROIDS_TEST_RUN=true node_modules/jasmine-node/bin/jasmine-node --verbose --coffee --color $FILE
+
+
+  echo "done with $FILE"
+done
