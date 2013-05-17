@@ -19,11 +19,11 @@ examples =
   "layerStack": require("./Examples/layerStack")
   "media": require("./Examples/media")
   "modal": require("./Examples/modal")
-  "notification": require("./Examples/notification")
+  # "notification": require("./Examples/notification") requires 2.7.0
   "navigationBar": require("./Examples/navigationBar")
   "photoGallery": require("./Examples/photoGallery")
   "preload": require("./Examples/preload")
-  "storage": require("./Examples/storage")
+  # "storage": require("./Examples/storage") requires 2.7.0
 
 class Example extends Base
   @usageParams: ->
@@ -54,7 +54,6 @@ class Example extends Base
         - photoGallery -- Use the Camera and File APIs and Steroids native windowing
                           to create a one-picture photo gallery.
         - media -- Play back audio files through Cordova's Media API.
-        - storage -- Use Cordova's SQL Storage API.
     """
 
   generate: ->

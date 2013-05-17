@@ -51,6 +51,11 @@
     // accelerometer data couldn't be received or accelerometer isn't accessible
     function accelerometerError() {
         alert('Error getting accelerometer data!');
+        // Also stop watching for accelerometer data
+        if (watchID) {
+            navigator.accelerometer.clearWatch(watchID);
+            watchID = null;
+        }
     }
 
     </script>
