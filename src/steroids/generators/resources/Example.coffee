@@ -20,6 +20,7 @@ examples =
   "modal": require("./Examples/modal")
   "notification": require("./Examples/notification")
   "navigationBar": require("./Examples/navigationBar")
+  "photoGallery": require("./Examples/photoGallery")
   "preload": require("./Examples/preload")
   "storage": require("./Examples/storage")
 
@@ -48,6 +49,8 @@ class Example extends Base
         - compass -- Access the device's compass.
         - device -- Access the device properties.
         - geolocation -- Access the device's geolocation data.
+        - photoGallery -- Use the Camera and File APIs and Steroids native windowing
+                          to create a one-picture photo gallery.
         - media -- Play back audio files through Cordova's Media API.
         - storage -- Use Cordova's SQL Storage API.
     """
