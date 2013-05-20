@@ -10,6 +10,7 @@
 
     <!-- cordova.js is served from localhost to ensure the correct version -->
     <script src="http://localhost/appgyver/cordova.js"></script>
+    <script src="components/steroids-js/steroids.js"></script>
     <script>
 
     // Wait for Cordova to load
@@ -21,6 +22,10 @@
     var audioPosition = null;
 
     function onDeviceReady() {
+      
+      // Use Steroids to prime the device's audio system for instant playback
+      steroids.audio.prime();
+      
       // Audio file from http://audio.ibeat.org/content/p1rj1s/p1rj1s_-_rockGuitar.mp3
       // Serve audio file from localhost to circumvent Cordova File protocol issues
       // Success callback left as null
