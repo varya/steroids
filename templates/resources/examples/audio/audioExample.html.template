@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Cordova Audio Example</title>
-    
+
     <link rel="stylesheet" href="stylesheets/ratchet-steroids.css" />
     <link rel="stylesheet" href="stylesheets/application.css" />
 
@@ -22,18 +22,18 @@
     var audioPosition = null;
 
     function onDeviceReady() {
-      
+
       // Use Steroids to prime the device's audio system for instant playback
       steroids.audio.prime();
-      
+
       // Audio file from http://audio.ibeat.org/content/p1rj1s/p1rj1s_-_rockGuitar.mp3
       // Serve audio file from localhost to circumvent Cordova File protocol issues
       // Success callback left as null
       myMedia = new Media("http://localhost/sounds/rockGuitar.mp3", null, mediaError);
-  
+
       // onDeviceReady fires after DOM is loaded, so we are safe to set our element
       audioPosition = document.querySelector('#audio_position');
-  
+
     }
 
     // Play audio
@@ -43,7 +43,7 @@
         myMedia.play();
         // Update the audio position every 50 ms; getCurrentPosition() updates the _position attribute of the media object.
         if (mediaTimer == null) {
-          mediaTimer = setInterval(function() { 
+          mediaTimer = setInterval(function() {
             myMedia.getCurrentPosition();
             updateAudioPosition();
           }, 50);
@@ -62,11 +62,11 @@
     function stopAudio() {
       if (myMedia) {
         myMedia.stop();
-    
+
         // Stop polling for an updated audio position
         clearInterval(mediaTimer);
         mediaTimer = null;
-  
+
         audioPosition.textContent = "Not playing";
       }
     }
@@ -89,15 +89,15 @@
   </head>
   <body>
     <div class="content-padded">
-      
-      <h1>Media Example</h1>
+
+      <h1>Audio Example</h1>
 
       <p>Audio position: <span id="audio_position">Not playing</span></p>
 
       <a class="button-block" ontouchstart="playAudio()">Play</a>
       <a class="button-block" ontouchstart="pauseAudio()">Pause</a>
       <a class="button-block" ontouchstart="stopAudio()">Stop</a>
-      
+
     </div>
   </body>
 </html>
