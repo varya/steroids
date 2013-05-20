@@ -17,17 +17,20 @@ class Modal extends Base
     @checkForPreExistingFiles [
       path.join("app", "layouts", "modalExample.html"),
       path.join("app", "views", "modalExample", "index.html"),
-      path.join("app", "views", "modalExample", "show.html")
+      path.join("app", "views", "modalExample", "show.html"),
+      path.join("app", "controllers", "modalExample.js")
     ]
 
     @ensureDirectory path.join("app")
     @ensureDirectory path.join("app", "views")
     @ensureDirectory path.join("app", "views", "modalExample")
     @ensureDirectory path.join("app", "views", "layouts")
+    @ensureDirectory path.join("app", "controllers")
 
     @copyFile path.join("app", "views", "layouts", "modalExample.html"), "layout.html.template"
-    @addFile path.join("app", "views", "modalExample", "index.html"), "index.html.template"
-    @addFile path.join("app", "views", "modalExample", "show.html"), "show.html.template"
+    @copyFile path.join("app", "views", "modalExample", "index.html"), "index.html.template"
+    @copyFile path.join("app", "views", "modalExample", "show.html"), "show.html.template"
+    @copyFile path.join("app", "controllers", "modalExample.js"), "controller.js.template"
 
     Help.SUCCESS()
     console.log """
@@ -37,6 +40,8 @@ class Modal extends Base
       - app/layouts/modalExample.html
       - app/views/modalExample/index.html
       - app/views/modalExample/show.html
+      - app/controllers/modalExample.js
+      
     
     To see the example in action, set the location of your app to:
 

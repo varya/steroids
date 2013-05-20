@@ -17,6 +17,7 @@ class DrumMachine extends Base
     @checkForPreExistingFiles [
       path.join("app", "layouts", "drumMachineExample.html"),
       path.join("app", "views", "drumMachineExample", "index.html"),
+      path.join("app", "controllers", "drumMachineExample.js"),
       path.join("www", "sounds", "drumMachineExample", "clap.wav"),
       path.join("www", "sounds", "drumMachineExample", "hihat.wav"),
       path.join("www", "sounds", "drumMachineExample", "kick.wav"),
@@ -29,12 +30,14 @@ class DrumMachine extends Base
     @ensureDirectory path.join("app", "views")
     @ensureDirectory path.join("app", "views", "drumMachineExample")
     @ensureDirectory path.join("app", "views", "layouts")
+    @ensureDirectory path.join("app", "controllers")
     @ensureDirectory path.join("www")
     @ensureDirectory path.join("www", "sounds")
     @ensureDirectory path.join("www", "sounds", "drumMachineExample")
 
     @copyFile path.join("app", "views", "layouts", "drumMachineExample.html"), "layout.html.template"
     @copyFile path.join("app", "views", "drumMachineExample", "index.html"), "index.html.template"
+    @copyFile path.join("app", "controllers", "drumMachineExample.js"), "controller.js.template"
     @copyFile path.join("www", "sounds", "drumMachineExample", "clap.wav"), "clap.wav"
     @copyFile path.join("www", "sounds", "drumMachineExample", "hihat.wav"), "hihat.wav"
     @copyFile path.join("www", "sounds", "drumMachineExample", "kick.wav"), "kick.wav"
@@ -49,6 +52,7 @@ class DrumMachine extends Base
     
       - app/layouts/drumMachineExample.html
       - app/views/drumMachineExample/index.html
+      - app/controllers/drumMachineExample.js
       - www/sounds/drumMachineExample/clap.wav
       - www/sounds/drumMachineExample/hihat.wav
       - www/sounds/drumMachineExample/kick.wav

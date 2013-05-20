@@ -9,8 +9,12 @@
 
   <script src="/javascripts/onerror.js"></script>
 
-  <script src="/appgyver/cordova.js"></script>
+  <!-- cordova.js is served from localhost to ensure the correct version -->
+  <script src="http://localhost/appgyver/cordova.js"></script>
   <script src="/components/steroids-js/steroids.js"></script>
+
+  <!-- controllers can be loaded dynamically based on the resource name -->
+  <script src="/controllers/<%= yield.controller %>.js"></script>  
 
 </head>
 <body>

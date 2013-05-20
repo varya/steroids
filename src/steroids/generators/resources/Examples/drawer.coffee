@@ -17,17 +17,20 @@ class Drawer extends Base
     @checkForPreExistingFiles [
       path.join("app", "layouts", "drawerExample.html"),
       path.join("app", "views", "drawerExample", "index.html"),
-      path.join("app", "views", "drawerExample", "drawer.html")
+      path.join("app", "views", "drawerExample", "drawer.html"),
+      path.join("app", "controllers", "drawerExample.js")
     ]
 
     @ensureDirectory path.join("app")
     @ensureDirectory path.join("app", "views")
     @ensureDirectory path.join("app", "views", "drawerExample")
     @ensureDirectory path.join("app", "views", "layouts")
+    @ensureDirectory path.join("app", "controllers")
 
     @copyFile path.join("app", "views", "layouts", "drawerExample.html"), "layout.html.template"
-    @addFile path.join("app", "views", "drawerExample", "index.html"), "index.html.template"
-    @addFile path.join("app", "views", "drawerExample", "drawer.html"), "drawer.html.template"
+    @copyFile path.join("app", "views", "drawerExample", "index.html"), "index.html.template"
+    @copyFile path.join("app", "views", "drawerExample", "drawer.html"), "drawer.html.template"
+    @copyFile path.join("app", "controllers", "drawerExample.js"), "controller.js.template"
 
     Help.SUCCESS()
     console.log """
@@ -37,6 +40,7 @@ class Drawer extends Base
       - app/layouts/drawerExample.html
       - app/views/drawerExample/index.html
       - app/views/drawerExample/drawer.html
+      - app/controllers/drawerExample.js
     
     To see the example in action, set the location of your app to:
 

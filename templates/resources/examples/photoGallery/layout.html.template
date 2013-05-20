@@ -15,7 +15,7 @@
   
   <script src="/vendor/hammerjs/hammer.min.js"></script>
   
-  <!-- Controllers can be loaded dynamically based on the resource name -->
+  <!-- controllers can be loaded dynamically based on the resource name -->
   <script src="/controllers/<%= yield.controller %>.js"></script>
 
 </head>

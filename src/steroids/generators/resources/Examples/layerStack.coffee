@@ -18,16 +18,19 @@ class LayerStack extends Base
       path.join("app", "layouts", "layerStackExample.html"),
       path.join("app", "views", "layerStackExample", "index.html"),
       path.join("app", "views", "layerStackExample", "showCat.html")
+      path.join("app", "controllers", "layerStackExample.js")
     ]
 
     @ensureDirectory path.join("app")
     @ensureDirectory path.join("app", "views")
     @ensureDirectory path.join("app", "views", "layerStackExample")
     @ensureDirectory path.join("app", "views", "layouts")
+    @ensureDirectory path.join("app", "controllers")
 
     @copyFile path.join("app", "views", "layouts", "layerStackExample.html"), "layout.html.template"
-    @addFile path.join("app", "views", "layerStackExample", "index.html"), "index.html.template"
-    @addFile path.join("app", "views", "layerStackExample", "showCat.html"), "showCat.html.template"
+    @copyFile path.join("app", "views", "layerStackExample", "index.html"), "index.html.template"
+    @copyFile path.join("app", "views", "layerStackExample", "showCat.html"), "showCat.html.template"
+    @copyFile path.join("app", "controllers", "layerStackExample.js"), "controller.js.template"
 
     Help.SUCCESS()
     console.log """
@@ -37,6 +40,7 @@ class LayerStack extends Base
       - app/layouts/layerStackExample.html
       - app/views/layerStackExample/index.html
       - app/views/layerStackExample/showCat.html
+      - app/controllers/layerStackExample.js
     
     To see the example in action, set the location of your app to:
 

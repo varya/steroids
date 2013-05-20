@@ -17,17 +17,21 @@ class Preload extends Base
     @checkForPreExistingFiles [
       path.join("app", "layouts", "preloadExample.html"),
       path.join("app", "views", "preloadExample", "index.html"),
-      path.join("app", "views", "preloadExample", "show.html")
+      path.join("app", "views", "preloadExample", "show.html"),
+      path.join("app", "controllers", "preloadExample.js")
     ]
 
     @ensureDirectory path.join("app")
     @ensureDirectory path.join("app", "views")
     @ensureDirectory path.join("app", "views", "preloadExample")
     @ensureDirectory path.join("app", "views", "layouts")
+    @ensureDirectory path.join("app", "controllers")
+    
 
     @copyFile path.join("app", "views", "layouts", "preloadExample.html"), "layout.html.template"
-    @addFile path.join("app", "views", "preloadExample", "index.html"), "index.html.template"
-    @addFile path.join("app", "views", "preloadExample", "show.html"), "show.html.template"
+    @copyFile path.join("app", "views", "preloadExample", "index.html"), "index.html.template"
+    @copyFile path.join("app", "views", "preloadExample", "show.html"), "show.html.template"
+    @copyFile path.join("app", "controllers", "preloadExample.js"), "controller.js.template"
 
     Help.SUCCESS()
     console.log """
@@ -37,6 +41,8 @@ class Preload extends Base
       - app/layouts/preloadExample.html
       - app/views/preloadExample/index.html
       - app/views/preloadExample/show.html
+      - app/controllers/preloadExample.js
+      
     
     To see the example in action, set the location of your app to:
 
