@@ -14,6 +14,8 @@
   
   <script>
   
+    checkForLocalhost();
+  
     // Show the selected image
     function imageURIReceived(imageURI) {
       var imgElement = document.querySelector('#image-uri');
@@ -33,6 +35,7 @@
   
     // Choose an image from the device's photo library, the callback receives the image's file URI
     function chooseImage() {
+      checkForLocalhost();
       navigator.camera.getPicture(imageURIReceived, cameraError, { quality: 50, 
         destinationType: navigator.camera.DestinationType.IMAGE_URI,
         sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY });
@@ -42,7 +45,14 @@
     function capturePhoto() {
       navigator.camera.getPicture(imageDataReceived, cameraError, { quality: 30, allowEdit: true,
         destinationType: navigator.camera.DestinationType.DATA_URL });
-    }  
+    }
+    
+    // Inform the user that if the project is being served from localhost, the example doesn't function correctly
+    function checkForLocalhost() {
+      if (window.location.href.indexOf("http://localhost") == 0) {
+        alert("Your project is being served from http://localhost/. Since Cordova's Camera API returns the location of the photo file as a file:// URL, trying to display the photo produces an error (due to the different protocols). Please switch the steroids.config.location property in config/application.coffee to just 'cameraExample.html' to fix this.")
+      }
+    }
     
   </script>
   
