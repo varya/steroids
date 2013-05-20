@@ -10,6 +10,7 @@ Base = require "../Base"
 examples =
   "accelerometer": require("./Examples/accelerometer")
   "animation": require("./Examples/animation")
+  "audio": require("./Examples/audio")
   "camera": require("./Examples/camera")
   "compass": require("./Examples/compass")
   "device": require("./Examples/device")
@@ -17,7 +18,6 @@ examples =
   "drumMachine": require("./Examples/drumMachine")
   "geolocation": require("./Examples/geolocation")
   "layerStack": require("./Examples/layerStack")
-  "media": require("./Examples/media")
   "modal": require("./Examples/modal")
   # "notification": require("./Examples/notification") requires 2.7.0
   "navigationBar": require("./Examples/navigationBar")
@@ -49,11 +49,11 @@ class Example extends Base
         
         Available Cordova examples:
         - accelerometer -- Access the device's accelerometer.
+        - audio -- Play back audio files through Cordova's Media API.
         - camera -- Access the device's camera and photo library.
         - compass -- Access the device's compass.
         - device -- Access the device properties.
         - geolocation -- Access the device's geolocation data.
-        - media -- Play back audio files through Cordova's Media API.
     """
 
   generate: ->

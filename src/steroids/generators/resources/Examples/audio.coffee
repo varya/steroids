@@ -8,36 +8,36 @@ util = require "util"
 Base = require "../../Base"
 Help = require "../../../Help"
 
-class Media extends Base
+class Audio extends Base
 
   templatePath: ->
-    path.join(steroids.paths.templates.resources, path.join("examples", "media"))
+    path.join(steroids.paths.templates.resources, path.join("examples", "audio"))
 
   generate: ->
     @checkForPreExistingFiles [
-      path.join("www", "mediaExample.html"),
+      path.join("www", "audioExample.html"),
       path.join("www", "sounds", "rockGuitar.mp3"),
     ]
 
     @ensureDirectory path.join("www")
     @ensureDirectory path.join("www", "sounds")
 
-    @copyFile path.join("www", "mediaExample.html"), "mediaExample.html.template"
+    @copyFile path.join("www", "audioExample.html"), "audioExample.html.template"
     @copyFile path.join("www", "sounds", "rockGuitar.mp3"), "rockGuitar.mp3"
 
     Help.SUCCESS()
     console.log """
 
-    Cordova Media example generated successfully! The following files were created:
+    Cordova Audio example generated successfully! The following files were created:
     
-      - www/mediaExample.html
+      - www/audioExample.html
       - wwW/sounds/rockGuitar.mp3
     
     To see the example in action, set the steroids.config.location property in
     config/application.coffee to:
 
-      mediaExample.html
+      audioExample.html
 
     """
 
-module.exports = Media
+module.exports = Audio

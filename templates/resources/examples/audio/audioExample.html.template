@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Cordova Media Example</title>
+    <title>Cordova Audio Example</title>
     
     <link rel="stylesheet" href="stylesheets/ratchet-steroids.css" />
     <link rel="stylesheet" href="stylesheets/application.css" />
