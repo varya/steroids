@@ -47,6 +47,8 @@
     function pauseAudio() {
       if (myMedia) {
         myMedia.pause();
+        // Instantly disable position counter from updating
+        myMedia._position = -1;
       }
     }
 
