@@ -18,13 +18,13 @@
   
     // Show the selected image
     function imageURIReceived(imageURI) {
-      var imgElement = document.querySelector('#image-uri');
+      var imgElement = document.querySelector('#photo');
       imgElement.src = imageURI;
     }
   
     // Show the Base64-encoded image
     function imageDataReceived(imageData) {  
-      var imgElement = document.querySelector('#base64');
+      var imgElement = document.querySelector('#photo');
       imgElement.src = "data:image/jpeg;base64," + imageData;
     }
   
@@ -71,8 +71,7 @@
     <a class="button-block" ontouchstart="capturePhoto()">Capture editable photo</a>
     <a class="button-block" ontouchstart="chooseImage()">Choose from Photo Library</a>
     
-    <img id="base64">
-    <img id="image-uri">
+    <img id="photo">
   </div>
 
 </body>
