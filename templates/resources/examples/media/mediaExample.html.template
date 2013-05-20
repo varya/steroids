@@ -21,8 +21,10 @@
     var audioPosition = null;
 
     function onDeviceReady() {
+      // Audio file from http://audio.ibeat.org/content/p1rj1s/p1rj1s_-_rockGuitar.mp3
+      // Serve audio file from localhost to circumvent Cordova File protocol issues
       // Success callback left as null
-      myMedia = new Media("http://audio.ibeat.org/content/p1rj1s/p1rj1s_-_rockGuitar.mp3", null, mediaError);
+      myMedia = new Media("http://localhost/sounds/rockGuitar.mp3", null, mediaError);
   
       // onDeviceReady fires after DOM is loaded, so we are safe to set our element
       audioPosition = document.querySelector('#audio_position');
@@ -72,10 +74,10 @@
       }
     }
 
-    function mediaError(code, message) {
+    function mediaError(error) {
       alert("Error accessing the Media object!\n"+
-            "Error code: " + code + "\n" +
-            "Error message: " + message);
+            "Error code: " + error.code + "\n" +
+            "Error message: " + error.message);
     }
 
     </script>
@@ -84,8 +86,6 @@
     <div class="content-padded">
       
       <h1>Media Example</h1>
-      
-      <p>The example audio file is loaded from the Internet, so expect a slight delay on initial playback.</p>
 
       <p>Audio position: <span id="audio_position">Not playing</span></p>
 

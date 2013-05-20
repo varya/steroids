@@ -16,16 +16,22 @@ class Media extends Base
   generate: ->
     @checkForPreExistingFiles [
       path.join("www", "mediaExample.html"),
+      path.join("www", "sounds", "rockGuitar.mp3"),
     ]
 
+    @ensureDirectory path.join("www")
+    @ensureDirectory path.join("www", "sounds")
+
     @copyFile path.join("www", "mediaExample.html"), "mediaExample.html.template"
+    @copyFile path.join("www", "sounds", "rockGuitar.mp3"), "rockGuitar.mp3"
 
     Help.SUCCESS()
     console.log """
 
-    Cordova Media example generated successfully! The following file was created:
+    Cordova Media example generated successfully! The following files were created:
     
       - www/mediaExample.html
+      - wwW/sounds/rockGuitar.mp3
     
     To see the example in action, set the steroids.config.location property in
     config/application.coffee to:
