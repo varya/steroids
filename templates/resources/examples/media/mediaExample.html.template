@@ -84,6 +84,8 @@
     <div class="content-padded">
       
       <h1>Media Example</h1>
+      
+      <p>The example audio file is loaded from the Internet, so expect a slight delay on initial playback.</p>
 
       <p>Audio position: <span id="audio_position">Not playing</span></p>
 
