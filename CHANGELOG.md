@@ -8,6 +8,7 @@ Changes:
 
 Bugfixes:
   - `steroids connect` checks if port is taken.
+  - `steroids deploy` gives more help and explains how deploy works when deployed.
 
 ## 0.10.7 (2013-05-16)
 

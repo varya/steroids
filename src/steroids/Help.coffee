@@ -5,8 +5,11 @@ colorize = require "colorize"
 
 class Help
 
-	@usage: ->
+  @usage: ->
     @printBanner(paths.banners.usage)
+
+  @deployCompleted: ->
+    @printBanner(paths.banners.deployCompleted, true)
 
   @attention: ->
     @printBanner(paths.banners.attention, true)
@@ -16,7 +19,6 @@ class Help
 
   @SUCCESS: ->
     @printBanner(paths.banners.SUCCESS, true)
-
 
   @connect: ->
     @printBanner(paths.banners.connect)

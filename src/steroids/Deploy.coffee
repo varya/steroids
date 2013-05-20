@@ -11,6 +11,8 @@ paths = require "./paths"
 DeployConverter = require "./DeployConverter"
 Login = require "./Login"
 
+Help = require "./Help"
+
 class Deploy
   constructor: (@options={})->
     @cloudConfig = JSON.parse(fs.readFileSync(paths.application.configs.cloud, "utf8")) if fs.existsSync paths.application.configs.cloud
@@ -104,6 +106,8 @@ class Deploy
     fs.writeFileSync paths.application.configs.cloud, JSON.stringify(config)
 
     util.log "Deployment complete"
+
+    Help.deployCompleted()
 
     open "http://share.appgyver.com/?id=#{config.id}&hash=#{config.identification_hash}"
 
