@@ -1,6 +1,6 @@
-## 0.10.8 (TODO)
+## 0.10.8 (2013-05-20)
 
-TODO
+New examples
 
 Changes:
   - `steroids connect --port 1234` is supported, requires iOS client 2.7.0 to work.
