@@ -71,7 +71,7 @@ class Steroids
 
   startServer: (options={}) =>
     Server = require "./steroids/Server"
-    selectedPort = options.port ? 4567
+    selectedPort = options.port ? @port
 
     errorCb = (err)=>
       if err.message.match /EADDRINUSE/
@@ -117,6 +117,11 @@ class Steroids
     if firstOption in ["serve", "connect", "create"]
       Help.logo() unless argv.noLogo
 
+
+    @port = if argv.port
+      argv.port
+    else
+      4567
 
     switch firstOption
       when "version"
@@ -194,7 +199,7 @@ class Steroids
 
       when "debug"
         options = {}
-        options.httpPort = argv.port
+        options.httpPort = @port
 
         weinre = new Weinre options
         weinre.run()
@@ -211,101 +216,111 @@ class Steroids
         steroidsCli.simulator.run()
 
       when "connect"
-        updater = new Updater
-        updater.check()
 
-        project = new Project
-        project.push
-          onFailure: =>
-            steroidsCli.debug "Can not continue on starting server, push failed."
-          onSuccess: =>
-            BuildServer = require "./steroids/servers/BuildServer"
+        portscanner = require "portscanner"
 
-            Prompt = require("./steroids/Prompt")
-            prompt = new Prompt
-              context: @
+        portscanner.checkPortStatus @port, 'localhost', (error, status) =>
+          unless status == "closed"
+            console.log "Error: port #{@port} is already in use. Make sure no other program or Steroids connect is running at this port."
+            process.exit(1)
 
-            if argv.watch
-              Watcher = require("./steroids/fs/watcher")
+          updater = new Updater
+          updater.check()
 
-              pushAndPrompt = =>
-                console.log ""
-                util.log "File system change detected, pushing code to connected devices ..."
+          project = new Project
+          project.push
+            onFailure: =>
+              steroidsCli.debug "Can not continue on starting server, push failed."
+            onSuccess: =>
+              BuildServer = require "./steroids/servers/BuildServer"
 
-                project = new Project
-                project.push
-                  onSuccess: =>
+              Prompt = require("./steroids/Prompt")
+              prompt = new Prompt
+                context: @
+
+              if argv.watch
+                Watcher = require("./steroids/fs/watcher")
+
+                pushAndPrompt = =>
+                  console.log ""
+                  util.log "File system change detected, pushing code to connected devices ..."
+
+                  project = new Project
+                  project.push
+                    onSuccess: =>
+                      prompt.refresh()
+                    onFailure: =>
+                      prompt.refresh()
+
+                watcher = new Watcher
+                  onCreate: pushAndPrompt
+                  onUpdate: pushAndPrompt
+                  onDelete: (file) =>
+                    steroidsCli.debug "Deleted watched file #{file}"
+
+                watcher.watch("./app")
+                watcher.watch("./www")
+                watcher.watch("./config")
+
+
+              server = @startServer callback: ()=>
+                global.steroidsCli.server = server
+
+                buildServer = new BuildServer
+                                    path: "/"
+                                    port: @port
+
+                server.mount(buildServer)
+
+                unless argv.qrcode?
+                  QRCode = require "./steroids/QRCode"
+                  QRCode.showLocal
+                    port: @port
+
+                  util.log "Waiting for client to connect, scan the QR code that is visible in the browser ..."
+
+                setInterval () ->
+                  activeClients = 0;
+                  needsRefresh = false
+
+                  for ip, client of buildServer.clients
+                    delta = Date.now() - client.lastSeen
+
+                    if (delta > 2000)
+                      needsRefresh = true
+                      delete buildServer.clients[ip]
+                      console.log ""
+                      util.log "Client disconnected: #{client.ipAddress} - #{client.userAgent}"
+                    else if client.new
+                      needsRefresh = true
+                      activeClients++
+                      client.new = false
+
+                      console.log ""
+                      util.log "New client: #{client.ipAddress} - #{client.userAgent}"
+                    else
+                      activeClients++
+
+                  if needsRefresh
+                    util.log "Number of clients connected: #{activeClients}"
                     prompt.refresh()
-                  onFailure: =>
-                    prompt.refresh()
 
-              watcher = new Watcher
-                onCreate: pushAndPrompt
-                onUpdate: pushAndPrompt
-                onDelete: (file) =>
-                  steroidsCli.debug "Deleted watched file #{file}"
+                , 1000
 
-              watcher.watch("./app")
-              watcher.watch("./www")
-              watcher.watch("./config")
-
-
-            server = @startServer callback: ()=>
-              global.steroidsCli.server = server
-
-              buildServer = new BuildServer
-                                  path: "/"
-
-              server.mount(buildServer)
-
-              unless argv.qrcode?
-                QRCode = require "./steroids/QRCode"
-                QRCode.showLocal()
-
-                util.log "Waiting for client to connect, scan the QR code that is visible in the browser ..."
-
-              setInterval () ->
-                activeClients = 0;
-                needsRefresh = false
-
-                for ip, client of buildServer.clients
-                  delta = Date.now() - client.lastSeen
-
-                  if (delta > 2000)
-                    needsRefresh = true
-                    delete buildServer.clients[ip]
-                    console.log ""
-                    util.log "Client disconnected: #{client.ipAddress} - #{client.userAgent}"
-                  else if client.new
-                    needsRefresh = true
-                    activeClients++
-                    client.new = false
-
-                    console.log ""
-                    util.log "New client: #{client.ipAddress} - #{client.userAgent}"
-                  else
-                    activeClients++
-
-                if needsRefresh
-                  util.log "Number of clients connected: #{activeClients}"
-                  prompt.refresh()
-
-              , 1000
-
-              prompt.connectLoop()
+                prompt.connectLoop()
 
 
 
 
       when "serve"
 
-        port = (argv.port || 13101)
-        url = "http://localhost:#{port}"
+        servePort = (@port || 13101)
+        url = "http://localhost:#{servePort}"
 
         WebServer = require "./steroids/servers/WebServer"
 
         server = @startServer
-          port: port
+          port: servePort
           callback: ()=>
             webServer = new WebServer
               path: "/"
@@ -371,14 +386,14 @@ class Steroids
 
         util.log "Starting login process"
 
-        port = argv.port || 13303
+        loginPort = @port || 13303
 
         server = @startServer
-          port: port
+          port: loginPort
           callback: ()=>
             login = new Login
               server: server
-              port: port
+              port: loginPort
             login.authorize()
 
       when "logout"

@@ -8,7 +8,7 @@ Basic usage commands:
 
     Creates a new application from default template.
 
-  connect [--no-qrcode] [--watch]
+  connect [--no-qrcode] [--watch] [--port]
 
     Starts server and allows to connect your iOS device or iOS Simulator to see your application.
     Provides further instructions for connecting.

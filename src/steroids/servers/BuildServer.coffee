@@ -41,7 +41,7 @@ class BuildServer extends Server
 
       config = @converter.configToAnkaFormat()
 
-      config.archives.push {url: "#{req.protocol}://#{req.host}:4567/appgyver/zips/project.zip"}
+      config.archives.push {url: "#{req.protocol}://#{req.host}:#{@options.port}/appgyver/zips/project.zip"}
 
       request.get { url: "http://127.0.0.1:31173/target/target-script-min.js#anonymous" }, (err, bettereq, betteres)=>
         unless err

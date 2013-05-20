@@ -2,19 +2,25 @@ open = require "open"
 
 class QRCode
 
-  constructor: (@data) ->
+  constructor: (@options = {}) ->
 
 
   show: =>
     return if process.env.STEROIDS_TEST_RUN
 
-    open "http://localhost:4567/__appgyver/connect/qrcode.html?qrCodeData=#{encodeURIComponent(@data)}"
+    open "http://localhost:#{@options.port}/__appgyver/connect/qrcode.html?qrCodeData=#{encodeURIComponent(@options.data)}"
 
-  @showLocal: =>
+  @showLocal: (options={}) =>
     interfaces = steroidsCli.server.interfaces()
     ips = steroidsCli.server.ipAddresses()
 
-    code = new QRCode("appgyver://?ips=#{encodeURIComponent(JSON.stringify(ips))}")
+    encodedJSONIPs = encodeURIComponent(JSON.stringify(ips))
+    encodedPort = encodeURIComponent(options.port)
+
+    code = new QRCode
+      data: "appgyver://?ips=#{encodedJSONIPs}&port=#{encodedPort}"
+      port: options.port
+
     code.show()
 
 

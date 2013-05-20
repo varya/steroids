@@ -1,3 +1,13 @@
+## 0.10.8 (TODO)
+
+TODO
+
+Changes:
+  - `steroids connect --port 1234` is supported, requires iOS client 2.7.0 to work.
+
+Bugfixes:
+  - `steroids connect` checks if port is taken.
+
 ## 0.10.7 (2013-05-16)
 
 Tutorial flow fixed, updated generators
