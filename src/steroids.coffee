@@ -92,10 +92,11 @@ class Steroids
     return server
 
 
-  ensureProjectIfNeededFor: (command) ->
+  ensureProjectIfNeededFor: (command, otherOptions) ->
     if command in ["push", "make", "package", "grunt", "debug", "simulator", "connect", "serve", "update", "generate", "deploy"]
 
       return if @detectSteroidsProject()
+      return if command == "generate" and otherOptions.length == 0    # displays usage
 
       console.log """
         Error: command '#{command}' requires to be run in a Steroids project directory.
@@ -112,7 +113,7 @@ class Steroids
     if argv.version
       firstOption = "version"
 
-    @ensureProjectIfNeededFor(firstOption)
+    @ensureProjectIfNeededFor(firstOption, otherOptions)
 
     if firstOption in ["serve", "connect", "create"]
       Help.logo() unless argv.noLogo

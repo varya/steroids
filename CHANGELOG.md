@@ -4,6 +4,7 @@ TODO
 
 Changes:
   - `steroids connect --port 1234` is supported, requires iOS client 2.7.0 to work.
+  - Allow `steroids generate` to be run without being in a Steroids project folder (displays usage)
 
 Bugfixes:
   - `steroids connect` checks if port is taken.
