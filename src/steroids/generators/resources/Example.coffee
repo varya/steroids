@@ -43,6 +43,8 @@ class Example extends Base
         - layerStack -- Native navigation, page transitions and backstack handling.
         - modal -- Using the modal window.
         - navigationBar -- Using the native navigation bar.
+        - photoGallery -- Use Cordova's Camera and File APIs and Steroids native
+                          windowing to create a one-picture photo gallery.
         - preload -- Preload WebViews to have them available immediately.
         
         Available Cordova examples:
@@ -51,8 +53,6 @@ class Example extends Base
         - compass -- Access the device's compass.
         - device -- Access the device properties.
         - geolocation -- Access the device's geolocation data.
-        - photoGallery -- Use the Camera and File APIs and Steroids native windowing
-                          to create a one-picture photo gallery.
         - media -- Play back audio files through Cordova's Media API.
     """
 

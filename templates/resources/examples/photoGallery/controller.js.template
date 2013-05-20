@@ -5,7 +5,7 @@ window.GalleryController = {
 
   index: function() {
     // Initiate the gallery view and preload it
-    var galleryView = new steroids.views.WebView("galleryExampleShow.html");
+    var galleryView = new steroids.views.WebView("/views/galleryExample/show.html");
     document.addEventListener("deviceready", onDeviceReady);
 
     steroids.view.navigationBar.show("Gallery Example");
@@ -68,7 +68,8 @@ window.GalleryController = {
     
     // Store the moved file's URL into localStorage
     function fileMoved(file) {
-      localStorage["gallery.pic.1"] = file.fullPath;
+      // localhost serves files from both steroids.app.userFilesPath and steroids.app.path
+      localStorage["gallery.pic.1"] = "http://localhost/" + file.name;
     }
     
     // Error callbacks

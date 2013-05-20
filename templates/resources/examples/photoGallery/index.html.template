@@ -1,0 +1,8 @@
+<script>
+  // Execute view-specific JavaScript from the controller
+  GalleryController.index();
+</script>
+
+<div class="content-padded">
+  <a class="button-block" id="take-picture">Take picture</a>
+</div>
