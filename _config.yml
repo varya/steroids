@@ -2,6 +2,8 @@ name: Steroids Guides
 pygments: true
 lsi: BOOL
 
+baseurl: http://appgyver.github.io/steroids
+
 permalink: /guides/:categories/:title
 
 future: false
