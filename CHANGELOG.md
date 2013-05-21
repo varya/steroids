@@ -1,3 +1,10 @@
+## 0.10.9 (TODO)
+
+TODO
+
+Changes:
+  - Steroids update checking no longer hammers npm repository
+
 ## 0.10.8 (2013-05-20)
 
 New examples
@@ -5,7 +12,7 @@ New examples
 Changes:
   - `steroids connect --port 1234` is supported, requires iOS client 2.7.0 to work.
   - Allow `steroids generate` to be run without being in a Steroids project folder (displays usage)
-  - New examples added (accessible via `steroids generate example exampleName`): 
+  - New examples added (accessible via `steroids generate example exampleName`):
     - Cordova: accelerometer, audio, camera, compass, device, geolocation
     - Steroids: drumMachine, photoGallery
 

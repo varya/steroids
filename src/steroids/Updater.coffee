@@ -20,7 +20,7 @@ class Updater
     restler.get(endpointURL).on 'complete', (data) =>
       return if data.errno
 
-      latestVersion = data['latest']
+      latestVersion = data["version"]
 
       return if latestVersion == currentVersion
 
