@@ -44,7 +44,8 @@
         // Update the audio position every 50 ms; getCurrentPosition() updates the _position attribute of the media object.
         if (mediaTimer == null) {
           mediaTimer = setInterval(function() {
-            myMedia.getCurrentPosition();
+            // Unless getCurrentPosition() is given a callback function, Cordova posts an error to console.log
+            myMedia.getCurrentPosition(function(){});
             updateAudioPosition();
           }, 50);
         }
