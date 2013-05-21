@@ -1,0 +1,7 @@
+name: Steroids Guides
+pygments: true
+lsi: BOOL
+
+permalink: /guides/:categories/:title
+
+future: false
