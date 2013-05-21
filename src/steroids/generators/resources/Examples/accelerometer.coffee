@@ -24,9 +24,9 @@ class Accelerometer extends Base
     console.log """
 
     Cordova Accelerometer example generated successfully! The following file was created:
-    
+
       - www/accelerometerExample.html
-    
+
     To see the example in action, set the steroids.config.location property in
     config/application.coffee to:
 

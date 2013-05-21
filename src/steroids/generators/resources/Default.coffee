@@ -6,6 +6,7 @@ ejs = require "ejs"
 util = require "util"
 
 Base = require "../Base"
+Help = require "../../Help"
 
 class Default extends Base
   @usageParams: ->
@@ -53,7 +54,15 @@ class Default extends Base
 
     @addBowerDependency "jquery", "1.9.1"
 
-    util.log "Command completed successfully."
+    Help.SUCCESS()
+    console.log """
+
+    Resource generated, set the location of your app to:
+
+      http://localhost/views/#{@options.name}/index.html
+
+
+    """
 
 
 module.exports = Default

@@ -5,6 +5,10 @@ TODO
 Changes:
   - Steroids update checking no longer hammers npm repository
 
+Bugfixes:
+  - resource and ng-resource generators did not tell the location of index view.
+  - ng-resource angular defined checking was not done correctly
+
 ## 0.10.8 (2013-05-20)
 
 New examples

@@ -6,6 +6,7 @@ ejs = require "ejs"
 util = require "util"
 
 Base = require "../Base"
+Help = require "../../Help"
 
 class Angular extends Base
   @usageParams: ->
@@ -61,7 +62,14 @@ class Angular extends Base
 
     @addBowerDependency "angular", "1.0.6"
 
-    util.log "Command completed successfully."
+    Help.SUCCESS()
+    console.log """
 
+    Angular.js resource generated, set the location of your app to:
+
+      http://localhost/views/#{@options.name}/index.html
+
+
+    """
 
 module.exports = Angular
