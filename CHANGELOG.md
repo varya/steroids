@@ -1,6 +1,6 @@
-## 0.10.9 (TODO)
+## 0.10.9 (2013-05-21)
 
-TODO
+Fixed resource generation
 
 Changes:
   - Steroids update checking no longer hammers npm repository
