@@ -65,7 +65,8 @@ class Prompt
 
         when "qr", "qr-code", "qrcode"
           QRCode = require "./QRCode"
-          QRCode.showLocal()
+          QRCode.showLocal
+            port: steroidsCli.port
 
         when "mate"
           paths = require("./paths")
