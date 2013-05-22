@@ -43,9 +43,6 @@ class Sbawned
     @spawned.stderr.on "data", @onStderrData
     @spawned.on "exit", @onExit
 
-    process.on 'SIGINT', () =>
-      @kill()
-
   kill: () =>
     @spawned.kill("SIGKILL")
 
