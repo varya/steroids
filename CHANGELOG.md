@@ -2,6 +2,9 @@
 
 TODO
 
+Changes:
+  - Also running update, login and deploy check for new version
+  
 Bugfixes:
   - Fixed EventEmitter memory leaking
   - example generator output gave an incorrect location for the created layout file.

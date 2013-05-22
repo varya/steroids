@@ -217,6 +217,8 @@ class Steroids
         steroidsCli.simulator.run()
 
       when "connect"
+        updater = new Updater
+        updater.check()
 
         portscanner = require "portscanner"
 
@@ -224,9 +226,6 @@ class Steroids
           unless status == "closed"
             console.log "Error: port #{@port} is already in use. Make sure no other program or Steroids connect is running at this port."
             process.exit(1)
-
-          updater = new Updater
-          updater.check()
 
           project = new Project
           project.push
@@ -333,6 +332,9 @@ class Steroids
             open url
 
       when "update"
+        updater = new Updater
+        updater.check()
+
         Bower = require "./steroids/Bower"
 
         bower = new Bower
@@ -377,6 +379,9 @@ class Steroids
         bower.update()
 
       when "login"
+        updater = new Updater
+        updater.check()
+
         Help.logo()
 
         Login = require "./steroids/Login"
@@ -411,6 +416,9 @@ class Steroids
         util.log "Logged out."
 
       when "deploy"
+        updater = new Updater
+        updater.check()
+
         Help.logo()
 
         Login = require "./steroids/Login"
