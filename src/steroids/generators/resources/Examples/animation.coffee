@@ -36,12 +36,13 @@ class Animation extends Base
 
     Animation example generated successfully! The following files were created:
     
-      - app/layouts/animationExample.html
+      - app/views/layouts/animationExample.html
       - app/views/animationExample/index.html
       - app/views/animationExample/index.html
       - app/controllers/animationExample.js
     
-    To see the example in action, set the location of your app to:
+    To see the example in action, set the steroids.config.location property in
+    config/application.coffee to:
 
       http://localhost/views/animationExample/index.html
 

@@ -37,9 +37,9 @@ class PhotoGallery extends Base
 
     Cordova Photo Gallery example generated successfully! The following files were created:
     
+      - app/views/layouts/galleryExample.html
       - app/views/galleryExample/index.html
       - app/views/galleryExample/show.html
-      - app/views/layouts/galleryExample.html
       - app/controllers/galleryExample.js
     
     To see the example in action, set the steroids.config.location property in

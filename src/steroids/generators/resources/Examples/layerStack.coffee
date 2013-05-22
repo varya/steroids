@@ -37,12 +37,13 @@ class LayerStack extends Base
 
     Layer stack example generated successfully! The following files were created:
     
-      - app/layouts/layerStackExample.html
+      - app/views/layouts/layerStackExample.html
       - app/views/layerStackExample/index.html
       - app/views/layerStackExample/showCat.html
       - app/controllers/layerStackExample.js
     
-    To see the example in action, set the location of your app to:
+    To see the example in action, set the steroids.config.location property in
+    config/application.coffee to:
 
       http://localhost/views/layerStackExample/index.html
 

@@ -122,6 +122,57 @@ describe 'Generator', ->
         runs ->
           expect( cmd.stdout ).toMatch("www/accelerometerExample.html")
 
+      it "generates audio example", ->
+        cmd = @testHelper.runInProjectSync "generate",
+          args: ["example", "audio"]
+
+        runs ->
+          expect( cmd.stdout ).toMatch("www/audioExample.html")
+
+      it "generates camera example", ->
+        cmd = @testHelper.runInProjectSync "generate",
+          args: ["example", "camera"]
+
+        runs ->
+          expect( cmd.stdout ).toMatch("www/cameraExample.html")
+
+      it "generates compass example", ->
+        cmd = @testHelper.runInProjectSync "generate",
+          args: ["example", "compass"]
+
+        runs ->
+          expect( cmd.stdout ).toMatch("www/compassExample.html")
+
+      it "generates device example", ->
+        cmd = @testHelper.runInProjectSync "generate",
+          args: ["example", "device"]
+
+        runs ->
+          expect( cmd.stdout ).toMatch("www/deviceExample.html")
+
+      it "generates geolocation example", ->
+        cmd = @testHelper.runInProjectSync "generate",
+          args: ["example", "geolocation"]
+
+        runs ->
+          expect( cmd.stdout ).toMatch("www/geolocationExample.html")
+
+      # REQUIRES CORDOVA 2.7.0
+      # it "generates notification example", ->
+      #   cmd = @testHelper.runInProjectSync "generate",
+      #     args: ["example", "notification"]
+      #
+      #   runs ->
+      #     expect( cmd.stdout ).toMatch("www/notificationExample.html")
+
+      # REQUIRES CORDOVA 2.7.0
+      # it "generates storage example", ->
+      #   cmd = @testHelper.runInProjectSync "generate",
+      #     args: ["example", "storage"]
+      #
+      #   runs ->
+      #     expect( cmd.stdout ).toMatch("www/storageExample.html")
+
 
     describe "steroids examples", ->
 
@@ -130,49 +181,56 @@ describe 'Generator', ->
           args: ["example", "animation"]
 
         runs ->
-          expect( cmd.stdout ).toMatch("app/layouts/animationExample.html")
+          expect( cmd.stdout ).toMatch("app/views/layouts/animationExample.html")
 
       it "generates drawer example", ->
         cmd = @testHelper.runInProjectSync "generate",
           args: ["example", "drawer"]
 
         runs ->
-          expect( cmd.stdout ).toMatch("app/layouts/drawerExample.html")
+          expect( cmd.stdout ).toMatch("app/views/layouts/drawerExample.html")
+
+      it "generates drumMachine example", ->
+        cmd = @testHelper.runInProjectSync "generate",
+          args: ["example", "drumMachine"]
+
+        runs ->
+          expect( cmd.stdout ).toMatch("app/views/layouts/drumMachineExample.html")
 
       it "generates layerStack example", ->
         cmd = @testHelper.runInProjectSync "generate",
           args: ["example", "layerStack"]
 
         runs ->
-          expect( cmd.stdout ).toMatch("app/layouts/layerStackExample.html")
-
-      it "generates drawer example", ->
-        cmd = @testHelper.runInProjectSync "generate",
-          args: ["example", "drawer"]
-
-        runs ->
-          expect( cmd.stdout ).toMatch("app/layouts/drawerExample.html")
+          expect( cmd.stdout ).toMatch("app/views/layouts/layerStackExample.html")
 
       it "generates modal example", ->
         cmd = @testHelper.runInProjectSync "generate",
           args: ["example", "modal"]
 
         runs ->
-          expect( cmd.stdout ).toMatch("app/layouts/modalExample.html")
+          expect( cmd.stdout ).toMatch("app/views/layouts/modalExample.html")
 
       it "generates navigationBar example", ->
         cmd = @testHelper.runInProjectSync "generate",
           args: ["example", "navigationBar"]
 
         runs ->
-          expect( cmd.stdout ).toMatch("app/layouts/navigationBarExample.html")
+          expect( cmd.stdout ).toMatch("app/views/layouts/navigationBarExample.html")
+
+      it "generates photoGallery example", ->
+        cmd = @testHelper.runInProjectSync "generate",
+          args: ["example", "photoGallery"]
+
+        runs ->
+          expect( cmd.stdout ).toMatch("app/views/layouts/galleryExample.html")
 
       it "generates preload example", ->
         cmd = @testHelper.runInProjectSync "generate",
           args: ["example", "preload"]
 
         runs ->
-          expect( cmd.stdout ).toMatch("app/layouts/preloadExample.html")
+          expect( cmd.stdout ).toMatch("app/views/layouts/preloadExample.html")
 
 
   describe 'usage', ->

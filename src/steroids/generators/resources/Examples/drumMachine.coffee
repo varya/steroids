@@ -50,7 +50,7 @@ class DrumMachine extends Base
 
     Drawer example generated successfully! The following files were created:
     
-      - app/layouts/drumMachineExample.html
+      - app/views/layouts/drumMachineExample.html
       - app/views/drumMachineExample/index.html
       - app/controllers/drumMachineExample.js
       - www/sounds/drumMachineExample/clap.wav
@@ -60,7 +60,8 @@ class DrumMachine extends Base
       - www/sounds/drumMachineExample/perc2.wav
       - www/sounds/drumMachineExample/snare.wav
     
-    To see the example in action, set the location of your app to:
+    To see the example in action, set the steroids.config.location property in
+    config/application.coffee to:
 
       http://localhost/views/drumMachineExample/index.html
 

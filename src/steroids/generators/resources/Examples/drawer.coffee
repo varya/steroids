@@ -37,12 +37,13 @@ class Drawer extends Base
 
     Drawer example generated successfully! The following files were created:
     
-      - app/layouts/drawerExample.html
+      - app/views/layouts/drawerExample.html
       - app/views/drawerExample/index.html
       - app/views/drawerExample/drawer.html
       - app/controllers/drawerExample.js
     
-    To see the example in action, set the location of your app to:
+    To see the example in action, set the steroids.config.location property in
+    config/application.coffee to:
 
       http://localhost/views/drawerExample/index.html
 

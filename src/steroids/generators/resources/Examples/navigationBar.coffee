@@ -35,12 +35,13 @@ class NavigationBar extends Base
 
     Modal example generated successfully! The following files were created:
     
-      - app/layouts/navigationBarExample.html
+      - app/views/layouts/navigationBarExample.html
       - app/views/navigationBarExample/index.html
       - app/views/navigationBarExample/index.html
       - app/controllers/navigationBarExample.js
     
-    To see the example in action, set the location of your app to:
+    To see the example in action, set the steroids.config.location property in
+    config/application.coffee to:
 
       http://localhost/views/navigationBarExample/index.html
 

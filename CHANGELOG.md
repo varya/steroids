@@ -1,3 +1,11 @@
+## 0.10.10 TODO
+
+Changes
+  -
+
+Bugfixes:
+  - example generator output gave an incorrect location for the created layout file.
+
 ## 0.10.9 (2013-05-21)
 
 Fixed resource generation

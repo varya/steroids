@@ -37,13 +37,13 @@ class Modal extends Base
 
     Modal example generated successfully! The following files were created:
     
-      - app/layouts/modalExample.html
+      - app/views/layouts/modalExample.html
       - app/views/modalExample/index.html
       - app/views/modalExample/show.html
       - app/controllers/modalExample.js
-      
     
-    To see the example in action, set the location of your app to:
+    To see the example in action, set the steroids.config.location property in
+    config/application.coffee to:
 
       http://localhost/views/modalExample/index.html
 

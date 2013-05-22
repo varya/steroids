@@ -38,13 +38,13 @@ class Preload extends Base
 
     Modal example generated successfully! The following files were created:
     
-      - app/layouts/preloadExample.html
+      - app/views/layouts/preloadExample.html
       - app/views/preloadExample/index.html
       - app/views/preloadExample/show.html
       - app/controllers/preloadExample.js
-      
     
-    To see the example in action, set the location of your app to:
+    To see the example in action, set the steroids.config.location property in
+    config/application.coffee to:
 
       http://localhost/views/preloadExample/index.html
 
