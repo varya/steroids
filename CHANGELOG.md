@@ -1,9 +1,9 @@
-## 0.10.10 TODO
+## 0.10.10 (TODO)
 
-Changes
-  -
+TODO
 
 Bugfixes:
+  - Fixed EventEmitter memory leaking
   - example generator output gave an incorrect location for the created layout file.
 
 ## 0.10.9 (2013-05-21)
