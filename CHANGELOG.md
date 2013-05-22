@@ -1,10 +1,10 @@
-## 0.10.10 (TODO)
+## 0.10.10 (2013-05-22)
 
-TODO
+Bug fixes, better notifications
 
 Changes:
   - Also running update, login and deploy check for new version
-  
+
 Bugfixes:
   - Fixed EventEmitter memory leaking
   - example generator output gave an incorrect location for the created layout file.
