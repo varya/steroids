@@ -343,6 +343,8 @@ class Steroids
 
       when "update"
         updater = new Updater
+          verbose: true
+
         updater.check()
 
         Bower = require "./steroids/Bower"
@@ -426,7 +428,8 @@ class Steroids
 
         Login.removeAuthToken()
 
-        util.log "Logged out."
+        Help.loggedOut()
+
 
       when "deploy"
         updater = new Updater

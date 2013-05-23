@@ -4,6 +4,7 @@ fs = require "fs"
 OAuth2 = require('oauth').OAuth2
 
 paths = require "./paths"
+Help = require "./Help"
 
 class Login
   settings:
@@ -66,6 +67,9 @@ class Login
     fs.writeFileSync paths.oauthTokenPath, JSON.stringify(options)
 
     util.log "Login process successful."
+
+    Help.loggedIn()
+
     process.exit 0
 
 module.exports = Login

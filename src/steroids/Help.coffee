@@ -33,6 +33,11 @@ class Help
     @attention()
     @printBanner(paths.banners.newVersionAvailable, true)
 
+  @loggedOut: ->
+    @printBanner(paths.banners.loggedOut, true)
+
+  @loggedIn: ->
+    @printBanner(paths.banners.loggedIn, true)
   @listGenerators: ->
     Generators = require "./Generators"
 

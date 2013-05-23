@@ -1,3 +1,11 @@
+## 0.10.12 (TODO)
+
+TODO
+
+Changes:
+  - `steroids update` informs if Steroids NPM is in the latest version
+  - login and logout give nicer output
+  
 ## 0.10.11 (2013-05-23)
 
 Custom port caused problems when not used (defaults did not work), fixed ng-resource

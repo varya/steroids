@@ -5,7 +5,7 @@ os = require "os"
 class Updater
 
 
-  constructor: ->
+  constructor: (@options={})->
 
 
   check: =>
@@ -22,7 +22,9 @@ class Updater
 
       latestVersion = data["version"]
 
-      return if latestVersion == currentVersion
+      if latestVersion == currentVersion
+        console.log "Running latest version of Steroids NPM (#{currentVersion})" if @options.verbose
+        return
 
       Help.newVersionAvailable(latestVersion)
 
