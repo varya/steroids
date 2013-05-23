@@ -1,0 +1,37 @@
+]
+
+# -- Status bar --
+# Sets the visibilty of the status bar on iOS (shows the carrier, clock and battery status)
+# Default: false
+
+steroids.config.statusBar.enabled = true
+
+# -- Colors --
+# Color values can be set in hex codes, eg. #ffbb20
+# Setting these values will override the values set by the application theme in steroids.config.theme
+# Default for all attributes: ""
+
+steroids.config.navigationBar.tintColor = "#00aeef"
+steroids.config.navigationBar.titleColor = "#ffffff"
+steroids.config.navigationBar.titleShadowColor = "#000000"
+
+steroids.config.navigationBar.buttonTintColor = "#363636"
+steroids.config.navigationBar.buttonTitleColor = "#ffffff"
+steroids.config.navigationBar.buttonShadowColor = "#000000"
+
+# steroids.config.tabBar.tintColor = ""
+# steroids.config.tabBar.tabTitleColor = ""
+# steroids.config.tabBar.tabTitleShadowColor = ""
+# steroids.config.tabBar.selectedTabTintColor = ""
+#
+# -- Indicator image --
+# Can be used to set an indicator image for the selected tab on iOS (can be bigger than the tab area)
+# Default: ""
+#
+# steroids.config.tabBar.selectedTabBackgroundImage = ""
+#
+# -- iOS theme --
+# Built-in iOS theme, values: black and default
+# Default: "default"
+#
+# steroids.config.theme = "default"
