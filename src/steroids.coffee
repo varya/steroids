@@ -75,7 +75,7 @@ class Steroids
 
     errorCb = (err)=>
       if err.message.match /EADDRINUSE/
-        util.log "ERROR: Port #{selectedPort} is already in use. You probably have another `steroids connect` command running already."
+        util.log "ERROR: Port #{selectedPort} is already in use. You probably have an another `steroids` command running already in that port?"
         process.exit 1
       else
         throw err
