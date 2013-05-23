@@ -119,11 +119,6 @@ class Steroids
       Help.logo() unless argv.noLogo
 
 
-    @port = if argv.port
-      argv.port
-    else
-      4567
-
     switch firstOption
       when "version"
         console.log @version.formattedVersion()
@@ -199,6 +194,11 @@ class Steroids
         grunt.run()
 
       when "debug"
+        @port = if argv.port
+          argv.port
+        else
+          31173
+
         options = {}
         options.httpPort = @port
 
@@ -219,6 +219,11 @@ class Steroids
       when "connect"
         updater = new Updater
         updater.check()
+
+        @port = if argv.port
+          argv.port
+        else
+          4567
 
         portscanner = require "portscanner"
 
@@ -314,7 +319,12 @@ class Steroids
 
       when "serve"
 
-        servePort = (@port || 13101)
+        @port = if argv.port
+          argv.port
+        else
+          4000
+
+        servePort = @port
         url = "http://localhost:#{servePort}"
 
         WebServer = require "./steroids/servers/WebServer"
@@ -392,14 +402,17 @@ class Steroids
 
         util.log "Starting login process"
 
-        loginPort = @port || 13303
+        @port = if argv.port
+          argv.port
+        else
+          13303
 
         server = @startServer
-          port: loginPort
+          port: @port
           callback: ()=>
             login = new Login
               server: server
-              port: loginPort
+              port: @port
             login.authorize()
 
       when "logout"
