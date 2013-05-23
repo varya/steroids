@@ -3,6 +3,7 @@
 TODO
 
 Bugfixes:
+  - Custom --port settings bettered, ports back to defaults
   - angular type checking was not included in the last bug fix
 
 ## 0.10.10 (2013-05-22)
