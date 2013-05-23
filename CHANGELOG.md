@@ -1,6 +1,6 @@
-## 0.10.11 (TODO)
+## 0.10.11 (2013-05-23)
 
-TODO
+Custom port caused problems when not used (defaults did not work), fixed ng-resource
 
 Bugfixes:
   - Custom --port settings bettered, ports back to defaults
