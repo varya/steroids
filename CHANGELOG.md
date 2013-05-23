@@ -1,3 +1,10 @@
+## 0.10.11 (TODO)
+
+TODO
+
+Bugfixes:
+  - angular type checking was not included in the last bug fix
+
 ## 0.10.10 (2013-05-22)
 
 Bug fixes, better notifications

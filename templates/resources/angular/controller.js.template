@@ -1,5 +1,9 @@
 (function() {
 
+if ( typeof angular == 'undefined' ) {
+	return;
+};
+
 var app = angular.module('<%= options.name %>', ['<%= options.className %>Model', 'hmTouchevents']);
 
 app.config(function($routeProvider) {
