@@ -5,7 +5,7 @@ TODO
 Changes:
   - `steroids update` informs if Steroids NPM is in the latest version
   - login and logout give nicer output
-  
+  - updated weinre (more supported browsers)
 
 Bugfixes:
   - enabling, disabling and enabling tabs again fixed
