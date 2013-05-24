@@ -5,6 +5,11 @@ TODO
 Changes:
   - `steroids update` informs if Steroids NPM is in the latest version
   - login and logout give nicer output
+  
+
+Bugfixes:
+  - enabling, disabling and enabling tabs again fixed
+  - application.coffee is now properly reloaded on every client refresh
   - Cordova camera example now shows a loading spinner while the captured photo is loading
   - Better error handling in Cordova compass example
   

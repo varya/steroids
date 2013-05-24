@@ -4,15 +4,10 @@ Paths = require "./paths"
 Config = require "./Config"
 
 class DeployConverter
-  constructor: (@configPath)->
-    delete require.cache[@configPath] if require.cache[@configPath]
 
-    global.steroids =
-      config: new Config
-
-    require @configPath
-
-    @config = global.steroids.config
+  constructor: ()->
+    config = new Config()
+    @config = config.getCurrent()
 
   applicationCloudSchemaRepresentation: ->
 

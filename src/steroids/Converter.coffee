@@ -7,14 +7,10 @@ class Converter
   constructor: (@configPath)->
 
   configToAnkaFormat: ->
-    delete require.cache[@configPath] if require.cache[@configPath]
 
-    global.steroids =
-      config: new Config
+    config = new Config()
+    configObject = config.getCurrent()
 
-    require @configPath
-
-    configObject = global.steroids.config
 
     ankaLikeJSON =
       id: 1

@@ -1,31 +1,48 @@
+paths = require "./paths"
+
 class Config
 
-  statusBar:
-    style: "black"
-    enabled: false
-  navigationBar:
-    tintColor:                  ""
-    titleColor:                 ""
-    titleShadowColor:           ""
+  constructor: ->
+    @statusBar =
+      style: "black"
+      enabled: false
 
-    buttonTitleColor:           ""
-    buttonShadowColor:          ""
-    buttonTintColor:            ""
-  theme:                        "black"
-  location:                     "http://localhost/index.html"
-  # ["mobileapp.test.com"]
-  hosts: []
-  tabBar:
-    enabled:                    false
-    tintColor:                  ""
-    tabTitleColor:              ""
-    tabTitleShadowColor:        ""
-    selectedTabTintColor:       ""
-    selectedTabBackgroundImage: ""
+    @navigationBar =
+      tintColor:                  ""
+      titleColor:                 ""
+      titleShadowColor:           ""
 
-    # tabs: [{title: "default", icon:"icon.png", location: "http://localhost/index.html"}]
-    tabs: []
-  worker: {}
+      buttonTitleColor:           ""
+      buttonShadowColor:          ""
+      buttonTintColor:            ""
 
+    @theme = "black"
+
+    @location = "http://localhost/index.html"
+
+    @hosts = []
+    @tabBar =
+      enabled:                    false
+      tintColor:                  ""
+      tabTitleColor:              ""
+      tabTitleShadowColor:        ""
+      selectedTabTintColor:       ""
+      selectedTabBackgroundImage: ""
+      tabs: []
+
+    @worker =  {}   # what is this?
+
+  getCurrent: () ->
+    # needs to use global, because application.coffee needs to stay require free
+
+    configPath = paths.application.configs.application
+    delete require.cache[configPath] if require.cache[configPath]
+
+    global.steroids =
+      config: new Config
+
+    require configPath
+
+    return global.steroids.config
 
 module.exports = Config
