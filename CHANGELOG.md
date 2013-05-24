@@ -10,6 +10,7 @@ Changes:
 Bugfixes:
   - enabling, disabling and enabling tabs again fixed
   - application.coffee is now properly reloaded on every client refresh
+  - `steroids debug` works correctly with custom ports
   - Cordova camera example now shows a loading spinner while the captured photo is loading
   - Better error handling in Cordova compass example
   

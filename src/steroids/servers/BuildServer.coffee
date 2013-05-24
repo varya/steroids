@@ -43,14 +43,14 @@ class BuildServer extends Server
 
       config.archives.push {url: "#{req.protocol}://#{req.host}:#{@options.port}/appgyver/zips/project.zip"}
 
-      request.get { url: "http://127.0.0.1:31173/target/target-script-min.js#anonymous" }, (err, bettereq, betteres)=>
+      request.get { url: "http://127.0.0.1:#{steroidsCli.debugPort}/target/target-script-min.js#anonymous" }, (err, bettereq, betteres)=>
         unless err
           #TODO detect if debugger is online
           config.configuration.initial_eval_js_string += """
           window.addEventListener("load", function(){
             if (!window.AG_DEBUGGER_INJECTED) {
               e = document.createElement('script');
-              e.setAttribute('src','#{req.protocol}://#{req.host}:31173/target/target-script-min.js#anonymous');
+              e.setAttribute('src','#{req.protocol}://#{req.host}:#{steroidsCli.debugPort}/target/target-script-min.js#anonymous');
               document.getElementsByTagName('body')[0].appendChild(e);
               window.AG_DEBUGGER_INJECTED = true;
             }

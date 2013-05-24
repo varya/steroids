@@ -35,7 +35,7 @@ Other usage commands:
 
     Launches iOS Simulator, requires Xcode.
 
-  debug [--port=31173]
+  debug [--port=31173 and --debugPort=<same as port> in connect process]
 
     Starts Weinre debugger and waits for connections.
 

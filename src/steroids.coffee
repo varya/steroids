@@ -113,6 +113,12 @@ class Steroids
     if argv.version
       firstOption = "version"
 
+    @debugPort = if argv.debugPort
+      argv.debugPort
+    else
+      31173
+
+
     @ensureProjectIfNeededFor(firstOption, otherOptions)
 
     if firstOption in ["serve", "connect", "create"]
