@@ -6,6 +6,7 @@ Changes:
   - `steroids update` informs if Steroids NPM is in the latest version
   - login and logout give nicer output
   - updated weinre (more supported browsers)
+  - disabled unicode pill in prompt :(
 
 Bugfixes:
   - enabling, disabling and enabling tabs again fixed
