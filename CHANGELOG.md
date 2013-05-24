@@ -1,6 +1,6 @@
-## 0.10.12 (TODO)
+## 0.10.12 (2013-05-24)
 
-TODO
+Weinre updated, bugfixes
 
 Changes:
   - `steroids update` informs if Steroids NPM is in the latest version
@@ -14,7 +14,8 @@ Bugfixes:
   - `steroids debug` works correctly with custom ports
   - Cordova camera example now shows a loading spinner while the captured photo is loading
   - Better error handling in Cordova compass example
-  
+  - if project directory contains word "app" its not replaced as "dist"
+
 ## 0.10.11 (2013-05-23)
 
 Custom port caused problems when not used (defaults did not work), fixed ng-resource

@@ -231,6 +231,9 @@ registerDefaultTasks = (grunt)->
         filePath = path.resolve filePathPart
         buildFilePath = path.resolve filePathPart.replace("app"+path.sep, "dist"+path.sep)
 
+        resourceDirName = filePathPart.split(path.sep).splice(-2,1)[0]
+        buildFilePath = path.join(buildDirectory, "views", resourceDirName, path.basename(filePathPart))
+
         # skip "partial" files that begin with underscore
         if /^_/.test path.basename(filePath)
           yieldedFile = grunt.file.read(filePath, "utf8")
