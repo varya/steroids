@@ -2,7 +2,7 @@
 layout: post
 title:  "Configuring your app with config.xml"
 date:   2013-05-20 13:51:34
-categories: 
+categories: ios
 ---
 
 **Supported Platforms: iOS**
