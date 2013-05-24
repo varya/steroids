@@ -41,7 +41,11 @@
   
   // Failed to get the heading or access the compass
   function compassError(compassError) {
-    alert('Compass error! Error code: ' + compassError.code);
+    if (compassError.code == CompassError.COMPASS_NOT_SUPPORTED) {
+      alert("Error:\nCompass not supported by the device!");
+    } else {
+      alert("Internal compass error! Could not get heading data.")
+    }
     stopWatch();
   }
   
