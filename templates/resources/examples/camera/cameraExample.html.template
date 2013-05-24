@@ -15,36 +15,47 @@
   <script>
   
     checkForLocalhost();
+    
+    // Define our image element
+    var imgElement = null;
+    
+    // Set latest image URI to initially be an empty image; this is done to ensure that the spinner GIF is properly hidden
+    var latestURI = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+    
+    document.addEventListener("DOMContentLoaded", function(){
+      imgElement = document.querySelector('#photo');
+    });
   
     // Show the selected image
     function imageURIReceived(imageURI) {
-      var imgElement = document.querySelector('#photo');
-      imgElement.src = imageURI;
+      imgElement.src = latestURI = imageURI;
     }
   
     // Show the Base64-encoded image
     function imageDataReceived(imageData) {  
-      var imgElement = document.querySelector('#photo');
-      imgElement.src = "data:image/jpeg;base64," + imageData;
+      imgElement.src = latestURI = "data:image/jpeg;base64," + imageData;
     }
   
     // Camera failure callback
     function cameraError(message) {
-      alert('Capturing the photo failed! Cordova says: ' + message);
+      navigator.notification.alert('Cordova says: ' + message, null, 'Capturing the photo failed!');
+      imgElement.src = latestURI;
     }
-  
+      
     // Choose an image from the device's photo library, the callback receives the image's file URI
     function chooseImage() {
       checkForLocalhost();
       navigator.camera.getPicture(imageURIReceived, cameraError, { quality: 50, 
         destinationType: navigator.camera.DestinationType.IMAGE_URI,
         sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY });
+      imgElement.src = "images/spinner.gif"; 
     }
   
     // Take a photo using the device's camera, the callback receives the image as a Base64-encoded string
     function capturePhoto() {
-      navigator.camera.getPicture(imageDataReceived, cameraError, { quality: 30, allowEdit: true,
+      navigator.camera.getPicture(imageDataReceived, cameraError, { quality: 30,
         destinationType: navigator.camera.DestinationType.DATA_URL });
+      imgElement.src = "images/spinner.gif";
     }
     
     // Inform the user that if the project is being served from localhost, the example doesn't function correctly
@@ -68,7 +79,7 @@
   <div class="content-padded">
     <h1>Camera Example</h1>
     <hr>
-    <a class="button-block" ontouchstart="capturePhoto()">Capture editable photo</a>
+    <a class="button-block" ontouchstart="capturePhoto()">Capture photo</a>
     <a class="button-block" ontouchstart="chooseImage()">Choose from Photo Library</a>
     
     <img id="photo">

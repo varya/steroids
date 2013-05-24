@@ -5,6 +5,7 @@ TODO
 Changes:
   - `steroids update` informs if Steroids NPM is in the latest version
   - login and logout give nicer output
+  - Cordova camera example now shows a loading spinner while the captured photo is loading
   
 ## 0.10.11 (2013-05-23)
 
