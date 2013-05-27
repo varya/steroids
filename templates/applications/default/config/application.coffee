@@ -89,3 +89,9 @@ steroids.config.navigationBar.buttonShadowColor = "#000000"
 # Default: "default"
 #
 # steroids.config.theme = "default"
+
+# -- Editor --
+# When running connect this configure the editor command to launch
+#
+# steroids.config.editor.cmd = "subl"
+# steroids.config.editor.args = ["."]

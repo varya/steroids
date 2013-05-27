@@ -1,4 +1,6 @@
 Help = require "./Help"
+paths = require("./paths")
+
 
 class Prompt
 
@@ -68,13 +70,25 @@ class Prompt
           QRCode.showLocal
             port: steroidsCli.port
 
-        when "mate"
-          paths = require("./paths")
+        when "e", "edit"
+
+          editorCmd = steroidsCli.config.getCurrent().editor.cmd
+          editorArgs = steroidsCli.config.getCurrent().editor.args
+
+          acualArgs = if editorArgs
+            editorArgs
+          else
+            [paths.applicationDir]
+
+          acualCmd = if editorCmd
+            editorCmd
+          else
+            "subl"
 
           sbawn = require "./sbawn"
           sbawn
-            cmd: "mate"
-            args: [paths.applicationDir]
+            cmd: acualCmd
+            args: acualArgs
             debug: true
 
         when "help", "?", "usage"

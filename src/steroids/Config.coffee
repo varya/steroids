@@ -3,6 +3,8 @@ paths = require "./paths"
 class Config
 
   constructor: ->
+    @editor = {}
+
     @statusBar =
       style: "black"
       enabled: false

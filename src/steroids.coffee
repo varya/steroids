@@ -14,6 +14,8 @@ open = require "open"
 
 fs = require("fs")
 
+Config = require "./steroids/Config"
+
 class Steroids
 
   simulator: null
@@ -24,6 +26,7 @@ class Steroids
 
     @version = new Version
     @pathToSelf = process.argv[1]
+    @config = new Config
 
   readApplicationConfig: ->
     applicationConfig = paths.application.configs.application
