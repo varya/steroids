@@ -17,54 +17,29 @@ class Begin extends Base
   generate: ->
 
     @checkForPreExistingFiles [
-      path.join("config", "application.coffee")
-      path.join("app", "views", "layouts", "application.html")
-      path.join("app", "views", "tutorial", "index.html")
-      path.join("app", "views", "tutorial", "show.html")
+      path.join("www", "tutorial.html")
     ]
 
-    @ensureDirectory path.join("config")
-    @copyFile path.join("config", "application.coffee"), "application.coffee.template"
+    @ensureDirectory path.join("www")
 
-    @ensureDirectory path.join("app")
-    @ensureDirectory path.join("app", "views")
-
-    @ensureDirectory path.join("app", "views", "layouts")
-    @copyFile path.join("app", "views", "layouts", "application.html"), "application.html.template"
-
-    @ensureDirectory path.join("app", "views", "tutorial")
-    @copyFile path.join("app", "views", "tutorial", "index.html"), "index.html.template"
-    @copyFile path.join("app", "views", "tutorial", "show.html"), "show.html.template"
-
-    @addBowerDependency "jquery", "1.9.1"
+    @copyFile path.join("www", "tutorial.html"), "tutorial.html.template"
 
     Help.awesome()
     console.log """
 
-    Then, edit config/application.coffee and uncomment some lines.  CoffeeScript is especially picky about extra
-    spaces, so make sure you remove the extra space after that # character.
+    Great success!
 
-    Find line that says:
+    Next up, open the config/application.coffee file. Find the steroids.config.location property, which tells our app which HTML document it should load when it starts up. Let's change it:
 
-    # steroids.config.tabBar.enabled = true
+      steroids.config.location = "tutorial.html"
 
-    This enables the native navigation tab bar.  And also the array below that configures the tab bar contents:
+    Save the file. Then, hit enter on the Steroids console (opened via $ steroids connect), or use the command $ steroids push. You should see your app reload with further instructions.
 
-    # steroids.config.tabBar.tabs = [
-    #   {
-    #   ...
-    #   }
-    # ]
-
-    Then, hit enter on the Steroids console (or use command $ steroids push) and you should see the application to reload
-    with tabs.
-
-    Following lines are the output of Bower.  Bower is configured with config/bower.json and run with
+    The following lines are the output of Bower, a package dependency management tool. Bower is configured with config/bower.json and run with
 
       $ steroids update
 
     Bower, do your job:
-
     """
 
 module.exports = Begin

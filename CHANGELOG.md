@@ -4,6 +4,7 @@ TODO add stuf
 
 Changes:
   - default project now includes instructions on how to access AppGyver Scanner context menu
+  - 'begin' tutorial remade
 
 ## 0.10.17 (2013-06-03)
 
