@@ -1,7 +1,10 @@
 ## 0.10.13 (TODO)
 
+TODO
+
 Changes:
   - a new app is served via the File protocol by default (instead of localhost)
+  - editor launching is defined in `application.coffee`
 
 ## 0.10.12 (2013-05-24)
 
