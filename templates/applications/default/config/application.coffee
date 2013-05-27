@@ -11,7 +11,7 @@ steroids.config.name = "My New Application"
 #   - localhost URL, starting with http://localhost/ (serves the document locally from the www/ folder, e.g. 'http://localhost/index.html' would serve www/index.html)
 #   - external URL (directly from the internets, e.g. http://www.google.com)
 
-steroids.config.location = "http://localhost/index.html"
+steroids.config.location = "index.html"
 
 # -- Remote hosts: steroids.config.hosts --
 # Defines the hostnames that the application will capture and serve application files from.

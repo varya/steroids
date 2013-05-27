@@ -1,3 +1,8 @@
+## 0.10.13 (TODO)
+
+Changes:
+  - a new app is served via the File protocol by default (instead of localhost)
+
 ## 0.10.12 (2013-05-24)
 
 Weinre updated, bugfixes
@@ -13,7 +18,7 @@ Bugfixes:
   - application.coffee is now properly reloaded on every client refresh
   - `steroids debug` works correctly with custom ports
   - Cordova camera example now shows a loading spinner while the captured photo is loading
-  - Better error handling in Cordova compass example
+  - better error handling in Cordova compass example
   - if project directory contains word "app" its not replaced as "dist"
 
 ## 0.10.11 (2013-05-23)
