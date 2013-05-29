@@ -1,4 +1,4 @@
-## 0.10.14 (2013-05-29)
+## 0.10.13 (2013-05-29)
 
 Custom editor, hooks and more consistency with Cordova
 
