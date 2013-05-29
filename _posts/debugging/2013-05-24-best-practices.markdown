@@ -5,13 +5,11 @@ date:   2013-05-21 13:51:34
 categories: debugging
 ---
 
-# TODO: ADD LINKS
+Below is a collection of tips and best practices that we've found useful while debugging apps built with AppGyver. Please make sure you've read the following articles first, as they contain info about the basic tools you should use when debugging a Steroids app.
 
-Below is a collection of tips and best practices that we've found useful while debugging apps built with AppGyver. Please make sure you've read the following articles first:
-
-* (iOS) [Debugging with the Safari Web Inspector](LINK)
-* (Android) [Debugging with Android Dev Tools](LINK)
-* (both platforms) [Debugging with Weinre](LINK)
+* (iOS) [Debugging with the Safari Web Inspector][safari-wi]
+* (Android) [Debugging with Android Dev Tools][adt]
+* (both platforms) [Debugging with Weinre][weinre]
 
 ## Use console.log
 
@@ -20,9 +18,9 @@ Below is a collection of tips and best practices that we've found useful while d
 The output of `console.log` commands from your Steroids app is available in several ways:
 
 * On iOS: by running `$ steroids simulator` (the output is visible in the Terminal window running the command, text only)
-* On iOS: by using the [Safari Web Inspector](LINK) (fully functional console log)
-* On Android: by using the [Android Developer Tools](LINK) and the LogCat program (text only)
-* On both platforms: by using [Weinre](LINK) (only after Weinre has loaded via JavaScript, otherwise fully functional console log)
+* On iOS: by using the [Safari Web Inspector][safari-wi] (fully functional console log)
+* On Android: by using the [Android Developer Tools][adt] and the LogCat program (text only)
+* On both platforms: by using [Weinre][weinre] (only after Weinre has loaded via JavaScript, otherwise fully functional console log)
 
 ## Use alerts
 
@@ -56,14 +54,18 @@ On Chrome, open the Developer Tools and click the cog button in the bottom right
 
 You can simply resize your browser window to the correct pixel width (the *Overrides* tab in Chrome allows you to do this nicely).
 
-In addition, (http://screenqueri.es)[screenqueries] is a cool website that allows you to see how a HTML page looks when rendered in different screen sizes. It supports localhost URLs, so it works nicely with `steroids serve`.
+In addition, [Screenqueri.es] is a cool website that allows you to see how a HTML page looks when rendered in different screen sizes. It supports localhost URLs, so it works nicely with `steroids serve`.
 
 ## Ensure that your HTML5 features are supported
 
 Android is still lagging a bit behind iOS on the implementation of certain HTML5 features, and some of the cutting-edge stuff is not available at all on mobile devices.
 
-The website [caniuse.com](http://caniuse.com) has good, up-to-date tables on what features are supported by which platforms. Be sure to check it out before you scratch your head wondering why e.g. `<input type="datetime">` just doesn't seem to work on Android.
+The website [caniuse.com][caniuse] has good, up-to-date tables on what features are supported by which platforms. Be sure to check it out before you scratch your head wondering why e.g. `<input type="datetime">` just doesn't seem to work on Android.
 
 
 
-[screenqueries]: http://screenqueri.es/
+[Screenqueri.es]: http://screenqueri.es/
+[caniuse]: http://caniuse.com
+[safari-wi]: guides/debugging/safari-web-inspector/
+[adt]: guides/debugging/adt/
+[weinre]: guides/debugging/weinre/

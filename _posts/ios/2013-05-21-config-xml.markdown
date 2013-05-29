@@ -7,7 +7,7 @@ categories: ios
 
 **Supported Platforms: iOS**
 
-Like Cordova, Steroids uses a `config.xml` file to set universal preferences for WebViews in your app, manage which Cordova plugins are loaded and set whitelisted domains for your app. The structure of `config.xml` is based on the [W3C Packaged Web Apps (Widgets)](http://www.w3.org/TR/widgets/) specification, although only a limited set of the available elements are used.
+Like Cordova, Steroids uses a `config.xml` file to set universal preferences for WebViews in your app, manage which Cordova plugins are loaded and set whitelisted domains for your app. The structure of `config.xml` is based on the [W3C Packaged Web Apps (Widgets)][widgets] specification, although only a limited set of the available elements are used.
 
 ##Configuring preferences (iOS)
 
@@ -57,7 +57,7 @@ The following Cordova preferences are currently nonfunctional:
 
 ##Configuring plugins
 
-By removing `<plugin>` elements from the `config.xml` file, you can disable parts of Cordova. For more information on the API calls associated with each core plugin, see the [Steroids API docs](http://docs.appgyver.com).
+By removing `<plugin>` elements from the `config.xml` file, you can disable parts of Cordova. For more information on the API calls associated with each core plugin, see the [Steroids API docs][steroids-api].
   
 ###Geolocation plugin
 The Geolocation plugin has a special `onload` attribute. By setting it to true, Steroids will start receiving geolocation data when the app initially loads, allowing for better GPS accuracy: 
@@ -73,7 +73,11 @@ The `<access>` element manages whitelisted domains for your app. For most cases,
 <access origin="*" />
 {% endhighlight %}
 
-For more granular control, see the [Cordova Docs](http://docs.phonegap.com/en/2.7.0/guide_whitelist_index.md.html#Domain%20Whitelist%20Guide) on the subjcet.
+For more granular control, see the [Cordova Docs][cordova-domain-whitelisting] on the subjcet.
 
 ##App start location
 The `<content>` tag is not used in Steroids to set the initial location of your app. Instead, the `steroids.config.location` property in `config/application.coffee` is used.
+  
+[widgets]: http://www.w3.org/TR/widgets/
+[cordova-domain-whitelisting]: http://docs.phonegap.com/en/2.7.0/guide_whitelist_index.md.html#Domain%20Whitelist%20Guide
+[steroids-api]: http://docs.appgyver.com

@@ -7,13 +7,13 @@ categories: debugging
 
 **Supported Platforms: Android**
 
-You can also use Weinre to debug your Android application. See the [Debugging Best Practices](URL_HERE) guide for more information.
+You can also use Weinre to debug your Android application. See the [Debugging with Weinre][weinre] guide for more information.
 
 Debugging WebViews on Android is somewhat limited at the moment, with no web inspector tools available that would work on the native level. However, you can still access all `console.log` output from your app via the Android Dev Tools.
 
 ##Step 1: Install the Android Dev Tools Bundle
 
-To get started, download the [ADT Bundle from Google](http://developer.android.com/sdk/index.html). Then, follow the instructions in the [Setting Up the ADT Bundle](http://developer.android.com/sdk/installing/bundle.html) page.
+To get started, download the [ADT Bundle from Google][adt-download]. Then, follow the instructions in the [Setting Up the ADT Bundle][adt-setup] page.
 
 After you have Eclipse open, select from the top menu bar *Window* > *Show View* > *Other...*. From the menu window that opens, open the *Android* folder and select *LogCat*.
 
@@ -35,4 +35,10 @@ By leaving the *Tag* field empty, you can see all the debug output from AppGyver
 
 The debug output doesn't specify which WebView is responsible for each `console.log` line. If you have a complex app, it might be a good ide to use e.g. `window.location.href` to print out the filename of the HTML document that sent the error.
 
-See the [Debugging Best Practices](URL_HERE) guide for more tips and tricks.
+See the [Debugging Best Practices][debugging-best-practices] guide for more tips and tricks.
+
+
+[debugging-best-practices]: /guides/debugging/best-practices/
+[weinre]: /guides/debugging/weinre/
+[adt-download]: http://developer.android.com/sdk/index.html
+[adt-setup]: http://developer.android.com/sdk/installing/bundle.html
