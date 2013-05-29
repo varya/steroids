@@ -6,6 +6,7 @@ Changes:
   - a new app is served via the File protocol by default (instead of localhost)
   - editor launching is defined in `application.coffee`
   - steroids.config.hooks.preMake and steroids.config.hooks.postMake for running own scripts
+  - steroids update checking passes the action performed
 
 ## 0.10.12 (2013-05-24)
 

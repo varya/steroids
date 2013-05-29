@@ -231,7 +231,8 @@ class Steroids
 
       when "connect"
         updater = new Updater
-        updater.check()
+        updater.check
+          from: "connect"
 
         @port = if argv.port
           argv.port
@@ -358,7 +359,8 @@ class Steroids
         updater = new Updater
           verbose: true
 
-        updater.check()
+        updater.check
+          from: "update"
 
         Bower = require "./steroids/Bower"
 
@@ -405,7 +407,8 @@ class Steroids
 
       when "login"
         updater = new Updater
-        updater.check()
+        updater.check
+          from: "login"
 
         Help.logo()
 
@@ -446,7 +449,8 @@ class Steroids
 
       when "deploy"
         updater = new Updater
-        updater.check()
+        updater.check
+          from: "deploy"
 
         Help.logo()
 

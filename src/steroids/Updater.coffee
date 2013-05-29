@@ -8,14 +8,14 @@ class Updater
   constructor: (@options={})->
 
 
-  check: =>
+  check: (opts={})=>
     currentVersion = steroidsCli.version.getVersion()
 
     osType = os.type()
     encodedOsType = encodeURIComponent(osType)
     encodedVersion = encodeURIComponent(currentVersion)
 
-    endpointURL = "http://updates.appgyver.com/steroids/latest.json?os=#{encodedOsType}&version=#{encodedVersion}"
+    endpointURL = "http://updates.appgyver.com/steroids/latest.json?os=#{encodedOsType}&version=#{encodedVersion}&from=#{opts.from}"
 
     restler.get(endpointURL).on 'complete', (data) =>
       return if data.errno
