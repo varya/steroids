@@ -34,6 +34,11 @@ class Config
 
     @worker =  {}   # what is this?
 
+    @hooks =
+      preMake: {}
+      postMake: {}
+
+
   getCurrent: () ->
     # needs to use global, because application.coffee needs to stay require free
 

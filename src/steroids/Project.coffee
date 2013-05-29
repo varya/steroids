@@ -1,4 +1,5 @@
 sbawn = require "./sbawn"
+util = require "util"
 
 class Project
 
@@ -21,6 +22,47 @@ class Project
             options.onSuccess.call() if options.onSuccess?
       onFailure: options.onFailure
 
+  preMake: (options = {}) =>
+    config = steroidsCli.config.getCurrent()
+
+    if config.hooks.preMake.cmd and config.hooks.preMake.args
+
+      util.log "preMake started"
+
+      preMakeSbawn = sbawn
+        cmd: config.hooks.preMake.cmd
+        args: config.hooks.preMake.args
+        stdout: true
+        stderr: true
+
+      preMakeSbawn.on "exit", =>
+        util.log "preMake done"
+
+        options.onSuccess.call() if options.onSuccess?
+
+    else
+      options.onSuccess.call() if options.onSuccess?
+
+
+  postMake: (options = {}) =>
+    config = steroidsCli.config.getCurrent()
+
+    if config.hooks.postMake.cmd and config.hooks.postMake.args
+
+      util.log "postMake started"
+
+      postMakeSbawn = sbawn
+        cmd: config.hooks.postMake.cmd
+        args: config.hooks.postMake.args
+        stdout: true
+        stderr: true
+
+      postMakeSbawn.on "exit", =>
+        util.log "postMake done"
+
+        options.onSuccess.call() if options.onSuccess?
+    else
+      options.onSuccess.call() if options.onSuccess?
 
   make: (options = {}) =>
 

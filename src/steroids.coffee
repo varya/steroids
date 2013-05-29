@@ -186,7 +186,11 @@ class Steroids
 
       when "make"
         project = new Project
-        project.make()
+        project.preMake
+          onSuccess: =>
+            project.make
+              onSuccess: =>
+                project.postMake()
 
       when "package"
         Packager = require "./steroids/Packager"
