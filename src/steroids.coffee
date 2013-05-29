@@ -78,7 +78,7 @@ class Steroids
 
     errorCb = (err)=>
       if err.message.match /EADDRINUSE/
-        util.log "ERROR: Port #{selectedPort} is already in use. You probably have an another `steroids` command running already in that port?"
+        util.log "ERROR: Port #{selectedPort} is already in use. You probably have already have another `steroids` command running on that port."
         process.exit 1
       else
         throw err
@@ -89,7 +89,7 @@ class Steroids
       errorCallback: errorCb
 
     server.listen ()=>
-      util.log "Server started on port #{selectedPort}"
+      util.log "The server has now been started on port #{selectedPort}"
       options.callback()
 
     return server
@@ -144,8 +144,8 @@ class Steroids
           Help.attention()
           console.log """
 
-          We changed the way tutorials work.  Start tutorials by creating a normal project and then
-          in the project directory:
+          We changed the way tutorials work.  You can start tutorials by creating a new project and then,
+          in the project directory type:
 
             $ steroids generate tutorial begin
 
@@ -243,13 +243,13 @@ class Steroids
 
         portscanner.checkPortStatus @port, 'localhost', (error, status) =>
           unless status == "closed"
-            console.log "Error: port #{@port} is already in use. Make sure no other program or Steroids connect is running at this port."
+            console.log "Error: port #{@port} is already in use. Make sure there is no other program or that 'steroids connect' is not running on this port."
             process.exit(1)
 
           project = new Project
           project.push
             onFailure: =>
-              steroidsCli.debug "Can not continue on starting server, push failed."
+              steroidsCli.debug "Can not continue starting server, the push failed."
             onSuccess: =>
               BuildServer = require "./steroids/servers/BuildServer"
 
@@ -296,7 +296,7 @@ class Steroids
                   QRCode.showLocal
                     port: @port
 
-                  util.log "Waiting for client to connect, scan the QR code that is visible in the browser ..."
+                  util.log "Waiting for the client to connect, scan the QR code visible in your browser ..."
 
                 setInterval () ->
                   activeClients = 0;
@@ -439,7 +439,7 @@ class Steroids
         Login = require "./steroids/Login"
 
         unless Login.authTokenExists()
-          util.log "You're not logged in. Not logging out."
+          util.log "Try logging in before you try logging out."
           return
 
         Login.removeAuthToken()
@@ -461,7 +461,7 @@ class Steroids
           process.exit 1
 
         unless Login.authTokenExists()
-          util.log "ERROR: Canceling cloud build due to login failure"
+          util.log "ERROR: Cancelling cloud build due to login failure"
           process.exit 1
 
         util.log "Building application locally"
@@ -477,9 +477,9 @@ class Steroids
                   # all complete
                   process.exit 0
               onFailure: =>
-                console.log "Can not make package, not deploying to cloud."
+                console.log "Can not create package, cloud deploy not possible."
           onFailure: =>
-            console.log "Can not build project locally, not deploying to cloud."
+            console.log "Can not build project locally, cloud deploy not possible."
 
       when "chat"
         [nickName, otherChatArgs...] = otherOptions
