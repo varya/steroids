@@ -1,0 +1,1 @@
+TODO: how steroids make and steroids package work, what happens when I write steroids connect and press enter

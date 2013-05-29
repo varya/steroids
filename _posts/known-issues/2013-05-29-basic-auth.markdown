@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Basic Auth cache issues"
+title:  "Basic Auth cache issue"
 date:   2013-05-27 13:51:34
 categories: 
 platforms: ios

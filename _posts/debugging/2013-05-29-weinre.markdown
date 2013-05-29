@@ -1,0 +1,45 @@
+---
+layout: post
+title:  "Debugging with Weinre"
+date:   2013-05-21 13:51:34
+categories: debugging
+platforms: ios
+---
+
+Steroids comes integrated with [Weinre][weinre-site], an open-source tool for remote debugging.
+
+To start Weinre, go to your project's folder and type:
+
+```
+$ steroids debug
+```
+
+The Weinre server will start running in your Terminal, and the Weinre GUI will open to a new browser window at http://localhost:31173/client/#anonymous.
+
+If you have `steroids connect` running and a connected client, the GUI window should populate with a list of HTML targets that correspond to active WebViews in your app.
+
+Click on a target document to select it. You can now edit the HTML DOM via the Elements tab and run JavaScript on the Console tab. Try, for example:
+
+{% highlight javascript %}
+alert("Hello from Weinre!");
+{% endhighlight %}
+
+You should see the alert dialogue appear on your device.
+
+##Changing the target WebView manually
+
+Since Weinre doesn't know which WebView is currently displayed on the device, you need to manually change the target document in Weinre after navigating to another view.
+
+Also, to prevent cache issues, every time you push a new version of your app to the connected devices, the app files are transferred to an unique folder in the device's file system. This means that after each refresh, the previous WebViews are killed and they fade from Weinre's list of available targets
+
+##Injection at runtime
+
+For Weinre to work, there's a certain JavaScript snippet that needs to be included on each HTML page that you want to inspect. While the `steroids debug` command is running, Steroids injects the required code snippet automatically to all views. This is done at runtime when a WebView starts loading, so your code stays clean.
+
+Since Weinre attaches itself to the target HTML document via JavaScript, it is unable to catch events and errors that happen before it is loaded. Thus, the Network and Timeline pages are not much of use, and the Resources page only shows limited data.
+
+##Strict mode known issue
+
+Weinre [works inconsistently with JavaScript strict mode][https://issues.apache.org/jira/browse/CB-604], so if e.g. one of your external libraries uses strict mode, that might cause Weinre to break.
+
+[weinre]: http://people.apache.org/~pmuellr/weinre-docs/latest/
