@@ -32,7 +32,7 @@ Since Weinre doesn't know which WebView is currently displayed on the device, yo
 
 Also, to prevent cache issues, every time you push a new version of your app to the connected devices, the app files are transferred to an unique folder in the device's file system. This means that after each refresh, the previous WebViews are killed and they fade from Weinre's list of available targets
 
-##Injection at runtime
+##Weinre injected at runtime
 
 For Weinre to work, there's a certain JavaScript snippet that needs to be included on each HTML page that you want to inspect. While the `steroids debug` command is running, Steroids injects the required code snippet automatically to all views. This is done at runtime when a WebView starts loading, so your code stays clean.
 
@@ -40,6 +40,6 @@ Since Weinre attaches itself to the target HTML document via JavaScript, it is u
 
 ##Strict mode known issue
 
-Weinre [works inconsistently with JavaScript strict mode][https://issues.apache.org/jira/browse/CB-604], so if e.g. one of your external libraries uses strict mode, that might cause Weinre to break.
+Weinre [works inconsistently with JavaScript strict mode](https://issues.apache.org/jira/browse/CB-604), so if your code or e.g. one of your external libraries uses strict mode, that might cause Weinre to break.
 
 [weinre]: http://people.apache.org/~pmuellr/weinre-docs/latest/
