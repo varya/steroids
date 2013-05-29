@@ -20,7 +20,7 @@ class Sbawned
     newData = buffer.toString()
 
     if /^execvp\(\)/.test(newData)
-      console.log "failed to sbawn with command: #{@options.cmd}" if @options.debug
+      console.log "failed to spawn with command: #{@options.cmd}" if @options.debug
       @onExit(-1)
       return
 
