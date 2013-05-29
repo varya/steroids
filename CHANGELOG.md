@@ -4,6 +4,8 @@ TODO
 
 Changes:
 
+Bugfixes:
+  - Compatibility with sh shell in preinstall script
 
 ## 0.10.13 (2013-05-29)
 

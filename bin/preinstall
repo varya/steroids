@@ -14,12 +14,12 @@ do
   command -v "$REQUIRED_CMD" > /dev/null && {
     echo "  Found '$REQUIRED_CMD', good."
   } || {
-    ERRORS=true
+    ERRORS="true"
     echo "  ERROR: command '$REQUIRED_CMD' not found, please install it first."
   }
 done
 
-if [ "$ERRORS" == true ]; then
+if [ "$ERRORS" = "true" ]; then
   echo "\nInstall gcc and make by installing Xcode from the Mac App Store."
   echo "\nThen install 'Command Line Tools' from Xcode preferences -> downloads."
   echo "\nFor Git installation, we recommend using homebrew, see http://mxcl.github.com/homebrew/"
