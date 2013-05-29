@@ -1,6 +1,6 @@
-## 0.10.13 (TODO)
+## 0.10.14 (2013-05-29)
 
-TODO
+Custom editor, hooks and more consistency with Cordova
 
 Changes:
   - a new app is served via the File protocol by default (instead of localhost)
