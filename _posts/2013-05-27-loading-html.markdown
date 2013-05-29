@@ -3,9 +3,8 @@ layout: post
 title:  "Using loading.html"
 date:   2013-05-27 13:51:34
 categories: 
+platforms: ios
 ---
-
-**Supported platforms: iOS**
 
 When a new `steroids.views.WebView` is pushed to the layer stack with `steroids.layers.push`, the push animation starts instantly. However, since the new WebView won't be instantly available, Steroids first shows a special loading view. After the new WebView fires the `DOMContentLoaded` event, the loading view smoothly fades away and reveals the WebView underneath.
 

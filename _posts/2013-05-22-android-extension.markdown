@@ -3,6 +3,7 @@ layout: post
 title:  "Using the .android extension"
 date:   2013-05-21 13:51:34
 categories: 
+platforms: android
 ---
 
 **Supported Platforms: Android**
