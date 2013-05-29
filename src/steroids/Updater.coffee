@@ -2,6 +2,8 @@ Help = require "./Help"
 restler = require "restler"
 os = require "os"
 
+Login = require "./Login"
+
 class Updater
 
 
@@ -9,13 +11,19 @@ class Updater
 
 
   check: (opts={})=>
+    currentToken = Login.currentToken()
+    currentUserId = if currentToken
+      currentToken.user_id
+    else
+      null
+
     currentVersion = steroidsCli.version.getVersion()
 
     osType = os.type()
     encodedOsType = encodeURIComponent(osType)
     encodedVersion = encodeURIComponent(currentVersion)
 
-    endpointURL = "http://updates.appgyver.com/steroids/latest.json?os=#{encodedOsType}&version=#{encodedVersion}&from=#{opts.from}"
+    endpointURL = "http://updates.appgyver.com/steroids/latest.json?os=#{encodedOsType}&version=#{encodedVersion}&from=#{opts.from}&user_id=#{currentUserId}"
 
     restler.get(endpointURL).on 'complete', (data) =>
       return if data.errno

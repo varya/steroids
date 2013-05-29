@@ -7,6 +7,7 @@ Changes:
   - editor launching is defined in `application.coffee`
   - steroids.config.hooks.preMake and steroids.config.hooks.postMake for running own scripts
   - steroids update checking passes the action performed
+  - steroids update checking passes the user_id of currently logged in user
 
 ## 0.10.12 (2013-05-24)
 

@@ -23,9 +23,17 @@ class Login
     if @authTokenExists
       fs.unlinkSync paths.oauthTokenPath
 
+  @currentToken: () ->
+    token = if @authTokenExists()
+      tokenJSON = fs.readFileSync paths.oauthTokenPath, 'utf8'
+      token = JSON.parse tokenJSON
+    else
+      null
+
+    return token
+
   @currentAccessToken: ()->
-    tokenJSON = fs.readFileSync paths.oauthTokenPath, 'utf8'
-    token = JSON.parse tokenJSON
+    token = @currentToken()
 
     return token.access_token
 
