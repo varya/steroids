@@ -6,8 +6,6 @@ categories:
 platforms: android
 ---
 
-**Supported Platforms: Android**
-
 When you are developing your app for both iOS and Android, there are some situations where it becomes difficult to use the same files for both platforms. Perhaps you'd like to use a different background image for your app on Android, or you have an HTML dialogue box that should use different CSS based on the platform.
 
 Instead of using JavaScript to detect the user agent and manipulate your code dynamically to circumvent these issues, Steroids allows you to simply create a copy of any project file and add the `.android` extension to it.
