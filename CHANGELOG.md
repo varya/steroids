@@ -6,6 +6,7 @@ Changes:
 
 Bugfixes:
   - Compatibility with sh shell in preinstall script
+  - Prevent simulator launching in other OS than Mac OS X
 
 ## 0.10.13 (2013-05-29)
 

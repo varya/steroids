@@ -4,6 +4,8 @@ spawn = require("child_process").spawn
 sbawn = require("./sbawn")
 Help = require "./Help"
 
+os = require "os"
+
 class Simulator
 
   running: false
@@ -12,6 +14,10 @@ class Simulator
 
   run: =>
     return false if @running
+
+    unless os.type() == "Darwin"
+      console.log "Error: Simulator requires Mac OS X."
+      return false
 
     @running = true
 
