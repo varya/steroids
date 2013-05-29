@@ -15,7 +15,7 @@ To disble the loading view, simply remove the `loading.html` file. Note that wit
 
 ## Remove the loading screen manually
 
-If you call `steroids.layers.push` or `steroids.modal.show` with the parameter `keepLoading: true`, the loading view will not be removed automatically. Rather, you need to call
+If you call `steroids.layers.push` or `steroids.modal.show` with the options object parameter `keepLoading: true`, the loading view will not be removed automatically. Rather, you need to call
 
 {% highlight javascript %}
 steroids.view.removeLoading();
