@@ -48,13 +48,13 @@ The following Cordova preferences disabled due to Steroids using its own splashs
 * **FadeSplashScreenDuration**
 * **ShowSplashScreenSpinner**
 
-The following Cordova preferences are currently nonfunctional:
+The following Cordova preferences are currently nonfunctional in Steroids:
 
-* **TopActivityIndicator (string, defaults to 'grey)** – valid values are 'grey', 'white' and 'whiteLarge'. Should change how the status bar spinner looks like. Currently broken in Cordova.
+* **TopActivityIndicator (string, defaults to 'grey)** – valid values are 'grey', 'white' and 'whiteLarge'. Should change how the status bar spinner looks like. Currently disabled in Steroids.
 
-* **MediaPlaybackRequiresUserAction (boolean, defaults to false)** – when set to true, should disable autoplaying of HTML5 videos. Currently autoplaying doesn't work, regardless of this property.
+* **MediaPlaybackRequiresUserAction (boolean, defaults to false)** – when set to true, should disable autoplaying of HTML5 videos. Currently autoplaying doesn't work in Steroids, regardless of this property.
 
-* **BackupWebStorage (string, defaults to 'cloud')** – valid values are 'none', 'cloud' and 'local'. Should affect how web storage data is backed up. Currently broken in Cordova.
+* **BackupWebStorage (string, defaults to 'cloud')** – valid values are 'none', 'cloud' and 'local'. Should affect how web storage data is backed up. Currently disabled in Steroids.
 
 ##Configuring plugins
 
