@@ -33,6 +33,29 @@ class Help
     @attention()
     @printBanner(paths.banners.newVersionAvailable, true)
 
+  @newClientVersionAvailable: (opts) ->
+    @attention()
+    @printBanner(paths.banners.newClientVersionAvailable, true)
+    console.log """
+
+      You have: #{opts.currentVersion}
+      Latest available is: #{opts.latestVersion}
+    """
+
+    if opts.platform == "android"
+      console.log """
+
+        Please update from Google Play.
+
+      """
+    else
+      console.log """
+
+        Please update from App Store.
+
+      """
+
+
   @loggedOut: ->
     @printBanner(paths.banners.loggedOut, true)
 

@@ -3,6 +3,7 @@
 TODO
 
 Changes:
+  - Automatically checks for new versions of AppGyver Scanner
 
 Bugfixes:
   - Compatibility with sh shell in preinstall script

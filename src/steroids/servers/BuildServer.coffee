@@ -7,6 +7,48 @@ semver = require "semver"
 fs = require "fs"
 Paths = require "../paths"
 
+Updater = require "../Updater"
+
+class ClientResolver
+
+  constructor: (@request) ->
+
+  ipInInterfaces: (ip, interfaces) =>
+    for iface in interfaces
+      return true if iface.ip == ip
+
+    return false
+
+  resolve: =>
+    ios = @request.headers["user-agent"].match("iPhone|iPad|iPod")?
+    android = ios == false
+
+    interfaces = steroidsCli.server.interfaces()
+    simulator = @ipInInterfaces(@request.ip, interfaces)
+
+    clientVersion = @request.query["client_version"]
+
+    clientVersionMatch = @request.headers["user-agent"].match(/AppGyverSteroids\/([^\s]+)/)
+    clientVersion = clientVersionMatch[1] if clientVersionMatch
+
+    if android
+      androidVersionMatch = @request.headers["user-agent"].match(/Android (\d+\.\d+\.\d+)\;/)
+      osVersion = androidVersionMatch[1] if androidVersionMatch
+
+    if ios
+      iosVersionMatch = @request.headers["user-agent"].match(/(iPod|iPad|iPhone) OS ([^\s]*)/)
+      device = iosVersionMatch[1] if iosVersionMatch
+      osVersion = iosVersionMatch[2] if iosVersionMatch
+
+    return {
+      isIOS: ios
+      isSimulator: simulator
+      isAndroid: android
+      version: clientVersion
+      osVersion: osVersion
+      device: device
+    }
+
 class BuildServer extends Server
 
   constructor: (@options) ->
@@ -63,10 +105,26 @@ class BuildServer extends Server
       res.sendfile Paths.temporaryZip
 
     @app.get "/refresh_client?:timestamp", (req, res) =>
+      clientResolver = new ClientResolver(req)
+      resolvedClient = clientResolver.resolve()
 
       client = if @clients[req.ip]
         @clients[req.ip]
       else
+
+        platform = if resolvedClient.isAndroid
+          "android"
+        else
+          "ios"
+
+        updater = new Updater()
+        updater.checkClient
+          platform: platform
+          version: resolvedClient.version
+          simulator: resolvedClient.isSimulator
+          osVersion: resolvedClient.osVersion
+          device: resolvedClient.device
+
         {
           ipAddress: req.ip
           firstSeen: Date.now()

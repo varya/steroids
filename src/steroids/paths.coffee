@@ -32,6 +32,7 @@ class Paths
     welcome: path.join @bannersDir, "welcome"
     resetiOSSim: path.join @bannersDir, "iossim-reset"
     newVersionAvailable: path.join @bannersDir, "new-version-available"
+    newClientVersionAvailable: path.join @bannersDir, "new-client-version-available"
     deployCompleted: path.join @bannersDir, "deploy-completed"
     loggedOut: path.join @bannersDir, "loggedout"
     loggedIn: path.join @bannersDir, "loggedin"
