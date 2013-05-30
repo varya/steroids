@@ -1,6 +1,6 @@
-## 0.10.14 (TODO)
+## 0.10.14 (2013-05-30)
 
-TODO
+Client update checking, Linux compatibility
 
 Changes:
   - Automatically checks for new versions of AppGyver Scanner
