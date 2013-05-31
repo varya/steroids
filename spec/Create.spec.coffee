@@ -92,11 +92,17 @@ describe 'Steroids', ->
       contents = fs.readFileSync(bowerJsonPath).toString()
       expect( contents ).toMatch(/\"steroids-js\": \"/)
 
-    it "has www/Cordova.plist with key UIWebViewBounce", ->
-      cordovaPlistPath = path.join @wwwPath, "Cordova.plist"
+    it "has www/config.ios.xml with key DisallowOverscroll", ->
+      configXmlPath = path.join @wwwPath, "config.ios.xml"
 
-      contents = fs.readFileSync(cordovaPlistPath).toString()
-      expect( contents ).toMatch(/<key>UIWebViewBounce/)
+      contents = fs.readFileSync(configXmlPath).toString()
+      expect( contents ).toMatch(/DisallowOverscroll/)
+
+    it "has www/config.android.xml with key useBrowserHistory", ->
+      configXmlPath = path.join @wwwPath, "config.android.xml"
+
+      contents = fs.readFileSync(configXmlPath).toString()
+      expect( contents ).toMatch(/useBrowserHistory/)
 
     it "does not have a folder named app", ->
       appPath = path.join @testHelper.testAppPath, "app"
