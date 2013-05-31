@@ -34,6 +34,7 @@ class DeployConverter
     tab_bar_button_title_shadow_color: @config.tabBar.tabTitleShadowColor
     tab_bar_selected_icon_tint_color: @config.tabBar.selectedTabTintColor
     tab_bar_selected_indicator_background_image: @config.tabBar.selectedTabBackgroundImage
+    loading_screen_color: @config.loadingScreen.tintColor
     wait_for_document_ready_before_open: @config.wait_for_document_ready_before_open ? "true"
     open_clicked_links_in_new_layer: @config.open_clicked_links_in_new_layer ? "false"
     shake_gesture_enabled_during_development: @config.shake_gesture_enabled_during_development ? "false"

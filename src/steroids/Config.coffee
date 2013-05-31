@@ -32,6 +32,9 @@ class Config
       selectedTabBackgroundImage: ""
       tabs: []
 
+    @loadingScreen =
+      tintColor: ""
+
     @worker =  {}   # what is this?
 
     @hooks =
