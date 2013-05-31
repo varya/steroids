@@ -1,3 +1,10 @@
+## 0.10.15 (TODO)
+
+TODO: summary
+
+Changes:
+  - Cordova.plist deprecated and replaced with config.ios.xml (Android config.xml support is upcoming)  
+
 ## 0.10.14 (2013-05-30)
 
 Client update checking, Linux compatibility

@@ -17,6 +17,10 @@
     {
       "name": "Juha Suuraho",
       "email": "juha.suuraho@appgyver.com"
+    },
+    {
+      "name": "Harri Sarsa",
+      "email": "harri.sarsa@appgyver.com"
     }
   ],
   "main": "./src/main.js",
