@@ -127,6 +127,16 @@ class Steroids
     if firstOption in ["serve", "connect", "create"]
       Help.logo() unless argv.noLogo
 
+    if firstOption in ["connect", "serve", "deploy", "simulator"]
+      unless Login.authTokenExists()
+        console.log """
+
+        You must be logged in, log in with:
+
+        \t$ steroids login
+
+        """
+        process.exit 1
 
     switch firstOption
       when "version"
