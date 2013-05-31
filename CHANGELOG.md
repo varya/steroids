@@ -3,6 +3,7 @@
 TODO: summary
 
 Changes:
+  - Require login for local development due update checking for different user groups
   - Cordova.plist deprecated and replaced with config.ios.xml (Android config.xml support is upcoming)
   - added loading screen tint color to config/application.coffee
 
