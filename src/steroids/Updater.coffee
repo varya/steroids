@@ -72,7 +72,7 @@ class Updater
         console.log "Running latest version of Steroids NPM (#{currentVersion})" if @options.verbose
         return
 
-      Help.newClientVersionAvailable(latestVersion)
+      Help.newVersionAvailable(latestVersion)
 
 
 module.exports = Updater

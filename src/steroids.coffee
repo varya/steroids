@@ -141,6 +141,12 @@ class Steroids
 
     switch firstOption
       when "version"
+        updater = new Updater
+          verbose: false
+
+        updater.check
+          from: "version"
+
         console.log @version.formattedVersion()
 
       when "create"

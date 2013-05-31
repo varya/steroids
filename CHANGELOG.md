@@ -1,3 +1,13 @@
+## 0.10.16 (2013-05-31)
+
+Update checking improved
+
+Changes:
+  - `steroids update` also checks for updates
+
+Bugfixes:
+  - Wrong message was displayed when new NPM was available
+
 ## 0.10.15 (2013-05-31)
 
 config.ios.xml and config.android.xml
