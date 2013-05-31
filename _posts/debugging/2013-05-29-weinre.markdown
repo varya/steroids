@@ -3,16 +3,16 @@ layout: post
 title:  "Debugging with Weinre"
 date:   2013-05-21 13:51:34
 categories: debugging
-platforms: ios
+platforms: iOS Android
 ---
 
 Steroids comes integrated with [Weinre][weinre-site], an open-source tool for remote debugging.
 
 To start Weinre, go to your project's folder and type:
 
-```
+<pre class="terminal">
 $ steroids debug
-```
+</pre>
 
 The Weinre server will start running in your Terminal, and the Weinre GUI will open to a new browser window at http://localhost:31173/client/#anonymous.
 
@@ -42,4 +42,4 @@ Since Weinre attaches itself to the target HTML document via JavaScript, it is u
 
 Weinre [works inconsistently with JavaScript strict mode](https://issues.apache.org/jira/browse/CB-604), so if your code or e.g. one of your external libraries uses strict mode, that might cause Weinre to break.
 
-[weinre]: http://people.apache.org/~pmuellr/weinre-docs/latest/
+[weinre-site]: http://people.apache.org/~pmuellr/weinre-docs/latest/

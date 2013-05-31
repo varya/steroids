@@ -3,12 +3,12 @@ layout: post
 title:  "Configuring your app with config.xml"
 date:   2013-05-20 13:51:34
 categories: ios
-platforms: ios
+platforms: iOS
 ---
 
-**Supported Platforms: iOS**
-
 Like Cordova, Steroids uses a `config.xml` file to set universal preferences for WebViews in your app, manage which Cordova plugins are loaded and set whitelisted domains for your app. The structure of `config.xml` is based on the [W3C Packaged Web Apps (Widgets)][widgets] specification, although only a limited set of the available elements are used.
+
+The iOS-specific `config.xml` is located at `www/config.ios.xml`. (A `config.xml` file in the same directory overrides the platform-specific version.)
 
 ##Configuring preferences (iOS)
 

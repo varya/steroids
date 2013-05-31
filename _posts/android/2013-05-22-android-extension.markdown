@@ -3,7 +3,7 @@ layout: post
 title:  "Using the .android extension"
 date:   2013-05-21 13:51:34
 categories: 
-platforms: android
+platforms: Android
 ---
 
 When you are developing your app for both iOS and Android, there are some situations where it becomes difficult to use the same files for both platforms. Perhaps you'd like to use a different background image for your app on Android, or you have an HTML dialogue box that should use different CSS based on the platform.

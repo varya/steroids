@@ -1,11 +1,12 @@
 ---
 layout: default
 ---
-<h2>{{ page.title }}</h2>
-<p class="meta">{{ page.date | date_to_string }}</p>
+<h2 class="strong">{{ page.title }}</h2>
+
+<h3>Supported Platforms: {{ page.platforms }}</h3>
 
 <div id="post">
 {{ content }}
 </div>
 
-<h3>related</h3>
+<h3><a href="{{site.baseurl}}/">Back to Index</a></h3>

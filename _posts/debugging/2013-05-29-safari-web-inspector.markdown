@@ -3,7 +3,7 @@ layout: post
 title:  "Debugging with the Safari Web Inspector"
 date:   2013-05-21 13:51:34
 categories: debugging
-platforms: ios
+platforms: iOS
 ---
 
 <div class="alert" markdown="1">

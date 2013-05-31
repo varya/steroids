@@ -3,7 +3,7 @@ layout: post
 title:  "Debugging Best Practices"
 date:   2013-05-21 13:51:34
 categories: debugging
-platforms: ios android
+platforms: iOS Android
 ---
 
 Below is a collection of tips and best practices that we've found useful while debugging apps built with AppGyver. Please make sure you've read the following articles first, as they contain info about the basic tools you should use when debugging a Steroids app.
@@ -35,9 +35,9 @@ By calling `JSON.stringify(myAwesomeObject)`, the object and its properties are 
 
 Type
 
-{% highlight bash %}
+<pre class="terminal">
 $ steroids serve
-{% endhighlight %}
+</pre>
 
 while `steroids connect` is running. This starts a local web server that will serve the contents of your `dist` folder at `http://localhost:4000/`. By using the server instead of just opening the .html files in a browser, you can e.g. use absolute paths for any resource URLs, like on the actual device.
 
@@ -64,9 +64,8 @@ Android is still lagging a bit behind iOS on the implementation of certain HTML5
 The website [caniuse.com][caniuse] has good, up-to-date tables on what features are supported by which platforms. Be sure to check it out before you scratch your head wondering why e.g. `<input type="datetime">` just doesn't seem to work on Android.
 
 
-
 [Screenqueri.es]: http://screenqueri.es/
 [caniuse]: http://caniuse.com
-[safari-wi]: guides/debugging/safari-web-inspector/
-[adt]: guides/debugging/adt/
-[weinre]: guides/debugging/weinre/
+[safari-wi]: /guides/debugging/safari-web-inspector/
+[adt]: /guides/debugging/adt/
+[weinre]: /guides/debugging/weinre/

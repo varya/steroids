@@ -3,10 +3,8 @@ layout: post
 title:  "Debugging with Android Dev Tools"
 date:   2013-05-21 13:51:34
 categories: debugging
-platforms: ios
+platforms: Android
 ---
-
-**Supported Platforms: Android**
 
 You can also use Weinre to debug your Android application. See the [Debugging with Weinre][weinre] guide for more information.
 
