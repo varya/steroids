@@ -1,6 +1,6 @@
-## 0.10.15 (TODO)
+## 0.10.15 (2013-05-31)
 
-TODO: summary
+config.ios.xml and config.android.xml
 
 Changes:
   - Require login for local development due update checking for different user groups
