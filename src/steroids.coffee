@@ -15,6 +15,7 @@ open = require "open"
 fs = require("fs")
 
 Config = require "./steroids/Config"
+Login = require "./steroids/Login"
 
 class Steroids
 
@@ -422,8 +423,6 @@ class Steroids
 
         Help.logo()
 
-        Login = require "./steroids/Login"
-
         if Login.authTokenExists()
           util.log "Already logged in."
           return
@@ -446,8 +445,6 @@ class Steroids
       when "logout"
         Help.logo()
 
-        Login = require "./steroids/Login"
-
         unless Login.authTokenExists()
           util.log "Try logging in before you try logging out."
           return
@@ -463,8 +460,6 @@ class Steroids
           from: "deploy"
 
         Help.logo()
-
-        Login = require "./steroids/Login"
 
         unless Login.authTokenExists()
           util.log "ERROR: no authentication found, run steroids login first."
