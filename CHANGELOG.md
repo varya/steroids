@@ -3,7 +3,8 @@
 TODO: summary
 
 Changes:
-  - Cordova.plist deprecated and replaced with config.ios.xml (Android config.xml support is upcoming)  
+  - Cordova.plist deprecated and replaced with config.ios.xml (Android config.xml support is upcoming)
+  - added loading screen tint color to config/application.coffee
 
 ## 0.10.14 (2013-05-30)
 
