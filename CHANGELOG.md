@@ -1,6 +1,6 @@
-## 0.10.18 (TODO)
+## 2.7.0 (TODO)
 
-TODO add stuf
+Public beta release
 
 Changes:
   - default project now includes instructions on how to access AppGyver Scanner context menu
