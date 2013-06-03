@@ -6,7 +6,7 @@ categories: steroids_npm
 platforms: iOS, Android
 ---
 
-Steroids allows you to create an ad-hoc deployment of your app via the command
+Steroids allows you to create an ad hoc, cloud-deployed build of your app via the command
 
 {% highlight bash %}
 $ steroids deploy
@@ -18,8 +18,12 @@ Steroids then checks if there is a valid `config/cloud.json` file (JSON with the
 
 Your app is then uploaded to the cloud. A share.appgyver.com site opens, with a QR code for sharing your app and an iOS web simulator for previewing it. Anyone can then access your app with the AppGyver Scanner app, provided they have the correct share.appgyver.com URL (or the QR code).
 
+You can see all your previous cloud-deployed ad hoc builds at the [AppGyver Cloud Services][cloud-services] page, view their QR codes and access the share page.
+
 ## App ID and AppGyver account
 
 Each app ID is linked to one AppGyver account. Trying to use `$ steroids deploy` when your account doesn't have access to the app ID defined in `config/cloud.json` results in the deploy failing (even if you have the correct hash). 
 
 Thus, if you are working on a shared project, each member needs to have their own `cloud.json` file. (One way to handle this is to create your own `.cloud.json.my_name` file, add it to `.gitignore` and symlink it to `config/cloud.json`.) We are working on a proper team support!
+
+[cloud-services]: http://cloud.appggyver.com
