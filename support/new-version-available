@@ -3,7 +3,7 @@
 
 	There is a new version of Steroids NPM available.
 
-	Please update with
+	Please update your global Steroids NPM installation with
 
 	$ #bold[npm update steroids -g]
 
