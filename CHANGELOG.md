@@ -1,3 +1,8 @@
+## 2.7.0 (TODO)
+
+Public beta release
+
+
 ## 0.10.17 (2013-06-03)
 
 Improved simulator
