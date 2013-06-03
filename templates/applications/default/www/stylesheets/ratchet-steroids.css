@@ -688,4 +688,11 @@ select {
 
 .segmented-controller-item.active {
   display: block;
+}/* Highlights
+-------------------------------------------------- */
+.info-highlight {
+  border:2px solid #333;
+  padding:10px;
+  background-color: #00AEEF;
+  color:white;
 }
