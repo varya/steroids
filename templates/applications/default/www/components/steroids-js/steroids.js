@@ -1,5 +1,5 @@
 (function(window){
-/*! steroids-js - v0.7.1 - 2013-05-07 */
+/*! steroids-js - v2.7.0 - 2013-06-03 */
 ;var Bridge,
   __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
@@ -216,16 +216,15 @@ WebsocketBridge = (function(_super) {
 
   WebsocketBridge.prototype.reopen = function() {
     window.steroids.debug("websocket reopen");
+    window.steroids.resetSteroidsEvent("websocketUsable");
     this.websocket = null;
-    if (window.AG_CLIENT_VERSION && window.AG_CLIENT_VERSION !== "2.3.3") {
-      return this.requestWebSocketPort(this.open);
-    } else {
-      return this.open("31337");
-    }
+    window.steroids.debug("websocket using dynamic port");
+    return this.requestWebSocketPort(this.open);
   };
 
   WebsocketBridge.prototype.open = function(port) {
     var _this = this;
+    window.steroids.debug("websocket websocket open");
     this.websocket = new WebSocket("ws://localhost:" + port);
     this.websocket.onmessage = this.message_handler;
     this.websocket.onclose = this.reopen;
@@ -234,7 +233,7 @@ WebsocketBridge = (function(_super) {
       _this.map_context();
       return _this.markWebsocketUsable();
     };
-    return window.steroids.debug("websocket websocket connecting");
+    return window.steroids.debug("websocket websocket opening");
   };
 
   WebsocketBridge.prototype.requestWebSocketPort = function(callback) {
@@ -249,7 +248,8 @@ WebsocketBridge = (function(_super) {
       }
     };
     xmlhttp.open("GET", "http://dolans.inetrnul.do.nut.cunnoct.localhost/");
-    return xmlhttp.send();
+    xmlhttp.send();
+    return window.steroids.debug("websocket requesting port");
   };
 
   WebsocketBridge.prototype.markWebsocketUsable = function() {
@@ -458,6 +458,12 @@ Torch = (function() {
 Device = (function() {
 
   function Device() {
+    this.setSleepDisabled = __bind(this.setSleepDisabled, this);
+
+    this.enableSleep = __bind(this.enableSleep, this);
+
+    this.disableSleep = __bind(this.disableSleep, this);
+
     this.getIPAddress = __bind(this.getIPAddress, this);
 
     this.ping = __bind(this.ping, this);
@@ -495,6 +501,47 @@ Device = (function() {
     return steroids.nativeBridge.nativeCall({
       method: "getIPAddress",
       parameters: {},
+      successCallbacks: [callbacks.onSuccess],
+      failureCallbacks: [callbacks.onFailure]
+    });
+  };
+
+  Device.prototype.disableSleep = function(options, callbacks) {
+    if (options == null) {
+      options = {};
+    }
+    if (callbacks == null) {
+      callbacks = {};
+    }
+    options.disabled = true;
+    return this.setSleepDisabled(options, callbacks);
+  };
+
+  Device.prototype.enableSleep = function(options, callbacks) {
+    if (options == null) {
+      options = {};
+    }
+    if (callbacks == null) {
+      callbacks = {};
+    }
+    options.disabled = false;
+    return this.setSleepDisabled(options, callbacks);
+  };
+
+  Device.prototype.setSleepDisabled = function(options, callbacks) {
+    var disabled;
+    if (options == null) {
+      options = {};
+    }
+    if (callbacks == null) {
+      callbacks = {};
+    }
+    disabled = options.constructor.name === "Boolean" ? options : options.disabled;
+    return steroids.nativeBridge.nativeCall({
+      method: "setSleepDisabled",
+      parameters: {
+        sleepDisabled: disabled
+      },
       successCallbacks: [callbacks.onSuccess],
       failureCallbacks: [callbacks.onFailure]
     });
@@ -1970,7 +2017,7 @@ PostMessage = (function() {
 }).call(this);
 ;
 window.steroids = {
-  version: "0.7.1",
+  version: "2.7.0",
   Animation: Animation,
   XHR: XHR,
   File: File,
@@ -1990,6 +2037,7 @@ window.steroids = {
   waitingForComponents: [],
   debugMessages: [],
   debugEnabled: false,
+  debugConsole: console,
   debug: function(options) {
     var debugMessage, msg;
     if (options == null) {
@@ -2001,7 +2049,7 @@ window.steroids = {
     msg = options.constructor.name === "String" ? options : options.msg;
     debugMessage = "" + window.location.href + " - " + msg;
     window.steroids.debugMessages.push(debugMessage);
-    return console.log(debugMessage);
+    return this.debugConsole.log(debugMessage);
   },
   on: function(event, callback) {
     var _base;
@@ -2020,15 +2068,20 @@ window.steroids = {
     this.debug("firign event " + event);
     this["" + event + "_has_fired"] = new Date().getTime();
     if (this.eventCallbacks[event] != null) {
+      this.debug("firign event " + event + " callbacks");
       callbacks = this.eventCallbacks[event].splice(0);
       _results = [];
       for (_i = 0, _len = callbacks.length; _i < _len; _i++) {
         callback = callbacks[_i];
-        this.debug("firing event callback");
+        this.debug("firing event " + event + " callback");
         _results.push(callback());
       }
       return _results;
     }
+  },
+  resetSteroidsEvent: function(event) {
+    this.debug("resettign event " + event);
+    return this["" + event + "_has_fired"] = void 0;
   },
   markComponentReady: function(model) {
     this.debug("" + model + " is ready");
