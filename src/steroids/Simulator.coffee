@@ -45,7 +45,7 @@ class Simulator
       killSimulator.on "exit", () =>
         steroidsCli.debug "killed."
 
-      return unless ( @simulatorSession.stderr.indexOf('Session could not be started: Error Domain=DTiPhoneSimulatorErrorDomain Code=1 "iOS Simulator failed to install the application."') == 0 )
+      return unless ( @simulatorSession.stderr.indexOf('Session could not be started') == 0 )
 
       Help.attention()
       Help.resetiOSSim()

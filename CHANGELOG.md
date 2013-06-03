@@ -1,3 +1,10 @@
+## 0.10.17 (TODO)
+
+TODO
+
+Bugfixes:
+  - Simulator launch failure detection improved
+
 ## 0.10.16 (2013-05-31)
 
 Update checking improved
