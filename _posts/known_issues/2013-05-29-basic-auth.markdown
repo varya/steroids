@@ -1,12 +1,12 @@
 ---
 layout: post
-title:  "Basic Auth cache issue"
+title:  "Basic Auth cache persistence"
 date:   2013-05-27 13:51:34
-categories: 
-platforms: ios
+categories: known_issues
+platforms: iOS, Android
 ---
 
-On both Android and iOS devices, HTTP Basic authentication requests are cached when posting them as part of the URL for the HTTP request. Thus, if I first make a request by POSTing
+On both Android and iOS devices, HTTP Basic authentication requests are cached when posting them as part of the URL for the HTTP request. Thus, if we first make a request by POSTing
 
 ```
 http://gooby:hello@example.com

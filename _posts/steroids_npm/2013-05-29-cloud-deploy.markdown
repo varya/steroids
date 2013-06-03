@@ -2,8 +2,8 @@
 layout: post
 title:  "Deploying your app to the cloud"
 date:   2013-05-27 13:51:34
-categories: 
-platforms: iOS Android
+categories: steroids_npm
+platforms: iOS, Android
 ---
 
 Steroids allows you to create an ad-hoc deployment of your app via the command

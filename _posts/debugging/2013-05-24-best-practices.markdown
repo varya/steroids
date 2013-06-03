@@ -3,7 +3,7 @@ layout: post
 title:  "Debugging Best Practices"
 date:   2013-05-21 13:51:34
 categories: debugging
-platforms: iOS Android
+platforms: iOS, Android
 ---
 
 Below is a collection of tips and best practices that we've found useful while debugging apps built with AppGyver. Please make sure you've read the following articles first, as they contain info about the basic tools you should use when debugging a Steroids app.

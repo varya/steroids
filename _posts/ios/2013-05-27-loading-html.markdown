@@ -2,7 +2,7 @@
 layout: post
 title:  "Using loading.html"
 date:   2013-05-27 13:51:34
-categories: 
+categories: ios
 platforms: iOS
 ---
 

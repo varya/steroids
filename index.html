@@ -5,14 +5,38 @@ title: Steroids Guides
 
 <h2>Index</h2>
 <div id="home">
+  <h3>Android</h3>
   <ul class="posts">
-    {% for post in site.posts %}
+    {% for post in site.categories.android %}
       <li>&raquo; <a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></li>
     {% endfor %}
-    
-    {% for category in site.categories %}
-      {{category.title}}
+  </ul>
+  
+  <h3>Debugging</h3>
+  <ul class="posts">
+    {% for post in site.categories.debugging %}
+      <li>&raquo; <a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></li>
     {% endfor %}
-    
+  </ul>
+  
+  <h3>iOS</h3>
+  <ul class="posts">
+    {% for post in site.categories.ios %}
+      <li>&raquo; <a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></li>
+    {% endfor %}
+  </ul>
+  
+  <h3>Known Issues</h3>
+  <ul class="posts">
+    {% for post in site.categories.known_issues %}
+      <li>&raquo; <a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></li>
+    {% endfor %}
+  </ul>
+  
+  <h3>Steroids NPM</h3>
+  <ul class="posts">
+    {% for post in site.categories.steroids_npm %}
+      <li>&raquo; <a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></li>
+    {% endfor %}
   </ul>
 </div>

@@ -3,7 +3,7 @@ layout: post
 title:  "Debugging with Weinre"
 date:   2013-05-21 13:51:34
 categories: debugging
-platforms: iOS Android
+platforms: iOS, Android
 ---
 
 Steroids comes integrated with [Weinre][weinre-site], an open-source tool for remote debugging.
