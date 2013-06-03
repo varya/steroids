@@ -1,6 +1,6 @@
 name: Steroids Guides
 pygments: true
-baseurl: http://appgyver.github.io/steroids
+baseurl: http://appgyver.github.io/steroids/
 permalink: /guides/:categories/:title
 future: true
 
