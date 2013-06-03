@@ -2,6 +2,9 @@
 
 TODO
 
+Changes:
+  - `steroids simulator` now accepts --type to specify the device's type.
+
 Bugfixes:
   - Simulator launch failure detection improved
 

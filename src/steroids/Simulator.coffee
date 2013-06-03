@@ -12,17 +12,28 @@ class Simulator
 
   constructor: (@options = {}) ->
 
-  run: =>
-    return false if @running
-
+  run: (opts={}) =>
     unless os.type() == "Darwin"
       console.log "Error: Simulator requires Mac OS X."
       return false
 
+    return false if @running
+
     @running = true
+
 
     cmd = steroidsSimulators.iosSimPath
     args = ["launch", steroidsSimulators.latestSimulatorPath]
+
+    switch opts.type
+      when "ipad"
+        args.push "--family", "ipad"
+      when "ipad_retina"
+        args.push "--family", "ipad", "--retina"
+      when "iphone_retina_3_5_inch"
+        args.push "--retina"
+      when "iphone_retina_4_inch"
+        args.push "--retina", "--tall"
 
     steroidsCli.debug "Spawning #{cmd}"
     steroidsCli.debug "with params: #{args}"
@@ -44,6 +55,8 @@ class Simulator
 
       killSimulator.on "exit", () =>
         steroidsCli.debug "killed."
+
+      console.log "PROTIP: use steroids simutor --type to specify device type, see steroids usage for help."
 
       return unless ( @simulatorSession.stderr.indexOf('Session could not be started') == 0 )
 

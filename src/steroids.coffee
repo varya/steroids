@@ -244,7 +244,11 @@ class Steroids
 
 
       when "simulator"
-        steroidsCli.simulator.run()
+        simulatorType = argv.type
+
+        steroidsCli.simulator.run
+          type: simulatorType
+
 
       when "connect"
         updater = new Updater

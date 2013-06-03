@@ -31,9 +31,11 @@ Other usage commands:
 
     Provides usage instructions on the selected generator.
 
-  simulator
+  simulator [--type=<deviceType>]
 
     Launches iOS Simulator, requires Xcode.
+
+    deviceType: iphone, ipad, ipad_retina, iphone_retina_3_5_inch, iphone_retina_4_inch
 
   debug [--port=31173 and --debugPort=<same as port> in connect process]
 
