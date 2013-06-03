@@ -1,3 +1,10 @@
+## 0.10.18 (TODO)
+
+TODO add stuf
+
+Changes:
+  - default project now includes instructions on how to access AppGyver Scanner context menu
+
 ## 0.10.17 (2013-06-03)
 
 Improved simulator
