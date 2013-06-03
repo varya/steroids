@@ -66,6 +66,6 @@ The website [caniuse.com][caniuse] has good, up-to-date tables on what features 
 
 [Screenqueri.es]: http://screenqueri.es/
 [caniuse]: http://caniuse.com
-[safari-wi]: /guides/debugging/safari-web-inspector/
-[adt]: /guides/debugging/adt/
-[weinre]: /guides/debugging/weinre/
+[safari-wi]: /steroids/guides/debugging/safari-web-inspector/
+[adt]: /steroids/guides/debugging/adt/
+[weinre]: /steroids/guides/debugging/weinre/

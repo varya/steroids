@@ -37,7 +37,7 @@ The debug output doesn't specify which WebView is responsible for each `console.
 See the [Debugging Best Practices][debugging-best-practices] guide for more tips and tricks.
 
 
-[debugging-best-practices]: /guides/debugging/best-practices/
-[weinre]: /guides/debugging/weinre/
+[debugging-best-practices]: /steroids/guides/debugging/best-practices/
+[weinre]: /steroids/guides/debugging/weinre/
 [adt-download]: http://developer.android.com/sdk/index.html
 [adt-setup]: http://developer.android.com/sdk/installing/bundle.html
