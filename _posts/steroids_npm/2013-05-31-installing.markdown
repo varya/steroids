@@ -45,7 +45,7 @@ You'll want to use the `steroids` command globally, so you should install Steroi
 $ npm install steroids -g
 </pre>
 
-NPM might give you a few alerts about some 3rd party libraries. This doesn't affect Steroids. However, if NPM fails to install a 3rd party library and gives an error, it can be typically fixed just by runing the `$ npm install steroids -g` command again.
+NPM might give you a few alerts about some 3rd party libraries. This doesn't affect Steroids. However, if NPM fails to install a 3rd party library and gives an error, it can be typically fixed just by running the `$ npm install steroids -g` command again.
 
 ##Updating Steroids
 
