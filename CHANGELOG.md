@@ -1,6 +1,6 @@
-## 0.10.17 (TODO)
+## 0.10.17 (2013-06-03)
 
-TODO
+Improved simulator
 
 Changes:
   - `steroids simulator` now accepts --type to specify the device's type.
