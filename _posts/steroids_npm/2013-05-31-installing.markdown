@@ -8,7 +8,7 @@ platforms: iOS, Android
 
 ##Installing the Required Dependencies
 
-**Please notice:** Steroids NPM currently only works with OS X (with Xcode installed) and Linux.
+**Please notice:** Steroids NPM currently only works with OS X and Linux.
 
 First, you need to make sure that you have these set up:
 
@@ -16,8 +16,6 @@ First, you need to make sure that you have these set up:
 * [Git][git] (required by external Node.js libraries)
 
 Most importantly, you need to have [Node.js][nodejs] version 0.8.x and [NPM package management][npm] installed. 
-
-*Newer versions of Node.js have stability issues and limited support for certain third-party libraries. Thus, Steroids currently runs using Node.js version 0.8.x. You can use NVM (see below) to install and use multiple versions of Node.js with the* `$ nvm use` *command.*
 
 The easiest way to install Node.js is with [Node Version Manager (NVM)][nvm]. Install NVM with:
 
@@ -35,6 +33,8 @@ $ nvm use 0.8
 $ nvm alias default 0.8
 </pre>
 
+*Newer versions of Node.js have stability issues and limited support for certain third-party libraries. Thus, Steroids currently runs using Node.js version 0.8.x only. NVM allows you to install and use multiple versions of Node.js, so just make sure you have the correct version loaded when using Steroids.*
+
 Alternatively, if you don't want to use NVM, you can install Node.js and NPM package management from [nodejs.org][nodejs].
 
 ##Installing the Steroids NPM package
@@ -46,6 +46,14 @@ $ npm install steroids -g
 </pre>
 
 NPM might give you a few alerts about some 3rd party libraries. This doesn't affect Steroids. However, if NPM fails to install a 3rd party library and gives an error, it can be typically fixed just by runing the `$ npm install steroids -g` command again.
+
+##Updating Steroids
+
+The Steroids NPM checks for updates automatically when it is run, and will let you know when a new version is out. Remember to use the global `-g` option also when updating:
+
+<pre class="terminal">
+$ npm update steroids -g
+</pre>
 
 [xcode]: https://developer.apple.com/xcode/
 [git]: http://git-scm.com/
