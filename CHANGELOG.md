@@ -1,6 +1,10 @@
-## 2.7.1 (TODO)
+## 2.7.1 (2013-06-04)
 
-TODO
+Updated iOS Simulator and Steroids.js with support for new API's
+
+Changes:
+  - Application skeletons are generated with steroids-js 2.7.1
+  - iOS Simulator updated to 2.7.1
 
 Bugfixes:
   - Checks new versions using semantic versioning
