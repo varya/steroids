@@ -20,13 +20,13 @@ Click on the plus button in the upper right corner, and follow the instructions 
 
 After you're done, it takes a couple of moments for Apple to generate the iOS Distribution Certificate for you. Once it's done, you can find it under the Distribution category:
 
-<img src="/images/ios_build/download_certificate.png">
+<img src="/steroids/images/ios_build/download_certificate.png">
 
 Download the `.cer` file to your computer, and then double-click it to add it to your Keychain.
 
 Next, open Keychain Access and find your iPhone Developer certificate.
 
-<img src="/images/ios_build/export_certificate.png">
+<img src="/steroids/images/ios_build/export_certificate.png">
 
 Right-click on it and select the Export option. Make sure the file format is set to "Personal Information Exchange (.p12)", and save the file on your disk.
 
