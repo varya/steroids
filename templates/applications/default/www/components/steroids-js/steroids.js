@@ -1,5 +1,5 @@
 (function(window){
-/*! steroids-js - v2.7.0 - 2013-06-03 */
+/*! steroids-js - v2.7.1 - 2013-06-04 */
 ;var Bridge,
   __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
@@ -996,6 +996,37 @@ LayerCollection = (function() {
     }
     return steroids.nativeBridge.nativeCall({
       method: "openLayer",
+      parameters: parameters,
+      successCallbacks: [defaultOnSuccess, callbacks.onSuccess],
+      failureCallbacks: [callbacks.onFailure]
+    });
+  };
+
+  LayerCollection.prototype.replace = function(options, callbacks) {
+    var defaultOnSuccess, parameters, view,
+      _this = this;
+    if (options == null) {
+      options = {};
+    }
+    if (callbacks == null) {
+      callbacks = {};
+    }
+    steroids.debug("steroids.layers.replace called");
+    defaultOnSuccess = function() {
+      steroids.debug("steroids.layers.replace defaultOnSuccess");
+      return _this.array = [view];
+    };
+    view = options.constructor.name === "WebView" ? (steroids.debug("steroids.layers.replace using view shorthand"), options) : (steroids.debug("steroids.layers.replace using longhand"), options.view);
+    parameters = {};
+    if (view.id != null) {
+      steroids.debug("steroids.layers.replace using preloaded view");
+      parameters.id = view.id;
+    } else {
+      steroids.debug("steroids.layers.replace using new view");
+      parameters.url = view.location;
+    }
+    return steroids.nativeBridge.nativeCall({
+      method: "replaceLayers",
       parameters: parameters,
       successCallbacks: [defaultOnSuccess, callbacks.onSuccess],
       failureCallbacks: [callbacks.onFailure]
@@ -2017,7 +2048,7 @@ PostMessage = (function() {
 }).call(this);
 ;
 window.steroids = {
-  version: "2.7.0",
+  version: "2.7.1",
   Animation: Animation,
   XHR: XHR,
   File: File,
