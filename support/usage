@@ -62,3 +62,8 @@ Other usage commands:
   deploy
 
     Deploys your application to AppGyver Cloud.
+
+  chat
+
+    Opens support chat in http://discussion.appgyver.com. Once you start chatting, you'll see all the messages since you last
+    used the chat.

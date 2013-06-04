@@ -497,13 +497,7 @@ class Steroids
             console.log "Can not build project locally, cloud deploy not possible."
 
       when "chat"
-        [nickName, otherChatArgs...] = otherOptions
-
-        unless nickName
-          console.log "Usage: steroids chat <yournickname>"
-          process.exit(1)
-
-        supportChat = new SupportChat(nickName)
+        supportChat = new SupportChat()
         supportChat.open()
 
       else

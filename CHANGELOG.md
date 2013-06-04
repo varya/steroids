@@ -5,6 +5,7 @@ Updated iOS Simulator and Steroids.js with support for new API's
 Changes:
   - Application skeletons are generated with steroids-js 2.7.1
   - iOS Simulator updated to 2.7.1
+  - `steroids chat` opens support chat
 
 Bugfixes:
   - Checks new versions using semantic versioning

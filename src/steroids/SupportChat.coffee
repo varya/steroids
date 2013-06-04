@@ -2,12 +2,11 @@ open = require "open"
 
 class SupportChat
 
-  constructor: (@name) ->
+  constructor: () ->
 
 
   open: () ->
-    encodedName = encodeURIComponent(@name)
-    chatURL = "http://steroids.chat.appgyver.com?nickName=#{encodedName}"
+    chatURL = "http://discussion.appgyver.com"
 
     open(chatURL)
 
