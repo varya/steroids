@@ -4,6 +4,9 @@ os = require "os"
 
 Login = require "./Login"
 
+semver = require "semver"
+
+
 class Updater
 
 
@@ -46,8 +49,10 @@ class Updater
     endpointURL = "http://updates.appgyver.com/client/latest.json?platform=#{encodedPlatform}&version=#{encodedVersion}&os_version=#{encodedOsVersion}&device=#{encodedDevice}&simulator=#{simulator}&user_id=#{currentUserId}"
 
     @getFromEndpoint endpointURL, (latestVersion) =>
-      if latestVersion == currentVersion
-        return
+
+      clientVersionGood = semver.satisfies(semver.clean(currentVersion), ">=#{latestVersion}")
+
+      return if clientVersionGood
 
       Help.newClientVersionAvailable
         currentVersion: currentVersion
@@ -68,6 +73,11 @@ class Updater
     endpointURL = "http://updates.appgyver.com/steroids/latest.json?os=#{encodedOsType}&version=#{encodedVersion}&from=#{opts.from}&user_id=#{currentUserId}"
 
     @getFromEndpoint endpointURL, (latestVersion) =>
+
+      versionGood = semver.satisfies(semver.clean(currentVersion), ">=#{latestVersion}")
+
+      return if versionGood
+
       if latestVersion == currentVersion
         console.log "Running latest version of Steroids NPM (#{currentVersion})" if @options.verbose
         return

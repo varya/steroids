@@ -1,3 +1,10 @@
+## 2.7.1 (TODO)
+
+TODO
+
+Bugfixes:
+  - Checks new versions using semantic versioning
+
 ## 2.7.0 (2013-06-03)
 
 Public beta release
