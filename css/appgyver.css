@@ -1,16 +1,6 @@
-body {
-/*background-image: image-url("new_bg.png");
-background-repeat: repeat;
-margin-left: 0px;
-margin-top: 0px;
-margin-right: 0px;
-margin-bottom: 0px;*/
-font-family: 'Neo Sans W02', Tahoma, sans-serif !important;
-}
-
 h1 {
   font-size:50px;
-  font-family: 'Neo Sans W02 Light';
+  font-family: 'Neo Sans W02 Light', Tahoma, sans-serif;
   color:#00AEEF;
   margin-bottom:0.2em;
   letter-spacing:-1px;
@@ -18,6 +8,7 @@ h1 {
 
 h2 {
   font-size:20px;
+  font-family: 'Neo Sans W02 Light', Tahoma, sans-serif;
   margin-top:1em;
   margin-bottom:0.3em;
 }
@@ -29,6 +20,17 @@ h2.strong {
   font-size:26px;
 }
 
-p {
-  font-family: Helvetica, sans-serif;
+h3 {
+  font-size:16px;
+  font-family: 'Neo Sans W02 Light', Tahoma, sans-serif;
+  margin-top:1em;
+  margin-bottom:0.3em;
+}
+
+h4,h5,h6 {
+  font-family: 'Neo Sans W02 Light', Tahoma, sans-serif;
+}
+
+img {
+  max-width:628px;
 }

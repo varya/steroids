@@ -18,7 +18,7 @@ Steroids then checks if there is a valid `config/cloud.json` file (JSON with the
 
 Your app is then uploaded to the cloud. A share.appgyver.com site opens, with a QR code for sharing your app and an iOS web simulator for previewing it. Anyone can then access your app with the AppGyver Scanner app, provided they have the correct share.appgyver.com URL (or the QR code).
 
-You can see all your previous cloud-deployed ad hoc builds at the [AppGyver Cloud Services][cloud-services] page, view their QR codes and access the share page.
+You can see all your previous cloud-deployed ad hoc builds at the [AppGyver Cloud Services][cloud-services] page, view their QR codes and access the share page. The value of the `steroids.config.name` property in `config/application.coffee` becomes your cloud-deployed application's name. To change the name, you need to re-deploy your app.
 
 ## App ID and AppGyver account
 
