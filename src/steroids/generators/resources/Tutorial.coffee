@@ -9,6 +9,7 @@ Base = require "../Base"
 
 tutorials =
   "begin": require("./Tutorials/begin")
+  "steroids": require("./Tutorials/steroids")
   "controllers": require("./Tutorials/controllers")
 
 class Tutorial extends Base
@@ -22,8 +23,9 @@ class Tutorial extends Base
     It is highly recommended that tutorials are created and completed in order, see ordering below.
 
     Options:
-      - tutorialName: name of the tutorial to generate.  Available tutorials:
+      - tutorialName: name of the tutorial to generate.  Available tutorials (should be done in order):
         - begin -- The very basics of AppGyver Steroids, start here.
+        - steroids -- Basics of Steroids Native UI
         - controllers -- Basics of Controllers
     """
 

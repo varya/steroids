@@ -6,6 +6,8 @@ Changes:
   - Application skeletons are generated with steroids-js 2.7.1
   - iOS Simulator updated to 2.7.1
   - `steroids chat` opens support chat
+  - New tutorial `steroids`
+  - `controllers` tutorial updated to reflect changes to other tutorials
 
 Bugfixes:
   - Checks new versions using semantic versioning

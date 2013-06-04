@@ -44,7 +44,7 @@ describe 'Generator', ->
       @testHelper.createProjectSync()
 
       cmd = @testHelper.runInProjectSync "generate",
-        args: ["tutorial", "begin"]
+        args: ["tutorial", "steroids"]
 
       runs ()=>
         expect( cmd.code ).toBe(1)
@@ -53,42 +53,57 @@ describe 'Generator', ->
     it "generates begin tutorial", ->
       @testHelper.createProjectSync()
 
-      runs ->
-        fs.unlinkSync( path.join(@testHelper.testAppPath, "config", "application.coffee") )
-
       cmd = @testHelper.runInProjectSync "generate",
         args: ["tutorial", "begin"]
 
       runs ->
         expect( cmd.code ).toBe(0)
-        expect( cmd.stdout).toMatch(/Then, edit config\/application\.coffee and uncomment some lines/)
+        expect( cmd.stdout ).toMatch(/steroids.config.location = "tutorial.html"/)
+        
+        tutorialFileLocation = path.join(@testHelper.testAppPath, "www", "tutorial.html")
+        expect( fs.existsSync tutorialFileLocation ).toBe true
+        
+        expect( fs.readFileSync( tutorialFileLocation ).toString() ).toMatch(/Awesome, welcome!/)
 
-        tutorialStartHTMLPath = path.join(@testHelper.testAppPath, "app", "views", "tutorial", "index.html")
-        expect(fs.existsSync tutorialStartHTMLPath).toBe true
-
-        expect(fs.readFileSync(tutorialStartHTMLPath).toString()).toMatch(/Awesome, welcome!/)
-
-
-    it "generates begin controllers tutorial after begin", ->
+    it "generates steroids tutorial", ->
       @testHelper.createProjectSync()
 
       runs ->
         fs.unlinkSync( path.join(@testHelper.testAppPath, "config", "application.coffee") )
 
       cmd = @testHelper.runInProjectSync "generate",
-        args: ["tutorial", "begin"]
+        args: ["tutorial", "steroids"]
+
+      runs ->
+        expect( cmd.code ).toBe(0)
+        expect( cmd.stdout).toMatch(/edit config\/application\.coffee and uncomment some lines/)
+
+        tutorialStartHTMLPath = path.join(@testHelper.testAppPath, "app", "views", "steroidsTutorial", "index.html")
+        expect( fs.existsSync tutorialStartHTMLPath ).toBe true
+
+        expect( fs.readFileSync(tutorialStartHTMLPath ).toString()).toMatch(/Hooray!/)
+
+
+    it "generates controllers tutorial after steroids", ->
+      @testHelper.createProjectSync()
+
+      runs ->
+        fs.unlinkSync( path.join(@testHelper.testAppPath, "config", "application.coffee") )
+
+      cmd = @testHelper.runInProjectSync "generate",
+        args: ["tutorial", "steroids"]
 
       cmd = @testHelper.runInProjectSync "generate",
         args: ["tutorial", "controllers"]
 
       runs ->
         expect( cmd.code ).toBe(0)
-        expect( cmd.stdout).toMatch(/Now change the first tab in config\/application\.coffee/)
+        expect( cmd.stdout ).toMatch(/Now change the first tab in config\/application\.coffee/)
 
-        controllersStartHTMLPath = path.join(@testHelper.testAppPath, "app", "views", "tutorial", "controllers.html")
-        expect(fs.existsSync controllersStartHTMLPath).toBe true
+        controllersStartHTMLPath = path.join(@testHelper.testAppPath, "app", "views", "steroidsTutorial", "controllers.html")
+        expect( fs.existsSync controllersStartHTMLPath ).toBe true
 
-        expect(fs.readFileSync(controllersStartHTMLPath).toString()).toMatch(/Good! You made it all/)
+        expect( fs.readFileSync(controllersStartHTMLPath ).toString()).toMatch(/Good! You made it all/)
 
 
   describe 'examples', ->

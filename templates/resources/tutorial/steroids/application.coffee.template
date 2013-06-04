@@ -44,7 +44,7 @@ steroids.config.location = "http://localhost/index.html"
 #   {
 #     title: "Steroids"
 #     icon: "icons/pill@2x.png"
-#     location: "http://localhost/views/tutorial/index.html"
+#     location: "http://localhost/views/steroidsTutorial/index.html"
 #   },
 #   {
 #     title: "Welcome"

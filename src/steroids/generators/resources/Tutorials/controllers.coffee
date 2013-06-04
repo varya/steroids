@@ -18,20 +18,21 @@ class Controllers extends Base
 
     @checkForPreExistingFiles [
       path.join("app", "controllers", "application.js")
-      path.join("app", "controllers", "tutorial.js")
-      path.join("app", "views", "tutorial", "controllers.html")
-      path.join("app", "views", "tutorial", "controllers-completed.html")
+      path.join("app", "controllers", "steroidsTutorial.js")
+      path.join("app", "views", "steroidsTutorial", "controllers.html")
+      path.join("app", "views", "steroidsTutorial", "controllers-completed.html")
     ]
 
+    @ensureDirectory path.join("app")
     @ensureDirectory path.join("app", "controllers")
 
     @copyFile path.join("app", "controllers", "application.js"), "application.js.template"
-    @copyFile path.join("app", "controllers", "tutorial.js"), "tutorial.js.template"
+    @copyFile path.join("app", "controllers", "steroidsTutorial.js"), "controller.js.template"
 
-    @ensureDirectory path.join("app", "views", "tutorial")
+    @ensureDirectory path.join("app", "views", "steroidsTutorial")
 
-    @copyFile path.join("app", "views", "tutorial", "controllers.html"), "controllers.html.template"
-    @copyFile path.join("app", "views", "tutorial", "controllers-completed.html"), "controllers-completed.html.template"
+    @copyFile path.join("app", "views", "steroidsTutorial", "controllers.html"), "controllers.html.template"
+    @copyFile path.join("app", "views", "steroidsTutorial", "controllers-completed.html"), "controllers-completed.html.template"
 
 
     Help.SUCCESS()
@@ -40,7 +41,7 @@ class Controllers extends Base
 
     Now change the first tab in config/application.coffee to point to
 
-      http://localhost/views/tutorial/controllers.html
+      http://localhost/views/steroidsTutorial/controllers.html
 
     Then reload the application.
 

@@ -1,14 +1,14 @@
 <div class="content content-padded">
 
-<h1>Awesome, welcome!</h1>
+<h1>Hooray!</h1>
 
 <p>Now, this page is a Steroids style <em>resource</em> from two files: <br/>
   <br/>
-  <code>app/views/tutorial/index.html</code><br/>
+  <code>app/views/steroidsTutorial/index.html</code><br/>
   <br/>
   that is wrapped inside<br/>
   <br/>
-  <code>app/views/layouts/application.html</code>.
+  <code>app/views/layouts/steroidsTutorial.html</code>.
 </p>
 
 <h2>Tabs</h2>
@@ -19,9 +19,9 @@
 
 <h2>Localhost</h2>
 
-<p>In addition, this page is served from <code>http://localhost</code> (instead of via the <code>file://</code> protocol), which is part of our secret sauce.  You can still use <code>file://</code> protocol (that allows easy cross-domain AJAX) by just specifying the file without the <code>http://localhost</code> prefix.</p>
+<p>In addition, this page is served from <code>http://localhost</code> (instead of via the <code>file://</code> protocol), which is part of our secret sauce. You can still use <code>file://</code> protocol (that allows easy cross-domain AJAX) by just specifying the file without the <code>http://localhost</code> prefix.</p>
 
-<p>One instant benefit of localhost is that if you look at the <code>app/views/layouts/application.html</code> file, you'll notice that we don't have to use explicit relative paths. You can always use <code>/stylesheets/applcation.css</code> instead of <code>../../stylesheets/application.css</code>. The same applies for images etc.</p>
+<p>One instant benefit of localhost is that if you look at the <code>app/views/layouts/steroidsTutorial.html</code> file, you'll notice that we don't have to use explicit relative paths. You can always use <code>/stylesheets/applcation.css</code> instead of <code>../../stylesheets/application.css</code>. The same applies for images etc.</p>
 
 <h2>Exercise</h2>
 
@@ -44,14 +44,14 @@
 
 <script>
   // You found it!  To inline JavaScript here is suboptimal and only used in this tutorial.
-  // The Steroids.js API documentation is in http://docs.appgyver.com
+  // The Steroids.js API documentation is at http://docs.appgyver.com
 
   steroids.view.navigationBar.show("PhoneGap on Steroids")
 
   // In the next part of this tutorial we learn how to do this properly with external JavaScript files
 
   $("#opener").hammer().on("tap", function() {
-    var otherView = new steroids.views.WebView("/views/tutorial/show.html");
+    var otherView = new steroids.views.WebView("/views/steroidsTutorial/show.html");
     steroids.layers.push(otherView);
   });
 

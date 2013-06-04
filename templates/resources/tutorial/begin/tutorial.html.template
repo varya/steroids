@@ -57,7 +57,12 @@
 
   <h2>All done!</h2>
 
-  <p>More tutorials are upcoming. In the meantime, check out academy.appgyver.com and guides.appgyver.com for more information.</p>
+  <p>Type</p>
+  
+  <p><small><code>$ steroids generate tutorial steroids</code></small></p>
+  
+  <p>for the next tutorial. Also, be sure to check out <code>academy.appgyver.com</code> and <code>guides.appgyver.com</code> for more resources.</p>
+  
   </div>
 
   <script>
