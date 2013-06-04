@@ -17,7 +17,7 @@
         <link rel="stylesheet" href="{{site.baseurl}}/css/appgyver.css">
 
     </head>
-    <body onload="parent.contentsize(document.body.scrollHeight);">
+    <body onload="parent.postMessage(document.body.scrollHeight, '*');">
 
         <div class="container">
           <div class="site">
