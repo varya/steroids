@@ -15,34 +15,23 @@
         <!-- Custom CSS -->
         <link rel="stylesheet" href="{{site.baseurl}}/css/main.css">
         <link rel="stylesheet" href="{{site.baseurl}}/css/appgyver.css">
+        <link rel="stylesheet" href="{{site.baseurl}}/css/service_menu.css">
+        <link rel="stylesheet" href="{{site.baseurl}}/css/top_stripe.css">
 
     </head>
     <body>
 
+      {% include service_menu.html %}
+      {% include top_stripe.html %}
+
         <div class="container">
           <div class="site">
             <div class="header">
-              <h1 class="title"><a href="{{site.baseurl}}/">{{ site.name }}</a></h1>
+              <h1 class="title">{{ site.name }}</h1>
             </div>
 
                 {{ content }}
 
-            <div class="footer">
-              <div class="contact">
-                <p>
-                  AppGyver, Inc.<br />
-                  181 Fremont St, San Francisco, CA 94105<br />
-                  <a href="mailto:contact@appgyver.com">contact@appgyver.com</a>
-                </p>
-              </div>
-              <div class="contact">
-                <p>
-                  <a href="http://www.appgyver.com">www.appgyver.com</a><br />
-                  <a href="http://github.com/appgyver/">github.com/appgyver</a><br />
-                  <a href="http://twitter.com/appgyver/">twitter.com/appgyver</a><br />
-                </p>
-              </div>
-            </div>
           </div>
         </div> <!-- /container -->
 
