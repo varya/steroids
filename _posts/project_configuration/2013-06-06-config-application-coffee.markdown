@@ -31,9 +31,9 @@ steroids.config.location = "index.html"
 
 ###Examples of valid values:
 
-* `steroids.config.location = "filename.html"  # served with File URL, like in PhoneGap`
-* `steroids.config.location = "http://localhost/filename.html"  # served from the device's web server`
-* `steroids.config.location = "http://www.example.com"  # any external URL`
+* `steroids.config.location = "filename.html"` – served with File URL, like in PhoneGap.
+* `steroids.config.location = "http://localhost/filename.html"` – served from the device's web server.
+* `steroids.config.location = "http://www.example.com"` – any external URL.
 
 ##steroids.config.hosts
 
@@ -69,10 +69,11 @@ A tab object contains the following proporties:
 - `icon`: path to the tab's icon file, relative to `dist/` (e.g. `icons/pill@2x.png`). Tab bar icons are supported by iOS only.
   - adding '@2x' before the file extension in the icon's filename allows proper native-level handling of Retina images.
 - `location`: defines which HTML document the tab renders. **Required.** Examples of valid values are:
-  - `"index.html`" – served with File URL, like in PhoneGap
-  - `http://localhost/index.html – served from the device's web server
-  - `http://www.google.com` – any external URL
-
+  - `"index.html`" – served with File URL, like in PhoneGap.
+  - `http://localhost/index.html – served from the device's web server.
+  - `http://www.google.com` – any external URL.
+<br>
+<br>
 {% highlight javascript %}
 steroids.config.tabBar.tabs = [
   {
@@ -98,10 +99,14 @@ steroids.config.tabBar.tabs = [
 Tab bar color settings are application-wide and cannot be changed during runtime. Color settings are iOS-only. Colors are defined as 6-character RGB hex strings with a leading #.
 
 {% highlight coffeescript %} 
-steroids.config.tabBar.tintColor = "#00aeef"            # sets the tint of the whole tab bar
-steroids.config.tabBar.tabTitleColor = "#ffffff"        # sets the title text color of a tab
-steroids.config.tabBar.tabTitleShadowColor = "#000000"  # sets the title text shadow color of a tab
-steroids.config.tabBar.selectedTabTintColor = "#11aeef" # sets the tint of a selected tab
+# Sets the tint of the whole tab bar
+steroids.config.tabBar.tintColor = "#00aeef"
+# Sets the title text color of a tab
+steroids.config.tabBar.tabTitleColor = "#ffffff"
+# Sets the title text shadow color of a tab
+steroids.config.tabBar.tabTitleShadowColor = "#000000"
+# Sets the tint of a selected tab
+steroids.config.tabBar.selectedTabTintColor = "#11aeef"
 {% endhighlight %}
 
 ##steroids.config.statusBar
@@ -146,30 +151,30 @@ steroids.config.theme = "black"    # the other iOS default style
 
 Sets the editor command that is used in the Steroids console (i.e. `steroids connect`) with commands `edit` and `e`. By default, the editor is set to Sublime Text and the current project base directory is given as an argument. Arguments are always given as an array.
 
-```
+{% highlight coffeescript %}
 steroids.config.editor = "subl"
 steroids.config.args = ["."]
-```
+{% endhighlight %}
 
 ##steroids.config.hooks
 
 Sets up custom commands to run when making a Steroids build. The first hook is run before `steroids make`, the process where `app/` and `www/` folders are processed into the `dist/` folder.
 
-```
+{% highlight coffeescript %}
 steroids.config.hooks.preMake.cmd = "echo"
 steroids.config.hooks.preMake.args = ["running yeoman"]
-```
+{% endhighlight %}
 
 The other hook is run right after make, before running `steroids package`, the process that packages the app before sending it to client devices.
 
-```
+{% highlight coffeescript %}
 steroids.config.hooks.postMake.cmd = "echo"
 steroids.config.hooks.postMake.args = ["cleaning up files"]
-```
+{% endhighlight %}
 
 Notice that arguments are always given as an array.
 
 [cloud-deploy]: /steroids/guides/steroids_npm/cloud-deploy/
 [coffeescript]: http://coffeescript.org
-[config-xml-ios]: /steroids/guides/ios/config-xml-ios/
+[config-xml-ios]: /steroids/guides/project_configuration/config-xml-ios/
 [apple-status-bar]: https://developer.apple.com/library/ios/#documentation/UserExperience/Conceptual/MobileHIG/UIElementGuidelines/UIElementGuidelines.html#//apple_ref/doc/uid/TP40006556-CH13-SW29
