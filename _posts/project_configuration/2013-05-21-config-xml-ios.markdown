@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "Configuring your app with config.xml"
+title:  "Cordova preferences in config.xml (iOS)"
 date:   2013-05-20 13:51:34
-categories: ios
+categories: project_configuration
 platforms: iOS
 ---
 
@@ -10,7 +10,7 @@ Like Cordova, Steroids uses a `config.xml` file to set universal preferences for
 
 The iOS-specific `config.xml` is located at `www/config.ios.xml`. (A `config.xml` file in the same directory overrides the platform-specific version.)
 
-##Configuring preferences (iOS)
+##Configuring preferences
 
 Steroids supports configuring certain preferences for your WebViews. The preferences are set up universally for all `steroids.views.WebView` views in your app. Preferences are set up with `<preference>` elements:
 

@@ -13,8 +13,6 @@ div.service_menu {
   background-color: #363636;
 }
 
-/* Service Menu Styles */
-
 div.service_content {
   color: #bcbcbc;
   text-transform: uppercase;
@@ -33,7 +31,6 @@ div.submenu-link-container {
 div.submenu-link-container#active {
   background: url('/steroids/images/service_menu/tick.png') center bottom no-repeat;
 }
-
 
 div.submenu-link-container#active a {
   font-weight: 600;
