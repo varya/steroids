@@ -16,15 +16,15 @@ To build iOS apps with the AppGyver Build Service, you need to create a `.p12` c
 
 Sign in with your Apple ID to [developer.apple.com][apple-dev]. Then, open the [Certificate listing][apple-certificate-list] under the iOS Dev Center.
 
-Click on the plus button in the upper right corner, and follow the instructions on the screen about creating a Certificate Request and uploading it to Apple.
+Click on the plus button in the upper right corner. Under the **Distribution** category, select the **App Store and Ad Hoc** option. Click **Continue** and follow the instructions on the screen about creating a Certificate Signing Request via Keychain Access, and uploading it to Apple.
 
-After you're done, it takes a couple of moments for Apple to generate the iOS Distribution Certificate for you. Once it's done, you can find it under the Distribution category:
+After you're done, it takes a couple of moments for Apple to generate the iOS Distribution Certificate for you. You can then find it under the Distribution category:
 
 <img src="/steroids/images/ios_build/download_certificate.png">
 
-Download the `.cer` file to your computer, and then double-click it to add it to your Keychain.
+Download the `.cer` file to your computer, and then double-click on it to add it to your Keychain.
 
-Next, open Keychain Access and find your iPhone Developer certificate.
+Next, open Keychain Access and find your iPhone Distribution certificate. Expand it: it should have the private key that you generated with your Certificate Signing Request.
 
 <img src="/steroids/images/ios_build/export_certificate.png">
 
@@ -124,7 +124,7 @@ After you're done, click Update Settings. Then, you can use the Build an Ad Hoc 
 Building the app takes a few moments, after which you'll get an e-mail with a link to the downloadable IPA. You can also see your build history and download earlier builds by clicking on the Show Build History button.
 
 [appgyver-cloud]: http://cloud.appgyver.com
-[apple-certificate-list]: https://developer.apple.com/account/ios/certificate/certificateList.action
+[apple-certificate-list]: https://developer.apple.com/account/ios/certificate/certificateList.action?type=distribution
 [apple-app-id-list]: https://developer.apple.com/account/ios/identifiers/bundle/bundleList.action
 [apple-dev]: http://developer.apple.com
 [apple-devices-list]: https://developer.apple.com/account/ios/device/deviceList.action
