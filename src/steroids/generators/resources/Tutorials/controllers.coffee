@@ -23,7 +23,14 @@ class Controllers extends Base
       path.join("app", "views", "steroidsTutorial", "controllers-completed.html")
     ]
 
+    unless fs.existsSync( path.join("app", "views", "layouts", "steroidsTutorial.html") )
+      throw {
+        fromSteroids: true
+        message: "Could not find file app/views/layouts/steroidsTutorial.html. Please make sure you've generated the Steroids tutorial first with '$ steroids generate tutorial steroids'."
+      }
+
     @ensureDirectory path.join("app")
+    @ensureDirectory path.join("app", "views")
     @ensureDirectory path.join("app", "controllers")
 
     @copyFile path.join("app", "controllers", "application.js"), "application.js.template"
@@ -34,6 +41,7 @@ class Controllers extends Base
     @copyFile path.join("app", "views", "steroidsTutorial", "controllers.html"), "controllers.html.template"
     @copyFile path.join("app", "views", "steroidsTutorial", "controllers-completed.html"), "controllers-completed.html.template"
 
+    @addBowerDependency "jquery", "1.9.1"
 
     Help.SUCCESS()
 

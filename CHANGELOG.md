@@ -1,3 +1,10 @@
+## TODO
+
+Updated 
+
+Bugfixes:
+  - `controllers` tutorial gives a proper error if the user tries to generate it before generating the `steroids` tutorial
+
 ## 2.7.1 (2013-06-04)
 
 Updated iOS Simulator and Steroids.js with support for new API's

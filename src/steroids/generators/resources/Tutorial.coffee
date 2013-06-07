@@ -24,9 +24,9 @@ class Tutorial extends Base
 
     Options:
       - tutorialName: name of the tutorial to generate.  Available tutorials (should be done in order):
-        - begin -- The very basics of AppGyver Steroids, start here.
-        - steroids -- Basics of Steroids Native UI
-        - controllers -- Basics of Controllers
+        - begin -- The very basics of AppGyver Steroids, start here
+        - steroids -- Basics of Steroids Native UI enhancements
+          - controllers -- Basics of Controllers (requires the 'steroids' tutorial to be generated first)
     """
 
   generate: ->
