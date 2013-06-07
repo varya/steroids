@@ -39,9 +39,7 @@ describe 'Generator', ->
       runs ->
         expect( cmd.stdout ).toMatch(/Error: No such tutorial neverGonnaExistTutorial, see 'steroids generate' for help./)
 
-
     it "complains about overwriting the application.coffee", ->
-      @testHelper.createProjectSync()
 
       cmd = @testHelper.runInProjectSync "generate",
         args: ["tutorial", "steroids"]
@@ -51,7 +49,6 @@ describe 'Generator', ->
         expect( cmd.stdout).toMatch(/would be overwritten by this command/)
 
     it "generates begin tutorial", ->
-      @testHelper.createProjectSync()
 
       cmd = @testHelper.runInProjectSync "generate",
         args: ["tutorial", "begin"]
@@ -59,14 +56,13 @@ describe 'Generator', ->
       runs ->
         expect( cmd.code ).toBe(0)
         expect( cmd.stdout ).toMatch(/steroids.config.location = "tutorial.html"/)
-        
+
         tutorialFileLocation = path.join(@testHelper.testAppPath, "www", "tutorial.html")
         expect( fs.existsSync tutorialFileLocation ).toBe true
-        
+
         expect( fs.readFileSync( tutorialFileLocation ).toString() ).toMatch(/Awesome, welcome!/)
 
     it "generates steroids tutorial", ->
-      @testHelper.createProjectSync()
 
       runs ->
         fs.unlinkSync( path.join(@testHelper.testAppPath, "config", "application.coffee") )
@@ -83,9 +79,7 @@ describe 'Generator', ->
 
         expect( fs.readFileSync(tutorialStartHTMLPath ).toString()).toMatch(/Hooray!/)
 
-
     it "generates controllers tutorial after steroids", ->
-      @testHelper.createProjectSync()
 
       runs ->
         fs.unlinkSync( path.join(@testHelper.testAppPath, "config", "application.coffee") )
@@ -349,5 +343,4 @@ describe 'Generator', ->
           expect(fs.existsSync ctrlPath).toBe true
 
           expect(@cmd2.stdout).toMatch(/would be overwritten by this command/)
-
 
