@@ -26,7 +26,7 @@ class Controllers extends Base
     unless fs.existsSync( path.join("app", "views", "layouts", "steroidsTutorial.html") )
       throw {
         fromSteroids: true
-        message: "Could not find file app/views/layouts/steroidsTutorial.html. Please make sure you've generated the Steroids tutorial first with '$ steroids generate tutorial steroids'."
+        message: "Could not find file app/views/layouts/steroidsTutorial.html. Please make sure you've generated the 'steroids' tutorial first with '$ steroids generate tutorial steroids'."
       }
 
     @ensureDirectory path.join("app")

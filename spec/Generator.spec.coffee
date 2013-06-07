@@ -99,6 +99,18 @@ describe 'Generator', ->
 
         expect( fs.readFileSync(controllersStartHTMLPath ).toString()).toMatch(/Good! You made it all/)
 
+    it "fails to generate controller tutorial to an empty project", ->
+
+      cmd = @testHelper.runInProjectSync "generate",
+        args: ["tutorial", "controllers"]
+
+      runs ->
+        expect( cmd.code ).toBe(1)
+        expect( cmd.stdout ).toMatch(/Please make sure you've generated the 'steroids' tutorial/)
+
+        controllersStartHTMLPath = path.join(@testHelper.testAppPath, "app", "views", "steroidsTutorial", "controllers.html")
+        expect( fs.existsSync controllersStartHTMLPath ).toBe false
+
 
   describe 'examples', ->
 
