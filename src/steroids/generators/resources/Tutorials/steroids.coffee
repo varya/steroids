@@ -36,7 +36,7 @@ class Steroids extends Base
     @copyFile path.join("app", "views", "steroidsTutorial", "index.html"), "index.html.template"
     @copyFile path.join("app", "views", "steroidsTutorial", "show.html"), "show.html.template"
 
-    @addBowerDependency "jquery", "1.9.1"
+    @addBowerDependency "jquery", "2.0.x"
 
     Help.awesome()
     console.log """

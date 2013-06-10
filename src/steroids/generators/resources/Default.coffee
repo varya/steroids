@@ -52,7 +52,7 @@ class Default extends Base
     @addFile path.join("app", "views", "#{@options.name}", "index.html"), "index.html.template"
     @addFile path.join("app", "views", "#{@options.name}", "show.html"), "show.html.template"
 
-    @addBowerDependency "jquery", "1.9.1"
+    @addBowerDependency "jquery", "2.0.x"
 
     Help.SUCCESS()
     console.log """
