@@ -16,6 +16,12 @@ class Steroids extends Base
 
   generate: ->
 
+    if fs.existsSync( path.join("config", "application.coffee") )
+      throw {
+        fromSteroids: true
+        message: "One more thing! Remove the file at 'config/application.coffee' (we don't want to overwrite it without you knowing) and then run the command again."
+      }
+
     @checkForPreExistingFiles [
       path.join("config", "application.coffee")
       path.join("app", "views", "layouts", "steroidsTutorial.html")
