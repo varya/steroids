@@ -1,4 +1,4 @@
-## 2.7.2
+## 2.7.2 (2013-06-10)
 
 Installation and tutorial improvements
 
