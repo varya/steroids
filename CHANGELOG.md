@@ -1,4 +1,13 @@
-## 2.7.2
+## 2.7.3 (TODO)
+
+TODO
+
+Changes:
+  - New Cordova examples: 'storage' and 'notification'
+  - Generators that added a jQuery dependency now use jQuery 2.0.x
+  - Friendlier error message for 'steroids' tutorial config/application.coffee overwrite
+
+## 2.7.2 (2013-06-10)
 
 Installation and tutorial improvements
 
