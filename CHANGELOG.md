@@ -1,9 +1,10 @@
-## TODO
+## 2.7.2
 
-Updated 
+Installation and tutorial improvements
 
 Bugfixes:
   - `controllers` tutorial gives a proper error if the user tries to generate it before generating the `steroids` tutorial
+  - Check for correct node version before installing to avoid issues
 
 ## 2.7.1 (2013-06-04)
 

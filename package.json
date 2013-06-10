@@ -29,7 +29,7 @@
   },
   "scripts": {
     "test": "./bin/test",
-    "preinstall": "./bin/preinstall",
+    "preinstall": "./bin/check-node-version && ./bin/preinstall",
     "install": "./bin/install"
   },
   "keywords": [
@@ -45,7 +45,7 @@
     "url": "git://github.com/AppGyver/steroids.git"
   },
   "engines": {
-    "node": ">=0.8.0",
+    "node": ">=0.8.0 <0.10.0",
     "npm": ">=1.1.0"
   },
   "dependencies": {
