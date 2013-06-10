@@ -60,7 +60,7 @@ class Angular extends Base
     @addFile path.join("app", "views", "#{@options.name}", "_list.html"), "list.html.template"
     @addFile path.join("app", "views", "#{@options.name}", "_details.html"), "details.html.template"
 
-    @addBowerDependency "angular", "1.0.6"
+    @addBowerDependency "angular", "1.0.7"
 
     Help.SUCCESS()
     console.log """

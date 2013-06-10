@@ -5,6 +5,7 @@ TODO
 Changes:
   - New Cordova examples: 'storage' and 'notification'
   - Generators that added a jQuery dependency now use jQuery 2.0.x
+  - Generators that added an Angular.js dependency now use Angular.js 1.0.7
   - Friendlier error message for 'steroids' tutorial config/application.coffee overwrite
 
 ## 2.7.2 (2013-06-10)
