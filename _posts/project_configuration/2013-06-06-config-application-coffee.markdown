@@ -16,18 +16,18 @@ Configuring your app consists of simply setting properties of the `steroids.conf
 
 Specifies the name of the application. This name will be used in AppGyver Cloud Services for your [cloud-deployed][cloud-deploy] app (the app store display name will be set separately when you build a distribution package of your app).
 
-```
+{% highlight coffeescript %}
 steroids.config.name = "Hello World"
-```
+{% endhighlight %}
 
 
 ##steroids.config.location
 
 This defines the initial HTML document that will be loaded and shown when the application starts. Filenames are relative to the `dist/` folder, which is generated in the project's root during `steroids make`. This value can be configured to be any URL.
 
-```
+{% highlight coffeescript %}
 steroids.config.location = "index.html"
-```
+{% endhighlight %}
 
 ###Examples of valid values:
 
@@ -43,9 +43,9 @@ Requests by the Steroids runtime to a captured hostname will be served from loca
 
 This is useful for circumventing same-origin issues. With the above example, AJAX connections to your backend at `api.example.com` are allowed, because to remote locations, the Steroids app (`mobileapp.example.com`) appears to be loaded from the same top-level domain (`*.example.com`).
 
-```
+{% highlight coffeescript %}
 steroids.config.hosts = ["mobileapp.example.com", "m.example.net"]
-```
+{% endhighlight %}
 
 ##steroids.config.tabBar
 
@@ -55,9 +55,9 @@ This property configures the native tab bar.
 
 Enables the native tab bar in the application. Overrides the `steroids.config.location` property. Requires that `steroids.config.tabBar.tabs` contains at least one tab.
 
-```
+{% highlight coffeescript %}
 steroids.config.tabBar.enabled = true
-```
+{% endhighlight %}
 
 ###steroids.config.tabBar.tabs
 
@@ -66,15 +66,15 @@ An array of tab objects that specifies the tabs shown in the app's native tab ba
 A tab object contains the following proporties:
 
 - `title`: text shown in the tab title. **Required.**
-- `icon`: path to the tab's icon file, relative to `dist/` (e.g. `icons/pill@2x.png`). Tab bar icons are supported by iOS only.
-  - adding '@2x' before the file extension in the icon's filename allows proper native-level handling of Retina images.
+- `icon`: path to the tab's icon file, relative to `dist/` (e.g. `icons/pill@2x.png`). *Tab bar icons are supported by iOS only.*
+  - if you add `@2` before the file extension (like in the above example), iOS will scale down the image to 50% size while keeping the amount of pixels the same. This allows the image to be displayed properly on Retina displays.
 - `location`: defines which HTML document the tab renders. **Required.** Examples of valid values are:
   - `"index.html`" – served with File URL, like in PhoneGap.
   - `http://localhost/index.html – served from the device's web server.
   - `http://www.google.com` – any external URL.
 <br>
 <br>
-{% highlight javascript %}
+{% highlight coffeescript %}
 steroids.config.tabBar.tabs = [
   {
     title: "Localhost"
@@ -94,9 +94,9 @@ steroids.config.tabBar.tabs = [
 ]
 {% endhighlight %}
 
-###Tab bar colors
+###Tab bar colors (iOS-only)
 
-Tab bar color settings are application-wide and cannot be changed during runtime. Color settings are iOS-only. Colors are defined as 6-character RGB hex strings with a leading #.
+Tab bar color settings are application-wide and cannot be changed during runtime. Colors are defined as 6-character RGB hex strings with a leading #.
 
 {% highlight coffeescript %} 
 # Sets the tint of the whole tab bar
@@ -109,13 +109,25 @@ steroids.config.tabBar.tabTitleShadowColor = "#000000"
 steroids.config.tabBar.selectedTabTintColor = "#11aeef"
 {% endhighlight %}
 
-##steroids.config.statusBar
+### Selected tab background image (iOS-only)
 
-Configures the status bar at the top of the screen. **iOS-only.**
+On iOS, you can set an image to be shown behind the active tab's icon and title text. This is done with the property:
 
-```
+{% highlight coffeescript %}
+steroids.config.tabBar.selectedTabBackgroundImage = "images/tab_bg@2x.png"
+{% endhighlight %}
+
+The path for the the icon is relative to the root of the `dist/` folder.
+
+If you add `@2` before the file extension (like in the above example), iOS will scale down the image to 50% size while keeping the amount of pixels the same. This allows the image to be displayed properly on Retina displays.
+
+##steroids.config.statusBar (iOS-only)
+
+Configures the status bar at the top of the screen.
+
+{% highlight coffeescript %}
 steroids.config.statusBar.enabled = true
-```
+{% endhighlight %}
 
 Sets the visibility of the [iOS status bar][apple-status-bar] at the top of the screen, showing the device's carrier, clock and battery status. Disabling the status bar increases the vertical space available for your application by 20 pixels.
 
@@ -138,6 +150,16 @@ steroids.config.navigationBar.buttonTitleColor = "#ffffff"
 steroids.config.navigationBar.buttonShadowColor = "#000000"
 {% endhighlight %}
 
+## Loading screen color (Android-only)
+
+The color for the Android loading screen, shown around the [loading.png][loading-png-guide] image, is set with the following property:
+
+{% highlight coffeescript %}
+steroids.config.loadingScreen.tintColor = "#262626"
+{% endhighlight %}
+
+The color is defined as a 6-character RGB hex string with a leading #. The loading screen color setting is **Android-only**. On iOS, use [loading.html][loading-html-guide] instead.
+
 ## steroids.config.theme
 
 Set an overall theme for the application, affecting the navigation bar and tab bar colors. Setting individual color values for the tab bar and navigation bar overrides this setting. **iOS-only.**
@@ -149,7 +171,7 @@ steroids.config.theme = "black"    # the other iOS default style
 
 ## steroids.config.editor
 
-Sets the editor command that is used in the Steroids console (i.e. `steroids connect`) with commands `edit` and `e`. By default, the editor is set to Sublime Text and the current project base directory is given as an argument. Arguments are always given as an array.
+Sets the editor command that is used in the Steroids console (i.e. `steroids connect`) with commands `edit` and `e`. By default, the editor is set to Sublime Text (the command `subl`) and the current project base directory is given as an argument to the editor run command. Arguments are always given as an array.
 
 {% highlight coffeescript %}
 steroids.config.editor = "subl"
@@ -174,7 +196,9 @@ steroids.config.hooks.postMake.args = ["cleaning up files"]
 
 Notice that arguments are always given as an array.
 
+[apple-status-bar]: https://developer.apple.com/library/ios/#documentation/UserExperience/Conceptual/MobileHIG/UIElementGuidelines/UIElementGuidelines.html#//apple_ref/doc/uid/TP40006556-CH13-SW29
 [cloud-deploy]: /steroids/guides/steroids_npm/cloud-deploy/
 [coffeescript]: http://coffeescript.org
 [config-xml-ios]: /steroids/guides/project_configuration/config-xml-ios/
-[apple-status-bar]: https://developer.apple.com/library/ios/#documentation/UserExperience/Conceptual/MobileHIG/UIElementGuidelines/UIElementGuidelines.html#//apple_ref/doc/uid/TP40006556-CH13-SW29
+[loading-html-guide]: /steroids/guides/ios/loading-html/
+[loading-png-guide]: /steroids/guides/android/loading-png/
