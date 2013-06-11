@@ -3,11 +3,13 @@
 TODO
 
 Changes:
+  - Default `www/loading.png` file added to new project template, used by the Android loading screen. See the [loading.png guide](http://guides.appgyver.com/steroids/guides/android/loading-png/) for more information.
+  - Cleaned up `www/config.android.xml`. See the [Android config.xml guide](http://guides.appgyver.com/steroids/guides/project_configuration/config-xml-android/)) for
   - New Cordova examples: 'storage' and 'notification'
   - Generators that added a jQuery dependency now use jQuery 2.0.x
   - Generators that added an Angular.js dependency now use Angular.js 1.0.7
   - Friendlier error message for 'steroids' tutorial config/application.coffee overwrite
-  - config.android.xml file cleaned up from unused elements
+  - Cleaned up `config/application.coffee`
 
 ## 2.7.2 (2013-06-10)
 
