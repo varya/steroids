@@ -50,7 +50,7 @@ The following Cordova preferences disabled due to Steroids using its own splashs
 
 The following Cordova preferences are currently nonfunctional in Steroids:
 
-* **TopActivityIndicator (string, defaults to 'grey)** – valid values are 'grey', 'white' and 'whiteLarge'. Should change how the status bar spinner looks like. Currently disabled in Steroids.
+* **TopActivityIndicator (string, defaults to 'grey')** – valid values are 'grey', 'white' and 'whiteLarge'. Should change how the status bar spinner looks like. Currently disabled in Steroids.
 
 * **MediaPlaybackRequiresUserAction (boolean, defaults to false)** – when set to true, should disable autoplaying of HTML5 videos. Currently autoplaying doesn't work in Steroids, regardless of this property.
 
@@ -80,5 +80,5 @@ For more granular control, see the [Cordova Docs][cordova-domain-whitelisting] o
 The `<content>` tag is not used in Steroids to set the initial location of your app. Instead, the `steroids.config.location` property in `config/application.coffee` is used.
   
 [widgets]: http://www.w3.org/TR/widgets/
-[cordova-domain-whitelisting]: http://docs.phonegap.com/en/2.7.0/guide_whitelist_index.md.html#Domain%20Whitelist%20Guide
+[cordova-domain-whitelisting]: http://cordova.apache.org/docs/en/2.7.0/guide_whitelist_index.md.html#Domain%20Whitelist%20Guide
 [steroids-api]: http://docs.appgyver.com
