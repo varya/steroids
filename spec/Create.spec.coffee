@@ -98,11 +98,11 @@ describe 'Steroids', ->
       contents = fs.readFileSync(configXmlPath).toString()
       expect( contents ).toMatch(/DisallowOverscroll/)
 
-    it "has www/config.android.xml with key useBrowserHistory", ->
+    it "has www/config.android.xml with key with value org.apache.cordova.GeoBroker", ->
       configXmlPath = path.join @wwwPath, "config.android.xml"
 
       contents = fs.readFileSync(configXmlPath).toString()
-      expect( contents ).toMatch(/useBrowserHistory/)
+      expect( contents ).toMatch(/org.apache.cordova.GeoBroker/)
 
     it "does not have a folder named app", ->
       appPath = path.join @testHelper.testAppPath, "app"

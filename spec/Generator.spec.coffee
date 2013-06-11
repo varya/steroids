@@ -46,7 +46,7 @@ describe 'Generator', ->
 
       runs ()=>
         expect( cmd.code ).toBe(1)
-        expect( cmd.stdout).toMatch(/would be overwritten by this command/)
+        expect( cmd.stdout).toMatch(/One more thing! Remove the file/)
 
     it "generates begin tutorial", ->
 
