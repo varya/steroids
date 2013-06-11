@@ -78,9 +78,11 @@ steroids.config.navigationBar.buttonShadowColor = "#000000"
 # steroids.config.tabBar.tabTitleShadowColor = ""
 # steroids.config.tabBar.selectedTabTintColor = ""
 #
-# Loading screen is only for Android platform, used on the background of loading.png
-# steroids.config.loadingScreen.tintColor = ""
-#
+# The loading screen is only on Android, on the background of www/loading.png.
+# On iOS, www/loading.html is used instead.
+
+steroids.config.loadingScreen.tintColor = "#262626"
+
 # -- Indicator image --
 # Can be used to set an indicator image for the selected tab on iOS (can be bigger than the tab area)
 # Default: ""
