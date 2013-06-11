@@ -19,11 +19,11 @@ examples =
   "geolocation": require("./Examples/geolocation")
   "layerStack": require("./Examples/layerStack")
   "modal": require("./Examples/modal")
-  # "notification": require("./Examples/notification") requires 2.7.0
+  "notification": require("./Examples/notification")
   "navigationBar": require("./Examples/navigationBar")
   "photoGallery": require("./Examples/photoGallery")
   "preload": require("./Examples/preload")
-  # "storage": require("./Examples/storage") requires 2.7.0
+  "storage": require("./Examples/storage")
 
 class Example extends Base
   @usageParams: ->
@@ -54,6 +54,8 @@ class Example extends Base
         - compass -- Access the device's compass.
         - device -- Access the device properties.
         - geolocation -- Access the device's geolocation data.
+        - notification -- Access native notifications.
+        - storage -- Access Cordova's SQL Storage API.
     """
 
   generate: ->

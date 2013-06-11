@@ -41,8 +41,6 @@ class Controllers extends Base
     @copyFile path.join("app", "views", "steroidsTutorial", "controllers.html"), "controllers.html.template"
     @copyFile path.join("app", "views", "steroidsTutorial", "controllers-completed.html"), "controllers-completed.html.template"
 
-    @addBowerDependency "jquery", "1.9.1"
-
     Help.SUCCESS()
 
     console.log """
