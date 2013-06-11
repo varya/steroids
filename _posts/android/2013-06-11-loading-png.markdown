@@ -1,13 +1,13 @@
 ---
 layout: post
-title:  "Using loading.html"
+title:  "Using loading.png"
 date:   2013-05-27 13:51:34
-categories: ios
-platforms: iOS
+categories: android
+platforms: Android
 ---
 
 ### Related Guides
-* [Using loading.png (for Android)][loading-png]
+* [Using loading.html (for iOS)][loading-html]
 
 ### Related API Docs
 * [steroids.views.WebView][views-webview-api]
@@ -15,9 +15,15 @@ platforms: iOS
 
 When a new `steroids.views.WebView` is pushed to the layer stack with `steroids.layers.push`, the push animation starts instantly. However, since the new WebView won't be instantly available, Steroids first shows a special loading view. After the new WebView fires the `DOMContentLoaded` event, the loading view smoothly fades away and reveals the WebView underneath.
 
-On iOS, the loading view is a `steroids.views.WebView` that always shows the `www/loading.html` document. It is loaded into memory at app start, so it is always instantly available. You can modify and style `loading.html` like any other HTML document. It stays in the memory and alive in the background, continuing to execute JavaScript, animate CSS etc.
+On Android, the loading view is a static PNG image that is scaled proportionally until it hits either edges of the screen, and then centered. The remaining space is filled with a solid color, defined in `config/application.coffee`:
 
-To disble the loading view, simply remove the `loading.html` file. Note that without the file, the push animation for a new `WebView` will start only after the `DOMContentLoaded` event has fired, which can lead to noticable unresponsiveness.
+{% highlight javascript %}
+steroids.config.loadingScreen.tintColor = "#262626"
+{% endhighlight %}
+
+You can modify the loading view by replacing the file at `www/loading.png` with your own file and changing the loading screen color.
+
+Note that without a file at `www/loading.png`, a default loading view will be shown. Disabling the loading view altogether is currently unsupported in Android.
 
 ## Removing the loading screen manually
 
@@ -30,5 +36,5 @@ steroids.view.removeLoading();
 which removes the loading screen. This can be useful if you need to e.g. load some data via AJAX before you show the page to the user.
 
 [layers-push-api]: http://docs.appgyver.com/en/edge/steroids_Steroids%20Native%20UI_steroids.layers_layers.push.md.html#steroids.layers.push
-[loading-png]: /steroids/guides/android/loading-png/
+[loading-html]: /steroids/guides/ios/loading-html/
 [views-webview-api]: http://docs.appgyver.com/en/edge/steroids_Steroids%20Native%20UI_steroids.views_views.WebView.md.html#steroids.views.WebView
