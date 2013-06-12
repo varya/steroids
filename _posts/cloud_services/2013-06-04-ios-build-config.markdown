@@ -53,6 +53,8 @@ Click Continue and then Confirm to create your App ID.
 
 ### Registering devices
 
+*Note that during development, you don't need to register any devices if you use the [cloud-deploy][cloud-deploy] functionality of Steroids – anyone with AppGyver Scanner and the correct URL can download and try out your app.*
+
 You need to specify beforehand which devices are allowed to install your Ad Hoc build. Go to [developer.apple.com][apple-dev] and open the [Devices listing][apple-devices-list].
 
 Click the plus button in the top-right corner to register a new device. Enter a name for the device (used in the iOS Dev Center only) and give its UDID.
