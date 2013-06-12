@@ -60,7 +60,7 @@ steroids.config.location = "index.html"
 # ]
 
 # -- Selected tab background image --
-# Can be used to set an indicator image for the selected tab on iOS (can be bigger than the tab area)
+# Used to set an indicator image for the selected tab on iOS (can be bigger than the tab area).
 # Default: ""
 #
 # steroids.config.tabBar.selectedTabBackgroundImage = ""
@@ -85,8 +85,8 @@ steroids.config.navigationBar.buttonShadowColor = "#000000"
 
 #
 # Loading screen color is used by Android only, on the background of loading.png
-# steroids.config.loadingScreen.tintColor = ""
-#
+
+steroids.config.loadingScreen.tintColor = "#262626"
 
 # -- iOS theme --
 # Sets a built-in theme for the navigation bar and tab bar. Valid values are "black" and "default".
