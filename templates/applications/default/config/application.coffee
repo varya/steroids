@@ -21,7 +21,7 @@ steroids.config.name = "My New Application"
 steroids.config.location = "index.html"
 
 # -- Remote hosts: steroids.config.hosts --
-# Defines the hostnames that the application will capture. Requests by the Steroids app to a captured hostname will be served from localhost. Using the example below, the file at www/index.html would be served equivalently from both http://localhost/index.html and http://mobileapp.example.com.
+# Defines the hostnames that the application will capture. Requests by the Steroids app to a captured hostname will be served from localhost. Using the example below, the file at www/index.html would be served equivalently from both http://localhost/index.html and http://mobileapp.example.com/index.html.
 # Please see the Steroids Guide linked at the top of this document for a more elaborate explanation.
 # Default: []
 #
