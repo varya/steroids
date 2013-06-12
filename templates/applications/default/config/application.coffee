@@ -1,21 +1,28 @@
+# For a more robust explanation of the steroids.config properties, we strongly recommended you to read the relevant Steroids Guide at:
+# http://guides.appgyver.com/steroids/guides/project_configuration/config-application-coffee/
+
 # -- Required settings --
-# Name of the application, used as the app name when creating a build
+# Name of the application, used by AppGyver Cloud Services after you have used the command
+#
+#   $ steroids deploy
+#
+# to create a cloud-deployed build of your app.
 
 steroids.config.name = "My New Application"
 
 # -- Location: steroids.config.location --
-# Defines the location of the HTML document that the initial steroids.views.WebView will render (for applications without the tab bar).
+# Defines the location of the HTML document that Steroids will load when your app starts.
 # Enabling the tab bar via 'steroids.config.tabBar.enabled = true' will override this value.
-# The location can be one of these:
-#   - file URL (serves the document via the file protocol from the www/ folder, e.g. 'index.html' would serve www/index.html, )
-#   - localhost URL, starting with http://localhost/ (serves the document locally from the www/ folder, e.g. 'http://localhost/index.html' would serve www/index.html)
-#   - external URL (directly from the internets, e.g. http://www.google.com)
+# Valid values are:
+#   - "index.html" - served with File URL, like in PhoneGap.
+#   - "http://localhost/index.html" - served from the device's web server.
+#   - "http://www.google.com - any external URL.
 
 steroids.config.location = "index.html"
 
 # -- Remote hosts: steroids.config.hosts --
-# Defines the hostnames that the application will capture and serve application files from.
-# E.g. by adding mobileapp.example.com to the list, http://mobileapp.example.com/index.html will be served locally, just like http://localhost/index.html.
+# Defines the hostnames that the application will capture. Requests by the Steroids app to a captured hostname will be served from localhost. Using the example below, the file at www/index.html would be served equivalently from both http://localhost/index.html and http://mobileapp.example.com.
+# Please see the Steroids Guide linked at the top of this document for a more elaborate explanation.
 # Default: []
 #
 # steroids.config.hosts = ["mobileapp.example.com", "m.example.net"]
@@ -29,17 +36,15 @@ steroids.config.location = "index.html"
 # steroids.config.tabBar.enabled = true
 
 # -- Defining tabs via the tab array --
-# An array of tab objects that specify which tabs are created on app startup.
+# An array of tab objects that specify which tabs are shown on app startup.
 #
 # Tab object properties are:
 # - title: text to show in the tab title
-# - icon: path to the tab's icon file, relative to www/ (e.g. icons/pill@2x.png) (iOS only)
-#   - adding '@2x' before the file extension in the icon's filename allows proper handling of Retina images
-# - location: defines which HTML document the tab's initial steroids.views.WebView will render, can be one of these:
-#   - file URL (serves the document via the file protocol from the www/ folder, e.g. 'index.html' would serve www/index.html, )
-#   - localhost URL, starting with http://localhost/ (serves the document locally from the www/ folder, e.g. 'http://localhost/index.html' would serve www/index.html)
-#   - external URL (directly from the internets, e.g. http://www.google.com)
-
+# - icon: path to the tab's icon file, relative to dist/, e.g. icons/pill@2x.png (iOS only)
+# - location: defines the HTML document the tab will render , can be one of these:
+#   - "index.html" - served with File URL, like in PhoneGap.
+#   - "http://localhost/index.html" - served from the device's web server.
+#   - "http://www.google.com - any external URL.
 #
 # steroids.config.tabBar.tabs = [
 #   {
@@ -54,16 +59,21 @@ steroids.config.location = "index.html"
 #   }
 # ]
 
-# -- Status bar --
-# Sets the visibilty of the status bar on iOS (shows the carrier, clock and battery status)
-# Default: false
-
-steroids.config.statusBar.enabled = true
+# -- Selected tab background image --
+# Can be used to set an indicator image for the selected tab on iOS (can be bigger than the tab area)
+# Default: ""
+#
+# steroids.config.tabBar.selectedTabBackgroundImage = ""
 
 # -- Colors --
 # Color values can be set in hex codes, eg. #ffbb20
-# Setting these values will override the values set by the application theme in steroids.config.theme
+# Setting these values will override the values set by the application theme defined by steroids.config.theme
 # Default for all attributes: ""
+
+# steroids.config.tabBar.tintColor = ""
+# steroids.config.tabBar.tabTitleColor = ""
+# steroids.config.tabBar.tabTitleShadowColor = ""
+# steroids.config.tabBar.selectedTabTintColor = ""
 
 steroids.config.navigationBar.tintColor = "#00aeef"
 steroids.config.navigationBar.titleColor = "#ffffff"
@@ -73,39 +83,39 @@ steroids.config.navigationBar.buttonTintColor = "#363636"
 steroids.config.navigationBar.buttonTitleColor = "#ffffff"
 steroids.config.navigationBar.buttonShadowColor = "#000000"
 
-# steroids.config.tabBar.tintColor = ""
-# steroids.config.tabBar.tabTitleColor = ""
-# steroids.config.tabBar.tabTitleShadowColor = ""
-# steroids.config.tabBar.selectedTabTintColor = ""
 #
-# The loading screen is only on Android, on the background of www/loading.png.
-# On iOS, www/loading.html is used instead.
+# Loading screen color is used by Android only, on the background of loading.png
+# steroids.config.loadingScreen.tintColor = ""
+#
 
-steroids.config.loadingScreen.tintColor = "#262626"
-
-# -- Indicator image --
-# Can be used to set an indicator image for the selected tab on iOS (can be bigger than the tab area)
-# Default: ""
-#
-# steroids.config.tabBar.selectedTabBackgroundImage = ""
-#
 # -- iOS theme --
-# Built-in iOS theme, values: black and default
+# Sets a built-in theme for the navigation bar and tab bar. Valid values are "black" and "default".
 # Default: "default"
 #
 # steroids.config.theme = "default"
 
+# -- Status bar --
+# Sets the visibilty of the status bar on iOS (shows the carrier, clock and battery status)
+# Default: false
+
+steroids.config.statusBar.enabled = true
+
 # -- Editor --
-# When running connect this configure the editor command to launch
+# The Steroids console (shown when "$ steroids connect" is running) commands 'editor' and 'e' run the given command with the given arguments. The arguments are always given as an array.
+# Default command: "subl"
+# Default arguments: ["."]
 #
 # steroids.config.editor.cmd = "subl"
 # steroids.config.editor.args = ["."]
 
-# -- Hooks --
-# Your own command, for example a build system to call before steroids build system
+# -- Pre- and post-build hooks --
+# Run your own build commands before and after Steroids builds your app. The arguments are always given as an array.
+# Defaults: none
+#
+# The preMake command is run before `steroids make`, the process where `app/` and `www/` folders are processed into the `dist/` folder.
 # steroids.config.hooks.preMake.cmd = "echo"
 # steroids.config.hooks.preMake.args = ["running yeoman"]
-
-# Your own command, for example a build system to call after steroids build system, before packaging the application.
+#
+# The postMake command is run right after `steroids make`, before running `steroids package`, the process that packages the app before sending it to client devices.
 # steroids.config.hooks.postMake.cmd = "echo"
 # steroids.config.hooks.postMake.args = ["cleaning up files"]
