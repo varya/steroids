@@ -6,10 +6,9 @@
 
 <p>We created <code>app/controllers/</code> directory. It contains two files: <code>application.js</code> and <code>steroidsTutorial.js</code>. From now on, let's not include any JavaScript in our views, okay?</p>
 
-
 <h2>Using view controllers</h2>
 
-<p>In the application wide layout <code>app/views/layouts/steroidsTutorial.html</code> there is a <code>script</code>-tag that automatically includes a controller for this resource (steroidsTutorial). Open <code>app/controllers/steroidsTutorial.js</code>, and enable the top bar.</p>
+<p>In the application wide layout <code><small>app/views/layouts/steroidsTutorial.html</small></code> there is a <code>script</code>-tag that automatically includes a controller for this resource (steroidsTutorial). Open <code><small>app/controllers/steroidsTutorial.js</small></code> and enable the top bar.</p>
 
 <h2>Application controllers</h2>
 

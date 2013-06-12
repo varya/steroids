@@ -29,13 +29,19 @@ class Begin extends Base
 
     Great success!
 
-    Next up, open the config/application.coffee file. Find the steroids.config.location property, which tells our app which HTML document it should load when it starts up. Let's change it:
+    Next up, open the config/application.coffee file. Find the
+    steroids.config.location property, which tells our app which
+    HTML document it should load when it starts up. Let's change it:
 
       steroids.config.location = "tutorial.html"
 
-    Save the file. Then, hit enter on the Steroids console (opened via $ steroids connect), or use the command $ steroids push. You should see your app reload with further instructions.
+    Save the file. Then, hit enter on the Steroids console, opened via
+    $ steroids connect. You should see your app reload with further
+    instructions.
 
-    The following lines are the output of Bower, a package dependency management tool. Bower is configured with config/bower.json and run with
+    The following lines are the output of Bower, a package dependency
+    management tool. Bower is configured with config/bower.json and
+    run with
 
       $ steroids update
 

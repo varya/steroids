@@ -1,22 +1,20 @@
 <div class="content content-padded">
 
-	<h1>Done!</h1>
+  <h1>Done!</h1>
 
-	<p>Currently we don't have any more tutorials here, but check out stuff at <code>academy.appgyver.com</code> and <code>guides.appgyver.com</code></p>
+  <p>Currently we don't have any more tutorials here, but check out more material at <code>academy.appgyver.com</code> and <code>guides.appgyver.com/steroids</code></p>
 
 
-	<h2>PROTIP</h2>
+  <h2>PROTIP</h2>
 
-	<p>Try out out resource generation:</p>
+  <p>Try out out resource generation:</p>
 
-	<p><small>$ steroids generate resource cars</small></p>
+  <p><small>$ steroids generate resource cars</small></p>
 
-	<p>and</p>
+  <p>And for AngularJS style resources:</p>
 
-	<p><small>$ steroids generate ng-resource cars</small></p>
+  <p><small>$ steroids generate ng-resource cars</small></p>
 
-	<p>for Angular.js style resources.</p>
-
-	<p>Happy Hacking!</p>
+  <p>Happy Hacking!</p>
 
 </div>

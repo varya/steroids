@@ -47,14 +47,16 @@ class Steroids extends Base
     Help.awesome()
     console.log """
 
-    Next up, edit config/application.coffee and uncomment some lines.  CoffeeScript is especially picky about extra
-    spaces, so make sure you remove the extra space after that # character.
+    Next up, edit config/application.coffee and uncomment some lines.
+    CoffeeScript is especially picky about extra spaces, so make sure
+    you remove the extra space after that # character.
 
     Find line that says:
 
     # steroids.config.tabBar.enabled = true
 
-    This enables the native navigation tab bar.  And also the array below that configures the tab bar contents:
+    This enables the native navigation tab bar.  And also the array
+    below that configures the tab bar contents:
 
     # steroids.config.tabBar.tabs = [
     #   {
@@ -62,9 +64,9 @@ class Steroids extends Base
     #   }
     # ]
 
-    Then, hit enter on the Steroids console (or use the command $ steroids push) and you should see the application reload
-    with tabs.
-    
+    Then, hit enter on the Steroids console and you should see the
+    application reload with tabs.
+
     Bower, do your magic!
     """
 

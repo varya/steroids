@@ -1,3 +1,13 @@
+## 2.7.4 (TODO)
+
+TODO
+
+Bugfixes:
+- onerror.js.android changed to onerror.android.js in default project template
+
+Changes:
+  - Updated all tutorials for better clarity
+
 ## 2.7.3 (2013-06-11)
 
 New Cordova examples, Android loading screen, index.html info text clarified

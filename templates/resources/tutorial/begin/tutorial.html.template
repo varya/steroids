@@ -8,10 +8,7 @@
 
   <script src="javascripts/onerror.js"></script>
 
-  <script src="components/jquery/jquery.min.js"></script>
-  <script src="vendor/hammerjs/jquery.hammer.min.js"></script>
-
-  <!-- EXCERCISE 2: You found it! As you can see below, cordova.js is served from http://localhost/ – it doesn't even exist in the project files on your disk. The localhost server is running inside the Steroids app on your device. Since Steroids knows which platform it is running on, it can correctly serve either the iOS or Android version of cordova.js. -->
+  <!-- EXCERCISE 1: You found it! As you can see below, cordova.js is served from http://localhost/ – it doesn't even exist in the project files on your disk. The localhost server is running inside the Steroids app on your device. Since Steroids knows which platform it is running on, it can correctly serve either the iOS or Android version of cordova.js. -->
   <script src="http://localhost/appgyver/cordova.js"></script>
 </head>
 <body>
@@ -21,47 +18,61 @@
 
   <p>So far you've mastered that:</p>
 
-  <p>1) Pressing enter in the Steroids console (opened by running <code>$ steroids connect</code>) or using <code>$ steroids push</code> lets you push changes made in your app to all connected devices.</p>
+  <p>1) Pressing enter in the Steroids console (opened by running <code>$ steroids connect</code>) lets you push changes made in your app to all connected devices.</p>
 
   <p>2) The <code>steroids.config.location</code> property in <code>config/application.coffee</code> sets up the initial view of your app.</p>
 
-  <p> Let's dig deeper.</p>
+  <p> Let's dig deeper!</p>
 
-  <h2>Accessing Cordova</h2>
+  <h2>Accessing Cordova (PhoneGap)</h2>
 
   <p>Steroids gives you full access to Cordova's APIs. Let's try out one straight away:</p>
 
-  <a class="button-block" onclick="askForConfirm()">navigator.notification.confirm</a>
+  <a class="button-block" onclick="askForConfirm()">Click me!</a>
 
   <p>Next, time for a few short excercises.</p>
 
   <h2>Excercise 1</h2>
 
-  <p>Steroids comes bundled with several examples demonstarting Cordova APIs and other features of Steroids.</p>
+  <p>Steroids lets you automatically load the correct version of <code>cordova.js</code>, regardless of your platform (i.e. iOS or Android). Now, find out how we do this by looking at the source code of this document at <code>www/tutorial.html</code>.</p>
 
-  <p>In your project folder, type</p>
+  <h2>Excercise 2</h2>
+
+  <p>
+    You'll want to share your awesome app with others, so let's practice that. Open a new Terminal window, go to your Steroids project folder and run<br>
+    <br>
+    <code>$ steroids deploy</code><br>
+    <br>
+    A build of your app will be uploaded to AppGyver Cloud, and a browser window will open with a QR code and a shareable URL. Anyone can then scan the QR code with AppGyver Scanner to view your app.
+  </p>
+  
+  <p>After making changes to your project, simply run the <code>$ steroids deploy</code> command again to update your cloud-deployed build.</p>
+
+  <h2>Exercise 3</h2>
+
+  <div class="info-highlight">
+    Note that after this exercise, you need to change <code>config/application.coffee</code>'s <code>steroids.config.location</code> property back to <code>"tutorial.html"</code> to return to this document.
+  </div>
+  
+  <p>To jump-start your development, Steroids comes bundled with several examples demonstarting Cordova APIs and other features of Steroids.</p>
+
+  <p>In your project folder, run</p>
+  
+  <p><small><code>$ steroids generate</code></small></p>
+  
+  <p>At the end of the output, you get a list of available examples. Let's try the Cordova camera one. Run</p>
 
   <p><small><code>$ steroids generate example camera</code></small></p>
 
   <p>Follow the instructions, test out the camera example and then return to this tutorial.</p>
 
-  <h2>Exercise 2</h2>
-
-  <p>Steroids lets you automatically load the correct version of <code>cordova.js</code>, regardless of your platform (i.e. iOS or Android). Find out how we do this by looking at the source code of this document at <code>www/tutorial.html</code>.</p>
-
-  <h2>Exercise 3</h2>
-
-  <p>Certain app-wide properties are set up via a config.xml file. Steroids allows you to set up an unique <code>config.xml</code> file for both Android and iOS. Find your platform-specific <code>config.xml</code> file in the <code>www/</code> folder, open it, find the <code>DisallowOverscroll</code> preference and change its value to <code>true</code>. Refresh your changes.</p>
-
-    <p>After your app reloads, the 'rubber-band' (or blue glow on Android) effect that happens when you try to scroll past a view's edge is disabled.</p>
-
   <h2>All done!</h2>
 
-  <p>Type</p>
+  <p>Run</p>
   
   <p><small><code>$ steroids generate tutorial steroids</code></small></p>
   
-  <p>for the next tutorial. Also, be sure to check out <code>academy.appgyver.com</code> and <code>guides.appgyver.com</code> for more resources.</p>
+  <p>for the next tutorial. Also, be sure to check out <code>academy.appgyver.com</code> and <code>guides.appgyver.com/steroids</code> for more resources.</p>
   
   </div>
 
@@ -70,7 +81,7 @@
 
   function askForConfirm(){
     // Steroids-enhanced Cordova API documentation can be found at http://docs.appgyver.com
-    navigator.notification.confirm("", null, "Cool, huh?", "Yes,No");
+    navigator.notification.confirm("This is a native confirm dialogue opened by the Cordova API call navigator.notification.confirm", null, "Cool, huh?", "Yes,No");
   }
 
   </script>
