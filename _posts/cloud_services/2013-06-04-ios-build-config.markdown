@@ -24,7 +24,9 @@ After you're done, it takes a couple of moments for Apple to generate the iOS Di
 
 Download the `.cer` file to your computer, and then double-click on it to add it to your Keychain.
 
-Next, open Keychain Access and find your iPhone Distribution certificate. Expand it: it should have the private key that you generated with your Certificate Signing Request.
+Next, open Keychain Access and find your **iPhone Distribution certificate**. Expand it: it should have the private key that you generated with your Certificate Signing Request.
+
+<strong>Note: Make sure that you use a <em>Distribution</em> certificate, not a <em>Developer</em> certificate!</strong>
 
 <img src="/steroids/images/ios_build/export_certificate.png">
 
