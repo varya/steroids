@@ -47,7 +47,7 @@ class Simulator
     @simulatorSession.on "exit", () =>
       @running = false
 
-      steroidsCli.debug "Killing iPhone Simulator ..."
+      steroidsCli.debug "Killing iOS Simulator ..."
 
       killSimulator = sbawn
         cmd: "/usr/bin/killall"
@@ -56,7 +56,7 @@ class Simulator
       killSimulator.on "exit", () =>
         steroidsCli.debug "killed."
 
-      console.log "PROTIP: use steroids simutor --type to specify device type, see steroids usage for help."
+      console.log "PROTIP: use steroids simulator --type to specify device type, see steroids usage for help."
 
       return unless ( @simulatorSession.stderr.indexOf('Session could not be started') == 0 )
 
