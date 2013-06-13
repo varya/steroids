@@ -85,7 +85,8 @@ A tab object contains the following proporties:
 
 - `title`: text shown in the tab title. **Required.**
 - `icon`: path to the tab's icon file, relative to `dist/` (e.g. `icons/pill@2x.png`). *Tab bar icons are supported by iOS only.*
-  - if you add `@2` before the file extension (like in the above example), iOS will scale down the image to 50% size while keeping the amount of pixels the same. This allows the image to be displayed properly on Retina displays.
+  - if you add `@2x` before the file extension (like in the above example), iOS will scale down the image to 50% size while keeping the amount of pixels the same. This allows the image to be displayed properly on Retina displays.
+  - the correct size for a Retina tab bar icon is about 60x60 pixels (maximum 96x64 pixels)
 - `location`: defines which HTML document the tab renders. **Required.** Examples of valid values are:
   - `"index.html`" – served with File URL, like in PhoneGap.
   - `http://localhost/index.html – served from the device's web server.
