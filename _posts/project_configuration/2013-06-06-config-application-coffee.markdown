@@ -89,8 +89,8 @@ A tab object contains the following proporties:
   - the correct size for a Retina tab bar icon is about 60x60 pixels (maximum 96x64 pixels)
 - `location`: defines which HTML document the tab renders. **Required.** Examples of valid values are:
   - `"index.html`" – served with File URL, like in PhoneGap.
-  - `http://localhost/index.html – served from the device's web server.
-  - `http://www.google.com` – any external URL.
+  - `"http://localhost/index.html"` – served from the device's web server.
+  - `"http://www.google.com"` – any external URL.
 <br>
 <br>
 {% highlight coffeescript %}

@@ -8,6 +8,7 @@ platforms: Android, iOS
 
 ###Related guides
 * [Steroids preferences with config/application.coffee][config-application-coffee-guide]
+
 ###Related APIs
 * [steroids.app.absolutePath][app-absolutepath-api]
 * [steroids.app.absoluteUserFilesPath][app-absoluteuserfilespath-api]
@@ -23,6 +24,8 @@ Relative paths can only be used when the location of the current document is kno
 In addition, many Cordova API calls require an absolute URL. Since the folder structure from the root of the device's file system to your app is rather complex, specifying the absolute URL can be tedious (the [steroids.app.absolutePath][app-absolutepath-api] property is a convenient helper).
 
 As an alternative, Steroids allows you to serve your project files from a local web server that runs inside the Steroids runtime. This has multiple benefits, including being able to use absolute URLs with a root that points to your app directory, as well as using the [.android. extension][android-extension-guide] to serve Android-specific version of certain files.
+
+To move your project to localhost, go through the following steps.
 
 ##Serve HTML pages from localhost
 
