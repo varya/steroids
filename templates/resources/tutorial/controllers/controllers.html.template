@@ -17,10 +17,10 @@
 </div>
 
 <div class="topcoat-list__container">
-<ul class="topcoat-list">
-  <li class="opensLayer topcoat-list__item" data-location="/views/steroidsTutorial/controllers-completed.html">
-    Got it, to the next part!
-    <span class="chevron"/>
-  </li>
-</ul>
+  <ul class="topcoat-list">
+    <li class="opensLayer topcoat-list__item" data-location="/views/steroidsTutorial/controllers-completed.html">
+      Got it, to the next part!
+      <span class="chevron"/>
+    </li>
+  </ul>
 </div>

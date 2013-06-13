@@ -3,9 +3,10 @@
 TODO
 
 Bugfixes:
-- onerror.js.android changed to onerror.android.js in default project template
+  - onerror.js.android changed to onerror.android.js in default project template
 
 Changes:
+  - Default project and all tutorials now use Topcoat for CSS styles
   - Updated all tutorials for better clarity
 
 ## 2.7.3 (2013-06-11)
