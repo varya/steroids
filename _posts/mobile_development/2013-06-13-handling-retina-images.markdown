@@ -2,7 +2,7 @@
 layout: post
 title:  "Handling images on Retina/high DPI screens"
 date:   2013-06-12 13:51:34
-categories: project_configuration
+categories: mobile_development
 platforms: Android, iOS
 ---
 
