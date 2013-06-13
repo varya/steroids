@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Cordova Media Example</title>
+  <title>Steroids Tutorial: Begin</title>
 
   <link rel="stylesheet" href="vendor/topcoat/css/topcoat-mobile-light.css" />
   <link rel="stylesheet" href="stylesheets/application.css" />
@@ -29,51 +29,49 @@
 
   <p>Steroids gives you full access to Cordova's APIs. Let's try out one straight away:</p>
 
-  <a class="topcoat-button" onclick="askForConfirm()">Click me!</a>
+  <a class="topcoat-button center block" onclick="askForConfirm()">Click me!</a>
 
   <p>Next, time for a few short excercises.</p>
 
   <h2>Excercise 1</h2>
 
-  <p>Steroids lets you automatically load the correct version of <code>cordova.js</code>, regardless of your platform (i.e. iOS or Android). Now, find out how we do this by looking at the source code of this document at <code>www/tutorial.html</code>.</p>
+  <p>Steroids automatically loads the correct version of <strong>cordova.js</strong>, regardless of your platform (i.e. iOS or Android). Now, find out how we do this by looking at the source code of this document at <strong>www/tutorial.html</strong>.</p>
 
   <h2>Excercise 2</h2>
 
   <p>
     You'll want to share your awesome app with others, so let's practice that. Open a new Terminal window, go to your Steroids project folder and run<br>
     <br>
-    <code>$ steroids deploy</code><br>
+    <strong>$ steroids deploy</strong><br>
     <br>
     A build of your app will be uploaded to AppGyver Cloud, and a browser window will open with a QR code and a shareable URL. Anyone can then scan the QR code with AppGyver Scanner to view your app.
   </p>
   
-  <p>After making changes to your project, simply run the <code>$ steroids deploy</code> command again to update your cloud-deployed build.</p>
+  <p>After making changes to your project, simply run the <strong>$ steroids deploy</strong> command again to update your cloud-deployed build.</p>
 
   <h2>Exercise 3</h2>
 
-  <div class="info-highlight">
-    Note that after this exercise, you need to change <code>config/application.coffee</code>'s <code>steroids.config.location</code> property back to <code>"tutorial.html"</code> to return to this document.
-  </div>
+  <p>Note that after this exercise, you need to change <strong>config/application.coffee</strong>'s <strong>steroids.config.location</strong> property back to <strong>"tutorial.html"</strong> to return to this document, so be prepared!</p>
   
   <p>To jump-start your development, Steroids comes bundled with several examples demonstarting Cordova APIs and other features of Steroids.</p>
 
   <p>In your project folder, run</p>
   
-  <p><small><code>$ steroids generate</code></small></p>
+  <p><strong>$ steroids generate</strong></p>
   
   <p>At the end of the output, you get a list of available examples. Let's try the Cordova camera one. Run</p>
 
-  <p><small><code>$ steroids generate example camera</code></small></p>
+  <p><strong>$ steroids generate example camera</strong></p>
 
   <p>Follow the instructions, test out the camera example and then return to this tutorial.</p>
 
   <h2>All done!</h2>
 
-  <p>Run</p>
+  <p>For then next tutorial, run</p>
   
-  <p><small><code>$ steroids generate tutorial steroids</code></small></p>
+  <p><strong>$ steroids generate tutorial steroids</strong></p>
   
-  <p>for the next tutorial. Also, be sure to check out <code>academy.appgyver.com</code> and <code>guides.appgyver.com/steroids</code> for more resources.</p>
+  <p>Remember, <strong>academy.appgyver.com</strong> and <strong>guides.appgyver.com/steroids</strong> have tons of additional resources.</p>
   
   </div>
 
@@ -86,5 +84,13 @@
   }
 
   </script>
+
+  <style>
+  /* inlining CSS like this is generally  a bad idea and done here only for brevity. */
+
+  .block {
+    display: block;
+  }
+  </style>
 </body>
 </html>
