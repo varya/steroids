@@ -55,7 +55,7 @@ Defines the hostnames that the application will capture, given as an array of st
 
 Requests by the Steroids runtime to a captured hostname will be served from localhost. For example, if you have defined `mobileapp.example.com` as one of your captured hosts, you can load the document at `www/index.html` equivalently from both `http://localhost/index.html` and `http://mobileapp.example.com/index.html`. The only difference is the WebView's document location (e.g. `window.location.href`).
 
-This is useful for circumventing same-origin issues. With the above example, AJAX connections to your backend at `api.example.com` are allowed, because to remote locations, the Steroids app (`mobileapp.example.com`) appears to be loaded from the same top-level domain (`*.example.com`).
+This is useful for circumventing same origin issues. With the above example, AJAX connections to your backend at `api.example.com` are allowed, because to remote locations, the Steroids app (`mobileapp.example.com`) appears to be loaded from the same top-level domain (`*.example.com`).
 
 {% highlight coffeescript %}
 steroids.config.hosts = ["mobileapp.example.com", "m.example.net"]

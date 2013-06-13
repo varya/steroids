@@ -25,6 +25,13 @@ title: Steroids Guides
     {% endfor %}
   </ul>
 
+  <h2>HTML5 Mobile Development</h2>
+  <ul class="posts">
+    {% for post in site.categories.mobile_development %}
+      <li>&raquo; <a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></li>
+    {% endfor %}
+  </ul>
+
   <h2>iOS</h2>
   <ul class="posts">
     {% for post in site.categories.ios %}
@@ -39,9 +46,9 @@ title: Steroids Guides
     {% endfor %}
   </ul>
 
-  <h2>HTML5 Mobile Development</h2>
+  <h2>PhoneGap on Steroids</h2>
   <ul class="posts">
-    {% for post in site.categories.mobile_development %}
+    {% for post in site.categories.phonegap %}
       <li>&raquo; <a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></li>
     {% endfor %}
   </ul>

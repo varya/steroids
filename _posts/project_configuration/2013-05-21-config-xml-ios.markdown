@@ -6,6 +6,9 @@ categories: project_configuration
 platforms: iOS
 ---
 
+###Related Guides
+* [Cordova preferences in config.xml (Android)][config-xml-android-guide]
+
 Like Cordova, Steroids uses a `config.xml` file to set universal preferences for WebViews in your app, manage which Cordova plugins are loaded and set whitelisted domains for your app. The structure of `config.xml` is based on the [W3C Packaged Web Apps (Widgets)][widgets] specification, although only a limited set of the available elements are used.
 
 The iOS-specific `config.xml` is located at `www/config.ios.xml`. (A `config.xml` file in the same directory overrides the platform-specific version.)
@@ -80,5 +83,6 @@ For more granular control, see the [Cordova Docs][cordova-domain-whitelisting] o
 The `<content>` tag is not used in Steroids to set the initial location of your app. Instead, the `steroids.config.location` property in `config/application.coffee` is used.
   
 [widgets]: http://www.w3.org/TR/widgets/
+[config-xml-android-guide]: /steroids/guides/project_configuration/config-xml-android/
 [cordova-domain-whitelisting]: http://cordova.apache.org/docs/en/2.7.0/guide_whitelist_index.md.html#Domain%20Whitelist%20Guide
 [steroids-api]: http://docs.appgyver.com
