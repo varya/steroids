@@ -4,7 +4,7 @@
   <meta charset="utf8">
   <title>Steroids Tutorial App</title>
 
-  <link rel="stylesheet" href="/stylesheets/ratchet-steroids.css" />
+  <link rel="stylesheet" href="/vendor/topcoat/css/topcoat-mobile-light.css" />
   <link rel="stylesheet" href="/stylesheets/application.css" />
 
   <script src="/javascripts/onerror.js"></script>
@@ -19,6 +19,44 @@
 
   <script src="/controllers/application.js"></script>
   <script src="/controllers/<%= yield.controller %>.js"></script>
+  
+
+  <style>
+    /* Again, inlining CSS here is suboptimal, but we're trying to be concise! */
+    li {
+      position:relative;
+    }
+    .chevron {
+      position: absolute;
+      top: 50%;
+      right: 20px;
+      margin-top: -10px;
+      display:block;
+      height:20px;
+    }
+    /* Base styles for both 1/2's of the chevron */
+    .chevron:before,
+    .chevron:after {
+      position: relative;
+      display: block;
+      width: 12px;
+      height: 4px;
+      background-color: #999;
+      content: '';
+    }
+    /* Position and rotate respective 1/2's of the chevron */
+    .chevron:before {
+      top: 5px;
+      -webkit-transform: rotate(45deg);
+              transform: rotate(45deg);
+    }
+    .chevron:after {
+      top: 7px;
+      -webkit-transform: rotate(-45deg);
+              transform: rotate(-45deg);
+    }
+  </style>
+  
 </head>
 <body>
 

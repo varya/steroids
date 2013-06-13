@@ -2,18 +2,18 @@
 
   <h1>Done!</h1>
 
-  <p>Currently we don't have any more tutorials here, but check out more material at <code>academy.appgyver.com</code> and <code>guides.appgyver.com/steroids</code></p>
+  <p>Currently we don't have any more tutorials here, but as we mentioned, check out more material at <strong>academy.appgyver.com</strong> and <strong>guides.appgyver.com/steroids</strong></p>
 
 
   <h2>PROTIP</h2>
 
   <p>Try out out resource generation:</p>
 
-  <p><small>$ steroids generate resource cars</small></p>
+  <p><strong><small>$ steroids generate resource cars</small></strong></p>
 
   <p>And for AngularJS style resources:</p>
 
-  <p><small>$ steroids generate ng-resource cars</small></p>
+  <p><strong><small>$ steroids generate ng-resource cars</small></strong></p>
 
   <p>Happy Hacking!</p>
 

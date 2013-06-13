@@ -4,36 +4,36 @@
 
 <p>Now, this page is a Steroids-style <em>resource</em>. It is generated from two files by the Steroids NPM: <br>
   <br>
-  <code><small>app/views/steroidsTutorial/index.html</small></code><br>
+  <strong><small>app/views/steroidsTutorial/index.html</small></strong><br>
   <br>
   is wrapped inside<br>
   <br>
-  <code><small>app/views/layouts/steroidsTutorial.html</small></code>.<br>
+  <strong><small>app/views/layouts/steroidsTutorial.html</small></strong>.<br>
   <br>
   The result is a single HTML file, which you can find at<br>
   <br>
-  <code><small>dist/views/steroidsTutorial/index.html</small></code><br>
+  <strong><small>dist/views/steroidsTutorial/index.html</small></strong><br>
 </p>
 
-<p>When you run <code>$ steroids connect</code> (or press enter to update), layouts are applied in the above fashion to all applicable HTML files in the <code>app/views/</code> folder.</p>
+<p>When you run <strong>$ steroids connect</strong> (or press enter to update), layouts are applied in the above fashion to all applicable HTML files in the <strong>app/views/</strong> folder.</p>
 
-<p>After this, the <code>www/</code> and <code>app/</code> folders are combined into the <code>dist/</code> folder. The contents of the <code>dist/</code> folder are then pushed to connected devices.</p>
+<p>After this, the <strong>www/</strong> and <strong>app/</strong> folders are combined into the <strong>dist/</strong> folder. The contents of the <strong>dist/</strong> folder are then pushed to connected devices.</p>
 
 <h2>Tabs</h2>
 
-<p>You also enabled tabs by uncommenting those lines in <code>config/application.coffee</code>.</p>
+<p>You also enabled tabs by uncommenting those lines in <strong>config/application.coffee</strong>.</p>
 
-<p>The <strong>Welcome</strong> tab shows our previous <code>www/index.html</code> document, and the <strong>Internet</strong> tab shows Google's front page.</p>
+<p>The <strong>Welcome</strong> tab shows our previous <strong>www/index.html</strong> document, and the <strong>Internet</strong> tab shows Google's front page.</p>
 
 <h2>Localhost</h2>
 
-<p>In addition, this page is served from <code>http://localhost</code> (instead of via the <code>file://</code> protocol), which is part of our secret sauce. You can still use the <code>file://</code> protocol (that allows e.g. easy cross-domain AJAX) by just specifying the file without the <code>http://localhost/</code> prefix (we've done this for the <strong>Welcome</strong> tab).</p>
+<p>In addition, this page is served from <strong>http://localhost</strong> (instead of via the <strong>file://</strong> protocol), which is part of our secret sauce. You can still use the <strong>file://</strong> protocol (that allows e.g. easy cross-domain AJAX) by just specifying the file without the <strong>http://localhost/</strong> prefix (we've done this for the <strong>Welcome</strong> tab).</p>
 
-<p>One instant benefit of localhost is that if you look at the <code><small>app/views/layouts/steroidsTutorial.html</small></code> file, you'll notice that we don't have to use explicit relative paths. You can always use <code>/stylesheets/applcation.css</code> instead of <code>../../stylesheets/application.css</code>. The same applies for images and other assets.</p>
+<p>One instant benefit of localhost is that if you look at the <strong><small>app/views/layouts/steroidsTutorial.html</small></strong> file, you'll notice that we don't have to use explicit relative paths. You can always use <strong>/stylesheets/applcation.css</strong> instead of <strong>../../stylesheets/application.css</strong>. The same applies for images and other assets.</p>
 
 <h2>Exercise</h2>
 
-<p>Note how this page sets the native navigation bar title to "PhoneGap on Steroids". Find out how this is done by looking at this document's source (at <code><small>app/views/steroidsTutorial/index.html</small></code>).</p>
+<p>Note how this page sets the native navigation bar title to "PhoneGap on Steroids". Find out how this is done by looking at this document's source (at <strong><small>app/views/steroidsTutorial/index.html</small></strong>).</p>
 
 <h2>Then</h2>
 
@@ -42,13 +42,14 @@
 
 </div>
 
-<ul class="list">
-  <li id="opener">
-    To the next document!
-    <span class="chevron"/>
-  </li>
-</ul>
-
+<div class="topcoat-list__container">
+  <ul class="topcoat-list">
+    <li id="opener" class="topcoat-list__item">
+      To the next document!
+      <span class="chevron"/>
+    </li>
+  </ul>
+</div>
 
 <script>
   // You found it!  To inline JavaScript here is suboptimal and only used in this tutorial.
