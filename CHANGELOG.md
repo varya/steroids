@@ -1,12 +1,13 @@
-## 2.7.4 (TODO)
+## 2.7.4 (2013-06-14)
 
-TODO
+Android bugfixes, tutorials updated for better clarity, Topcoat CSS library used in default project, tutorials and examples
 
 Bugfixes:
   - onerror.js.android changed to onerror.android.js in default project template
+  - Several examples fixed for Android
 
 Changes:
-  - Default project and all tutorials now use Topcoat for CSS styles
+  - Default project, loading.html, all tutorials and all examples now use Topcoat for CSS styles
   - Updated all tutorials for better clarity
 
 ## 2.7.3 (2013-06-11)
