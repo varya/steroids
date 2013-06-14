@@ -19,10 +19,10 @@ function showCatNoNavBar() {
 
 <div class="content-padded">
 
-  <a class="topcoat-button center full" ontouchstart="steroids.layers.pop()">Pop topmost layer</a>
+  <div class="topcoat-button center full" ontouchstart="steroids.layers.pop()">Pop topmost layer</div>
   <br><br>
-  <a class="topcoat-button center full" ontouchstart="showCat()"><small>Open another instance of showCat.html</small></a>
+  <div class="topcoat-button center full" ontouchstart="showCat()"><small>Open another instance of showCat.html</small></div>
   <br><br>
-  <a class="topcoat-button center full" ontouchstart="showCatNoNavBar()"><small>Open showCat.html, hide navigation bar</small></a>
+  <div class="topcoat-button center full" ontouchstart="showCatNoNavBar()"><small>Open showCat.html, hide navigation bar</small></div>
 
 </div>

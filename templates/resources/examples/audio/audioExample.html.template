@@ -107,11 +107,11 @@
 
       <p>Audio position: <span id="audio_position">Not playing</span></p>
 
-      <a class="topcoat-button full center" ontouchstart="playAudio()">Play</a>
+      <div class="topcoat-button full center" ontouchend="playAudio()">Play</div>
       <br><br>
-      <a class="topcoat-button full center" ontouchstart="pauseAudio()">Pause</a>
+      <div class="topcoat-button full center" ontouchend="pauseAudio()">Pause</div>
       <br><br>
-      <a class="topcoat-button full center" ontouchstart="stopAudio()">Stop</a>
+      <div class="topcoat-button full center" ontouchend="stopAudio()">Stop</div>
 
     </div>
   </body>

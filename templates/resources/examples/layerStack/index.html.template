@@ -21,8 +21,8 @@ steroids.view.navigationBar.show("Layer Stack");
 
 <div class="content-padded">
 
-  <a class="topcoat-button center full" ontouchstart="showCat()">Open showCat.html</a>
+  <div class="topcoat-button center full" ontouchend="showCat()">Open showCat.html</div>
   <br><br>
-  <a class="topcoat-button center full" ontouchstart="showCatNoNavBar()"><small>Open showCat.html, hide navigation bar</small></a>
+  <div class="topcoat-button center full" ontouchend="showCatNoNavBar()"><small>Open showCat.html, hide navigation bar</small></div>
 
 </div>

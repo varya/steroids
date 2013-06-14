@@ -79,9 +79,9 @@
   <div class="content-padded">
     <h1>Camera Example</h1>
     <hr>
-    <a class="topcoat-button full center" ontouchstart="capturePhoto()">Capture photo</a>
+    <div class="topcoat-button full center" ontouchend="capturePhoto()">Capture photo</div>
     <br><br>
-    <a class="topcoat-button full center" ontouchstart="chooseImage()">Choose from Photo Library</a>
+    <div class="topcoat-button full center" ontouchend="chooseImage()">Choose from Photo Library</div>
     
     <img id="photo">
   </div>

@@ -29,7 +29,7 @@
 
   <p>Steroids gives you full access to Cordova's APIs. Let's try out one straight away:</p>
 
-  <a class="topcoat-button full center" onclick="askForConfirm()">Click me!</a>
+  <div class="topcoat-button--cta full center" ontouchend="askForConfirm()">Click me!</div>
 
   <p>Next, time for a few short excercises.</p>
 
@@ -51,7 +51,7 @@
 
   <h2>Exercise 3</h2>
 
-  <p>Note that after this exercise, you need to change <strong>config/application.coffee</strong>'s <strong>steroids.config.location</strong> property back to <strong>"tutorial.html"</strong> to return to this document, so be prepared!</p>
+  <p><em>Note that after this exercise, you need to change <strong>config/application.coffee</strong>'s <strong>steroids.config.location</strong> property back to <strong>"tutorial.html"</strong> to return to this document, so be prepared!</em></p>
 
   <p>To jump-start your development, Steroids comes bundled with several examples demonstarting Cordova APIs and other features of Steroids.</p>
 
@@ -70,10 +70,6 @@
   <p>For then next tutorial, run</p>
 
   <p><strong>$ steroids generate tutorial steroids</strong></p>
-
-  <h2>Learn more</h2>
-
-  <p>Check out <strong>academy.appgyver.com</strong> and <strong>guides.appgyver.com/steroids</strong> for more Steroids resources, including instructions on how to put your existing PhoneGap project on Steroids.</p>
 
   </div>
 
