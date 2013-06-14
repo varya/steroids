@@ -3,7 +3,7 @@
   <head>
     <title>Cordova Storage Example</title>
     
-    <link rel="stylesheet" href="stylesheets/ratchet-steroids.css" />
+    <link rel="stylesheet" href="vendor/topcoat/css/topcoat-mobile-light.css" />
     <link rel="stylesheet" href="stylesheets/application.css" />
 
     <script src="javascripts/onerror.js"></script>
@@ -76,7 +76,7 @@
       
       <h1>Storage Example</h1>
       
-      <a class="button-block" ontouchstart="runQuery()">Run query</a>
+      <a class="topcoat-button--cta center full" ontouchstart="runQuery()">Run query</a>
       
     </div>
   </body>
