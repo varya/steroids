@@ -1,5 +1,6 @@
 * {
-  -webkit-user-select: none;  /* Disable selection/Copy of UIWebView when tapping for a long time */
+  -webkit-user-select: none;  /* Disable selection/copy of elements when tapping for a long time */
+  -webkit-touch-callout: none; /* Disable touch callouts */
 }
 
 input {
@@ -7,5 +8,5 @@ input {
 }
 
 .content-padded {
-  padding:10px;
+  padding: 0px 10px;
 }
