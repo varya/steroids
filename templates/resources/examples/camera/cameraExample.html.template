@@ -4,7 +4,7 @@
   <meta charset="utf8">
   <title>Cordova Camera Example</title>
 
-  <link rel="stylesheet" href="stylesheets/ratchet-steroids.css" />
+  <link rel="stylesheet" href="vendor/topcoat/css/topcoat-mobile-light.css" />
   <link rel="stylesheet" href="stylesheets/application.css" />
 
   <script src="javascripts/onerror.js"></script>
@@ -79,8 +79,9 @@
   <div class="content-padded">
     <h1>Camera Example</h1>
     <hr>
-    <a class="button-block" ontouchstart="capturePhoto()">Capture photo</a>
-    <a class="button-block" ontouchstart="chooseImage()">Choose from Photo Library</a>
+    <a class="topcoat-button full center" ontouchstart="capturePhoto()">Capture photo</a>
+    <br><br>
+    <a class="topcoat-button full center" ontouchstart="chooseImage()">Choose from Photo Library</a>
     
     <img id="photo">
   </div>
