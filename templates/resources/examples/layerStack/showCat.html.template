@@ -6,12 +6,23 @@ function showCat() {
   steroids.layers.push(webView);
 }
 
+// Same as above, but hide the navigation bar
+function showCatNoNavBar() {
+  var webView = new steroids.views.WebView("/views/layerStackExample/showCat.html");
+  steroids.layers.push( {
+    view: webView,
+    navigationBar: false
+  } );
+}
+
 </script>
 
 <div class="content-padded">
 
-  <a class="button" ontouchstart="steroids.layers.pop()">Pop topmost layer</a>
+  <a class="topcoat-button center full" ontouchstart="steroids.layers.pop()">Pop topmost layer</a>
   <br><br>
-  <a class="button" ontouchstart="showCat()">Open another instance of showCat.html</a>
+  <a class="topcoat-button center full" ontouchstart="showCat()"><small>Open another instance of showCat.html</small></a>
+  <br><br>
+  <a class="topcoat-button center full" ontouchstart="showCatNoNavBar()"><small>Open showCat.html, hide navigation bar</small></a>
 
 </div>

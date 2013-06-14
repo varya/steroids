@@ -1,28 +1,28 @@
 <script>
 
-  // Initialize a new WebView and push it to the layer stack
-  function showCat() {
-    var webView = new steroids.views.WebView("/views/layerStackExample/showCat.html");
-    steroids.layers.push(webView);
-  }
+// Initialize a new WebView and push it to the layer stack
+function showCat() {
+  var webView = new steroids.views.WebView("/views/layerStackExample/showCat.html");
+  steroids.layers.push(webView);
+}
 
-  // Same as above, but hide the navigation bar
-  function showCatNoNavBar() {
-    var webView = new steroids.views.WebView("/views/layerStackExample/showCat.html");
-    steroids.layers.push( {
-      view: webView,
-      navigationBar: false
-    } );
-  }
-  
-  steroids.view.navigationBar.show("Layer Stack");
+// Same as above, but hide the navigation bar
+function showCatNoNavBar() {
+  var webView = new steroids.views.WebView("/views/layerStackExample/showCat.html");
+  steroids.layers.push( {
+    view: webView,
+    navigationBar: false
+  } );
+}
+
+steroids.view.navigationBar.show("Layer Stack");
 
 </script>
 
 <div class="content-padded">
 
-  <a class="button" ontouchstart="showCat()">Open showCat.html</a>
+  <a class="topcoat-button center full" ontouchstart="showCat()">Open showCat.html</a>
   <br><br>
-  <a class="button" ontouchstart="showCatNoNavBar()">Open showCat.html and hide the navigation bar</a>
+  <a class="topcoat-button center full" ontouchstart="showCatNoNavBar()"><small>Open showCat.html, hide navigation bar</small></a>
 
 </div>
