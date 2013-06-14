@@ -11,16 +11,37 @@ Currently, loading.html is supported by iOS only.
   <meta charset="utf-8">
   <title>Loading...</title>
 
+  <link rel="stylesheet" href="vendor/topcoat/css/topcoat-mobile-light.css" />
+
   <style>
 
-  body {
-    font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  @-webkit-keyframes rotate {
+    from {
+      -webkit-transform: rotate(0deg);
+    }
+    to { 
+      -webkit-transform: rotate(360deg);
+    }
+  }
+
+  html,body {
+    height:100%;
   }
 
   .centered {
+    height:100%;
     display: -webkit-box;
+    -webkit-box-orient:vertical;
     -webkit-box-pack: center;
     -webkit-box-align: center;
+  }
+
+  img#spinner {
+    width:50%;
+    -webkit-animation-name:             rotate; 
+    -webkit-animation-duration:         1s; 
+    -webkit-animation-iteration-count:  infinite;
+    -webkit-animation-timing-function: linear;
   }
 
   </style>
@@ -30,6 +51,7 @@ Currently, loading.html is supported by iOS only.
 <body>
   <div class="centered">
     <h1>Loading...</h1>
+    <img id="spinner" src="vendor/topcoat/img/spinner2x.png">
   </div>
 </body>
 </html>
