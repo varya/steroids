@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Cordova Media Example</title>
+    <title>Cordova Notification Example</title>
     
-    <link rel="stylesheet" href="stylesheets/ratchet-steroids.css" />
+    <link rel="stylesheet" href="vendor/topcoat/css/topcoat-mobile-light.css" />
     <link rel="stylesheet" href="stylesheets/application.css" />
 
     <script src="javascripts/onerror.js"></script>
@@ -64,10 +64,13 @@
       
       <h1>Notification Examples</h1>
 
-      <a class="button-block" ontouchstart="showAlert()">Show alert dialogue</a>
-      <a class="button-block" ontouchstart="showConfirm()">Show confirm dialogue</a>
-      <a class="button-block" ontouchstart="showPrompt()">Show prompt dialogue</a>
-      <a class="button-block" ontouchstart="vibrate()">Vibrate the device</a>
+      <div class="topcoat-button--cta center full" ontouchend="showAlert()">Show alert dialogue</div>
+      <br><br>
+      <div class="topcoat-button center full" ontouchend="showConfirm()">Show confirm dialogue</div>
+      <br><br>
+      <div class="topcoat-button center full" ontouchend="showPrompt()">Show prompt dialogue</div>
+      <br><br>
+      <div class="topcoat-button center full" ontouchend="vibrate()">Vibrate the device</div>
       
     </div>
   </body>
