@@ -11,44 +11,24 @@ html, body, .drumpad-container {
   float:left;
   -webkit-box-sizing: border-box;
 
-  font-weight: bold;
+  font-weight: 600;
   color:#9DA2A4;
   font-size:24px;
   text-shadow: 0px 2px 3px #DDD;
+
+  border: 1px solid #9DA2A4;
 
   display: -webkit-box;
   -webkit-box-align: center;
   -webkit-box-pack: center;
 }
 
+.drumpad-container > div.active {
+  color:#00AEEF;
+  background-color: #CCF1FF;
+}
+
 </style>
-<script>
-
-steroids.view.navigationBar.show("AGDM-3000");
-
-window.addEventListener("DOMContentLoaded", function() {
-  
-  // Disable user scrolling
-  document.addEventListener("touchmove", function(e) { e.preventDefault(); });
-  
-  // Prime audio system for instant playback
-  steroids.audio.prime();
-
-  // Make drum pads change color and play a sound when tapped
-  pads = document.querySelectorAll("div.drumpad-container > div");
-
-  for (var i = 0; i < pads.length; i++) {
-    
-    pads[i].addEventListener("touchstart", function() {
-      var soundPath = "sounds/drumMachineExample/" + this.getAttribute('data-sound');
-      steroids.audio.play(soundPath);
-    });
-    
-  }
-  
-});  
-  
-</script>
 
 <div class="drumpad-container">
   <div class="button" data-sound="kick.wav">KICK</div>
