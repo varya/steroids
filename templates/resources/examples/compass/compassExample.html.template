@@ -57,7 +57,7 @@
     
     <p><span id="heading">Waiting for compass...</span></p>
 
-    <div class="topcoat-button center full" ontouchend="startWatch()">Start watching the compass</div>
+    <div class="topcoat-button--cta center full" ontouchend="startWatch()">Start watching the compass</div>
     <br><br>
     <div class="topcoat-button center full" ontouchend="stopWatch()">Stop watching the compass</div>
 

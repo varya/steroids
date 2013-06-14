@@ -33,7 +33,7 @@
 
 <div class="content-padded">
 
-  <div class="topcoat-button full center" ontouchend="openModal()">Open modal</div>
+  <div class="topcoat-button--cta full center" ontouchend="openModal()">Open modal</div>
 
 </div>
 
