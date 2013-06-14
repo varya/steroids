@@ -31,7 +31,9 @@
 
 <div class="content-padded">
 
-  <div class="button" ontouchend="openDrawer()">Open drawer</div>
+  <h1>Drawer Example</h1>
+
+  <div class="topcoat-button" ontouchend="openDrawer()">Open drawer</div>
 
   <p>Selected in drawer: <span id="selectedInDrawer">Nothing, yet</span></p>
 </div>

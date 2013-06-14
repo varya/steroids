@@ -17,6 +17,7 @@ class Drawer extends Base
     @checkForPreExistingFiles [
       path.join("app", "layouts", "drawerExample.html"),
       path.join("app", "views", "drawerExample", "index.html"),
+      path.join("app", "views", "drawerExample", "index.android.html"),
       path.join("app", "views", "drawerExample", "drawer.html"),
       path.join("app", "controllers", "drawerExample.js")
     ]
@@ -29,6 +30,7 @@ class Drawer extends Base
 
     @copyFile path.join("app", "views", "layouts", "drawerExample.html"), "layout.html.template"
     @copyFile path.join("app", "views", "drawerExample", "index.html"), "index.html.template"
+    @copyFile path.join("app", "views", "drawerExample", "index.android.html"), "index.android.html.template"
     @copyFile path.join("app", "views", "drawerExample", "drawer.html"), "drawer.html.template"
     @copyFile path.join("app", "controllers", "drawerExample.js"), "controller.js.template"
 
@@ -39,6 +41,7 @@ class Drawer extends Base
     
       - app/views/layouts/drawerExample.html
       - app/views/drawerExample/index.html
+      - app/views/drawerExample/index.android.html
       - app/views/drawerExample/drawer.html
       - app/controllers/drawerExample.js
     
