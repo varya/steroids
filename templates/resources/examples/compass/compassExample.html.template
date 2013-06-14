@@ -4,7 +4,7 @@
   <meta charset="utf8">
   <title>Cordova Compass Example</title>
 
-  <link rel="stylesheet" href="stylesheets/ratchet-steroids.css" />
+  <link rel="stylesheet" href="vendor/topcoat/css/topcoat-mobile-light.css" />
   <link rel="stylesheet" href="stylesheets/application.css" />
 
   <script src="javascripts/onerror.js"></script>
@@ -57,8 +57,9 @@
     
     <p><span id="heading">Waiting for compass...</span></p>
 
-    <a class="button-block" ontouchstart="startWatch()">Start watching the compass</a>
-    <a class="button-block" ontouchstart="stopWatch()">Stop watching the compass</a>
+    <a class="topcoat-button center full" ontouchstart="startWatch()">Start watching the compass</a>
+    <br><br>
+    <a class="topcoat-button center full" ontouchstart="stopWatch()">Stop watching the compass</a>
 
   </div>
 </body>
