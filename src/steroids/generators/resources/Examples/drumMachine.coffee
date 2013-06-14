@@ -63,7 +63,7 @@ class DrumMachine extends Base
     To see the example in action, set the steroids.config.location property in
     config/application.coffee to:
 
-      http://localhost/views/drumMachineExample/index.html
+      "http://localhost/views/drumMachineExample/index.html"
 
     """
 

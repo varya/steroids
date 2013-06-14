@@ -46,7 +46,7 @@ class Animation extends Base
     To see the example in action, set the steroids.config.location property in
     config/application.coffee to:
 
-      http://localhost/views/animationExample/index.html
+      "http://localhost/views/animationExample/index.html"
 
     """
 

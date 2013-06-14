@@ -35,7 +35,7 @@ class PhotoGallery extends Base
     Help.SUCCESS()
     console.log """
 
-    Cordova Photo Gallery example generated successfully! The following files were created:
+    Photo Gallery example generated successfully! The following files were created:
     
       - app/views/layouts/galleryExample.html
       - app/views/galleryExample/index.html
@@ -45,7 +45,7 @@ class PhotoGallery extends Base
     To see the example in action, set the steroids.config.location property in
     config/application.coffee to:
 
-      http://localhost/views/galleryExample/index.html
+      "http://localhost/views/galleryExample/index.html"
 
     """
 

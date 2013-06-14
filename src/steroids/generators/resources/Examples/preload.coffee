@@ -36,7 +36,7 @@ class Preload extends Base
     Help.SUCCESS()
     console.log """
 
-    Modal example generated successfully! The following files were created:
+    Preload example generated successfully! The following files were created:
     
       - app/views/layouts/preloadExample.html
       - app/views/preloadExample/index.html
@@ -46,7 +46,7 @@ class Preload extends Base
     To see the example in action, set the steroids.config.location property in
     config/application.coffee to:
 
-      http://localhost/views/preloadExample/index.html
+      "http://localhost/views/preloadExample/index.html"
 
     """
 

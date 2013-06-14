@@ -33,7 +33,7 @@ class NavigationBar extends Base
     Help.SUCCESS()
     console.log """
 
-    Modal example generated successfully! The following files were created:
+    Navigation bar example generated successfully! The following files were created:
     
       - app/views/layouts/navigationBarExample.html
       - app/views/navigationBarExample/index.html
@@ -43,7 +43,7 @@ class NavigationBar extends Base
     To see the example in action, set the steroids.config.location property in
     config/application.coffee to:
 
-      http://localhost/views/navigationBarExample/index.html
+      "http://localhost/views/navigationBarExample/index.html"
 
     """
 

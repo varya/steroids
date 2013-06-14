@@ -17,8 +17,9 @@
 <div class="content-padded">
   <h1>Modal</h1>
 
-  <div class="button-block" ontouchend="closeModal()">Close modal</div>
-  <div class="button-blcik" ontouchend="askForCloseModal()">Ask layer beneath to close modal</div>
+  <div class="topcoat-button center full" ontouchend="closeModal()">Close modal</div>
+  <br><br>
+  <div class="topcoat-button center full" ontouchend="askForCloseModal()">Ask layer beneath to close modal</div>
 
 </div>
 

@@ -37,9 +37,9 @@ class Example extends Base
       - exampleName: name of the example to generate.  
         
         Available Steroids examples:
-        - animation -- Using native animations without moving to another document.
-        - drawer -- Using the native Facebook-style drawer.
-        - drumMachine -- Demonstrate Steroids Audio API via a kicking drum machine.
+        - animation -- Using native animations without moving to another document (iOS-only).
+        - drawer -- Using the native Facebook-style drawer (iOS-only).
+        - drumMachine -- Demonstrate Steroids Audio API via a kickin' drum machine.
         - layerStack -- Native navigation, page transitions and backstack handling.
         - modal -- Using the modal window.
         - navigationBar -- Using the native navigation bar.
