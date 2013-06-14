@@ -3,7 +3,7 @@
   <head>
     <title>Cordova Audio Example</title>
 
-    <link rel="stylesheet" href="stylesheets/ratchet-steroids.css" />
+    <link rel="stylesheet" href="vendor/topcoat/css/topcoat-mobile-light.css" />
     <link rel="stylesheet" href="stylesheets/application.css" />
 
     <script src="javascripts/onerror.js"></script>
@@ -27,9 +27,21 @@
       steroids.audio.prime();
 
       // Audio file from http://audio.ibeat.org/content/p1rj1s/p1rj1s_-_rockGuitar.mp3
-      // Serve audio file from localhost to circumvent Cordova File protocol issues
       // Success callback left as null
-      myMedia = new Media("http://localhost/sounds/rockGuitar.mp3", null, mediaError);
+      if (device.platform === "iOS") {
+        
+        // On iOS, serve audio file from localhost to circumvent Cordova File protocol issues
+        myMedia = new Media("http://localhost/sounds/rockGuitar.mp3", null, mediaError);
+        
+      } else {
+        
+        // On Android, serve audio file via the File protocol
+        // The "ready" event listener is required for the steroids.app.absolutePath property
+        steroids.on("ready", function() {
+          myMedia = new Media("file://" + steroids.app.absolutePath + "/sounds/rockGuitar.mp3", null, mediaError);
+        });
+        
+      }
 
       // onDeviceReady fires after DOM is loaded, so we are safe to set our element
       audioPosition = document.querySelector('#audio_position');
@@ -95,9 +107,11 @@
 
       <p>Audio position: <span id="audio_position">Not playing</span></p>
 
-      <a class="button-block" ontouchstart="playAudio()">Play</a>
-      <a class="button-block" ontouchstart="pauseAudio()">Pause</a>
-      <a class="button-block" ontouchstart="stopAudio()">Stop</a>
+      <a class="topcoat-button full center" ontouchstart="playAudio()">Play</a>
+      <br><br>
+      <a class="topcoat-button full center" ontouchstart="pauseAudio()">Pause</a>
+      <br><br>
+      <a class="topcoat-button full center" ontouchstart="stopAudio()">Stop</a>
 
     </div>
   </body>
