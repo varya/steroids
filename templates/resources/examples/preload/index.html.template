@@ -27,8 +27,8 @@
 
 <div class="content-padded">
 
-  <div class="button" ontouchend="openShow()">Open preloaded WebView</div>
+  <div class="topcoat-button--cta center full" ontouchend="openShow()">Open preloaded WebView</div>
 
-  <p>Preload status: <span id="preloadStatus">Not yet preloaded</span></p>
+  <p>Preload status: <span id="preloadStatus">Not yet preloaded, preloading...</span></p>
 </div>
 

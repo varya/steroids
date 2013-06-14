@@ -18,6 +18,7 @@ class Preload extends Base
       path.join("app", "layouts", "preloadExample.html"),
       path.join("app", "views", "preloadExample", "index.html"),
       path.join("app", "views", "preloadExample", "show.html"),
+      path.join("app", "views", "preloadExample", "show.android.html"),
       path.join("app", "controllers", "preloadExample.js")
     ]
 
@@ -31,6 +32,7 @@ class Preload extends Base
     @copyFile path.join("app", "views", "layouts", "preloadExample.html"), "layout.html.template"
     @copyFile path.join("app", "views", "preloadExample", "index.html"), "index.html.template"
     @copyFile path.join("app", "views", "preloadExample", "show.html"), "show.html.template"
+    @copyFile path.join("app", "views", "preloadExample", "show.android.html"), "show.android.html.template"
     @copyFile path.join("app", "controllers", "preloadExample.js"), "controller.js.template"
 
     Help.SUCCESS()
@@ -41,6 +43,7 @@ class Preload extends Base
       - app/views/layouts/preloadExample.html
       - app/views/preloadExample/index.html
       - app/views/preloadExample/show.html
+      - app/views/preloadExample/show.android.html
       - app/controllers/preloadExample.js
     
     To see the example in action, set the steroids.config.location property in
