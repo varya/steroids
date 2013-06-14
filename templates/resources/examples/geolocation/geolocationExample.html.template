@@ -2,8 +2,8 @@
 <html>
   <head>
     <title>Cordova Geolocation Example</title>
-    
-    <link rel="stylesheet" href="stylesheets/ratchet-steroids.css" />
+
+    <link rel="stylesheet" href="vendor/topcoat/css/topcoat-mobile-light.css" />
     <link rel="stylesheet" href="stylesheets/application.css" />
 
     <script src="javascripts/onerror.js"></script>
@@ -24,14 +24,14 @@
     }
 
     function geolocationDataReceived(position) {
-        resultsElem.innerHTML = 'Latitude: '           + position.coords.latitude              + '<br>' +
-                                'Longitude: '          + position.coords.longitude             + '<br>' +
-                                'Altitude: '           + position.coords.altitude              + '<br>' +
-                                'Accuracy: '           + position.coords.accuracy              + '<br>' +
-                                'Altitude Accuracy: '  + position.coords.altitudeAccuracy      + '<br>' +
-                                'Heading: '            + position.coords.heading               + '<br>' +
-                                'Speed: '              + position.coords.speed                 + '<br>' +
-                                'Timestamp: '          + position.timestamp                    + '<br>';
+        resultsElem.innerHTML = '<strong>Latitude:</strong> '           + position.coords.latitude         + '<br>' +
+                                '<strong>Longitude:</strong> '          + position.coords.longitude        + '<br>' +
+                                '<strong>Altitude:</strong> '           + position.coords.altitude         + '<br>' +
+                                '<strong>Accuracy:</strong> '           + position.coords.accuracy         + '<br>' +
+                                '<strong>Altitude Accuracy:</strong> '  + position.coords.altitudeAccuracy + '<br>' +
+                                '<strong>Heading:</strong> '            + position.coords.heading          + '<br>' +
+                                '<strong>Speed:</strong> '              + position.coords.speed            + '<br>' +
+                                '<strong>Timestamp:</strong> '          + position.timestamp;
     }
 
     // The error callback receives a PositionError object
