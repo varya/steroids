@@ -31,13 +31,13 @@
 
 <p>One instant benefit of localhost is that if you look at the <strong><small>app/views/layouts/steroidsTutorial.html</small></strong> file, you'll notice that we don't have to use explicit relative paths. We can always use <strong>/stylesheets/applcation.css</strong> instead of <strong>../../stylesheets/application.css</strong>. The same applies for images and other assets.</p>
 
-<p>We can also tell that you are currently viewing this document on an <em>iOS device</em>. How do we know?</p>
+<p>We can also tell that you are currently viewing this document on an <em>Android device</em>. How do we know?</p>
 
 <p>Instead of relying on JavaScript to detect the user agent, there are two nearly-identical versions of the <strong><small>app/views/steroidsTutorial/index.html</small></strong> file: a regular one and <strong>index.android.html</strong>. When serving your app from localhost, Steroids automatically serves the correct file based on your platform.</p>
 
 <h2>Excercise 1</h2>
 
-<p>Modify the <strong>index.android.html</strong> file. As you can see, changes there do not affect your app on iOS devices.
+<p>Modify the <strong>index.html</strong> file. As you can see, changes there do not affect your app on Android devices.</p>
 
 <h2>Exercise 2</h2>
 

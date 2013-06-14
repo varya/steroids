@@ -26,6 +26,7 @@ class Steroids extends Base
       path.join("config", "application.coffee")
       path.join("app", "views", "layouts", "steroidsTutorial.html")
       path.join("app", "views", "steroidsTutorial", "index.html")
+      path.join("app", "views", "steroidsTutorial", "index.android.html")
       path.join("app", "views", "steroidsTutorial", "show.html")
     ]
 
@@ -40,6 +41,7 @@ class Steroids extends Base
 
     @ensureDirectory path.join("app", "views", "steroidsTutorial")
     @copyFile path.join("app", "views", "steroidsTutorial", "index.html"), "index.html.template"
+    @copyFile path.join("app", "views", "steroidsTutorial", "index.android.html"), "index.android.html.template"
     @copyFile path.join("app", "views", "steroidsTutorial", "show.html"), "show.html.template"
 
     @addBowerDependency "jquery", "2.0.x"
