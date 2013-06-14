@@ -30,7 +30,7 @@ class Accelerometer extends Base
     To see the example in action, set the steroids.config.location property in
     config/application.coffee to:
 
-      accelerometerExample.html
+      "accelerometerExample.html"
 
     """
 

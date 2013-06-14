@@ -30,7 +30,7 @@ class Device extends Base
     To see the example in action, set the steroids.config.location property in
     config/application.coffee to:
 
-      deviceExample.html
+      "deviceExample.html"
 
     """
 

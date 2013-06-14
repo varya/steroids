@@ -30,7 +30,7 @@ class Geolocation extends Base
     To see the example in action, set the steroids.config.location property in
     config/application.coffee to:
 
-      geolocationExample.html
+      "geolocationExample.html"
 
     """
 

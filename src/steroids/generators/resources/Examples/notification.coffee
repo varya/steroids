@@ -30,7 +30,7 @@ class Notification extends Base
     To see the example in action, set the steroids.config.location property in
     config/application.coffee to:
 
-      notificationExample.html
+      "notificationExample.html"
 
     """
 
