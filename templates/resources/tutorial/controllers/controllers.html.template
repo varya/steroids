@@ -4,11 +4,11 @@
 
 <p>Good! You made it all the way to the controllers tutorial. Now, let's walk through the concept of <strong>controllers</strong>.</p>
 
-<p>We created <strong>app/controllers/</strong> directory. It contains two files: <strong>application.js</strong> and <strong>steroidsTutorial.js</strong>. From now on, let's not include any JavaScript in our views, okay?</p>
+<p>We created an <strong>app/controllers/</strong> directory for you. It contains two files: <strong>application.js</strong> and <strong>steroidsTutorial.js</strong>. From now on, let's not include any JavaScript in our views, okay?</p>
 
 <h2>Using view controllers</h2>
 
-<p>In the application wide layout <strong><small>app/views/layouts/steroidsTutorial.html</small></strong> there is a <strong>&lt;script&gt;</strong>-tag that automatically includes a controller for this resource (steroidsTutorial). Open <strong><small>app/controllers/steroidsTutorial.js</small></strong> and enable the top bar.</p>
+<p>In the application wide layout <strong><small>app/views/layouts/steroidsTutorial.html</small></strong> there is a <strong><small>&lt;script&gt;</small></strong>-tag that automatically includes a controller for this resource (steroidsTutorial). Open <strong><small>app/controllers/steroidsTutorial.js</small></strong> and enable the top bar.</p>
 
 <h2>Application controllers</h2>
 
