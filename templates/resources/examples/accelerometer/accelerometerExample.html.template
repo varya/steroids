@@ -2,8 +2,8 @@
 <html>
   <head>
     <title>Accelerometer Example</title>
-    
-    <link rel="stylesheet" href="stylesheets/ratchet-steroids.css" />
+
+    <link rel="stylesheet" href="vendor/topcoat/css/topcoat-mobile-light.css" />
     <link rel="stylesheet" href="stylesheets/application.css" />
 
     <script src="javascripts/onerror.js"></script>
@@ -41,10 +41,10 @@
     // watcher's onSuccess callback: insert the current acceleration into the DOM
     function accelerationReceived(acceleration) {
         var resultElement = document.getElementById('accelerometer');
-        resultElement.innerHTML = 'Acceleration X: ' + acceleration.x + '<br />' +
-                                  'Acceleration Y: ' + acceleration.y + '<br />' +
-                                  'Acceleration Z: ' + acceleration.z + '<br />' +
-                                  'Timestamp: '      + acceleration.timestamp + '<br />';
+        resultElement.innerHTML = '<strong>Acceleration X:</strong> ' + acceleration.x + '<br>' +
+                                  '<strong>Acceleration Y:</strong> ' + acceleration.y + '<br>' +
+                                  '<strong>Acceleration Z:</strong> ' + acceleration.z + '<br><br>' +
+                                  '<strong>Timestamp:</strong> '      + acceleration.timestamp;
     }
 
     // watcher's onError callback:
