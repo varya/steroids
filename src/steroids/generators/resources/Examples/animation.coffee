@@ -17,6 +17,7 @@ class Animation extends Base
     @checkForPreExistingFiles [
       path.join("app", "layouts", "animationExample.html"),
       path.join("app", "views", "animationExample", "index.html"),
+      path.join("app", "views", "animationExample", "index.android.html"),
       path.join("app", "controllers", "animationExample.js")
     ]
 
@@ -29,6 +30,7 @@ class Animation extends Base
 
     @copyFile path.join("app", "views", "layouts", "animationExample.html"), "layout.html.template"
     @copyFile path.join("app", "views", "animationExample", "index.html"), "index.html.template"
+    @copyFile path.join("app", "views", "animationExample", "index.android.html"), "index.android.html.template"
     @copyFile path.join("app", "controllers", "animationExample.js"), "controller.js.template"
 
     Help.SUCCESS()
@@ -38,7 +40,7 @@ class Animation extends Base
     
       - app/views/layouts/animationExample.html
       - app/views/animationExample/index.html
-      - app/views/animationExample/index.html
+      - app/views/animationExample/index.android.html
       - app/controllers/animationExample.js
     
     To see the example in action, set the steroids.config.location property in

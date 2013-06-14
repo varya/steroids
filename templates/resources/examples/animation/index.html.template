@@ -1,65 +1,45 @@
-<script>
-  steroids.view.navigationBar.show("Animation Example");
-
-  var animationsPerformed = {};
-
-  function performAnimation(transition, duration) {
-
-    // Create the animation
-    var anim = new steroids.Animation({
-      transition: transition,
-      duration: duration
-    });
-
-    // Perform it ...
-    anim.perform();
-
-    // And immediately update the screen.  If you want to update screen when the animation has finished, hook it to the onSuccess of animations perform() method.
-
-    if ( animationsPerformed[transition] === undefined ) {
-      animationsPerformed[transition] = 1;
-    } else {
-      animationsPerformed[transition]++;
-    }
-
-    var elem = document.querySelector("#"+transition+"Counter");
-    elem.textContent = animationsPerformed[transition];
-
-  }
-
-</script>
-
+<style>
+.count {
+  display:block;
+  float:right;
+  color:#00AEEF;
+}
+.content-padded > div {
+  margin-bottom:8px;
+}
+</style>
 
 <div class="content-padded">
 
-  <div class="button-block" ontouchend="performAnimation('flipVerticalFromTop', 1.2)">
+  <div class="topcoat-button full center" ontouchend="performAnimation('flipVerticalFromTop', 1.2)">
     flipVerticalFromTop
     <span class="count" id="flipVerticalFromTopCounter">0</span>
   </div>
 
-  <div class="button-block" ontouchend="performAnimation('flipHorizontalFromLeft', 0.7)">
+  <div class="topcoat-button full center" ontouchend="performAnimation('flipHorizontalFromLeft', 0.7)">
     flipHorizontalFromLeft
     <span class="count" id="flipHorizontalFromLeftCounter">0</span>
   </div>
 
-  <div class="button-block" ontouchend="performAnimation('slideFromRight', 0.2)">
+  <div class="topcoat-button full center" ontouchend="performAnimation('slideFromRight', 0.2)">
     slideFromRight
     <span class="count" id="slideFromRightCounter">0</span>
   </div>
 
-  <div class="button-block" ontouchend="performAnimation('slideFromTop', 0.8)">
+  <div class="topcoat-button full center" ontouchend="performAnimation('slideFromTop', 0.8)">
     slideFromTop
     <span class="count" id="slideFromTopCounter">0</span>
   </div>
 
-  <div class="button-block" ontouchend="performAnimation('curlDown', 0.8)">
+  <div class="topcoat-button full center" ontouchend="performAnimation('curlDown', 0.8)">
     curlDown
     <span class="count" id="curlDownCounter">0</span>
   </div>
 
-  <div class="button-block" ontouchend="performAnimation('curlUp', 0.4)">
+  <div class="topcoat-button full center" ontouchend="performAnimation('curlUp', 0.4)">
     curlUp
     <span class="count" id="curlUpCounter">0</span>
   </div>
+
 </div>
 
