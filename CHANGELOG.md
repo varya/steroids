@@ -2,6 +2,8 @@
 
 TODO
 
+Changes:
+
 Bugfixes:
   - Fixed default project template loading screen spinner size
   - Camera example uses Topcoat loading spinner, rotates images correctly, iPad camera roll popover positioned correctly

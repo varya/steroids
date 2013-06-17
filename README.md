@@ -60,3 +60,13 @@ http://docs.appgyver.com
 ## Bugs, feedback
 
 We want to get your feedback, send it to contact@appgyver.com
+
+## Testing
+
+To run unit tests:
+
+    $ bin/test
+
+To create a test app with all generator examples:
+
+    $ test/generate.sh
