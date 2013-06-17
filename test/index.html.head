@@ -23,7 +23,6 @@
     var exampleCount = examples.length;
     
     for (var i = 0; i < exampleCount; i++) {
-      console.log(examples[i]);
       Hammer(examples[i]).on("tap", function() {
         var location = this.getAttribute("data-location");
         var webView = new steroids.views.WebView(location);

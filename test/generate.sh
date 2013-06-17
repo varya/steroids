@@ -10,11 +10,11 @@ cd testApp
 CORDOVA_EXAMPLES="accelerometer audio camera compass device geolocation notification storage"
 STEROIDS_EXAMPLES="animation drawer drumMachine layerStack modal navigationBar photoGallery preload"
 
-rm -rf www/index.html
-cp ../test/index.html.head www/cordovaIndex.html
-cp ../test/index.html.head www/steroidsIndex.html
+# Generate cordovaIndex.html
 
-echo "    <h3 class='topcoat_list__header'>Cordova Examples</h2>" >> www/cordovaIndex.html
+cp ../test/index.html.head www/cordovaIndex.html
+
+echo "    <h2 class='topcoat-list__header'>Cordova Examples</h2>" >> www/cordovaIndex.html
 echo "    <ul class='topcoat-list'>" >> www/cordovaIndex.html
 
 for CORDOVA_EXAMPLE in $CORDOVA_EXAMPLES; do
@@ -25,7 +25,13 @@ for CORDOVA_EXAMPLE in $CORDOVA_EXAMPLES; do
   echo "      </li>" >> www/cordovaIndex.html
 done
 
-echo "    <h3 class='topcoat_list__header'>Steroids Examples</h2>" >> www/steroidsIndex.html
+cat ../test/index.html.tail >> www/cordovaIndex.html
+
+# Generate steroidsIndex.html
+
+cp ../test/index.html.head www/steroidsIndex.html
+
+echo "    <h2 class='topcoat-list__header'>Steroids Examples</h2>" >> www/steroidsIndex.html
 echo "    <ul class='topcoat-list'>" >> www/steroidsIndex.html
 
 for STEROIDS_EXAMPLE in $STEROIDS_EXAMPLES; do
@@ -37,7 +43,8 @@ for STEROIDS_EXAMPLE in $STEROIDS_EXAMPLES; do
 done
 
 cat ../test/index.html.tail >> www/steroidsIndex.html
-cat ../test/index.html.tail >> www/steroidsIndex.html
+
+# Overwrite config/application.coffee
 
 rm -rf config/application.coffee
 cp ../test/application.coffee config/application.coffee
