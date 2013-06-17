@@ -14,7 +14,7 @@ class Angular extends Base
 
   @usage: ()->
     """
-    Generates a stub Angular.js resource consisting of a controller, a model, an index view and associated partials for a list and details views.
+    Generates a stub AngularJS resource consisting of a controller, a model, an index view and associated partials for a list and details views.
 
     Options:
       - resource: name of resource to use. Example: 'car' will result in the following files:
@@ -65,9 +65,9 @@ class Angular extends Base
     Help.SUCCESS()
     console.log """
 
-    Angular.js resource generated, set the location of your app to:
+    AngularJS resource generated, set the location of your app to:
 
-      http://localhost/views/#{@options.name}/index.html
+      "http://localhost/views/#{@options.name}/index.html"
 
 
     """

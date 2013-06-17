@@ -6,6 +6,8 @@ if ( typeof angular == 'undefined' ) {
 
 var app = angular.module('<%= options.name %>', ['<%= options.className %>Model', 'hmTouchevents']);
 
+// Implementation of Angular-style routing with Steroids partials
+
 app.config(function($routeProvider) {
   $routeProvider.when( '/', {
     controller: <%= options.className %>Controller.index,
@@ -20,6 +22,7 @@ app.config(function($routeProvider) {
   $routeProvider.otherwise({ redirectTo: '/' });
 });
 
+// Different controllers for view types
 
 var <%= options.className %>Controller = {
   index: function($scope, <%= options.className %>) {

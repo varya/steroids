@@ -14,7 +14,7 @@ class Default extends Base
 
   @usage: ()->
     """
-    Generates a stub resource consisting of a controller and index show views.
+    Generates a stub resource consisting of a controller and index and show views.
 
     Options:
       - resource: name of resource to use. Example: 'car' will result in the following files:
@@ -57,9 +57,10 @@ class Default extends Base
     Help.SUCCESS()
     console.log """
 
-    Resource generated, set the location of your app to:
+    Resource generated! Please set the steroids.config.location 
+    property in config/application.coffee to:
 
-      http://localhost/views/#{@options.name}/index.html
+      "http://localhost/views/#{@options.name}/index.html"
 
 
     """

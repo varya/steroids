@@ -1,6 +1,6 @@
-<ul class="list">
-  <li hm-tap="open(id)" ng-repeat="(id, <%= options.name %>) in <%= options.name %>Collection | filter:search | orderBy:'name'">
-    {{<%= options.name %>.name}} <%= options.name %>
-    <span class="chevron"></span>
+<div class="topcoat-list__container">
+<ul class="topcoat-list">
+  <li class="topcoat-list__item" hm-tap="open(id)" ng-repeat="(id, <%= options.name %>) in <%= options.name %>Collection | filter:search | orderBy:'name'">
+    {{<%= options.name %>.name}} <%= options.name %> item
   </li>
 </ul>

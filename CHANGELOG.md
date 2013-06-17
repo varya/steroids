@@ -3,6 +3,8 @@
 TODO
 
 Changes:
+  - Removed obsolete rename-config-xml grunt task
+  - Generator `resource and `ng-resource` now use Topcoat
 
 Bugfixes:
   - Fixed default project template loading screen spinner size

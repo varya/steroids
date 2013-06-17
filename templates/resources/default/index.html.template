@@ -2,13 +2,13 @@
   <%= options.className %>Controller.index();
 </script>
 
-<ul class="list">
-  <li class="opensLayer" data-location="/views/<%= options.name %>/show.html?id=1">
-    Show first <%= options.name %>
-    <span class="chevron"></span>
-  </li>
-  <li class="opensLayer" data-location="/views/<%= options.name %>/show.html?id=2">
-    Show second <%= options.name %>
-    <span class="chevron"></span>
-  </li>
-</ul>
+<div class="topcoat-list__container">
+  <ul class="topcoat-list">
+    <li class="topcoat-list__item opensLayer" data-location="/views/<%= options.name %>/show.html?id=1">
+      Show first <%= options.name %> item
+    </li>
+    <li class="topcoat-list__item opensLayer" data-location="/views/<%= options.name %>/show.html?id=2">
+      Show second <%= options.name %> item
+    </li>
+  </ul>
+</div>

@@ -3,5 +3,5 @@
 </script>
 
 <div class="content-padded">
-  <h1>Showing <%= options.name %> number <span id="show-id"></span></h1>
+  <p>Showing <%= options.name %> number <span id="show-id"></span></p>
 </div>
