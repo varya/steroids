@@ -15,8 +15,9 @@ class NavigationBar extends Base
 
   generate: ->
     @checkForPreExistingFiles [
-      path.join("app", "layouts", "navigationBarExample.html"),
-      path.join("app", "views", "navigationBarExample", "index.html"),
+      path.join("app", "layouts", "navigationBarExample.html")
+      path.join("app", "views", "navigationBarExample", "index.html")
+      path.join("app", "views", "navigationBarExample", "index.android.html")
       path.join("app", "controllers", "navigationBarExample.js")
     ]
 
@@ -28,6 +29,7 @@ class NavigationBar extends Base
 
     @copyFile path.join("app", "views", "layouts", "navigationBarExample.html"), "layout.html.template"
     @copyFile path.join("app", "views", "navigationBarExample", "index.html"), "index.html.template"
+    @copyFile path.join("app", "views", "navigationBarExample", "index.android.html"), "index.android.html.template"
     @copyFile path.join("app", "controllers", "navigationBarExample.js"), "controller.js.template"
 
     Help.SUCCESS()
@@ -37,7 +39,7 @@ class NavigationBar extends Base
     
       - app/views/layouts/navigationBarExample.html
       - app/views/navigationBarExample/index.html
-      - app/views/navigationBarExample/index.html
+      - app/views/navigationBarExample/index.android.html
       - app/controllers/navigationBarExample.js
     
     To see the example in action, set the steroids.config.location property in

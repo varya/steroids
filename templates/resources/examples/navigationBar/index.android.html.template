@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 steroids.view.navigationBar.show("Phoenix Foundation");
-var navBarVisible = true;
 
 // Login and logout buttons
 
@@ -39,22 +38,10 @@ steroids.view.navigationBar.setButtons({
   right: [loginButton]
 });
 
-function toggleNavBar() {
-  if (navBarVisible) {
-    steroids.view.navigationBar.hide();
-    navBarVisible = false;
-  } else {
-    steroids.view.navigationBar.show("Phoenix Foundation");
-    navBarVisible = true;
-  }
-}
-  
 </script>
 
 <div class="content-padded">
 
   <h2 id="login-text">Please log in.</h2>
-
-  <div class="topcoat-button--cta center full" ontouchend="toggleNavBar()">Toggle navigation bar</div>
 
 </div>
