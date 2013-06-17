@@ -12,16 +12,7 @@
   // Initialize the modal
   var modalView = new steroids.views.WebView("/views/modalExample/show.html");
 
-
   steroids.view.navigationBar.show("Modal Example");
-
-  // Add a right button that opens the modal window to the navigation bar
-  var rightButton = new steroids.buttons.NavigationBarButton();
-  rightButton.title = "Settings";
-  rightButton.onTap = openModal;
-
-  steroids.view.navigationBar.setButtons({ right: [rightButton] });
-
 
   // Helper functions
   function openModal() {

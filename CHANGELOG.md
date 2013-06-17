@@ -1,3 +1,12 @@
+## 2.7.5 (TODO)
+
+TODO
+
+Bugfixes:
+  - Fixed default project template loading screen spinner size
+  - Camera example uses Topcoat loading spinner, rotates images correctly, iPad camera roll popover positioned correctly
+  - Photo gallery example rotates images correctly
+
 ## 2.7.4 (2013-06-14)
 
 Android bugfixes, tutorials updated for better clarity, Topcoat CSS library used in default project, tutorials and examples

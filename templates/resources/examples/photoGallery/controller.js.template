@@ -38,8 +38,10 @@ window.GalleryController = {
     
     // Camera callback chain starts
     function takePictureWithCamera() {
-      navigator.camera.getPicture(imageReceived, cameraError, { quality: 50,
-        destinationType: Camera.DestinationType.FILE_URI
+      navigator.camera.getPicture(imageReceived, cameraError, { quality: 100,
+        destinationType: Camera.DestinationType.FILE_URI,
+        correctOrientation: true,
+        targetWidth: 1000
       });
     }
 

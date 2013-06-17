@@ -15,23 +15,20 @@ class Camera extends Base
 
   generate: ->
     @checkForPreExistingFiles [
-      path.join("www", "cameraExample.html"),
-      path.join("www", "images", "spinner.gif")
+      path.join("www", "cameraExample.html")
     ]
     
     @ensureDirectory path.join("www", "images")
 
     @copyFile path.join("www", "cameraExample.html"), "cameraExample.html.template"
-    @copyFile path.join("www", "images", "spinner.gif"), "spinner.gif"
 
     Help.SUCCESS()
     console.log """
 
     Cordova Camera example generated successfully! The following files were created:
-    
+
       - www/cameraExample.html
-      - www/images/spinner.gif
-    
+
     To see the example in action, set the steroids.config.location property in
     config/application.coffee to:
 
