@@ -1,10 +1,11 @@
-## 2.7.5 (TODO)
+## 2.7.5 (2013-06-17)
 
-TODO
+Resources generated with `steroids generate` use Topcoat, fixes to generated examples, Ratchet CSS library removed
 
 Changes:
   - Removed obsolete rename-config-xml grunt task
   - Generator `resource and `ng-resource` now use Topcoat
+  - Removed Ratchet CSS library from default project
 
 Bugfixes:
   - Fixed default project template loading screen spinner size
