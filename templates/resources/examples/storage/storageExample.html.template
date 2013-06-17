@@ -32,7 +32,7 @@
       db.transaction(
         populateDB,     // transaction to run; a SQLTransaction object is passed to the callback function
         databaseError,  // error callback function
-        runQuery        // success callback function; ran after the the transaction is done
+        null            // success callback function; ran after the the transaction is done
       );
     }
     
@@ -47,7 +47,7 @@
     function runQuery() {
       db.transaction(queryDB, databaseError);
     }
-    
+
     // Query the database
     function queryDB(tx) {
       tx.executeSql('SELECT * FROM DEMO', [], gotQueryResults, databaseError);
@@ -61,14 +61,14 @@
       for (var i=0; i<len; i++){
         result += ("Row = " + i + " ID = " + results.rows.item(i).id + " Data =  " + results.rows.item(i).data + "\n");
       }
-      alert(result);
+      navigator.notification.alert(result, null, "Database query successful!");
     }
 
     // Transaction error callback
     function databaseError(err) {
-        alert("Error processing SQL! Error code: " + err.code + "; message: " + err.message);
+      navigator.notification.alert("Error code: " + err.code + "; message: " + err.message, null, "Error processing SQL!");
     }
-    
+
     </script>
   </head>
   <body>
@@ -76,7 +76,7 @@
       
       <h1>Storage Example</h1>
       
-      <a class="topcoat-button--cta center full" ontouchstart="runQuery()">Run query</a>
+      <a class="topcoat-button--cta center full" ontouchend="runQuery()">Run query</a>
       
     </div>
   </body>
