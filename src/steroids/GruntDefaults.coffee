@@ -21,8 +21,7 @@ registerDefaultTasks = (grunt)->
     'steroids-compile-coffeescript-files',
     'steroids-compile-sass-files',
     'steroids-compile-models',
-    'steroids-compile-views',
-    'steroids-rename-config-xml'
+    'steroids-compile-views'
   ]
 
   # -------------------------------------------
@@ -261,12 +260,6 @@ registerDefaultTasks = (grunt)->
         # write the file
         grunt.file.mkdir path.dirname(buildFilePath)
         grunt.file.write buildFilePath, yieldedFile
-
-  grunt.registerTask 'steroids-rename-config-xml', "Rename platform-specific config.xml", ->
-    dist = path.join Paths.applicationDir, "dist"
-    if fs.existsSync path.join(dist, "config.ios.xml")
-      grunt.file.copy( path.join(dist, "config.ios.xml"), path.join(dist, "config.xml") )
-      fs.unlink path.join(dist, "config.ios.xml")
 
 module.exports =
   registerDefaultTasks: registerDefaultTasks
