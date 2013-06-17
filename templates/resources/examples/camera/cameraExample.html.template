@@ -67,7 +67,12 @@
         destinationType: navigator.camera.DestinationType.IMAGE_URI,
         sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY,
         correctOrientation: true, // Let Cordova correct the picture orientation (WebViews don't read EXIF data properly)
-        targetWidth: 1000
+        targetWidth: 1000,
+        popoverOptions: { // iPad camera roll popover position
+          width : 768,
+          height : 190,
+          arrowDir : Camera.PopoverArrowDirection.ARROW_UP
+        }
       });
       showSpinner();
     }
@@ -85,7 +90,7 @@
     // Inform the user that if the project is being served from localhost, the example doesn't function correctly
     function checkForLocalhost() {
       if (window.location.href.indexOf("http://localhost") == 0) {
-        alert("Your project is being served from http://localhost/. Since Cordova's Camera API returns the location of the photo file as a file:// URL, trying to display the photo produces an error (due to the different protocols). Please switch the steroids.config.location property in config/application.coffee to just 'cameraExample.html' to fix this.")
+        navigator.notification.alert("Your project is being served from http://localhost/. Since Cordova's Camera API returns the location of the photo file as a file:// URL, trying to display the photo produces an error (due to the different protocols). Please switch the steroids.config.location property in config/application.coffee to just 'cameraExample.html' to fix this.", null, "You're on localhost!")
       }
     }
 
