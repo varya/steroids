@@ -5,7 +5,7 @@ window.GalleryController = {
 
   index: function() {
     // Initiate the gallery view and preload it
-    var galleryView = new steroids.views.WebView("/views/galleryExample/show.html");
+    var galleryView = new steroids.views.WebView("/views/photoGalleryExample/show.html");
     document.addEventListener("deviceready", onDeviceReady);
 
     steroids.view.navigationBar.show("Gallery Example");

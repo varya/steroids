@@ -26,7 +26,7 @@
     }
     
     function confirmDismissed(buttonIndex) {
-      alert('You selected button number ' + buttonIndex);
+      console.log("User selected button number " + buttonIndex);
     }
 
     function showConfirm() {
@@ -39,7 +39,7 @@
     }
     
     function promptDismissed(results) {
-      alert("You selected button number " + results.buttonIndex + " and entered the text " + results.input1);
+      console.log("User selected button number " + results.buttonIndex + " and entered the text " + results.input1);
     }
 
     function showPrompt() {

@@ -6,8 +6,9 @@ Changes:
 
 Bugfixes:
   - Fixed default project template loading screen spinner size
-  - Camera example uses Topcoat loading spinner, rotates images correctly, iPad camera roll popover positioned correctly
-  - Photo gallery example rotates images correctly
+  - Generated camera example uses Topcoat loading spinner, rotates images correctly, iPad camera roll popover positioned correctly
+  - Generated photo gallery example rotates images correctly
+  - Minor fixes to other generated examples
 
 ## 2.7.4 (2013-06-14)
 

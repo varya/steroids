@@ -32,7 +32,7 @@
       db.transaction(
         populateDB,     // transaction to run; a SQLTransaction object is passed to the callback function
         databaseError,  // error callback function
-        null            // success callback function; ran after the the transaction is done
+        populatingDone  // success callback function; ran after the the transaction is done
       );
     }
     
@@ -43,7 +43,15 @@
       tx.executeSql('INSERT INTO DEMO (id, data) VALUES (2, "Second row")');
     }
 
-    // Transaction success callback
+    function populatingDone(){
+      var status = document.querySelector("#status");
+      status.innerText = "Database successfully created!"
+
+      var button = document.querySelector("#query-button");
+      button.classList.remove("is-disabled");
+    }
+
+
     function runQuery() {
       db.transaction(queryDB, databaseError);
     }
@@ -76,7 +84,9 @@
       
       <h1>Storage Example</h1>
       
-      <a class="topcoat-button--cta center full" ontouchend="runQuery()">Run query</a>
+      <span id="status">Creating and populating a database...</span>
+      <br><br>
+      <a class="topcoat-button--cta center full is-disabled" id="query-button" ontouchend="runQuery()" >Run query</a>
       
     </div>
   </body>

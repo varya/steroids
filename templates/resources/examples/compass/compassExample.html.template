@@ -23,6 +23,9 @@
   function startWatch() {
     // Query the compass for a new heading every 120 ms
     var options = { frequency: 120 };
+    
+    // Clear existing compass watcher before setting a new one
+    stopWatch();
     watchID = navigator.compass.watchHeading(headingReceived, compassError, options);
   }
 

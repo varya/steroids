@@ -244,7 +244,7 @@ describe 'Generator', ->
           args: ["example", "photoGallery"]
 
         runs ->
-          expect( cmd.stdout ).toMatch("app/views/layouts/galleryExample.html")
+          expect( cmd.stdout ).toMatch("app/views/layouts/photoGalleryExample.html")
 
       it "generates preload example", ->
         cmd = @testHelper.runInProjectSync "generate",

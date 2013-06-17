@@ -15,37 +15,37 @@ class PhotoGallery extends Base
 
   generate: ->
     @checkForPreExistingFiles [
-      path.join("app", "views", "layouts", "galleryExample.html"),
-      path.join("app", "views", "galleryExample", "index.html"),
-      path.join("app", "views", "galleryExample", "show.html")
-      path.join("app", "controllers", "galleryExample.js")
+      path.join("app", "views", "layouts", "photoGalleryExample.html"),
+      path.join("app", "views", "photoGalleryExample", "index.html"),
+      path.join("app", "views", "photoGalleryExample", "show.html")
+      path.join("app", "controllers", "photoGalleryExample.js")
     ]
     
     @ensureDirectory path.join("app")
     @ensureDirectory path.join("app", "views")
-    @ensureDirectory path.join("app", "views", "galleryExample")
+    @ensureDirectory path.join("app", "views", "photoGalleryExample")
     @ensureDirectory path.join("app", "views", "layouts")
     @ensureDirectory path.join("app", "controllers")
 
-    @copyFile path.join("app", "views", "galleryExample", "index.html"), "index.html.template"
-    @copyFile path.join("app", "views", "galleryExample", "show.html"), "show.html.template"
-    @copyFile path.join("app", "views", "layouts", "galleryExample.html"), "layout.html.template"
-    @copyFile path.join("app", "controllers", "galleryExample.js"), "controller.js.template"
+    @copyFile path.join("app", "views", "photoGalleryExample", "index.html"), "index.html.template"
+    @copyFile path.join("app", "views", "photoGalleryExample", "show.html"), "show.html.template"
+    @copyFile path.join("app", "views", "layouts", "photoGalleryExample.html"), "layout.html.template"
+    @copyFile path.join("app", "controllers", "photoGalleryExample.js"), "controller.js.template"
 
     Help.SUCCESS()
     console.log """
 
     Photo Gallery example generated successfully! The following files were created:
     
-      - app/views/layouts/galleryExample.html
-      - app/views/galleryExample/index.html
-      - app/views/galleryExample/show.html
-      - app/controllers/galleryExample.js
+      - app/views/layouts/photoGalleryExample.html
+      - app/views/photoGalleryExample/index.html
+      - app/views/photoGalleryExample/show.html
+      - app/controllers/photoGalleryExample.js
     
     To see the example in action, set the steroids.config.location property in
     config/application.coffee to:
 
-      "http://localhost/views/galleryExample/index.html"
+      "http://localhost/views/photoGalleryExample/index.html"
 
     """
 
