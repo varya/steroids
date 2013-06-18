@@ -10,6 +10,7 @@
 div.service_menu {
   height: 36px;
   width: 100%;
+  min-width:1170px;
   background-color: #363636;
 }
 

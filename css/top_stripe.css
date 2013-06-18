@@ -5,6 +5,7 @@ div.topstripe {
   border-style: solid;
   border-color: #a1a1a1;
   height:95px;
+  min-width:1170px;
 }
 
 div.topbar_container {
