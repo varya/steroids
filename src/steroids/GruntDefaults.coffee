@@ -99,11 +99,12 @@ registerDefaultTasks = (grunt)->
 
         sassFile = new SassFile(filePath: filePath)
 
-        sassFile.on "compiled", =>
-          # because lets support sass imports (when node-sass does..)
-          if i+1 is allFiles.length
-            fs.unlinkSync filePath for filePath in allFiles
-            done()
+        # TODO: This somehow deletes .css files also
+        # sassFile.on "compiled", =>
+        #   # because lets support sass imports (when node-sass does..)
+        #   if i+1 is allFiles.length
+        #     fs.unlinkSync filePath for filePath in allFiles
+        #     done()
 
         sassFile.compile()
 
@@ -164,18 +165,22 @@ registerDefaultTasks = (grunt)->
       @contents = grunt.file.read(@sourcePath, "utf8").toString()
 
     compile: ()->
-      sassCallback = (err, css)=>
-        if err
-          text = "#red[Errors in #underline[#{@sourcePath}]]\n\n"
-          text += "#red[#{path.basename(@sourcePath)}]#yellow[#{err}]"
-          grunt.warn colorize.ansify(text)
-        else
-          grunt.file.write @destinationPath, css
-
+      sassSuccess = (css)=>
+        grunt.file.write @destinationPath, css
         @emit "compiled"
 
-      sass.render @contents, sassCallback,
-        output_style: "compressed"
+      sassFailure = (err)=>
+        text = "#red[Errors in #underline[#{@sourcePath}]]\n\n"
+        text += "#red[#{path.basename(@sourcePath)}]#yellow[#{err}]"
+        grunt.warn colorize.ansify(text)
+
+      sass.render {
+        file: @sourcePath
+        success: sassSuccess
+        error: sassFailure
+        includePaths: ['dist/', 'dist/stylesheets/']
+        outputStyle: "compressed"
+      }
 
 
   grunt.registerTask 'steroids-compile-views', "Compile views", ->
