@@ -18,7 +18,7 @@ $ npm update steroids -g
 
 This will check for the latest version and update it if needed. The `-g` option sets the update to affect your global Steroids install.
 
-The Steroids NPM keeps its integrated iOS Simulator automatically updated to the latest version.
+The Steroids NPM keeps its integrated iOS Simulator app automatically updated to the latest version.
 
 ##Updating Steroids.js in your project
 

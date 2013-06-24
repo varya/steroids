@@ -37,14 +37,14 @@ height=device-height, target-densitydpi=device-dpi">
 
 * **HideKeyboardFormAccessoryBar (boolean, defaults to false)** – when set to true, the additional toolbar on top of the keyboard is hidden (the one with the Prev, Next and Done buttons). Note that this means you need to use JavaScript to call `blur()` on the focused `<input>` element to dismiss the keyboard (since the Done button is hidden).
 
-* **KeyboardDisplayRequiresUserAction (boolean, defaults to true)** – when set to false, the keyboard will open when an `<input>` element gets focus via the JavaScript `focus()` call. Otherwise, an user tap on the element is required to open the keyboard.
+* **KeyboardDisplayRequiresUserAction (boolean, defaults to true)** – when set to false, the keyboard will open when an `<input>` element gets focus via the JavaScript `focus()` call. Otherwise, a user tap on the element is required to open the keyboard.
 
 * **KeyboardShrinksView (boolean, defaults to false)** – when set to true to, the actual WebView is shrunk when the keyboard comes up, instead of the viewport shrinking and the WebView becoming scrollable. *Known issue: a yellow background flashes when the WebView is beign resized. A yellow background shows through the transparent form accessory bar.*
 
 * **SuppressesIncrementalRendering (boolean, defaults to false)** – when set to true, the WebView suppresses content rendering until it is fully loaded into memory (this affects e.g. complex iframes). Note that by default, Steroids displays the `loading.html` screen until a new WebView has finished loading.
 
 
-The following Cordova preferences disabled due to Steroids using its own splashscreen implementation:
+The following Cordova preferences are disabled due to Steroids using its own splashscreen implementation:
 
 * **AutoHideSplashScreen**
 * **FadeSplashScreen**

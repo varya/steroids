@@ -30,7 +30,7 @@ You should see the alert dialogue appear on your device.
 
 Since Weinre doesn't know which WebView is currently displayed on the device, you need to manually change the target document in Weinre after navigating to another view.
 
-Also, to prevent cache issues, every time you push a new version of your app to the connected devices, the app files are transferred to an unique folder in the device's file system. This means that after each refresh, the previous WebViews are killed and they fade from Weinre's list of available targets
+Also, to prevent cache issues, every time you push a new version of your app to the connected devices, the app files are transferred to a unique folder in the device's file system. This means that after each refresh, the previous WebViews are killed and they fade from Weinre's list of available targets
 
 ##Weinre injected at runtime
 

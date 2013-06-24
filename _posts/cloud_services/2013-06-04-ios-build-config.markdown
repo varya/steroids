@@ -43,7 +43,7 @@ Provisioning profiles are used by Apple to control how an IPA package can be use
 
 ### Generating an App ID
 
-To create a provisioning profile, you need an unique App ID for your app.
+To create a provisioning profile, you need a unique App ID for your app.
 
 Go to [developer.apple.com][apple-dev] and open the [App IDs listing][apple-app-id-list] under the iOS Dev Center.
 
@@ -63,7 +63,7 @@ Click the plus button in the top-right corner to register a new device. Enter a 
 
 An UDID is a unique, 30-character string that identifies your iOS device. To see your device's UDID:
 
-1. Connect your device to your computer with an USB cable
+1. Connect your device to your computer with a USB cable
 2. Open the device in iTunes
 3. Click on the device's Serial Number field
 4. The Serial Number will change to your device's UDID
