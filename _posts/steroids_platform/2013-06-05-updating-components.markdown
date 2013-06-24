@@ -10,13 +10,15 @@ This guide explains how to keep all components in the Steroids platform up-to-da
 
 ##Updating the Steroids NPM
 
-To update the Steroids NPM, run this in the terminal window:
+To update the Steroids NPM, run this in a Terminal window:
 
 <pre class="terminal">
 $ npm update steroids -g
 </pre>
 
 This will check for the latest version and update it if needed. The `-g` option sets the update to affect your global Steroids install.
+
+*If you are running a non-NVM-installed version of Node.js and NPM, you'll probably need to write `$ sudo npm update steroids -g` for the update to run correctly.*
 
 The Steroids NPM keeps its integrated iOS Simulator app automatically updated to the latest version.
 
