@@ -20,7 +20,7 @@ Next, enable Safari's developer tools. Open Safari's preferences by selecting *S
 
 Now, you should see a *Develop* menu item in Safari's top menu bar. Open the *Develop* > *iPhone Simulator* menu, and you should see a list of WebViews currently open in your app. (`contextmenu.html`, `loading.html` and `background.html` are used internally by Steroids.)
 
-Select a WebView. You now have direct Web Inspector access to it. You can edit the DOM and use the JavaScript console. The console also displays errors (there's currently a bug where `console.log` output can only be viewed from the Terminal window running the Steroids `simulator` command).
+Select a WebView. You now have direct Web Inspector access to it. You can edit the DOM and use the JavaScript console. The console also displays errors and `console.log` output, although there's currently a bug where loading `cordova.js` causes `console.log` output not to display in the Safari Web Inspector (the output is still displayed in the Terminal window when you run `$ steroids simulator`).
 
 If you type in `window.location.reload();`, the WebView reloads itself, which allows you to see network requests and possible console errors that happen when the WebView loads.
 
