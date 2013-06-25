@@ -18,10 +18,10 @@ registerDefaultTasks = (grunt)->
     'steroids-build-controllers',
     'steroids-build-models',
     'steroids-build-statics',
-    'steroids-compile-coffeescript-files',
-    'steroids-compile-sass-files',
     'steroids-compile-models',
-    'steroids-compile-views'
+    'steroids-compile-views',
+    'steroids-compile-coffeescript-files',
+    'steroids-compile-sass-files'
   ]
 
   # -------------------------------------------
