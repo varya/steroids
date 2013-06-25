@@ -18,7 +18,7 @@ platforms: Android, iOS
 
 PhoneGap serves your files via the **File protocol**. This means that all HTML documents and other assets in your app are accessed via either absolute paths that start with `file://` or via relative paths, e.g. `<img src="../../images/dolan.png">`.
 
-##Why is the File protocol incovenient
+##Why the File protocol is inconvenient
 Relative paths can only be used when the location of the current document is known, e.g. in CSS files or with HTML elements' `src` attributes. If your document structure changes, you have to update all affected relative paths.
 
 In addition, many Cordova API calls require an absolute URL. Since the folder structure from the root of the device's file system to your app is rather complex, specifying the absolute URL can be tedious (the [steroids.app.absolutePath][app-absolutepath-api] property is a convenient helper).
