@@ -18,12 +18,10 @@ The `keytool` command comes bundled with the [Android SDK][android-sdk] and [Xco
 
 Next up, you need to obtain a suitable private key. The Android develeper portal article on signing your application has a section on [obtaining a suitable private key][android-dev-cert] that has more robust information, but basically, you need to run the following command in a Terminal window:
 
-<pre class="terminal">
+```
 $ keytool -genkey -v -keystore my-app-name.keystore -alias my_keystore_alias
 -keyalg RSA -keysize 2048 -validity 10000
-</pre>
-
-<br><br>
+```
 
 This will start generating a RSA-encrypted, 2048 bit keypair with a validity of 10,000 days.
 
