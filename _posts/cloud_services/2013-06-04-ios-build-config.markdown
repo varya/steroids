@@ -134,4 +134,4 @@ Building the app takes a few moments, after which you'll get an e-mail with a li
 [apple-devices-list]: https://developer.apple.com/account/ios/device/deviceList.action
 [apple-provisioning-list]: https://developer.apple.com/account/ios/profile/profileList.action
 [cloud-deploy]: /steroids/guides/steroids_npm/cloud-deploy/
-[testflight]: http://www.testflight.com
+[testflight]: http://www.testflightapp.com
