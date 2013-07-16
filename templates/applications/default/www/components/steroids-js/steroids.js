@@ -1,5 +1,5 @@
 (function(window){
-/*! steroids-js - v2.7.1 - 2013-06-04 */
+/*! steroids-js - v2.7.2 - 2013-07-12 */
 ;var Bridge,
   __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
@@ -242,7 +242,7 @@ WebsocketBridge = (function(_super) {
     window.steroids.debug("websocket request port");
     xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
-      if (xmlhttp.readyState === 4) {
+      if (xmlhttp.readyState === XMLHttpRequest.DONE) {
         window.steroids.debug("websocket request port success: " + xmlhttp.responseText);
         return callback(xmlhttp.responseText);
       }
@@ -267,11 +267,16 @@ WebsocketBridge = (function(_super) {
   WebsocketBridge.prototype.sendMessageToNative = function(message) {
     var _ref,
       _this = this;
-    if (((_ref = this.websocket) != null ? _ref.readyState : void 0) === 1) {
+    if (((_ref = this.websocket) != null ? _ref.readyState : void 0) === WebSocket.OPEN) {
       return this.websocket.send(message);
     } else {
       return window.steroids.on("websocketUsable", function() {
-        return _this.websocket.send(message);
+        var _ref1;
+        if (((_ref1 = _this.websocket) != null ? _ref1.readyState : void 0) === WebSocket.OPEN) {
+          return _this.websocket.send(message);
+        } else {
+          return _this.sendMessageToNative(message);
+        }
       });
     }
   };
@@ -2048,7 +2053,7 @@ PostMessage = (function() {
 }).call(this);
 ;
 window.steroids = {
-  version: "2.7.1",
+  version: "2.7.2",
   Animation: Animation,
   XHR: XHR,
   File: File,
