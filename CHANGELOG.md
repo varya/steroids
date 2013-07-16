@@ -1,7 +1,10 @@
-## 2.7.6 (TODO)
+## 2.7.6 (2013-07-16)
+
+Fixes iOS simulator height.
 
 Bugfixes:
-  - calling steroids commands with --debug did not output anything
+  - iOS simulator now extends to full height when started with `--type=iphone_retina_4_inch`
+  - calling steroids commands with `--debug` did not output anything
 
 ## 2.7.5 (2013-06-17)
 
