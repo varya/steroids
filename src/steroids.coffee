@@ -71,6 +71,7 @@ class Steroids
     else
       options.message
 
+    console.log "[DEBUG]", message
 
 
   startServer: (options={}) =>

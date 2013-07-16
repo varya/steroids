@@ -1,3 +1,8 @@
+## 2.7.6 (TODO)
+
+Bugfixes:
+  - calling steroids commands with --debug did not output anything
+
 ## 2.7.5 (2013-06-17)
 
 Resources generated with `steroids generate` use Topcoat, fixes to generated examples, Ratchet CSS library removed
