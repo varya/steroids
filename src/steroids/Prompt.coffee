@@ -35,7 +35,9 @@ class Prompt
       else
         "quit"
 
-      switch command
+      [mainCommand, commandOptions...] = command.split(' ')
+
+      switch mainCommand
         when "quit", "exit", "q"
           @cleanUp()
 
@@ -51,19 +53,31 @@ class Prompt
             onFailure: => @refresh()
 
         when "s", "sim", "simulator"
-          console.log "Starting iPhone Simulator"
 
-          steroidsCli.simulator.run()
+          if commandOptions[0] in ["s", "stop"]
+            console.log "Stopping iOS Simulator ..."
 
-        when "s s", "sim stop", "simulator stop"
-          console.log "Stopping iPhone Simulator ..."
+            console.log if steroidsCli.simulator.stop()
+              "stopped."
+            else
+              "the iOS Simulator is not running (not launched by this session?), can not stop."
 
-          console.log if steroidsCli.simulator.stop()
-            "stopped."
+            console.log "... done."
+
+            break
+
+
+          deviceType = if commandOptions[0]
+            commandOptions[0]
+          else if steroidsCli.options.argv.deviceType
+            steroidsCli.options.argv.deviceType
           else
-            "the iPhone Simulator is not running, can not stop."
+            steroidsCli.simulator.DEFAULT_DEVICE_TYPE
 
-          console.log "... done."
+          console.log "Starting iOS Simulator of type `#{deviceType}`"
+
+          steroidsCli.simulator.run
+            type: deviceType
 
         when "qr", "qr-code", "qrcode"
           QRCode = require "./QRCode"

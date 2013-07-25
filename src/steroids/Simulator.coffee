@@ -8,6 +8,9 @@ os = require "os"
 
 class Simulator
 
+  DEFAULT_DEVICE_TYPE: "iphone"
+  SUPPORTED_DEVICE_TYPES: ["iphone", "ipad", "ipad_retina", "iphone_retina_3_5_inch", "iphone_retina_4_inch"]
+
   running: false
 
   constructor: (@options = {}) ->
@@ -21,11 +24,10 @@ class Simulator
 
     @running = true
 
-
     cmd = steroidsSimulators.iosSimPath
     args = ["launch", steroidsSimulators.latestSimulatorPath]
 
-    switch opts.type
+    switch opts.deviceType
       when "ipad"
         args.push "--family", "ipad"
       when "ipad_retina"
@@ -56,7 +58,7 @@ class Simulator
       killSimulator.on "exit", () =>
         steroidsCli.debug "killed."
 
-      console.log "PROTIP: use steroids simulator --type to specify device type, see steroids usage for help."
+      console.log "PRO TIP: use `steroids simulator --deviceType <device>` to specify device type, see `steroids usage` for help."
 
       return unless ( @simulatorSession.stderr.indexOf('Session could not be started') == 0 )
 

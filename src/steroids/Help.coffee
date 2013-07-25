@@ -83,7 +83,10 @@ class Help
 
     specificSteroidsJSDetected: ->
       Help.printBanner(paths.banners.legacy.specificSteroidsJSDetected, true)
-
+    
+    simulatorType: ->
+      Help.printBanner(paths.banners.legacy.simulatorType, true)
+        
 
   @resetiOSSim: ->
     @printBanner(paths.banners.resetiOSSim, true)

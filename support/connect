@@ -1,7 +1,9 @@
 
 [enter], push       - Push code to connected devices
-s, sim              - Launch iOS Simulator
+s, sim [<device>]   - Launch iOS Simulator; <device> can be: 
+                        iphone, iphone_retina_3_5_inch, iphone_retina_4_inch
+                        ipad, ipad_retina
 s s, sim stop       - Stop iOS Simulator
-qr, qrcode          - Show the QR code for connecting devices
-e, edit             - Launch editor (configred in application.coffee), defaults to `subl`
+qr, qrcode          - Show the QR code for connecting devices in browser
+e, edit             - Launch editor (configured in application.coffee), defaults to `subl`
 q                   - exit

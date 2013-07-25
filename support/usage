@@ -8,7 +8,7 @@ Basic usage commands:
 
     Creates a new application from default template.
 
-  connect [--no-qrcode] [--watch] [--port <number>]
+  connect [--no-qrcode] [--watch] [--port <number>] [--deviceType=<simulator device type to launch, see simulator>]
 
     Starts server and allows to connect your iOS device or iOS Simulator to see your application.
     Provides further instructions for connecting and enters a console for accepting further commands.
@@ -31,11 +31,11 @@ Other usage commands:
 
     Provides usage instructions on the selected generator.
 
-  simulator [--type=<deviceType>]
+  simulator [--deviceType=<deviceType>]
 
-    Launches iOS Simulator, requires Xcode.
+    Launches iOS Simulator (default device: non-retina iPhone), requires Xcode.
 
-    deviceType: iphone, ipad, ipad_retina, iphone_retina_3_5_inch, iphone_retina_4_inch
+    Valid values for deviceType: iphone, ipad, ipad_retina, iphone_retina_3_5_inch or iphone_retina_4_inch
 
   debug [--port=31173 and --debugPort=<same as port> in connect process]
 

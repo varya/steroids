@@ -245,10 +245,12 @@ class Steroids
 
 
       when "simulator"
-        simulatorType = argv.type
+        if argv.type
+          Help.legacy.simulatorType()
+          process.exit(1)
 
         steroidsCli.simulator.run
-          type: simulatorType
+          deviceType: argv.deviceType
 
 
       when "connect"
@@ -510,6 +512,7 @@ module.exports =
   run: ->
     global.steroidsCli = new Steroids
       debug: argv.debug
+      argv: argv
 
     steroidsCli.execute()
 
