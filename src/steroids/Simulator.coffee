@@ -58,7 +58,7 @@ class Simulator
       killSimulator.on "exit", () =>
         steroidsCli.debug "killed."
 
-      console.log "PRO TIP: use `steroids simulator --deviceType <device>` to specify device type, see `steroids usage` for help."
+      console.log "PRO TIP: use `steroids [simulator|connect] --deviceType <device>` to specify device type, see `steroids usage` for help."
 
       return unless ( @simulatorSession.stderr.indexOf('Session could not be started') == 0 )
 
