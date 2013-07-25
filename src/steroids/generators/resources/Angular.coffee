@@ -23,6 +23,7 @@ class Angular extends Base
         - app/views/car/index.html
         - app/views/car/_list.html
         - app/views/car/_details.html
+        - app/views/layouts/car.html
     """
 
   templatePath: ->
