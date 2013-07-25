@@ -27,7 +27,7 @@ class Prompt
 
   connectLoop: =>
 
-    console.log "\nHit [enter] to update code, type help for usage"
+    console.log "\nHit [enter] to push updates, type `help` for usage"
 
     onInput = (err, result) =>
       command = if result? and result.command?
