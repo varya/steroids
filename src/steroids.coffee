@@ -3,7 +3,6 @@ Weinre = require "./steroids/Weinre"
 Simulator = require "./steroids/Simulator"
 Project = require "./steroids/Project"
 Updater = require "./steroids/Updater"
-SupportChat = require "./steroids/SupportChat"
 
 util = require "util"
 Version = require "./steroids/Version"
@@ -500,8 +499,7 @@ class Steroids
             console.log "Can not build project locally, cloud deploy not possible."
 
       when "chat"
-        supportChat = new SupportChat()
-        supportChat.open()
+        console.log "Chat is deprecated, please visit forums at http://forums.appgyver.com"
 
       else
         Help.logo() unless argv.noLogo
