@@ -77,7 +77,7 @@ class Prompt
           console.log "Starting iOS Simulator of type `#{deviceType}`"
 
           steroidsCli.simulator.run
-            type: deviceType
+            deviceType: deviceType
 
         when "qr", "qr-code", "qrcode"
           QRCode = require "./QRCode"
