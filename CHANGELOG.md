@@ -1,3 +1,13 @@
+## 2.7.7 (TODO)
+
+iOS simulator launching is improved
+
+Changes:
+  - Added support for default iOS simulator device type launching with `steroids connect --deviceType=<type>`
+
+Breaking changes:
+  - `steroids simulator --type` is now longer supported, changed to `steroids simulator --deviceType=<type>`
+
 ## 2.7.6 (2013-07-16)
 
 Fixes iOS simulator height.
