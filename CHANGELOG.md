@@ -1,9 +1,10 @@
 ## 2.7.7 (TODO)
 
-iOS simulator launching is improved
+iOS simulator launching is improved, console.log override to work around Cordovas bug.
 
 Changes:
   - Added support for default iOS simulator device type launching with `steroids connect --deviceType=<type>`
+  - `www/javascripts/console.log.js` added to catch `console.log` messages before Cordova is ready.
 
 Breaking changes:
   - `steroids simulator --type` is now longer supported, changed to `steroids simulator --deviceType=<type>`
