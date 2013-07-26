@@ -39,6 +39,7 @@ class NgScaffold extends Base
        path.join("app", "views", "#{@options.name}", "edit.html")
        path.join("app", "views", "#{@options.name}", "new.html")
        path.join("app", "views", "layouts", "#{@options.name}.html")
+       path.join("www", "stylesheets", "#{@options.name}.css")
      ]
 
      @ensureDirectory path.join("www", "vendor")
@@ -65,6 +66,8 @@ class NgScaffold extends Base
      @addFile path.join("app", "views", "#{@options.name}", "edit.html"), "edit.html.template"
      @addFile path.join("app", "views", "#{@options.name}", "show.html"), "show.html.template"
 
+     @ensureDirectory path.join("www", "stylesheets")
+     @addFile path.join("www", "stylesheets", "#{@options.name}.css"), "stylesheet.css.template"
 
      @addBowerDependency "angular", "1.0.7"
 
