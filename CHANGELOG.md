@@ -1,4 +1,4 @@
-## 2.7.8 (TODO)
+## 2.7.8 (2013-07-26)
 
 Lovin' Angular.js! Proper "Multi-Page Application" generators: ng-resource and ng-scaffold!
 
