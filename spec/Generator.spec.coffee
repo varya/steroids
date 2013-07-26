@@ -330,10 +330,10 @@ describe 'Generator', ->
 
           ctrlPath = path.join(@testHelper.testAppPath, "app", "controllers", "ngCars.js")
           expect(fs.existsSync ctrlPath).toBe true
-          expect(fs.readFileSync(ctrlPath).toString()).toMatch(/angular\.module\('ngCars/)
+          expect(fs.readFileSync(ctrlPath).toString()).toMatch(/ngCarsApp\.controller/)
 
           expect(fs.existsSync path.join(@testHelper.testAppPath, "app", "views", "ngCars", "index.html")).toBe true
-          expect(fs.existsSync path.join(@testHelper.testAppPath, "app", "views", "ngCars", "_details.html")).toBe true
+          expect(fs.existsSync path.join(@testHelper.testAppPath, "app", "views", "ngCars", "show.html")).toBe true
 
 
       it "fails when trying to overwrite existing files", ->
