@@ -1,7 +1,6 @@
 <div ng-app="<%= options.name %>App">
 
   <div ng-controller="IndexCtrl">
-    <div class="spinner" ng-show="loading"></div>
     <div class="topcoat-list__container">
 
       <ul class="topcoat-list">

@@ -1,7 +1,6 @@
 <div ng-app="<%= options.name %>App">
 
   <div ng-controller="ShowCtrl">
-    <div class="spinner" ng-show="loading"></div>
     <div class="content-padded">
       <h2>{{<%= options.name %>.name}}</h2>
       <p>{{<%= options.name %>.description}}</p>
