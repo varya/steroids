@@ -37,6 +37,8 @@ Other usage commands:
 
     Valid values for deviceType: iphone, ipad, ipad_retina, iphone_retina_3_5_inch or iphone_retina_4_inch
 
+    Optionally, append '@<iOS-version>' to launch the simulator with a specific iOS version (assuming it is installed); e.g. 'iphone@5.1'
+
   debug [--port=31173 and --debugPort=<same as port> in connect process]
 
     Starts Weinre debugger and waits for connections.
