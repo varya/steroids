@@ -1,0 +1,190 @@
+var <%= options.name %>App = angular.module('<%= options.name %>App', ['<%= options.className %>Model', 'hmTouchevents']);
+
+
+// Index: http://localhost/views/<%= options.name %>/index.html
+
+<%= options.name %>App.controller('IndexCtrl', function ($scope, <%= options.className %>Restangular) {
+
+  // This will be populated with Restangular
+  $scope.<%= options.name %>s = [];
+
+  // Helper function for opening new webviews
+  $scope.open = function(id) {
+    webView = new steroids.views.WebView("/views/<%= options.name %>/show.html?id="+id);
+    steroids.layers.push(webView);
+  };
+
+  // Helper function for loading <%= options.name %> data with spinner
+  $scope.load<%= options.className %>s = function() {
+    $scope.loading = true;
+
+    <%= options.name %>s.getList().then(function(data) {
+      $scope.<%= options.name %>s = data;
+      $scope.loading = false;
+    });
+
+  };
+
+  // Fetch all objects from the backend (see app/models/<%= options.name %>.js)
+  var <%= options.name %>s = <%= options.className %>Restangular.all('<%= options.name %>');
+  $scope.load<%= options.className %>s();
+
+
+  // Get notified when an another webview modifies the data and reload
+  window.addEventListener("message", function(event) {
+    // reload data on message with reload status
+    if (event.data.status === "reload") {
+      $scope.load<%= options.className %>s();
+    };
+  });
+
+
+  // -- Native navigation
+
+  // Set navigation bar..
+  steroids.view.navigationBar.show("<%= options.className %> index");
+
+  // ..and add a button to it
+  var addButton = new steroids.buttons.NavigationBarButton();
+  addButton.title = "Add";
+
+  // ..set callback for tap action
+  addButton.onTap = function() {
+    var addView = new steroids.views.WebView("/views/<%= options.name %>/new.html");
+    steroids.modal.show(addView);
+  };
+
+  // and finally put it to navigation bar
+  steroids.view.navigationBar.setButtons({
+    right: [addButton]
+  });
+
+
+});
+
+
+// Show: http://localhost/views/<%= options.name %>/show.html?id=<id>
+
+<%= options.name %>App.controller('ShowCtrl', function ($scope, <%= options.className %>Restangular) {
+
+  // Helper function for loading <%= options.name %> data with spinner
+  $scope.load<%= options.className %> = function() {
+    $scope.loading = true;
+
+     <%= options.name %>.get().then(function(data) {
+       $scope.<%= options.name %> = data;
+       $scope.loading = false;
+    });
+
+  };
+
+  // Save current <%= options.name %> id to localStorage (edit.html gets it from there)
+  localStorage.setItem("current<%= options.className %>Id", steroids.view.params.id);
+
+  var <%= options.name %> = <%= options.className %>Restangular.one("<%= options.name %>", steroids.view.params.id);
+  $scope.load<%= options.className %>()
+
+  // When the data is modified in the edit.html, get notified and update (edit is on top of this view)
+  window.addEventListener("message", function(event) {
+    if (event.data.status === "reload") {
+      $scope.load<%= options.className %>()
+    };
+  });
+
+  // -- Native navigation
+  steroids.view.navigationBar.show("<%= options.className %>: " + steroids.view.params.id );
+
+  var editButton = new steroids.buttons.NavigationBarButton();
+  editButton.title = "Edit";
+
+  editButton.onTap = function() {
+    webView = new steroids.views.WebView("/views/<%= options.name %>/edit.html");
+    steroids.modal.show(webView);
+  }
+
+  steroids.view.navigationBar.setButtons({
+    right: [editButton]
+  });
+
+
+});
+
+
+// New: http://localhost/views/<%= options.name %>/new.html
+
+<%= options.name %>App.controller('NewCtrl', function ($scope, <%= options.className %>Restangular) {
+
+  $scope.close = function() {
+    steroids.modal.hide();
+  };
+
+  $scope.create = function(<%= options.name %>) {
+    $scope.loading = true;
+
+    <%= options.className %>Restangular.all('<%= options.name %>').post(<%= options.name %>).then(function() {
+
+      // Notify the index.html to reload
+      var msg = { status: 'reload' };
+      window.postMessage(msg, "*");
+
+      $scope.close();
+      $scope.loading = false;
+
+    }, function() {
+      $scope.loading = false;
+
+      alert("Error when creating the object, is Restangular configured correctly, are the permissions set correctly?");
+
+    });
+
+  }
+
+  $scope.<%= options.name %> = {};
+
+});
+
+
+// Edit: http://localhost/views/<%= options.name %>/edit.html
+
+<%= options.name %>App.controller('EditCtrl', function ($scope, <%= options.className %>Restangular) {
+
+  var id  = localStorage.getItem("current<%= options.className %>Id"),
+      <%= options.name %> = <%= options.className %>Restangular.one("<%= options.name %>", id);
+
+  $scope.close = function() {
+    steroids.modal.hide();
+  };
+
+  $scope.update = function(<%= options.name %>) {
+    $scope.loading = true;
+
+    <%= options.name %>.put().then(function() {
+
+      // Notify the show.html to reload data
+      var msg = { status: "reload" };
+      window.postMessage(msg, "*");
+
+      $scope.close();
+      $scope.loading = false;
+    }, function() {
+      $scope.loading = false;
+
+      alert("Error when editing the object, is Restangular configured correctly, are the permissions set correctly?");
+    });
+
+  };
+
+  // Helper function for loading <%= options.name %> data with spinner
+  $scope.load<%= options.className %> = function() {
+    $scope.loading = true;
+
+    // Fetch a single object from the backend (see app/models/<%= options.name %>.js)
+    <%= options.name %>.get().then(function(data) {
+      $scope.<%= options.name %> = data;
+      $scope.loading = false;
+    });
+  };
+
+  $scope.load<%= options.className %>();
+
+});

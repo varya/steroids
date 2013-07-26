@@ -1,3 +1,10 @@
+## 2.7.8 (TODO)
+
+ng-scaffold CRUD generator for REST-API
+
+Changes:
+  - `steroids generate ng-scaffold todo` generates a CRUD scaffold, includes example configuration for Stackmob (or any REST-API)
+
 ## 2.7.7 (2013-07-25)
 
 iOS simulator launching is improved, console.log override to work around Cordovas bug.
