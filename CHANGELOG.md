@@ -1,9 +1,10 @@
 ## 2.7.8 (TODO)
 
-ng-scaffold CRUD generator for REST-API
+Lovin' Angular.js! Proper "Multi-Page Application" generators: ng-resource and ng-scaffold!
 
 Changes:
   - `steroids generate ng-scaffold todo` generates a CRUD scaffold, includes example configuration for Stackmob (or any REST-API)
+  - `steroids generate ng-resource animal` generates a local resource with local data in `www/data`
 
 ## 2.7.7 (2013-07-25)
 

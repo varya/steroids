@@ -1,0 +1,61 @@
+var <%= options.name %>App = angular.module('<%= options.name %>App', ['<%= options.className %>Model', 'hmTouchevents']);
+
+
+// Index: http://localhost/views/<%= options.name %>/index.html
+
+<%= options.name %>App.controller('IndexCtrl', function ($scope, <%= options.className %>Restangular) {
+
+  // This will be populated with Restangular
+  $scope.<%= options.name %>s = [];
+
+  // Helper function for opening new webviews
+  $scope.open = function(id) {
+    webView = new steroids.views.WebView("/views/<%= options.name %>/show.html?id="+id);
+    steroids.layers.push(webView);
+  };
+
+  // Helper function for loading <%= options.name %> data with spinner
+  $scope.load<%= options.className %>s = function() {
+    $scope.loading = true;
+
+    <%= options.name %>s.getList().then(function(data) {
+      $scope.<%= options.name %>s = data;
+      $scope.loading = false;
+    });
+
+  };
+
+  // Fetch all objects from the backend (see app/models/<%= options.name %>.js)
+  var <%= options.name %>s = <%= options.className %>Restangular.all('<%= options.name %>');
+  $scope.load<%= options.className %>s();
+
+
+  // -- Native navigation
+
+  steroids.view.navigationBar.show("<%= options.className %> index");
+
+});
+
+
+// Show: http://localhost/views/<%= options.name %>/show.html?id=<id>
+
+<%= options.name %>App.controller('ShowCtrl', function ($scope, <%= options.className %>Restangular) {
+
+  // Helper function for loading <%= options.name %> data with spinner
+  $scope.load<%= options.className %> = function() {
+    $scope.loading = true;
+
+     <%= options.name %>.get().then(function(data) {
+       $scope.<%= options.name %> = data;
+       $scope.loading = false;
+    });
+
+  };
+
+  var <%= options.name %> = <%= options.className %>Restangular.one("<%= options.name %>", steroids.view.params.id);
+  $scope.load<%= options.className %>()
+
+  // -- Native navigation
+  steroids.view.navigationBar.show("<%= options.className %>: " + steroids.view.params.id );
+
+});
