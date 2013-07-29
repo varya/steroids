@@ -2,6 +2,7 @@
 
 Changes:
   - `steroids simulator --deviceType` supports SDK version setting, `--deviceType=iphone@5.1`
+  - includes 2.7.6 version of the iOS Scanner Simulator
 
 ## 2.7.8 (2013-07-26)
 

@@ -5,7 +5,9 @@
 
 	We have launched iOS Simulator without an application.  Now switch to your
 	application, select #bold[iOS Simulator] from the menu top menu bar and then
-	select #bold[Reset Contents and Settings...]
+	select #bold[Reset Contents and Settings...]. If you are unable to see the
+  simulator, please run the command again.  After this it should be started
+  for the reset.
 
 	After you have done this, please start the steroids simulator again.
 
