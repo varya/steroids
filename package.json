@@ -21,6 +21,10 @@
     {
       "name": "Harri Sarsa",
       "email": "harri.sarsa@appgyver.com"
+    },
+    {
+      "name": "Michael Klement",
+      "email": "mklement0@gmail.com"
     }
   ],
   "main": "./src/main.js",

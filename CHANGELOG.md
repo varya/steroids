@@ -1,3 +1,8 @@
+## 2.7.9 (TODO)
+
+Changes:
+  - `steroids simulator --deviceType` supports SDK version setting, `--deviceType=iphone@5.1`
+
 ## 2.7.8 (2013-07-26)
 
 Lovin' Angular.js! Proper "Multi-Page Application" generators: ng-resource and ng-scaffold!

@@ -29,7 +29,7 @@ class Simulator
 
     if opts.deviceType?
 
-        # Split into device type and optional, '@'-separated suffix specifying the iOS version (SDK version; e.g., '5.1').
+      # Split into device type and optional, '@'-separated suffix specifying the iOS version (SDK version; e.g., '5.1').
       [ deviceType, iOSVersion ] = opts.deviceType.split('@')
 
       switch deviceType
