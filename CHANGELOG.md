@@ -1,4 +1,6 @@
-## 2.7.9 (TODO)
+## 2.7.9 (2013-07-29)
+
+Simulator supports different SDKs, bugfixes
 
 Changes:
   - `steroids simulator --deviceType` supports SDK version setting, `--deviceType=iphone@5.1`
@@ -6,6 +8,8 @@ Changes:
 
 Bugfixes:
  - `steroids.config.hooks.preMake`  and `postMake` are actually executed when update is triggered from connect prompt
+ - Fixed "Using native drawer shows black drawer" problem with newer Simulator (2.7.6)
+ - `steroids generate ng-resource` doesn't generate order by code anymore
 
 ## 2.7.8 (2013-07-26)
 
