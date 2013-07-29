@@ -27,15 +27,23 @@ class Simulator
     cmd = steroidsSimulators.iosSimPath
     args = ["launch", steroidsSimulators.latestSimulatorPath]
 
-    switch opts.deviceType
-      when "ipad"
-        args.push "--family", "ipad"
-      when "ipad_retina"
-        args.push "--family", "ipad", "--retina"
-      when "iphone_retina_3_5_inch"
-        args.push "--retina"
-      when "iphone_retina_4_inch"
-        args.push "--retina", "--tall"
+    if opts.deviceType?
+
+        # Split into device type and optional, '@'-separated suffix specifying the iOS version (SDK version; e.g., '5.1').
+      [ deviceType, iOSVersion ] = opts.deviceType.split('@')
+
+      switch deviceType
+        when "ipad"
+          args.push "--family", "ipad"
+        when "ipad_retina"
+          args.push "--family", "ipad", "--retina"
+        when "iphone_retina_3_5_inch"
+          args.push "--retina"
+        when "iphone_retina_4_inch"
+          args.push "--retina", "--tall"
+
+      if iOSVersion?
+        args.push "--sdk", iOSVersion
 
     steroidsCli.debug "Spawning #{cmd}"
     steroidsCli.debug "with params: #{args}"
