@@ -47,10 +47,17 @@ class Prompt
         when "", "push", "p"
           console.log "Updating code on all connected devices ..."
           Project = require "./Project"
+
           project = new Project
-          project.push
-            onSuccess: => @refresh()
-            onFailure: => @refresh()
+          project.preMake
+            onSuccess: =>
+              project.make
+                onSuccess: =>
+                  project.postMake
+                    onSuccess: =>
+                      project.package
+                        onSuccess: =>
+                          @refresh()
 
         when "s", "sim", "simulator"
 

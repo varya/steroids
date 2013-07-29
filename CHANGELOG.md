@@ -4,6 +4,9 @@ Changes:
   - `steroids simulator --deviceType` supports SDK version setting, `--deviceType=iphone@5.1`
   - includes 2.7.6 version of the iOS Scanner Simulator
 
+Bugfixes:
+ - `steroids.config.hooks.preMake`  and `postMake` are actually executed when update is triggered from connect prompt
+
 ## 2.7.8 (2013-07-26)
 
 Lovin' Angular.js! Proper "Multi-Page Application" generators: ng-resource and ng-scaffold!
