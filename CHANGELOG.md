@@ -1,3 +1,10 @@
+## 2.7.10 (TODO)
+
+Build hooks invoked on file system changes.
+
+Bugfixes:
+  - `steroids.config.hooks.preMake` and `postMake` are now invoked with `--watch` option
+
 ## 2.7.9 (2013-07-29)
 
 Simulator supports different SDKs, bugfixes
@@ -7,9 +14,9 @@ Changes:
   - includes 2.7.6 version of the iOS Scanner Simulator
 
 Bugfixes:
- - `steroids.config.hooks.preMake`  and `postMake` are actually executed when update is triggered from connect prompt
- - Fixed "Using native drawer shows black drawer" problem with newer Simulator (2.7.6)
- - `steroids generate ng-resource` doesn't generate order by code anymore
+  - `steroids.config.hooks.preMake`  and `postMake` are actually executed when update is triggered from connect prompt
+  - Fixed "Using native drawer shows black drawer" problem with newer Simulator (2.7.6)
+  - `steroids generate ng-resource` doesn't generate order by code anymore
 
 ## 2.7.8 (2013-07-26)
 
