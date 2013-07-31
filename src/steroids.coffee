@@ -203,11 +203,7 @@ class Steroids
 
       when "make"
         project = new Project
-        project.preMake
-          onSuccess: =>
-            project.make
-              onSuccess: =>
-                project.postMake()
+        project.make()
 
       when "package"
         Packager = require "./steroids/Packager"
@@ -272,7 +268,7 @@ class Steroids
           project = new Project
           project.push
             onFailure: =>
-              steroidsCli.debug "Can not continue starting server, the push failed."
+              steroidsCli.debug "Cannot continue starting server, the push failed."
             onSuccess: =>
               BuildServer = require "./steroids/servers/BuildServer"
 
@@ -494,9 +490,9 @@ class Steroids
                   # all complete
                   process.exit 0
               onFailure: =>
-                console.log "Can not create package, cloud deploy not possible."
+                console.log "Cannot create package, cloud deploy not possible."
           onFailure: =>
-            console.log "Can not build project locally, cloud deploy not possible."
+            console.log "Cannot build project locally, cloud deploy not possible."
 
       when "chat"
         console.log "Chat is deprecated, please visit forums at http://forums.appgyver.com"

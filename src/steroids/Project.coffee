@@ -64,7 +64,7 @@ class Project
     else
       options.onSuccess.call() if options.onSuccess?
 
-  make: (options = {}) =>
+  makeOnly: (options = {}) => # without hooks
 
     steroidsCli.debug "Spawning steroids grunt"
 
@@ -81,6 +81,15 @@ class Project
         steroidsCli.debug "grunt spawn exited with code #{gruntSbawn.code}"
         options.onFailure.call() if options.onFailure?
 
+  make: (options = {}) => # with pre- and post-make hooks
+
+    steroidsCli.debug "Making with hooks."
+
+    @preMake
+      onSuccess: =>
+        @makeOnly
+          onSuccess: =>
+            @postMake options
 
   package: (options = {}) =>
     steroidsCli.debug "Spawning steroids package"

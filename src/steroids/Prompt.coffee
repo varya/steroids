@@ -49,15 +49,11 @@ class Prompt
           Project = require "./Project"
 
           project = new Project
-          project.preMake
-            onSuccess: =>
-              project.make
+          project.make
+            onSuccess: => 
+              project.package
                 onSuccess: =>
-                  project.postMake
-                    onSuccess: =>
-                      project.package
-                        onSuccess: =>
-                          @refresh()
+                  @refresh()
 
         when "s", "sim", "simulator"
 
