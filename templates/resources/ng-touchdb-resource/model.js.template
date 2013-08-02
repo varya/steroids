@@ -12,6 +12,15 @@ var module = angular.module('<%= options.className %>Model', ['CornerCouch']);
 
 module.factory('<%= options.className %>Couch', function(cornercouch) {
 
+  window.setTimeout(function() {
+    alert("Good! Now configure CouchDB replica in app/models/<%= options.name %>.js");
+  }, 2000);
+
+  if (steroids.version != "2.7.3") {
+    alert("ng-touchdb-resource requires steroids.js 2.7.3, you have " + steroids.version)
+  }
+
+
   var databaseName  = "<%= options.name %>",
       server        = cornercouch("http://.touchdb.", "GET"),
       database      = server.getDB(databaseName);
@@ -19,6 +28,10 @@ module.factory('<%= options.className %>Couch', function(cornercouch) {
   // Set up two way replication with server and monitoring of the local database
   var steroidsDB    = new steroids.data.TouchDB({name: databaseName}),
       cloudUrl      = "https://USERNAME:PASSWORD@USERNAME.cloudant.com/<%= options.name %>"; // replace these with your own credentials and URL
+
+  steroidsDB.replicateFrom({
+    url: cloudUrl
+  });
 
   database.getInfo().success(function(){
     console.log("Database " + databaseName + " loaded:" + JSON.stringify(database.info));

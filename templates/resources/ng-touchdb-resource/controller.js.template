@@ -1,4 +1,4 @@
-var onewayApp = angular.module('<%= options.name %>App', ['<%= options.className %>Model', 'hmTouchevents']);
+var <%= options.name %>App = angular.module('<%= options.name %>App', ['<%= options.className %>Model', 'hmTouchevents']);
 
 
 // Index: http://localhost/views/<%= options.name %>/index.html
@@ -12,18 +12,12 @@ var onewayApp = angular.module('<%= options.name %>App', ['<%= options.className
 
   $scope.<%= options.name %>s = [];
 
-  <%= options.className %>Couch.ensureDB(function() {
-
-    var whenChanged = function() {
-      <%= options.className %>Couch.cornerCouchDB.queryAll({ include_docs: true, descending: true, limit: 8 }).success(function(rows){
-        $scope.<%= options.name %>s = <%= options.className %>Couch.cornerCouchDB.rows.map(function(row) {
-          return row.doc;
-        });
+  <%= options.className %>Couch.steroidsDB.on('change', function() {
+    <%= options.className %>Couch.cornerCouchDB.queryAll({ include_docs: true, descending: true, limit: 8 }).success(function(rows){
+      $scope.<%= options.name %>s = <%= options.className %>Couch.cornerCouchDB.rows.map(function(row) {
+        return row.doc;
       });
-    }
-
-    <%= options.className %>Couch.startPollingChanges(whenChanged);
-
+    });
   });
 
   steroids.view.navigationBar.show("<%= options.className %> index");

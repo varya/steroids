@@ -1,5 +1,5 @@
 (function(window){
-/*! steroids-js - v2.7.2 - 2013-07-12 */
+/*! steroids-js - v2.7.3 - 2013-08-02 */
 ;var Bridge,
   __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
@@ -1579,20 +1579,79 @@ OAuth2 = (function() {
   return OAuth2;
 
 })();
-;var TouchDB;
+;var RSS;
+
+RSS = (function() {
+
+  function RSS(options) {
+    this.options = options != null ? options : {};
+    this.url = options.constructor.name === "String" ? options : options.url;
+    if (!this.url) {
+      throw "URL required";
+    }
+  }
+
+  return RSS;
+
+})();
+;var TouchDB,
+  __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
 TouchDB = (function() {
 
   TouchDB.baseURL = "http://.touchdb.";
 
   function TouchDB(options) {
+    var _this = this;
     this.options = options != null ? options : {};
+    this.replicateFrom = __bind(this.replicateFrom, this);
+
+    this.fireCallbacks = __bind(this.fireCallbacks, this);
+
     if (!this.options.name) {
       throw "Database name required";
     }
     this.replicas = {};
     this.baseURL = "" + TouchDB.baseURL + "/" + this.options.name;
+    this.eventCallbacks = {};
+    this.createDB({}, {
+      onSuccess: function() {
+        return _this.fireCallbacks('ready');
+      },
+      onFailure: function(error) {
+        if (error.status === 412) {
+          return _this.fireCallbacks('ready');
+        } else {
+          return console.log("unable to initialize database: " + error.error);
+        }
+      }
+    });
+    this.startMonitoringChanges({}, {
+      onChange: function() {
+        return _this.fireCallbacks('change');
+      }
+    });
   }
+
+  TouchDB.prototype.fireCallbacks = function(name) {
+    var callback, _i, _len, _ref, _results;
+    if (!this.eventCallbacks[name]) {
+      return;
+    }
+    _ref = this.eventCallbacks[name];
+    _results = [];
+    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      callback = _ref[_i];
+      _results.push(callback.call());
+    }
+    return _results;
+  };
+
+  TouchDB.prototype.on = function(eventName, callback) {
+    var _base;
+    (_base = this.eventCallbacks)[eventName] || (_base[eventName] = []);
+    return this.eventCallbacks[eventName].push(callback);
+  };
 
   TouchDB.prototype.startMonitoringChanges = function(options, callbacks) {
     var request,
@@ -1686,6 +1745,22 @@ TouchDB = (function() {
     }, {
       onSuccess: toCloudAdded,
       onFailure: toCloudFailed
+    });
+  };
+
+  TouchDB.prototype.replicateFrom = function(options, callbacks) {
+    if (options == null) {
+      options = {};
+    }
+    if (callbacks == null) {
+      callbacks = {};
+    }
+    return this.startReplication({
+      source: options.url,
+      target: this.options.name
+    }, {
+      onSuccess: callbacks.onSuccess,
+      onFailure: callbacks.onFailure
     });
   };
 
@@ -2053,7 +2128,7 @@ PostMessage = (function() {
 }).call(this);
 ;
 window.steroids = {
-  version: "2.7.2",
+  version: "2.7.3",
   Animation: Animation,
   XHR: XHR,
   File: File,
@@ -2066,6 +2141,7 @@ window.steroids = {
   },
   data: {
     TouchDB: TouchDB,
+    RSS: RSS,
     OAuth2: OAuth2
   },
   openURL: OpenURL.open,
