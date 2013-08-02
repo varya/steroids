@@ -8,7 +8,7 @@ util = require "util"
 Base = require "../Base"
 Help = require "../../Help"
 
-class NgScaffold extends Base
+class NgResource extends Base
   @usageParams: ->
     "<resourceName>"
 
@@ -89,4 +89,4 @@ class NgScaffold extends Base
      """
 
 
-module.exports = NgScaffold
+module.exports = NgResource
