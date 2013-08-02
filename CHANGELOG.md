@@ -1,6 +1,6 @@
 ## 2.7.10 (2013-08-02)
 
-Build hooks invoked on file system changes.
+New generators, build hooks invoked on file system changes, command to open Safari Develop menu directly, steroids.js version updated.
 
 Changes:
   - `steroids safaridebug` opens the Safari Develop menu using AppleScript, allowing for quick access to Safari Web Inspector
