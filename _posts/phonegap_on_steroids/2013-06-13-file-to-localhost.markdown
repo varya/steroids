@@ -39,7 +39,7 @@ Any `window.location` changes, `href` attributes and so on in your project shoul
 
 ##Switch your assets to absolute URL paths
 
-In HTML documents loaded from localhost, starting a URL string with `/` is equivalent to starting it with `http://localhost/`. The web server at localhost serves files from your application directory (equivalent to the contents of the `dist/` folder that the Steroids NPM creates). Thus, instead of writing
+In HTML documents loaded from localhost, starting a URL string with `/` is equivalent to starting it with `http://localhost/`. The web server at localhost serves files from your application directory (equivalent to the contents of the `dist/` folder that the Steroids `npm` creates). Thus, instead of writing
 
 {% highlight css %}
 body {

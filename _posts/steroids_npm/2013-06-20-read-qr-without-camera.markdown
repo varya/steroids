@@ -6,7 +6,7 @@ categories: steroids_npm
 platforms: iOS, Android
 ---
 
-There are some devices (the original iPad, some Kindle versions etc.) that can run Steroids-made apps but do not have a built-in camera and thus can't scan QR codes. With the following (admittedly rather hackish) workaround you can still connect your device with the Steroids NPM for development and testing:
+There are some devices (the original iPad, some Kindle versions etc.) that can run Steroids-made apps but do not have a built-in camera and thus can't scan QR codes. With the following (admittedly rather hackish) workaround you can still connect your device with the Steroids `npm` for development and testing:
 
 1. Have the AppGyver Scanner app installed on the device
 2. Run `$ steroids connect`

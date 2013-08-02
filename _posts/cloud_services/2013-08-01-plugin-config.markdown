@@ -32,7 +32,7 @@ If you are building a custom Scanner app for your project, note that you need to
 </plugins>
 {% endhighlight %}
 
-Currently, you need to also include the relevant `.js` and other asset files for the plugin manually in your project – the `<asset>` tag is not supported.
+Currently, you need to also include the relevant `.js` and other asset files for the plugin manually in your project – the `<asset>` tag in `plugin.xml` is not supported.
 
 [android-build-config]: /steroids/guides/cloud_services/android-build-config/
 [plugin-xml-spec]: http://cordova.apache.org/docs/en/3.0.0/plugin_ref_spec.md.html
