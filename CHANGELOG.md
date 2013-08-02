@@ -1,4 +1,4 @@
-## 2.7.10 (TODO)
+## 2.7.10 (2013-08-02)
 
 Build hooks invoked on file system changes.
 
