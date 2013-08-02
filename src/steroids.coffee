@@ -500,7 +500,10 @@ class Steroids
 
       when "safaridebug"
         safariDebug = new SafariDebug
-        safariDebug.open()
+        if otherOptions[0]
+          safariDebug.open(otherOptions[0])
+        else
+          safariDebug.listViews()
 
       else
         Help.logo() unless argv.noLogo
