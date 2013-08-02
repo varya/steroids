@@ -8,7 +8,7 @@ class Project
   initialize: (options={}) =>
     process.chdir(@options.folder)
 
-    @make
+    @makeOnly
       onSuccess: =>
         @package(options.onSuccess)
 
