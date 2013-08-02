@@ -21,6 +21,8 @@ class Paths
   @appgyverStaticFiles: path.join @staticFiles, "__appgyver"
   @oauthSuccessHTML: path.join @appgyverStaticFiles, "login", "oauth2_success.html"
 
+  @scriptsDir: path.join @npm, "support", "scripts"
+
   @bannersDir: path.join @npm, "support"
   @banners:
     logo: path.join @bannersDir, "logo"

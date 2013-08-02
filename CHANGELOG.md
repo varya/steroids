@@ -2,6 +2,9 @@
 
 Build hooks invoked on file system changes.
 
+Changes:
+  - `steroids safaridebug` opens the Safari Develop menu using AppleScript, allowing for quick access to Safari Web Inspector
+
 Bugfixes:
   - `steroids.config.hooks.preMake` and `postMake` are now invoked with `--watch` option
 
