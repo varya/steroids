@@ -5,6 +5,7 @@ Build hooks invoked on file system changes.
 Changes:
   - `steroids safaridebug` opens the Safari Develop menu using AppleScript, allowing for quick access to Safari Web Inspector
   - new generator: `steroids generate ng-touchdb-resource` for an Angular.js resource that syncs data in an external CouchDB database with a local TouchDB database.
+  - new generator: `steroids generate bb-scaffold` for a CRUD scaffold using Backbone.js, includes example configuration for Stackmob (or any REST-API)
   - steroids.js 2.7.3 is default for new apps.
 
 Bugfixes:
