@@ -8,7 +8,7 @@ platforms: iOS, Android
 
 ##Installing the Required Dependencies
 
-**Please notice:** Steroids `npm` currently only works with OS X and Linux.
+**Please notice:** Steroids npm currently only works with OS X and Linux.
 
 First, you need to make sure that you have these set up:
 
@@ -35,21 +35,21 @@ $ nvm alias default 0.8
 
 *Newer versions of Node.js have stability issues and limited support for certain third-party libraries. Thus, Steroids currently runs using Node.js version 0.8.x only. NVM allows you to install and use multiple versions of Node.js, so just make sure you have the correct version loaded when using Steroids.*
 
-Alternatively, if you don't want to use NVM, you can install Node.js and `npm` package management from [nodejs.org][nodejs].
+Alternatively, if you don't want to use NVM, you can install Node.js and npm package management from [nodejs.org][nodejs].
 
 ##Installing the Steroids npm package
 
-You'll want to use the `steroids` command globally, so you should install Steroids `npm` with the `-g` option:
+You'll want to use the `steroids` command globally, so you should install Steroids npm with the `-g` option:
 
 <pre class="terminal">
 $ npm install steroids -g
 </pre>
 
-`npm` might give you a few alerts about some third party libraries. This doesn't affect Steroids. However, if `npm` fails to install a 3rd party library and gives an error, it can be typically fixed just by running the `$ npm install steroids -g` command again.
+npm might give you a few alerts about some third party libraries. This doesn't affect Steroids. However, if npm fails to install a 3rd party library and gives an error, it can be typically fixed just by running the `$ npm install steroids -g` command again.
 
 ##Updating Steroids
 
-The Steroids `npm` checks for updates automatically when it is run, and will let you know when a new version is out. Remember to use the global `-g` option also when updating:
+The Steroids npm checks for updates automatically when it is run, and will let you know when a new version is out. Remember to use the global `-g` option also when updating:
 
 <pre class="terminal">
 $ npm update steroids -g
