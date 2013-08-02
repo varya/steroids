@@ -24,6 +24,7 @@ examples =
   "photoGallery": require("./Examples/photoGallery")
   "preload": require("./Examples/preload")
   "storage": require("./Examples/storage")
+  "s3upload": require("./Examples/s3upload")
 
 class Example extends Base
   @usageParams: ->
@@ -34,8 +35,8 @@ class Example extends Base
     Generates an example demonstrating a Steroids feature.
 
     Options:
-      - exampleName: name of the example to generate.  
-        
+      - exampleName: name of the example to generate.
+
         Available Steroids examples:
         - animation -- Using native animations without moving to another document (iOS-only).
         - drawer -- Using the native Facebook-style drawer (iOS-only).
@@ -46,7 +47,7 @@ class Example extends Base
         - photoGallery -- Use Cordova's Camera and File APIs and Steroids native
                           windowing to create a one-picture photo gallery.
         - preload -- Preload WebViews to have them available immediately.
-        
+
         Available Cordova examples:
         - accelerometer -- Access the device's accelerometer.
         - audio -- Play back audio files through Cordova's Media API.
@@ -56,6 +57,9 @@ class Example extends Base
         - geolocation -- Access the device's geolocation data.
         - notification -- Access native notifications.
         - storage -- Access Cordova's SQL Storage API.
+
+        Other:
+        - s3upload -- Uploading photos to s3
     """
 
   generate: ->
