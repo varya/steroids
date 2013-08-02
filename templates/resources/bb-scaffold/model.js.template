@@ -1,21 +1,14 @@
 // The contents of individual model .js files will be concatenated into dist/models.js
 (function(window){
 
-  /*
-    Example of stackmob REST configuration:
-  var baseURL = "http://api.<STACKMOB APP NAME HERE>.stackmob.com/<%= options.name %>"
-  var defaultHeaders = {
-    "X-StackMob-API-Key-<STACKMOB API KEY HERE>": "1",
-    "Accept": "application/vnd.stackmob+json; version=0"
-  }
-  */
+  alert("Configure your model.js file in app/models/<%= options.name %>.js");
 
-  var defaultHeaders  = {},
-      baseURL         = "";
-
-  if (baseURL === "") {
-    alert("Configure your model.js file in app/models/<%= options.name %>.js");
-  };
+  // // Example of StackMob REST configuration:
+  // var baseURL = "http://api.stackmob.com/<%= options.name %>"
+  // var defaultHeaders = {
+  //   "X-StackMob-API-Key-<STACKMOB API KEY HERE>": "1",
+  //   "Accept": "application/vnd.stackmob+json; version=0"
+  // }
 
 
   // support for writing custom headers per model
@@ -33,7 +26,7 @@
 
   // single model
   window.<%= options.className %> = Backbone.Model.extend({
-    idAttribute: "<%= options.name %>_id", // you might need to change/remove this
+    idAttribute: "<%= options.name %>_id", // you might need to change/remove this here and in app/controllers/<%= options.name %>.js
     url: function() {
       if (this.isNew()) {
         return baseURL
