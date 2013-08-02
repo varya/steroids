@@ -1,0 +1,50 @@
+var onewayApp = angular.module('<%= options.name %>App', ['<%= options.className %>Model', 'hmTouchevents']);
+
+
+// Index: http://localhost/views/<%= options.name %>/index.html
+
+<%= options.name %>App.controller('IndexCtrl', function ($scope, <%= options.className %>Couch) {
+
+  $scope.open = function(id) {
+    webView = new steroids.views.WebView("/views/<%= options.name %>/show.html?id="+id);
+    steroids.layers.push(webView);
+  };
+
+  $scope.<%= options.name %>s = [];
+
+  <%= options.className %>Couch.ensureDB(function() {
+
+    var whenChanged = function() {
+      <%= options.className %>Couch.cornerCouchDB.queryAll({ include_docs: true, descending: true, limit: 8 }).success(function(rows){
+        $scope.<%= options.name %>s = <%= options.className %>Couch.cornerCouchDB.rows.map(function(row) {
+          return row.doc;
+        });
+      });
+    }
+
+    <%= options.className %>Couch.startPollingChanges(whenChanged);
+
+  });
+
+  steroids.view.navigationBar.show("<%= options.className %> index");
+
+});
+
+
+// Show: http://localhost/views/<%= options.name %>/show.html?id=<id>
+
+<%= options.name %>App.controller('ShowCtrl', function ($scope, <%= options.className %>Couch) {
+
+  <%= options.className %>Couch.ensureDB(function() {
+
+    var whenChanged = function() {
+      $scope.<%= options.name %> = <%= options.className %>Couch.cornerCouchDB.newDoc();
+      $scope.<%= options.name %>.load(steroids.view.params.id);
+    };
+
+    <%= options.className %>Couch.startPollingChanges(whenChanged);
+  });
+
+  steroids.view.navigationBar.show("Show " + steroids.view.params.id);
+
+});

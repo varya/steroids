@@ -1,0 +1,16 @@
+<div ng-app="<%= options.name %>App">
+
+  <div ng-controller="IndexCtrl">
+    <div class="topcoat-list__container">
+
+      <ul class="topcoat-list">
+        <li class="topcoat-list__item" hm-tap="open(<%= options.name %>._id)" ng-repeat="<%= options.name %> in <%= options.name %>s">
+          <%= options.className %>: {{ <%= options.name %>.name }}
+        </li>
+      </ul>
+
+    </div>
+
+  </div>
+
+</div>
