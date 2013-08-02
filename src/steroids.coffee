@@ -3,6 +3,7 @@ Weinre = require "./steroids/Weinre"
 Simulator = require "./steroids/Simulator"
 Project = require "./steroids/Project"
 Updater = require "./steroids/Updater"
+SafariDebug = require "./steroids/SafariDebug"
 
 util = require "util"
 Version = require "./steroids/Version"
@@ -496,6 +497,10 @@ class Steroids
 
       when "chat"
         console.log "Chat is deprecated, please visit forums at http://forums.appgyver.com"
+
+      when "safaridebug"
+        safariDebug = new SafariDebug
+        safariDebug.open()
 
       else
         Help.logo() unless argv.noLogo

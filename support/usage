@@ -43,6 +43,10 @@ Other usage commands:
 
     Starts Weinre debugger and waits for connections.
 
+  safaridebug
+
+    Opens the Safari Develop menu for quick access to Safari Web Inspector (OS X only).
+
   update
 
     Updates your bower components as defined in config/bower.json
