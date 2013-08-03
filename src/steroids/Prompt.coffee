@@ -59,7 +59,7 @@ class Prompt
           SafariDebug = require "./SafariDebug"
           safariDebug = new SafariDebug
           if commandOptions[0]?
-            safariDebug.listViews(commandOptions[0])
+            safariDebug.open(commandOptions[0])
           else
             safariDebug.listViews()
 
