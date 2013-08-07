@@ -1,3 +1,8 @@
+## 2.7.11 (TODO)
+
+Changes:
+  - `steroids connect --serve` also serves application for browser debuggin
+
 ## 2.7.10 (2013-08-02)
 
 New generators, build hooks invoked on file system changes, command to open Safari Develop menu directly, steroids.js version updated.
