@@ -5,7 +5,7 @@ http = require 'http'
 
 class Server
 
-  @startServer: (options={}) =>
+  @start: (options={}) =>
     selectedPort = options.port
 
     errorCb = (err)=>

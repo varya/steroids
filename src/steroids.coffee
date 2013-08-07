@@ -291,7 +291,7 @@ class Steroids
                 watcher.watch("./config")
 
 
-              server = Server.startServer callback: ()=>
+              server = Server.start callback: ()=>
                 global.steroidsCli.server = server
 
                 buildServer = new BuildServer
@@ -417,7 +417,7 @@ class Steroids
         else
           13303
 
-        server = Server.startServer
+        server = Server.start
           port: @port
           callback: ()=>
             login = new Login

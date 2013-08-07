@@ -10,7 +10,7 @@ class Serve
   start: =>
     url = "http://localhost:#{@port}"
 
-    serveServer = Server.startServer
+    serveServer = Server.start
       port: @port
       callback: ()=>
         webServer = new WebServer
