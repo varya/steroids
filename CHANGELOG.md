@@ -2,6 +2,7 @@
 
 Changes:
   - `steroids connect --serve` also serves application for browser debuggin
+  - preMake hook will end the process when error code is not 0
 
 ## 2.7.10 (2013-08-02)
 

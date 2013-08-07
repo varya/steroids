@@ -36,9 +36,19 @@ class Project
         stderr: true
 
       preMakeSbawn.on "exit", =>
+        errorCode = preMakeSbawn.code
+
+        if errorCode == 137 and config.hooks.preMake.cmd == "grunt"
+          util.log "command was grunt build which exists with 137 when success, setting error code to 0"
+          errorCode = 0
+
         util.log "preMake done"
 
-        options.onSuccess.call() if options.onSuccess?
+        if errorCode == 0
+          options.onSuccess.call() if options.onSuccess?
+        else
+          util.log "preMake resulted in error code: #{errorCode}"
+          options.onFailure.call() if options.onFailure?
 
     else
       options.onSuccess.call() if options.onSuccess?
