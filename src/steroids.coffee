@@ -291,51 +291,53 @@ class Steroids
                 watcher.watch("./config")
 
 
-              server = Server.start callback: ()=>
-                global.steroidsCli.server = server
+              server = Server.start
+                port: @port
+                callback: ()=>
+                  global.steroidsCli.server = server
 
-                buildServer = new BuildServer
-                                    path: "/"
-                                    port: @port
+                  buildServer = new BuildServer
+                                      path: "/"
+                                      port: @port
 
-                server.mount(buildServer)
+                  server.mount(buildServer)
 
-                unless argv.qrcode?
-                  QRCode = require "./steroids/QRCode"
-                  QRCode.showLocal
-                    port: @port
+                  unless argv.qrcode?
+                    QRCode = require "./steroids/QRCode"
+                    QRCode.showLocal
+                      port: @port
 
-                  util.log "Waiting for the client to connect, scan the QR code visible in your browser ..."
+                    util.log "Waiting for the client to connect, scan the QR code visible in your browser ..."
 
-                setInterval () ->
-                  activeClients = 0;
-                  needsRefresh = false
+                  setInterval () ->
+                    activeClients = 0;
+                    needsRefresh = false
 
-                  for ip, client of buildServer.clients
-                    delta = Date.now() - client.lastSeen
+                    for ip, client of buildServer.clients
+                      delta = Date.now() - client.lastSeen
 
-                    if (delta > 2000)
-                      needsRefresh = true
-                      delete buildServer.clients[ip]
-                      console.log ""
-                      util.log "Client disconnected: #{client.ipAddress} - #{client.userAgent}"
-                    else if client.new
-                      needsRefresh = true
-                      activeClients++
-                      client.new = false
+                      if (delta > 2000)
+                        needsRefresh = true
+                        delete buildServer.clients[ip]
+                        console.log ""
+                        util.log "Client disconnected: #{client.ipAddress} - #{client.userAgent}"
+                      else if client.new
+                        needsRefresh = true
+                        activeClients++
+                        client.new = false
 
-                      console.log ""
-                      util.log "New client: #{client.ipAddress} - #{client.userAgent}"
-                    else
-                      activeClients++
+                        console.log ""
+                        util.log "New client: #{client.ipAddress} - #{client.userAgent}"
+                      else
+                        activeClients++
 
-                  if needsRefresh
-                    util.log "Number of clients connected: #{activeClients}"
-                    prompt.refresh()
+                    if needsRefresh
+                      util.log "Number of clients connected: #{activeClients}"
+                      prompt.refresh()
 
-                , 1000
+                  , 1000
 
-                prompt.connectLoop()
+                  prompt.connectLoop()
 
 
 
