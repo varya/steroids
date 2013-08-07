@@ -5,6 +5,7 @@ Project = require "./steroids/Project"
 Updater = require "./steroids/Updater"
 SafariDebug = require "./steroids/SafariDebug"
 Serve = require "./steroids/Serve"
+Server = require "./steroids/Server"
 
 util = require "util"
 Version = require "./steroids/Version"
@@ -73,29 +74,6 @@ class Steroids
       options.message
 
     console.log "[DEBUG]", message
-
-
-  startServer: (options={}) =>
-    Server = require "./steroids/Server"
-    selectedPort = options.port ? @port
-
-    errorCb = (err)=>
-      if err.message.match /EADDRINUSE/
-        util.log "ERROR: Port #{selectedPort} is already in use. You probably have already have another `steroids` command running on that port."
-        process.exit 1
-      else
-        throw err
-
-    server = new Server
-      port: selectedPort
-      path: "/"
-      errorCallback: errorCb
-
-    server.listen ()=>
-      util.log "The server has now been started on port #{selectedPort}"
-      options.callback()
-
-    return server
 
 
   ensureProjectIfNeededFor: (command, otherOptions) ->
@@ -313,7 +291,7 @@ class Steroids
                 watcher.watch("./config")
 
 
-              server = @startServer callback: ()=>
+              server = Server.startServer callback: ()=>
                 global.steroidsCli.server = server
 
                 buildServer = new BuildServer
@@ -368,21 +346,8 @@ class Steroids
         else
           4000
 
-        url = "http://localhost:#{@port}"
-
-        WebServer = require "./steroids/servers/WebServer"
-
-        server = @startServer
-          port: @port
-          callback: ()=>
-            webServer = new WebServer
-              path: "/"
-
-            server.mount(webServer)
-
-            util.log "Serving application in #{url}"
-
-            open url
+        serve = new Serve(@port)
+        serve.start()
 
       when "update"
         updater = new Updater
@@ -452,7 +417,7 @@ class Steroids
         else
           13303
 
-        server = @startServer
+        server = Server.startServer
           port: @port
           callback: ()=>
             login = new Login
