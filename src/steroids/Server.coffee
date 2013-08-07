@@ -5,6 +5,28 @@ http = require 'http'
 
 class Server
 
+  @startServer: (options={}) =>
+    selectedPort = options.port
+
+    errorCb = (err)=>
+      if err.message.match /EADDRINUSE/
+        util.log "ERROR: Port #{selectedPort} is already in use. You probably have already have another `steroids` command running on that port."
+        process.exit 1
+      else
+        throw err
+
+    server = new Server
+      port: selectedPort
+      path: "/"
+      errorCallback: errorCb
+
+    server.listen ()=>
+      util.log "The server has now been started on port #{selectedPort}"
+      options.callback()
+
+    return server
+
+
   constructor: (@options) ->
     throw "path must be specified" unless @options.path
 

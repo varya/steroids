@@ -4,6 +4,7 @@ Simulator = require "./steroids/Simulator"
 Project = require "./steroids/Project"
 Updater = require "./steroids/Updater"
 SafariDebug = require "./steroids/SafariDebug"
+Serve = require "./steroids/Serve"
 
 util = require "util"
 Version = require "./steroids/Version"
@@ -258,6 +259,16 @@ class Steroids
           argv.port
         else
           4567
+
+        if argv.serve
+          servePort = if argv.servePort
+            argv.servePort
+          else
+            4000
+
+          serve = new Serve(servePort)
+          serve.start()
+
 
         portscanner = require "portscanner"
 
