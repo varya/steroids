@@ -352,19 +352,17 @@ class Steroids
 
 
       when "serve"
-
         @port = if argv.port
           argv.port
         else
           4000
 
-        servePort = @port
-        url = "http://localhost:#{servePort}"
+        url = "http://localhost:#{@port}"
 
         WebServer = require "./steroids/servers/WebServer"
 
         server = @startServer
-          port: servePort
+          port: @port
           callback: ()=>
             webServer = new WebServer
               path: "/"
