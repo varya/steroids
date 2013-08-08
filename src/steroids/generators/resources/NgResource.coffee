@@ -64,7 +64,6 @@ class NgResource extends Base
      @addFile path.join("app", "views", "#{@options.name}", "show.html"), "show.html.template"
 
      @ensureDirectory path.join("www", "data")
-     @ensureDirectory path.join("www", "data", @options.name)
      @addFile path.join("www", "data", "#{@options.name}.json"), "all.json"
 
      @addBowerDependency "angular", "1.0.7"
