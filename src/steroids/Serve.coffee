@@ -19,7 +19,11 @@ class Serve
 
     startLocationURL = URL.parse(startLocation)
 
-    url = @baseURL + startLocationURL.path
+    # add ripple ui enabler parameter
+    url = URL.parse(@baseURL + startLocationURL.path)
+    url.query = {} unless url.query?
+    url.query["enableripple"] = "cordova"
+    url = URL.format(url)
 
     serveServer = Server.start
       port: @port
