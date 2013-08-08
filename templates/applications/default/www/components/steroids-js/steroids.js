@@ -1,5 +1,5 @@
 (function(window){
-/*! steroids-js - v2.7.3 - 2013-08-02 */
+/*! steroids-js - v2.7.4 - 2013-08-08 */
 ;var Bridge,
   __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
@@ -13,7 +13,7 @@ Bridge = (function() {
 
   Bridge.getBestNativeBridge = function() {
     var bridgeClass, prioritizedList, _i, _len;
-    prioritizedList = [AndroidBridge, WebsocketBridge];
+    prioritizedList = [WebBridge, AndroidBridge, WebsocketBridge];
     if (this.bestNativeBridge == null) {
       for (_i = 0, _len = prioritizedList.length; _i < _len; _i++) {
         bridgeClass = prioritizedList[_i];
@@ -188,6 +188,78 @@ AndroidBridge = (function(_super) {
   };
 
   return AndroidBridge;
+
+})(Bridge);
+;var WebBridge,
+  __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+WebBridge = (function(_super) {
+
+  __extends(WebBridge, _super);
+
+  function WebBridge() {
+    window.AG_SCREEN_ID = 0;
+    window.AG_LAYER_ID = 0;
+    window.AG_VIEW_ID = 0;
+    return this;
+  }
+
+  WebBridge.isUsable = function() {
+    return typeof window.chrome !== 'undefined';
+  };
+
+  WebBridge.prototype.sendMessageToNative = function(messageString) {
+    var closeButton, failed, failureOptions, message, modal, successOptions,
+      _this = this;
+    message = JSON.parse(messageString);
+    console.log("WebBridge: ", message);
+    failed = false;
+    successOptions = {};
+    failureOptions = {};
+    switch (message.method) {
+      case "ping":
+        successOptions.message = "PONG";
+        break;
+      case "openLayer":
+        window.open(message.parameters.url, "_blank");
+        break;
+      case "openURL":
+        window.open(message.parameters.url, "_blank");
+        break;
+      case "openModal":
+        modal = document.createElement("iframe");
+        modal.src = message.parameters.url;
+        modal.width = "100%";
+        modal.height = "100%";
+        modal.style.position = "absolute";
+        modal.style.top = "10px";
+        modal.style.left = "10px";
+        modal.className = "steroidsModal";
+        document.body.appendChild(modal);
+        closeButton = document.createElement("button");
+        closeButton.style.position = "absolute";
+        closeButton.style.top = "0px";
+        closeButton.style.left = "0px";
+        closeButton.textContent = "CLOSE MODAL";
+        closeButton.onclick = function() {
+          modal.parentNode.removeChild(modal);
+          return closeButton.parentNode.removeChild(closeButton);
+        };
+        document.body.appendChild(closeButton);
+        break;
+      default:
+        console.log("WebBridge: unsupported API method: " + message.method);
+        failed = true;
+    }
+    if (failed) {
+
+    } else {
+      return this.callbacks[message.callbacks.success].call(this, successOptions);
+    }
+  };
+
+  return WebBridge;
 
 })(Bridge);
 ;var WebsocketBridge,
@@ -1799,6 +1871,101 @@ TouchDB = (function() {
   return TouchDB;
 
 })();
+;var SQLiteDB,
+  __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+
+SQLiteDB = (function() {
+
+  function SQLiteDB(options) {
+    this.options = options != null ? options : {};
+    this.execute = __bind(this.execute, this);
+
+    this.createTable = __bind(this.createTable, this);
+
+    this.dropTable = __bind(this.dropTable, this);
+
+    this.databaseName = options.constructor.name === "String" ? options : options.name;
+    if (!window.sqlitePlugin) {
+      throw "window.sqlitePlugin is undefined, please load plugin";
+    }
+    if (!this.databaseName) {
+      throw "database name required";
+    }
+  }
+
+  SQLiteDB.prototype.dropTable = function(opts, callbacks) {
+    var tableName;
+    if (opts == null) {
+      opts = {};
+    }
+    if (callbacks == null) {
+      callbacks = {};
+    }
+    tableName = opts.constructor.name === "String" ? opts : opts.name;
+    steroids.debug("dropping table " + tableName);
+    return this.execute({
+      statement: "DROP TABLE " + tableName
+    }, callbacks);
+  };
+
+  SQLiteDB.prototype.createTable = function(opts, callbacks) {
+    var tableName;
+    if (opts == null) {
+      opts = {};
+    }
+    if (callbacks == null) {
+      callbacks = {};
+    }
+    tableName = opts.constructor.name === "String" ? opts : opts.name;
+    steroids.debug("creating table " + tableName + " with " + opts.columnDefinitionString);
+    return this.execute({
+      statement: "CREATE TABLE " + tableName + " (" + opts.columnDefinitionString + ")"
+    }, callbacks);
+  };
+
+  SQLiteDB.prototype.execute = function(opts, callbacks) {
+    var statement,
+      _this = this;
+    if (opts == null) {
+      opts = {};
+    }
+    if (callbacks == null) {
+      callbacks = {};
+    }
+    statement = opts.constructor.name === "String" ? opts : opts.statement;
+    steroids.debug("stament to execute: " + statement);
+    return document.addEventListener('deviceready', function() {
+      if (!_this.db) {
+        _this.db = window.sqlitePlugin.openDatabase(_this.databaseName);
+      }
+      return _this.db.transaction(function(tx) {
+        var failure, success;
+        steroids.debug("execute transaction started");
+        success = function(stx, res) {
+          var i, rows, _i, _ref;
+          rows = [];
+          for (i = _i = 0, _ref = res.rows.length - 1; 0 <= _ref ? _i <= _ref : _i >= _ref; i = 0 <= _ref ? ++_i : --_i) {
+            rows.push(res.rows.item(i));
+          }
+          steroids.debug("execute success, returned " + rows.length + " rows");
+          if (callbacks.onSuccess) {
+            return callbacks.onSuccess(rows, res, stx);
+          }
+        };
+        failure = function(tx, err) {
+          steroids.debug("execute failure -- err.message: " + err.message);
+          if (callbacks.onFailure) {
+            return callbacks.onFailure(err, tx);
+          }
+        };
+        return tx.executeSql(statement, [], success, failure);
+      });
+    });
+  };
+
+  return SQLiteDB;
+
+})();
 ;var XHR,
   __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
@@ -2128,7 +2295,7 @@ PostMessage = (function() {
 }).call(this);
 ;
 window.steroids = {
-  version: "2.7.3",
+  version: "2.7.4",
   Animation: Animation,
   XHR: XHR,
   File: File,
@@ -2140,6 +2307,7 @@ window.steroids = {
     NavigationBarButton: NavigationBarButton
   },
   data: {
+    SQLiteDB: SQLiteDB,
     TouchDB: TouchDB,
     RSS: RSS,
     OAuth2: OAuth2
@@ -2149,19 +2317,18 @@ window.steroids = {
   waitingForComponents: [],
   debugMessages: [],
   debugEnabled: false,
-  debugConsole: console,
-  debug: function(options) {
-    var debugMessage, msg;
-    if (options == null) {
-      options = {};
-    }
+  debug: function(msg) {
+    var blue, debugMessage, msgJSON, red, reset;
     if (!steroids.debugEnabled) {
       return;
     }
-    msg = options.constructor.name === "String" ? options : options.msg;
-    debugMessage = "" + window.location.href + " - " + msg;
+    msgJSON = JSON.stringify(msg);
+    red = '\u001b[31m';
+    blue = '\u001b[34m';
+    reset = '\u001b[0m';
+    debugMessage = "[" + red + "DEBUG" + reset + "] - " + msgJSON + " - " + blue + " " + window.location.href + reset;
     window.steroids.debugMessages.push(debugMessage);
-    return this.debugConsole.log(debugMessage);
+    return console.log(debugMessage);
   },
   on: function(event, callback) {
     var _base;

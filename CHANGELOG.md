@@ -1,4 +1,4 @@
-## 2.7.11 (TODO)
+## 2.7.11 (2013-08-08)
 
 Changes:
   - New generator: `steroids generate ng-sql-scaffold` for an AngularJS CRUD scaffold with Persistence.js and WebSQL/SQLite-plugin as a backend
@@ -7,6 +7,8 @@ Changes:
   - `steroids serve` opens URL configured in `steroids.config.location` or the first tab if tabs are enabled.
   - `ng-resource` generator refactored to use a single JSON file for local resource data
   - `steroids serve` rewrites apps with tabs to support debugging with browser (experimental)
+  - default `www/config.platform.xml` exposes built-in plugins
+  - steroids.js 2.7.4 is default for new apps.
 
 ## 2.7.10 (2013-08-02)
 

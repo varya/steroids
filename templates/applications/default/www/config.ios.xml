@@ -23,7 +23,7 @@
 <!-- iOS config.xml file -->
 
 <widget>
-  
+
     <preference name="AllowInlineMediaPlayback" value="false" />
     <preference name="DisallowOverscroll" value="false" />
     <preference name="EnableViewportScale" value="false" />
@@ -31,7 +31,7 @@
     <preference name="KeyboardDisplayRequiresUserAction" value="false" />
     <preference name="KeyboardShrinksView" value="false" />
     <preference name="SuppressesIncrementalRendering" value="false" />
-    
+
     <plugins>
         <plugin name="Device" value="CDVDevice" />
         <plugin name="Logger" value="CDVLogger" />
@@ -51,7 +51,20 @@
         <plugin name="Battery" value="CDVBattery" />
         <plugin name="Globalization" value="CDVGlobalization" />
         <plugin name="InAppBrowser" value="CDVInAppBrowser" />
+
+        <!-- Built-in AppGyver Scanner plugins -->
+        <plugin name="SQLitePlugin" value="SQLitePlugin" />
+        <plugin name="org.apache.cordova.barcodeScanner" value="CDVBarcodeScanner" />
+        <plugin name="calendarPlugin" value="calendarPlugin" />
+
+        <!-- Built-in AppGyver Scanner experimental plugins -->
+        <plugin name="PushNotificationPlugin" value="PushNotificationPlugin" />
+        <plugin name="PushPlugin" value="PushPlugin" />
+        <plugin name="MapKitView" value="MapKitView" />
+        <plugin name="FacebookConnect" value="FacebookConnect" />
+        <plugin name="FlurryPlugin" value="FlurryPlugin" />
+        <plugin name="GAPlugin" value="GAPlugin" />
     </plugins>
-    
+
     <access origin="*" />
 </widget>
