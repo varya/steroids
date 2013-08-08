@@ -27,7 +27,7 @@ module.factory('<%= options.className %>Couch', function(cornercouch) {
 
   // Set up two way replication with server and monitoring of the local database
   var steroidsDB    = new steroids.data.TouchDB({name: databaseName}),
-      cloudUrl      = "https://USERNAME:PASSWORD@USERNAME.cloudant.com/<%= options.name %>"; // replace these with your own credentials and URL
+      cloudUrl      = "https://KEY:PASSWORD@USERNAME.cloudant.com/<%= options.name %>"; // replace these with your own credentials and URL
 
   steroidsDB.replicateFrom({
     url: cloudUrl
