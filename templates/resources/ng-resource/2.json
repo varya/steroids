@@ -1,5 +1,0 @@
-{
-  "<%= options.name %>_id": 1,
-  "name": "Second <%= options.name %>",
-  "description": "This is also okay."
-}

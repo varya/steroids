@@ -24,8 +24,6 @@ class NgResource extends Base
         - app/views/car/show.html
         - app/views/layouts/car.html
         - www/data/car.json
-        - www/data/car/1.json
-        - www/data/car/2.json
     """
 
   templatePath: ->
@@ -68,9 +66,6 @@ class NgResource extends Base
      @ensureDirectory path.join("www", "data")
      @ensureDirectory path.join("www", "data", @options.name)
      @addFile path.join("www", "data", "#{@options.name}.json"), "all.json"
-     @addFile path.join("www", "data", "#{@options.name}", "1.json"), "1.json"
-     @addFile path.join("www", "data", "#{@options.name}", "2.json"), "2.json"
-
 
      @addBowerDependency "angular", "1.0.7"
 
@@ -85,7 +80,7 @@ class NgResource extends Base
 
        "http://localhost/views/#{@options.name}/index.html"
 
-     and then modify the data in "www/data/#{@options.name}.json" and "www/data/#{@options.name}/<id>.json"
+     and then modify the data in "www/data/#{@options.name}.json"
      """
 
 

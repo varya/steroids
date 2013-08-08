@@ -22,10 +22,13 @@ var <%= options.name %>App = angular.module('<%= options.name %>App', ['<%= opti
 
 // Show: http://localhost/views/<%= options.name %>/show.html?id=<id>
 
-<%= options.name %>App.controller('ShowCtrl', function ($scope, <%= options.className %>Restangular) {
+<%= options.name %>App.controller('ShowCtrl', function ($scope, $filter, <%= options.className %>Restangular) {
 
-  // Fetch the object from the local JSON (see app/models/<%= options.name %>.js)
-  $scope.<%= options.name %> = <%= options.className %>Restangular.one("<%= options.name %>", steroids.view.params.id).get();
+  // Fetch all objects from the local JSON (see app/models/<%= options.name %>.js)
+  <%= options.className %>Restangular.all('<%= options.name %>').getList().then( function(<%= options.name %>s) {
+    // Then select the one based on the view's id query parameter
+    $scope.<%= options.name %> = $filter('filter')(<%= options.name %>s, {<%= options.name %>_id: steroids.view.params['id']})[0];
+  });
 
   // -- Native navigation
   steroids.view.navigationBar.show("<%= options.className %>: " + steroids.view.params.id );

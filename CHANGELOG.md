@@ -5,6 +5,7 @@ Changes:
   - `steroids connect --serve` also serves application for browser debuggin
   - preMake hook will end the process when error code is not 0
   - `steroids serve` opens URL configured in `steroids.config.location` or the first tab if tabs are enabled.
+  - `ng-resource` generator refactored to use a single JSON file for local resource data
 
 ## 2.7.10 (2013-08-02)
 
