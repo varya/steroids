@@ -1,6 +1,7 @@
 ## 2.7.11 (TODO)
 
 Changes:
+  - New generator: `steroids generate ng-sql-scaffold` for an AngularJS CRUD scaffold with Persistence.js and WebSQL/SQLite-plugin as a backend
   - `steroids connect --serve` also serves application for browser debuggin
   - preMake hook will end the process when error code is not 0
   - `steroids serve` opens URL configured in `steroids.config.location` or the first tab if tabs are enabled.
