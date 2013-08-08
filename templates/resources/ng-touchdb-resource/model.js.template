@@ -16,7 +16,14 @@ module.factory('<%= options.className %>Couch', function(cornercouch) {
     alert("Good! Now configure CouchDB replica in app/models/<%= options.name %>.js");
   }, 2000);
 
-  if (steroids.version != "2.7.3") {
+
+  var versionParts = steroids.version.split(".")
+
+  var versionMajor = parseInt(versionParts[0])
+  var versionMinor = parseInt(versionParts[1])
+  var versionPatch = parseInt(versionParts[2])
+
+  if ((versionMajor == 2 && versionMinor == 7 && versionPatch < 3) || (versionMajor <= 2 && versionMinor < 7)) {
     alert("ng-touchdb-resource requires steroids.js 2.7.3, you have " + steroids.version)
   }
 
