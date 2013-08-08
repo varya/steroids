@@ -6,30 +6,67 @@ path = require "path"
 fs = require "fs"
 Paths = require "../paths"
 
+URL = require "url"
+
+String::endsWith = (str) -> if @match(new RegExp "#{str}$") then true else false
+
 class WebServer extends Server
 
   constructor: (@options) ->
     super(@options)
 
-
   setRoutes: =>
+    @app.get "*", @serveRequest
 
-    @app.get "*", (req, res) ->
+  handleRootPath: (requestPath) ->
+    return if /\/$/.test(requestPath)
+      path.join(requestPath.substring(1), "index.html")
+    else
+      requestPath
 
-      if /\/$/.test(req.path)
-        filePath = path.join(req.path.substring(1), "index.html")
-      else
-        filePath = req.path
+  # CODESMELL starts here, mmmh it smells good:
+  serveRequest: (req, res) =>
+    filePath = @handleRootPath(req.path)
+    fileDistPath = path.join("dist", filePath)
 
-      fileDistPath = path.join("dist", filePath)
+    unless fs.existsSync(fileDistPath)
+      res.status(status = 404)
+      res.end()
+      return
 
-      unless fs.existsSync(fileDistPath)
-        res.status(status = 404)
-        res.end()
-      else
-        res.status(status = 200).sendfile(fileDistPath)
+    config = steroidsCli.config.getCurrent()
 
+    if !req.path.endsWith(".html") or req.query.steroidsServed
+      res.status(status = 200).sendfile(fileDistPath)
       util.log "GET -- #{status} -- #{fileDistPath}"
+      return
+
+    # Rewrite document to include an iframe and tabs
+    if !req.query.steroidsServed and config.tabBar.enabled and req.path.endsWith(".html")
+
+      sanitizedPath = req.path.replace("//", "/")
+
+      sanitizedQueryString = ""
+      for key, value of req.query
+        sanitizedQueryString += "#{key}=#{value}&"
+
+      sanitizedQueryString += "steroidsServed=true"
+
+      tabIndexTemplate = path.join Paths.appgyverStaticFiles, "tabbar", "index.html"
+      tabIndexContents = fs.readFileSync(tabIndexTemplate).toString()
+
+      tabIndexContents = tabIndexContents.replace "<!--DOCUMENT-->", "#{sanitizedPath}?#{sanitizedQueryString}"
+
+      tabHTML = ""
+      for tab in config.tabBar.tabs
+        parsedLocation = URL.parse(tab.location)
+        tabHTML += "| <a href='http://#{req.headers.host}/#{parsedLocation.path}'>#{tab.title}</a> |"
+
+      tabIndexContents = tabIndexContents.replace "<!--TABS-->", tabHTML
+
+      res.status(status = 200).send(tabIndexContents)
+      return
+
 
 
 
