@@ -104,6 +104,32 @@ class BuildServer extends Server
     @app.get "/appgyver/zips/project.zip", (req, res)->
       res.sendfile Paths.temporaryZip
 
+    @app.get "/refresh_client_events?:timestamp", (req, res)=>
+      res.header "Access-Control-Allow-Origin", "*"
+      res.header('Content-Type', 'text/event-stream')
+      res.header('Cache-Control', 'no-cache')
+      res.header('Connection', 'keep-alive')
+
+      timestamp = key for key,val of req.query
+
+      id = setInterval ()->
+
+        if fs.existsSync Paths.temporaryZip
+          filestamp = fs.lstatSync(Paths.temporaryZip).mtime.getTime()
+        else
+          filestamp = 0
+
+        if parseInt(filestamp,10) > parseInt(timestamp,10)
+          res.write 'event: refresh\ndata: true\n\n'
+        else
+          res.write 'event: refresh\ndata: false\n\n'
+
+      , 1000
+
+      res.on "close", ()->
+        clearInterval id
+
+
     @app.get "/refresh_client?:timestamp", (req, res) =>
 
       res.header "Access-Control-Allow-Origin", "*"
