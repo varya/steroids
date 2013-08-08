@@ -105,6 +105,9 @@ class BuildServer extends Server
       res.sendfile Paths.temporaryZip
 
     @app.get "/refresh_client?:timestamp", (req, res) =>
+
+      res.header "Access-Control-Allow-Origin", "*"
+
       clientResolver = new ClientResolver(req)
       resolvedClient = clientResolver.resolve()
 
