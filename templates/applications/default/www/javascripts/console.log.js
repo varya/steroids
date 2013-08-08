@@ -5,18 +5,19 @@
 
   var logMessages = [];
 
+  var defaultConsoleLog = window.console.log;
+
   window.console.log = function(args) {
     logMessages.push(args);
   }
 
   var bufferConsoleLogUntilReadyAndFlush = function() {
-
     var cordovaOverride = "logWithArgs";
     var isNative = "[native code]";
 
-    if ( (window.console.log.toString().indexOf(cordovaOverride) > -1) ||
-         (window.console.log.toString().indexOf(isNative) > -1) ) {
-
+    if ( (defaultConsoleLog.toString().indexOf(cordovaOverride) > -1) ||
+         (defaultConsoleLog.toString().indexOf(isNative) > -1) ) {
+      window.console.log = defaultConsoleLog;
       for (var i=0; i<logMessages.length; i++) {
         console.log(logMessages.pop());
       }
