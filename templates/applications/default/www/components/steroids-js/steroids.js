@@ -1,5 +1,5 @@
 (function(window){
-/*! steroids-js - v2.7.4 - 2013-08-08 */
+/*! steroids-js - v2.7.5 - 2013-08-08 */
 ;var Bridge,
   __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
@@ -199,9 +199,43 @@ WebBridge = (function(_super) {
   __extends(WebBridge, _super);
 
   function WebBridge() {
+    var pollForRefresh, refresh, source;
     window.AG_SCREEN_ID = 0;
     window.AG_LAYER_ID = 0;
     window.AG_VIEW_ID = 0;
+    refresh = {
+      id: null,
+      timestamp: (new Date()).getTime()
+    };
+    if (window.EventSource != null) {
+      source = new EventSource("http://localhost:4567/refresh_client_events?" + refresh.timestamp);
+      source.addEventListener("refresh", function(e) {
+        if (e.data === "true") {
+          return window.location.reload();
+        }
+      }, false);
+      source.addEventListener("open", function(e) {
+        return console.log("Monitoring updates from steroids npm.");
+      }, false);
+      source.addEventListener("error", function(e) {
+        if (e.readyState === EventSource.CLOSED) {
+          return console.log("No longer monitoring updates from steroids npm.");
+        }
+      });
+    } else {
+      pollForRefresh = function() {
+        var xhr;
+        xhr = new XMLHttpRequest();
+        xhr.onload = function() {
+          if (this.readyState === 4 && this.status === 200 && this.responseText === "true") {
+            return window.location.reload();
+          }
+        };
+        xhr.open("GET", "http://localhost:4567/refresh_client?" + refresh.timestamp);
+        return xhr.send();
+      };
+      refresh.id = setInterval(pollForRefresh, 1000);
+    }
     return this;
   }
 
@@ -2295,7 +2329,7 @@ PostMessage = (function() {
 }).call(this);
 ;
 window.steroids = {
-  version: "2.7.4",
+  version: "2.7.5",
   Animation: Animation,
   XHR: XHR,
   File: File,

@@ -36,9 +36,10 @@ class WebServer extends Server
 
     config = steroidsCli.config.getCurrent()
 
-    if !req.path.endsWith(".html") or req.query.steroidsServed
+    if !req.path.endsWith(".html") or req.query.steroidsServed or not config.tabBar.enabled
       res.status(status = 200).sendfile(fileDistPath)
       util.log "GET -- #{status} -- #{fileDistPath}"
+
       return
 
     # Rewrite document to include an iframe and tabs

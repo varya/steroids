@@ -1,3 +1,14 @@
+## 2.7.12 (2013-08-08)
+
+Bugfixes and experimental feature of reloading with steroids connect --serve
+
+Changes:
+  - `steroids connect --serve` now reloads documents when `steroids push` is made
+
+Bugfixes:
+  - `ng-touchdb-resource` did not match semantic version of steroids-js
+  - `steroids serve` did not work without tabs
+
 ## 2.7.11 (2013-08-08)
 
 Changes:
