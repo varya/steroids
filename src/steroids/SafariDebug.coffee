@@ -2,6 +2,8 @@ paths = require "./paths"
 path = require "path"
 sbawn = require("./sbawn")
 
+Help = require "./help"
+
 class SafariDebug
 
   listViews: =>
@@ -15,9 +17,12 @@ class SafariDebug
       steroidsCli.debug "SafariDebug started and killed."
       steroidsCli.debug "stderr: " + openSafariDebugWebViewLister.stderr
       steroidsCli.debug "stdout: " + openSafariDebugWebViewLister.stdout
-      console.log "\nWebViews:"
+
+      console.log "\n\n  Found following WebViews in Safari:\n"
       for line in openSafariDebugWebViewLister.stdout.split("\n") when line isnt ""
-        console.log "- #{line}"
+        console.log "   - #{line}"
+
+      console.log ""
 
   open: (argument)=>
     scriptPath = path.join paths.scriptsDir, "openSafariDevMenu.scpt"

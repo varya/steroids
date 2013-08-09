@@ -1,0 +1,4 @@
+
+  Please specify a part of URL to match as an argument.
+
+    $ #cyan[steroids safari cate] will match "http://localhost/views/category/index.html" etc.

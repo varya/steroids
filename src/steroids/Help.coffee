@@ -89,7 +89,9 @@ class Help
 
     serve: ->
       Help.printBanner(paths.banners.legacy.serve, true)
-
+    
+  @safariListingHeader: ->
+    @printBanner(paths.banners.safariListingHeader, true)
 
   @resetiOSSim: ->
     @printBanner(paths.banners.resetiOSSim, true)

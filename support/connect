@@ -15,6 +15,6 @@
  #bold[edit]             e             Launch editor (set in application.coffee), defaults to #cyan[subl]
 
  #bold[debug <path>]     d             Open Safari debugger for matching path in URL location
-                                #underline[Note:] enable debug menu in Safari preferences -> Advanced
+                                #underline[Note:] Enable Develop menu in: Safari -> Preferences -> Advanced
 
  #bold[quit]             q             Exits connect. Also: exit

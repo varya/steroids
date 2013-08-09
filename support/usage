@@ -73,12 +73,14 @@
 
     #underline[Note:] if you start debug in other port than the default, you must also specify the same debug port for connect process, see #bold[connect] and #cyan[--debugPort]
 
-  #bold[safaridebug] <part of the location path>
+  #bold[safari] <part of the location path>
 
     Opens the Safari Web Inspector (OS X only). Omit <part of the location path> to see a list of open webviews.
 
-    Example: `steroids #bold[safaridebug] cate` opens Safari debug console that matches "cate" in the URL.
+    Example: `steroids #bold[safari] cate` opens Safari debug console that matches "cate" in the URL.
 
+    #underline[Note:] Enable Develop menu in: Safari -> Preferences -> Advanced
+    
   #bold[update]
 
     Updates your bower components as defined in config/bower.json

@@ -3,9 +3,10 @@
 TODO
 
 Changes:
-  - `steroids safaridebug` now lists open WebViews
-  - `steroids safaridebug <view>` opens the target view directly in Safari Dev Tools, also accepts partial paths
-  - `d` and `debug` commands in the `steroids connect` prompt work as a shortcut for `safaridebug`
+  - `steroids safaridebug` renamed to `steroids safari`
+  - `steroids safari` now lists open WebViews
+  - `steroids safari <path>` opens the target document directly in Safari Dev Tools, also accepts partial paths
+  - `d` and `debug` commands in the `steroids connect` prompt work as a shortcut for `steroids safari`
   - `steroids serve` is deprecated, use `steroids connect --serve`
   - `steroids usage` is now colorized and has better wording
   - iOS simulator can't be stopped anymore (it will always stop before starting again, this fixes bugs with resolution changes)

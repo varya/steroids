@@ -38,6 +38,7 @@ class Paths
     deployCompleted: path.join @bannersDir, "deploy-completed"
     loggedOut: path.join @bannersDir, "loggedout"
     loggedIn: path.join @bannersDir, "loggedin"
+    safariListingHeader: path.join @bannersDir, "safari-listing-header"
     legacy:
       requiresDetected: path.join @bannersDir, "legacy-requiresdetected"
       capitalizationDetected: path.join @bannersDir, "legacy-capitalizationdetected"

@@ -468,11 +468,12 @@ class Steroids
       when "chat"
         console.log "Chat is deprecated, please visit forums at http://forums.appgyver.com"
 
-      when "safaridebug"
+      when "safari"
         safariDebug = new SafariDebug
         if otherOptions[0]
           safariDebug.open(otherOptions[0])
         else
+          Help.safariListingHeader()
           safariDebug.listViews()
 
       else
