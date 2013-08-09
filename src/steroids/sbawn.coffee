@@ -37,7 +37,17 @@ class Sbawned
     args = @options.args
     args << "--debug" if steroidsCli.options.debug?
 
-    @spawned = spawn @options.cmd, args, { cwd: @options.cwd }
+    try
+      @spawned = spawn @options.cmd, args, { cwd: @options.cwd }
+    catch e
+      console.log "Failed to spawn a process, error: #{e.code}"
+
+      if e.code == "EMFILE"
+        console.log "The code EMFILE means that the process has run out of file descriptiors, increase this with:\n"
+        console.log "  $ ulimit -n 1024"
+        console.log "\nAnd start the command again"
+
+      @onExit()
 
     @spawned.stdout.on "data", @onStdoutData
     @spawned.stderr.on "data", @onStderrData
