@@ -7,7 +7,7 @@ You tried to launch serve with:
 
 We have changed that. Serve is now part of connect:
 
-  $ steroids --connect --serve [--servePort=<port>]
+  $ steroids connect --serve [--servePort=<port>]
 
 The reason for this change was that using serve without "steroids make" didn't make much sense.
 
