@@ -77,7 +77,7 @@ class Steroids
 
 
   ensureProjectIfNeededFor: (command, otherOptions) ->
-    if command in ["push", "make", "package", "grunt", "debug", "simulator", "connect", "serve", "update", "generate", "deploy"]
+    if command in ["push", "make", "package", "grunt", "debug", "simulator", "connect", "update", "generate", "deploy"]
 
       return if @detectSteroidsProject()
       return if command == "generate" and otherOptions.length == 0    # displays usage
@@ -105,10 +105,10 @@ class Steroids
 
     @ensureProjectIfNeededFor(firstOption, otherOptions)
 
-    if firstOption in ["serve", "connect", "create"]
+    if firstOption in ["connect", "create"]
       Help.logo() unless argv.noLogo
 
-    if firstOption in ["connect", "serve", "deploy", "simulator"]
+    if firstOption in ["connect", "deploy", "simulator"]
       unless Login.authTokenExists()
         console.log """
 
@@ -343,13 +343,7 @@ class Steroids
 
 
       when "serve"
-        @port = if argv.port
-          argv.port
-        else
-          4000
-
-        serve = new Serve(@port)
-        serve.start()
+        Help.legacy.serve()
 
       when "update"
         updater = new Updater

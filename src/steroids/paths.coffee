@@ -43,6 +43,7 @@ class Paths
       capitalizationDetected: path.join @bannersDir, "legacy-capitalizationdetected"
       specificSteroidsJSDetected: path.join @bannersDir, "legacy-specificsteroidsjsdetected"
       simulatorType: path.join @bannersDir, "legacy-simulatortype"
+      serve: path.join @bannersDir, "legacy-serve"
 
   @applicationDir: process.cwd()
   @application:

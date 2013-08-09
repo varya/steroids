@@ -6,7 +6,7 @@ colorize = require "colorize"
 class Help
 
   @usage: ->
-    @printBanner(paths.banners.usage)
+    @printBanner(paths.banners.usage, true)
 
   @deployCompleted: ->
     @printBanner(paths.banners.deployCompleted, true)
@@ -83,10 +83,13 @@ class Help
 
     specificSteroidsJSDetected: ->
       Help.printBanner(paths.banners.legacy.specificSteroidsJSDetected, true)
-    
+
     simulatorType: ->
       Help.printBanner(paths.banners.legacy.simulatorType, true)
-        
+
+    serve: ->
+      Help.printBanner(paths.banners.legacy.serve, true)
+
 
   @resetiOSSim: ->
     @printBanner(paths.banners.resetiOSSim, true)
