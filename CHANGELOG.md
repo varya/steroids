@@ -3,6 +3,7 @@
 TODO
 
 Changes:
+  - `steroids connect --watch --watchExclude` option added to exclude paths and files, see also application.coffee option for more permanent excludes
   - `steroids debug` renamed to `steroids weinre`
   - `steroids safaridebug` renamed to `steroids safari`
   - `steroids safari` now lists open WebViews

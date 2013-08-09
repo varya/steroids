@@ -269,37 +269,6 @@ class Steroids
               prompt = new Prompt
                 context: @
 
-              if argv.watch
-                Watcher = require("./steroids/fs/watcher")
-
-                pushAndPrompt = =>
-                  console.log ""
-                  util.log "File system change detected, pushing code to connected devices ..."
-
-                  project = new Project
-                  project.push
-                    onSuccess: =>
-                      prompt.refresh()
-                    onFailure: =>
-                      prompt.refresh()
-
-                if argv.watchExclude?
-                  excludePaths = steroidsCli.config.getCurrent().watch.exclude.concat(argv.watchExclude.split(","))
-                else
-                  excludePaths = steroidsCli.config.getCurrent().watch.exclude
-
-                watcher = new Watcher
-                  excludePaths: excludePaths
-                  onCreate: pushAndPrompt
-                  onUpdate: pushAndPrompt
-                  onDelete: (file) =>
-                    steroidsCli.debug "Deleted watched file #{file}"
-
-                watcher.watch("./app")
-                watcher.watch("./www")
-                watcher.watch("./config")
-
-
               server = Server.start
                 port: @port
                 callback: ()=>
@@ -347,7 +316,6 @@ class Steroids
                   , 1000
 
 
-
                   if argv.watch
                     steroidsCli.debug "Starting FS watcher"
                     Watcher = require("./steroids/fs/watcher")
@@ -363,7 +331,13 @@ class Steroids
                         onFailure: =>
                           prompt.refresh()
 
+                    if argv.watchExclude?
+                      excludePaths = steroidsCli.config.getCurrent().watch.exclude.concat(argv.watchExclude.split(","))
+                    else
+                      excludePaths = steroidsCli.config.getCurrent().watch.exclude
+
                     watcher = new Watcher
+                      excludePaths: excludePaths
                       onCreate: pushAndPrompt
                       onUpdate: pushAndPrompt
                       onDelete: (file) =>

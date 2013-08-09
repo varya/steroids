@@ -27,6 +27,8 @@
 
       Automatically push code to connected devices on file updates in app/, config/ or www/ directories.
 
+      #cyan[--watchExclude=<path1,path2,path/to/file>] can be used to exclude paths and files, also see setting in application.coffee for permanent excludes
+
     #cyan[--serve]
 
       Starts a separate web server in http://localhost:4000 that serves files from dist/ for developing with a browser.
