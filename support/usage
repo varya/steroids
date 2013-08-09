@@ -45,9 +45,9 @@ Other usage commands:
 
     Starts Weinre debugger and waits for connections.
 
-  safaridebug
+  safaridebug <part of view path>
 
-    Opens the Safari Develop menu for quick access to Safari Web Inspector (OS X only).
+    Opens the Safari Web Inspector (OS X only). Omit <part of view path to see a list of open webviews>
 
   update
 
