@@ -97,8 +97,8 @@ class Steroids
     if argv.version
       firstOption = "version"
 
-    @debugPort = if argv.debugPort
-      argv.debugPort
+    @weinrePort = if argv.weinrePort
+      argv.weinrePort
     else
       31173
 
@@ -200,6 +200,9 @@ class Steroids
         grunt.run()
 
       when "debug"
+        Help.legacy.debugweinre()
+        
+      when "weinre"
         @port = if argv.port
           argv.port
         else

@@ -89,7 +89,10 @@ class Help
 
     serve: ->
       Help.printBanner(paths.banners.legacy.serve, true)
-    
+
+    debugweinre: ->
+      Help.printBanner(paths.banners.legacy.debugweinre, true)
+
   @safariListingHeader: ->
     @printBanner(paths.banners.safariListingHeader, true)
 

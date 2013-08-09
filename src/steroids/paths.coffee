@@ -45,6 +45,7 @@ class Paths
       specificSteroidsJSDetected: path.join @bannersDir, "legacy-specificsteroidsjsdetected"
       simulatorType: path.join @bannersDir, "legacy-simulatortype"
       serve: path.join @bannersDir, "legacy-serve"
+      debugweinre: path.join @bannersDir, "legacy-debugweinre"
 
   @applicationDir: process.cwd()
   @application:

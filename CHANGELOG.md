@@ -3,6 +3,7 @@
 TODO
 
 Changes:
+  - `steroids debug` renamed to `steroids weinre`
   - `steroids safaridebug` renamed to `steroids safari`
   - `steroids safari` now lists open WebViews
   - `steroids safari <path>` opens the target document directly in Safari Dev Tools, also accepts partial paths

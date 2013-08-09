@@ -38,9 +38,9 @@
 
       Specifies the type of iOS Simulator to launch inside connect. See "simulator" command for options.
 
-    #cyan[--debugPort=31173]
+    #cyan[--weinrePort=31173]
 
-      If #bold[steroids debug] is started with custom port, match that port here so that connect and debug are in sync.
+      If #bold[steroids weinre] is started with custom port, match that port here so that `connect` and `weinre` are in sync.
 
 
   #bold[push]]
@@ -51,13 +51,9 @@
 
 #bold[#magenta[Other usage commands:]]
 
-  #bold[generate]
+  #bold[generate] #cyan[GENERATOR]
 
-    Lists all code generators.
-
-  #bold[generate] GENERATOR
-
-    Provides usage instructions on the selected generator.
+    Run code generators. Lists all code generators if started without an argument.
 
   #bold[simulator] #cyan[--deviceType=<deviceType>]
 
@@ -67,11 +63,11 @@
 
     Optionally, append #cyan['@<iOS-version>'] to launch the simulator with a specific iOS version (assuming it is installed); e.g. #cyan['iphone@5.1']
 
-  #bold[debug] #cyan[--port=31173]
+  #bold[weinre] #cyan[--port=31173]
 
     Starts Weinre debugger and waits for connections.
 
-    #underline[Note:] if you start debug in other port than the default, you must also specify the same debug port for connect process, see #bold[connect] and #cyan[--debugPort]
+    #underline[Note:] if you start with other port than the default, you must also specify the same debug port for connect process, see #bold[connect] and #cyan[--weinrePort]
 
   #bold[safari] <part of the location path>
 
@@ -80,7 +76,7 @@
     Example: `steroids #bold[safari] cate` opens Safari debug console that matches "cate" in the URL.
 
     #underline[Note:] Enable Develop menu in: Safari -> Preferences -> Advanced
-    
+
   #bold[update]
 
     Updates your bower components as defined in config/bower.json
@@ -89,7 +85,7 @@
 
   #bold[login] #cyan[--port=4567]]
 
-    Logs you in to AppGyver Cloud. Use --port option to switch the local port used if it is already in use.
+    Logs you in to AppGyver Cloud. Use #cyan[--port] option to switch the local port used if it is already in use.
 
   #bold[logout]
 
