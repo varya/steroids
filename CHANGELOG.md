@@ -2,7 +2,7 @@
 
 Changes:
   - `steroids safaridebug` now lists open WebViews
-  - `steroids safaridebug <view>` opens the target view directly in Safari Dev Tools, accepts only partial paths
+  - `steroids safaridebug <view>` opens the target view directly in Safari Dev Tools, also accepts partial paths
   - `d` and `debug` commands in the `steroids connect` prompt work as a shortcut for `safaridebug`
 
 ## 2.7.12 (2013-08-08)
