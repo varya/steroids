@@ -201,7 +201,7 @@ class Steroids
 
       when "debug"
         Help.legacy.debugweinre()
-        
+
       when "weinre"
         @port = if argv.port
           argv.port
@@ -269,31 +269,6 @@ class Steroids
               prompt = new Prompt
                 context: @
 
-              if argv.watch
-                Watcher = require("./steroids/fs/watcher")
-
-                pushAndPrompt = =>
-                  console.log ""
-                  util.log "File system change detected, pushing code to connected devices ..."
-
-                  project = new Project
-                  project.push
-                    onSuccess: =>
-                      prompt.refresh()
-                    onFailure: =>
-                      prompt.refresh()
-
-                watcher = new Watcher
-                  onCreate: pushAndPrompt
-                  onUpdate: pushAndPrompt
-                  onDelete: (file) =>
-                    steroidsCli.debug "Deleted watched file #{file}"
-
-                watcher.watch("./app")
-                watcher.watch("./www")
-                watcher.watch("./config")
-
-
               server = Server.start
                 port: @port
                 callback: ()=>
@@ -339,6 +314,33 @@ class Steroids
                       prompt.refresh()
 
                   , 1000
+
+
+
+                  if argv.watch
+                    steroidsCli.debug "Starting FS watcher"
+                    Watcher = require("./steroids/fs/watcher")
+
+                    pushAndPrompt = =>
+                      console.log ""
+                      util.log "File system change detected, pushing code to connected devices ..."
+
+                      project = new Project
+                      project.push
+                        onSuccess: =>
+                          prompt.refresh()
+                        onFailure: =>
+                          prompt.refresh()
+
+                    watcher = new Watcher
+                      onCreate: pushAndPrompt
+                      onUpdate: pushAndPrompt
+                      onDelete: (file) =>
+                        steroidsCli.debug "Deleted watched file #{file}"
+
+                    watcher.watch("./app")
+                    watcher.watch("./www")
+                    watcher.watch("./config")
 
                   prompt.connectLoop()
 
