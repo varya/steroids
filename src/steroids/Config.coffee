@@ -41,6 +41,9 @@ class Config
       preMake: {}
       postMake: {}
 
+    @watch =
+      exclude: []
+
 
   getCurrent: () ->
     # needs to use global, because application.coffee needs to stay require free
