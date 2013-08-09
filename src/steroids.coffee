@@ -281,6 +281,7 @@ class Steroids
                       prompt.refresh()
 
                 watcher = new Watcher
+                  excludePaths: steroidsCli.config.getCurrent().watch.exclude
                   onCreate: pushAndPrompt
                   onUpdate: pushAndPrompt
                   onDelete: (file) =>
