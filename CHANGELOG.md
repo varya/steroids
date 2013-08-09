@@ -1,6 +1,6 @@
-## 2.7.13 (TODO)
+## 2.7.13 (2013-08-09)
 
-TODO
+Unified steroids commands, nicer usages and other improvments.
 
 Changes:
   - `steroids connect --watch --watchExclude` option added to exclude paths and files, see also application.coffee option for more permanent excludes
