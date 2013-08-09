@@ -8,6 +8,7 @@ Changes:
   - `d` and `debug` commands in the `steroids connect` prompt work as a shortcut for `safaridebug`
   - `steroids serve` is deprecated, use `steroids connect --serve`
   - `steroids usage` is now colorized and has better wording
+  - iOS simulator can't be stopped anymore (it will always stop before starting again, this fixes bugs with resolution changes)
 
 ## 2.7.12 (2013-08-08)
 

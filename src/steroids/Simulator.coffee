@@ -20,7 +20,7 @@ class Simulator
       console.log "Error: Simulator requires Mac OS X."
       return false
 
-    return false if @running
+    @stop()
 
     @running = true
 
@@ -82,9 +82,7 @@ class Simulator
 
 
   stop: () =>
-    return false unless @running
-
-    @simulatorSession.kill()
+    @simulatorSession.kill() if @simulatorSession
 
 
 module.exports = Simulator

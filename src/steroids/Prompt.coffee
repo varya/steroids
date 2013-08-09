@@ -65,19 +65,6 @@ class Prompt
 
         when "s", "sim", "simulator"
 
-          if commandOptions[0] in ["s", "stop"]
-            console.log "Stopping iOS Simulator ..."
-
-            console.log if steroidsCli.simulator.stop()
-              "stopped."
-            else
-              "the iOS Simulator is not running (not launched by this session?), can not stop."
-
-            console.log "... done."
-
-            break
-
-
           deviceType = if commandOptions[0]
             commandOptions[0]
           else if steroidsCli.options.argv.deviceType
