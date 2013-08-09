@@ -280,8 +280,13 @@ class Steroids
                     onFailure: =>
                       prompt.refresh()
 
+                if argv.watchExclude?
+                  excludePaths = steroidsCli.config.getCurrent().watch.exclude.concat(argv.watchExclude.split(","))
+                else
+                  excludePaths = steroidsCli.config.getCurrent().watch.exclude
+
                 watcher = new Watcher
-                  excludePaths: steroidsCli.config.getCurrent().watch.exclude
+                  excludePaths: excludePaths
                   onCreate: pushAndPrompt
                   onUpdate: pushAndPrompt
                   onDelete: (file) =>
