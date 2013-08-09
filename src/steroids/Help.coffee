@@ -21,7 +21,7 @@ class Help
     @printBanner(paths.banners.SUCCESS, true)
 
   @connect: ->
-    @printBanner(paths.banners.connect)
+    @printBanner(paths.banners.connect, true)
 
   @welcome: ->
     @printBanner(paths.banners.welcome, true)
