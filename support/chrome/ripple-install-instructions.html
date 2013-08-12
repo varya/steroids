@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="refresh" content="3">
+  <title>Ripple UI</title>
+  <script>
+    var chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
+
+    // get querystring object (source: http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values)
+    var qs = (function(a) {
+        if (a == "") return {};
+        var b = {};
+        for (var i = 0; i < a.length; ++i)
+        {
+            var p=a[i].split('=');
+            if (p.length != 2) continue;
+            b[p[0]] = decodeURIComponent(p[1].replace(/\+/g, " "));
+        }
+        return b;
+    })(window.location.search.substr(1).split('&'));
+
+    var extensionInstalled = function() {
+      document.querySelector("#wait").style.display = "none";
+      document.querySelector("#install").style.display = "none";
+      document.querySelector("#installed").style.display = "block";
+      if (qs.redirect_to) {
+        document.querySelector("#installed").innerHTML = "<h1>Awesome. You will be redirected.</h1>"
+        window.location.href = qs.redirect_to
+      }
+    };
+
+    var extensionNotInstalled = function() {
+      document.querySelector("#install").style.display = "block";
+      document.querySelector("#installed").style.display = "none";
+
+      // check for official (incompatible) version of ripple
+      var script = document.createElement('script');
+      script.onload = function(){
+        document.querySelector("#incompatibleInstalled").style.display = "block";
+        document.querySelector("#install").style.display = "block";
+      };
+      script.src = 'chrome-extension://geelfhphabnejjhdalkjhgipohgpdnoc/manifest.json';
+      document.body.appendChild(script);
+    }
+
+    if (chrome) {
+      window.onload = function() {
+        var script = document.createElement('script');
+        script.onload = extensionInstalled;
+        script.onerror = extensionNotInstalled;
+        /* extension identifier is not the official ripple UI extension but built from next branch because of cordova js 2.7 support (mainly because of the logLevel api support) */
+        script.src = 'chrome-extension://mcmlhjodjhcgjfnganmpfakmfkhhffpp/manifest.json';
+        document.body.appendChild(script);
+      }
+    } else {
+      document.addEventListener("DOMContentLoaded", function(){
+        document.querySelector("#install").style.display = "none";
+        document.querySelector("#installed").style.display = "none";
+        document.querySelector("#wait").style.display = "none";
+        document.querySelector("#browser").style.display = "block";
+      })
+    }
+  </script>
+</head>
+<body>
+  <h3 id="wait">Please wait..</h3>
+  <div id="browser" style="display:none;">
+    <h2 style="color: red;">Incompatible browser detected</h2>
+    Please install google chrome to use Ripple UI extension.
+  </div>
+  <div id="installed" style="display:none;">
+    <h2 style="color: green;">Ripple UI is installed</h2>
+    Use 'steroids serve' with Ripple UI extension.
+  </div>
+  <div id="incompatibleInstalled" style="display:none;">
+    <h2 style="color: red;">Ripple UI is installed but..</h2>
+    You seem to have official Ripple UI extension installed. Current official Ripple UI extension does not support new API's that cordova.js 2.7.x uses and therefore you should install the ripple.crx (built from the official Ripple UI's git branch 'next') extension that comes with the steroids npm.
+  </div>
+  <div id="install" style="display:none;">
+    <h2>Ripple UI installation instructions</h2>
+    To install Ripple UI extension, open chrome://extensions/ url in Google Chrome (Window -> Extensions) and drag 'n drop steroids bundled ripple.crx there.
+  </div>
+</body>
+</html>

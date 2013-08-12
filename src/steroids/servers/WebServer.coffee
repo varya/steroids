@@ -29,6 +29,23 @@ class WebServer extends Server
     filePath = @handleRootPath(req.path)
     fileDistPath = path.join("dist", filePath)
 
+    if req.path.endsWith("config.xml")
+      configFile = path.join Paths.application.wwwDir, "config.ios.xml"
+      res.sendfile configFile
+      return
+    else if req.path.endsWith("cordova_plugins.json")
+      res.status(status = 200).send("{}")
+      return
+    else if req.path.endsWith("cordova.js")
+      rippleCompatibleCordovaFile = path.join Paths.appgyverStaticFiles, "browser_overrides", "ripple_cordova.js"
+      res.sendfile rippleCompatibleCordovaFile
+      return
+    else if req.path.endsWith("ripple-install-instructions.html") # because parameters cannot be set to opened file:/// URIs
+      rippleInstructionsFile = Paths.ripple.installInstructionsFile
+      res.sendfile rippleInstructionsFile
+      return
+
+
     unless fs.existsSync(fileDistPath)
       res.status(status = 404)
       res.end()

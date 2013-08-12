@@ -2,11 +2,12 @@ Server = require "./Server"
 WebServer = require "./servers/WebServer"
 util = require "util"
 open = require "open"
+paths = require "./Paths"
 
 URL = require "url"
 
 class Serve
-  constructor: (@port) ->
+  constructor: (@port, @opts = {ripple: false}) ->
     @baseURL = "http://localhost:#{@port}/"
 
   start: =>
@@ -21,9 +22,18 @@ class Serve
 
     # add ripple ui enabler parameter
     url = URL.parse(@baseURL + startLocationURL.path)
-    url.query = {} unless url.query?
-    url.query["enableripple"] = "cordova"
+
+    # add ripple enabler
+    if @opts.ripple
+      url.query = {} unless url.query?
+      url.query["enableripple"] = "cordova-2.0.0-iPhone5"
+
     url = URL.format(url)
+
+    # ripple override
+    if @opts.ripple
+      util.log "Going to check for Ripple UI extension.."
+      url = "#{@baseURL}ripple-install-instructions.html?redirect_to=#{encodeURIComponent(url)}"
 
     serveServer = Server.start
       port: @port
@@ -35,6 +45,9 @@ class Serve
 
         util.log "Serving application in #{url}"
 
-        open url
+        if @opts.ripple?
+          open url, "Google\ Chrome"
+        else
+          open url
 
 module.exports = Serve

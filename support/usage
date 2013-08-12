@@ -8,7 +8,7 @@ Basic usage commands:
 
     Creates a new application from default template.
 
-  connect [--no-qrcode] [--watch] [--port=<number>] [--deviceType=<simulator device type to launch, see simulator>] [--serve] [--servePort=<port>]
+  connect [--no-qrcode] [--watch] [--port=<number>] [--deviceType=<simulator device type to launch, see simulator>] [--serve] [--ripple] [--servePort=<port>]
 
     Starts server and allows to connect your iOS device or iOS Simulator to see your application.
     Provides further instructions for connecting and enters a console for accepting further commands.
@@ -16,6 +16,8 @@ Basic usage commands:
     Use --watch option to automatically push code to connected devices on file updates in app/, config/ or www/ directories.
 
     --serve also serves your application for debugging in a browser
+
+    --ripple enable cordova.js 2.7.x API's in chrome
 
   push
 
