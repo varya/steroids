@@ -51,8 +51,8 @@ class Simulator
     @simulatorSession = sbawn
       cmd: cmd
       args: args
-      stdout: true
-      stderr: true
+      stdout: if opts.stdout? then opts.stdout  else true
+      stderr: if opts.stderr? then opts.stderr else true
 
     @simulatorSession.on "exit", () =>
       @running = false
@@ -84,5 +84,13 @@ class Simulator
   stop: () =>
     @simulatorSession.kill() if @simulatorSession
 
+  killall: ()=>
+    
+    killSimulator = sbawn
+      cmd: "/usr/bin/killall"
+      args: ["iPhone Simulator"]
+      
+    killSimulator.on "exit", () =>
+      steroidsCli.debug "killed."
 
 module.exports = Simulator
