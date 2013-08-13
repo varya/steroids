@@ -110,3 +110,12 @@
   #bold[deploy]
 
     Deploys your application to AppGyver Cloud.
+
+  #bold[test] #cyan[TYPE] #cyan[--simulator] #cyan[--deviceType]=<type> #cyan[--no-qrcode] #cyan[--port]
+
+    Run tests.
+
+    Valid values for #cyan[TYPE] are: #cyan[karma]
+
+    #underline[Note:] Use #cyan[init] argument to create karma configuration file and example spec file
+

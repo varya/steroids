@@ -14,6 +14,8 @@ util = require "util"
 Version = require "./steroids/Version"
 paths = require "./steroids/paths"
 
+Karma = require "./steroids/Karma"
+
 argv = require('optimist').argv
 open = require "open"
 
@@ -58,7 +60,7 @@ class Steroids
 
 
   ensureProjectIfNeededFor: (command, otherOptions) ->
-    if command in ["push", "make", "package", "grunt", "debug", "simulator", "connect", "update", "generate", "deploy"]
+    if command in ["push", "make", "package", "grunt", "debug", "simulator", "connect", "update", "generate", "deploy", "test"]
 
       return if @detectSteroidsProject()
       return if command == "generate" and otherOptions.length == 0    # displays usage
@@ -222,6 +224,86 @@ class Steroids
         else
           steroidsCli.simulator.run
             deviceType: argv.deviceType
+
+      when "test"
+        karma = new Karma()
+        if argv._[2]
+          karma.init()
+          process.exit(1)
+        else
+          process.exit(1) unless karma.configExists()
+
+        updater = new Updater
+        updater.check
+          from: "test"
+
+        # steroids test karma
+        if otherOptions[0] is "karma"
+          @port = if argv.port
+            argv.port
+          else
+            4567
+
+          portscanner = require "portscanner"
+
+          portscanner.checkPortStatus @port, 'localhost', (error, status) =>
+            unless status == "closed"
+              console.log "Error: port #{@port} is already in use. Make sure there is no other program or that 'steroids connect' is not running on this port."
+              process.exit(1)
+
+            project = new Project
+            project.push
+              onFailure: =>
+                steroidsCli.debug "Cannot continue starting server, the push failed."
+              onSuccess: =>
+                BuildServer = require "./steroids/servers/BuildServer"
+                # now start everything required for karma to run
+                server = Server.start
+                  port: @port
+                  callback: ()=>
+                    global.steroidsCli.server = server
+
+                    # get karma port
+                    require(paths.test.karma.configFilePath)(
+                      set: (config)->
+                        @karmaPort = config.port
+                      LOG_INFO: ""
+                    )
+
+                    buildServer = new BuildServer
+                                        karmaPort: @karmaPort
+                                        path: "/"
+                                        port: @port
+
+                    server.mount(buildServer)
+
+                    unless argv.qrcode?
+                      QRCode = require "./steroids/QRCode"
+                      QRCode.showLocal
+                        port: @port
+
+                    karma.start
+                      onExit: (exitCode)->
+                        if argv.simulator?
+                          steroidsCli.simulator.killall()
+
+                        process.exit(1)
+
+                    if argv.simulator
+                      if argv.type
+                        Help.legacy.simulatorType()
+                        process.exit(1)
+
+                      steroidsCli.simulator.run
+                        deviceType: argv.deviceType
+                        stdout: false
+                        stderr: false
+
+
+
+        else
+          Help.usage()
+          process.exit(1)
 
       when "connect"
         updater = new Updater
