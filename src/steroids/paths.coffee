@@ -12,10 +12,14 @@ class Paths
     applications: path.join @templatesDir, "applications"
     resources: path.join @templatesDir, "resources"
     scaffolds: path.join @templatesDir, "scaffolds"
+    tuneupJS: path.join @templatesDir, "applications", "default", "tests", "tuneup_js"
 
   @grunt:
     library: path.join @npm, "node_modules", "grunt", "lib", "grunt"
     gruntFile: path.join @npm, "src", "steroids", "grunt", "grunt.js"
+
+  @instruments:
+    automationTraceTemplatePath: "/Applications/Xcode.app/Contents/Applications/Instruments.app/Contents/PlugIns/AutomationInstrument.bundle/Contents/Resources/Automation.tracetemplate"
 
   @staticFiles: path.join @npm, "public"
   @appgyverStaticFiles: path.join @staticFiles, "__appgyver"

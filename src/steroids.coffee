@@ -6,6 +6,7 @@ Updater = require "./steroids/Updater"
 SafariDebug = require "./steroids/SafariDebug"
 Serve = require "./steroids/Serve"
 Server = require "./steroids/Server"
+UIAutomation = require "./steroids/UIAutomation"
 
 util = require "util"
 Version = require "./steroids/Version"
@@ -180,6 +181,12 @@ class Steroids
           onSuccess: ->
             steroidsCli.debug "steroids make && steroids package ok."
 
+      when "uiautomation"
+        if otherOptions[0]?
+          uiautomation = new UIAutomation({script: otherOptions[0]})
+          uiautomation.run()
+        else
+          console.log "uiautomation requires test script as second argument"
 
       when "make"
         project = new Project

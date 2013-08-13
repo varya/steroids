@@ -1,0 +1,59 @@
+// UI Automation JavaScript Reference: http://developer.apple.com/library/ios/documentation/DeveloperTools/Reference/UIAutomationRef/Introduction/Introduction.html
+// UI Automation JavaScript Reference API: http://developer.apple.com/library/ios/documentation/DeveloperTools/Reference/UIAutomationRef/_index.html
+
+#import "../tuneup_js/tuneup.js" // http://www.tuneupjs.org/
+
+test("should be running in simulator", function(target, app) {
+  var name = app.name();
+
+  assertEquals(app.name(), "Simulator", "application is not running in simulator");
+
+  target.delay(5); // Give app some time to start, always do this before rest of the test suite.
+});
+
+test("navigation bar name should be 'Modal Example'", function(target, app){
+  var window  = app.mainWindow(),
+      navbar   = window.navigationBar();
+
+  assertEquals(navbar.name(), "Modal Example", "navigation bar label does not match");
+});
+
+test("modal window should open", function(target, app){
+  var window = app.mainWindow(),
+      firstStaticText = window.scrollViews()[0].webViews()[0].staticTexts()[0];
+
+  firstStaticText.tap();
+  target.delay(2);
+
+  // refresh element chain
+  firstStaticText = window.scrollViews()[0].webViews()[0].staticTexts()[0];
+
+  assertEquals("Modal", firstStaticText.name(), "first static text should be Modal")
+
+});
+
+test("modal window should close", function(target, app){
+  var window = app.mainWindow(),
+      secondStaticText = window.scrollViews()[0].webViews()[0].staticTexts()[1];
+
+  secondStaticText.tap();
+  target.delay(2);
+
+  // refresh element chain
+  firstStaticText = window.scrollViews()[0].webViews()[0].staticTexts()[0];
+
+  assertEquals("Open modal", firstStaticText.name(), "first static text should be Open modal");
+
+});
+
+test("modal should be closeable from another webview", function(target, app){
+  var window = app.mainWindow();
+
+  window.scrollViews()[0].webViews()[0].staticTexts()[0].tap(); // tap open modal
+  target.delay(2);
+  assertEquals("Ask layer beneath to close modal", window.scrollViews()[0].webViews()[0].staticTexts()[2].name(), "first static text should be Modal");
+
+  window.scrollViews()[0].webViews()[0].staticTexts()[2].tap(); // tap close from another
+  target.delay(2);
+  assertEquals("Open modal", window.scrollViews()[0].webViews()[0].staticTexts()[0].name(), "first static text should be Open modal");
+});
