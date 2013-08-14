@@ -313,15 +313,21 @@ class Steroids
             process.exit(1)
           else
             debug = if argv.debug? then argv.debug else false
-            # start appium server
-            appium.start
-              debug: debug
-              onExit: ()->
-                steroidsCli.simulator.killall()
-                process.exit(1)
-            # run test
-            appium.runTest
-              file: otherOptions[1]
+
+            project = new Project
+            project.push
+              onFailure: =>
+                steroidsCli.debug "Cannot continue starting server, the push failed."
+              onSuccess: =>
+                # start appium server
+                appium.start
+                  debug: debug
+                  onExit: ()->
+                    steroidsCli.simulator.killall()
+                    process.exit(1)
+                # run test
+                appium.runTest
+                  file: otherOptions[1]
         else
           Help.usage()
           process.exit(1)
