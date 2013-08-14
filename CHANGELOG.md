@@ -1,3 +1,10 @@
+## 2.7.14 (2013-08-14)
+
+Fixed a crashing error on Linux.
+
+Bugfixes:
+  - fixed a crashing error caused by a typo'd require statement having the wrong case for the filename (the bug only affected Linux users due to Linux observing a stricter case sensitivity for the file system compared to OS X)
+
 ## 2.7.13 (2013-08-09)
 
 Unified steroids commands, nicer usages and other improvments.

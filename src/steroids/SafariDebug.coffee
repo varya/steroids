@@ -2,7 +2,7 @@ paths = require "./paths"
 path = require "path"
 sbawn = require("./sbawn")
 
-Help = require "./help"
+Help = require "./Help"
 
 class SafariDebug
 
