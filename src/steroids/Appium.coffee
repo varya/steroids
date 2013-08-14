@@ -47,8 +47,8 @@ class Appium
       cmd: cmd
       cwd: paths.test.appium.basePath
       args: args
-      stdout: true
-      stderr: true
+      stdout: if options.debug? then options.debug else false
+      stderr: if options.debug? then options.debug else false
 
     @appiumSession.on "exit", () =>
       @running = false

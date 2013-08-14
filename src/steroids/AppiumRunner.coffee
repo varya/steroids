@@ -58,6 +58,6 @@ class AppiumRunner
           if fs.existsSync options.path
             specString = @wrapper(fs.readFileSync(options.path, "utf8"))
             eval specString
-    , 500
+    , 1000
 
 module.exports = AppiumRunner

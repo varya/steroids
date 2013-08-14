@@ -312,8 +312,10 @@ class Steroids
             appium.init()
             process.exit(1)
           else
+            debug = if argv.debug? then argv.debug else false
             # start appium server
             appium.start
+              debug: debug
               onExit: ()->
                 steroidsCli.simulator.killall()
                 process.exit(1)
