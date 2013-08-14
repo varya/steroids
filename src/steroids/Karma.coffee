@@ -35,7 +35,7 @@ class Karma
       util.log "Could not find karma configuration file. Please run steroids karma init to generate #{paths.test.karma.configFilePath}"
     return exists
 
-  start: (options)=>
+  start: (options={})=>
     if @running
       throw "Karma is already running."
 

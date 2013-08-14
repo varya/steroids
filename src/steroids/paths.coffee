@@ -98,6 +98,15 @@ class Paths
     unitTestPath: path.join @applicationDir, "test", "unit"
     functionalTestPath: path.join @applicationDir, "test", "functional"
 
+  @test.appium =
+    binaryWrapperPath: path.join @npm, "bin", "appium"
+    runnerBinaryWrapperPath: path.join @npm, "bin", "appium-runner"
+    authorizeIOSPath: path.join @npm, "node_modules", "appium", "app", "authorize.js"
+    instrumentsClientPath: path.join @npm, "node_modules", "appium", "instruments", "client_bin.js"
+    basePath: path.join @npm, "node_modules", "appium"
+    templates:
+      exampleSpecPath: path.join @npm, "templates", "tests", "appium", "spec", "exampleSpec.js"
+
   @test.karma =
     binaryPath: path.join @npm, "node_modules", "karma", "bin", "karma"
     configFilePath: path.join @test.basePath, "karma.coffee"

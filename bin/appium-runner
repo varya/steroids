@@ -1,0 +1,8 @@
+#!/usr/bin/env node
+
+require("../node_modules/coffee-script");
+
+var AppiumRunner = require("../src/steroids/AppiumRunner");
+appiumRunner = new AppiumRunner({simulatorPath: process.argv[2]});
+
+appiumRunner.runTest({path: process.argv[3]});

@@ -111,11 +111,26 @@
 
     Deploys your application to AppGyver Cloud.
 
-  #bold[test] #cyan[TYPE] #cyan[--simulator] #cyan[--deviceType]=<type> #cyan[--no-qrcode] #cyan[--port]
+  #bold[test] #cyan[TYPE] #cyan[arguments..]
 
-    Run tests.
+    TYPES:
+      #cyan[karma]
+        Use karma to run your unit tests. Spec files are listed in karma configuration file.
 
-    Valid values for #cyan[TYPE] are: #cyan[karma]
+        #cyan[init]
+          Create initial configuration file for karma and example spec.
 
-    #underline[Note:] Use #cyan[init] argument to create karma configuration file and example spec file
+        Additional arguments for #cyan[karma] are:
+          #cyan[--simulator]
+          #cyan[--deviceType]=<type>
+          #cyan[--no-qrcode]
+          #cyan[--port]
 
+      #cyan[appium]
+        Use appium to run your functional tests.
+
+        #cyan[<path_to_your_test_file.js>]
+          Relative path to your spec file.
+
+        #cyan[init]
+          Create example spec for appium.

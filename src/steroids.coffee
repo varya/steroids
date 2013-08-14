@@ -15,6 +15,7 @@ Version = require "./steroids/Version"
 paths = require "./steroids/paths"
 
 Karma = require "./steroids/Karma"
+Appium = require "./steroids/Appium"
 
 argv = require('optimist').argv
 open = require "open"
@@ -226,19 +227,19 @@ class Steroids
             deviceType: argv.deviceType
 
       when "test"
-        karma = new Karma()
-        if argv._[2]
-          karma.init()
-          process.exit(1)
-        else
-          process.exit(1) unless karma.configExists()
-
         updater = new Updater
         updater.check
           from: "test"
 
         # steroids test karma
         if otherOptions[0] is "karma"
+          karma = new Karma()
+          if argv._[2]
+            karma.init()
+            process.exit(1)
+          else
+            process.exit(1) unless karma.configExists()
+
           @port = if argv.port
             argv.port
           else
@@ -301,6 +302,24 @@ class Steroids
 
 
 
+        else if otherOptions[0] is "appium"
+
+          appium = new Appium()
+
+          if !otherOptions[1]?
+            Help.usage()
+          else if otherOptions[1] is "init"
+            appium.init()
+            process.exit(1)
+          else
+            # start appium server
+            appium.start
+              onExit: ()->
+                steroidsCli.simulator.killall()
+                process.exit(1)
+            # run test
+            appium.runTest
+              file: otherOptions[1]
         else
           Help.usage()
           process.exit(1)
