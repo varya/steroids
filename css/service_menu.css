@@ -11,7 +11,7 @@ div.service_menu {
   width: 100%;
   min-width:1170px;
   background-color: #363636;
-  padding-top:3px;
+  padding-top:4px;
 }
 
 div.service_content {
@@ -23,15 +23,11 @@ div.service_content {
 div.submenu-link-container {
   margin-right: 40px;
   float: left;
-  height: 36px;
-  max-height: 36px;
+  height: 39px;
+  max-height: 39px;
   display:block;
   font-family: "Neo Sans W02";
   line-height:18px;
-}
-
-div.submenu-link-container#active {
-  background: url('/steroids/images/service_menu/tick.png') center bottom no-repeat;
 }
 
 div.submenu-link-container#active a {
@@ -46,6 +42,7 @@ div.submenu-link-container a {
   text-decoration: none;
   padding-top: 8px;
   display:block;
+  text-shadow:none;
 }
 
 div.submenu-right {
