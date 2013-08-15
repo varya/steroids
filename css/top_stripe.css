@@ -1,40 +1,26 @@
 div.topstripe {
   color: white;
-  background-color:#dce0e3;
-  border-width: 0px 0px 1px 0px;
-  border-style: solid;
-  border-color: #a1a1a1;
-  height:95px;
-  min-width:1170px;
+  background: url('/steroids/images/top_stripe/stripe_bg.png');
+  height:84px;
+  min-width:940px;
 }
 
 div.topbar_container {
-  max-width:1090px;
+  max-width:940px;
   float:center;
   margin-left:auto;
   margin-right:auto;
-  min-width:1090px;
-  padding: 10px 40px;
+  min-width:940px;
+  min-height:84px;
 }
 
-div.topbar {
-  height: 65px;
-  margin-top: 0px;
-  margin-bottom: 0px;
-  margin-right: auto;
-  margin-left: auto;
-  float: center;
-  color: white;
-  padding: 0px;
-}
-
-img#stripe{
+.menu_logo {
   float:left;
 }
 
 div.menu_buttons {
   float: right;
-  margin-top: -4px;
+  margin-top: 3px;
 }
 
 a.blue {
@@ -44,9 +30,9 @@ a.blue {
 a.menu-link {
   text-transform: uppercase;
   text-decoration: none;
-  color: #444;
+  color: #888;
   font-weight:400;
-  padding:0px 20px;
+  padding:0px 15px;
   font-size: 18px;
   line-height:78px;
   font-family: "Neo Sans W02";
@@ -63,7 +49,7 @@ a.menu-link#active {
 }
 
 div.header_shadow {
-  background-image: url("/steroids/images/top_stripe/header_bg_transparent.png");
+  background-image: url("/images/top_stripe/header_bg_transparent.png");
   background-position: center top;
   background-repeat: no-repeat;
   min-width: 940px;

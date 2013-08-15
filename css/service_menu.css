@@ -11,6 +11,7 @@ div.service_menu {
   width: 100%;
   min-width:1170px;
   background-color: #363636;
+  padding-top:3px;
 }
 
 div.service_content {
@@ -27,7 +28,6 @@ div.submenu-link-container {
   display:block;
   font-family: "Neo Sans W02";
   line-height:18px;
-  margin-top:4px;
 }
 
 div.submenu-link-container#active {
