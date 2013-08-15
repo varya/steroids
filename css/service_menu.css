@@ -2,13 +2,12 @@
   float:center;
   margin-left:auto;
   margin-right:auto;
-  max-width:1090px;
-  min-width:1090px;
-  padding: 0px 40px;
+  max-width:940px;
+  min-width:940px;
 }
 
 div.service_menu {
-  height: 36px;
+  height: 39px;
   width: 100%;
   min-width:1170px;
   background-color: #363636;
@@ -17,6 +16,7 @@ div.service_menu {
 div.service_content {
   color: #bcbcbc;
   text-transform: uppercase;
+  margin-left:-10px;
 }
 
 div.submenu-link-container {
@@ -26,7 +26,8 @@ div.submenu-link-container {
   max-height: 36px;
   display:block;
   font-family: "Neo Sans W02";
-  line-height:20px;
+  line-height:18px;
+  margin-top:4px;
 }
 
 div.submenu-link-container#active {
