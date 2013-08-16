@@ -6,15 +6,14 @@ class QRCode
 
   show: (options={})=>
     return if process.env.STEROIDS_TEST_RUN
-
+    
     if steroidsCli.options.argv["terminal-qrcode"]
       qrcode.generate @options.data, (terminalQRCode) ->
         console.log terminalQRCode
-
     else
       urlToOpen =
         if options.showTestContent? and options.showTestContent
-          "http://localhost:#{@options.port}/__appgyver/connect/qrcode.html?qrCodeData=#{encodeURIComponent(@options.data)}&test=true"
+          "http://localhost:#{@options.port}/__appgyver/connect/qrcode_test.html?qrCodeData=#{encodeURIComponent(@options.data)}"
         else
           "http://localhost:#{@options.port}/__appgyver/connect/qrcode.html?qrCodeData=#{encodeURIComponent(@options.data)}"
 

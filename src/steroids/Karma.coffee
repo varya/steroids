@@ -1,6 +1,15 @@
+BuildServer = require "./servers/BuildServer"
+PortChecker = require "./PortChecker"
+Simulator = require "./Simulator"
+Project = require "./Project"
+QRCode = require "./QRCode"
+Server = require "./Server"
 paths = require "./paths"
+sbawn = require "./sbawn"
+
+argv = require('optimist').argv
+
 path = require "path"
-sbawn = require("./sbawn")
 fs = require "fs"
 util = require "util"
 
@@ -58,5 +67,69 @@ class Karma
 
   stop: =>
     @karmaSession.kill() if @karmaSession
+
+  subRoutine: (opts={})=>
+    if opts.firstOption? and opts.firstOption is "init"
+      @init()
+      process.exit(1)
+
+    @ensureConfigExists()
+
+    @port = if opts.webServerPort?
+      opts.webServerPort
+    else
+      4567
+
+    checker = new PortChecker
+      port: @port
+      autorun: true
+      onOpen: ()=>
+        console.log "Error: port #{@port} is already in use. Make sure there is no other program or that 'steroids connect' is not running on this port."
+        process.exit(1)
+      onClosed: ()=>
+        project = new Project
+        project.push
+          onFailure: =>
+            steroidsCli.debug "Cannot continue starting server, the push failed."
+
+          onSuccess: =>
+
+            server = Server.start
+              port: @port
+              callback: ()=>
+
+                global.steroidsCli.server = server
+
+                # get karma port from karma.coffee
+                require(paths.test.karma.configFilePath)(
+                  set: (config)=>
+                    @karmaPort = config.port
+                  LOG_INFO: ""
+                )
+
+                buildServer = new BuildServer
+                                    karmaPort: @karmaPort
+                                    path: "/"
+                                    port: @port
+
+                server.mount(buildServer)
+
+                unless opts.qrcode?
+                  QRCode.showLocal
+                    showTestContent: true
+                    port: @port
+
+                @start
+                  onExit: (exitCode)->
+                    steroidsCli.simulator.killall() if opts.simulator.use
+                    process.exit(1)
+
+                if opts.simulator.use
+                  util.log "Please wait, launching simulator.."
+                  steroidsCli.simulator.run
+                    deviceType: opts.simulator.deviceType
+                    stdout: false
+                    stderr: false
+
 
 module.exports = Karma

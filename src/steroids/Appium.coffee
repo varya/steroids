@@ -1,7 +1,12 @@
-steroidsSimulators = require "steroids-simulators"
+PortChecker = require "./PortChecker"
+Project = require "./Project"
+Help = require "./Help"
 paths = require "./paths"
-path = require "path"
 sbawn = require("./sbawn")
+
+steroidsSimulators = require "steroids-simulators"
+
+path = require "path"
 fs = require "fs"
 util = require "util"
 
@@ -63,6 +68,7 @@ class Appium
       cmd = paths.test.appium.runnerBinaryWrapperPath
       args = [steroidsSimulators.latestSimulatorPath, absolutePathToFile]
 
+      util.log "Please wait, launching simulator.."
       @appiumRunnerSession = sbawn
         cmd: cmd
         args: args
@@ -79,5 +85,41 @@ class Appium
 
   stop: =>
     @appiumSession.kill() if @appiumSession
+
+  subRoutine: (opts={})=>
+    if opts.init
+      @init()
+      process.exit(1)
+
+    unless opts.filePath?
+      Help.usage()
+      process.exit(1)
+
+    # always use 4567 because appium tests can only be run in simulator
+    @port = "4567"
+
+    checker = new PortChecker
+      port: @port
+      autorun: true
+      onClosed: ()=>
+        console.log "Error: steroids connect is not running in port #{@port}. Please run 'steroids connect' in default port (#{@port}) to run appium tests."
+        process.exit(1)
+
+      onOpen: ()=>
+        project = new Project
+        project.push
+          onFailure: =>
+            steroidsCli.debug "Cannot continue starting server, the push failed."
+          onSuccess: =>
+            # start appium server
+            @start
+              debug: opts.debug
+              onExit: ()->
+                steroidsCli.simulator.killall() if opts.exitSimulator
+
+                process.exit(1)
+            # run test
+            @runTest
+              file: opts.filePath
 
 module.exports = Appium

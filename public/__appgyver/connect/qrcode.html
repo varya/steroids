@@ -29,26 +29,15 @@
       margin-bottom: 30px;
     }
 
-    .test-run-content {
-      display: none;
-    }
-
-    .redBorder {
-      padding: 10px;
-      border-top: 10px dotted green;
-      border-left: 10px dotted green;
-      border-right: 10px dotted red;
-      border-bottom: 10px dotted red;
-      -webkit-border-radius: 20px;    }
   </style>
 </head>
 <body>
-  <h1><img src="images/steroids_logo.png" /> AppGyver Steroids <span class="test-run-content">Karma Test Run</span></h1>
+  <h1><img src="images/steroids_logo.png" /> AppGyver Steroids</h1>
 
   <hr>
   <div id="qrcodeCanvas"></div>
 
-  <div class="normal-run-content">
+  <div>
     <p>The Steroids server is now running. The server will stay alive as long as the <br>
     <code>$ steroids connect</code> command is running in the terminal window.</p>
     <p>You can now connect your device or the iOS Simulator to see your application.</p>
@@ -76,27 +65,12 @@
     <p>Happy hacking!</p>
   </div>
 
-  <div class="test-run-content">
-    <p>The Steroids server is now running for test run. The server will stay alive for one test run.<br>
-    <p>You can now connect your iOS device or the iOS Simulator just as with steroids connect to run your tests.</p>
-  </div>
-
-
   <script>
     function getQueryStringByKey(key) {
       key = key.replace(/[*+?^$.\[\]{}()|\\\/]/g, "\\$&"); // escape RegEx meta chars
       var match = location.search.match(new RegExp("[?&]"+key+"=([^&]+)(&|$)"));
       return match && decodeURIComponent(match[1].replace(/\+/g, " "));
     }
-
-    $(function(){
-      var testKey = getQueryStringByKey("test");
-      if (testKey) {
-        $(".normal-run-content").hide();
-        $(".test-run-content").show();
-        $("#qrcodeCanvas").addClass("redBorder");
-      };
-    });
 
     jQuery('#qrcodeCanvas').qrcode({
       width: 448,
