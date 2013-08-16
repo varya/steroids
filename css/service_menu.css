@@ -44,12 +44,3 @@ div.submenu-link-container a {
   display:block;
   text-shadow:none;
 }
-
-div.submenu-right {
-  float: right;
-  margin-right: 0px;
-}
-
-div.submenu-right:last-child {
-  margin-right: 30px;
-}
