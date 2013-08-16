@@ -47,17 +47,17 @@ class AppiumRunner
     throw "path required" unless options.path?
     wait = true
     waiter = setInterval ()=>
-      util.log "Waiting for Appium.io service for #{options.path} test run.."
+      util.log "Waiting for Appium.io service.."
       request "http://localhost:4723", (err, response, body)=>
 
         if body is "That URL did not map to a valid JSONWP resource"
-          util.log "Appium.io service is alive, running #{options.path} test.."
+          util.log "Appium.io service is alive! Running tests.."
 
           wait = false
           clearInterval waiter if waiter?
           if fs.existsSync options.path
             specString = @wrapper(fs.readFileSync(options.path, "utf8"))
             eval specString
-    , 1000
+    , 1500
 
 module.exports = AppiumRunner

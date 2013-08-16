@@ -132,5 +132,8 @@
         #cyan[<path_to_your_test_file.js>]
           Relative path to your spec file.
 
+          Additional arguments:
+            #cyan[--exitSimulator] close simulator after running tests
+
         #cyan[init]
           Create example spec for appium.

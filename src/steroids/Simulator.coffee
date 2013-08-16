@@ -59,12 +59,7 @@ class Simulator
 
       steroidsCli.debug "Killing iOS Simulator ..."
 
-      killSimulator = sbawn
-        cmd: "/usr/bin/killall"
-        args: ["iPhone Simulator"]
-
-      killSimulator.on "exit", () =>
-        steroidsCli.debug "killed."
+      @killall()
 
       console.log "PRO TIP: use `steroids [simulator|connect] --deviceType <device>` to specify device type, see `steroids usage` for help."
 
@@ -85,11 +80,11 @@ class Simulator
     @simulatorSession.kill() if @simulatorSession
 
   killall: ()=>
-    
+
     killSimulator = sbawn
       cmd: "/usr/bin/killall"
       args: ["iPhone Simulator"]
-      
+
     killSimulator.on "exit", () =>
       steroidsCli.debug "killed."
 

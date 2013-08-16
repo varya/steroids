@@ -21,7 +21,9 @@ class Appium
 
     # spec example
     exampleSpecPath = path.join paths.test.functionalTestPath, "exampleSpec.js"
-    unless fs.existsSync(exampleSpecPath)
+    if fs.existsSync(exampleSpecPath)
+      util.log "Example spec file #{exampleSpecPath} already exists"
+    else
       util.log "Creating example spec file #{exampleSpecPath}"
       fs.writeFileSync(exampleSpecPath, fs.readFileSync(paths.test.appium.templates.exampleSpecPath))
 
@@ -37,16 +39,13 @@ class Appium
 
     @running = true
 
-    cmd = paths.test.appium.binaryWrapperPath
-    args = [
-      paths.test.appium.instrumentsClientPath,
-      paths.test.appium.authorizeIOSPath
-    ]
-
     @appiumSession = sbawn
-      cmd: cmd
+      cmd: paths.test.appium.binaryWrapperPath
       cwd: paths.test.appium.basePath
-      args: args
+      args: [
+        paths.test.appium.instrumentsClientPath,
+        paths.test.appium.authorizeIOSPath
+      ]
       stdout: if options.debug? then options.debug else false
       stderr: if options.debug? then options.debug else false
 
@@ -54,11 +53,12 @@ class Appium
       @running = false
 
       options.onExit() if options.onExit?
+      @appiumRunnerSession.kill() if @appiumRunnerSession
 
   runTest: (options={})=>
     if options.file?
       absolutePathToFile = path.join paths.applicationDir, options.file
-      console.log "Going to run '#{absolutePathToFile}' in appium.io.."
+      util.log "Going to run '#{absolutePathToFile}' in appium.io.."
 
       cmd = paths.test.appium.runnerBinaryWrapperPath
       args = [steroidsSimulators.latestSimulatorPath, absolutePathToFile]
@@ -70,8 +70,8 @@ class Appium
         stderr: true
 
       @appiumRunnerSession.on "exit", () =>
-        @running = false
-        @stop() # kill server
+        util.log "Test run ended for '#{absolutePathToFile}'."
+        @stop()
         options.onExit() if options.onExit?
 
     else

@@ -1,5 +1,6 @@
 #!/bin/sh
 
+# appium requires that instruments_client and authorize_ios exist so:
 alias instruments_client=$1
 alias authorize_ios=$2
 node server.js --native-instruments-lib # use native instruments lib because delayfixed appium instruments lib might have some issues with ios7
