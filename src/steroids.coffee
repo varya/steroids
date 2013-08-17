@@ -231,9 +231,7 @@ class Steroids
 
         # steroids test karma
         if otherOptions[0] is "karma"
-          karma = new Karma()
-
-          karma.subRoutine
+          karma = new Karma
             firstOption: otherOptions[1]
             webServerPort: argv.port
             qrcode: argv.qrcode
@@ -243,16 +241,16 @@ class Steroids
 
         # steroids test appium <file>
         else if otherOptions[0] is "appium"
-          appium = new Appium()
-
           if otherOptions[1] is "init"
-            appium.subRoutine
+            appiumOptions =
               init: true
           else
-            appium.subRoutine
+            appiumOptions =
               filePath: otherOptions[1]
               debug: argv.debug
               exitSimulator: argv.exitSimulator
+
+          appium = new Appium(appiumOptions)
 
         else
           Help.usage()

@@ -51,7 +51,7 @@ class AppiumRunner
       request "http://localhost:4723", (err, response, body)=>
 
         if body is "That URL did not map to a valid JSONWP resource"
-          util.log "Appium.io service is alive! Running tests.."
+          util.log "Appium.io service is alive! Please wait, running test.."
 
           wait = false
           clearInterval waiter if waiter?
