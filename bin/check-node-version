@@ -1,6 +1,9 @@
 #!/usr/bin/env node
 
-version = process.version
+fs = require("fs");
+path = require("path");
+
+version = process.version;
 
 console.log("Checking for compatibility with Node version " + version + " ...");
 console.log("");
@@ -9,6 +12,12 @@ if(/^v0\.8/.test(version)) {
   console.log("... Node version OK");
   process.exit(0);
 } else {
-  console.log("Steroids is not yet compatible with your node version(" + version + "). See installation instructions at http://guides.appgyver.com/steroids/guides/steroids_npm/installing/ on how to acquire a compatible version of node.");
+  var errorBanner = fs.readFileSync(path.join(__dirname, "..", "support", "error-nocolors")).toString();
+  console.log(errorBanner);
+
+  console.log("\n Steroids is not yet compatible with your node version (" + version + ").");
+  console.log(" See installation instructions at http://guides.appgyver.com/steroids/guides/steroids_npm/installing/ on how to acquire a compatible version of node.");
+  console.log("");
+
   process.exit(1);
 }
