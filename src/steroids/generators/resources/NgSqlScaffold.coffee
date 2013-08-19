@@ -57,6 +57,7 @@ class NgSqlScaffold extends Base
      @ensureDirectory path.join("www", "javascripts")
      @ensureDirectory path.join("www", "javascripts", "plugins")
      @copyFile path.join("www", "javascripts", "plugins", "sqliteplugin.js"), path.join("components", "sqliteplugin.js")
+     @copyFile path.join("www", "javascripts", "plugins", "sqliteplugin.android.js"), path.join("components", "sqliteplugin.android.js")
 
      @ensureDirectory path.join("app")
 

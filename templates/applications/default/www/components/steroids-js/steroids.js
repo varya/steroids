@@ -1,5 +1,5 @@
 (function(window){
-/*! steroids-js - v2.7.5 - 2013-08-08 */
+/*! steroids-js - v2.7.6 - 2013-08-19 */
 ;var Bridge,
   __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
@@ -1943,7 +1943,7 @@ SQLiteDB = (function() {
   };
 
   SQLiteDB.prototype.createTable = function(opts, callbacks) {
-    var tableName;
+    var columnDefinitionString, columnsString, key, statement, tableName, type;
     if (opts == null) {
       opts = {};
     }
@@ -1951,9 +1951,26 @@ SQLiteDB = (function() {
       callbacks = {};
     }
     tableName = opts.constructor.name === "String" ? opts : opts.name;
-    steroids.debug("creating table " + tableName + " with " + opts.columnDefinitionString);
+    statement = "CREATE TABLE " + tableName;
+    if (opts.columns != null) {
+      columnsString = (function() {
+        var _ref, _results;
+        _ref = opts.columns;
+        _results = [];
+        for (key in _ref) {
+          type = _ref[key];
+          _results.push("" + key + " " + (type.toUpperCase()));
+        }
+        return _results;
+      })();
+      columnDefinitionString = columnsString.join(", ");
+    }
+    steroids.debug("creating table " + tableName + " with " + columnDefinitionString);
+    if (columnDefinitionString != null) {
+      statement += " (" + columnDefinitionString + ")";
+    }
     return this.execute({
-      statement: "CREATE TABLE " + tableName + " (" + opts.columnDefinitionString + ")"
+      statement: statement
     }, callbacks);
   };
 
@@ -2329,7 +2346,7 @@ PostMessage = (function() {
 }).call(this);
 ;
 window.steroids = {
-  version: "2.7.5",
+  version: "2.7.6",
   Animation: Animation,
   XHR: XHR,
   File: File,

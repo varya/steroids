@@ -1,7 +1,11 @@
-## 2.7.15 (TODO)
+## 2.7.15 (2013-08-16)
+
+Changes:
+  - Updated Steroids.js to version 2.7.6
 
 Bugfixes:
   - More informative QR code screen
+  - `ng-sql-scaffold` now includes `sqliteplugin.android.js` for Android Cordova SQLite plugin compatibility
 
 ## 2.7.14 (2013-08-14)
 
