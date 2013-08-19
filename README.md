@@ -1,7 +1,7 @@
 AppGyver Steroids
 -----------------
 
-AppGyver Steroids is like PhoneGap on Steroids, providing native UI elements, multiple WebViews and enhancements for better developer productivity.
+AppGyver Steroids is PhoneGap on Steroids, providing native UI elements, multiple WebViews and enhancements for better developer productivity.
 
 
 ## Installation and requirements
@@ -12,10 +12,11 @@ AppGyver Steroids is like PhoneGap on Steroids, providing native UI elements, mu
 * Xcode and command-line tools (mac app store)
 * Git with homebrew or git mac installer (but with the installer, remember to set in $PATH)
 
+_Latest 0.8.x is required! Steroids npm currently does not work with newer node versions._
 
-### With Node Version Manager
+### Installing With Node Version Manager
 
-We recommend installing with NVM, see https://github.com/creationix/nvm.
+We recommend installing with NVM, see [https://github.com/creationix/nvm](https://github.com/creationix/nvm) because it allows you to run multiple versions of node and does not require sudo at any point.
 
     $ curl https://raw.github.com/creationix/nvm/master/install.sh | sh
 
@@ -35,7 +36,7 @@ Note that there might be some warnings in the install from various NPM packages.
 
 ## Usage
 
-    $ steroids create tutorial directory_name
+    $ steroids create directory_name
     $ cd directory_name
     $ steroids connect
 
@@ -43,25 +44,18 @@ More usage information is available in
 
     $ steroids usage
 
-## Debug
 
-Steroids comes bundled with Weinre.
+## Documentation
 
-    $ steroids debug
-
-Starts Weinre server and opens your browser.  Once devices are connected, you can select a target document to inspect from the first page.
-
-
-## Javascript API documentation
-
-http://docs.appgyver.com
+[Steroids Developer Portal](http://developers.appgyver.com)
 
 
 ## Bugs, feedback
 
 We want to get your feedback, send it to contact@appgyver.com
 
-## Testing
+
+## Testing npm
 
 To run unit tests:
 
