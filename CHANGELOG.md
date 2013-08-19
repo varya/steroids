@@ -1,4 +1,6 @@
-## 2.7.15 (2013-08-16)
+## 2.7.16 (TODO)
+
+## 2.7.15 (2013-08-19)
 
 Changes:
   - Updated Steroids.js to version 2.7.6
