@@ -1,3 +1,8 @@
+## 2.7.15 (TODO)
+
+Bugfixes:
+  - More informative QR code screen
+
 ## 2.7.14 (2013-08-14)
 
 Fixed a crashing error on Linux.

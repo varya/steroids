@@ -14,9 +14,15 @@
       font-family: "Helvetica Neue", "Helvetica", "Arial"
     }
 
-    div {
+    div#qrcodeCanvas {
+      float: left;
+      margin-bottom: 20em;
+    }
+
+    div#text {
       float: left;
       margin-left: 2em;
+      width: 42em;
     }
 
     hr {
@@ -32,27 +38,32 @@
 
 
 
-  <div>
+  <div id="text">
     <p>The Steroids server is now running. The server will stay alive as long as the <br>
     <code>$ steroids connect</code> command is running in the terminal window.</p>
-    <p>You can now connect your iOS device or the iOS Simulator to see your application.</p>
+    <p>You can now connect your device or the iOS Simulator to see your application.</p>
 
-    <p><strong>To connect an iOS device:</strong></p>
+    <p><strong>To connect a device</strong></p>
     <ul>
       <li>Make sure your device is in the same WLAN with this computer</li>
       <li>Scan the QR code on the right with <a href="https://itunes.apple.com/us/app/appgyver-preview/id479747411?mt=8" target="_blank">AppGyver Scanner for iOS</a> or <a href="https://play.google.com/store/apps/details?id=com.appgyver.android">AppGyver Scanner for Android</a></li>
     </ul>
     </p>
-    <p><strong>To connect the iOS Simulator (you need to have Xcode installed):</strong></p>
+    <p><strong>To connect the iOS Simulator (you need to have Xcode installed)</strong></p>
     <ul>
-      <li>Open another terminal window and run: <code>$ steroids simulator</code></li>
+      <li>Open another terminal window and run: <code>$ steroids simulator</code> (or hit '<code>s</code>' in the console where <code>connect</code> is running, type <code>help</code> for more commands.)</li>
     </ul>
     </p>
 
     <p>As you make changes to your project, keep connect running and<br>
-      simply press enter in the console to see your changes.</p>
+      simply press enter in the console to see your changes. Also try starting <code>connect</code> with <code>--watch</code> to automatically update changes when you save.</p>
 
-    <p>(You can also manually type in <code>$ steroids push</code> in another terminal window.)</p>
+    <p>(You can also manually type in <code>$ steroids push</code> in another terminal window and more, see <code>$ steroids usage</code>)</p>
+
+    <p><strong>Developer Portal</strong></p>
+    <p>Go to our <a href="//developers.appgyver.com">Developer Portal</a> to get access to our tutorials, guides and Steroids.js API documentation.  We are happy to help you out at <a href="//developers.appgyver.com/forums">Developer Forums</a>, so join the discussion there.</p>
+
+    <p>Happy hacking!</p>
   </div>
 
 
