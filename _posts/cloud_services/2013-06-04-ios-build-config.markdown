@@ -6,6 +6,9 @@ categories: cloud_services
 platforms: iOS
 ---
 
+### Related Guides
+* [Configuring custom plugins for your app][custom-plugin-config]
+
 The AppGyver Build Service lets you create an IPA package of your application that you can distribute either ad hoc or submit to the Apple App Store. 
 
 All iOS application builds need to be signed with an app provisioning profile and a developer certificate. To get these, you need to sign up to the Apple Developer Program, as well as have a Mac for genereating the necessary files.
@@ -115,6 +118,9 @@ On the top row, you have to:
 * Upload a `.mobileprovision` file. There's a different section for Ad Hoc and App Store builds, so make sure to choose the correct file.
 * Upload your `.p12` certificate file.
 * Enter your `.p12` certificate file password (the one you set up when you exported it from Keychain Access).
+* Configure your [custom plugins][custom-plugin-config].
+
+The Scanner Build is a special build of your application intended for development with the Steroids npm. It allows you to create a Scanner app that includes the custom plugins defined in the plugins field. As such, a Scanner Build doesn't show your actual application, but rather lets you scan a QR code to connect to a computer running the Steroids server.
 
 On the bottom row, you have to:
 
@@ -134,4 +140,5 @@ Building the app takes a few moments, after which you'll get an e-mail with a li
 [apple-devices-list]: https://developer.apple.com/account/ios/device/deviceList.action
 [apple-provisioning-list]: https://developer.apple.com/account/ios/profile/profileList.action
 [cloud-deploy]: /steroids/guides/steroids_npm/cloud-deploy/
+[custom-plugin-config]: /steroids/guides/cloud_services/plugin-config/
 [testflight]: http://www.testflightapp.com
