@@ -27,7 +27,7 @@ Note that by default NVM adds initialization lines to `.bash_profile`, so you ne
 
 ## Manual install on Linux
 
-The `sh` command doesn't work with certain Linux versions. You need to install NVM manually:
+The `sh` command might not work with certain Linux distributions. You need to install NVM manually:
 
 ### Install dependencies
 <pre class="terminal">
@@ -42,6 +42,7 @@ $ git clone git://github.com/creationix/nvm.git ~/.nvm
 ### Source NVM from your bash shell
 
 Add the following line to the end of your `~/.bashrc` file:
+
 ```
 source ~/.nvm/nvm.sh
 ```
