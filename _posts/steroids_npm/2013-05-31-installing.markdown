@@ -25,6 +25,32 @@ $ curl https://raw.github.com/creationix/nvm/master/install.sh | sh
 
 Note that by default NVM adds initialization lines to `.bash_profile`, so you need to make sure these lines are loaded (by restarting Terminal).
 
+## Manual install on Linux
+
+The `sh` command might not work with certain Linux distributions. You need to install NVM manually:
+
+### Install dependencies
+<pre class="terminal">
+$ sudo apt-get install build-essential libssl-dev curl git-core
+</pre>
+
+### Download NVM
+<pre class="terminal">
+$ git clone git://github.com/creationix/nvm.git ~/.nvm
+</pre>
+
+### Source NVM from your bash shell
+
+Add the following line to the end of your `~/.bashrc` file:
+
+```
+source ~/.nvm/nvm.sh
+```
+### Open a new bash session
+Type `$ bash` in the Terminal to open a new Bash session. The `$ nvm` command should now work.
+
+## Installing the correct version of Node.js
+
 To install Node.js 0.8.x with NVM and set it as the default Node.js version to use:
 
 <pre class="terminal">

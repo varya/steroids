@@ -6,6 +6,9 @@ categories: cloud_services
 platforms: Android
 ---
 
+### Related Guides
+* [Configuring custom plugins for your app][custom-plugin-config]
+
 The AppGyver Build Service lets you create an APK package of your application that you can distribute either ad hoc or submit to Google Play. 
 
 All Android application builds need to be signed with a suitable private key, stored in a `.keystore` file. You can use the same private key for multiple apps. When you upload an app to Google Play, all future updates to that app require your private key.
@@ -63,6 +66,14 @@ For both Production and Ad Hoc Build, you need to enter:
 * Version Code. This is an internal version number, set as an integer, e.g. "100". Each successive version of your app must have a higher Version Code.
 * Version Number. The version number shown to users, e.g. "1.0".
 
+### Scanner build
+
+The Scanner Build is a special build of your application intended for development with the Steroids npm. It allows you to create a Scanner app that includes the custom plugins defined in the plugins field. As such, a Scanner Build doesn't show your actual application, but rather lets you scan a QR code to connect to a computer running the Steroids server.
+
+### Plugins
+
+See the [custom plugins config guide][custom-plugin-config] for more information on using custom plugins with your app.
+
 ### Shared Settings
 
 Set the [Android orientation mode][android-dev-orientation] to one of the available options.
@@ -87,6 +98,7 @@ Building the app takes a few moments, after which you'll get an e-mail with a li
 
 [appgyver-cloud]: http://cloud.appgyver.com
 [cloud-deploy]: /steroids/guides/steroids_npm/cloud-deploy/
+[custom-plugin-config]: /steroids/guides/cloud_services/plugin-config/
 [android-dev-cert]: http://developer.android.com/tools/publishing/app-signing.html#cert
 [android-dev-ninepatch]: http://developer.android.com/guide/topics/graphics/2d-graphics.html#nine-patch
 [android-dev-orientation]: http://developer.android.com/reference/android/R.attr.html#screenOrientation

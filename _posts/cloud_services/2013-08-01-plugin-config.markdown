@@ -24,6 +24,12 @@ First follow the instructions for building your app on iOS or Android (linked in
 
 The repo must have a adhere to Cordova's [plugin.xml][plugin-xml-spec] specification for the platforms you want to target.
 
+## Known issue
+
+Currently, there's a known issue with private GitHub repos accessed with a Basic Auth token, e.g. `https://richard.anderson:myawesometoken@github.com/phoneix-foundation/steroids-plugin-awesome.git`. If you need to use a private repo for your plugin, please contact us at [support@appgyver.com](mailto:support@appgyver.com).
+
+## config.xml
+
 If you are building a custom Scanner app for your project, note that you need to manually include your plugin in your Steroids project's `www/config.ios.xml` or `www/config.android.xml` file. This is done by adding the relevant `<plugin>` tag inside the main `<plugins>` tag, e.g.
 
 {% highlight xml %}
