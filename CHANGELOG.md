@@ -1,4 +1,6 @@
-## 2.7.16 (TODO)
+## 2.7.16 (2013-08-20)
+
+Support for merges dir
 
 Changes:
   - New projects have Cordova like `merges` and `plugins` directories.
