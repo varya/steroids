@@ -26,4 +26,6 @@ If you type in `window.location.reload();`, the WebView reloads itself, which al
 
 You can even debug JavaScript by inserting breakpoints: open a .js file in the Safari Web Inspector (e.g. from the *Resource* tab) and click on the line numbers to insert break points. Then, reload the WebView. JavaScript execution will pause at the breakpoints, and the Debug tab shows the current call stack.
 
+**TIP:** Actually you don't even have to to go through Safari menu. When in `steroids connect` prompt, you can use `d` or `debug` command to get a list of currently open WebViews in simulator. This command takes an argument like `d <part of webview path/filename>` to open the Safari Web Inspector for given WebView.
+
 [weinre]: /steroids/guides/debugging/weinre
