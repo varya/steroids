@@ -1,5 +1,8 @@
 ## 2.7.16 (TODO)
 
+Bugfixes:
+  - Fallback for login url open (print to console)
+
 ## 2.7.15 (2013-08-19)
 
 Changes:
