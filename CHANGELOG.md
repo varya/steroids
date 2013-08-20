@@ -1,5 +1,10 @@
 ## 2.7.16 (TODO)
 
+New projects have Cordova like `merges` and `plugins` directories.
+New projects have `.gitignore` for `.DS_Store` and `/dist`.
+Added `merges` directory support to steroids make process.
+
+
 ## 2.7.15 (2013-08-19)
 
 Changes:
