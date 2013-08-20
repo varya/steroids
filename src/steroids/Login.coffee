@@ -51,6 +51,8 @@ class Login
     authUrl = "#{@settings.baseUrl}#{@settings.authPath}?response_type=#{@settings.responseType}&client_id=#{@settings.clientId}&redirect_uri=#{encodeURIComponent(redirectUrl)}"
 
     open = require("open")
+    util.log "Opening authentication URL in the browser: #{authUrl}"
+
     open(authUrl)
 
   startServer: ()->
