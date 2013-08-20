@@ -21,7 +21,8 @@ registerDefaultTasks = (grunt)->
     'steroids-compile-coffeescript-files',
     'steroids-compile-sass-files',
     'steroids-compile-models',
-    'steroids-compile-views'
+    'steroids-compile-views',
+    'steroids-cordova-merges'
   ]
 
   # -------------------------------------------
@@ -260,6 +261,51 @@ registerDefaultTasks = (grunt)->
         # write the file
         grunt.file.mkdir path.dirname(buildFilePath)
         grunt.file.write buildFilePath, yieldedFile
+
+  grunt.registerTask 'steroids-cordova-merges', "Handle cordova merges", ->
+
+    projectDirectory  = Paths.applicationDir
+    distDirectory     = Paths.application.distDir
+
+    mergesDirectory         = path.join projectDirectory, "merges"
+    androidMergesDirectory  = path.join mergesDirectory, "android"
+    iosMergesDirectory      = path.join mergesDirectory, "ios"
+
+    mergesExist = fs.existsSync mergesDirectory
+    if mergesExist
+      # android
+      for filePath in grunt.file.expandFiles(path.join(androidMergesDirectory, "*"))
+        grunt.log.writeln colorize.ansify(" #yellow[Copying Android Merges:]")
+
+        # setup proper paths and filenames to steroids android comptible syntax: index.html to index.android.html
+        origFileName  = path.basename filePath
+        origFileExtension = path.extname origFileName
+        androidPrefixedExtension = ".android#{origFileExtension}"
+        androidFileName = origFileName.replace origFileExtension, androidPrefixedExtension
+        filePathInDist = filePath.replace(androidMergesDirectory, distDirectory)
+        filePathInDistWithAndroidExtensionPrefix = filePathInDist.replace(origFileName, androidFileName)
+
+        grunt.log.writeln colorize.ansify("  #{filePath.replace(androidMergesDirectory+'/', '')} -> dist#{filePathInDistWithAndroidExtensionPrefix.replace(distDirectory, '')}")
+
+        if fs.existsSync filePathInDistWithAndroidExtensionPrefix
+          grunt.log.writeln colorize.ansify("   #red[Overwriting:] #reset[dist#{filePathInDistWithAndroidExtensionPrefix.replace(distDirectory, '')}]")
+
+        fs.writeFileSync filePathInDistWithAndroidExtensionPrefix, fs.readFileSync(filePath)
+
+      # ios
+      for filePath in grunt.file.expandFiles(path.join(iosMergesDirectory, "*"))
+        grunt.log.writeln colorize.ansify(" #yellow[Copying iOS Merges:]")
+
+        # setup proper paths for file copy
+        filePathInDist = filePath.replace(iosMergesDirectory, distDirectory)
+
+        grunt.log.writeln colorize.ansify("  #{filePath.replace(iosMergesDirectory+'/', '')} -> dist#{filePathInDist.replace(distDirectory, '')}")
+
+        if fs.existsSync filePathInDistWithAndroidExtensionPrefix
+          grunt.log.writeln colorize.ansify("   #red[Overwriting:] #reset[dist#{filePathInDist.replace(distDirectory, '')}]")
+
+        fs.writeFileSync filePathInDist, fs.readFileSync(filePath)
+
 
 module.exports =
   registerDefaultTasks: registerDefaultTasks
