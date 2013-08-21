@@ -1,0 +1,51 @@
+---
+layout: post
+title:  "Troubleshooting connectivity issues"
+date:   2013-05-21 13:51:34
+categories: steroids_npm
+platforms: Android, iOS
+---
+
+If you are having trouble getting AppGyver Scanner to connect to your computer running<br>`$ steroids connect`, try the steps below in order. If a step fails, please contact us on the [forums][forums], describe what you've done and we'll look into the issue more closely.
+
+## Are your computer and mobile device on the same WLAN?
+
+Make sure that your computer and mobile device are on the same WLAN and your firewall/NAT are configured correctly. Connecting your computer to your development mobile device's internal WLAN hotspot doesn't currently work.
+
+## Is the Steroids server running?
+
+Make sure you have `$ steroids connect` running in your project directory. Try opening the URL below in your computer's browser:
+
+```
+http://localhost:4567/appgyver/api/applications/1.json
+```
+
+If you get a JSON file, the local server is running fine.
+
+## Can your mobile device connect to the Steroids server?
+
+Next, try opening the same URL on your mobile device's web browser. Remember to change the `<YOUR_IP_ADDRESS>` below to your computer's IP address.
+
+```
+http://<YOUR_IP_ADDRESS>:4567/appgyver/api/applications/1.json
+```
+
+If you get the JSON file, your phone is able to connect to the Steroids server.
+
+## Is the QR code right?
+
+Take a look at the URL in the QR code web page opened by `$ steroids connect`. Does the IP address in the URL match your computer's IP address? It should be of the format:
+
+```
+http://localhost:4567/__appgyver/connect/qrcode.html?qrCodeData=appgyver%3A%2F%2F%3Fips%3D%255B%252<YOUR_IP_ADDRESS>%2522%255D%26port%3D4567
+```
+
+## Does the iOS Simulator open?
+
+Does running the `$ steroids simulator` command while `$ steroids connect` is running open the iOS Simulator wtihout any hiccups? (Note that this step only works on a Mac running OS X.)
+
+## Still out of luck?
+
+Drop us a line at the [forums][forums] and we'll dig deeper!
+
+[forums]: http://forums.appgyver.com
