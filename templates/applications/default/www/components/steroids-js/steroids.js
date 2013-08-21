@@ -1,5 +1,5 @@
 (function(window){
-/*! steroids-js - v2.7.6 - 2013-08-19 */
+/*! steroids-js - v2.7.7 - 2013-08-21 */
 ;var Bridge,
   __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
@@ -240,7 +240,7 @@ WebBridge = (function(_super) {
   }
 
   WebBridge.isUsable = function() {
-    return typeof window.chrome !== 'undefined';
+    return navigator.userAgent.indexOf("AppGyverSteroids") === -1;
   };
 
   WebBridge.prototype.sendMessageToNative = function(messageString) {
@@ -2346,7 +2346,7 @@ PostMessage = (function() {
 }).call(this);
 ;
 window.steroids = {
-  version: "2.7.6",
+  version: "2.7.7",
   Animation: Animation,
   XHR: XHR,
   File: File,

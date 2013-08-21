@@ -1,3 +1,8 @@
+## 2.7.17 (2013-08-21)
+
+Changes:
+  - Updated Steroids.js to version 2.7.7
+
 ## 2.7.16 (2013-08-20)
 
 Support for merges dir
