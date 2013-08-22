@@ -1,3 +1,8 @@
+## 2.7.18 (TODO)
+
+Changes:
+  - New project plugins folder README file includes link to https://github.com/AppGyver/steroids-plugins
+
 ## 2.7.17 (2013-08-21)
 
 Changes:
