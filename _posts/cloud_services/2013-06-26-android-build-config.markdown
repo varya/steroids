@@ -8,7 +8,7 @@ platforms: Android
 
 ### Related Guides
 * [Configuring custom plugins for your app][custom-plugin-config]
-* [Android app permissions][android-app-permissions]
+* [Android app permissions][app-permissions]
 
 The AppGyver Build Service lets you create an APK package of your application that you can distribute either ad hoc or submit to Google Play. 
 
