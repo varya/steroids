@@ -62,7 +62,7 @@ For example, if you have published your app to Google Play or some other app sto
 For both Production and Ad Hoc Build, you need to enter:
 
 * Display Name for your app. This name will be shown under your app's icon on the device. Around 20 characters is a good length.
-* Package Identifier for your app. This must be a reverse-domain, Java-language-style package name, e.g. `com.phoenixfoundation.macgyverapp` (or `com.phoneixfoundation.macgyvertest` for an Ad Hoc build). You can use letters, numbers and underscores, but individual package name parts must start with letters. Don't use the `com.example` namespace when publishing your app.
+* Package Identifier for your app. This must be a reverse-domain, Java-language-style package name, e.g. `com.phoenixfoundation.macgyverapp` (or `com.phoneixfoundation.macgyvertest` for an Ad Hoc build). You can use letters, numbers and underscores, but individual package name parts must start with letters. Don't use the `com.example` namespace when publishing your app. The package name has to have at least two parts, i.e. just `myappname` won't work but `com.myappname` will.
 * Version Code. This is an internal version number, set as an integer, e.g. "100". Each successive version of your app must have a higher Version Code.
 * Version Number. The version number shown to users, e.g. "1.0".
 
