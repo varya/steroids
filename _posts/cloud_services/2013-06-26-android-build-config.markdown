@@ -8,6 +8,7 @@ platforms: Android
 
 ### Related Guides
 * [Configuring custom plugins for your app][custom-plugin-config]
+* [Android app permissions][android-app-permissions]
 
 The AppGyver Build Service lets you create an APK package of your application that you can distribute either ad hoc or submit to Google Play. 
 
@@ -99,6 +100,7 @@ Building the app takes a few moments, after which you'll get an e-mail with a li
 [appgyver-cloud]: http://cloud.appgyver.com
 [cloud-deploy]: /steroids/guides/steroids_npm/cloud-deploy/
 [custom-plugin-config]: /steroids/guides/cloud_services/plugin-config/
+[app-permissions]: /steroids/guides/android/app-permissions/
 [android-dev-cert]: http://developer.android.com/tools/publishing/app-signing.html#cert
 [android-dev-ninepatch]: http://developer.android.com/guide/topics/graphics/2d-graphics.html#nine-patch
 [android-dev-orientation]: http://developer.android.com/reference/android/R.attr.html#screenOrientation
