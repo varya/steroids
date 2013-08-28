@@ -54,6 +54,10 @@ Click the plus button in the top-right corner to create a new App ID. Give your 
 
 The Bundle ID is a reverse-domain style unique string for your app, e.g. `com.mycompany.myawesomeapp`. The Bundle ID must match the one you enter to the AppGyver Build Service.
 
+If you don't want your App Store build to overwrite your Ad Hoc build, you should give them separate App and Bundle IDs.
+
+If you're planning on building a custom Scanner to e.g. use [custom plugins][custom-plugin-config], you should create a separate App ID and Bundle ID for your Scanner app, e.g. `com.mycompany.myawesomeapp.scanner`.
+
 Click Continue and then Confirm to create your App ID.
 
 ### Registering devices
@@ -89,6 +93,8 @@ Click the plus button in the top-right corner to create a new provisioning profi
 
 After you're done, download the `.mobileprovision` file to your computer.
 
+If you are planning on creating a custom Scanner build, you should create a separate `.mobileprovision` file for it by following the above steps (or you'll end up overwriting your Ad Hoc build).
+
 ### Generating an App Store provisioning profile
 
 Sign in with your Apple ID to [developer.apple.com][apple-dev] and open the [Provisioning Profiles listing][apple-provisioning-list] under the iOS Dev Center.
@@ -120,7 +126,7 @@ On the top row, you have to:
 * Enter your `.p12` certificate file password (the one you set up when you exported it from Keychain Access).
 * Configure your [custom plugins][custom-plugin-config].
 
-The Scanner Build is a special build of your application intended for development with the Steroids npm. It allows you to create a Scanner app that includes the custom plugins defined in the plugins field. As such, a Scanner Build doesn't show your actual application, but rather lets you scan a QR code to connect to a computer running the Steroids server.
+The Scanner Build is a special build of your application intended for development with the Steroids npm. It allows you to create a Scanner app that includes the custom plugins defined in the plugins field. As such, a Scanner Build doesn't show your actual application, but rather lets you scan a QR code to connect to a computer running the Steroids server. It's a good idea to create a separate `.mobileprovision` file and App/Bundle ID for your Scanner Build.
 
 On the bottom row, you have to:
 
