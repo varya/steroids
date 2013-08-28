@@ -36,16 +36,16 @@ By calling `JSON.stringify(myAwesomeObject)`, the object and its properties are 
 Run in your project folder
 
 <pre class="terminal">
-$ steroids serve
+$ steroids connect --serve
 </pre>
 
-This starts a local web server that will serve the contents of your `dist` folder at `http://localhost:4000/`. By using the server instead of just opening the HTML files in a browser, you can e.g. use absolute paths for any resource URLs, like on the actual device. Note that you still need to press enter in the Terminal window running `$ steroids connect` (or run `$ steroids push`) to update the contents of the `dist/` folder.
+This starts a local web server that will serve the contents of your `dist` folder at `http://localhost:4000/`. By using the server instead of just opening the HTML files in a browser, you can e.g. use absolute paths for any resource URLs, like on the actual device. Note that you still need to press enter in the Terminal window running `$ steroids connect` (or run `$ steroids push`) to update the contents of the `dist/` folder. You can also use the `--watch` parameter to monitor file system changes and update automatically.
 
 Of course, `steroids.js` and Cordova APIs will be unavailable, so your JavaScripts probably won't work as intended. They will also perform faster than on the actual mobile device. Still, iterating CSS styles and your HTML structure is often significantly faster with a web browser – just make sure to check from time to time that the page is rendered correctly on the actual devices also.
 
 ### What browser to use?
 
-Steroids uses the WebKit engine on both iOS and Android, so you should use Chrome or Safari for debugging.
+Steroids uses the WebKit engine on both iOS and Android, so you should use Chrome or Safari for debugging (we prefer Chrome – it supports cool extensions like [AngularJS Batarang](https://chrome.google.com/webstore/detail/angularjs-batarang/ighdmehidhipcmcojjgiloacoafjmpfk?hl=en)).
 
 ### Touch event emulation
 
