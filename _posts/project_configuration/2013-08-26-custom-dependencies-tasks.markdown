@@ -11,7 +11,7 @@ platforms: iOS, Android
 
 ## Pre- and post-make hooks
 
-When you press enter in the Steroids console (i.e. the Terminal running `$ steroids connect`), Steroids npm runs a series of internal commands. One of these is `$ steroids make`, which creates the `dist/` folder. The `dist/` folder contains the final app structure that is then copied onto the actual mobile devices.
+When you press enter in the Steroids console (i.e. the Terminal running `$ steroids connect`), Steroids npm runs a series of internal commands. One of these is `$ steroids make`, which creates the `dist/` folder and its contents. The `dist/` folder contains the final app structure that is then copied onto the actual mobile devices.
 
 The `make` task runs a series of [Grunt.js](http://gruntjs.com/) tasks, including compiling SASS and CoffeeScript, merging layouts and views in the `app/` directory, copying everything to the `dist/` folder etc. (You can see the actual tasks that are run in the [GruntDefaults.coffee](https://github.com/AppGyver/steroids/blob/master/src/steroids/GruntDefaults.coffee) file in the Steroids npm source.)
 
