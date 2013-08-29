@@ -217,7 +217,7 @@ class Steroids
         project = new Project
         project.push
           onSuccess: () =>
-            url = "http://localhost:#{weinre.options.httpPort}/client/#anonymous"
+            url = "http://127.0.0.1:#{weinre.options.httpPort}/client/#anonymous"
             steroidsCli.debug "pushed, opening browser to #{url}"
             open url
 
