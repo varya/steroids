@@ -1,7 +1,7 @@
 ## 2.7.18 (TODO)
 
 Changes:
-  - Login callback, local QR code and Weinre web pages now open using `127.0.0.1` instead of `localhost` to fix issues with non-standard hosts files
+  - Login callback, local QR code and Weinre web pages and `$ steroids connect --serve` now open using `127.0.0.1` instead of `localhost` to fix issues with non-standard hosts files
   - New project plugins folder README file includes link to https://github.com/AppGyver/steroids-plugins
 
 ## 2.7.17 (2013-08-21)
