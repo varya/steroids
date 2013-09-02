@@ -11,14 +11,12 @@ class DeployConverter
 
   applicationCloudSchemaRepresentation: ->
 
-    betterFullscreenStartUrl = @config.location.replace("http://localhost/", "http://localhost:13101/") if @config.location
-
     name: @config.name || "New project"
     framework_id: 13
     navigation_bar_style: @config.theme
     status_bar_style: @statusBarStyle()
     fullscreen: not @config.tabBar.enabled
-    fullscreen_start_url: betterFullscreenStartUrl
+    fullscreen_start_url: @config.location
     client_version: "edge"
     initial_eval_js_string: ""
     background_eval_js_string: ""
@@ -61,7 +59,7 @@ class DeployConverter
         tab =
           title: configTab.title
           icon: configTab.icon
-          location: configTab.location.replace("http://localhost/", "http://localhost:13101/")
+          location: configTab.location
 
         betterTabs.push tab
 
