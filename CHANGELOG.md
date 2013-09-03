@@ -1,4 +1,4 @@
-## 2.7.18 (TODO)
+## 2.7.18 (2013-09-03)
 
 Changes:
   - Login callback, local QR code and Weinre web pages and `$ steroids connect --serve` now open using `127.0.0.1` instead of `localhost` to fix issues with non-standard hosts files.
@@ -12,7 +12,7 @@ Changes:
 
 ## 2.7.16 (2013-08-20)
 
-Support for merges dir
+Support for merges dir.
 
 Changes:
   - New projects have Cordova like `merges` and `plugins` directories.
