@@ -1,6 +1,8 @@
 ## 2.7.18 (2013-09-03)
 
-Changes:
+Fixes issues reported in the forums, <3 forums.appgyver.com
+
+Bugfixes:
   - Login callback, local QR code and Weinre web pages and `$ steroids connect --serve` now open using `127.0.0.1` instead of `localhost` to fix issues with non-standard hosts files.
   - New project plugins folder README file includes link to https://github.com/AppGyver/steroids-plugins.
   - `http://localhost/` URLs no longer get the `:13101` port appended to them automatically.
