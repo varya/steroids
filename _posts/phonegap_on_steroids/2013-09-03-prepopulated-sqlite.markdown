@@ -57,4 +57,8 @@ function gotQueryResults(tx, results) {
 }
 {% endhighlight %}
 
+### Modifying prepopulated databases during runtime
+
+Note that since the SQLite database is now in the app file directory (which changes each time you update changes to your phone in order to circumvent cache issues, and is read-only), inserts into the database won't work. If you need to modify the database and not just read from it, it should be in the `steroids.app.absoluteUserFilesPath` path. You need to copy it there (e.g. via Cordova's [File API](http://docs.appgyver.com/en/edge/cordova_file_file.md.html#File)) when the app first starts and then open it from that directory.
+
 You can also view an [example project on GitHub](https://github.com/AppGyver/academy-examples/tree/master/deeper_into_steroids/prepopulated_sqlite).
