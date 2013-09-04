@@ -1,6 +1,11 @@
+## 2.7.19 (TODO)
+
+Bugfixes:
+ - When the local QR code is shown, the web page URL is shown in the `--debug` output (i.e. `$ steroids connect --debug`).
+
 ## 2.7.18 (2013-09-03)
 
-Fixes issues reported in the forums, <3 forums.appgyver.com
+Fixes issues reported in the forums, <3 [forums.appgyver.com](http://forums.appgyver.com).
 
 Bugfixes:
   - Login callback, local QR code and Weinre web pages and `$ steroids connect --serve` now open using `127.0.0.1` instead of `localhost` to fix issues with non-standard hosts files.
