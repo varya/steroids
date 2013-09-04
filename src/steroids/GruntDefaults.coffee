@@ -222,6 +222,7 @@ registerDefaultTasks = (grunt)->
 
       # Some machines report folder/ as basename while others do not
       viewBasename = path.basename viewDir
+
       unless viewBasename.indexOf(path.sep) is -1
         viewBasename = viewBasename.replace path.sep, ""
 
@@ -234,13 +235,14 @@ registerDefaultTasks = (grunt)->
 
       applicationLayoutFile = grunt.file.read layoutFilePath, "utf8"
 
-
       for filePathPart in grunt.file.expand(path.join(viewDir, "**", "*")) when fs.lstatSync(filePathPart).isFile()
 
         filePath = path.resolve filePathPart
+
         buildFilePath = path.resolve filePathPart.replace("app"+path.sep, "dist"+path.sep)
 
-        resourceDirName = filePathPart.split(path.sep).splice(-2,1)[0]
+        resourceDirName = filePathPart.split("/").splice(-2,1)[0]
+
         buildFilePath = path.join(buildDirectory, "views", resourceDirName, path.basename(filePathPart))
 
         # skip "partial" files that begin with underscore
