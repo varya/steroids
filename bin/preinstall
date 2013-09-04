@@ -1,33 +1,34 @@
-#!/bin/sh
+#!/usr/bin/env node
+
+var exec = require("child_process").exec,
+    path = require("path"),
+    fs   = require("fs");
+
+console.log("AppGyver Steroids\n");
+
+console.log("Checking for required components ...\n");
+
+if (process.platform === "win32") {
+
+  exec("git --version", function(err, stdout, stderr){
+    if (err) {
+      console.log("  ERROR: command 'git' not found, please install it first.")
+    } else {
+      console.log("  Found 'git', good.\n");
+    }
+  });
+
+} else {
+  preinstallForNix = path.join(path.dirname(fs.realpathSync(__filename)), 'preinstall-nix');
+  exec(preinstallForNix, function(err, stdout, stderr){
+    if (err) {throw err};
+    if (stdout) {console.log(stdout)};
+    if (stderr) {console.log(stderr)};
+  });
+
+}
 
 
-echo "AppGyver Steroids\n"
 
 
-echo "Checking for required components ..."
-
-REQUIRED_CMDS="gcc make git"
-
-ERRORS=false
-for REQUIRED_CMD in $REQUIRED_CMDS
-do
-  command -v "$REQUIRED_CMD" > /dev/null && {
-    echo "  Found '$REQUIRED_CMD', good."
-  } || {
-    ERRORS="true"
-    echo "  ERROR: command '$REQUIRED_CMD' not found, please install it first."
-  }
-done
-
-if [ "$ERRORS" = "true" ]; then
-  echo "\nInstall gcc and make by installing Xcode from the Mac App Store."
-  echo "\nThen install 'Command Line Tools' from Xcode preferences -> downloads."
-  echo "\nFor Git installation, we recommend using homebrew, see http://mxcl.github.com/homebrew/"
-  echo "\nOnce homebrew is installed, install git with: brew install git"
-
-  echo "\n\nHit [enter] to quit and install the dependencies.  Then run the installation again."
-  read
-  exit 1
-fi
-
-echo "... dependencies ok.\n\n"
+//

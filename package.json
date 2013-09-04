@@ -33,7 +33,7 @@
   },
   "scripts": {
     "test": "node ./bin/test",
-    "preinstall": "node ./bin/check-node-version",
+    "preinstall": "node ./bin/check-node-version && node ./bin/preinstall",
     "install": "node ./bin/install"
   },
   "keywords": [
