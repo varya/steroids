@@ -78,7 +78,7 @@ class Project
 
   makeOnly: (options = {}) => # without hooks
 
-    steroidsCli.debug "Spawning steroids grunt"
+    steroidsCli.debug "Spawning steroids grunt #{steroidsCli.pathToSelf}"
 
     gruntSbawn = sbawn
       cmd: steroidsCli.pathToSelf
