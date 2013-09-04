@@ -17,6 +17,8 @@ class Paths
     library: path.join @npm, "node_modules", "grunt", "lib", "grunt"
     gruntFile: path.join @npm, "src", "steroids", "grunt", "grunt.js"
 
+  @bower: path.join @npm, "node_modules", "bower", "bin", "bower"
+
   @staticFiles: path.join @npm, "public"
   @appgyverStaticFiles: path.join @staticFiles, "__appgyver"
   @oauthSuccessHTML: path.join @appgyverStaticFiles, "login", "oauth2_success.html"
