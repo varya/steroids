@@ -8,6 +8,7 @@ class QRCode
   show: =>
     return if process.env.STEROIDS_TEST_RUN
 
+    steroidsCli.debug "Opening URL http://127.0.0.1:#{@options.port}/__appgyver/connect/qrcode.html?qrCodeData=#{encodeURIComponent(@options.data)} in default web browser."
     open "http://127.0.0.1:#{@options.port}/__appgyver/connect/qrcode.html?qrCodeData=#{encodeURIComponent(@options.data)}"
 
   @showLocal: (options={}) =>
