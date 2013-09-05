@@ -8,6 +8,9 @@ class Sbawned
     @stderr = ""
     @stdout = ""
 
+    if not @options.exitOnError?
+      @options.exitOnError = true
+
     @done = false
 
   onStdoutData: (buffer) =>
@@ -20,8 +23,9 @@ class Sbawned
     newData = buffer.toString()
 
     if /^execvp\(\)/.test(newData)
-      console.log "failed to run command command: '#{@options.cmd}' with args #{JSON.stringify(@options.args)}"
-      process.exit(-1)
+      console.log "Failed to run command: '#{@options.cmd}' with args #{JSON.stringify(@options.args)}"
+      if !@options.exitOnError
+        process.exit(-1)
 
     @stderr = @stderr + newData
     console.log newData if @options.debug or @options.stderr

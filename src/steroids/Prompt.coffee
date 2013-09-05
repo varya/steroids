@@ -106,6 +106,7 @@ class Prompt
               cmd: acualCmd
               args: acualArgs
               debug: true
+              exitOnError: false
 
         when "help", "?", "usage"
           Help.connect()
