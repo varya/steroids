@@ -34,7 +34,8 @@
   "scripts": {
     "test": "node ./bin/test",
     "preinstall": "node ./bin/check-node-version && node ./bin/preinstall",
-    "install": "node ./bin/install"
+    "install": "node ./bin/install",
+    "preupdate": "node ./bin/check-node-version"
   },
   "keywords": [
     "steroids.js",
