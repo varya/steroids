@@ -8,13 +8,19 @@ AppGyver Steroids is PhoneGap on Steroids, providing native UI elements, multipl
 
 ### Requirements
 
-* Node.js 0.8.x and NPM package management http://nodejs.org/
+* Node.js 0.10.x and NPM package management http://nodejs.org/
+
+#### Windows
+
+* Git ( http://git-scm.com/downloads )
+* Python 2.7 or greater ( http://www.python.org/getit/ )
+
+#### OS X
+
 * Xcode and command-line tools (mac app store)
 * Git with homebrew or git mac installer (but with the installer, remember to set in $PATH)
 
-_Latest 0.8.x is required! Steroids npm currently does not work with newer node versions._
-
-### Installing With Node Version Manager
+### Installing With Node Version Manager (for *nix OS)
 
 We recommend installing with NVM, see [https://github.com/creationix/nvm](https://github.com/creationix/nvm) because it allows you to run multiple versions of node and does not require sudo at any point.
 
@@ -22,11 +28,11 @@ We recommend installing with NVM, see [https://github.com/creationix/nvm](https:
 
 Note that by default NVM adds initialization lines to `.bash_profile`, so you need to make sure these lines are loaded.
 
-To install node.js 0.8.x with nvm and set it as default:
+To install node.js 0.10.x with nvm and set it as default:
 
-    $ nvm install 0.8
-    $ nvm use 0.8
-    $ nvm alias default 0.8
+    $ nvm install 0.10
+    $ nvm use 0.10
+    $ nvm alias default 0.10
 
 Now install Steroids
 
