@@ -20,6 +20,11 @@ AppGyver Steroids is PhoneGap on Steroids, providing native UI elements, multipl
 * Xcode and command-line tools (mac app store)
 * Git with homebrew or git mac installer (but with the installer, remember to set in $PATH)
 
+#### Linux
+
+* Git
+* Python 2.7 or greater
+
 ### Installing With Node Version Manager (for *nix OS)
 
 We recommend installing with NVM, see [https://github.com/creationix/nvm](https://github.com/creationix/nvm) because it allows you to run multiple versions of node and does not require sudo at any point.
