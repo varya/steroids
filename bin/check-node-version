@@ -5,7 +5,7 @@ path = require("path");
 
 version = process.version;
 
-console.log("Checking for compatibility with Node version " + version + " ...");
+console.log("Checking for compatibility with Node.js version " + version + " ...");
 console.log("");
 
 if(/^v0\.10/.test(version) || /^v0\.11/.test(version)) {
