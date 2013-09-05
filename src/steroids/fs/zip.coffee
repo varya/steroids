@@ -13,7 +13,7 @@ class Zip
   zipRecursively: (callback)->
 
     # use node-archiver on windows
-    if process.env.OS is "Windows_NT"
+    if process.platform is "win32"
       files = wrench.readdirSyncRecursive @from
       fileObjs = ({name: file, path: path.join(@from, file)} for file in files when fs.lstatSync(path.join(@from, file)).isFile())
 

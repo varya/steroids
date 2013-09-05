@@ -38,11 +38,10 @@ class Sbawned
     args << "--debug" if steroidsCli.options.debug?
 
     try
-      if process.env.OS is "Windows_NT"
+      if process.platform is "win32"
         originalCmd = @options.cmd
         @options.cmd = process.env.comspec
         args = ["/c", "node", originalCmd].concat(args)
-        #console.log "Spawning #{@options.cmd} with args #{args} with working dir #{@options.cwd}"
         @spawned = spawn @options.cmd, args, { cwd: @options.cwd, stdio: 'inherit' }
       else
         @spawned = spawn @options.cmd, args, { cwd: @options.cwd }
@@ -57,7 +56,7 @@ class Sbawned
       @onExit()
 
     # windows spawn command inherits stdio from current process to get output working
-    unless process.env.OS is "Windows_NT"
+    unless process.platform is "win32"
       @spawned.stdout.on "data", @onStdoutData
       @spawned.stderr.on "data", @onStderrData
     @spawned.on "exit", @onExit
