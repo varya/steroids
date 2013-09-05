@@ -285,6 +285,7 @@ registerDefaultTasks = (grunt)->
     if mergesExist
       # android
       for filePath in grunt.file.expand(path.join(androidMergesDirectory, "*")) when fs.lstatSync(filePath).isFile()
+        filePath = path.normalize(filePath) # fix windows path syntax
         grunt.log.writeln colorize.ansify(" #yellow[Copying Android Merges:]")
 
         # setup proper paths and filenames to steroids android comptible syntax: index.html to index.android.html
@@ -303,7 +304,8 @@ registerDefaultTasks = (grunt)->
         fs.writeFileSync filePathInDistWithAndroidExtensionPrefix, fs.readFileSync(filePath)
 
       # ios
-      for filePath in grunt.file.expand(path.join(iosMergesDirectory, "*")) when fs.lstatSync(filePath).isDirectory()
+      for filePath in grunt.file.expand(path.join(iosMergesDirectory, "*")) when fs.lstatSync(filePath).isFile()
+        filePath = path.normalize(filePath) # fix windows path syntax
         grunt.log.writeln colorize.ansify(" #yellow[Copying iOS Merges:]")
 
         # setup proper paths for file copy
@@ -311,7 +313,7 @@ registerDefaultTasks = (grunt)->
 
         grunt.log.writeln colorize.ansify("  #{filePath.replace(iosMergesDirectory+'/', '')} -> dist#{filePathInDist.replace(distDirectory, '')}")
 
-        if fs.existsSync filePathInDistWithAndroidExtensionPrefix
+        if fs.existsSync filePathInDist
           grunt.log.writeln colorize.ansify("   #red[Overwriting:] #reset[dist#{filePathInDist.replace(distDirectory, '')}]")
 
         fs.writeFileSync filePathInDist, fs.readFileSync(filePath)
