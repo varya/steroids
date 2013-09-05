@@ -1,6 +1,7 @@
 Help = require "./Help"
 paths = require("./paths")
 
+os = require "os"
 
 class Prompt
 
@@ -84,24 +85,27 @@ class Prompt
 
         when "e", "edit"
 
-          editorCmd = steroidsCli.config.getCurrent().editor.cmd
-          editorArgs = steroidsCli.config.getCurrent().editor.args
-
-          acualArgs = if editorArgs
-            editorArgs
+          if os.type().indexOf("Windows") is 0
+            console.log "Error: launching text editor via Steroids is not supported on Windows"
           else
-            [paths.applicationDir]
+            editorCmd = steroidsCli.config.getCurrent().editor.cmd
+            editorArgs = steroidsCli.config.getCurrent().editor.args
 
-          acualCmd = if editorCmd
-            editorCmd
-          else
-            "subl"
+            acualArgs = if editorArgs
+              editorArgs
+            else
+              [paths.applicationDir]
 
-          sbawn = require "./sbawn"
-          sbawn
-            cmd: acualCmd
-            args: acualArgs
-            debug: true
+            acualCmd = if editorCmd
+              editorCmd
+            else
+              "subl"
+
+            sbawn = require "./sbawn"
+            sbawn
+              cmd: acualCmd
+              args: acualArgs
+              debug: true
 
         when "help", "?", "usage"
           Help.connect()
