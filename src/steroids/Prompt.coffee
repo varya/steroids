@@ -1,8 +1,6 @@
 Help = require "./Help"
 paths = require("./paths")
 
-os = require "os"
-
 class Prompt
 
   prompt: null
@@ -85,7 +83,7 @@ class Prompt
 
         when "e", "edit"
 
-          if os.type().indexOf("Windows") is 0
+          if process.platform is "win32"
             console.log "Error: launching text editor via Steroids is not supported on Windows"
           else
             editorCmd = steroidsCli.config.getCurrent().editor.cmd
