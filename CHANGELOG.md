@@ -1,6 +1,6 @@
-## 2.7.19 (TODO)
+## 2.7.19 (2013-09-06)
 
-Windows support, Node.js version requirement is now v0.10.x (or v0.11.x).
+Windows support, Node.js version requirement is now v0.10.x (with v0.11.x supported).
 
 Changes:
   - Updated Steroids npm to use Node.js version 0.10.x (with v0.11.x also supported).
@@ -10,7 +10,8 @@ Bugfixes:
   - When the local QR code is shown, the web page URL is shown in the `--debug` output (i.e. `$ steroids connect --debug`).
 
 Known Issues:
-  - The `e`/`edit` shortcut for opening a text editor from the Steroids console crashes if the editor command is not found
+  - The `e`/`edit` shortcut for opening a text editor from the Steroids console crashes if the editor command is not found.
+  - The `e`/`edit` shortcut in Steroids console is not available on Windows.
 
 ## 2.7.18 (2013-09-03)
 
