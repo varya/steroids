@@ -2,6 +2,10 @@
 
 fs = require("fs");
 path = require("path");
+prompt = require("prompt");
+
+prompt.message = "";
+prompt.delimiter = "";
 
 version = process.version;
 
@@ -19,6 +23,8 @@ if(/^v0\.10/.test(version) || /^v0\.11/.test(version)) {
   console.log("\n If you have NVM installed, you can use the '$ nvm install 0.10' command to install Node.js 0.10.x, and '$ nvm alias default 0.10' to make it your default Node.js version.");
   console.log("\n See the installation instructions at http://guides.appgyver.com/steroids/guides/steroids_npm/installing/ for more information.");
   console.log("");
-
-  process.exit(1);
+  prompt.start();
+  prompt.get(['Press any key to continue...'], function(){
+    process.exit(1);
+  });
 }
