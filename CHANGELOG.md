@@ -1,6 +1,11 @@
 ## 2.7.19 (2013-09-06)
 
-Windows support, Node.js version requirement is now v0.10.x (with v0.11.x supported).
+WINDOWS SUPPORT ADDED!
+
+Also: Node.js version requirement is now v0.10.x (with v0.11.x supported), minor fixes based on forum feedback.
+
+Breaking:
+  - Doesn't work any more with Node v0.8.x.
 
 Changes:
   - Updated Steroids npm to use Node.js version 0.10.x (with v0.11.x also supported).
