@@ -14,6 +14,7 @@ First, you need to make sure that you have these set up:
 
 * [Xcode][xcode] with Command Line Tools (only required on OS X)
 * [Git][git] (required by external Node.js libraries)
+* [Python v2.7 or newer][python] (required by external Node.js libraries)
 
 Most importantly, you need to have [Node.js][nodejs] version 0.8.x and [npm package management][npm] installed.
 
@@ -86,3 +87,4 @@ $ npm update steroids -g
 [nodejs]: http://nodejs.org/
 [npm]: https://npmjs.org/
 [nvm]: https://github.com/creationix/nvm
+[python]: http://www.python.org/
