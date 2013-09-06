@@ -1,3 +1,10 @@
+## 2.7.20 (2013-09-06)
+
+Clarified instructions on updating the Steroids npm to work on a newer Node.js version.
+
+Bugfixes:
+  - Preinstall and preupdate Node.js version check now has a note about having to use `$ npm install steroids -g` instead of `$ npm update steroids -g`, if previous install was on Node 0.8.x.
+
 ## 2.7.19 (2013-09-06)
 
 WINDOWS SUPPORT ADDED!
