@@ -42,7 +42,7 @@ registerDefaultTasks = (grunt)->
   copyFilesSyncRecursive = (options)->
     grunt.verbose.writeln "Copying files from #{options.sourcePath} to #{options.destinationDir} using #{options.relativeDir} as basedir"
 
-    for filePath in grunt.file.expand options.sourcePath when fs.lstatSync(filePath).isFile()
+    for filePath in grunt.file.expand options.sourcePath when fs.statSync(filePath).isFile()
       grunt.verbose.writeln "Copying file #{filePath}"
 
       relativePath = path.relative options.relativeDir, filePath
@@ -121,7 +121,7 @@ registerDefaultTasks = (grunt)->
     javascripts = []
     sourceFiles = grunt.file.expand Paths.application.compiles.models
 
-    for filePath in sourceFiles when fs.lstatSync(filePath).isFile()
+    for filePath in sourceFiles when fs.statSync(filePath).isFile()
       grunt.verbose.writeln "Compiling model file at #{filePath}"
       javascripts.push grunt.file.read(filePath, "utf8").toString()
       fs.unlinkSync filePath
@@ -209,7 +209,7 @@ registerDefaultTasks = (grunt)->
     viewDirectories = []
 
     # get each view folder (except layout)
-    for dirPath in grunt.file.expand(path.join(appViewsDirectory, "*")) when fs.lstatSync(dirPath).isDirectory()
+    for dirPath in grunt.file.expand(path.join(appViewsDirectory, "*")) when fs.statSync(dirPath).isDirectory()
       basePath = path.basename(dirPath)
       unless basePath is "layouts" + path.sep or basePath is "layouts"
         viewDirectories.push dirPath
@@ -235,7 +235,7 @@ registerDefaultTasks = (grunt)->
 
       applicationLayoutFile = grunt.file.read layoutFilePath, "utf8"
 
-      for filePathPart in grunt.file.expand(path.join(viewDir, "**", "*")) when fs.lstatSync(filePathPart).isFile()
+      for filePathPart in grunt.file.expand(path.join(viewDir, "**", "*")) when fs.statSync(filePathPart).isFile()
 
         filePath = path.resolve filePathPart
 
@@ -284,7 +284,7 @@ registerDefaultTasks = (grunt)->
     mergesExist = fs.existsSync mergesDirectory
     if mergesExist
       # android
-      for filePath in grunt.file.expand(path.join(androidMergesDirectory, "*")) when fs.lstatSync(filePath).isFile()
+      for filePath in grunt.file.expand(path.join(androidMergesDirectory, "*")) when fs.statSync(filePath).isFile()
         filePath = path.normalize(filePath) # fix windows path syntax
         grunt.log.writeln colorize.ansify(" #yellow[Copying Android Merges:]")
 
@@ -304,7 +304,7 @@ registerDefaultTasks = (grunt)->
         fs.writeFileSync filePathInDistWithAndroidExtensionPrefix, fs.readFileSync(filePath)
 
       # ios
-      for filePath in grunt.file.expand(path.join(iosMergesDirectory, "*")) when fs.lstatSync(filePath).isFile()
+      for filePath in grunt.file.expand(path.join(iosMergesDirectory, "*")) when fs.statSync(filePath).isFile()
         filePath = path.normalize(filePath) # fix windows path syntax
         grunt.log.writeln colorize.ansify(" #yellow[Copying iOS Merges:]")
 
