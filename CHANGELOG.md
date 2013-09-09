@@ -1,10 +1,11 @@
 ## 2.7.21 (2013-09-09)
 
-Fixed issue where certain Android devices couldn't open projects when using the Steroids npm on Windows, minor debug fixes.
+Fixed issue where certain Android devices couldn't open projects when using the Steroids npm on Windows, support for symbolic links in project, minor debug fixes.
 
 Bugfixes:
   - In `$ steroids package` on Windows, use 7zip command-line executable instead of node-archiver to create the project zip. This fixes an issue where certain Android devices couldn't open the created project archive.
   - `$ steroids deploy --debug` outputs the share.appgyver.com URL to Terminal before trying to open it in the browser.
+  - `$ steroids make` now copies symbolic links to `dist/`.
 
 ## 2.7.20 (2013-09-06)
 
