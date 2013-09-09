@@ -1,6 +1,6 @@
 path = require "path"
+Paths = require "./../paths"
 childProcess = require "child_process"
-archiver = require "archiver"
 wrench = require "wrench"
 fs = require "fs"
 
@@ -12,36 +12,16 @@ class Zip
 
   zipRecursively: (callback)->
 
-    # use node-archiver on windows
+    # use 7zip on windows
     if process.platform is "win32"
-      files = wrench.readdirSyncRecursive @from
-      fileObjs = ({name: file, path: path.join(@from, file)} for file in files when fs.lstatSync(path.join(@from, file)).isFile())
+      # delete the zip file first
+      if fs.existsSync @to
+        fs.unlinkSync @to
 
-      archive = archiver "zip"
-      currentDate = new Date()
-
-      stream = fs.createWriteStream @to
-
-      archive.pipe stream
-
-      readNext = ()=>
-        currentFile = fileObjs.pop()
-        readStream = fs.createReadStream(currentFile.path)
-        readStream.on "close", ()=>
-          if fileObjs.length isnt 0
-            #console.log "#{currentFile.name} was read to archive.."
-            readNext()
-          else
-            #console.log "Finalizing archive.."
-            archive.finalize()
-            #console.log "Finalized archive to: #{@to}"
-            timestamp = (new Date).getTime()
-            callback.apply(null, [timestamp]) if callback?
-
-        archive.append readStream, { name: currentFile.name, date: currentDate}
-
-      readNext() if fileObjs.length > 0
-
+      zipCommand = path.join Paths.vendor, "7zip", "7za"
+      fromPath = path.join @from, "*"
+      zipArgs = ["a", @to, fromPath]
+      childProcess.spawn zipCommand, zipArgs
     # use OS supplied zip on OSX/Linux
     else
 

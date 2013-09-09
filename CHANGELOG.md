@@ -1,3 +1,10 @@
+## 2.7.21 (2013-09-09)
+
+Fixed issue where certain Android devices couldn't open projects when using the Steroids npm on Windows.
+
+Bugfixes:
+  - In `$ steroids package` on Windows, use 7zip command-line executable instead of node-archiver to create the project zip. This fixes an issue where certain Android devices couldn't open the created project archive.
+
 ## 2.7.20 (2013-09-06)
 
 Clarified instructions on updating the Steroids npm to work on a newer Node.js version.

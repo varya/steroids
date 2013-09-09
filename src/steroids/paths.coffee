@@ -82,6 +82,7 @@ class Paths
     models: path.join @application.distDir, "models", "models.js"
 
   @temporaryZip: path.join pathExtra.tempdir(), "steroids_project.zip"
+  @vendor: path.join @npm, "vendor"
 
   @userHome: if process.platform == 'win32' then process.env.USERPROFILE else process.env.HOME
   @storedSettings: path.join @userHome, ".appgyver"
