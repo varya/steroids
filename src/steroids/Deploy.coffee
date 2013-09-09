@@ -109,6 +109,7 @@ class Deploy
 
     Help.deployCompleted()
 
+    steroidsCli.debug "Opening URL http://share.appgyver.com/?id=#{config.id}&hash=#{config.identification_hash} in default web browser..."
     open "http://share.appgyver.com/?id=#{config.id}&hash=#{config.identification_hash}"
 
     callback()
