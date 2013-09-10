@@ -154,11 +154,11 @@ Configures your app's native nagivation bar. The navigation bar is enabled for e
 
 *Default for all attributes:* `""`
 
-Navigation bar color settings are application-wide and cannot be changed during runtime. Colors are defined as 6-character RGB hex strings with a leading #. Color settings are **iOS-only.**
+Navigation bar color settings are application-wide and cannot be changed during runtime. Colors are defined as 6-character RGB hex strings with a leading #. Color settings are **iOS-only, limited support on Android.**
 
 {% highlight coffeescript %}
 # Set the tint, title text color and title text shadow color of the navigation bar
-steroids.config.navigationBar.tintColor = "#00aeef"
+steroids.config.navigationBar.tintColor = "#00aeef" # works on Android also
 steroids.config.navigationBar.titleColor = "#ffffff"
 steroids.config.navigationBar.titleShadowColor = "#000000"
 # Set the tint, title text color and title text shadow color of navigation bar buttons
