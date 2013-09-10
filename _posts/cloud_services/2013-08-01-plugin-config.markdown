@@ -22,7 +22,9 @@ First follow the instructions for building your app on iOS or Android (linked in
 ]
 {% endhighlight %}
 
-The repo must have a adhere to Cordova's [plugin.xml][plugin-xml-spec] specification for the platforms you want to target.
+Our Build Service uses the [plugman](https://github.com/apache/cordova-plugman) tool for adding plugins to your custom builds, so your plugin repo must adhere to Cordova's [plugin.xml][plugin-xml-spec] specification, for the platforms you want to target.
+
+On iOS, our plugins currently require [ARC support](https://developer.apple.com/library/ios/releasenotes/ObjectiveC/RN-TransitioningToARC/Introduction/Introduction.html), so make sure the code compiles using ARC.
 
 ## Known issue
 
