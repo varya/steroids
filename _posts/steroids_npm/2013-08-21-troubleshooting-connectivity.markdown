@@ -10,7 +10,11 @@ If you are having trouble getting AppGyver Scanner to connect to your computer r
 
 ## Are your computer and mobile device on the same WLAN?
 
-Make sure that your computer and mobile device are on the same WLAN and your firewall/NAT are configured correctly. Connecting your computer to your development mobile device's internal WLAN hotspot doesn't currently work.
+Make sure that your computer and mobile device are on the same WLAN. Connecting your computer to your development mobile device's internal WLAN hotspot doesn't currently work.
+
+## Is your firewall configured correctly?
+
+Make sure your firewall/NAT are configured correctly. Note that on Windows, Node.js shows up as "Evented I/O for V8 JavaScript" in Firewall.
 
 ## Is the Steroids server running?
 
