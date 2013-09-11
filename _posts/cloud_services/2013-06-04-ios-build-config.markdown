@@ -120,13 +120,16 @@ On the top row, you have to:
 
 * Set a Display Name for your applicaiton. This is the name that will be shown below the app icon on devices.
 * Set a Bundle Identifier. Use reverse-domain style, e.g. `com.domain.myappname`. *The Bundle Identifier must match the one set up for the App ID that your `.mobileprovision` file uses.*
-* Set Bundle Version. This is the version number that will show up in App Store and in your app's Settings.
+* Set Version. This is the internal version number of your app. It won't be shown publicly, but can be used to differentiate between internal releases.
+* Set Short Version. This is the public version number that will show up in App Store and in your app's Settings.
 * Upload a `.mobileprovision` file. There's a different section for Ad Hoc and App Store builds, so make sure to choose the correct file.
 * Upload your `.p12` certificate file.
 * Enter your `.p12` certificate file password (the one you set up when you exported it from Keychain Access).
 * Configure your [custom plugins][custom-plugin-config].
 
 The Scanner Build is a special build of your application intended for development with the Steroids npm. It allows you to create a Scanner app that includes the custom plugins defined in the plugins field. As such, a Scanner Build doesn't show your actual application, but rather lets you scan a QR code to connect to a computer running the Steroids server. It's a good idea to create a separate `.mobileprovision` file and App/Bundle ID for your Scanner Build.
+
+Note that there's a known issue where Steroids npm checks for the version number of custom-built Scanner apps also. To ensure that Steroids npm lets you connect, make sure your Scanner app's semantic Version number is higher than 2.7.0.
 
 On the bottom row, you have to:
 
