@@ -43,3 +43,12 @@ img {
 .container {
   min-width:1090px;
 }
+
+.faq {
+  margin-top:1em;
+}
+
+.faq li {
+  margin-bottom:1em;
+  line-height:1.5em !important;
+}
