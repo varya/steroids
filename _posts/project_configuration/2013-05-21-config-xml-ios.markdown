@@ -81,8 +81,15 @@ For more granular control, see the [Cordova Docs][cordova-domain-whitelisting] o
 
 ##App start location
 The `<content>` tag is not used in Steroids to set the initial location of your app. Instead, the `steroids.config.location` property in `config/application.coffee` is used.
+
+##Setting fullscreen mode
+###(and other PhoneGap Build config.xml properties)
+To hide the status bar (showing carrier, clock and battery status), set the `steroids.config.statusBar.enabled` to `false` in the [config/application.coffee][config-application-coffee] file.
+
+`<preference name="fullscreen" value="true" />` and other PhoneGap Build preference tags are not supported by Steroids.
   
 [widgets]: http://www.w3.org/TR/widgets/
 [config-xml-android-guide]: /steroids/guides/project_configuration/config-xml-android/
 [cordova-domain-whitelisting]: http://cordova.apache.org/docs/en/2.7.0/guide_whitelist_index.md.html#Domain%20Whitelist%20Guide
 [steroids-api]: http://docs.appgyver.com
+[config-application-coffee]: /steroids/guides/project_configuration/config-application-coffee/
