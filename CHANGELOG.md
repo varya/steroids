@@ -1,3 +1,8 @@
+## 2.7.22 (TODO)
+
+Bugfixes:
+  - Removed line trying to load `controllers/application.js` from generator templates where the file wasn't used.
+
 ## 2.7.21 (2013-09-09)
 
 Fixed issue where certain Android devices couldn't open projects when using the Steroids npm on Windows, support for symbolic links in project, minor debug fixes.
