@@ -41,8 +41,16 @@ If you get the JSON file, your phone is able to connect to the Steroids server.
 Take a look at the URL in the QR code web page opened by `$ steroids connect`. Does the IP address in the URL match your computer's IP address? It should be of the format:
 
 ```
-http://localhost:4567/__appgyver/connect/qrcode.html?qrCodeData=appgyver%3A%2F%2F%3Fips%3D%255B%252<YOUR_IP_ADDRESS>%2522%255D%26port%3D4567
+http://127.0.0.1:4567/__appgyver/connect/qrcode.html?qrCodeData=appgyver%3A%2F%2F%3Fips%3D%255B%252<YOUR_IP_ADDRESS>%2522%255D%26port%3D4567
 ```
+
+There's a known issue where Steroids npm sometimes adds `127.0.0.1` to the IPs array, so that there's e.g.
+
+```
+127.0.0.1%2522%252C%2522192.168.1.156
+```
+
+in place of `<YOUR_IP_ADDRESS>` in the URL above. This can cause some Android devices to fail connecting to the Steroids server. Ensuring that there's only one IP Address in the QR code URL can resolve this issue.
 
 ## Does the iOS Simulator open?
 
