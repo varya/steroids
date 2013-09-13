@@ -63,7 +63,7 @@ Cordova has a plugin specification available to enable automated installation of
 
 *Note that Steroids currently requires you to include the JavaScript file for your plugin manually in your project; the `<asset>` tag is not supported.*
 
-* [Plugin Specification at (cordova.apache.org)][cordova-plugin-spec]: http://cordova.apache.org/docs/en/3.0.0/plugin_ref_spec.md.html#Plugin%20Specification
+* [Plugin Specification at (cordova.apache.org)][cordova-plugin-spec]
 
 ##Native Code
 
