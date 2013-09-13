@@ -1,0 +1,19 @@
+---
+layout: post
+title:  "Android version 2.3 support"
+date:   2013-09-13 13:51:34
+categories: android
+platforms: Android
+---
+
+[AppGyver Scanner for Android][android-scanner] v2.7.9 adds limited support for Android 2.3 devices. The initial release is meant to give developers the ability to develop a Cordova app with Steroids tooling.
+
+## Known issues
+* `steroids.js` features have not been tested and likely work erratically or not at all.
+* Tabs or other native UI components do not work.
+* Serving app files via `localhost` doesn't work. This means that the correct version of `cordova.js` must be included manually in your project. [Download cordova.js v2.7.0 for Android][android-cordova-js].
+
+The Android v2.3 support is provided as-is, but we are still collecting issues not mentioned above for future versions.
+
+[android-scanner]: https://play.google.com/store/apps/details?id=com.appgyver.android
+[android-cordova-js]: /files/cordova-2.7.7.android.js

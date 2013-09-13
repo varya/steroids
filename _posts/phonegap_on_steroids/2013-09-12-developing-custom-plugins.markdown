@@ -9,7 +9,7 @@ platforms: iOS, Android
 ## Related Guides
 * [Configuring custom plugins for your app][custom-plugin-config]
 
-*NB: The content below is from the official Cordova plugin development guide, with a few Steroids-specific modifications and clarifications.*
+*NB: The content below is from the official [Cordova plugin development guide][cordova-plugin-guide], with a few Steroids-specific modifications and clarifications.*
 
 A Cordova plugin bridges a bit of functionality between the WebView powering a Cordova application and the native platform the Cordova application is running on. Plugins are composed of a single JavaScript interface used across all platforms, and native implementations following platform-specific Plugin interfaces that the JavaScript calls into. All of the core Cordova APIs are implemented using this architecture (Steroids.js APIs use a different native bridge, but the concept is the same).
 
@@ -72,9 +72,20 @@ Once you define JavaScript for your plugin, you need to complement it with at a 
  * [Android Plugins (at cordova.apache.org)][cordova-android-plugin]
  * [iOS Plugins (at cordova.apache.org)][cordova-ios-plugin]
 
+##Example plugin on GitHub
+
+You can find an example of a properly set up Echo plugin repository on [GitHub][steroids-echo-plugin].
+
+##Kitchensink example
+
+You can see an example of the Echo plugin in action in the [Steroids Kitchensink][steroids-kitchensink] project. Note that you need to build a [custom Scanner app][custom-plugin-config] with the plugin included for the example to work (you can use the above [GitHub repo][steroids-echo-plugin] as the source).
+
 [custom-plugin-config]: /steroids/guides/cloud_services/plugin-config/
+[steroids-kitchensink]: https://github.com/AppGyver/kitchensink
+[steroids-echo-plugin]: https://github.com/AppGyver/steroids-echo-plugin/
 [github]: https://github.com
 [plugman]: https://github.com/apache/cordova-plugman
 [cordova-plugin-spec]: http://cordova.apache.org/docs/en/3.0.0/plugin_ref_spec.md.html#Plugin%20Specification
 [cordova-android-plugin]: http://cordova.apache.org/docs/en/3.0.0/guide_platforms_android_plugin.md.html#Android%20Plugins
 [cordova-ios-plugin]: http://cordova.apache.org/docs/en/3.0.0/guide_platforms_ios_plugin.md.html#iOS%20Plugins
+[cordova-plugin-guide]: http://cordova.apache.org/docs/en/3.0.0/guide_hybrid_plugins_index.md.html#Plugin%20Development%20Guide
