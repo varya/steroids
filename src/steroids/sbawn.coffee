@@ -64,6 +64,8 @@ class Sbawned
       @spawned.stdout.on "data", @onStdoutData
       @spawned.stderr.on "data", @onStderrData
     @spawned.on "exit", @onExit
+    @spawned.on "error", (err)=>
+      console.log err
 
   kill: () =>
     @spawned.kill("SIGKILL")
