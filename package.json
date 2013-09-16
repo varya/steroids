@@ -32,7 +32,7 @@
     "steroids": "./bin/steroids"
   },
   "scripts": {
-    "test": "node ./bin/test",
+    "test": "./bin/test",
     "preinstall": "node ./bin/check-node-version && node ./bin/preinstall",
     "install": "node ./bin/install",
     "preupdate": "node ./bin/check-node-version"
