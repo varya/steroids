@@ -20,6 +20,9 @@ class Help
   @SUCCESS: ->
     @printBanner(paths.banners.SUCCESS, true)
 
+  @error: ->
+    @printBanner(paths.banners.error, true)
+
   @connect: ->
     @printBanner(paths.banners.connect, true)
 

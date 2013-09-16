@@ -31,6 +31,7 @@ class Paths
     connect: path.join @bannersDir, "connect"
     attention: path.join @bannersDir, "attention"
     SUCCESS: path.join @bannersDir, "success-caps"
+    error: path.join @bannersDir, "error"
     awesome: path.join @bannersDir, "awesome"
     usage: path.join @bannersDir, "usage"
     welcome: path.join @bannersDir, "welcome"
