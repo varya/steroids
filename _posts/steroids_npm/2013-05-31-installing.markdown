@@ -81,6 +81,8 @@ npm might give you a few alerts about some third party libraries. This doesn't a
 
 ##Updating Steroids
 
+***NOTE:** if you are updating Steroids after changing your Node.js version, you should use `$ npm install steroids -g` instead of `update`. If you run into any issues, running `$ npm uninstall steroids -g` and re-installing should fix most problems. Let us know on the [forums][forums] if you are still having problems.*
+
 The Steroids npm checks for updates automatically when it is run, and will let you know when a new version is out. Remember to use the global `-g` option also when updating:
 
 <pre class="terminal">
@@ -93,3 +95,4 @@ $ npm update steroids -g
 [npm]: https://npmjs.org/
 [nvm]: https://github.com/creationix/nvm
 [python]: http://www.python.org/
+[forums]: http://forums.appgyver.com
