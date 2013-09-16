@@ -2,6 +2,7 @@
 
 Bugfixes:
   - Removed line trying to load `controllers/application.js` from generator templates where the file wasn't used.
+  - Display error message if deploy fails because access is denied
 
 ## 2.7.21 (2013-09-09)
 
