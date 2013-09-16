@@ -1,4 +1,6 @@
-## 2.7.22 (TODO)
+## 2.7.22 (2013-09-16)
+
+Polished generator templates and added error handling to deploy.
 
 Bugfixes:
   - Removed line trying to load `controllers/application.js` from generator templates where the file wasn't used.
