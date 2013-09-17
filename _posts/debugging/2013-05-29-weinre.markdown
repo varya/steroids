@@ -42,4 +42,10 @@ Since Weinre attaches itself to the target HTML document via JavaScript, it is u
 
 Weinre [works inconsistently with JavaScript strict mode](https://issues.apache.org/jira/browse/CB-604), so if your code or e.g. one of your external libraries uses strict mode, that might cause Weinre to break.
 
+##AngularJS issues with Weinre
+
+Using Weinre with AngularJS has some issues, e.g. `$log` calls not being outputted in console or AngularJS just plain failing to populate the DOM. To debug AngularJS-heavy apps, we recommend the [Safari Web Inspector][safari-wi] or [debugging in the browser][debugging-in-the-browser].
+
 [weinre-site]: http://people.apache.org/~pmuellr/weinre-docs/latest/
+[safari-wi]: /steroids/guides/debugging/safari-web-inspector/
+[debugging-in-the-browser]: /steroids/guides/debugging/best-practices/#debug_and_develop_in_the_browser
