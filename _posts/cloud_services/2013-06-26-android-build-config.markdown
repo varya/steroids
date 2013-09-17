@@ -29,7 +29,7 @@ $ keytool -genkey -v -keystore my-app-name.keystore -alias my_keystore_alias
 
 This will start generating a RSA-encrypted, 2048 bit keypair with a validity of 10,000 days.
 
-1. You will be first prompted for a password. Enter something you'll remember.
+1. You will be first prompted for a password. Enter something you'll remember, alphanumerics only. **Note that special characters (e.g. other than letters and numbers) cause the `.keystore` file to be invalid.**
 2. You'll then be prompted for a bunch of personal information, like your first and last name and your organization. You can leave all these empty.
 3. Finally, you're asked for a password for your keystore alias. You can just press enter to use the same password as for the keystore itself.
 
