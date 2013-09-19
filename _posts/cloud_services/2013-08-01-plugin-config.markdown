@@ -10,9 +10,11 @@ platforms: Android, iOS
 * [Building your app for Android][android-build-config]
 * [Building your app for iOS][ios-build-config]
 
-The AppGyver Build Service allows you to define custom Cordova plugins for your app.
+The AppGyver Build Service, part of [AppGyver Cloud][http://cloud.appgyver.com] allows you to include custom Cordova plugins with your app. To develop locally with the plugins, you need to build (with the Build Service) a custom Scanner app that you download and install onto your device.
 
-First follow the instructions for building your app on iOS or Android (linked in the Related Guides section above). Then, in the plugins field, include an array of GitHub repos for the custom plugins you want to use, e.g.
+First follow the instructions for [building your app on iOS][ios-build-config] or [Android][android-build-config] and set up all the necessary files and settings for your app.
+
+Then, in the Build Service's **Configure iOS/Android Build Settings** page for your app, find the **Plugins** field and include there an array of GitHub repos for the custom plugins you want to use, e.g.
 
 {% highlight json %}
 [
@@ -25,6 +27,8 @@ First follow the instructions for building your app on iOS or Android (linked in
 Our Build Service uses the [plugman](https://github.com/apache/cordova-plugman) tool for adding plugins to your custom builds, so your plugin repo must adhere to Cordova's [plugin.xml][plugin-xml-spec] specification, for the platforms you want to target.
 
 On iOS, our plugins currently require [ARC support](https://developer.apple.com/library/ios/releasenotes/ObjectiveC/RN-TransitioningToARC/Introduction/Introduction.html), so make sure the code compiles using ARC.
+
+There's also a guide available on [developing custom Cordova plugins][developing-custom-plugins].
 
 ## Known issue
 
@@ -49,3 +53,5 @@ Currently, you need to also include the relevant `.js` and other asset files for
 [android-build-config]: /steroids/guides/cloud_services/android-build-config/
 [plugin-xml-spec]: http://cordova.apache.org/docs/en/3.0.0/plugin_ref_spec.md.html
 [ios-build-config]: /steroids/guides/cloud_services/ios-build-config/
+[appgyver-cloud]: http://cloud.appgyver.com
+[developing-custom-plugins]: /steroids/guides/phonegap_on_steroids/developing-custom-plugins
