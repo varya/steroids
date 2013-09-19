@@ -10,7 +10,7 @@ platforms: Android, iOS
 * [Building your app for Android][android-build-config]
 * [Building your app for iOS][ios-build-config]
 
-The AppGyver Build Service, part of [AppGyver Cloud][http://cloud.appgyver.com] allows you to include custom Cordova plugins with your app. To develop locally with the plugins, you need to build (with the Build Service) a custom Scanner app that you download and install onto your device.
+The AppGyver Build Service, part of [AppGyver Cloud][appgyver-cloud] allows you to include custom Cordova plugins with your app. To develop locally with the plugins, you need to build (with the Build Service) a custom Scanner app that you download and install onto your device.
 
 First follow the instructions for [building your app on iOS][ios-build-config] or [Android][android-build-config] and set up all the necessary files and settings for your app.
 
