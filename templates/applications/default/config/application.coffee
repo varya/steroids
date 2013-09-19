@@ -59,6 +59,24 @@ steroids.config.location = "index.html"
 #   }
 # ]
 
+# -- Navigation bar portrait sized background image--
+# Used to set a background image for the navigation bar on iOS. Used for the portrait(default) sized navigation bar.
+# Default: ""
+#
+# steroids.config.navigationBar.portrait.backgroundImage = ""
+
+# -- Navigation bar landscape sized background image --
+# Used to set a background image for the navigation bar on iOS. Used for the landscape(thinner) sized navigation bar.
+# Default: ""
+#
+# steroids.config.navigationBar.landscape.backgroundImage = ""
+
+# -- Tab bar background image --
+# Used to set an background image for the tab bar on iOS.
+# Default: ""
+#
+# steroids.config.tabBar.backgroundImage = ""
+
 # -- Selected tab background image --
 # Used to set an indicator image for the selected tab on iOS (can be bigger than the tab area).
 # Default: ""
