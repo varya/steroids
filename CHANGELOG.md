@@ -1,3 +1,7 @@
+## 2.7.23 (2013-09-20)
+
+Updated iOS Simulator app to support iOS7 UI (users also need to update Xcode and install the iOS7 simulator).
+
 ## 2.7.22 (2013-09-16)
 
 Polished generator templates and added error handling to deploy.
