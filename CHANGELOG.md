@@ -1,6 +1,6 @@
 ## 2.7.23 (2013-09-20)
 
-Updated iOS Simulator app to support iOS7 UI (users also need to update Xcode and install the iOS7 simulator).
+Updated Steroids Simulator app to support iOS7 UI (users also need to update Xcode and install the actual iOS7 Simulator).
 
 ## 2.7.22 (2013-09-16)
 
