@@ -1,3 +1,8 @@
+## 2.7.24 (TODO)
+
+Bugfixes:
+  - Removed `www/components/myProject/` Bower component folder from project template and added it to `.gitignore`.
+
 ## 2.7.23 (2013-09-20)
 
 Updated Steroids Simulator app to support iOS7 UI (users also need to update Xcode and install the actual iOS7 Simulator).
@@ -8,7 +13,7 @@ Polished generator templates and added error handling to deploy.
 
 Bugfixes:
   - Removed line trying to load `controllers/application.js` from generator templates where the file wasn't used.
-  - Display error message if deploy fails because access is denied
+  - Display error message if deploy fails because access is denied.
 
 ## 2.7.21 (2013-09-09)
 
