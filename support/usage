@@ -21,7 +21,11 @@
 
     #cyan[--no-qrcode]
 
-      Do not open a page with QR code.
+      Do not open the QR code in a separate browser window.
+
+    #cyan[--terminal-qrcode]
+
+      Show all QR codes in the console window instead of opening a separate browser window.
 
     #cyan[--watch]
 

@@ -70,6 +70,7 @@
     "path-extra": "0.1.x",
     "portscanner": "0.1.x",
     "prompt": "0.2.x",
+    "qrcode-terminal": "0.9.4",
     "request": "2.27.x",
     "restify": "2.6.x",
     "restler": "2.0.x",

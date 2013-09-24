@@ -1,5 +1,8 @@
 ## 2.7.24 (TODO)
 
+Changes:
+  - Optional QR code display in the console with `--terminal-qrcode`
+
 Bugfixes:
   - Removed `www/components/myProject/` Bower component folder from project template and added it to `.gitignore`.
 
