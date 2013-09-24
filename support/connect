@@ -10,7 +10,7 @@
                                 Optionally, append #cyan[@<iOS-version>] to launch with a specific iOS
                                 version; e.g. #cyan[iphone@5.1]
 
- #bold[qr]               -             Show the QR code for connecting devices in browser
+ #bold[qr]               -             Show the QR code for connecting devices
 
  #bold[edit]             e             Launch editor (set in application.coffee), defaults to #cyan[subl]
 
