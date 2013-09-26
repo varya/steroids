@@ -2,6 +2,7 @@
 
 Changes:
   - Optional QR code display in the console with `--terminal-qrcode`
+  - test running is now improved: `./bin/test fast` and `./bin/test spec/Version.spec.coffee` in addition to full suite (`npm test`)
 
 Bugfixes:
   - Removed `www/components/myProject/` Bower component folder from project template and added it to `.gitignore`.
