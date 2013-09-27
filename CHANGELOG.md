@@ -1,3 +1,10 @@
+## 2.7.25 (2013-09-27)
+
+Updated SQlite plugin JavaScript file in `ng-sql-scaffold` generator.
+
+Bugfixes:
+  - Updated SQlite plugin JavaScript file in `ng-sql-scaffold` generator to match the SQlite plugin version in iOS Scanner v2.7.8.
+
 ## 2.7.24 (2013-09-27)
 
 Default project template updated to use Steroids 2.7.8, improved test running, optional QR code display in console.
