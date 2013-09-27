@@ -1,1 +1,2 @@
-TODO: how steroids make and steroids package work, what happens when I write steroids connect and press enter
+
+When you run `steroids connect`, there are two steps that happen when changes are updated to connected devices. The first one is `steroids make`, which runs through a series of Grunt.js tasks to create the `dist/` folder – see the [Custom dependencies and build tasks][custom-dependencies-tasks] guide for more info. The second task is `steroids package`, which zips up the `dist/` folder and serves it to the Scanner app to download. The Scanner app then unzips the package into a specific folder inside the Scanner app package.
