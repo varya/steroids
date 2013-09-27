@@ -2,7 +2,7 @@
 layout: post
 title:  "App Structure on the Device"
 date:   2013-05-27 13:51:34
-categories: steroids-js ios android
+categories: steroids-js
 platforms: iOS, Android
 ---
 
