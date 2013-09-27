@@ -16,7 +16,8 @@ This guides explains how your app files are structured on the actual device. The
 When using the Scanner app, your project files (the contents of the `dist/` folder in your project) reside in a *read-only* folder whose path is randomized to prevent WebKit cache issues. The location, accessible via the [steroids.app.absolutePath][steroids.app.absolutePath] variable (or, relative to the `Documents/` folder, via [steroids.app.path][steroids.app.path]), looks something like
 
 {% highlight javascript %}
-/var/mobile/Applications/AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA/Scanner.app/Documents/applications/local/123456789
+/var/mobile/Applications/AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA/Scanner.app/
+Documents/applications/local/123456789
 {% endhighlight %}
 
 where the `AAAAA...` string is an **App Unique Identifier** and the number string at the end is a randomized folder that changes every time you push changes to the device. Both the `steroids.app.absolutePath` and `steroids.app.path` take into account the changed folder, so use them when necessary.
@@ -34,7 +35,8 @@ steroids.on("ready", function() {
 When you create a stand-alone (i.e. Ad Hoc or App Store) build of your app, the App folder path is just
 
 {% highlight javascript %}
-/var/mobile/Applications/AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA/MyAwesomeApp.app/Documents/Application
+/var/mobile/Applications/AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA/MyAwesomeApp.app/
+Documents/Application
 {% endhighlight %}
 
 and the `steroids.app.absolutePath` and `steroids.app.path` variables are updated accordingly.
