@@ -1,11 +1,11 @@
 ## 2.7.24 (2013-09-27)
 
-Default project template updated to support updated Facebook plugin, improved test running, optional QR code display in console.
+Default project template updated to use Steroids 2.7.8, improved test running, optional QR code display in console.
 
 Changes:
   - Optional QR code display in the console with `--terminal-qrcode`
   - Test running is now improved: `./bin/test fast` and `./bin/test spec/Version.spec.coffee` in addition to full suite (`npm test`)
-  - Default project template's `www/config.ios.xml` now has the correct `<plugin>` tag for the updated integrated Facebook plugin
+  - Project templates updated to use Steroids.js v2.7.8
 
 Bugfixes:
   - Removed `www/components/myProject/` Bower component folder from project template and added it to `.gitignore`.
