@@ -1,3 +1,9 @@
+## 2.7.26 (TODO)
+
+Changes:
+  - Removed text shadow color settings from project template's `config/application.coffee` (deprecated by iOS7).
+  - Cleaned up comments and instructions from project template's `config/application.coffee`
+
 ## 2.7.25 (2013-09-27)
 
 Updated SQlite plugin JavaScript file in `ng-sql-scaffold` generator.
