@@ -3,6 +3,7 @@
 Changes:
   - Removed text shadow color settings from project template's `config/application.coffee` (deprecated by iOS7).
   - Cleaned up comments and instructions from project template's `config/application.coffee`
+  - Removed obsolete Scanner client version check
 
 ## 2.7.25 (2013-09-27)
 
