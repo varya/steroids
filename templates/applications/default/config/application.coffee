@@ -42,10 +42,6 @@ steroids.config.statusBar.style = "default"
 # -- Host Faking ---
 # steroids.config.hosts = ["mobileapp.example.com", "m.example.net"]
 
-# -- Default Editor --
-# steroids.config.editor.cmd = "subl"
-# steroids.config.editor.args = ["."]
-
 # -- File Watcher --
 # steroids.config.watch.exclude = ["www/my_excluded_file.js", "www/my_excluded_dir"]
 
@@ -54,3 +50,7 @@ steroids.config.statusBar.style = "default"
 # steroids.config.hooks.preMake.args = ["running yeoman"]
 # steroids.config.hooks.postMake.cmd = "echo"
 # steroids.config.hooks.postMake.args = ["cleaning up files"]
+
+# -- Default Editor --
+# steroids.config.editor.cmd = "subl"
+# steroids.config.editor.args = ["."]
