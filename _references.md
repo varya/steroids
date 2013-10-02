@@ -9,6 +9,8 @@
 [loading-html-guide]: /steroids/guides/ios/loading-html/
 [loading-png-guide]: /steroids/guides/android/loading-png/
 
+[guide-debugging-weinre]: /steroids/guides/debugging/weinre
+
 <!-- Steroids API docs links -->
 [api-view-setAllowedRotations]: http://docs.appgyver.com/en/edge/steroids_Steroids%20Native%20UI_steroids.view_view.setAllowedRotations.md.html#steroids.view.setAllowedRotations
 [steroids.view.navigationBar.show]: http://docs.appgyver.com/en/edge/steroids_Steroids%20Native%20UI_steroids.view.navigationBar_navigationBar.show.md.html#steroids.view.navigationBar.show
