@@ -1,9 +1,10 @@
 ## 2.7.26 (TODO)
 
 Changes:
+  - New Steroids projects have initial compatibilty with [Cordova CLI](https://github.com/apache/cordova-cli).
   - Removed text shadow color settings from project template's `config/application.coffee` (deprecated by iOS7).
-  - Removed up comments and instructions from project template's `config/application.coffee`
-  - Removed obsolete Scanner client version check
+  - Removed up comments and instructions from project template's `config/application.coffee`.
+  - Removed obsolete Scanner client version check.
 
 ## 2.7.25 (2013-09-27)
 
