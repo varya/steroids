@@ -2,7 +2,7 @@ TutorialResource = require './generators/resources/Tutorial'
 ExampleResource = require './generators/resources/Example'
 
 DefaultResource = require './generators/resources/Default'
-NgResource = require './generators/resources/NgResource'
+NgResource = require './yeoman-generators/NgResource'
 NgScaffoldResource = require './generators/resources/NgScaffold'
 NgTouchdbResource = require './generators/resources/NgTouchdbResource'
 NgSqlScaffold = require './generators/resources/NgSqlScaffold'
