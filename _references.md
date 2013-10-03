@@ -3,6 +3,10 @@
 [ios-build-config]: /steroids/guides/cloud_services/ios-build-config/
 [custom-plugin-config]: /steroids/guides/cloud_services/plugin-config/
 
+<!-- PhoneGap on Steroids-->
+[developing-custom-plugins]: /steroids/guides/phonegap_on_steroids/developing-custom-plugins
+
+
 [cloud-deploy-guide]: /steroids/guides/steroids_npm/cloud-deploy/
 [config-xml-android-guide]: /steroids/guides/project_configuration/config-xml-android/
 [config-xml-ios-guide]: /steroids/guides/project_configuration/config-xml-ios/
@@ -26,6 +30,9 @@
 
 <!-- Cordova links -->
 [plugman]: https://github.com/apache/cordova-plugman
+[plugin-xml-spec]: http://cordova.apache.org/docs/en/3.0.0/plugin_ref_spec.md.html
+
+
 
 <!-- W3C specifications -->
 [w3c-cors]: http://www.w3.org/TR/cors/
