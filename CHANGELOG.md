@@ -1,4 +1,6 @@
-## 2.7.26 (TODO)
+## 2.7.26 (2013-10-04)
+
+New projects have initial compatibility with [Cordova CLI](https://github.com/apache/cordova-cli), cleaned up `config/application.coffee`.
 
 Changes:
   - New Steroids projects have initial compatibilty with [Cordova CLI](https://github.com/apache/cordova-cli).
