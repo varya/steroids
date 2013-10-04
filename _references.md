@@ -5,6 +5,7 @@
 
 <!-- PhoneGap on Steroids-->
 [developing-custom-plugins]: /steroids/guides/phonegap_on_steroids/developing-custom-plugins
+[using-cordova-cli]: /steroids/guides/steroids_npm/using-cordova-cli
 
 
 [cloud-deploy-guide]: /steroids/guides/steroids_npm/cloud-deploy/
