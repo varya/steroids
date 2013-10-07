@@ -39,9 +39,6 @@ steroids.config.loadingScreen.tintColor = "#262626"
 steroids.config.statusBar.enabled = true
 steroids.config.statusBar.style = "default"
 
-# -- Host Faking ---
-# steroids.config.hosts = ["mobileapp.example.com", "m.example.net"]
-
 # -- File Watcher --
 # steroids.config.watch.exclude = ["www/my_excluded_file.js", "www/my_excluded_dir"]
 
