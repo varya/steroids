@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Using a local prepopulated SQLite database (iOS)"
+title:  "Using a local prepopulated SQLite database"
 date:   2013-06-12 13:51:34
 categories: phonegap_on_steroids
 platforms: iOS, Android
