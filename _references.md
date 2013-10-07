@@ -7,6 +7,8 @@
 [developing-custom-plugins]: /steroids/guides/phonegap_on_steroids/developing-custom-plugins
 [using-cordova-cli]: /steroids/guides/steroids_npm/using-cordova-cli
 
+<!-- Steroids.js -->
+[app-structure-on-device]: /steroids/guides/steroids-js/app-structure-on-device/
 
 [cloud-deploy-guide]: /steroids/guides/steroids_npm/cloud-deploy/
 [config-xml-android-guide]: /steroids/guides/project_configuration/config-xml-android/
