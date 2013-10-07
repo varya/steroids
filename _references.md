@@ -13,12 +13,18 @@
 [cloud-deploy-guide]: /steroids/guides/steroids_npm/cloud-deploy/
 [config-xml-android-guide]: /steroids/guides/project_configuration/config-xml-android/
 [config-xml-ios-guide]: /steroids/guides/project_configuration/config-xml-ios/
+[android-extension-guide]: /steroids/guides/android/android-extension/
+[config-application-coffee-guide]: /steroids/guides/project_configuration/config-application-coffee/
 [loading-html-guide]: /steroids/guides/ios/loading-html/
 [loading-png-guide]: /steroids/guides/android/loading-png/
 
 [guide-debugging-weinre]: /steroids/guides/debugging/weinre
 
 <!-- Steroids API docs links -->
+[steroids.app.path]: http://docs.appgyver.com/en/edge/steroids_Steroids%20App%20and%20Device_Steroids.app_app.path.md.html#steroids.app.path
+[steroids.app.userFilesPath]: http://docs.appgyver.com/en/edge/steroids_Steroids%20App%20and%20Device_Steroids.app_app.userFilesPath.md.html#steroids.app.userFilesPath
+[steroids.app.absolutePath]: http://docs.appgyver.com/en/edge/steroids_Steroids%20App%20and%20Device_Steroids.app_app.absolutePath.md.html#steroids.app.absolutePath
+[steroids.app.absoluteUserFilesPath]: http://docs.appgyver.com/en/edge/steroids_Steroids%20App%20and%20Device_Steroids.app_app.absoluteUserFilesPath.md.html#steroids.app.absoluteUserFilesPath
 [api-view-setAllowedRotations]: http://docs.appgyver.com/en/edge/steroids_Steroids%20Native%20UI_steroids.view_view.setAllowedRotations.md.html#steroids.view.setAllowedRotations
 [steroids.view.navigationBar.show]: http://docs.appgyver.com/en/edge/steroids_Steroids%20Native%20UI_steroids.view.navigationBar_navigationBar.show.md.html#steroids.view.navigationBar.show
 
