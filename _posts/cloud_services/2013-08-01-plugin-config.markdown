@@ -19,9 +19,8 @@ Then, in the Build Service's **Configure iOS/Android Build Settings** page for y
 
 {% highlight json %}
 [
-  {"source":"https://github.com/apache/cordova-plugin-geolocation.git"},
-  {"source":"https://github.com/apache/cordova-plugin-vibration.git"},
-  {"source":"https://github.com/phoenix-foundation/steroids-plugin-awesome.git"}
+  {"source":"https://github.com/appgyver/emailcomposer-plugin.git"},
+  {"source":"https://github.com/appgyver/steroids-echo-plugin.git"}
 ]
 {% endhighlight %}
 
@@ -31,7 +30,7 @@ Certain plugins require you to pass variables to plugman. You can give these as 
 
 {% highlight json %}
 {
-  "source":"https://github.com/phoenix-foundation/steroids-plugin-awesome.git",
+  "source":"https://github.com/my-awesome-organization/my-awesome-plugin.git",
   "variables": {
     "VARIABLE_NAME":"value",
     "SECOND_VAR":"second_value"
@@ -51,7 +50,7 @@ Please note that you need to manually include your plugin in your Steroids proje
 
 {% highlight xml %}
 <plugins>
-  <plugin name="AwesomePlugin" value="org.phoneixfoundation.plugins.AwesomePlugin" />
+  <plugin name="Echo" value="com.appgyver.plugin.Echo" />
 </plugins>
 {% endhighlight %}
 
