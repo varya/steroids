@@ -24,6 +24,8 @@ Then, in the Build Service's **Configure iOS/Android Build Settings** page for y
 ]
 {% endhighlight %}
 
+**Note that Steroids currently uses Cordova 2.7.0. This means that Cordova 3.0.0 core plugins are included by default, so you don't need to include e.g. https://github.com/apache/cordova-plugin-vibration.git to use the Vibration API – in fact, including any of the core plugins will cause your build to fail.**
+
 Our Build Service uses the [plugman](https://github.com/apache/cordova-plugman) tool for adding plugins to your custom builds, so your plugin repo must adhere to Cordova's [plugin.xml][plugin-xml-spec] specification, for the platforms you want to target.
 
 Certain plugins require you to pass variables to plugman. You can give these as a property of the individual plugin object:
