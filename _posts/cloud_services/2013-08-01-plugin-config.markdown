@@ -24,7 +24,9 @@ Then, in the Build Service's **Configure iOS/Android Build Settings** page for y
 ]
 {% endhighlight %}
 
-**Note that Steroids currently uses Cordova 2.7.0. This means that Cordova 3.0.0 core plugins are included by default, so you don't need to include e.g. the [Vibration Plugin](https://github.com/apache/cordova-plugin-vibration.git) to use the Vibration API – in fact, including any of the core plugins will cause your build to fail.**
+**Note:** Steroids currently uses Cordova 2.7.0. This means that Cordova 3.0.0 core plugins are included by default, so you don't need to include e.g. the [Vibration Plugin](https://github.com/apache/cordova-plugin-vibration) to use the Vibration API – in fact, including any of the core plugins will cause your build to fail. The same applies to other plugins installed by default such as the [SQLite Plugin](https://github.com/lite4cordova/Cordova-SQLitePlugin): you can see a list in a new project's `www/config.ios.xml` and `config.android.xml`.
+
+
 
 Our Build Service uses the [plugman](https://github.com/apache/cordova-plugman) tool for adding plugins to your custom builds, so your plugin repo must adhere to Cordova's [plugin.xml][plugin-xml-spec] specification, for the platforms you want to target.
 
