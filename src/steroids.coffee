@@ -31,6 +31,7 @@ class Steroids
     @version = new Version
     @pathToSelf = process.argv[1]
     @config = new Config
+    @platform = @options.argv.platform || "ios"
 
   readApplicationConfig: ->
     applicationConfig = paths.application.configs.application
@@ -249,7 +250,10 @@ class Steroids
             4000
 
           if argv.ripple
-            ripple = new Ripple(servePort: servePort, port: argv.ripplePort)
+            ripple = new Ripple
+              servePort: servePort
+              port: argv.ripplePort
+
             ripple.run()
 
           serve = new Serve servePort,

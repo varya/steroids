@@ -30,7 +30,8 @@ class WebServer extends Server
     fileDistPath = path.join("dist", filePath)
 
     if req.path.endsWith("config.xml")
-      configFile = path.join Paths.application.wwwDir, "config.ios.xml"
+      configFile = path.join Paths.application.wwwDir, "config.#{steroidsCli.platform}.xml"
+      steroidsCli.debug "config.xml requesteded, sending #{configFile}"
       res.sendfile configFile
       return
     else if req.path.endsWith("cordova_plugins.json")
