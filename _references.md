@@ -20,6 +20,9 @@
 
 [guide-debugging-weinre]: /steroids/guides/debugging/weinre
 
+<!-- Tizen -->
+[config-xml-tizen-guide]: /steroids/guides/tizen/config-xml-tizen/
+
 <!-- Steroids API docs links -->
 [steroids.app.path]: http://docs.appgyver.com/en/edge/steroids_Steroids%20App%20and%20Device_Steroids.app_app.path.md.html#steroids.app.path
 [steroids.app.userFilesPath]: http://docs.appgyver.com/en/edge/steroids_Steroids%20App%20and%20Device_Steroids.app_app.userFilesPath.md.html#steroids.app.userFilesPath
