@@ -1,33 +1,66 @@
-#!/bin/sh
+#!/usr/bin/env node
+
+var cp = require("child_process"),
+    exec = cp.exec,
+    path = require("path"),
+    fs   = require("fs");
+
+console.log("AppGyver Steroids\n");
+
+console.log("Checking for required components ...\n");
 
 
-echo "AppGyver Steroids\n"
+var checkForPython = function() {
+  var rootDir = process.env.SystemDrive || 'C:\\',
+      exists = false,
+      okCb = function() {
+        console.log("  Found 'python', good.\n");
+      };
 
-
-echo "Checking for required components ..."
-
-REQUIRED_CMDS="gcc make git"
-
-ERRORS=false
-for REQUIRED_CMD in $REQUIRED_CMDS
-do
-  command -v "$REQUIRED_CMD" > /dev/null && {
-    echo "  Found '$REQUIRED_CMD', good."
-  } || {
-    ERRORS="true"
-    echo "  ERROR: command '$REQUIRED_CMD' not found, please install it first."
+  if (rootDir[rootDir.length - 1] !== '\\') {
+    rootDir += '\\'
   }
-done
 
-if [ "$ERRORS" = "true" ]; then
-  echo "\nInstall gcc and make by installing Xcode from the Mac App Store."
-  echo "\nThen install 'Command Line Tools' from Xcode preferences -> downloads."
-  echo "\nFor Git installation, we recommend using homebrew, see http://mxcl.github.com/homebrew/"
-  echo "\nOnce homebrew is installed, install git with: brew install git"
+  // check from default python path
+  var pythonPath = path.resolve(rootDir, 'Python27', 'python.exe')
 
-  echo "\n\nHit [enter] to quit and install the dependencies.  Then run the installation again."
-  read
-  exit 1
-fi
+  exists = fs.existsSync(pythonPath);
 
-echo "... dependencies ok.\n\n"
+  if (!exists) {
+
+    exec("python -V", function(err, stdout, stderr) {
+      if (err) {
+        console.log("  ERROR: command 'python' not found, please install it first.");
+        process.exit(1);
+      } else {
+        okCb();
+      }
+    });
+
+  } else {
+    okCb();
+  }
+}
+
+if (process.platform === "win32") {
+
+  exec("git --version", function(err, stdout, stderr){
+    if (err) {
+      console.log("  ERROR: command 'git' not found, please install it first.");
+      process.exit(1);
+    } else {
+      console.log("  Found 'git', good.\n");
+    }
+  });
+
+  checkForPython();
+
+} else {
+  preinstallForNix = path.join(path.dirname(fs.realpathSync(__filename)), 'preinstall-nix');
+  exec(preinstallForNix, function(err, stdout, stderr){
+    if (err) {console.log(err); process.exit(1);};
+    if (stderr) {console.log(stderr); process.exit(1);};
+    if (stdout) {console.log(stdout)};
+  });
+
+};

@@ -1,0 +1,29 @@
+echo "AppGyver Steroids\n"
+
+echo "Checking for required components ...\n"
+
+REQUIRED_CMDS="gcc make git"
+
+ERRORS=false
+for REQUIRED_CMD in $REQUIRED_CMDS
+do
+  command -v "$REQUIRED_CMD" > /dev/null && {
+    echo "  Found '$REQUIRED_CMD', good."
+  } || {
+    ERRORS="true"
+    echo "  ERROR: command '$REQUIRED_CMD' not found, please install it first."
+  }
+done
+
+if [ "$ERRORS" = "true" ]; then
+  echo "\nInstall gcc and make by installing Xcode from the Mac App Store."
+  echo "\nThen install 'Command Line Tools' from Xcode preferences -> downloads."
+  echo "\nFor Git installation, we recommend using homebrew, see http://mxcl.github.com/homebrew/"
+  echo "\nOnce homebrew is installed, install git with: brew install git"
+
+  echo "\n\nHit [enter] to quit and install the dependencies.  Then run the installation again."
+  read
+  exit 1
+fi
+
+echo "... dependencies ok.\n\n"

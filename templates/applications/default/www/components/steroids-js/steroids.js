@@ -1,10 +1,9 @@
+/*! steroids-js - v2.7.8 - 2013-09-27 15:40 */
 (function(window){
-/*! steroids-js - v2.7.5 - 2013-08-08 */
-;var Bridge,
+var Bridge,
   __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
 Bridge = (function() {
-
   Bridge.prototype.uid = 0;
 
   Bridge.prototype.callbacks = {};
@@ -17,7 +16,7 @@ Bridge = (function() {
     if (this.bestNativeBridge == null) {
       for (_i = 0, _len = prioritizedList.length; _i < _len; _i++) {
         bridgeClass = prioritizedList[_i];
-        if (!(this.bestNativeBridge != null)) {
+        if (this.bestNativeBridge == null) {
           if (bridgeClass.isUsable()) {
             this.bestNativeBridge = new bridgeClass();
           }
@@ -29,11 +28,8 @@ Bridge = (function() {
 
   function Bridge() {
     this.send = __bind(this.send, this);
-
     this.nativeCall = __bind(this.nativeCall, this);
-
     this.message_handler = __bind(this.message_handler, this);
-
   }
 
   Bridge.prototype.sendMessageToNative = function(options) {
@@ -168,7 +164,6 @@ Bridge = (function() {
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
 AndroidBridge = (function(_super) {
-
   __extends(AndroidBridge, _super);
 
   function AndroidBridge() {
@@ -195,7 +190,6 @@ AndroidBridge = (function(_super) {
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
 WebBridge = (function(_super) {
-
   __extends(WebBridge, _super);
 
   function WebBridge() {
@@ -240,7 +234,7 @@ WebBridge = (function(_super) {
   }
 
   WebBridge.isUsable = function() {
-    return typeof window.chrome !== 'undefined';
+    return navigator.userAgent.indexOf("AppGyverSteroids") === -1;
   };
 
   WebBridge.prototype.sendMessageToNative = function(messageString) {
@@ -302,16 +296,12 @@ WebBridge = (function(_super) {
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
 WebsocketBridge = (function(_super) {
-
   __extends(WebsocketBridge, _super);
 
   function WebsocketBridge() {
     this.message_handler = __bind(this.message_handler, this);
-
     this.map_context = __bind(this.map_context, this);
-
     this.open = __bind(this.open, this);
-
     this.reopen = __bind(this.reopen, this);
     this.reopen();
   }
@@ -397,7 +387,6 @@ WebsocketBridge = (function(_super) {
 ;var Events;
 
 Events = (function() {
-
   function Events() {}
 
   Events.dispatchVisibilitychangedEvent = function(options) {
@@ -512,7 +501,6 @@ Events = (function() {
 ;var Torch;
 
 Torch = (function() {
-
   function Torch() {}
 
   Torch.prototype.turnOn = function(options, callbacks) {
@@ -567,18 +555,12 @@ Torch = (function() {
   __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
 Device = (function() {
-
   function Device() {
     this.setSleepDisabled = __bind(this.setSleepDisabled, this);
-
     this.enableSleep = __bind(this.enableSleep, this);
-
     this.disableSleep = __bind(this.disableSleep, this);
-
     this.getIPAddress = __bind(this.getIPAddress, this);
-
     this.ping = __bind(this.ping, this);
-
   }
 
   Device.prototype.torch = new Torch();
@@ -665,7 +647,6 @@ Device = (function() {
   __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
 Animation = (function() {
-
   Animation.TRANSITION_REVERSION_MAPPING = {
     slideFromLeft: "slideFromRight",
     slideFromRight: "slideFromLeft",
@@ -686,7 +667,6 @@ Animation = (function() {
       options = {};
     }
     this.perform = __bind(this.perform, this);
-
     this.transition = options.constructor.name === "String" ? options : (_ref = options.transition) != null ? _ref : "curlUp";
     if (this.transition == null) {
       throw "transition required";
@@ -730,7 +710,6 @@ Animation = (function() {
 ;var App;
 
 App = (function() {
-
   App.prototype.path = void 0;
 
   App.prototype.userFilesPath = void 0;
@@ -783,7 +762,6 @@ App = (function() {
 ;var Modal;
 
 Modal = (function() {
-
   function Modal() {}
 
   Modal.prototype.show = function(options, callbacks) {
@@ -846,7 +824,6 @@ Modal = (function() {
 ;var DrawerCollection;
 
 DrawerCollection = (function() {
-
   function DrawerCollection() {
     this.defaultAnimations = {
       LEFT: new Animation({
@@ -1035,7 +1012,6 @@ DrawerCollection = (function() {
 ;var LayerCollection;
 
 LayerCollection = (function() {
-
   function LayerCollection() {
     this.array = [];
   }
@@ -1150,7 +1126,6 @@ LayerCollection = (function() {
 ;var NavigationBarButton;
 
 NavigationBarButton = (function() {
-
   function NavigationBarButton(options) {
     if (options == null) {
       options = {};
@@ -1165,7 +1140,6 @@ NavigationBarButton = (function() {
 ;var NavigationBar;
 
 NavigationBar = (function() {
-
   function NavigationBar() {}
 
   NavigationBar.prototype.hide = function(options, callbacks) {
@@ -1184,19 +1158,25 @@ NavigationBar = (function() {
   };
 
   NavigationBar.prototype.show = function(options, callbacks) {
-    var title;
+    var parameters, relativeTo, _ref;
     if (options == null) {
       options = {};
     }
     if (callbacks == null) {
       callbacks = {};
     }
-    title = options.constructor.name === "String" ? options : options.title;
+    steroids.debug("steroids.navigationBar.show options: " + (JSON.stringify(options)) + " callbacks: " + (JSON.stringify(callbacks)));
+    relativeTo = (_ref = options.relativeTo) != null ? _ref : steroids.app.path;
+    parameters = options.constructor.name === "Object" ? options.title != null ? {
+      title: options.title
+    } : {
+      titleImagePath: relativeTo + options.titleImagePath
+    } : {
+      title: options
+    };
     return steroids.nativeBridge.nativeCall({
       method: "showNavigationBar",
-      parameters: {
-        title: title
-      },
+      parameters: parameters,
       successCallbacks: [callbacks.onSuccess],
       failureCallbacks: [callbacks.onFailure]
     });
@@ -1238,7 +1218,6 @@ NavigationBar = (function() {
 ;var BounceShadow;
 
 BounceShadow = (function() {
-
   function BounceShadow() {}
 
   BounceShadow.prototype.hide = function(options, callbacks) {
@@ -1291,7 +1270,6 @@ BounceShadow = (function() {
   __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
 WebView = (function() {
-
   WebView.prototype.params = {};
 
   WebView.prototype.id = null;
@@ -1415,7 +1393,6 @@ WebView = (function() {
 ;var PreviewFileView;
 
 PreviewFileView = (function() {
-
   function PreviewFileView(options) {
     var _ref;
     if (options == null) {
@@ -1435,7 +1412,6 @@ PreviewFileView = (function() {
 ;var Audio;
 
 Audio = (function() {
-
   function Audio() {}
 
   Audio.prototype.play = function(options, callbacks) {
@@ -1491,7 +1467,6 @@ Audio = (function() {
 ;var OAuth2Flow;
 
 OAuth2Flow = (function() {
-
   function OAuth2Flow(options) {
     this.options = options != null ? options : {};
     this.options.callbackUrl = "http://localhost:13101/" + this.options.callbackPath;
@@ -1561,20 +1536,19 @@ OAuth2Flow = (function() {
   return OAuth2Flow;
 
 })();
-;var AuthorizationCodeFlow,
+;var AuthorizationCodeFlow, _ref,
   __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
 AuthorizationCodeFlow = (function(_super) {
-
   __extends(AuthorizationCodeFlow, _super);
 
   function AuthorizationCodeFlow() {
     this.finish = __bind(this.finish, this);
-
     this.authenticate = __bind(this.authenticate, this);
-    return AuthorizationCodeFlow.__super__.constructor.apply(this, arguments);
+    _ref = AuthorizationCodeFlow.__super__.constructor.apply(this, arguments);
+    return _ref;
   }
 
   AuthorizationCodeFlow.prototype.authenticate = function() {
@@ -1595,7 +1569,7 @@ AuthorizationCodeFlow = (function(_super) {
   };
 
   AuthorizationCodeFlow.prototype.finish = function(callback) {
-    var body, key, request, value, _ref,
+    var body, key, request, value, _ref1,
       _this = this;
     this.xhrAccessTokenParams = {
       client_id: this.options.clientID,
@@ -1606,9 +1580,9 @@ AuthorizationCodeFlow = (function(_super) {
     request = new XMLHttpRequest();
     request.open("POST", this.options.accessTokenUrl);
     body = [];
-    _ref = this.xhrAccessTokenParams;
-    for (key in _ref) {
-      value = _ref[key];
+    _ref1 = this.xhrAccessTokenParams;
+    for (key in _ref1) {
+      value = _ref1[key];
       body.push("" + key + "=" + (this.urlEncode(value)));
     }
     body.push("code=" + steroids.view.params['code']);
@@ -1628,20 +1602,20 @@ AuthorizationCodeFlow = (function(_super) {
   return AuthorizationCodeFlow;
 
 })(OAuth2Flow);
-;var ClientCredentialsFlow,
+;var ClientCredentialsFlow, _ref,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
 ClientCredentialsFlow = (function(_super) {
-
   __extends(ClientCredentialsFlow, _super);
 
   function ClientCredentialsFlow() {
-    return ClientCredentialsFlow.__super__.constructor.apply(this, arguments);
+    _ref = ClientCredentialsFlow.__super__.constructor.apply(this, arguments);
+    return _ref;
   }
 
   ClientCredentialsFlow.prototype.authenticate = function(callback) {
-    var body, key, request, value, _ref,
+    var body, key, request, value, _ref1,
       _this = this;
     this.xhrAccessTokenParams = {
       client_id: this.options.clientID,
@@ -1652,9 +1626,9 @@ ClientCredentialsFlow = (function(_super) {
     request = new XMLHttpRequest();
     request.open("POST", this.options.accessTokenUrl);
     body = [];
-    _ref = this.xhrAccessTokenParams;
-    for (key in _ref) {
-      value = _ref[key];
+    _ref1 = this.xhrAccessTokenParams;
+    for (key in _ref1) {
+      value = _ref1[key];
       body.push("" + key + "=" + (this.urlEncode(value)));
     }
     body = body.sort().join('&');
@@ -1675,7 +1649,6 @@ ClientCredentialsFlow = (function(_super) {
 ;var OAuth2;
 
 OAuth2 = (function() {
-
   function OAuth2() {}
 
   OAuth2.AuthorizationCodeFlow = AuthorizationCodeFlow;
@@ -1688,7 +1661,6 @@ OAuth2 = (function() {
 ;var RSS;
 
 RSS = (function() {
-
   function RSS(options) {
     this.options = options != null ? options : {};
     this.url = options.constructor.name === "String" ? options : options.url;
@@ -1704,16 +1676,13 @@ RSS = (function() {
   __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
 TouchDB = (function() {
-
   TouchDB.baseURL = "http://.touchdb.";
 
   function TouchDB(options) {
     var _this = this;
     this.options = options != null ? options : {};
     this.replicateFrom = __bind(this.replicateFrom, this);
-
     this.fireCallbacks = __bind(this.fireCallbacks, this);
-
     if (!this.options.name) {
       throw "Database name required";
     }
@@ -1909,15 +1878,11 @@ TouchDB = (function() {
   __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
 SQLiteDB = (function() {
-
   function SQLiteDB(options) {
     this.options = options != null ? options : {};
     this.execute = __bind(this.execute, this);
-
     this.createTable = __bind(this.createTable, this);
-
     this.dropTable = __bind(this.dropTable, this);
-
     this.databaseName = options.constructor.name === "String" ? options : options.name;
     if (!window.sqlitePlugin) {
       throw "window.sqlitePlugin is undefined, please load plugin";
@@ -1943,7 +1908,7 @@ SQLiteDB = (function() {
   };
 
   SQLiteDB.prototype.createTable = function(opts, callbacks) {
-    var tableName;
+    var columnDefinitionString, columnsString, key, statement, tableName, type;
     if (opts == null) {
       opts = {};
     }
@@ -1951,9 +1916,26 @@ SQLiteDB = (function() {
       callbacks = {};
     }
     tableName = opts.constructor.name === "String" ? opts : opts.name;
-    steroids.debug("creating table " + tableName + " with " + opts.columnDefinitionString);
+    statement = "CREATE TABLE " + tableName;
+    if (opts.columns != null) {
+      columnsString = (function() {
+        var _ref, _results;
+        _ref = opts.columns;
+        _results = [];
+        for (key in _ref) {
+          type = _ref[key];
+          _results.push("" + key + " " + (type.toUpperCase()));
+        }
+        return _results;
+      })();
+      columnDefinitionString = columnsString.join(", ");
+    }
+    steroids.debug("creating table " + tableName + " with " + columnDefinitionString);
+    if (columnDefinitionString != null) {
+      statement += " (" + columnDefinitionString + ")";
+    }
     return this.execute({
-      statement: "CREATE TABLE " + tableName + " (" + opts.columnDefinitionString + ")"
+      statement: statement
     }, callbacks);
   };
 
@@ -2004,12 +1986,10 @@ SQLiteDB = (function() {
   __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
 XHR = (function() {
-
   XHR.prototype.headers = [];
 
   function XHR() {
     this.setRequestHeader = __bind(this.setRequestHeader, this);
-
     this.send = __bind(this.send, this);
     this.method = void 0;
     this.url = void 0;
@@ -2073,7 +2053,6 @@ XHR = (function() {
 ;var Analytics;
 
 Analytics = (function() {
-
   function Analytics() {}
 
   Analytics.prototype.recordEvent = function(options, callbacks) {
@@ -2100,7 +2079,6 @@ Analytics = (function() {
 ;var Screen;
 
 Screen = (function() {
-
   function Screen() {}
 
   Screen.prototype.edges = {
@@ -2161,7 +2139,6 @@ Screen = (function() {
 ;var File;
 
 File = (function() {
-
   function File(options) {
     var _ref;
     if (options == null) {
@@ -2243,7 +2220,6 @@ File = (function() {
 ;var OpenURL;
 
 OpenURL = (function() {
-
   function OpenURL() {}
 
   OpenURL.open = function(options, callbacks) {
@@ -2271,7 +2247,6 @@ OpenURL = (function() {
 ;var Notifications;
 
 Notifications = (function() {
-
   function Notifications() {}
 
   Notifications.prototype.post = function(options, callbacks) {
@@ -2299,7 +2274,6 @@ Notifications = (function() {
 ;var PostMessage;
 
 PostMessage = (function() {
-
   function PostMessage() {}
 
   PostMessage.postMessage = function(message, targetOrigin) {
@@ -2327,9 +2301,8 @@ PostMessage = (function() {
   return PostMessage;
 
 }).call(this);
-;
-window.steroids = {
-  version: "2.7.5",
+;window.steroids = {
+  version: "2.7.8",
   Animation: Animation,
   XHR: XHR,
   File: File,
@@ -2444,4 +2417,4 @@ window.steroids.PostMessage = PostMessage;
 
 window.postMessage = PostMessage.postMessage;
 
-})(window)
+})(window);

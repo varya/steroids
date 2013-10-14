@@ -1,4 +1,5 @@
 open = require "open"
+qrcode = require "qrcode-terminal"
 
 class QRCode
 
@@ -8,7 +9,14 @@ class QRCode
   show: =>
     return if process.env.STEROIDS_TEST_RUN
 
-    open "http://localhost:#{@options.port}/__appgyver/connect/qrcode.html?qrCodeData=#{encodeURIComponent(@options.data)}"
+    if steroidsCli.options.argv["terminal-qrcode"]
+      qrcode.generate @options.data, (terminalQRCode) ->
+        console.log terminalQRCode
+    else
+      urlToOpen = "http://127.0.0.1:#{@options.port}/__appgyver/connect/qrcode.html?qrCodeData=#{encodeURIComponent(@options.data)}"
+
+      steroidsCli.debug "Opening URL #{urlToOpen} in default web browser..."
+      open urlToOpen
 
   @showLocal: (options={}) =>
     interfaces = steroidsCli.server.interfaces()
@@ -17,8 +25,9 @@ class QRCode
     encodedJSONIPs = encodeURIComponent(JSON.stringify(ips))
     encodedPort = encodeURIComponent(options.port)
 
+    qrCodeData = "appgyver://?ips=#{encodedJSONIPs}&port=#{encodedPort}"
     code = new QRCode
-      data: "appgyver://?ips=#{encodedJSONIPs}&port=#{encodedPort}"
+      data: qrCodeData
       port: options.port
 
     code.show()

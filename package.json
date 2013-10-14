@@ -1,6 +1,6 @@
 {
   "name": "steroids",
-  "version": "2.7.12",
+  "version": "2.7.26",
   "preferGlobal": "true",
   "license": "MIT",
   "author": "AppGyver <contact@appgyver.com>",
@@ -33,8 +33,9 @@
   },
   "scripts": {
     "test": "./bin/test",
-    "preinstall": "./bin/check-node-version && ./bin/preinstall",
-    "install": "./bin/install"
+    "preinstall": "node ./bin/check-node-version && node ./bin/preinstall",
+    "install": "node ./bin/install",
+    "preupdate": "node ./bin/check-node-version"
   },
   "keywords": [
     "steroids.js",
@@ -49,35 +50,37 @@
     "url": "git://github.com/AppGyver/steroids.git"
   },
   "engines": {
-    "node": ">=0.8.0 <0.10.0",
-    "npm": ">=1.1.0"
+    "node": ">=0.10.17",
+    "npm": ">=1.3.8"
   },
   "dependencies": {
-    "async": "0.2.5",
-    "bower": "0.7.0",
-    "coffeelint": "0.5.4",
-    "coffee-script": "1.4.0",
-    "colorize": "0.1.0",
-    "ejs": "0.8.3",
-    "express": "3.1.0",
-    "grunt": "0.3.17",
-    "node-sass": "0.3.0",
-    "oauth": "0.9.8",
-    "open": "0.0.3",
-    "optimist": "0.3.5",
-    "path-extra": "0.0.3",
-    "prompt": "0.2.9",
-    "request": "2.12.0",
-    "restify": "2.2.1",
-    "restler": "2.0.1",
-    "semver": "1.1.4",
+    "archiver": "0.4.x",
+    "async": "0.2.x",
+    "bower": "1.2.x",
+    "coffeelint": "0.5.x",
+    "coffee-script": "1.6.x",
+    "colorize": "0.1.x",
+    "ejs": "0.8.x",
+    "express": "3.3.x",
+    "grunt": "0.4.x",
+    "node-sass": "0.6.x",
+    "oauth": "0.9.x",
+    "open": "0.0.x",
+    "optimist": "0.6.x",
+    "path-extra": "0.1.x",
+    "portscanner": "0.1.x",
+    "prompt": "0.2.x",
+    "qrcode-terminal": "0.9.4",
+    "request": "2.27.x",
+    "restify": "2.6.x",
+    "restler": "2.0.x",
+    "semver": "2.1.x",
     "steroids-simulators": "http://appgyver.production.steroids.simulators.s3.amazonaws.com/steroids-simulators.tar.gz",
-    "watchr": "2.3.7",
+    "watchr": "2.4.x",
     "weinre": "2.0.0-pre-HH0SN197",
-    "wrench": "1.4.4",
-    "portscanner": "0.1.3"
+    "wrench": "1.5.x"
   },
   "devDependencies": {
-    "jasmine-node": "1.0.28"
+    "jasmine-node": "1.11.x"
   }
 }

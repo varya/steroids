@@ -17,6 +17,8 @@ class Paths
     library: path.join @npm, "node_modules", "grunt", "lib", "grunt"
     gruntFile: path.join @npm, "src", "steroids", "grunt", "grunt.js"
 
+  @bower: path.join @npm, "node_modules", "bower", "bin", "bower"
+
   @staticFiles: path.join @npm, "public"
   @appgyverStaticFiles: path.join @staticFiles, "__appgyver"
   @oauthSuccessHTML: path.join @appgyverStaticFiles, "login", "oauth2_success.html"
@@ -29,6 +31,7 @@ class Paths
     connect: path.join @bannersDir, "connect"
     attention: path.join @bannersDir, "attention"
     SUCCESS: path.join @bannersDir, "success-caps"
+    error: path.join @bannersDir, "error"
     awesome: path.join @bannersDir, "awesome"
     usage: path.join @bannersDir, "usage"
     welcome: path.join @bannersDir, "welcome"
@@ -38,11 +41,14 @@ class Paths
     deployCompleted: path.join @bannersDir, "deploy-completed"
     loggedOut: path.join @bannersDir, "loggedout"
     loggedIn: path.join @bannersDir, "loggedin"
+    safariListingHeader: path.join @bannersDir, "safari-listing-header"
     legacy:
       requiresDetected: path.join @bannersDir, "legacy-requiresdetected"
       capitalizationDetected: path.join @bannersDir, "legacy-capitalizationdetected"
       specificSteroidsJSDetected: path.join @bannersDir, "legacy-specificsteroidsjsdetected"
       simulatorType: path.join @bannersDir, "legacy-simulatortype"
+      serve: path.join @bannersDir, "legacy-serve"
+      debugweinre: path.join @bannersDir, "legacy-debugweinre"
 
   @applicationDir: process.cwd()
   @application:
@@ -77,6 +83,7 @@ class Paths
     models: path.join @application.distDir, "models", "models.js"
 
   @temporaryZip: path.join pathExtra.tempdir(), "steroids_project.zip"
+  @vendor: path.join @npm, "vendor"
 
   @userHome: if process.platform == 'win32' then process.env.USERPROFILE else process.env.HOME
   @storedSettings: path.join @userHome, ".appgyver"

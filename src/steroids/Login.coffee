@@ -47,10 +47,12 @@ class Login
   authorize: ()->
     @startServer()
 
-    redirectUrl = "http://localhost:#{@options.port}/__appgyver/login/callback"
+    redirectUrl = "http://127.0.0.1:#{@options.port}/__appgyver/login/callback"
     authUrl = "#{@settings.baseUrl}#{@settings.authPath}?response_type=#{@settings.responseType}&client_id=#{@settings.clientId}&redirect_uri=#{encodeURIComponent(redirectUrl)}"
 
     open = require("open")
+    util.log "Opening authentication URL in the browser: #{authUrl}"
+
     open(authUrl)
 
   startServer: ()->

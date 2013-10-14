@@ -63,10 +63,10 @@ class Server
     interfaces = os.networkInterfaces()
     addresses = []
     for k of interfaces
-      unless k.indexOf("lo") == 0     # everything else but localhost is okay for the device to connect
+      unless k.indexOf("lo") == 0 and k.indexOf("Loopback") == 0
         for k2 of interfaces[k]
           address = interfaces[k][k2]
-          if address.family == 'IPv4'
+          if address.family == 'IPv4' and address.address.indexOf("169.254.") == -1
             addresses.push { ip: address.address, name: k }
 
     return addresses

@@ -45,7 +45,7 @@ class Converter
         position: i,
         title: configTab.title
         image_path: configTab.icon
-        target_url: configTab.location.replace("http://localhost/", "http://localhost:13101/")
+        target_url: configTab.location
 
       tabs.push tab
 
@@ -75,12 +75,10 @@ class Converter
     else
       @fullscreen = true
 
-    @betterFullScreenStartUrl = config.location.replace("http://localhost/", "http://localhost:13101/") if config.location?
-
     return {
       request_user_location: "false"
       fullscreen: "#{@fullscreen}"
-      fullscreen_start_url: "#{@betterFullScreenStartUrl}"
+      fullscreen_start_url: "#{config.location}"
       splashscreen_duration_in_seconds: 0
       client_version: "edge"
       navigation_bar_style: "#{config.theme}"

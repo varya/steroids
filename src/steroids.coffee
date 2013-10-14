@@ -77,7 +77,7 @@ class Steroids
 
 
   ensureProjectIfNeededFor: (command, otherOptions) ->
-    if command in ["push", "make", "package", "grunt", "debug", "simulator", "connect", "serve", "update", "generate", "deploy"]
+    if command in ["push", "make", "package", "grunt", "debug", "simulator", "connect", "update", "generate", "deploy"]
 
       return if @detectSteroidsProject()
       return if command == "generate" and otherOptions.length == 0    # displays usage
@@ -97,18 +97,18 @@ class Steroids
     if argv.version
       firstOption = "version"
 
-    @debugPort = if argv.debugPort
-      argv.debugPort
+    @weinrePort = if argv.weinrePort
+      argv.weinrePort
     else
       31173
 
 
     @ensureProjectIfNeededFor(firstOption, otherOptions)
 
-    if firstOption in ["serve", "connect", "create"]
+    if firstOption in ["connect", "create"]
       Help.logo() unless argv.noLogo
 
-    if firstOption in ["connect", "serve", "deploy", "simulator"]
+    if firstOption in ["connect", "deploy", "simulator"]
       unless Login.authTokenExists()
         console.log """
 
@@ -200,6 +200,9 @@ class Steroids
         grunt.run()
 
       when "debug"
+        Help.legacy.debugweinre()
+
+      when "weinre"
         @port = if argv.port
           argv.port
         else
@@ -214,7 +217,7 @@ class Steroids
         project = new Project
         project.push
           onSuccess: () =>
-            url = "http://localhost:#{weinre.options.httpPort}/client/#anonymous"
+            url = "http://127.0.0.1:#{weinre.options.httpPort}/client/#anonymous"
             steroidsCli.debug "pushed, opening browser to #{url}"
             open url
 
@@ -266,31 +269,6 @@ class Steroids
               prompt = new Prompt
                 context: @
 
-              if argv.watch
-                Watcher = require("./steroids/fs/watcher")
-
-                pushAndPrompt = =>
-                  console.log ""
-                  util.log "File system change detected, pushing code to connected devices ..."
-
-                  project = new Project
-                  project.push
-                    onSuccess: =>
-                      prompt.refresh()
-                    onFailure: =>
-                      prompt.refresh()
-
-                watcher = new Watcher
-                  onCreate: pushAndPrompt
-                  onUpdate: pushAndPrompt
-                  onDelete: (file) =>
-                    steroidsCli.debug "Deleted watched file #{file}"
-
-                watcher.watch("./app")
-                watcher.watch("./www")
-                watcher.watch("./config")
-
-
               server = Server.start
                 port: @port
                 callback: ()=>
@@ -337,19 +315,45 @@ class Steroids
 
                   , 1000
 
+
+                  if argv.watch
+                    steroidsCli.debug "Starting FS watcher"
+                    Watcher = require("./steroids/fs/watcher")
+
+                    pushAndPrompt = =>
+                      console.log ""
+                      util.log "File system change detected, pushing code to connected devices ..."
+
+                      project = new Project
+                      project.push
+                        onSuccess: =>
+                          prompt.refresh()
+                        onFailure: =>
+                          prompt.refresh()
+
+                    if argv.watchExclude?
+                      excludePaths = steroidsCli.config.getCurrent().watch.exclude.concat(argv.watchExclude.split(","))
+                    else
+                      excludePaths = steroidsCli.config.getCurrent().watch.exclude
+
+                    watcher = new Watcher
+                      excludePaths: excludePaths
+                      onCreate: pushAndPrompt
+                      onUpdate: pushAndPrompt
+                      onDelete: (file) =>
+                        steroidsCli.debug "Deleted watched file #{file}"
+
+                    watcher.watch("./app")
+                    watcher.watch("./www")
+                    watcher.watch("./config")
+
                   prompt.connectLoop()
 
 
 
 
       when "serve"
-        @port = if argv.port
-          argv.port
-        else
-          4000
-
-        serve = new Serve(@port)
-        serve.start()
+        Help.legacy.serve()
 
       when "update"
         updater = new Updater
@@ -474,9 +478,13 @@ class Steroids
       when "chat"
         console.log "Chat is deprecated, please visit forums at http://forums.appgyver.com"
 
-      when "safaridebug"
+      when "safari"
         safariDebug = new SafariDebug
-        safariDebug.open()
+        if otherOptions[0]
+          safariDebug.open(otherOptions[0])
+        else
+          Help.safariListingHeader()
+          safariDebug.listViews()
 
       else
         Help.logo() unless argv.noLogo

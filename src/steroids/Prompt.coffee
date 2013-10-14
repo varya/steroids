@@ -1,7 +1,6 @@
 Help = require "./Help"
 paths = require("./paths")
 
-
 class Prompt
 
   prompt: null
@@ -50,25 +49,20 @@ class Prompt
 
           project = new Project
           project.make
-            onSuccess: => 
+            onSuccess: =>
               project.package
                 onSuccess: =>
                   @refresh()
 
+        when "d", "debug"
+          SafariDebug = require "./SafariDebug"
+          safariDebug = new SafariDebug
+          if commandOptions[0]?
+            safariDebug.open(commandOptions[0])
+          else
+            safariDebug.listViews()
+
         when "s", "sim", "simulator"
-
-          if commandOptions[0] in ["s", "stop"]
-            console.log "Stopping iOS Simulator ..."
-
-            console.log if steroidsCli.simulator.stop()
-              "stopped."
-            else
-              "the iOS Simulator is not running (not launched by this session?), can not stop."
-
-            console.log "... done."
-
-            break
-
 
           deviceType = if commandOptions[0]
             commandOptions[0]
@@ -89,24 +83,28 @@ class Prompt
 
         when "e", "edit"
 
-          editorCmd = steroidsCli.config.getCurrent().editor.cmd
-          editorArgs = steroidsCli.config.getCurrent().editor.args
-
-          acualArgs = if editorArgs
-            editorArgs
+          if process.platform is "win32"
+            console.log "Error: launching text editor via Steroids is not supported on Windows"
           else
-            [paths.applicationDir]
+            editorCmd = steroidsCli.config.getCurrent().editor.cmd
+            editorArgs = steroidsCli.config.getCurrent().editor.args
 
-          acualCmd = if editorCmd
-            editorCmd
-          else
-            "subl"
+            acualArgs = if editorArgs
+              editorArgs
+            else
+              [paths.applicationDir]
 
-          sbawn = require "./sbawn"
-          sbawn
-            cmd: acualCmd
-            args: acualArgs
-            debug: true
+            acualCmd = if editorCmd
+              editorCmd
+            else
+              "subl"
+
+            sbawn = require "./sbawn"
+            sbawn
+              cmd: acualCmd
+              args: acualArgs
+              debug: true
+              exitOnError: false
 
         when "help", "?", "usage"
           Help.connect()

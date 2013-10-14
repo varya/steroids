@@ -6,7 +6,7 @@ colorize = require "colorize"
 class Help
 
   @usage: ->
-    @printBanner(paths.banners.usage)
+    @printBanner(paths.banners.usage, true)
 
   @deployCompleted: ->
     @printBanner(paths.banners.deployCompleted, true)
@@ -20,8 +20,11 @@ class Help
   @SUCCESS: ->
     @printBanner(paths.banners.SUCCESS, true)
 
+  @error: ->
+    @printBanner(paths.banners.error, true)
+
   @connect: ->
-    @printBanner(paths.banners.connect)
+    @printBanner(paths.banners.connect, true)
 
   @welcome: ->
     @printBanner(paths.banners.welcome, true)
@@ -83,10 +86,18 @@ class Help
 
     specificSteroidsJSDetected: ->
       Help.printBanner(paths.banners.legacy.specificSteroidsJSDetected, true)
-    
+
     simulatorType: ->
       Help.printBanner(paths.banners.legacy.simulatorType, true)
-        
+
+    serve: ->
+      Help.printBanner(paths.banners.legacy.serve, true)
+
+    debugweinre: ->
+      Help.printBanner(paths.banners.legacy.debugweinre, true)
+
+  @safariListingHeader: ->
+    @printBanner(paths.banners.safariListingHeader, true)
 
   @resetiOSSim: ->
     @printBanner(paths.banners.resetiOSSim, true)

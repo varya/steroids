@@ -11,8 +11,8 @@ class Grunt
     global.steroidsPath = paths.npm
 
     require(paths.grunt.library).tasks ["default"],
-      config: paths.grunt.gruntFile
-      verbose: false
+      gruntfile: paths.grunt.gruntFile
+      verbose: true
 
     # nothing gets executed here, the grunt steals the whole process somehow.
 

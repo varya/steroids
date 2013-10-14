@@ -8,6 +8,9 @@ class Sbawned
     @stderr = ""
     @stdout = ""
 
+    if not @options.exitOnError?
+      @options.exitOnError = true
+
     @done = false
 
   onStdoutData: (buffer) =>
@@ -20,8 +23,9 @@ class Sbawned
     newData = buffer.toString()
 
     if /^execvp\(\)/.test(newData)
-      console.log "failed to run command command: '#{@options.cmd}' with args #{JSON.stringify(@options.args)}"
-      process.exit(-1)
+      console.log "Failed to run command: '#{@options.cmd}' with args #{JSON.stringify(@options.args)}"
+      if !@options.exitOnError
+        process.exit(-1)
 
     @stderr = @stderr + newData
     console.log newData if @options.debug or @options.stderr
@@ -37,11 +41,31 @@ class Sbawned
     args = @options.args
     args << "--debug" if steroidsCli.options.debug?
 
-    @spawned = spawn @options.cmd, args, { cwd: @options.cwd }
+    try
+      if process.platform is "win32"
+        originalCmd = @options.cmd
+        @options.cmd = process.env.comspec
+        args = ["/c", "node", originalCmd].concat(args)
+        @spawned = spawn @options.cmd, args, { cwd: @options.cwd, stdio: 'inherit' }
+      else
+        @spawned = spawn @options.cmd, args, { cwd: @options.cwd }
+    catch e
+      console.log "Failed to spawn a process, error: #{e.code}"
 
-    @spawned.stdout.on "data", @onStdoutData
-    @spawned.stderr.on "data", @onStderrData
+      if e.code == "EMFILE"
+        console.log "The code EMFILE means that the process has run out of file descriptiors, increase this with:\n"
+        console.log "  $ ulimit -n 1024"
+        console.log "\nAnd start the command again"
+
+      @onExit()
+
+    # windows spawn command inherits stdio from current process to get output working
+    unless process.platform is "win32"
+      @spawned.stdout.on "data", @onStdoutData
+      @spawned.stderr.on "data", @onStderrData
     @spawned.on "exit", @onExit
+    @spawned.on "error", (err)=>
+      console.log err
 
   kill: () =>
     @spawned.kill("SIGKILL")

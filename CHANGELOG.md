@@ -1,3 +1,142 @@
+## 2.7.27 (TODO)
+
+Changes:
+  - Removed hostfaking from `config/application.coffee`
+
+## 2.7.26 (2013-10-04)
+
+New projects have initial compatibility with [Cordova CLI](https://github.com/apache/cordova-cli), cleaned up `config/application.coffee`.
+
+Changes:
+  - New Steroids projects have initial compatibilty with [Cordova CLI](https://github.com/apache/cordova-cli).
+  - Removed text shadow color settings from project template's `config/application.coffee` (deprecated by iOS7).
+  - Removed up comments and instructions from project template's `config/application.coffee`.
+  - Removed obsolete Scanner client version check.
+
+## 2.7.25 (2013-09-27)
+
+Updated SQlite plugin JavaScript file in `ng-sql-scaffold` generator.
+
+Bugfixes:
+  - Updated SQlite plugin JavaScript file in `ng-sql-scaffold` generator to match the SQlite plugin version in iOS Scanner v2.7.8.
+
+## 2.7.24 (2013-09-27)
+
+Default project template updated to use Steroids 2.7.8, improved test running, optional QR code display in console.
+
+Changes:
+  - Optional QR code display in the console with `--terminal-qrcode`
+  - Test running is now improved: `./bin/test fast` and `./bin/test spec/Version.spec.coffee` in addition to full suite (`npm test`)
+  - Project templates updated to use Steroids.js v2.7.8
+
+Bugfixes:
+  - Removed `www/components/myProject/` Bower component folder from project template and added it to `.gitignore`.
+
+## 2.7.23 (2013-09-20)
+
+Updated Steroids Simulator app to support iOS7 UI (users also need to update Xcode and install the actual iOS7 Simulator).
+
+## 2.7.22 (2013-09-16)
+
+Polished generator templates and added error handling to deploy.
+
+Bugfixes:
+  - Removed line trying to load `controllers/application.js` from generator templates where the file wasn't used.
+  - Display error message if deploy fails because access is denied.
+
+## 2.7.21 (2013-09-09)
+
+Fixed issue where certain Android devices couldn't open projects when using the Steroids npm on Windows, support for symbolic links in project, minor debug fixes.
+
+Bugfixes:
+  - In `$ steroids package` on Windows, use 7zip command-line executable instead of node-archiver to create the project zip. This fixes an issue where certain Android devices couldn't open the created project archive.
+  - `$ steroids deploy --debug` outputs the share.appgyver.com URL to Terminal before trying to open it in the browser.
+  - `$ steroids make` now copies symbolic links to `dist/`.
+
+## 2.7.20 (2013-09-06)
+
+Clarified instructions on updating the Steroids npm to work on a newer Node.js version.
+
+Bugfixes:
+  - Preinstall and preupdate Node.js version check now has a note about having to use `$ npm install steroids -g` instead of `$ npm update steroids -g`, if previous install was on Node 0.8.x.
+
+## 2.7.19 (2013-09-06)
+
+WINDOWS SUPPORT ADDED!
+
+Also: Node.js version requirement is now v0.10.x (with v0.11.x supported), minor fixes based on forum feedback.
+
+Breaking:
+  - Doesn't work any more with Node v0.8.x.
+
+Changes:
+  - Updated Steroids npm to use Node.js version 0.10.x (with v0.11.x also supported).
+  - Windows support added.
+
+Bugfixes:
+  - When the local QR code is shown, the web page URL is shown in the `--debug` output (i.e. `$ steroids connect --debug`).
+
+Known Issues:
+  - The `e`/`edit` shortcut for opening a text editor from the Steroids console crashes if the editor command is not found.
+  - The `e`/`edit` shortcut in Steroids console is not available on Windows.
+
+## 2.7.18 (2013-09-03)
+
+Fixes issues reported in the forums, <3 [forums.appgyver.com](http://forums.appgyver.com).
+
+Bugfixes:
+  - Login callback, local QR code and Weinre web pages and `$ steroids connect --serve` now open using `127.0.0.1` instead of `localhost` to fix issues with non-standard hosts files.
+  - New project plugins folder README file includes link to https://github.com/AppGyver/steroids-plugins.
+  - `http://localhost/` URLs no longer get the `:13101` port appended to them automatically.
+
+## 2.7.17 (2013-08-21)
+
+Changes:
+  - Updated Steroids.js to version 2.7.7
+
+## 2.7.16 (2013-08-20)
+
+Support for merges dir.
+
+Changes:
+  - New projects have Cordova like `merges` and `plugins` directories.
+  - Added `merges` directory support to steroids make process.
+  - New projects have `.gitignore` for `.DS_Store` and `/dist`.
+
+Bugfixes:
+  - Fallback for login url open (print to console)
+
+## 2.7.15 (2013-08-19)
+
+Changes:
+  - Updated Steroids.js to version 2.7.6
+
+Bugfixes:
+  - More informative QR code screen
+  - `ng-sql-scaffold` now includes `sqliteplugin.android.js` for Android Cordova SQLite plugin compatibility
+
+## 2.7.14 (2013-08-14)
+
+Fixed a crashing error on Linux.
+
+Bugfixes:
+  - fixed a crashing error caused by a typo'd require statement having the wrong case for the filename (the bug only affected Linux users due to Linux observing a stricter case sensitivity for the file system compared to OS X)
+
+## 2.7.13 (2013-08-09)
+
+Unified steroids commands, nicer usages and other improvments.
+
+Changes:
+  - `steroids connect --watch --watchExclude` option added to exclude paths and files, see also application.coffee option for more permanent excludes
+  - `steroids debug` renamed to `steroids weinre`
+  - `steroids safaridebug` renamed to `steroids safari`
+  - `steroids safari` now lists open WebViews
+  - `steroids safari <path>` opens the target document directly in Safari Dev Tools, also accepts partial paths
+  - `d` and `debug` commands in the `steroids connect` prompt work as a shortcut for `steroids safari`
+  - `steroids serve` is deprecated, use `steroids connect --serve`
+  - `steroids usage` is now colorized and has better wording
+  - iOS simulator can't be stopped anymore (it will always stop before starting again, this fixes bugs with resolution changes)
+
 ## 2.7.12 (2013-08-08)
 
 Bugfixes and experimental feature of reloading with steroids connect --serve

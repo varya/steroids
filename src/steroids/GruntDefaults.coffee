@@ -1,4 +1,8 @@
-sass = require 'node-sass'
+disabledSass = /v0\.11/.test(process.version)
+if disabledSass
+  console.log "WARNING: node-sass module is not compatible with node version 0.11 yet. SASS compilation is disabled."
+else
+  sass = require 'node-sass'
 coffeelint = require 'coffeelint'
 colorize = require "colorize"
 events = require "events"
@@ -21,7 +25,8 @@ registerDefaultTasks = (grunt)->
     'steroids-compile-coffeescript-files',
     'steroids-compile-sass-files',
     'steroids-compile-models',
-    'steroids-compile-views'
+    'steroids-compile-views',
+    'steroids-cordova-merges'
   ]
 
   # -------------------------------------------
@@ -37,7 +42,7 @@ registerDefaultTasks = (grunt)->
   copyFilesSyncRecursive = (options)->
     grunt.verbose.writeln "Copying files from #{options.sourcePath} to #{options.destinationDir} using #{options.relativeDir} as basedir"
 
-    for filePath in grunt.file.expandFiles options.sourcePath
+    for filePath in grunt.file.expand options.sourcePath when fs.statSync(filePath).isFile()
       grunt.verbose.writeln "Copying file #{filePath}"
 
       relativePath = path.relative options.relativeDir, filePath
@@ -73,7 +78,7 @@ registerDefaultTasks = (grunt)->
 
   grunt.registerTask 'steroids-compile-coffeescript-files', "Compile built coffeescript files", ->
     grunt.verbose.writeln "Compiling coffeescripts #{Paths.application.compiles.coffeescripts}"
-    coffeeFiles = grunt.file.expandFiles Paths.application.compiles.coffeescripts
+    coffeeFiles = grunt.file.expand Paths.application.compiles.coffeescripts
 
     for filePath in coffeeFiles
       grunt.log.writeln colorize.ansify(" #yellow[Compiling CoffeeScript:] #reset[#{filePath}]")
@@ -86,8 +91,12 @@ registerDefaultTasks = (grunt)->
       coffeeFile.compile()
 
   grunt.registerTask 'steroids-compile-sass-files', "Compile build sass files", ->
-    sassFiles = grunt.file.expandFiles Paths.application.compiles.sassfiles
-    scssFiles = grunt.file.expandFiles Paths.application.compiles.scssfiles
+    if disabledSass
+      grunt.log.writeln colorize.ansify "#red[Skipping sass compile task. Module node-sass does not support currently installed node version.]"
+      return true
+
+    sassFiles = grunt.file.expand Paths.application.compiles.sassfiles
+    scssFiles = grunt.file.expand Paths.application.compiles.scssfiles
 
     allFiles = sassFiles.concat(scssFiles)
 
@@ -112,7 +121,7 @@ registerDefaultTasks = (grunt)->
     javascripts = []
     sourceFiles = grunt.file.expand Paths.application.compiles.models
 
-    for filePath in sourceFiles
+    for filePath in sourceFiles when fs.statSync(filePath).isFile()
       grunt.verbose.writeln "Compiling model file at #{filePath}"
       javascripts.push grunt.file.read(filePath, "utf8").toString()
       fs.unlinkSync filePath
@@ -200,7 +209,7 @@ registerDefaultTasks = (grunt)->
     viewDirectories = []
 
     # get each view folder (except layout)
-    for dirPath in grunt.file.expandDirs(path.join(appViewsDirectory, "*"))
+    for dirPath in grunt.file.expand(path.join(appViewsDirectory, "*")) when fs.statSync(dirPath).isDirectory()
       basePath = path.basename(dirPath)
       unless basePath is "layouts" + path.sep or basePath is "layouts"
         viewDirectories.push dirPath
@@ -213,6 +222,7 @@ registerDefaultTasks = (grunt)->
 
       # Some machines report folder/ as basename while others do not
       viewBasename = path.basename viewDir
+
       unless viewBasename.indexOf(path.sep) is -1
         viewBasename = viewBasename.replace path.sep, ""
 
@@ -225,13 +235,14 @@ registerDefaultTasks = (grunt)->
 
       applicationLayoutFile = grunt.file.read layoutFilePath, "utf8"
 
-
-      for filePathPart in grunt.file.expand(path.join(viewDir, "**", "*"))
+      for filePathPart in grunt.file.expand(path.join(viewDir, "**", "*")) when fs.statSync(filePathPart).isFile()
 
         filePath = path.resolve filePathPart
+
         buildFilePath = path.resolve filePathPart.replace("app"+path.sep, "dist"+path.sep)
 
-        resourceDirName = filePathPart.split(path.sep).splice(-2,1)[0]
+        resourceDirName = filePathPart.split("/").splice(-2,1)[0]
+
         buildFilePath = path.join(buildDirectory, "views", resourceDirName, path.basename(filePathPart))
 
         # skip "partial" files that begin with underscore
@@ -253,13 +264,60 @@ registerDefaultTasks = (grunt)->
             controller: controllerName
 
           # put layout+yields together
-          yieldedFile = grunt.utils._.template(
+          yieldedFile = grunt.util._.template(
             applicationLayoutFile.toString()
           )({ yield: yieldObj })
 
         # write the file
         grunt.file.mkdir path.dirname(buildFilePath)
         grunt.file.write buildFilePath, yieldedFile
+
+  grunt.registerTask 'steroids-cordova-merges', "Handle cordova merges", ->
+
+    projectDirectory  = Paths.applicationDir
+    distDirectory     = Paths.application.distDir
+
+    mergesDirectory         = path.join projectDirectory, "merges"
+    androidMergesDirectory  = path.join mergesDirectory, "android"
+    iosMergesDirectory      = path.join mergesDirectory, "ios"
+
+    mergesExist = fs.existsSync mergesDirectory
+    if mergesExist
+      # android
+      for filePath in grunt.file.expand(path.join(androidMergesDirectory, "*")) when fs.statSync(filePath).isFile()
+        filePath = path.normalize(filePath) # fix windows path syntax
+        grunt.log.writeln colorize.ansify(" #yellow[Copying Android Merges:]")
+
+        # setup proper paths and filenames to steroids android comptible syntax: index.html to index.android.html
+        origFileName  = path.basename filePath
+        origFileExtension = path.extname origFileName
+        androidPrefixedExtension = ".android#{origFileExtension}"
+        androidFileName = origFileName.replace origFileExtension, androidPrefixedExtension
+        filePathInDist = filePath.replace(androidMergesDirectory, distDirectory)
+        filePathInDistWithAndroidExtensionPrefix = filePathInDist.replace(origFileName, androidFileName)
+
+        grunt.log.writeln colorize.ansify("  #{filePath.replace(androidMergesDirectory+'/', '')} -> dist#{filePathInDistWithAndroidExtensionPrefix.replace(distDirectory, '')}")
+
+        if fs.existsSync filePathInDistWithAndroidExtensionPrefix
+          grunt.log.writeln colorize.ansify("   #red[Overwriting:] #reset[dist#{filePathInDistWithAndroidExtensionPrefix.replace(distDirectory, '')}]")
+
+        fs.writeFileSync filePathInDistWithAndroidExtensionPrefix, fs.readFileSync(filePath)
+
+      # ios
+      for filePath in grunt.file.expand(path.join(iosMergesDirectory, "*")) when fs.statSync(filePath).isFile()
+        filePath = path.normalize(filePath) # fix windows path syntax
+        grunt.log.writeln colorize.ansify(" #yellow[Copying iOS Merges:]")
+
+        # setup proper paths for file copy
+        filePathInDist = filePath.replace(iosMergesDirectory, distDirectory)
+
+        grunt.log.writeln colorize.ansify("  #{filePath.replace(iosMergesDirectory+'/', '')} -> dist#{filePathInDist.replace(distDirectory, '')}")
+
+        if fs.existsSync filePathInDist
+          grunt.log.writeln colorize.ansify("   #red[Overwriting:] #reset[dist#{filePathInDist.replace(distDirectory, '')}]")
+
+        fs.writeFileSync filePathInDist, fs.readFileSync(filePath)
+
 
 module.exports =
   registerDefaultTasks: registerDefaultTasks

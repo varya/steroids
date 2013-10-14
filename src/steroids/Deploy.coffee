@@ -48,11 +48,11 @@ class Deploy
       application: @app
 
     restifyCallback = (err, req, res, obj)=>
-      # util.log "RECEIVED APPJSON SYNC RESPONSE"
-      # util.log "err: #{util.inspect(err)}"
-      # util.log "req: #{util.inspect(req)}"
-      # util.log "res: #{util.inspect(res)}"
-      # util.log "obj: #{util.inspect(obj)}"
+      steroidsCli.debug "RECEIVED APPJSON SYNC RESPONSE"
+      steroidsCli.debug "err: #{util.inspect(err)}"
+      steroidsCli.debug "req: #{util.inspect(req)}"
+      steroidsCli.debug "res: #{util.inspect(res)}"
+      steroidsCli.debug "obj: #{util.inspect(obj)}"
 
       unless err
         # util.log "RECEIVED APPJSON SYNC SUCCESS"
@@ -62,12 +62,17 @@ class Deploy
         # util.log "RECEIVED APPJSON SYNC FAILURE"
         # util.log "err: #{util.inspect(err)}"
         # util.log "obj: #{util.inspect(obj)}"
+        Help.error()
+        console.log "Failed with error: #{err.body.error}."
+        console.log "Check that you have correct app id in config/cloud.json. Try removing the file and a new cloud.json file will be created."
         process.exit 1
 
     if @app.id?
+      steroidsCli.debug "Updating existing app with id #{@app.id}"
       # util.log "PUT"
       @client.put "/studio_api/applications/#{@app.id}", requestData, restifyCallback
     else
+      steroidsCli.debug "Creating new app"
       # util.log "POST"
       @client.post "/studio_api/applications", requestData, restifyCallback
 
@@ -109,6 +114,7 @@ class Deploy
 
     Help.deployCompleted()
 
+    steroidsCli.debug "Opening URL http://share.appgyver.com/?id=#{config.id}&hash=#{config.identification_hash} in default web browser..."
     open "http://share.appgyver.com/?id=#{config.id}&hash=#{config.identification_hash}"
 
     callback()

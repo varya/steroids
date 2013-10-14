@@ -1,14 +1,6 @@
 {
-  "name": "steroids-js",
-  "version": "2.7.5",
-  "main": "./steroids.js",
-  "dependencies": {},
-  "gitHead": "98bc98cfd26bdf4b616a2b50cd0ec399fc24385a",
-  "_id": "steroids-js@2.7.5",
-  "readme": "ERROR: No README.md file found!",
-  "description": "ERROR: No README.md file found!",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/steroidsjs/steroids-js"
-  }
+	"name": "steroids-js",
+	"version": "2.7.8",
+	"main": "./steroids.js",
+	"dependencies": {}
 }

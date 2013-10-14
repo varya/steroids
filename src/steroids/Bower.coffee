@@ -1,17 +1,16 @@
+paths = require "./paths"
+sbawn = require "./sbawn"
+
+
 class Bower
   constructor: ->
 
   update: (cb)->
-    bower = require 'bower'
-    bower = bower.commands.install.line("jep", "jep", "install")
 
-    bower.on "data", (data)->
-      console.log data if data
-
-    bower.on "end", (data)=>
-      console.log data if data
-
-    bower.on "error", (err)=>
-      process.stderr.write err.message
+    bowerRun = sbawn
+      cmd: paths.bower
+      args: ["install", "--config", paths.application.configs.bower]
+      stdout: true
+      stderr: true
 
 module.exports = Bower

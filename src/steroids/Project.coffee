@@ -27,13 +27,15 @@ class Project
 
     if config.hooks.preMake.cmd and config.hooks.preMake.args
 
-      util.log "preMake started"
+      util.log "preMake starting: #{config.hooks.preMake.cmd} with #{config.hooks.preMake.args}"
 
       preMakeSbawn = sbawn
         cmd: config.hooks.preMake.cmd
         args: config.hooks.preMake.args
         stdout: true
         stderr: true
+
+      steroidsCli.debug "preMake spawned"
 
       preMakeSbawn.on "exit", =>
         errorCode = preMakeSbawn.code
@@ -76,7 +78,7 @@ class Project
 
   makeOnly: (options = {}) => # without hooks
 
-    steroidsCli.debug "Spawning steroids grunt"
+    steroidsCli.debug "Spawning steroids grunt #{steroidsCli.pathToSelf}"
 
     gruntSbawn = sbawn
       cmd: steroidsCli.pathToSelf
@@ -110,6 +112,8 @@ class Project
       stdout: true
       stderr: true
 
-    packageSbawn.on "exit", options.onSuccess
+    packageSbawn.on "exit", =>
+      steroidsCli.debug "package exited"
+      options.onSuccess() if options.onSuccess
 
 module.exports = Project

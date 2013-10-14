@@ -14,7 +14,7 @@ module.factory('<%= options.className %>Restangular', function(Restangular) {
 
   return Restangular.withConfig(function(RestangularConfigurer) {
 
-    RestangularConfigurer.setBaseUrl('http://localhost:13101/data');
+    RestangularConfigurer.setBaseUrl('http://localhost/data');
     RestangularConfigurer.setRequestSuffix('.json');
     RestangularConfigurer.setRestangularFields({
       id: "<%= options.name %>_id"
