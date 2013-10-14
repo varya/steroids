@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Cordova preferences in config.xml (Android)"
+title:  "Android Cordova preferences in config.android.xml"
 date:   2013-05-20 13:51:34
 categories: project_configuration
 platforms: Android
@@ -20,14 +20,14 @@ Currently, Steroids doesn't support the preference elements of Cordova's `config
 ##Configuring plugins
 
 By removing `<plugin>` elements from the `config.xml` file, you can disable parts of Cordova. Note that you normally shouldn't need to disable individual plugins even for production apps – there's no real memory impact if the plugins aren't invoked via JavaScript.
-  
-For more information on the API calls associated with each core plugin, see the [Steroids API docs][steroids-api]. 
+
+For more information on the API calls associated with each core plugin, see the [Steroids API docs][steroids-api].
 
 Unlike Cordova, Steroids doesn't support `<feature>` elements in place of `<plugin>` elements.
 
 ##Domain whitelisting
 The `<access>` element manages whitelisted domains for your app. For most cases, you are safe to allow all domains:
-  
+
 {% highlight html %}
 <access origin="*" />
 {% endhighlight %}
@@ -36,7 +36,7 @@ For more granular control, see the [Cordova Docs][cordova-domain-whitelisting] o
 
 ##App start location
 The `<content>` tag is not used in Steroids to set the initial location of your app. Instead, the `steroids.config.location` property in `config/application.coffee` is used.
-  
+
 [widgets]: http://www.w3.org/TR/widgets/
 [cordova-domain-whitelisting]: http://cordova.apache.org/docs/en/2.7.0/guide_whitelist_index.md.html#Domain%20Whitelist%20Guide
 [steroids-api]: http://docs.appgyver.com

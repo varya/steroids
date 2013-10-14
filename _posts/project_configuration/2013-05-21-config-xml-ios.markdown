@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Cordova preferences in config.xml (iOS)"
+title:  "iOS Cordova preferences in config.ios.xml"
 date:   2013-05-20 13:51:34
 categories: project_configuration
 platforms: iOS
@@ -11,7 +11,7 @@ platforms: iOS
 
 Like Cordova, Steroids uses a `config.xml` file to set universal preferences for WebViews in your app, manage which Cordova plugins are loaded and set whitelisted domains for your app. The structure of `config.xml` is based on the [W3C Packaged Web Apps (Widgets)][widgets] specification, although only a limited set of the available elements are used.
 
-The iOS-specific `config.xml` is located at `www/config.ios.xml`. (A `config.xml` file in the same directory overrides the platform-specific version.)
+The iOS-specific `config.xml` is located at `www/config.ios.xml`.
 
 ##Configuring preferences
 
@@ -28,9 +28,9 @@ The following preferences are supported by Steroids:
 * **DisallowOverscroll (boolean, defaults to false)** – when set to true, WebViews won't "rubber-band" back to place if the user scrolls past their edge (instead, the WebView will just stay in place).
 
 * **EnableViewportScale (boolean, defaults to false)** - when set to true, a `<meta name="viewport">` tag affects viewport scaling. This also means that you need to set `user-scalable=no` in the `content` attribute of the meta tag to disable pinch-to-zoom. <br><br>Example:
-  
+
 {% highlight html %}
-<meta name="viewport" content="user-scalable=no, initial-scale=1, width=device-width, 
+<meta name="viewport" content="user-scalable=no, initial-scale=1, width=device-width,
 height=device-height, target-densitydpi=device-dpi">
 {% endhighlight %}
 <br>
@@ -62,9 +62,9 @@ The following Cordova preferences are currently nonfunctional in Steroids:
 ##Configuring plugins
 
 By removing `<plugin>` elements from the `config.xml` file, you can disable parts of Cordova. For more information on the API calls associated with each core plugin, see the [Steroids API docs][steroids-api].
-  
+
 ###Geolocation plugin
-The Geolocation plugin has a special `onload` attribute. By setting it to true, Steroids will start receiving geolocation data when the app initially loads, allowing for better GPS accuracy: 
+The Geolocation plugin has a special `onload` attribute. By setting it to true, Steroids will start receiving geolocation data when the app initially loads, allowing for better GPS accuracy:
 
 {% highlight html %}
 <plugin name="Geolocation" value="CDVLocation" onload="false"/>
@@ -72,7 +72,7 @@ The Geolocation plugin has a special `onload` attribute. By setting it to true, 
 
 ##Domain whitelisting
 The `<access>` element manages whitelisted domains for your app. For most cases, you are safe to allow all domains:
-  
+
 {% highlight html %}
 <access origin="*" />
 {% endhighlight %}
@@ -87,7 +87,7 @@ The `<content>` tag is not used in Steroids to set the initial location of your 
 To hide the status bar (showing carrier, clock and battery status), set the `steroids.config.statusBar.enabled` to `false` in the [config/application.coffee][config-application-coffee] file.
 
 `<preference name="fullscreen" value="true" />` and other PhoneGap Build preference tags are not supported by Steroids.
-  
+
 [widgets]: http://www.w3.org/TR/widgets/
 [config-xml-android-guide]: /steroids/guides/project_configuration/config-xml-android/
 [cordova-domain-whitelisting]: http://cordova.apache.org/docs/en/2.7.0/guide_whitelist_index.md.html#Domain%20Whitelist%20Guide
