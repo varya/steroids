@@ -21,7 +21,9 @@
 
     #cyan[--ripple]
 
-	  Enable cordova.js 2.7.x API's in Chrome and open project in Chrome
+      Opens Ripple Emulator
+
+      #cyan[--ripplePort=4400] can be used to specify port for the Ripple Emulator
 
     #cyan[--no-qrcode]
 
