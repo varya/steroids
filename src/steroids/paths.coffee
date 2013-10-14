@@ -89,4 +89,6 @@ class Paths
   @storedSettings: path.join @userHome, ".appgyver"
   @oauthTokenPath: path.join @storedSettings, "token.json"
 
+  @rippleBinary: path.join @npm, "node_modules", "ripple-emulator", "bin", "ripple"
+
 module.exports = Paths

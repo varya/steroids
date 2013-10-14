@@ -2,6 +2,7 @@
 
 Changes:
   - Removed hostfaking from `config/application.coffee`
+  - Added support for Ripple
 
 ## 2.7.26 (2013-10-04)
 

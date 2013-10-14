@@ -8,6 +8,7 @@ Updater = require "./steroids/Updater"
 SafariDebug = require "./steroids/SafariDebug"
 Serve = require "./steroids/Serve"
 Server = require "./steroids/Server"
+Ripple = require "./steroids/Ripple"
 
 util = require "util"
 Version = require "./steroids/Version"
@@ -32,6 +33,7 @@ class Steroids
     @version = new Version
     @pathToSelf = process.argv[1]
     @config = new Config
+    @platform = @options.argv.platform || "ios"
 
   readApplicationConfig: ->
     applicationConfig = paths.application.configs.application
@@ -249,7 +251,16 @@ class Steroids
           else
             4000
 
-          serve = new Serve servePort
+          if argv.ripple
+            ripple = new Ripple
+              servePort: servePort
+              port: argv.ripplePort
+
+            ripple.run()
+
+          serve = new Serve servePort,
+            ripple: argv.ripple
+            ripplePort: argv.ripplePort
             platform: argv.platform
 
           serve.start()
