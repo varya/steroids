@@ -247,7 +247,9 @@ class Steroids
           else
             4000
 
-          serve = new Serve(servePort)
+          serve = new Serve servePort,
+            ripple: argv.ripple
+
           serve.start()
 
 

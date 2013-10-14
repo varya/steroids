@@ -30,11 +30,6 @@ class Serve
 
     url = URL.format(url)
 
-    # ripple override
-    if @opts.ripple
-      util.log "Going to check for Ripple UI extension.."
-      url = "#{@baseURL}ripple-install-instructions.html?redirect_to=#{encodeURIComponent(url)}"
-
     serveServer = Server.start
       port: @port
       callback: ()=>
@@ -46,6 +41,7 @@ class Serve
         util.log "Serving application in #{url}"
 
         if @opts.ripple?
+          console.log "Opening Ripple"
           open url, "Google\ Chrome"
         else
           open url
