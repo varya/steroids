@@ -8,7 +8,10 @@ URL = require "url"
 
 class Serve
   constructor: (@port, @opts = {ripple: false}) ->
-    @baseURL = "http://127.0.0.1:#{@port}/"
+    if @opts.ripple
+      @baseURL = "http://127.0.0.1:#{@opts.ripplePort||4400}/"
+    else
+      @baseURL = "http://127.0.0.1:#{@port}/"
 
   start: =>
     config = steroidsCli.config.getCurrent()

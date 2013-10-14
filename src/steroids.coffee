@@ -6,6 +6,7 @@ Updater = require "./steroids/Updater"
 SafariDebug = require "./steroids/SafariDebug"
 Serve = require "./steroids/Serve"
 Server = require "./steroids/Server"
+Ripple = require "./steroids/Ripple"
 
 util = require "util"
 Version = require "./steroids/Version"
@@ -247,8 +248,13 @@ class Steroids
           else
             4000
 
+          if argv.ripple
+            ripple = new Ripple(servePort: servePort, port: argv.ripplePort)
+            ripple.run()
+
           serve = new Serve servePort,
             ripple: argv.ripple
+            ripplePort: argv.ripplePort
 
           serve.start()
 
