@@ -6,7 +6,7 @@ open = require "open"
 URL = require "url"
 
 class Serve
-  constructor: (@port) ->
+  constructor: (@port, @options) ->
     @baseURL = "http://127.0.0.1:#{@port}/"
 
   start: =>

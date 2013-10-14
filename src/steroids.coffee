@@ -1,6 +1,8 @@
 Help = require "./steroids/Help"
 Weinre = require "./steroids/Weinre"
 Simulator = require "./steroids/Simulator"
+TizenWebSimulator = require "./steroids/TizenWebSimulator"
+
 Project = require "./steroids/Project"
 Updater = require "./steroids/Updater"
 SafariDebug = require "./steroids/SafariDebug"
@@ -247,7 +249,9 @@ class Steroids
           else
             4000
 
-          serve = new Serve(servePort)
+          serve = new Serve servePort
+            platform: argv.platform
+
           serve.start()
 
 
