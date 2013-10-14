@@ -1,7 +1,3 @@
-## 2.7.13 (2013-08-12)
-
-New experimental argument --ripple that makes --serve play nice with Ripple UI chrome extension. Bundled ripple.crx (built from Ripple UI 'next' branch to get cordova.js 2.7.x / logLevel API support.)
-
 ## 2.7.12 (2013-08-08)
 
 Bugfixes and experimental feature of reloading with steroids connect --serve

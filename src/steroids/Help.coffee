@@ -29,14 +29,6 @@ class Help
   @logo: ->
     @printBanner(paths.banners.logo, true)
 
-  @ripple: ->
-    @printBanner(paths.banners.ripple, true)
-    console.log """
-
-      Ripple UI extension  (ripple.crx) can be found from: #{paths.ripple.extensionDirectory}
-      Ripple UI test page / instructions can be found from: #{paths.ripple.installInstructionsFile}\n
-    """
-
   @newVersionAvailable: (version) ->
     @attention()
     @printBanner(paths.banners.newVersionAvailable, true)
@@ -91,10 +83,10 @@ class Help
 
     specificSteroidsJSDetected: ->
       Help.printBanner(paths.banners.legacy.specificSteroidsJSDetected, true)
-
+    
     simulatorType: ->
       Help.printBanner(paths.banners.legacy.simulatorType, true)
-
+        
 
   @resetiOSSim: ->
     @printBanner(paths.banners.resetiOSSim, true)

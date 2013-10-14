@@ -17,10 +17,6 @@ class Paths
     library: path.join @npm, "node_modules", "grunt", "lib", "grunt"
     gruntFile: path.join @npm, "src", "steroids", "grunt", "grunt.js"
 
-  @ripple:
-    extensionDirectory: path.join @npm, "support", "chrome"
-    installInstructionsFile: path.join @npm, "support", "chrome", "ripple-install-instructions.html"
-
   @staticFiles: path.join @npm, "public"
   @appgyverStaticFiles: path.join @staticFiles, "__appgyver"
   @oauthSuccessHTML: path.join @appgyverStaticFiles, "login", "oauth2_success.html"
@@ -35,7 +31,6 @@ class Paths
     SUCCESS: path.join @bannersDir, "success-caps"
     awesome: path.join @bannersDir, "awesome"
     usage: path.join @bannersDir, "usage"
-    ripple: path.join @bannersDir, "ripple"
     welcome: path.join @bannersDir, "welcome"
     resetiOSSim: path.join @bannersDir, "iossim-reset"
     newVersionAvailable: path.join @bannersDir, "new-version-available"
