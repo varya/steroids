@@ -16,8 +16,10 @@ Let's go through the properties in the default `config.tizen.xml` file:
 
 {% highlight xml %}
 <?xml version="1.0" encoding="UTF-8"?>
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:tizen="http://tizen.org/ns/widgets" id="http://yourdomain/myapp" version="1.0.0" viewmodes="maximized">
-  <tizen:application id="com.mydomain.myapp.dev" package="com.mydomain.myapp" required_version="2.2"/>
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:tizen="http://tizen.org/ns/widgets"
+  id="http://yourdomain/myapp" version="1.0.0" viewmodes="maximized">
+  <tizen:application id="com.mydomain.myapp.dev" package="com.mydomain.myapp"
+    required_version="2.2"/>
 {% endhighlight %}
 
 The `<widget>` tag encloses and defines the whole Tizen Web App. `viewmodes="maximized"` ensures that your app is running in full screen mode without any extra controls, and the `id` attribute is just a unique domain-style string.
@@ -26,7 +28,7 @@ The `<tizen:application>` tag's `id` and `package` attributes can be anything, a
 
 {% highlight xml %}
 <content src="index.html"/>
-<icon src="icon.png"/>
+<icon src="icons/steroids.png"/>
 <name>My Steroids App</name>
 {% endhighlight %}
 
@@ -47,19 +49,14 @@ The screen size feature is required by Tizen [Application Filtering](https://dev
 <tizen:privilege name="http://tizen.org/privilege/filesystem.write"/>
 <tizen:privilege name="http://tizen.org/privilege/unlimitedstorage"/>
 <tizen:privilege name="http://tizen.org/privilege/setting"/>
-<tizen:privilege name="http://tizen.org/privilege/package.info"/>
-<tizen:privilege name="http://tizen.org/privilege/notification"/>
-<tizen:privilege name="http://tizen.org/privilege/system"/>
-<tizen:privilege name="http://tizen.org/privilege/content"/>
-<tizen:privilege name="http://tizen.org/privilege/content.read"/>
-<tizen:privilege name="http://tizen.org/privilege/content.write"/>
-<tizen:privilege name="http://tizen.org/privilege/mediacapture"/>
 {% endhighlight %}
 
-The various `<tizen:privilege>` tags give access to the protected APIs that Cordova requires.
+The various `<tizen:privilege>` tags give access to the protected APIs that Cordova requires, plus other Tizen features. See the [API documentation](https://developer.tizen.org/help/index.jsp?topic=%2Forg.tizen.web.device.apireference%2Ftizen%2Fprivilege.html) for more information.
 
 {% highlight xml %}
-<tizen:setting screen-orientation="auto-rotation" context-menu="enable" background-support="disable" encryption="disable" install-location="auto" hwkey-event="enable"/>
+<tizen:setting screen-orientation="auto-rotation" context-menu="enable"
+  background-support="disable" encryption="disable" install-location="auto"
+  hwkey-event="enable"/>
 {% endhighlight %}
 
 Read more about the Tizen Settings in the [Tizen Developer Portal](https://developer.tizen.org/help/index.jsp?topic=%2Forg.tizen.web.appprogramming%2Fhtml%2Fide_sdk_tools%2Fweb_config_ext.htm)
