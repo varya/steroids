@@ -3,6 +3,7 @@
 Changes:
   - Removed hostfaking from `config/application.coffee`
   - Added support for Ripple
+  - Added Tizen Web Simulator, see `steroids usage`
 
 ## 2.7.26 (2013-10-04)
 
