@@ -75,6 +75,10 @@
 
     Optionally, append #cyan['@<iOS-version>'] to launch the simulator with a specific iOS version (assuming it is installed); e.g. #cyan['iphone@5.1']
 
+    #cyan[--port=4300]
+
+      Starts the Tizen Web Simulator in the given port.
+
   #bold[weinre] #cyan[--port=31173]
 
     Starts Weinre debugger and waits for connections.

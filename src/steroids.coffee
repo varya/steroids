@@ -234,10 +234,14 @@ class Steroids
         if argv.deviceType == "tizenweb"
           steroidsCli.platform = "tizen"
 
-          tizenWebSimulator = new TizenWebSimulator()
+          servePort = if argv.port
+            argv.port
+          else
+            4300
+
+          tizenWebSimulator = new TizenWebSimulator servePort
           tizenWebSimulator.run()
 
-          servePort = 4300
           serve = new Serve servePort
           serve.start()
 

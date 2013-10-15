@@ -4,7 +4,7 @@ os = require "os"
 
 class TizenWebSimulator
 
-  constructor: (@options = {}) ->
+  constructor: (@port) ->
 
 
   run: (opts={}) =>
@@ -20,7 +20,7 @@ class TizenWebSimulator
       "--disable-web-security"
       "--start-maximized"
       "--user-data-dir=/tmp/steroidsTizenWebSimulator"
-      "--app=file://#{steroidsSimulators.latestTizenWebSimulatorPath}/web/index.html"
+      "--app=file://#{steroidsSimulators.latestTizenWebSimulatorPath}/web/index.html?url=http://localhost:#{@port}/index.html"
     ]
 
     steroidsCli.debug "Spawning #{cmd}"
