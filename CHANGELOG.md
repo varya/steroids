@@ -4,6 +4,8 @@ Changes:
   - Removed hostfaking from `config/application.coffee`
   - Added support for Ripple
   - Added Tizen Web Simulator, see `steroids usage`
+  - Default projects' `www/index.html` now includes a meta viewport tag.
+  - Default projects have a `www/config.tizen.xml` file for configuring a Tizen Web App.
 
 ## 2.7.26 (2013-10-04)
 
