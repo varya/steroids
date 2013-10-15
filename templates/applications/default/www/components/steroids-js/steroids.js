@@ -1,4 +1,4 @@
-/*! steroids-js - v2.7.8 - 2013-09-27 15:40 */
+/*! steroids-js - v2.7.9 - 2013-10-14 14:18 */
 (function(window){
 var Bridge,
   __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
@@ -12,7 +12,7 @@ Bridge = (function() {
 
   Bridge.getBestNativeBridge = function() {
     var bridgeClass, prioritizedList, _i, _len;
-    prioritizedList = [WebBridge, AndroidBridge, WebsocketBridge];
+    prioritizedList = [TizenBridge, WebBridge, AndroidBridge, WebsocketBridge];
     if (this.bestNativeBridge == null) {
       for (_i = 0, _len = prioritizedList.length; _i < _len; _i++) {
         bridgeClass = prioritizedList[_i];
@@ -382,6 +382,77 @@ WebsocketBridge = (function(_super) {
   };
 
   return WebsocketBridge;
+
+})(Bridge);
+;var TizenBridge,
+  __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+TizenBridge = (function(_super) {
+  __extends(TizenBridge, _super);
+
+  function TizenBridge() {
+    var pollForRefresh, refresh;
+    refresh = {
+      id: null,
+      timestamp: (new Date()).getTime()
+    };
+    pollForRefresh = function() {
+      var getURL, xhr;
+      xhr = new XMLHttpRequest();
+      xhr.onload = function() {
+        if (this.readyState === 4 && this.status === 200 && this.responseText === "true") {
+          return window.location.reload();
+        }
+      };
+      getURL = "http://" + location.hostname + ":4567/refresh_client?" + refresh.timestamp;
+      xhr.open("GET", getURL);
+      xhr.send();
+      return refresh.id = setTimeout(pollForRefresh, 1000);
+    };
+    pollForRefresh();
+    return this;
+  }
+
+  TizenBridge.isUsable = function() {
+    return navigator.userAgent.indexOf("Tizen") !== -1;
+  };
+
+  TizenBridge.prototype.sendMessageToNative = function(messageString) {
+    var failed, failureOptions, message, successOptions;
+    message = JSON.parse(messageString);
+    console.log("TizenBridge: ", message);
+    failed = false;
+    successOptions = {};
+    failureOptions = {};
+    switch (message.method) {
+      case "ping":
+        successOptions.message = "PONG";
+        break;
+      case "openLayer":
+        window.open(message.parameters.url);
+        break;
+      case "popLayer":
+        window.close();
+        break;
+      case "openModal":
+        window.open(message.parameters.url);
+        break;
+      case "closeModal":
+        window.close();
+        break;
+      default:
+        console.log("TizenBridge: unsupported API method: " + message.method);
+        failed = true;
+    }
+    if (failed) {
+
+    } else {
+      return this.callbacks[message.callbacks.success].call(this, successOptions);
+    }
+  };
+
+  return TizenBridge;
 
 })(Bridge);
 ;var Events;
@@ -2302,7 +2373,7 @@ PostMessage = (function() {
 
 }).call(this);
 ;window.steroids = {
-  version: "2.7.8",
+  version: "2.7.9",
   Animation: Animation,
   XHR: XHR,
   File: File,

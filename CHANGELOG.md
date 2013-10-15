@@ -1,3 +1,7 @@
+## 2.7.28 (2013-10-15)
+
+Updated default projects' Steroids.js version to 2.7.9.
+
 ## 2.7.27 (2013-10-15)
 
 Added Tizen support. Steroids Web Serve now supports Ripple.
