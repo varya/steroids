@@ -1,6 +1,7 @@
 <!-- Cloud Services guides -->
 [android-build-config]: /steroids/guides/cloud_services/android-build-config/
 [ios-build-config]: /steroids/guides/cloud_services/ios-build-config/
+[tizen-build-config]: /steroids/guides/cloud_services/tizen-build-config/
 [custom-plugin-config]: /steroids/guides/cloud_services/plugin-config/
 
 <!-- PhoneGap on Steroids-->
@@ -22,6 +23,8 @@
 
 <!-- Tizen -->
 [config-xml-tizen-guide]: /steroids/guides/tizen/config-xml-tizen/
+[tizen-local-development-guide]: /steroids/guides/tizen/local-development/
+[installing-tizen-apps-guide]: /steroids/guides/tizen/installing-apps/
 
 <!-- Steroids API docs links -->
 [steroids.app.path]: http://docs.appgyver.com/en/edge/steroids_Steroids%20App%20and%20Device_Steroids.app_app.path.md.html#steroids.app.path

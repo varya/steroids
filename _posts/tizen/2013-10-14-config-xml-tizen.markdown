@@ -6,6 +6,9 @@ categories: tizen
 platforms: Tizen
 ---
 
+###Related Guides
+- [Building your app for Tizen][tizen-build-config]
+
 A Steroids app for Tizen is configured via the `www/config.tizen.xml` file. Unlike on iOS and Android, the file is not used to configure Cordova (which is pure JavaScript on Tizen), but rather to set up your Tizen Web App as a whole. `config/application.coffee` is currently not used for Tizen apps. The AppGyver Build Service takes your app, puts your `config.tizen.xml` and app assest in the right place and returns a `.wgt`
 
 You can read more about the [Packaged Web App specification at W3C](http://www.w3.org/TR/widgets/). The Tizen Developer portal has information about [Tizen-specific configuration options](https://developer.tizen.org/help/index.jsp?topic=%2Forg.tizen.web.appprogramming%2Fhtml%2Fide_sdk_tools%2Fweb_config_ext.htm) configuration .

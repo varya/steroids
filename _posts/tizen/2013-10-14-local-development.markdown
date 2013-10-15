@@ -7,34 +7,22 @@ platforms: Tizen
 ---
 
 ### Related Guides
-[Tizen Web App preferences in config.tizen.xml][config-xml-tizen-guide]
+- [Tizen Web App preferences in config.tizen.xml][config-xml-tizen-guide]
+- [Installing Tizen apps][installing-tizen-apps-guide]
 
-To develop your app on Tizen locally with Steroids, you need to instal AppGyver Scanner for Tizen, or use our Build Service to build a custom scanner.
+To develop your app on Tizen locally with Steroids, you need to use our Build Service to build a scanner.
 
-## Installing AppGyver Scanner for Tizen
-
-To get the Scanner app on your Tizen device, we need the `webtizen` command line tool, which is included with the Tizen SDK. Follow the offical [Tizen SDK install instructions](https://developer.tizen.org/downloads/sdk/installing-tizen-sdk).
-
-The tool is located at `~/tizen-sdk/tools/ide/bin/webtizen` (or wherever you installed the SDK). Add the `bin` folder to your path in e.g. `~/.bashrc`:
-
-{% highlight bash %}
-export PATH=${PATH}:$HOME/tizen-sdk/tools/ide/bin
-{% endhighlight %}
-
-You'll need to open a new Terminal window for the changes to take palce.Next, download [AppGyver Scanner for Tizen](http://scanner_url_here). Connect your Tizen device to your computer via USB, make sure you've got USB debugging enabled (Settings > Developer Options) and then install the `scanner.wgt` file from the command line:
-
-{% highlight bash %}
-$ webtizen install -w scanner.wgt
-{% endhighlight %}
-
-### Building a custom scanner build
-Alternatively you can request a custom Tizen Scanner build from the AppGyver Cloud.
+## Building a Scanner app
 
 First, ensure that your Steroids project has a properly configured [`www/config.tizen.xml`][config-xml-tizen-guide] file. Then, deploy your app to the AppGyver Cloud with `$ steroids deploy`.
 
-Next up, go to your app in the [Build Service](http://cloud.appgyver.com/applications) and click the **Build a Scanner** button. A custom Tizen Scanner will be built, using the configuration options in your project's `www/config.tizen.xml`. Donwload the `.wgt` file and see the above instructions on installing it on your Tizen device.
+Then, create and upload a `.p12` certificate, following the instrcutions in the [Tizen Build Configuration guide][tizen-build-config].
+
+Next up, go to your app in the [Build Service](http://cloud.appgyver.com/applications) and click the **Build a Scanner** button. A custom Tizen Scanner will be built, using your `.p12` certificate. Download the `.wgt` file, and folllow the instructions on [installing Tizen apps][installing-tizen-apps-guide].
 
 ## Connect to Steroids
+
+You should have the Scanner app available on your Tizen device now.
 
 Then, in your project folder, run `$ steroids connect --serve`. Open your Tizen Scanner app on the device (make sure they are in the same WLAN). In the IP field, enter the IP address for your computer running `$ steroids connect`. In the `location` field, enter the location for your initial view (i.e. the value of `steroids.config.location`). Note that localhost URLs do not work in Tizen. Then, click **Connect**.
 
