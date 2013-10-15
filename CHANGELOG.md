@@ -1,6 +1,6 @@
 ## 2.7.27 (2013-10-15)
 
-Tizen support, Ripple support.
+Added preliminary Tizen support. Added support for Ripple.
 
 Changes:
   - Removed deprecated hostfaking settings from `config/application.coffee`.
