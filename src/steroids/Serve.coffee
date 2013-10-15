@@ -43,6 +43,8 @@ class Serve
 
         util.log "Serving application in #{url}"
 
+        return if steroidsCli.platform == "tizen"
+
         if @opts.ripple?
           console.log "Opening Ripple"
           open url, "Google\ Chrome"

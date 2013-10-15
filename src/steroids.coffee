@@ -231,9 +231,19 @@ class Steroids
           Help.legacy.simulatorType()
           process.exit(1)
 
-        steroidsCli.simulator.run
-          deviceType: argv.deviceType
+        if argv.deviceType == "tizenweb"
+          steroidsCli.platform = "tizen"
 
+          tizenWebSimulator = new TizenWebSimulator()
+          tizenWebSimulator.run()
+
+          servePort = 4300
+          serve = new Serve servePort
+          serve.start()
+
+        else
+          steroidsCli.simulator.run
+            deviceType: argv.deviceType
 
       when "connect"
         updater = new Updater

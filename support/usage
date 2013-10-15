@@ -69,9 +69,9 @@
 
   #bold[simulator] #cyan[--deviceType=<deviceType>]
 
-    Launches iOS Simulator (default device: non-retina iPhone), requires Xcode.
+    Launches iOS Simulator or Tizen Web Simulator (default device: non-retina iPhone), requires Xcode.
 
-    Valid values for deviceType: #cyan[iphone, ipad, ipad_retina, iphone_retina_3_5_inch or iphone_retina_4_inch]
+    Valid values for deviceType: #cyan[iphone, ipad, ipad_retina, iphone_retina_3_5_inch or iphone_retina_4_inch] or #cyan[tizenweb]
 
     Optionally, append #cyan['@<iOS-version>'] to launch the simulator with a specific iOS version (assuming it is installed); e.g. #cyan['iphone@5.1']
 

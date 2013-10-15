@@ -14,8 +14,6 @@ class TizenWebSimulator
 
     cmd = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 
-    console.log steroidsSimulators
-
     args = [
       "--args"
       "--allow-file-access-from-files"
