@@ -1,6 +1,6 @@
 ## 2.7.27 (2013-10-15)
 
-Added preliminary Tizen support. Added support for Ripple.
+Added Tizen support. Steroids Web Serve now supports Ripple.
 
 Changes:
   - Removed deprecated hostfaking settings from `config/application.coffee`.
