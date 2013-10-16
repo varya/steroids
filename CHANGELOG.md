@@ -1,3 +1,7 @@
+## 2.7.29 (2013-10-16)
+
+Fixed Linux-only crashing bug with `$ steroids connect`.
+
 ## 2.7.28 (2013-10-15)
 
 Updated default projects' Steroids.js version to 2.7.9.

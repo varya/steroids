@@ -2,7 +2,7 @@ Server = require "./Server"
 WebServer = require "./servers/WebServer"
 util = require "util"
 open = require "open"
-paths = require "./Paths"
+paths = require "./paths"
 
 URL = require "url"
 
