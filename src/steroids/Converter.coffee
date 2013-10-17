@@ -92,12 +92,15 @@ class Converter
 
   appearanceObject: (config)->
     return {
+      nav_bar_portrait_background_image: "#{config.navigationBar.portrait.backgroundImage}",
+      nav_bar_landscape_background_image: "#{config.navigationBar.landscape.backgroundImage}",
       nav_bar_tint_color: "#{config.navigationBar.tintColor}",
       nav_bar_title_text_color: "#{config.navigationBar.titleColor}",
       nav_bar_title_shadow_color: "#{config.navigationBar.titleShadowColor}",
       nav_bar_button_tint_color: "#{config.navigationBar.buttonTintColor}",
       nav_bar_button_title_text_color: "#{config.navigationBar.buttonTitleColor}",
       nav_bar_button_title_shadow_color: "#{config.navigationBar.buttonShadowColor}",
+      tab_bar_background_image: "#{config.tabBar.backgroundImage}",
       tab_bar_tint_color: "#{config.tabBar.tintColor}",
       tab_bar_button_title_text_color: "#{config.tabBar.tabTitleColor}",
       tab_bar_button_title_shadow_color: "#{config.tabBar.tabTitleShadowColor}",

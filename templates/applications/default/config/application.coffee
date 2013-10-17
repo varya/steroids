@@ -21,16 +21,21 @@ steroids.config.location = "index.html"
 #   }
 # ]
 
-# steroids.config.tabBar.selectedTabBackgroundImage = "icons/pill@2x.png"
 # steroids.config.tabBar.tintColor = "#000000"
 # steroids.config.tabBar.tabTitleColor = "#00aeef"
 # steroids.config.tabBar.selectedTabTintColor = "#ffffff"
+# steroids.config.tabBar.selectedTabBackgroundImage = "icons/pill@2x.png"
+
+# steroids.config.tabBar.backgroundImage = ""
 
 # -- Navigation Bar --
 steroids.config.navigationBar.tintColor = "#00aeef"
 steroids.config.navigationBar.titleColor = "#ffffff"
 steroids.config.navigationBar.buttonTintColor = "#000000"
 steroids.config.navigationBar.buttonTitleColor = "#ffffff"
+
+# steroids.config.navigationBar.landscape.backgroundImage = ""
+# steroids.config.navigationBar.portrait.backgroundImage = ""
 
 # -- Android Loading Screen
 steroids.config.loadingScreen.tintColor = "#262626"

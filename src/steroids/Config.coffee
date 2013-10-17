@@ -10,6 +10,10 @@ class Config
       enabled: false
 
     @navigationBar =
+      portrait:
+        backgroundImage:          ""
+      landscape:
+        backgroundImage:          ""
       tintColor:                  ""
       titleColor:                 ""
       titleShadowColor:           ""
@@ -25,6 +29,7 @@ class Config
     @hosts = []
     @tabBar =
       enabled:                    false
+      backgroundImage:            ""
       tintColor:                  ""
       tabTitleColor:              ""
       tabTitleShadowColor:        ""
