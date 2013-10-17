@@ -59,7 +59,6 @@
 
         <!-- Built-in AppGyver Scanner experimental plugins -->
         <plugin name="PushNotificationPlugin" value="PushNotificationPlugin" />
-        <plugin name="PushPlugin" value="PushPlugin" />
         <plugin name="MapKitView" value="MapKitView" />
         <plugin name="org.apache.cordova.facebook.Connect" value="FacebookConnectPlugin" />
         <plugin name="FlurryPlugin" value="FlurryPlugin" />

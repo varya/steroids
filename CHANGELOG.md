@@ -1,3 +1,8 @@
+## 2.7.30 (TODO)
+
+Changes:
+  - Removed PushPlugin tag from default `www/config.ios.xml` (integrated PushPlugin was removed from Scanner).
+
 ## 2.7.29 (2013-10-16)
 
 Fixed Linux-only crashing bug with `$ steroids connect`.
