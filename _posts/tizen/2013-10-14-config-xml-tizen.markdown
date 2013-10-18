@@ -11,7 +11,7 @@ platforms: Tizen
 
 A Steroids app for Tizen is configured via the `www/config.tizen.xml` file. Unlike on iOS and Android, the file is not used to configure Cordova (which is pure JavaScript on Tizen), but rather to set up your Tizen Web App as a whole. `config/application.coffee` is currently not used for Tizen apps. The AppGyver Build Service takes your app, puts your `config.tizen.xml` and app assest in the right place and returns a `.wgt`
 
-You can read more about the [Packaged Web App specification at W3C](http://www.w3.org/TR/widgets/). The Tizen Developer portal has information about [Tizen-specific configuration options](https://developer.tizen.org/help/index.jsp?topic=%2Forg.tizen.web.appprogramming%2Fhtml%2Fide_sdk_tools%2Fweb_config_ext.htm) configuration .
+You can read more about the [Packaged Web App specification at W3C](http://www.w3.org/TR/widgets/). The Tizen Developer portal has information about [config.xml for Tizen web applications](https://developer.tizen.org/help/index.jsp?topic=%2Forg.tizen.web.appprogramming%2Fhtml%2Fapp_dev_process%2Fset_widget_web.htm) configuration .
 
 Let's go through the properties in the default `config.tizen.xml` file:
 
@@ -21,13 +21,13 @@ Let's go through the properties in the default `config.tizen.xml` file:
 <?xml version="1.0" encoding="UTF-8"?>
 <widget xmlns="http://www.w3.org/ns/widgets" xmlns:tizen="http://tizen.org/ns/widgets"
   id="http://yourdomain/myapp" version="1.0.0" viewmodes="maximized">
-  <tizen:application id="com.mydomain.myapp.dev" package="com.mydomain.myapp"
+  <tizen:application id="GN9qxYvRgr.MySteroidsApp" package="GN9qxYvRgr"
     required_version="2.2"/>
 {% endhighlight %}
 
 The `<widget>` tag encloses and defines the whole Tizen Web App. `viewmodes="maximized"` ensures that your app is running in full screen mode without any extra controls, and the `id` attribute is just a unique domain-style string.
 
-The `<tizen:application>` tag's `id` and `package` attributes can be anything, as long as they are unique and contain only alphanumerics and periods.
+The `<tizen:application>` tag's `id` and `package` identify your app on the Tizen device. `package` must be exactly 10 characters long, random string of alphanumerics. `id` begins with your `package` key, followed by a `.` and then a 1-52 character string containing alphanumerics.
 
 {% highlight xml %}
 <content src="index.html"/>
@@ -38,7 +38,7 @@ The `<tizen:application>` tag's `id` and `package` attributes can be anything, a
 These properties determine the initial location of your app (relative to the root of the `www/` folder), the app icon and app display name.
 
 {% highlight xml %}
-<feature name="http://tizen.org/feature/screen.size.normal"/>
+<feature name="http://tizen.org/feature/screen.size.normal.480.800"/>
 {% endhighlight %}
 
 The screen size feature is required by Tizen [Application Filtering](https://developer.tizen.org/help/index.jsp?topic=%2Forg.tizen.gettingstarted%2Fhtml%2Ftizen_overview%2Fapplication_filtering.htm) and must be present for the app to show up in Tizen App Stores.
@@ -62,7 +62,7 @@ The various `<tizen:privilege>` tags give access to the protected APIs that Cord
   hwkey-event="enable"/>
 {% endhighlight %}
 
-Read more about the Tizen Settings in the [Tizen Developer Portal](https://developer.tizen.org/help/index.jsp?topic=%2Forg.tizen.web.appprogramming%2Fhtml%2Fide_sdk_tools%2Fweb_config_ext.htm)
+Read more about the Tizen Settings in the [Tizen Developer Portal](https://developer.tizen.org/help/index.jsp?topic=%2Forg.tizen.web.appprogramming%2Fhtml%2Fapp_dev_process%2Fediting_tizen.htm)
 
 {% highlight xml %}
 <tizen:content-security-policy>*</tizen:content-security-policy>
