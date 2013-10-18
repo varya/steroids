@@ -27,7 +27,7 @@ Let's go through the properties in the default `config.tizen.xml` file:
 
 The `<widget>` tag encloses and defines the whole Tizen Web App. `viewmodes="maximized"` ensures that your app is running in full screen mode without any extra controls, and the `id` attribute is just a unique domain-style string.
 
-The `<tizen:application>` tag's `id` and `package` identify your app on the Tizen device. `package` must be exactly 10 characters long, random string of alphanumerics. `id` begins with your `package` key, followed by a `.` and then a 1-52 character string containing alphanumerics.
+The `<tizen:application>` tag's `id` and `package` identify your app on the Tizen device. `package` must be exactly 10 characters long, random string of alphanumerics. `id` begins with your `package` key, followed by a `.` and then a 1-52 character string containing alphanumerics. Remember to change this for a new Steroids project, so you don't get conflicts with existing Steroids projects.
 
 {% highlight xml %}
 <content src="index.html"/>
@@ -50,8 +50,6 @@ The screen size feature is required by Tizen [Application Filtering](https://dev
 <tizen:privilege name="http://tizen.org/privilege/contact.write"/>
 <tizen:privilege name="http://tizen.org/privilege/filesystem.read"/>
 <tizen:privilege name="http://tizen.org/privilege/filesystem.write"/>
-<tizen:privilege name="http://tizen.org/privilege/unlimitedstorage"/>
-<tizen:privilege name="http://tizen.org/privilege/setting"/>
 {% endhighlight %}
 
 The various `<tizen:privilege>` tags give access to the protected APIs that Cordova requires, plus other Tizen features. See the [API documentation](https://developer.tizen.org/help/index.jsp?topic=%2Forg.tizen.web.device.apireference%2Ftizen%2Fprivilege.html) for more information.
@@ -63,12 +61,6 @@ The various `<tizen:privilege>` tags give access to the protected APIs that Cord
 {% endhighlight %}
 
 Read more about the Tizen Settings in the [Tizen Developer Portal](https://developer.tizen.org/help/index.jsp?topic=%2Forg.tizen.web.appprogramming%2Fhtml%2Fapp_dev_process%2Fediting_tizen.htm)
-
-{% highlight xml %}
-<tizen:content-security-policy>*</tizen:content-security-policy>
-{% endhighlight %}
-
-This overrides the default [Tizen Content Security Policy settings](https://developer.tizen.org/help/index.jsp?topic=%2Forg.tizen.web.appprogramming%2Fhtml%2Fbasics_tizen_programming%2Fweb_security_privacy.htm), allowing e.g. inline JavaScript execution.
 
 {% highlight xml %}
 <tizen:allow-navigation>*</tizen:allow-navigation>
