@@ -110,9 +110,15 @@ steroids.config.tabBar.tabTitleColor = "#ffffff"
 steroids.config.tabBar.selectedTabTintColor = "#11aeef"
 {% endhighlight %}
 
-### Selected tab background image (iOS-only)
+### Tab bar background image (iOS-only)
 
-*Default:* `""`
+On iOS, you can set a background image for the tab bar that will be used throughout the application. Path is relative to the root of the `dist/` folder. Appending a `@2x` before the file extension makes Retina-resolution images scale down correctly. The correct height for a Retina-resolution tab bar is 98px. The background image will repeat horizontally to cover the entire tab bar.
+
+{% highlight coffeescript %}
+steroids.config.tabBar.backgroundImage = "images/tabs_background@2x.png"
+{% endhighlight %}
+
+### Selected tab background image (iOS-only)
 
 On iOS, you can set an indicator image to be shown behind the active tab's icon and title text. This is done with the property:
 
@@ -141,6 +147,15 @@ steroids.config.navigationBar.titleColor = "#ffffff"
 # Set the tint and title text color of navigation bar buttons
 steroids.config.navigationBar.buttonTintColor = "#363636"
 steroids.config.navigationBar.buttonTitleColor = "#ffffff"
+{% endhighlight %}
+
+###Navigation bar background images (iOS only)
+
+You can set a global background image for the navigation bar that will be used throughout the application, for both the portrait and landscape modes. Path is relative to the root of the `dist/` folder. Appending a `@2x` before the file extension makes Retina-resolution images scale down correctly. The correct height for a Retina-resolution image is 88px for portrait mode and 64px for landscape mode. The background images will repeat horizontally to cover the entire navigation bar.
+
+{% highlight coffeescript %}
+steroids.config.navigationBar.portrait.backgroundImage = "images/portrait_navbar@2x.png"
+steroids.config.navigationBar.landscape.backgroundImage = "images/landscape_navbar@2x.png"
 {% endhighlight %}
 
 ## Loading screen color (Android-only)

@@ -12,19 +12,15 @@ platforms: Tizen
 
 To develop your app on Tizen locally with Steroids, you need to use our Build Service to build a scanner.
 
-## Building a Scanner app
+## Installing the Scanner app
 
-First, ensure that your Steroids project has a properly configured [`www/config.tizen.xml`][config-xml-tizen-guide] file. Then, deploy your app to the AppGyver Cloud with `$ steroids deploy`.
-
-Then, create and upload a `.p12` certificate, following the instrcutions in the [Tizen Build Configuration guide][tizen-build-config].
-
-Next up, go to your app in the [Build Service](http://cloud.appgyver.com/applications) and click the **Build a Scanner** button. A custom Tizen Scanner will be built, using your `.p12` certificate. Download the `.wgt` file, and folllow the instructions on [installing Tizen apps][installing-tizen-apps-guide].
+[Click here](http://appgyver.assets.s3.amazonaws.com/tizen-scanner.wgt) to download the Tizen Scanner app `.wgt` file, then follow the instructions in the [Installing Tizen apps guide][installing-tizen-apps-guide].
 
 ## Connect to Steroids
 
 You should have the Scanner app available on your Tizen device now.
 
-Then, in your project folder, run `$ steroids connect --serve`. Open your Tizen Scanner app on the device (make sure they are in the same WLAN). In the IP field, enter the IP address for your computer running `$ steroids connect`. In the `location` field, enter the location for your initial view (i.e. the value of `steroids.config.location`). Note that localhost URLs do not work in Tizen. Then, click **Connect**.
+Then, in your project folder, run `$ steroids connect --serve`. Open your Tizen Scanner app on the device (make sure they are in the same WLAN). In the IP field, enter the IP address for your computer running `$ steroids connect`. In the `location` field, enter the location for your initial view (i.e. the value of `steroids.config.location`). Then, click **Connect**.
 
 Your app will load, and any changes made and pushed by pressing enter in the Steroids `connect` console will update on the device. To change the IP address, you need to restart the Scanner app. The refresh is also dependent on `steroids.js` being loaded to memory, so ensure that it is referenced in all views of your app!
 
