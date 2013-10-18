@@ -1,4 +1,4 @@
-/*! steroids-js - v2.7.9 - 2013-10-14 14:18 */
+/*! steroids-js - v2.7.10 - 2013-10-17 15:09 */
 (function(window){
 var Bridge,
   __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
@@ -1208,10 +1208,13 @@ NavigationBarButton = (function() {
   return NavigationBarButton;
 
 })();
-;var NavigationBar;
+;var NavigationBar,
+  __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
 NavigationBar = (function() {
-  function NavigationBar() {}
+  function NavigationBar() {
+    this.buttonTapped = __bind(this.buttonTapped, this);
+  }
 
   NavigationBar.prototype.hide = function(options, callbacks) {
     if (options == null) {
@@ -1254,6 +1257,7 @@ NavigationBar = (function() {
   };
 
   NavigationBar.prototype.setButtons = function(options, callbacks) {
+    var button, buttonParameters, buttonParametersFrom, callback, location, locations, params, relativeTo, _i, _j, _len, _len1, _ref, _ref1, _ref2;
     if (options == null) {
       options = {};
     }
@@ -1261,26 +1265,51 @@ NavigationBar = (function() {
       callbacks = {};
     }
     steroids.debug("steroids.navigationBar.setButtons options: " + (JSON.stringify(options)) + " callbacks: " + (JSON.stringify(callbacks)));
-    if ((options.right != null) && options.right !== []) {
-      steroids.debug("steroids.navigationBar.setButtons showing right button title: " + options.right[0].title + " callback: " + options.right[0].onTap);
-      return steroids.nativeBridge.nativeCall({
-        method: "showNavigationBarRightButton",
-        parameters: {
-          title: options.right[0].title
-        },
-        successCallbacks: [callbacks.onSuccess],
-        recurringCallbacks: [options.right[0].onTap],
-        failureCallbacks: [callbacks.onFailure]
-      });
-    } else {
-      steroids.debug("steroids.navigationBar.setButtons hiding right button");
-      return steroids.nativeBridge.nativeCall({
-        method: "hideNavigationBarRightButton",
-        parameters: {},
-        successCallbacks: [callbacks.onSuccess],
-        failureCallbacks: [callbacks.onFailure]
-      });
+    relativeTo = (_ref = options.relativeTo) != null ? _ref : steroids.app.path;
+    this.buttonCallbacks = {};
+    params = {
+      overrideBackButton: options.overrideBackButton
+    };
+    buttonParametersFrom = function(obj) {
+      if (obj.title != null) {
+        return {
+          title: obj.title
+        };
+      } else {
+        return {
+          imagePath: relativeTo + obj.imagePath
+        };
+      }
+    };
+    locations = ["right", "left"];
+    for (_i = 0, _len = locations.length; _i < _len; _i++) {
+      location = locations[_i];
+      steroids.debug("steroids.navigationBar.setButtons constructing location " + location);
+      this.buttonCallbacks[location] = [];
+      params[location] = [];
+      if (options[location] != null) {
+        _ref1 = options[location];
+        for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
+          button = _ref1[_j];
+          buttonParameters = buttonParametersFrom(button);
+          callback = (_ref2 = button.onTap) != null ? _ref2 : function() {};
+          steroids.debug("steroids.navigationBar.setButtons adding button " + (JSON.stringify(buttonParameters)) + " to location " + location);
+          this.buttonCallbacks[location].push(callback);
+          params[location].push(buttonParameters);
+        }
+      }
     }
+    return steroids.nativeBridge.nativeCall({
+      method: "setNavigationBarButtons",
+      parameters: params,
+      successCallbacks: [callbacks.onSuccess],
+      recurringCallbacks: [this.buttonTapped],
+      failureCallbacks: [callbacks.onFailure]
+    });
+  };
+
+  NavigationBar.prototype.buttonTapped = function(options) {
+    return this.buttonCallbacks[options.location][options.index]();
   };
 
   return NavigationBar;
@@ -2373,7 +2402,7 @@ PostMessage = (function() {
 
 }).call(this);
 ;window.steroids = {
-  version: "2.7.9",
+  version: "2.7.10",
   Animation: Animation,
   XHR: XHR,
   File: File,

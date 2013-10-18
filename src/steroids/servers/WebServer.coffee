@@ -41,6 +41,11 @@ class WebServer extends Server
       rippleCompatibleCordovaFile = path.join Paths.appgyverStaticFiles, "browser_overrides", "ripple_cordova.js"
       res.sendfile rippleCompatibleCordovaFile
       return
+    else if req.path.endsWith("cordova.tizen.js")
+      steroidsCli.debug "cordova.tizen.js requested, serving from npm"
+      tizenCordovaFile = path.join Paths.appgyverStaticFiles, "browser_overrides", "cordova.tizen.js"
+      res.sendfile tizenCordovaFile
+      return
     unless fs.existsSync(fileDistPath)
       res.status(status = 404)
       res.end()

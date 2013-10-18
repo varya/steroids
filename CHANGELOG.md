@@ -1,7 +1,19 @@
-## 2.7.30 (TODO)
+## 2.7.30 (2013-10-17)
+
+Tab bar and navigation bar background images, iOS Simulator binary updated, default `steroids.js` version updated, Tizen bugfixes.
+
+Features:
+  - `config/application.coffee` now has support for tab bar and navigation bar background images.
+  - Default project's `steroids.js` file updated to v2.7.10
+  - iOS Simulator updated to v2.7.9
 
 Changes:
   - Removed PushPlugin tag from default `www/config.ios.xml` (integrated PushPlugin was removed from Scanner).
+  - Default app icon included in `www/icons/steroids.png`.
+
+Bugfixes:
+  - `steroids connect --serve` now correctly serves `cordova.tizen.js` from a local file.
+  - `www/config.tizen.xml` default values fixed to prevent errors in Build Service.
 
 ## 2.7.29 (2013-10-16)
 
