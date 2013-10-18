@@ -35,3 +35,11 @@ The `cordova.tizen.js` file is included to the root of the `dist/` folder automa
 {% highlight html %}
 <script src="cordova.tizen.js"></script>
 {% endhighlight %}
+
+## Use the Tizen web emulator
+
+You can also open the bundled Tizen web emulator by running
+
+{% highlight bash %}
+$ steroids simulator --deviceType=tizenweb
+{% endhighlight %}
