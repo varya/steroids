@@ -1,4 +1,5 @@
 fs = require "fs"
+inquirer = require "inquirer"
 path = require "path"
 
 paths = require "./paths"
@@ -9,32 +10,47 @@ class Bower
   configs = paths.application.configs
 
   update: ->
-    checkObsoleteConfiguration ->
+    ensureConfigurationExists ->
       bowerRun = sbawn
         cmd: paths.bower
         args: ["update"]
         stdout: true
         stderr: true
 
-  checkObsoleteConfiguration = (done) ->
-    fs.exists configs.bower,
-      (isConfigured) =>
-        if isConfigured
-          done()
-        else
-          console.log "Bower configuration not found at #{configs.bower}"
-          migrateObsoleteConfiguration done
+  ensureConfigurationExists = (done) ->
+    checkConfiguration (isConfigured) ->
+      if isConfigured
+        done()
+      else
+        console.log "Bower configuration not found at #{configs.bower}"
+        checkLegacyConfiguration (hasLegacyConfiguration) ->
+          if hasLegacyConfiguration
+            promptConfigurationMigration (userAgreed) ->
+              if userAgreed
+                console.log "Moving Bower configuration from #{configs.legacy.bower} to #{configs.bower}"
+                migrateLegacyConfiguration done
+              else
+                declareConfigurationMissing()
+          else
+            declareConfigurationMissing()
 
-  migrateObsoleteConfiguration = (done) ->
-    fs.exists configs.legacy.bower,
-      (hasLegacyConfiguration) =>
-        if hasLegacyConfiguration
-          console.log "Moving Bower configuration from #{configs.legacy.bower} to #{configs.bower}"
-          fs.rename configs.legacy.bower,
-            configs.bower,
-            done
-        else
-          console.log "ERROR: Unable to continue without a bower.json file"
-          process.exit 1
+  declareConfigurationMissing = ->
+    console.log "ERROR: Unable to continue without a bower.json file"
+    process.exit 1
+
+  promptConfigurationMigration = (done) ->
+    inquirer.prompt [
+        {
+          type: "confirm"
+          name: "useExisting"
+          message: "Would you like to use existing Bower configuration from #{configs.legacy.bower}?",
+          default: true
+        }
+      ], (answers) ->
+        done answers.useExisting
+
+  checkConfiguration = (cb) -> fs.exists configs.bower, cb
+  checkLegacyConfiguration = (cb) -> fs.exists configs.legacy.bower, cb
+  migrateLegacyConfiguration = (cb) -> fs.rename configs.legacy.bower, configs.bower, cb
 
 module.exports = Bower

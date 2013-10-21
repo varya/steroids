@@ -79,7 +79,8 @@
     "steroids-simulators": "http://appgyver.production.steroids.simulators.s3.amazonaws.com/steroids-simulators.tar.gz",
     "watchr": "2.4.x",
     "weinre": "2.0.0-pre-HH0SN197",
-    "wrench": "1.5.x"
+    "wrench": "1.5.x",
+    "inquirer": "0.3.4"
   },
   "devDependencies": {
     "jasmine-node": "1.11.x"
