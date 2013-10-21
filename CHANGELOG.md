@@ -1,4 +1,6 @@
-## 2.7.31 (TODO)
+## 2.7.31 (2013-10-21)
+
+Fixed `$ steroids update` to use `bower.json` from project root.
 
 Changes:
   - Default `bower.json` in a new project moved to project root instead of `www/` folder.
