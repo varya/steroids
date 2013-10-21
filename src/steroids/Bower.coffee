@@ -28,7 +28,9 @@ class Bower
             promptConfigurationMigration (userAgreed) ->
               if userAgreed
                 console.log "Moving Bower configuration from #{configs.legacy.bower} to #{configs.bower}"
-                migrateLegacyConfiguration done
+                migrateLegacyConfiguration ->
+                  console.log "Migrated bower.json file, running bower update. If you encounter ENOTFOUND Package errors for myProject or similar, they were due to our configuration mistake. You can safely delete the folder from www/components and retry."
+                  done()
               else
                 declareConfigurationMissing()
           else
