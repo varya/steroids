@@ -1,3 +1,8 @@
+## 2.7.31 (TODO)
+
+Changes:
+  - Default `bower.json` in a new project moved to project root instead of `www/` folder.
+
 ## 2.7.30 (2013-10-17)
 
 Tab bar and navigation bar background images, iOS Simulator binary updated, default `steroids.js` version updated, Tizen bugfixes.
