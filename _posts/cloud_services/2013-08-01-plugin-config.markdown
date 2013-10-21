@@ -28,6 +28,8 @@ Then, in the Build Service's **Configure iOS/Android Build Settings** page for y
 
 Our Build Service uses the [plugman](https://github.com/apache/cordova-plugman) tool for adding plugins to your custom builds, so your plugin repo must adhere to Cordova's [plugin.xml][plugin-xml-spec] specification, for the platforms you want to target.
 
+**Note that you need to include and load the JavaScript file that loads the plugin (e.g. `EmailComposer.js`) manually in your project – the `<asset>` tag in `plugin.xml` is not supported. The JavaScript file should be available in the `www` folder in the plugin repository.**
+
 Certain plugins require you to pass variables to plugman. You can give these as a property of the individual plugin object:
 
 {% highlight json %}
@@ -57,7 +59,5 @@ Please note that you need to manually include your plugin in your Steroids proje
 {% endhighlight %}
 
 ## Known issues
-
-You need include the relevant `.js` and other asset files for the plugin manually in your project – the `<asset>` tag in `plugin.xml` is not supported.
 
 On iOS, our plugins currently require [ARC support](https://developer.apple.com/library/ios/releasenotes/ObjectiveC/RN-TransitioningToARC/Introduction/Introduction.html), so make sure the code compiles using ARC.
