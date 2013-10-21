@@ -15,7 +15,7 @@ read
 git add templates
 git commit -m "updated templates to use latest steroids-js"
 
-git st
+git status
 
 echo "ok?"
 
