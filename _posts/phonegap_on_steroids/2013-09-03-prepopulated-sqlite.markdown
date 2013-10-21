@@ -14,7 +14,7 @@ The `sqliteplugin.js` (in the Steroids plugin repository) defines a `window.sqli
 
 ## Setting up your local database
 
-For the example below, we'll put the local database file to `www/data/Chinook_Sqlite.sqlite` in your Steroids project
+For the example below, we'll put the local database file to `www/data/Chinook_Sqlite.db` in your Steroids project. **Note that you need to rename the file to have the `.db` file extension – otherwise the SQLite plugin will instead create a new file at e.g. `Chinook_Sqlite.sqlite.db`.**
 
 On iOS, the SQLite plugin looks for databases in the User Files folder of your application, i.e. `Documents/`. Thus, to load the database from the App folder, we are going to use the `steroids.app.path` to get the relative path to our database file. On Android, we are going to use the full File URL and `steroids.app.absolutePath`. (Read more about the User Files and App folders in the [App Structure on the Device Guide][app-structure-on-device].)
 
@@ -32,16 +32,16 @@ function onDeviceReady() {
 function initDatabase() {
 
   if ( device.platform == "Android") {
-    var dbName = "file://" + steroids.app.absolutePath + "/data/Chinook_Sqlite.sqlite"
+    var dbName = "file://" + steroids.app.absolutePath + "/data/Chinook_Sqlite"
   } else {
-    var dbName = steroids.app.path + "/data/Chinook_Sqlite.sqlite";
+    var dbName = steroids.app.path + "/data/Chinook_Sqlite";
   }
 
   db = window.sqlitePlugin.openDatabase({name: dbPath});
 }
 {% endhighlight %}
 
-The SQLite plugin works so that if there is a database file in the path corresponding to the `name` property, then that existing database is used. Otherwise, a new empty database file is created with the given filename.
+The SQLite plugin works so that if there is a database file with the extension `.db` in the path corresponding to the `name` property (sans extension), then that existing database is used. Otherwise, a new empty database file is created with the given filename plus the `.db` extension.
 
 You can then run a query on the database – the example code queries the `ARTISTS` table:
 
