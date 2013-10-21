@@ -60,7 +60,7 @@ class Paths
   @application.configs =
     application: path.join @application.configDir, "application.coffee"
     cloud: path.join @application.configDir, "cloud.json"
-    bower: path.join @application.configDir, "bower.json"
+    bower: path.join @applicationDir, "bower.json"
 
   @application.sources =
     controllerDir: path.join @application.appDir, "controllers"
