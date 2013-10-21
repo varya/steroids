@@ -22,7 +22,7 @@ class Bower
       if isConfigured
         done()
       else
-        console.log "Bower configuration not found at #{configs.bower}"
+        console.log "Bower configuration not found at #{configs.bower}. Since v2.7.31, Steroids requires a bower.json file at project root."
         checkLegacyConfiguration (hasLegacyConfiguration) ->
           if hasLegacyConfiguration
             promptConfigurationMigration (userAgreed) ->
@@ -35,7 +35,7 @@ class Bower
             declareConfigurationMissing()
 
   declareConfigurationMissing = ->
-    console.log "ERROR: Unable to continue without a bower.json file"
+    console.log "ERROR: Unable to continue without a bower.json file at project root."
     process.exit 1
 
   promptConfigurationMigration = (done) ->
@@ -43,7 +43,7 @@ class Bower
         {
           type: "confirm"
           name: "useExisting"
-          message: "Would you like to use existing Bower configuration from #{configs.legacy.bower}?",
+          message: "Would you like to use your existing Bower configuration from #{configs.legacy.bower}?",
           default: true
         }
       ], (answers) ->
