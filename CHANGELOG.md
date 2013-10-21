@@ -2,6 +2,7 @@
 
 Changes:
   - Default `bower.json` in a new project moved to project root instead of `www/` folder.
+  - `$ steroids update` prompts user to move `bower.json` from previous default location
 
 ## 2.7.30 (2013-10-17)
 
