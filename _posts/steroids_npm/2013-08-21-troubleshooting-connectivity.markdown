@@ -16,6 +16,10 @@ Make sure that your computer and mobile device are on the same WLAN. Connecting 
 
 Make sure your firewall/NAT are configured correctly. Note that on Windows, Node.js shows up as "Evented I/O for V8 JavaScript" in Firewall.
 
+## Have you disabled Personal Hotspot on iOS?
+
+Having the Personal Hotspot option enables can cause the connection to fail, even if both your iOS device and your computer are connected to an external WLAN.
+
 ## Is the Steroids server running?
 
 Make sure you have `$ steroids connect` running in your project directory. Try opening the URL below in your computer's browser:
