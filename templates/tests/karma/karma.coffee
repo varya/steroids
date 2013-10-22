@@ -10,7 +10,7 @@ module.exports = (config) ->
     # list of files / patterns to load in the browser
     # load your unit testable js files here
     files: [
-      'test/unit/**/*Spec.js'
+      'test/unit/**/*Spec.coffee'
     ]
 
     # list of files to exclude
@@ -18,9 +18,8 @@ module.exports = (config) ->
 
     ]
 
-    #preprocessors:
-    #  'dist/**/*.coffee': ['coffee']
-    #  'dist/**/*.html': ['html2js']
+    preprocessors:
+      '**/*.coffee': ['coffee']
 
     # test results reporter to use
     # possible values: 'dots', 'progress', 'junit', 'growl', 'coverage'
