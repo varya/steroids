@@ -30,6 +30,8 @@ class Bower
             deleteMyProjectFolder ->
               console.log "Deleted myProject folder."
               done()
+          else
+            declareMyProjectBroken()
   
   ensureConfigurationExists = (done) ->
     checkConfiguration (isConfigured) ->
@@ -72,8 +74,11 @@ class Bower
   promptConfigurationMigration = prompt "Would you like to use your existing Bower configuration from #{configs.legacy.bower}?"
   promptMyProjectFolderRemoval = prompt "Due to our configuration mistake, there seems to be a myProject folder in Bower components. Remove #{myProjectFolder}?"
 
-  declareConfigurationMissing = ->
-    console.log "ERROR: Unable to continue without a bower.json file at project root."
+  haltOnError = (message) -> ->
+    console.log "ERROR: #{message}"
     process.exit 1
+
+  declareConfigurationMissing = haltOnError "Unable to continue without a bower.json file at project root."
+  declareMyProjectBroken = haltOnError "Unable to continue with myProject folder present."
 
 module.exports = Bower
