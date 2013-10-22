@@ -2,6 +2,7 @@
 
 Changes:
   - `$ steroids update` prompts user to remove `myProject` from `www/components` if one has been generated
+  - Implemented `$ steroids test karma` for running unit tests with the Karma test runner
 
 ## 2.7.31 (2013-10-21)
 
