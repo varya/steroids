@@ -1,3 +1,8 @@
+## 2.7.32 (TODO)
+
+Changes:
+  - `$ steroids update` prompts user to remove `myProject` from `www/components` if one has been generated
+
 ## 2.7.31 (2013-10-21)
 
 Fixed `$ steroids update` to use `bower.json` from project root.
