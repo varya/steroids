@@ -80,7 +80,8 @@
     "watchr": "2.4.x",
     "weinre": "2.0.0-pre-HH0SN197",
     "wrench": "1.5.x",
-    "inquirer": "0.3.4"
+    "inquirer": "0.3.4",
+    "rimraf": "~2.2.2"
   },
   "devDependencies": {
     "jasmine-node": "1.11.x"

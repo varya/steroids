@@ -1,22 +1,36 @@
 fs = require "fs"
 inquirer = require "inquirer"
 path = require "path"
+rimraf = require "rimraf"
 
 paths = require "./paths"
 sbawn = require "./sbawn"
 
 
 class Bower
-  configs = paths.application.configs
-
   update: ->
     ensureConfigurationExists ->
-      bowerRun = sbawn
-        cmd: paths.bower
-        args: ["update"]
-        stdout: true
-        stderr: true
+      ensureMyProjectNotPresent ->
+        bowerRun = sbawn
+          cmd: paths.bower
+          args: ["update"]
+          stdout: true
+          stderr: true
 
+  configs = paths.application.configs
+  myProjectFolder = path.join paths.application.wwwDir, "components", "myProject"
+
+  ensureMyProjectNotPresent = (done) ->
+    checkMyProjectFolder (present) ->
+      if not present
+        done()
+      else
+        promptMyProjectFolderRemoval (userAgreed) ->
+          if userAgreed
+            deleteMyProjectFolder ->
+              console.log "Deleted myProject folder."
+              done()
+  
   ensureConfigurationExists = (done) ->
     checkConfiguration (isConfigured) ->
       if isConfigured
@@ -29,30 +43,37 @@ class Bower
               if userAgreed
                 console.log "Moving Bower configuration from #{configs.legacy.bower} to #{configs.bower}"
                 migrateLegacyConfiguration ->
-                  console.log "Migrated bower.json file, running bower update. If you encounter ENOTFOUND Package errors for myProject or similar, they were due to our configuration mistake. You can safely delete the folder from www/components and retry."
+                  console.log "Migrated bower.json file."
                   done()
               else
                 declareConfigurationMissing()
           else
             declareConfigurationMissing()
 
-  declareConfigurationMissing = ->
-    console.log "ERROR: Unable to continue without a bower.json file at project root."
-    process.exit 1
-
-  promptConfigurationMigration = (done) ->
-    inquirer.prompt [
-        {
-          type: "confirm"
-          name: "useExisting"
-          message: "Would you like to use your existing Bower configuration from #{configs.legacy.bower}?",
-          default: true
-        }
-      ], (answers) ->
-        done answers.useExisting
+  isDirectory = (path) -> (done) -> fs.lstat path, (err, stat) -> done (!err and stat.isDirectory())
+  checkMyProjectFolder = isDirectory myProjectFolder
+  deleteMyProjectFolder = (done) -> rimraf myProjectFolder, done
 
   checkConfiguration = (cb) -> fs.exists configs.bower, cb
   checkLegacyConfiguration = (cb) -> fs.exists configs.legacy.bower, cb
   migrateLegacyConfiguration = (cb) -> fs.rename configs.legacy.bower, configs.bower, cb
+
+  prompt = (message) -> (done) ->
+    inquirer.prompt [
+        {
+          type: "confirm"
+          name: "userAgreed"
+          message: message,
+          default: true
+        }
+      ], (answers) ->
+        done answers.userAgreed
+
+  promptConfigurationMigration = prompt "Would you like to use your existing Bower configuration from #{configs.legacy.bower}?"
+  promptMyProjectFolderRemoval = prompt "Due to our configuration mistake, there seems to be a myProject folder in Bower components. Remove #{myProjectFolder}?"
+
+  declareConfigurationMissing = ->
+    console.log "ERROR: Unable to continue without a bower.json file at project root."
+    process.exit 1
 
 module.exports = Bower
