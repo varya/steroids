@@ -111,14 +111,14 @@
 
     Deploys your application to AppGyver Cloud.
 
-  #bold[test] #cyan[TYPE] #cyan[arguments..]
+  #bold[test] #cyan[TYPE] #cyan[arguments]
 
-    TYPES:
+    Test types:
       #cyan[karma]
-        Use karma to run your unit tests. Spec files are listed in karma configuration file.
+        Use Karma to run unit tests. Spec files are listed in the Karma configuration file (test/karma.coffee).
 
         #cyan[init]
-          Create initial configuration file for karma and example spec.
+          Create an initial configuration file and example spec for Karma in folder test/
 
         Additional arguments for #cyan[karma] are:
           #cyan[--simulator]

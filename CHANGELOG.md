@@ -1,4 +1,6 @@
-## 2.7.32 (TODO)
+## 2.7.32 (2013-10-22)
+
+Karma integration for running unit tests on your device, usability improvements to `$ steroids update` and `$ steroids deploy`
 
 Features:
   - Implemented `$ steroids test karma` for running unit tests on your device with the Karma test runner.
