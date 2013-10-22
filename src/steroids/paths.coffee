@@ -103,6 +103,6 @@ class Paths
     configFilePath: path.join @test.basePath, "karma.coffee"
     templates:
       configPath: path.join @npm, "templates", "tests", "karma", "karma.coffee"
-      exampleSpecPath: path.join @npm, "templates", "tests", "karma", "spec", "exampleSpec.js"
+      exampleSpecPath: path.join @npm, "templates", "tests", "karma", "spec", "exampleSpec.coffee"
 
 module.exports = Paths

@@ -123,7 +123,7 @@ class Karma
       fs.writeFileSync(paths.test.karma.configFilePath, fs.readFileSync(paths.test.karma.templates.configPath))
 
     # spec example
-    exampleSpecPath = path.join paths.test.unitTestPath, "exampleSpec.js"
+    exampleSpecPath = path.join paths.test.unitTestPath, "exampleSpec.coffee"
     if fs.existsSync(exampleSpecPath)
       util.log "Example spec file #{exampleSpecPath} already exists"
     else
