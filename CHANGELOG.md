@@ -66,7 +66,7 @@ Bugfixes:
 
 ## 2.7.24 (2013-09-27)
 
-Default project template updated to use Steroids 2.7.8, improved test running, optional QR code display in console.
+Default project template updated to use Steroids.js v2.7.8, improved test running, optional QR code display in console.
 
 Changes:
   - Optional QR code display in the console with `--terminal-qrcode`
