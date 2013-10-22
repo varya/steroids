@@ -16,6 +16,7 @@ Version = require "./steroids/Version"
 paths = require "./steroids/paths"
 
 Karma = require "./steroids/Karma"
+Appium = require "./steroids/Appium"
 
 argv = require('optimist').argv
 open = require "open"
@@ -237,6 +238,19 @@ class Steroids
             simulator:
               use: argv.simulator
               deviceType: argv.deviceType
+
+        # steroids test appium <file>
+        else if otherOptions[0] is "appium"
+          if otherOptions[1] is "init"
+            appiumOptions =
+              init: true
+          else
+            appiumOptions =
+              filePath: otherOptions[1]
+              debug: argv.debug
+              exitSimulator: argv.exitSimulator
+
+          appium = new Appium(appiumOptions)
 
         else
           Help.usage()
