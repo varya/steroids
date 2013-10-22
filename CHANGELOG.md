@@ -1,5 +1,8 @@
 ## 2.7.32 (TODO)
 
+Features:
+  - Implemented `$ steroids test karma` for running unit tests on your device with the Karma test runner.
+
 Changes:
   - `$ steroids update` prompts user to remove `myProject` from `www/components` if one has been generated.
   - `$ steroids deploy` prints `share.appgyver.com` URL without `--debug`.

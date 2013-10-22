@@ -93,4 +93,16 @@ class Paths
 
   @rippleBinary: path.join @npm, "node_modules", "ripple-emulator", "bin", "ripple"
 
+  @test:
+    basePath: path.join @applicationDir, "test"
+    unitTestPath: path.join @applicationDir, "test", "unit"
+    functionalTestPath: path.join @applicationDir, "test", "functional"
+
+  @test.karma =
+    binaryPath: path.join @npm, "node_modules", "karma", "bin", "karma"
+    configFilePath: path.join @test.basePath, "karma.coffee"
+    templates:
+      configPath: path.join @npm, "templates", "tests", "karma", "karma.coffee"
+      exampleSpecPath: path.join @npm, "templates", "tests", "karma", "spec", "exampleSpec.coffee"
+
 module.exports = Paths

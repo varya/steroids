@@ -28,6 +28,7 @@
     hr {
       margin-bottom: 30px;
     }
+
   </style>
 </head>
 <body>
@@ -36,9 +37,7 @@
   <hr>
   <div id="qrcodeCanvas"></div>
 
-
-
-  <div id="text">
+  <div>
     <p>The Steroids server is now running. The server will stay alive as long as the <br>
     <code>$ steroids connect</code> command is running in the terminal window.</p>
     <p>You can now connect your device or the iOS Simulator to see your application.</p>
@@ -66,15 +65,12 @@
     <p>Happy hacking!</p>
   </div>
 
-
-
   <script>
     function getQueryStringByKey(key) {
       key = key.replace(/[*+?^$.\[\]{}()|\\\/]/g, "\\$&"); // escape RegEx meta chars
       var match = location.search.match(new RegExp("[?&]"+key+"=([^&]+)(&|$)"));
       return match && decodeURIComponent(match[1].replace(/\+/g, " "));
     }
-
 
     jQuery('#qrcodeCanvas').qrcode({
       width: 448,

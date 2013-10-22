@@ -65,6 +65,10 @@ class BuildServer extends Server
 
       config = @converter.configToAnkaFormat()
 
+      if @options.karmaPort
+        config.configuration.fullscreen_start_url = "#{req.protocol}://#{req.host}:#{@options.karmaPort}"
+        config.configuration.fullscreen = "true"
+
       config.archives.push {url: "#{req.protocol}://#{req.host}:#{@options.port}/appgyver/zips/project.zip"}
 
       request.get { url: "http://127.0.0.1:#{steroidsCli.weinrePort}/target/target-script-min.js#anonymous" }, (err, bettereq, betteres)=>
