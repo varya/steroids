@@ -1,7 +1,8 @@
 ## 2.7.32 (TODO)
 
 Changes:
-  - `$ steroids update` prompts user to remove `myProject` from `www/components` if one has been generated
+  - `$ steroids update` prompts user to remove `myProject` from `www/components` if one has been generated.
+  - `$ steroids deploy` prints `share.appgyver.com` URL without `--debug`.
 
 ## 2.7.31 (2013-10-21)
 
