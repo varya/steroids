@@ -62,7 +62,7 @@ class Karma
 
                 server.mount(buildServer)
 
-                unless opts.qrcode?
+                unless (opts.qrcode is false) or opts.simulator.use
                   QRCode.showLocal
                     showTestContent: true
                     port: @port

@@ -302,7 +302,7 @@ class Steroids
 
                     server.mount(buildServer)
 
-                    unless argv.qrcode?
+                    unless argv.qrcode is false
                       QRCode = require "./steroids/QRCode"
                       QRCode.showLocal
                         port: @port
