@@ -153,6 +153,8 @@ steroids.config.navigationBar.buttonTitleColor = "#ffffff"
 
 You can set a global background image for the navigation bar that will be used throughout the application, for both the portrait and landscape modes. Path is relative to the root of the `dist/` folder. Appending a `@2x` before the file extension makes Retina-resolution images scale down correctly. The correct height for a Retina-resolution image is 88px for portrait mode and 64px for landscape mode. The background images will repeat horizontally to cover the entire navigation bar.
 
+If the image height is greater than 88px/64px, it will extend under the status bar text, allowing you to e.g. have an opaque status bar for your app. The status bar height is 40px on Retina displays, so an image with height 128px/104px will cover the status bar exactly.
+
 {% highlight coffeescript %}
 steroids.config.navigationBar.portrait.backgroundImage = "images/portrait_navbar@2x.png"
 steroids.config.navigationBar.landscape.backgroundImage = "images/landscape_navbar@2x.png"
