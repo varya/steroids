@@ -3,7 +3,7 @@
   -webkit-touch-callout: none; /* Disable touch callouts */
 }
 
-input {
+input, textarea {
   -webkit-user-select: text;  /* Allow selection for input elements */
 }
 
