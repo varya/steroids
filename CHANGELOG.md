@@ -1,3 +1,8 @@
+## 2.7.33 (TODO)
+
+Changes:
+  - `$ steroids test karma` does not open a qr-code page with the `--simulator` flag enabled
+
 ## 2.7.32 (2013-10-22)
 
 Karma integration for running unit tests on your device, usability improvements to `$ steroids update` and `$ steroids deploy`
