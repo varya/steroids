@@ -8,8 +8,8 @@ os = require "os"
 
 class Simulator
 
-  DEFAULT_DEVICE_TYPE: "iphone"
-  SUPPORTED_DEVICE_TYPES: ["iphone", "ipad", "ipad_retina", "iphone_retina_3_5_inch", "iphone_retina_4_inch"]
+  DEFAULT_DEVICE_TYPE: "iphone_retina_4_inch"
+  SUPPORTED_DEVICE_TYPES: ["ipad", "ipad_retina", "iphone_retina_3_5_inch", "iphone_retina_4_inch"]
 
   running: false
 
