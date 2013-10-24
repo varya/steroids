@@ -1,6 +1,3 @@
-echo "AppGyver Steroids\n"
-
-echo "Checking for required components ...\n"
 
 REQUIRED_CMDS="gcc make git"
 
