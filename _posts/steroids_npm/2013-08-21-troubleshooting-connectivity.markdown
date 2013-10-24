@@ -40,6 +40,10 @@ http://<YOUR_IP_ADDRESS>:4567/appgyver/api/applications/1.json
 
 If you get the JSON file, your phone is able to connect to the Steroids server.
 
+## Does your Android device have Developer Options enabled?
+
+Some users have reported that enabling Developer Options fixes connectivity issues, in particular a case where the Steroids server is reachable from a mobile browser, but the app still won't load. On Android 4.x, go to Settings > About Device, find the Build Number field and tap on it 7 times to enable Developer Options.
+
 ## Is the QR code right?
 
 Take a look at the URL in the QR code web page opened by `$ steroids connect`. Does the IP address in the URL match your computer's IP address? It should be of the format:
