@@ -87,14 +87,19 @@ if (process.platform === "win32") {
       "Run this installer again once you have XCode and XCode Command Line Tools installed."
     ]),
     function() {
-      tryAndRun("pkgutil --pkg-info=com.apple.pkg.DeveloperToolsCLI",
+      tryAndRun("xpkgutil --pkg-info=com.apple.pkg.DeveloperToolsCLI",
         found("XCode Command Line Tools"),
-        notFound("XCode Command Line Tools", [
-          "Ensure you have installed XCode.",
-          "Then install XCode Command Line Tools:",
-          "  XCode -> Preferences -> Downloads -> Command Line Tools",
-          "Run this installer again once you have XCode and XCode Command Line Tools installed."
-        ]),
+        function() {
+          tryAndRun("xcode-select -p",
+            found("XCode Command Line Tools"),
+            notFound("XCode Command Line Tools", [
+              "Ensure you have installed XCode.",
+              "Then install XCode Command Line Tools:",
+              "  XCode -> Preferences -> Downloads -> Command Line Tools",
+              "Run this installer again once you have XCode and XCode Command Line Tools installed."
+            ])
+          );
+        },
         function() {
           tryAndRun("git --version",
             found('git'),
