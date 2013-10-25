@@ -1,8 +1,14 @@
-## 2.7.33 (TODO)
+## 2.7.33 (2013-10-25)
+
+Steroids npm preinstall script improved, Karma tests can be run in the iOS Simulator without the QR code page opening.
 
 Changes:
-  - `$ steroids test karma` does not open a qr-code page with the `--simulator` flag enabled
-  - Installing steroids from npm checks for presence of XCode and XCode Command Line Tools on Mac OS
+  - `$ steroids test karma` does not open a QR code web page if the `--simulator` flag is enabled.
+  - Changed default `config/application.coffee` `steroids.config.navigationBar.buttonTintColor` to white for a more unified color scheme on iOS 7.
+
+Bugfixes:
+  - Installing Steroids via npm properly checks for presence of XCode and XCode Command Line Tools on OS X.
+  – Default `www/stylesheets/application.css` no longer makes `textarea` unselectable
 
 ## 2.7.32 (2013-10-22)
 
