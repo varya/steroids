@@ -2,6 +2,7 @@
 
 Changes:
   - `$ steroids test karma` does not open a qr-code page with the `--simulator` flag enabled
+  - Installing steroids from npm checks for presence of XCode and XCode Command Line Tools on Mac OS
 
 ## 2.7.32 (2013-10-22)
 

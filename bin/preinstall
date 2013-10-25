@@ -5,17 +5,44 @@ var cp = require("child_process"),
     path = require("path"),
     fs   = require("fs");
 
-console.log("AppGyver Steroids\n");
-
-console.log("Checking for required components ...\n");
-
+var tryAndRun = function(cmd, success, failure, done) {
+  exec(cmd, function(err, stdout, stderr) {
+    if (err) {
+      failure(err, stderr);
+    } else {
+      success(stdout, stderr);
+    }
+    if (done !== undefined) {
+      done(success);
+    }
+  });
+};
+var found = function(dependency) {
+  return function() {
+    console.log("  Found " + dependency + ", good.");
+  };
+};
+var notFound = function(dependency, instructions) {
+  return function() {
+    console.log("  ERROR: " + dependency + " not found.");
+    if (instructions !== undefined) {
+      console.log("");
+      for (var i in instructions) {
+        console.log("  " + instructions[i]);
+      }
+    }
+    console.log("\nCheck failed - required components missing!");
+    process.exit(1);
+  };
+};
+var pleaseInstall = function(dependency) {
+  return ["Please install " + dependency + " and run this installer again."];
+};
 
 var checkForPython = function() {
   var rootDir = process.env.SystemDrive || 'C:\\',
       exists = false,
-      okCb = function() {
-        console.log("  Found 'python', good.\n");
-      };
+      okCb = found('python');
 
   if (rootDir[rootDir.length - 1] !== '\\') {
     rootDir += '\\'
@@ -27,40 +54,82 @@ var checkForPython = function() {
   exists = fs.existsSync(pythonPath);
 
   if (!exists) {
-
-    exec("python -V", function(err, stdout, stderr) {
-      if (err) {
-        console.log("  ERROR: command 'python' not found, please install it first.");
-        process.exit(1);
-      } else {
-        okCb();
-      }
-    });
-
+    tryAndRun("python -V",
+      okCb,
+      notFound("command 'python'", pleaseInstall("Python"))
+    );
   } else {
     okCb();
   }
 }
 
+console.log("AppGyver Steroids\n");
+console.log("Checking for required components ...\n");
+
 if (process.platform === "win32") {
 
-  exec("git --version", function(err, stdout, stderr){
-    if (err) {
-      console.log("  ERROR: command 'git' not found, please install it first.");
-      process.exit(1);
-    } else {
-      console.log("  Found 'git', good.\n");
+  tryAndRun("git --version",
+    found('git'),
+    notFound("command 'git'", pleaseInstall("git")),
+    function() {
+      checkForPython();
     }
-  });
+  );
 
-  checkForPython();
-
+} else if (process.platform === "darwin") {
+  // Require XCode, XCode Command Line Tools and git
+  tryAndRun("pkgutil --pkgs='com\.apple\.pkg\.Xcode.*'",
+    found("XCode"),
+    notFound("XCode", [
+      "Install XCode from the App Store.",
+      "Then install XCode Command Line Tools:",
+      "  XCode -> Preferences -> Downloads -> Command Line Tools",
+      "Run this installer again once you have XCode and XCode Command Line Tools installed."
+    ]),
+    function() {
+      tryAndRun("pkgutil --pkg-info=com.apple.pkg.DeveloperToolsCLI",
+        found("XCode Command Line Tools"),
+        notFound("XCode Command Line Tools", [
+          "Ensure you have installed XCode.",
+          "Then install XCode Command Line Tools:",
+          "  XCode -> Preferences -> Downloads -> Command Line Tools",
+          "Run this installer again once you have XCode and XCode Command Line Tools installed."
+        ]),
+        function() {
+          tryAndRun("git --version",
+            found('git'),
+            notFound("git", [
+              "For Git installation, we recommend using homebrew, see http://mxcl.github.com/homebrew/",
+              "Once homebrew is installed, install git with: brew install git",
+              "Run this installer again once you have git installed."
+            ]),
+            function() {
+              console.log("\nDependencies ok!");
+            }
+          );
+        }
+      );
+    }
+  );
 } else {
-  preinstallForNix = path.join(path.dirname(fs.realpathSync(__filename)), 'preinstall-nix');
-  exec(preinstallForNix, function(err, stdout, stderr){
-    if (err) {console.log(err); process.exit(1);};
-    if (stderr) {console.log(stderr); process.exit(1);};
-    if (stdout) {console.log(stdout)};
-  });
-
-};
+  // Require gcc, make and git
+  tryAndRun("gcc -v",
+    found("gcc"),
+    notFound("gcc", pleaseInstall("gcc")),
+    function() {
+      tryAndRun("make -v",
+        found("make"),
+        notFound("make", pleaseInstall("make")),
+        function() {
+          tryAndRun("git --version",
+            found("git"),
+            notFound("git", pleaseInstall("git")),
+            function() {
+              console.log("\nDependencies ok!");
+            }
+          );
+        }
+      );
+    }
+  );
+}
