@@ -194,22 +194,6 @@ steroids.config.statusBar.style = "default"
 
 Sets the style of the status bar on iOS. Available values are `"default"` and `"black"`.
 
-##steroids.config.hosts
-
-*Default:* none
-
-Defines the hostnames that the application will capture, given as an array of strings.
-
-Requests by the Steroids runtime to a captured hostname will be served from `localhost`. For example, if you have defined `mobileapp.example.com` as one of your captured hosts, you can load the document at `www/index.html` equivalently from both `http://localhost/index.html` and `http://mobileapp.example.com/index.html`. The only difference is how the WebView reports its document location (i.e. `window.location.href`).
-
-This is useful for circumventing same origin issues. With the above example, AJAX connections to your backend at `api.example.com` are allowed, because to remote locations, the Steroids app (`mobileapp.example.com`) appears to be loaded from the same top-level domain (`*.example.com`).
-
-{% highlight coffeescript %}
-steroids.config.hosts = ["mobileapp.example.com", "m.example.net"]
-{% endhighlight %}
-
-*Note that hostname capturing only helps with outgoing requests. Incoming responses are likely to be blocked by WebKit, unless the [CORS headers][w3c-cors] (namely `Access-Control-Allow-Origin`) are set correctly.*
-
 
 ## steroids.config.watch
 
