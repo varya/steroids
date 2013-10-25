@@ -11,7 +11,7 @@ Steroids comes integrated with [Weinre][weinre-site], an open-source tool for re
 To start Weinre, go to your project's folder and type:
 
 <pre class="terminal">
-$ steroids debug
+$ steroids weinre
 </pre>
 
 The Weinre server will start running in your Terminal, and the Weinre GUI will open to a new browser window at http://localhost:31173/client/#anonymous.
@@ -34,7 +34,7 @@ Also, to prevent cache issues, every time you push a new version of your app to 
 
 ##Weinre injected at runtime
 
-For Weinre to work, there's a certain JavaScript snippet that needs to be included on each HTML page that you want to inspect. While the `steroids debug` command is running, Steroids injects the required code snippet automatically to all views. This is done at runtime when a WebView starts loading, so your code stays clean.
+For Weinre to work, there's a certain JavaScript snippet that needs to be included on each HTML page that you want to inspect. While the `steroids weinre` command is running, Steroids injects the required code snippet automatically to all views. This is done at runtime when a WebView starts loading, so your code stays clean.
 
 Since Weinre attaches itself to the target HTML document via JavaScript, it is unable to catch events and errors that happen before it is loaded. Thus, the Network and Timeline pages are not much of use, and the Resources page only shows limited data.
 
