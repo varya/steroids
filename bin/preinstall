@@ -5,33 +5,38 @@ var cp = require("child_process"),
     path = require("path"),
     fs   = require("fs");
 
-var tryAndRun = function(cmd, success, failure) {
-  exec(cmd, function(err, stdout, stderr){
+var tryAndRun = function(cmd, success, failure, done) {
+  exec(cmd, function(err, stdout, stderr) {
     if (err) {
-      failure(err);
-    } else if (stderr) {
-      failure(stderr);
+      failure(err, stderr);
     } else {
-      success(stdout);
+      success(stdout, stderr);
+    }
+    if (done !== undefined) {
+      done(success);
     }
   });
 };
 var found = function(dependency) {
   return function() {
-    console.log("  Found " + dependency + ", good.\n");
+    console.log("  Found " + dependency + ", good.");
   };
 };
 var notFound = function(dependency, instructions) {
   return function() {
-    console.log("  ERROR: " + dependency + " not found, please install it first.");
+    console.log("  ERROR: " + dependency + " not found.");
     if (instructions !== undefined) {
       console.log("");
       for (var i in instructions) {
         console.log("  " + instructions[i]);
       }
     }
+    console.log("\nCheck failed - required components missing!");
     process.exit(1);
   };
+};
+var pleaseInstall = function(dependency) {
+  return ["Please install " + dependency + " and run this installer again."];
 };
 
 var checkForPython = function() {
@@ -49,7 +54,10 @@ var checkForPython = function() {
   exists = fs.existsSync(pythonPath);
 
   if (!exists) {
-    tryAndRun("python -V", okCb, notFound("command 'python'"));
+    tryAndRun("python -V",
+      okCb,
+      notFound("command 'python'", pleaseInstall("Python"))
+    );
   } else {
     okCb();
   }
@@ -62,30 +70,66 @@ if (process.platform === "win32") {
 
   tryAndRun("git --version",
     found('git'),
-    notFound("command 'git'")
+    notFound("command 'git'", pleaseInstall("git")),
+    function() {
+      checkForPython();
+    }
   );
-  checkForPython();
 
+} else if (process.platform === "darwin") {
+  // Require XCode, XCode Command Line Tools and git
+  tryAndRun("pkgutil --pkgs='com\.apple\.pkg\.Xcode.*'",
+    found("XCode"),
+    notFound("XCode", [
+      "Install XCode from the App Store.",
+      "Then install XCode Command Line Tools:",
+      "  XCode -> Preferences -> Downloads -> Command Line Tools",
+      "Run this installer again once you have XCode and XCode Command Line Tools installed."
+    ]),
+    function() {
+      tryAndRun("pkgutil --pkg-info=com.apple.pkg.DeveloperToolsCLI",
+        found("XCode Command Line Tools"),
+        notFound("XCode Command Line Tools", [
+          "Ensure you have installed XCode.",
+          "Then install XCode Command Line Tools:",
+          "  XCode -> Preferences -> Downloads -> Command Line Tools",
+          "Run this installer again once you have XCode and XCode Command Line Tools installed."
+        ]),
+        function() {
+          tryAndRun("git --version",
+            found('git'),
+            notFound("git", [
+              "For Git installation, we recommend using homebrew, see http://mxcl.github.com/homebrew/",
+              "Once homebrew is installed, install git with: brew install git",
+              "Run this installer again once you have git installed."
+            ]),
+            function() {
+              console.log("\nDependencies ok!");
+            }
+          );
+        }
+      );
+    }
+  );
 } else {
-  var preinstallForNix = path.join(
-    path.dirname(fs.realpathSync(__filename)),
-    'preinstall-nix'
+  // Require gcc, make and git
+  tryAndRun("gcc -v",
+    found("gcc"),
+    notFound("gcc", pleaseInstall("gcc")),
+    function() {
+      tryAndRun("make -v",
+        found("make"),
+        notFound("make", pleaseInstall("make")),
+        function() {
+          tryAndRun("git --version",
+            found("git"),
+            notFound("git", pleaseInstall("git")),
+            function() {
+              console.log("\nDependencies ok!");
+            }
+          );
+        }
+      );
+    }
   );
-
-  if (process.platform === "darwin") {
-    tryAndRun("pkgutil --pkg-info=com.apple.pkg.DeveloperToolsCLI",
-      found("XCode Command Line Tools"),
-      notFound("XCode Command Line Tools", [
-        "Ensure you have installed XCode. Then install XCode Command Line Tools:",
-        "  XCode -> Preferences -> Downloads -> Command Line Tools"
-      ])
-    );
-  }
-
-  tryAndRun(preinstallForNix, function(result) {
-    console.log(result);
-  }, function(error) {
-    console.log(error);
-    process.exit(1);
-  });
-};
+}
