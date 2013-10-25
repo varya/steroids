@@ -1,3 +1,10 @@
+## 2.7.34 (2013-10-25)
+
+Hotfix for Steroids CLI preinstall script for OSX Mavericks
+
+Bugfixes:
+  - Detection of XCode CLI tools failed in Mavericks, thanks @jakecraige!
+
 ## 2.7.33 (2013-10-25)
 
 Steroids npm preinstall script improved, Karma tests can be run in the iOS Simulator without the QR code page opening.
