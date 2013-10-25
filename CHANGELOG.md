@@ -1,3 +1,10 @@
+## 2.7.35 (2013-10-25)
+
+Hotfix preinstall script to allow bypass.
+
+Bugfix:
+  - Allows bypass of preinstall script.
+
 ## 2.7.34 (2013-10-25)
 
 Hotfix for Steroids CLI preinstall script for OSX Mavericks

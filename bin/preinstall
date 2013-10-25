@@ -3,7 +3,24 @@
 var cp = require("child_process"),
     exec = cp.exec,
     path = require("path"),
-    fs   = require("fs");
+    fs   = require("fs"),
+    util = require("util"),
+    sys = require("sys");
+
+var askConfirm = function() {
+  var stdin = process.openStdin();
+
+  stdin.addListener("data", function(d) {
+      var input = d.toString().toLowerCase();
+
+      if ( input.indexOf("y") == "0" ) {
+        process.exit(0)
+      } else {
+        process.exit(1)
+      }
+
+    });
+}
 
 var tryAndRun = function(cmd, success, failure, done) {
   exec(cmd, function(err, stdout, stderr) {
@@ -31,8 +48,14 @@ var notFound = function(dependency, instructions) {
         console.log("  " + instructions[i]);
       }
     }
-    console.log("\nCheck failed - required components missing!");
-    process.exit(1);
+
+    setTimeout(function() {
+      console.log("\n\nCheck failed - required components missing!");
+
+      util.print("Do you still want to continue, we might have not detected everything correctly (y/N): ")
+      askConfirm();
+    }, 500);
+
   };
 };
 var pleaseInstall = function(dependency) {
