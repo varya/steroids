@@ -1,8 +1,16 @@
-disabledSass = /v0\.11/.test(process.version)
-if disabledSass
+argv = require('optimist').argv
+
+disabledSass = true
+
+sassNotCompatibleWithNode11 = ( /v0\.11/.test(process.version) )
+if sassNotCompatibleWithNode11
   console.log "WARNING: node-sass module is not compatible with node version 0.11 yet. SASS compilation is disabled."
+else if argv.sass == false
+  console.log "SASS: disabled"
 else
+  disabledSass = false
   sass = require 'node-sass'
+
 coffeelint = require 'coffeelint'
 colorize = require "colorize"
 events = require "events"
@@ -92,7 +100,7 @@ registerDefaultTasks = (grunt)->
 
   grunt.registerTask 'steroids-compile-sass-files', "Compile build sass files", ->
     if disabledSass
-      grunt.log.writeln colorize.ansify "#red[Skipping sass compile task. Module node-sass does not support currently installed node version.]"
+      grunt.log.writeln colorize.ansify "#red[Skipping sass compile task. Module node-sass does not support currently installed node version or --no-sass switch was used.]"
       return true
 
     sassFiles = grunt.file.expand Paths.application.compiles.sassfiles

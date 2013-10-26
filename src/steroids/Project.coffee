@@ -80,9 +80,12 @@ class Project
 
     steroidsCli.debug "Spawning steroids grunt #{steroidsCli.pathToSelf}"
 
+    gruntArgs = ["grunt"]
+    gruntArgs.push("--no-sass") if steroidsCli.options.argv.sass == false
+
     gruntSbawn = sbawn
       cmd: steroidsCli.pathToSelf
-      args: ["grunt"]
+      args: gruntArgs
       stdout: true
       stderr: true
 

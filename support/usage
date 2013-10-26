@@ -33,6 +33,10 @@
 
       Show all QR codes in the console window instead of opening a separate browser window.
 
+    #cyan[--no-sass]
+
+      Do not compile SASS.
+
     #cyan[--watch]
 
       Automatically push code to connected devices on file updates in app/, config/ or www/ directories.

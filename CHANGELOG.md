@@ -1,4 +1,9 @@
-## 2.7.37 (TODO)
+## 2.7.37 (2013-10-25)
+
+SASS compile can be disabled, Chrome opened in Windows when Ripple is started.
+
+Changes:
+  - `steroids connect --no-sass` and `steroids make --no-sass` implemented.
 
 Bugfix:
   - windows: `steroids connect --serve --ripple` opens chrome correctly
