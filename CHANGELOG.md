@@ -1,3 +1,10 @@
+## 2.7.36 (2013-10-25)
+
+Fatal typo in preinstall script fixed, installation works again in Mac OS X Mountain Lion.
+
+Bugfix:
+  - Typo in preinstall script fixed.
+
 ## 2.7.35 (2013-10-25)
 
 Hotfix preinstall script to allow bypass.
