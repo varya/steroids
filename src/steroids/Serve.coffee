@@ -45,9 +45,15 @@ class Serve
 
         return if steroidsCli.platform == "tizen"
 
+
         if @opts.ripple?
-          console.log "Opening Ripple"
-          open url, "Google\ Chrome"
+          console.log "Opening Ripple in Google Chrome"
+
+          if process.platform is "win32"
+            open url, "chrome"
+          else
+            open url, "Google\ Chrome"
+
         else
           open url
 

@@ -1,3 +1,8 @@
+## 2.7.37 (TODO)
+
+Bugfix:
+  - windows: `steroids connect --serve --ripple` opens chrome correctly
+
 ## 2.7.36 (2013-10-25)
 
 Fatal typo in preinstall script fixed, installation works again in Mac OS X Mountain Lion.
