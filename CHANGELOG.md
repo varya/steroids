@@ -1,3 +1,8 @@
+## 2.7.38 (TODO)
+
+Bugfixes:
+  - Fixed default plugin tag for Barcode Scanner in new projects' `www/config.ios.xml`.
+
 ## 2.7.37 (2013-10-25)
 
 SASS compile can be disabled, Chrome opened in Windows when Ripple is started.

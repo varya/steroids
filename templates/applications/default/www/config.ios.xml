@@ -54,7 +54,7 @@
 
         <!-- Built-in AppGyver Scanner plugins -->
         <plugin name="SQLitePlugin" value="SQLitePlugin" />
-        <plugin name="org.apache.cordova.barcodeScanner" value="CDVBarcodeScanner" />
+        <plugin name="com.cordova.barcodeScanner" value="CDVBarcodeScanner" />
         <plugin name="calendarPlugin" value="calendarPlugin" />
 
         <!-- Built-in AppGyver Scanner experimental plugins -->
