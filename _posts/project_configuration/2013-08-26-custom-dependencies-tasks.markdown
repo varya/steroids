@@ -22,7 +22,7 @@ steroids.config.hooks.preMake.cmd = "echo"
 steroids.config.hooks.preMake.args = ["running yeoman"]
 {% endhighlight %}
 
-The other hook is run right after `make`, before running `steroids package`, the process that packages the app before sending it to client devices. 
+The other hook is run right after `make`, before running `steroids package`, the process that packages the app before sending it to client devices.
 
 **The post-make commands should output to the `dist/` folder** – after the `make` task, nothing will be copied over from the `www`, `merges`, `app` etc. directories.
 
@@ -37,7 +37,7 @@ Note that the arguments are always given as an array.
 
 All Steroids projects use Bower to load the latest version of Steroids.js by default, and some generators add their own Bower dependencies. The `$ steroids update` command provied a shorthand for updating Bower dependencies.
 
-To add a custom Bower dependency to your project, simply run `$ bower install package-name` – the default install directory, set up by the `.bowerrc` file in your project root is `www/components/`. The `config/bower.json` file keeps track of your project's Bower dependencies.
+To add a custom Bower dependency to your project, simply run `$ bower install package-name` – the default install directory, set up by the `.bowerrc` file in your project root is `www/components/`. The `bower.json` file in your project root keeps track of your project's Bower dependencies.
 
 ## Custom npm dependencies
 
