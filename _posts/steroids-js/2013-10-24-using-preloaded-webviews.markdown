@@ -20,7 +20,9 @@ webView.preload({}, {
 });
 {% endhighlight %}
 
-The `preload()` function's success callback is fired when the new WebView has been initialized and its target HTML document starts loading. The WebView completes loading in the background and remains active (executing JavaScript, loading content and so forth) until it is pushed into the layer stack with `steroids.layers.push(webView)`.
+The `preload()` function's success callback is fired when the new WebView has been initialized and its target HTML document starts loading. Note that the success callback doesn't ensure anything about the state of the target HTML document – if you need to know when the HTML document is actually fully loaded into the memory, using `window.postMessage` to broadcast a "This WebView is now ready" message is a good way to do it.
+
+The WebView completes loading in the background and remains active (executing JavaScript, loading content and so forth) – the state doesn't change when it is pushed into the layer stack with `steroids.layers.push(webView)`.
 
 Popping a preloaded WebView object doesn't remove it from memory, so if you push the same WebView object back into the layer stack, it will have continued to run outside the layer stack.
 
@@ -30,7 +32,7 @@ A non-preloaded WebView waits for the DOMContentLoaded event before it can be pu
 
 You may have multiple entry points to a single WebView in an application. However, you can only preload a WebView once. In case you have many WebView objects pointing to the same identical URL, only the first preload is successful, and additional ones trigger a failure callback.
 
-If you are interested in only whether a preloaded WebView is ready for use and not in whether this specific preload was successful, you will have to detect the case where the WebView was already preloaded. 
+If you are interested in only whether a preloaded WebView is ready for use and not in whether this specific preload was successful, you will have to detect the case where the WebView was already preloaded.
 
 ## Example on reusing WebViews via preload.js
 
