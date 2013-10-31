@@ -4,11 +4,11 @@
  #bold[push]             <enter>       Push code to connected devices
 
  #bold[sim] #cyan[<device>]     s             Launch iOS Simulator; <device> can be:
-                                 #cyan[iphone, iphone_retina_3_5_inch, iphone_retina_4_inch
+                                 #cyan[iphone_retina_3_5_inch, iphone_retina_4_inch
                                  ipad, ipad_retina]
 
                                 Optionally, append #cyan[@<iOS-version>] to launch with a specific iOS
-                                version; e.g. #cyan[iphone@5.1]
+                                version; e.g. #cyan[ipad@5.1]
 
  #bold[qr]               -             Show the QR code for connecting devices
 

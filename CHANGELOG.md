@@ -2,6 +2,7 @@
 
 Bugfixes:
   - Fixed default plugin tag for Barcode Scanner in new projects' `www/config.ios.xml`.
+  - Usage texts for Steroids commands improved.
 
 ## 2.7.37 (2013-10-25)
 

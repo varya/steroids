@@ -9,7 +9,7 @@ We have changed that. Serve is now part of connect:
 
   $ steroids connect --serve [--servePort=<port>]
 
-The reason for this change was that using serve without "steroids make" didn't make much sense.
+The reason for this change was that using serve without #bold[steroids make] (which #[steroids connect] runs internally) didn't make much sense.
 
 Thanks,
   - Matti (matti.paksula@appgyver.com)
