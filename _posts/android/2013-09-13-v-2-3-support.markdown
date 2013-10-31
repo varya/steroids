@@ -8,7 +8,9 @@ platforms: Android
 
 [AppGyver Scanner for Android][android-scanner] v2.7.9 adds limited support for Android 2.3 devices. The initial release is meant to give developers the ability to develop a Cordova app with Steroids tooling.
 
-Note that the App Store version code of your app's Android 2.3 version needs to always be smaller than the matching Android 3.0+ version. See [Google's documentation](http://developer.android.com/training/multiple-apks/api.html) on the issue.
+## Version number
+
+The App Store version code of your app's Android 2.3 version needs to always be smaller than the matching Android 3.0+ version. See [Google's documentation](http://developer.android.com/training/multiple-apks/api.html) on the issue.
 
 ## Known issues
 * `steroids.js` features have not been tested and are likely work erratically or not at all.
