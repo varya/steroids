@@ -10,7 +10,7 @@ platforms: Android
 * [Configuring custom plugins for your app][custom-plugin-config]
 * [Android app permissions][app-permissions]
 
-The AppGyver Build Service lets you create an APK package of your application that you can distribute either ad hoc or submit to Google Play. 
+The AppGyver Build Service lets you create an APK package of your application that you can distribute either ad hoc or submit to Google Play.
 
 All Android application builds need to be signed with a suitable private key, stored in a `.keystore` file. You can use the same private key for multiple apps. When you upload an app to Google Play, all future updates to that app require your private key.
 
@@ -83,6 +83,10 @@ Set the [Android orientation mode][android-dev-orientation] to one of the availa
 
 The usage permissions that your app will request from the user when it is installed. Disabling these can affect the functionality of Cordova API namespaces (e.g. disabling Camera will disable Cordova's `navigator.camera`).
 
+### Custom URL schemes
+
+The `Custom Protocols` field lets you enter custom URL schemes for your app; see the [custom URL scheme guide][custom-url-scheme-guide] for more information!
+
 ### Icons
 
 Different density icons for your app. Android apps should have icons with transparent backgrounds.
@@ -106,3 +110,4 @@ Building the app takes a few moments, after which you'll get an e-mail with a li
 [android-dev-orientation]: http://developer.android.com/reference/android/R.attr.html#screenOrientation
 [android-sdk]: http://developer.android.com/sdk/index.html
 [xcode]: https://developer.apple.com/xcode/
+[custom-url-scheme-guide]: /steroids/guides/steroids-js/custom-url-schemes

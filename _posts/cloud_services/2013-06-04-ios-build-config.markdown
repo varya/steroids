@@ -9,7 +9,7 @@ platforms: iOS
 ### Related Guides
 * [Configuring custom plugins for your app][custom-plugin-config]
 
-The AppGyver Build Service lets you create an IPA package of your application that you can distribute either ad hoc or submit to the Apple App Store. 
+The AppGyver Build Service lets you create an IPA package of your application that you can distribute either ad hoc or submit to the Apple App Store.
 
 All iOS application builds need to be signed with an app provisioning profile and a developer certificate. To get these, you need to sign up to the Apple Developer Program, as well as have a Mac for genereating the necessary files.
 
@@ -131,10 +131,15 @@ The Scanner Build is a special build of your application intended for developmen
 
 Note that there's a known issue where Steroids npm checks for the version number of custom-built Scanner apps also. To ensure that Steroids npm lets you connect, make sure your Scanner app's semantic Version number is higher than 2.7.0.
 
-On the bottom row, you have to:
+Then, you have to:
 
 * Select which orientations the app is allowed to rotate to on iPhone and iPad.
-* Select the target devices.
+* Select the target devices (iPhone/iPad)
+* Enter any custom URL schemes for your app, see [custom URL schemes guide][custom-url-scheme-guide].
+* Enter your Facebook App ID (if using the Facebook Connect plugin)
+* Entery your Urban Airship App Key / Secret (if using the Urban Airship plugin)
+
+.
 * Upload the different size icons for your app.
 * Upload the different size splashscreens for your app.
 
@@ -150,4 +155,5 @@ Building the app takes a few moments, after which you'll get an e-mail with a li
 [apple-provisioning-list]: https://developer.apple.com/account/ios/profile/profileList.action
 [cloud-deploy]: /steroids/guides/steroids_npm/cloud-deploy/
 [custom-plugin-config]: /steroids/guides/cloud_services/plugin-config/
+[custom-url-scheme-guide]: /steroids/guides/steroids-js/custom-url-schemes
 [testflight]: http://www.testflightapp.com
