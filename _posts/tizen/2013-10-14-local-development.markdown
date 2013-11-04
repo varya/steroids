@@ -43,3 +43,6 @@ You can also open the bundled Tizen web emulator by running
 {% highlight bash %}
 $ steroids simulator --deviceType=tizenweb
 {% endhighlight %}
+
+[config-xml-tizen-guide]: /steroids/guides/tizen/config-xml-tizen/
+[installing-tizen-apps-guide]: /steroids/guides/tizen/installing-apps/

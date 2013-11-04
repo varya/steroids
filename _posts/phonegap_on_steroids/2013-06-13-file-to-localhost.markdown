@@ -84,3 +84,10 @@ This would load a file that is in your project at `www/sounds/macgyver_theme.mp3
 
 [same-origin-policy-wikipedia]: http://en.wikipedia.org/wiki/Same_origin_policy
 [cors-wikipedia]: http://en.wikipedia.org/wiki/Cross-origin_resource_sharing
+[config-application-coffee-guide]: /steroids/guides/project_configuration/config-application-coffee/
+[app-structure-on-device]: /steroids/guides/steroids-js/app-structure-on-device/
+[steroids.app.path]: http://docs.appgyver.com/en/edge/steroids_Steroids%20App%20and%20Device_Steroids.app_app.path.md.html#steroids.app.path
+[steroids.app.userFilesPath]: http://docs.appgyver.com/en/edge/steroids_Steroids%20App%20and%20Device_Steroids.app_app.userFilesPath.md.html#steroids.app.userFilesPath
+[steroids.app.absolutePath]: http://docs.appgyver.com/en/edge/steroids_Steroids%20App%20and%20Device_Steroids.app_app.absolutePath.md.html#steroids.app.absolutePath
+[steroids.app.absoluteUserFilesPath]: http://docs.appgyver.com/en/edge/steroids_Steroids%20App%20and%20Device_Steroids.app_app.absoluteUserFilesPath.md.html#steroids.app.absoluteUserFilesPath
+[android-extension-guide]: /steroids/guides/android/android-extension/

@@ -68,3 +68,5 @@ Read more about the Tizen Settings in the [Tizen Developer Portal](https://devel
 {% endhighlight %}
 
 These tags allow `steroids.layers.push`, `steroids.modal.show`, `steroids.modal.hide` and `steroids.layers.pop` API calls to work with any URL. They are also required by Scanner builds.
+
+[tizen-build-config]: /steroids/guides/cloud_services/tizen-build-config/

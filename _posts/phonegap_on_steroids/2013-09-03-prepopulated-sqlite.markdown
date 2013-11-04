@@ -76,3 +76,6 @@ You can view an [example project on GitHub](https://github.com/AppGyver/academy-
 ## Downloading and using an external database
 
 You can also easily use an external database on a remote server: simply download it with e.g. Cordova's [File API](http://docs.appgyver.com/en/edge/cordova_file_file.md.html#File) and pass the downloaded database file's location to the SQLitePlugin.
+
+[app-structure-on-device]: /steroids/guides/steroids-js/app-structure-on-device/
+

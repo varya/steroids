@@ -6,7 +6,7 @@ categories: debugging
 platforms: Android
 ---
 
-You can also use Weinre to debug your Android application. See the [Debugging with Weinre][weinre] guide for more information.
+You can also use Weinre to debug your Android application. See the [Debugging with Weinre][guide-debugging-weinre] guide for more information.
 
 Debugging WebViews on Android is somewhat limited at the moment, with no web inspector tools available that would work on the native level. However, you can still access all `console.log` output from your app via the Android Dev Tools.
 
@@ -38,6 +38,6 @@ See the [Debugging Best Practices][debugging-best-practices] guide for more tips
 
 
 [debugging-best-practices]: /steroids/guides/debugging/best-practices/
-[weinre]: /steroids/guides/debugging/weinre/
+[guide-debugging-weinre]: /steroids/guides/debugging/weinre/
 [adt-download]: http://developer.android.com/sdk/index.html
 [adt-setup]: http://developer.android.com/sdk/installing/bundle.html

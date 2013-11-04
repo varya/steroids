@@ -34,3 +34,4 @@ If you type in `window.location.reload();`, the WebView reloads itself, which al
 
 You can even debug JavaScript by inserting breakpoints: open a .js file in the Safari Web Inspector (e.g. from the *Resource* tab) and click on the line numbers to insert break points. Then, reload the WebView. JavaScript execution will pause at the breakpoints, and the Debug tab shows the current call stack.
 
+[guide-debugging-weinre]: /steroids/guides/debugging/weinre

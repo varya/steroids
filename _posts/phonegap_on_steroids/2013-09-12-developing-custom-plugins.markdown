@@ -96,3 +96,4 @@ You can see an example of the Echo plugin in action in the [Steroids Kitchensink
 [cordova-android-plugin]: http://cordova.apache.org/docs/en/3.0.0/guide_platforms_android_plugin.md.html#Android%20Plugins
 [cordova-ios-plugin]: http://cordova.apache.org/docs/en/3.0.0/guide_platforms_ios_plugin.md.html#iOS%20Plugins
 [cordova-plugin-guide]: http://cordova.apache.org/docs/en/3.0.0/guide_hybrid_plugins_index.md.html#Plugin%20Development%20Guide
+[using-cordova-cli]: /steroids/guides/steroids_npm/using-cordova-cli

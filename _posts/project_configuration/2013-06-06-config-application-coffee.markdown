@@ -238,3 +238,11 @@ steroids.config.editor.cmd = "subl"
 steroids.config.editor.args = ["."]
 {% endhighlight %}
 
+[coffeescript]: http://coffeescript.org
+[config-xml-android-guide]: /steroids/guides/project_configuration/config-xml-android/
+[config-xml-ios-guide]: /steroids/guides/project_configuration/config-xml-ios/
+[steroids.view.navigationBar.show]: http://docs.appgyver.com/en/edge/steroids_Steroids%20Native%20UI_steroids.view.navigationBar_navigationBar.show.md.html#steroids.view.navigationBar.show
+[cloud-deploy-guide]: /steroids/guides/steroids_npm/cloud-deploy/
+[loading-png-guide]: /steroids/guides/android/loading-png/
+[loading-html-guide]: /steroids/guides/ios/loading-html/
+[apple-status-bar]: https://developer.apple.com/library/ios/#documentation/UserExperience/Conceptual/MobileHIG/UIElementGuidelines/UIElementGuidelines.html#//apple_ref/doc/uid/TP40006556-CH13-SW29

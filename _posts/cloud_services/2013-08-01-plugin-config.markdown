@@ -65,4 +65,4 @@ On iOS, our plugins currently require [ARC support](https://developer.apple.com/
 [android-build-config]: /steroids/guides/cloud_services/android-build-config/
 [ios-build-config]: /steroids/guides/cloud_services/ios-build-config/
 [developing-custom-plugins]: /steroids/guides/phonegap_on_steroids/developing-custom-plugins/
-
+[plugin-xml-spec]: http://cordova.apache.org/docs/en/3.0.0/plugin_ref_spec.md.html

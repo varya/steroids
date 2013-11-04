@@ -25,3 +25,7 @@ In the [AppGyver Build Service](http://cloud.appgyver.com/applications), go to y
 For installing your app on a device, see the [Installing Tizen apps guide][installing-tizen-apps-guide].
 
 For local development with Steroids on Tizen, see the [Tizen local development guide][tizen-local-development-guide].
+[tizen-local-development-guide]: /steroids/guides/tizen/local-development/
+[installing-tizen-apps-guide]: /steroids/guides/tizen/installing-apps/
+[config-xml-tizen-guide]: /steroids/guides/tizen/config-xml-tizen/
+

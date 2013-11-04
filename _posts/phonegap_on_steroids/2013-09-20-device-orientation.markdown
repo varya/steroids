@@ -27,3 +27,8 @@ In the [Android build configuration][android-build-config] page, the **Shared Se
 
 ### iOS
 In the [iOS build configuration][ios-build-config] page, the **Shared Settings** section has checkboxes for allowed rotations in both iPhone and iPad separately.
+[android-build-config]: /steroids/guides/cloud_services/android-build-config/
+[ios-build-config]: /steroids/guides/cloud_services/ios-build-config/
+[api-view-setAllowedRotations]: http://docs.appgyver.com/en/edge/steroids_Steroids%20Native%20UI_steroids.view_view.setAllowedRotations.md.html#steroids.view.setAllowedRotationos
+[build-service]: http://cloud.appgyver.com
+[android-dev-orientation]: http://developer.android.com/reference/android/R.attr.html#screenOrientation

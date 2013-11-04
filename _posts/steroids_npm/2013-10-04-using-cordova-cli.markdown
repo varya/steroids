@@ -41,3 +41,6 @@ After this, you can open and compile your projects via Xcode or Eclipse and use 
 $ cordova build ios
 $ cordova run ios
 {% endhighlight %}
+
+[developing-custom-plugins]: /steroids/guides/phonegap_on_steroids/developing-custom-plugins
+

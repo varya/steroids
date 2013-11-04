@@ -25,3 +25,6 @@ $ webtizen install -w application.wgt
 {% endhighlight %}
 
 Your app will install on the device.
+
+[tizen-local-development-guide]: /steroids/guides/tizen/local-development/
+[tizen-build-config]: /steroids/guides/cloud_services/tizen-build-config/

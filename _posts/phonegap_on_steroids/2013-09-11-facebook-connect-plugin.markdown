@@ -83,3 +83,8 @@ Calling the `login()` function from your app should now switch to the Facebook a
 ## Kitchensink Example
 
 You can see a more robust example implementation in the [Steroids Kitchensink app][kitchensink] – just make sure to replace the Facebook App ID in `app/controllers/facebook.coffee` with your Facebook App ID.
+
+[custom-plugin-config]: /steroids/guides/cloud_services/plugin-config/
+[plugman]: https://github.com/apache/cordova-plugman
+[ios-build-config]: /steroids/guides/cloud_services/ios-build-config/
+[kitchensink]: https://github.com/appgyver/kitchensink/
