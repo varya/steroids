@@ -24,6 +24,8 @@ Then, in the Build Service's **Configure iOS/Android Build Settings** page for y
 ]
 {% endhighlight %}
 
+If your plugin repo is private, please see [the section below](#private_repository_in_github).
+
 **Note:** Steroids currently uses Cordova 2.7.0. This means that Cordova 3.0.0 core plugins are included by default, so you don't need to include e.g. the [Vibration Plugin](https://github.com/apache/cordova-plugin-vibration) to use the Vibration API – in fact, including any of the core plugins will cause your build to fail. The same applies to other plugins installed by default such as the [SQLite Plugin](https://github.com/lite4cordova/Cordova-SQLitePlugin): you can see a list in a new project's `www/config.ios.xml` and `config.android.xml`.
 
 Our Build Service uses the [plugman](https://github.com/apache/cordova-plugman) tool for adding plugins to your custom builds, so your plugin repo must adhere to Cordova's [plugin.xml][plugin-xml-spec] specification, for the platforms you want to target.
@@ -57,6 +59,28 @@ Please note that you need to manually include your plugin in your Steroids proje
   <plugin name="Echo" value="com.appgyver.plugin.Echo" />
 </plugins>
 {% endhighlight %}
+
+## Private repository in Github
+
+You will need:
+* Restricted account for your plugin
+* Personal access token
+* Url to your plugin’s repository
+
+If your plugin’s repository is not public, you need to provide build service with credentials.
+Create a personal access token from *My account* > *Applications*.
+ 
+**Please note:** A GitHub personal access token has full access to its account. This may pose a security risk since it grants anyone with the token full access to all its repositories. We recommend that you set up a restricted account which has a read-only access only to the repository of the plugin.
+
+Once you have created the restricted account and the token, you can supply them along with the repository url. The format is the standard HTTP Basic Auth location string. For example with *myAccount* and *myToken*, the the complete plugin url would be:
+
+{% highlight json %}
+[
+{"source":"https://myAccount:myToken@github.com/myAccount/awesome-plugin.git"}
+]
+{% endhighlight %}
+
+Ensure that you did not supply any extra whitespace characters while copypasting the token.
 
 ## Known issues
 
