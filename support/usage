@@ -99,7 +99,7 @@
 
   #bold[update]
 
-    Updates your bower components as defined in config/bower.json
+    Updates your bower components as defined in bower.json (in your project root).
 
     Equal to running #bold[bower install] in your project directory. If you wish to use bower more, see installation instructions at: https://github.com/twitter/bower
 
