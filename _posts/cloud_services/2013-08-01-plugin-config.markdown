@@ -61,3 +61,8 @@ Please note that you need to manually include your plugin in your Steroids proje
 ## Known issues
 
 On iOS, our plugins currently require [ARC support](https://developer.apple.com/library/ios/releasenotes/ObjectiveC/RN-TransitioningToARC/Introduction/Introduction.html), so make sure the code compiles using ARC.
+
+[android-build-config]: /steroids/guides/cloud_services/android-build-config/
+[ios-build-config]: /steroids/guides/cloud_services/ios-build-config/
+[developing-custom-plugins]: /steroids/guides/phonegap_on_steroids/developing-custom-plugins/
+
