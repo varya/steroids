@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Debugging with Android Dev Tools"
-date:   2013-05-21 13:51:34
+title:  "Android Dev Tools"
+date:   2013-05-23 13:51:34
 categories: debugging
 platforms: Android
 ---

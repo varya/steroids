@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Debugging with the Safari Web Inspector"
-date:   2013-05-21 13:51:34
+title:  "Safari Web Inspector: iOS"
+date:   2013-05-24 13:51:34
 categories: debugging
 platforms: iOS
 ---

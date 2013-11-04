@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Building your app for Android"
-date:   2013-05-21 13:51:34
+title:  "Android"
+date:   2013-05-23 13:51:34
 categories: cloud_services
 platforms: Android
 ---

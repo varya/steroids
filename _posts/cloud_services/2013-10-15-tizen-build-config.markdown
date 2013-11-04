@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Building your app for Tizen"
+title:  "Tizen"
 date:   2013-05-21 13:51:34
 categories: cloud_services
 platforms: Tizen

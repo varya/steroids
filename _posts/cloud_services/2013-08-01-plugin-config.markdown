@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Configuring custom plugins for your app"
-date:   2013-05-21 13:51:34
+title:  "Custom plugins for your app"
+date:   2013-05-22 13:51:34
 categories: cloud_services
 platforms: Android, iOS
 ---

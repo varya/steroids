@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Debugging with Weinre"
-date:   2013-05-21 13:51:34
+title:  "Weinre: Multi-platform"
+date:   2013-05-22 13:51:34
 categories: debugging
 platforms: iOS, Android
 ---
