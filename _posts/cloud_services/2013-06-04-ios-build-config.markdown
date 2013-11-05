@@ -127,9 +127,9 @@ On the top row, you have to:
 * Enter your `.p12` certificate file password (the one you set up when you exported it from Keychain Access).
 * Configure your [custom plugins][custom-plugin-config].
 
-The Scanner Build is a special build of your application intended for development with the Steroids npm. It allows you to create a Scanner app that includes the custom plugins defined in the plugins field. As such, a Scanner Build doesn't show your actual application, but rather lets you scan a QR code to connect to a computer running the Steroids server. It's a good idea to create a separate `.mobileprovision` file and App/Bundle ID for your Scanner Build.
+The Scanner Build is a special build of your application intended for development with the Steroids CLI. It allows you to create a Scanner app that includes the custom plugins defined in the plugins field. As such, a Scanner Build doesn't show your actual application, but rather lets you scan a QR code to connect to a computer running the Steroids server. It's a good idea to create a separate `.mobileprovision` file and App/Bundle ID for your Scanner Build.
 
-Note that there's a known issue where Steroids npm checks for the version number of custom-built Scanner apps also. To ensure that Steroids npm lets you connect, make sure your Scanner app's semantic Version number is higher than 2.7.0.
+Note that there's a known issue where Steroids CLI checks for the version number of custom-built Scanner apps also. To ensure that Steroids CLI lets you connect, make sure your Scanner app's semantic Version number is higher than 2.7.0.
 
 Then, you have to:
 

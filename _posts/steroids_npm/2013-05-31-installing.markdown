@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Installing the Steroids npm package"
+title:  "Installing the Steroids CLI package"
 date:   2013-05-27 13:51:34
 categories: steroids_npm
 platforms: iOS, Android
@@ -69,9 +69,9 @@ $ nvm alias default 0.10
 
 Alternatively, if you don't want to use NVM, you can install Node.js and npm package management from [nodejs.org][nodejs]. This has several downsides, including having to use `sudo` with global npm installs and updates. Steroids officially supports only NVM-based Node.js installations on OS X and Linux
 
-## Installing the Steroids npm package
+## Installing the Steroids CLI package
 
-You'll want to use the `steroids` command globally, so you should install Steroids npm with the `-g` option:
+You'll want to use the `steroids` command globally, so you should install Steroids CLI with the `-g` option:
 
 <pre class="terminal">
 $ npm install steroids -g
@@ -83,7 +83,7 @@ npm might give you a few alerts about some third party libraries. This doesn't a
 
 <em><strong>NOTE:</strong> if you are updating Steroids after changing your Node.js version, you should use `$ npm install steroids -g` instead of `update`. If you run into any issues, running `$ npm uninstall steroids -g` and re-installing should fix most problems. Let us know on the [forums][forums] if you are still having problems.</em>
 
-The Steroids npm checks for updates automatically when it is run, and will let you know when a new version is out. Remember to use the global `-g` option also when updating:
+The Steroids CLI checks for updates automatically when it is run, and will let you know when a new version is out. Remember to use the global `-g` option also when updating:
 
 <pre class="terminal">
 $ npm update steroids -g

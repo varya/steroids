@@ -30,7 +30,7 @@ Steroids.js has currently very limited support on Tizen. `steroids.layers.push`,
 
 ## Load Cordova
 
-The `cordova.tizen.js` file is included to the root of the `dist/` folder automatically by Steroids npm when using `$ steroids connect --serve`. The regular way of loading Cordova via localhost is not supported, so change your Cordova script tag to
+The `cordova.tizen.js` file is included to the root of the `dist/` folder automatically by Steroids CLI when using `$ steroids connect --serve`. The regular way of loading Cordova via localhost is not supported, so change your Cordova script tag to
 
 {% highlight html %}
 <script src="cordova.tizen.js"></script>

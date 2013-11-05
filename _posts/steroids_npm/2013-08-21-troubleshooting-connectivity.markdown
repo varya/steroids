@@ -52,7 +52,7 @@ Take a look at the URL in the QR code web page opened by `$ steroids connect`. D
 http://127.0.0.1:4567/__appgyver/connect/qrcode.html?qrCodeData=appgyver%3A%2F%2F%3Fips%3D%255B%252<YOUR_IP_ADDRESS>%2522%255D%26port%3D4567
 ```
 
-There's a known issue where Steroids npm sometimes adds `127.0.0.1` to the IPs array, so that there's e.g.
+There's a known issue where Steroids CLI sometimes adds `127.0.0.1` to the IPs array, so that there's e.g.
 
 ```
 127.0.0.1%2522%252C%2522192.168.1.156

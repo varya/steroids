@@ -6,7 +6,7 @@ categories: steroids_npm
 platforms: Android, iOS
 ---
 
-Starting with version 2.7.26 of Steroids npm, new Steroids projects include `.cordova` and `platforms` folders. This enables you to use the [Cordova CLI](https://github.com/apache/cordova-cli) in your Steroids project folder to create, build and run native Xcode/Eclipse Cordova projects that use your `www` folder for the HTML5 content.
+Starting with version 2.7.26 of Steroids CLI, new Steroids projects include `.cordova` and `platforms` folders. This enables you to use the [Cordova CLI](https://github.com/apache/cordova-cli) in your Steroids project folder to create, build and run native Xcode/Eclipse Cordova projects that use your `www` folder for the HTML5 content.
 
 **The support is currently limited** – you cannot run your Steroids app properly via Xcode or Eclipse, since Steroids.js features are not available in the vanilla Cordova runtime, the `www` folder is copied over instead of `dist` and so on. The main use case currently is to facilitate [custom plugin development][developing-custom-plugins] – you don't have to create a whole separate Cordova project. We will be improving the integration as we go along.
 
@@ -18,7 +18,7 @@ More detailed insturctions and troubleshooting advice are available in the [Cord
 $ npm install cordova -g
 {% endhighlight %}
 
-Then, simply go to your Steroids project folder (make sure it's one you've created with Steroids npm v2.7.26 or newer) add your platform (requires Xcode and Eclipse to be set up properly – see the [Cordova CLI readme](https://github.com/apache/cordova-cli/blob/master/README.md) for troubleshooting):
+Then, simply go to your Steroids project folder (make sure it's one you've created with Steroids CLI v2.7.26 or newer) add your platform (requires Xcode and Eclipse to be set up properly – see the [Cordova CLI readme](https://github.com/apache/cordova-cli/blob/master/README.md) for troubleshooting):
 
 {% highlight bash %}
 $ cordova platform add ios

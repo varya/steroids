@@ -8,9 +8,9 @@ platforms: iOS, Android
 
 This guide explains how to keep all components in the Steroids platform up-to-date. For maximum compatibility
 
-##Updating the Steroids npm
+##Updating the Steroids CLI
 
-To update the Steroids npm, run this in a Terminal window:
+To update the Steroids CLI, run this in a Terminal window:
 
 <pre class="terminal">
 $ npm update steroids -g
@@ -20,11 +20,11 @@ This will check for the latest version and update it if needed. The `-g` option 
 
 *If you are running a non-NVM-installed version of Node.js and npm, you'll probably need to write `$ sudo npm update steroids -g` for the update to run correctly.*
 
-The Steroids npm keeps its integrated iOS Simulator app automatically updated to the latest version.
+The Steroids CLI keeps its integrated iOS Simulator app automatically updated to the latest version.
 
 ##Updating Steroids.js in your project
 
-To update your project's Steroids.js to the latest version, update the Steroids npm first. After this, go to your project folder and run:
+To update your project's Steroids.js to the latest version, update the Steroids CLI first. After this, go to your project folder and run:
 
 <pre class="terminal">
 $ steroids update
@@ -32,7 +32,7 @@ $ steroids update
 
 This will update Steroids.js and other libraries according to your project's `config/bower.json` component dependency list.
 
-Note that the `config/application.coffee` file cannot be updated automatically for existing projects. If a Steroids npm update introduces new properties to `config/application.coffee` (mentioned in the release notes), they will need to be copied over from a fresh project.
+Note that the `config/application.coffee` file cannot be updated automatically for existing projects. If a Steroids CLI update introduces new properties to `config/application.coffee` (mentioned in the release notes), they will need to be copied over from a fresh project.
 
 ##Updating AppGyver Scanner
 

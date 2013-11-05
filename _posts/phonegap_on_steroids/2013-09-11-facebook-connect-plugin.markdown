@@ -34,7 +34,7 @@ You only need a Scanner build for now, so set that up. Make sure your Scanner ap
 
 Then, the part why you need a custom-built Scanner app: set the **Facebook URL Protocol** field to match your Facebook App ID – numbers only, e.g. `123412341234`
 
-*Note: also make sure your Scanner app's version is e.g. `2.7.8` (there's currently a bug in Steroids npm where the version number of custom-built Scanner apps is checked for validity, when the check should only be made for the store-downloaded Scanner app – we're working on fixing that).*
+*Note: also make sure your Scanner app's version is e.g. `2.7.8` (there's currently a bug in Steroids CLI where the version number of custom-built Scanner apps is checked for validity, when the check should only be made for the store-downloaded Scanner app – we're working on fixing that).*
 
 Finally, request a Scanner build, download it and install it on your device. (The Facebook Plugin is not usable via the Simulator at the moment.)
 
@@ -42,7 +42,7 @@ Finally, request a Scanner build, download it and install it on your device. (Th
 
 Download the necessary [JavaScript files](https://github.com/AppGyver/steroids-plugins/tree/master/FacebookConnect/www/) file and add them to your Steroids project, in e.g. the `www/plugins/` directory. Both files are needed. Add `<script>` tags to load the JS files.
 
-The correct `<plugin>` tag is included by default in `www/config.ios.xml`, but if your project was created with an older version of Steroids npm, ensure that it is correct:
+The correct `<plugin>` tag is included by default in `www/config.ios.xml`, but if your project was created with an older version of Steroids CLI, ensure that it is correct:
 
 {% highlight xml %}
 <plugin name="org.apache.cordova.facebook.Connect" value="FacebookConnectPlugin" />
