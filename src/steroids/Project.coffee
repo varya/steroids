@@ -90,7 +90,7 @@ class Project
       stderr: true
 
     gruntSbawn.on "exit", () =>
-      if gruntSbawn.code == 137
+      if gruntSbawn.code == 0
         options.onSuccess.call() if options.onSuccess?
       else
         steroidsCli.debug "grunt spawn exited with code #{gruntSbawn.code}"

@@ -56,11 +56,12 @@ class Prompt
 
         when "d", "debug"
           SafariDebug = require "./SafariDebug"
-          safariDebug = new SafariDebug
+          safariDebug = new SafariDebug => @connectLoop()
           if commandOptions[0]?
             safariDebug.open(commandOptions[0])
           else
             safariDebug.listViews()
+          return # Exit now and later let the callback passed to SafarDebug's constructor re-enter the loop once its methods exit.
 
         when "s", "sim", "simulator"
 
