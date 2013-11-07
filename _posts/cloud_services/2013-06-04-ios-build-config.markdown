@@ -139,8 +139,8 @@ Then, you have to:
 * Enter your Facebook App ID (if using the Facebook Connect plugin)
 * Entery your Urban Airship App Key / Secret (if using the Urban Airship plugin)
 
-.
-* Upload the different size icons for your app.
+
+* Upload the different size icons for your app. **NOTE: You need to upload custom app icons for all icon sizes to be able to build for App Store. This is to ensure that apps in App Store do not have the default Steroids icon anywhere.**
 * Upload the different size splashscreens for your app.
 
 After you're done, click Update Settings. Then, you can use the Build an Ad Hoc build and Build for App Store buttons on the Build for Distribution tab to request a new build of your app.
