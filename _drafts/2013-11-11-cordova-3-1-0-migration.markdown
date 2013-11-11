@@ -6,10 +6,10 @@ categories: steroids-js
 platforms: iOS, Android
 ---
 
-Migration to Cordova 3.1.0 will bring about some changes. First, all the plugins are now configured only via Build Service. Please note that the Cordova core features are now considered as plugins as well. However, they all are included by default in Scanner, so you just need to choose, which ones you want in your project via Build Service. In addition to the COrdova core features the following plugins are included by default in Scanner:
-* [BarcodeScanner](https://github.com/wildabeast/BarcodeScanner)
-* [SQLite](link-to-repo)
-* [Google Analytics](link-to-repo)
+Migration to Cordova 3.1.0 will bring about some changes. First, all the plugins are now configured only via Build Service. Please note that the Cordova core features (please see [the documentation](http://docs.appgyver.com/)) for the complete list of features) are now considered as plugins as well. However, they all are included by default in Scanner, so you just need to choose, which ones you want in your project via Build Service. In addition to the COrdova core features the following plugins are included by default in Scanner:
+* [BarcodeScanner] (https://github.com/AppGyver/BarcodeScanner.git)
+* [SQLite](https://github.com/lite4cordova/Cordova-SQLitePlugin.git)
+* [Google Analytics](https://github.com/AppGyver/GAPlugin.git)
 
 
 Second, the `config.ios.xml´ and `config.android.xml` have been changed. To make the necesssary changes to your existing projects, we recommend that you copy the new versions from a fresh Steroids project.
