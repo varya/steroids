@@ -63,7 +63,7 @@ steroids.config.tabBar.enabled = true
 
 *Default:* `[]`
 
-An array of tab objects that specifies the tabs shown in the app's native tab bar. Requires `steroids.config.tabBar.enabled` to be `true`
+An array of tab objects that specifies the tabs shown in the app's native tab bar. Requires `steroids.config.tabBar.enabled` to be `true`. You can add up to five tab objects.
 
 A tab object contains the following proporties:
 
