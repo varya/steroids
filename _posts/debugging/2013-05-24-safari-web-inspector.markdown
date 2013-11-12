@@ -18,7 +18,7 @@ Even so, the Safari Web Inspector is the only fully functional Web Inspector too
 
 *iOS7 requires your Safari to be updated to version 6.1 or later.* Version 6.1 is currently unreleased to the public, so you need to download it from [developer.apple.com](https://developer.apple.com/devcenter/mac/index.action#downloads) You'll need to restart your computer after updating Safari for the Web Inspector to work.
 
-To get started, open your Steroids app in the iOS Simulator by typing `simulator` in the Steroids console (or `$ steroids simulator` in another Terminal window).
+To get started, open your Steroids app in the iOS Simulator by typing `simulator` in the Steroids console (or `$ steroids simulator` in another Terminal window). Please note that `$ steroids connect` needs to be running when calling `simulator` or `$ steroids simulator`. Otherwise the autoconnect fails giving a connection error. 
 
 Next, enable Safari's developer tools. Open Safari's preferences by selecting *Safari* > *Preferences* from the top menu, go to the Advanced tab and check the Show Developer menu checkbox.
 
