@@ -1,4 +1,9 @@
-## 2.7.38 (TODO)
+## 2.7.38 (2013-11-15)
+
+New steroids.js, Barcode Scanner plugin inclusion fixed.
+
+Changes:
+  - Default project's `steroids.js` file updated to v2.7.11
 
 Bugfixes:
   - Fixed default plugin tag for Barcode Scanner in new projects' `www/config.ios.xml`.
