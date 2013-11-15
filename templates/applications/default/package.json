@@ -8,6 +8,6 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "grunt-steroids": "0.x"
+    "grunt-steroids": "git+ssh://git@github.com/AppGyver/grunt-steroids.git"
   }
 }
