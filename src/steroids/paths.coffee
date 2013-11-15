@@ -12,6 +12,7 @@ class Paths
     applications: path.join @templatesDir, "applications"
     resources: path.join @templatesDir, "resources"
     scaffolds: path.join @templatesDir, "scaffolds"
+    gruntfile: path.join @templatesDir, "applications", "default", "Gruntfile.js"
 
   @grunt:
     library: path.join @npm, "node_modules", "grunt", "lib", "grunt"
@@ -61,6 +62,7 @@ class Paths
     application: path.join @application.configDir, "application.coffee"
     cloud: path.join @application.configDir, "cloud.json"
     bower: path.join @applicationDir, "bower.json"
+    grunt: path.join @applicationDir, "Gruntfile.js"
     legacy:
       bower: path.join @application.configDir, "bower.json"
 

@@ -17,8 +17,21 @@ class Bower
           stdout: true
           stderr: true
 
+      upgradeGruntfile ->
+        console.log "Ok, existing Gruntfile.js found, not doing upgrade."
+
   configs = paths.application.configs
   myProjectFolder = path.join paths.application.wwwDir, "components", "myProject"
+
+  upgradeGruntfile = (done) ->
+    checkGruntfile (gruntfileExists) ->
+      if gruntfileExists
+        done()
+      else
+        console.log "Steroids nowdays provides the developer with control to Gruntfile.js."
+        console.log "Creating new Gruntfile.js from Steroids template."
+        fs.writeFileSync(paths.application.configs.grunt, fs.readFileSync(paths.templates.gruntfile))
+
 
   ensureMyProjectNotPresent = (done) ->
     checkMyProjectFolder (present) ->
@@ -32,7 +45,7 @@ class Bower
               done()
           else
             declareMyProjectBroken()
-  
+
   ensureConfigurationExists = (done) ->
     checkConfiguration (isConfigured) ->
       if isConfigured
@@ -57,6 +70,7 @@ class Bower
   deleteMyProjectFolder = (done) -> rimraf myProjectFolder, done
 
   checkConfiguration = (cb) -> fs.exists configs.bower, cb
+  checkGruntfile = (cb) -> fs.exists paths.application.configs.grunt, cb
   checkLegacyConfiguration = (cb) -> fs.exists configs.legacy.bower, cb
   migrateLegacyConfiguration = (cb) -> fs.rename configs.legacy.bower, configs.bower, cb
 
