@@ -29,7 +29,7 @@
 
 <p>In addition, this page is served from <strong>http://localhost</strong> (instead of via the <strong>file://</strong> protocol), which is part of our secret sauce. You can still use the <strong>file://</strong> protocol (that allows e.g. easy cross-domain AJAX) by just specifying the file without the <strong>http://localhost/</strong> prefix (we've done this for the <strong>Welcome</strong> tab).</p>
 
-<p>One instant benefit of localhost is that if you look at the <strong><small>app/views/layouts/steroidsTutorial.html</small></strong> file, you'll notice that we don't have to use explicit relative paths. We can always use <strong>/stylesheets/applcation.css</strong> instead of <strong>../../stylesheets/application.css</strong>. The same applies for images and other assets.</p>
+<p>One instant benefit of localhost is that if you look at the <strong><small>app/views/layouts/steroidsTutorial.html</small></strong> file, you'll notice that we don't have to use explicit relative paths. We can always use <strong>/stylesheets/application.css</strong> instead of <strong>../../stylesheets/application.css</strong>. The same applies for images and other assets.</p>
 
 <p>We can also tell that you are currently viewing this document on an <em>Android device</em>. How do we know?</p>
 
