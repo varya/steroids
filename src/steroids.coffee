@@ -385,10 +385,13 @@ class Steroids
           from: "update"
 
         Bower = require "./steroids/Bower"
-
         bower = new Bower
-
         bower.update()
+
+        ApplicationConfigUpdater = require "./steroids/ApplicationConfigUpdater"
+        applicationConfigUpdater = new ApplicationConfigUpdater
+        applicationConfigUpdater.update()
+
 
       when "generate"
         [generatorType, generatorArgs...] = otherOptions

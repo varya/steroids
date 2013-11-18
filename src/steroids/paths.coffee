@@ -58,6 +58,7 @@ class Paths
     configDir: path.join @applicationDir, "config"
     distDir: path.join @applicationDir, "dist"
     wwwDir: path.join @applicationDir, "www"
+    steroidsTasksString: "grunt.loadNpmTasks('grunt-steroids-defaults');"
 
   @application.configs =
     application: path.join @application.configDir, "application.coffee"
