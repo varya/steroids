@@ -26,13 +26,15 @@ Then, in the Build Service's **Configure iOS/Android Build Settings** page for y
 
 If your plugin repo is private, please see [the section below](#private_repository_in_github).
 
-Once you have added your custom plugins in the Build Service's **Configure iOS/Android Build Settings** page, these plugins will be included in all types of builds. So, in addition to the Scanner builds, your custom plugins configurated in the Build Service will be included in Ad Hoc builds and App Store/Google Play builds as well.   
+Once you have added your custom plugins in the Build Service's **Configure iOS/Android Build Settings** page, these plugins will be included in all types of builds. So, in addition to the Scanner builds, your custom plugins configurated in the Build Service will be included in Ad Hoc builds and App Store/Google Play builds as well.
 
 **Note:** Steroids currently uses Cordova 2.7.0. This means that the Cordova core features are included by default, so you don't need to include e.g. the [Vibration Plugin](https://github.com/apache/cordova-plugin-vibration) to use the Vibration API – in fact, including any of the core plugins will cause your build to fail. The same applies to other plugins installed by default such as the [SQLite Plugin](https://github.com/lite4cordova/Cordova-SQLitePlugin): you can see a complete list in a new project's `www/config.ios.xml` and `config.android.xml`.
 
 Our Build Service uses the [plugman](https://github.com/apache/cordova-plugman) tool for adding plugins to your custom builds, so your plugin repo must adhere to Cordova's [plugin.xml][plugin-xml-spec] specification, for the platforms you want to target.
 
 **Note that you need to include and load the JavaScript file that loads the plugin (e.g. `EmailComposer.js`) manually in your project – the `<asset>` tag in `plugin.xml` is not supported. The JavaScript file should be available in the `www` folder in the plugin repository.**
+
+**There's an additional known issue with the `<asset>` tag and plugman: even though JavaScript files specified via the `<asset>` tag are not copied over automatically, plugman still checks to see if they exist in the project. Thus, you need to make sure that the paths to your local plugin JavaScript files (relative to `dist/`) are different from the ones specified in the `<asset>` tag of `plugin.xml`.**
 
 Certain plugins require you to pass variables to plugman. You can give these as a property of the individual plugin object:
 
@@ -71,7 +73,7 @@ You will need:
 
 If your plugin’s repository is not public, you need to provide build service with credentials.
 Create a personal access token from *My account* > *Applications*.
- 
+
 **Please note:** A GitHub personal access token has full access to its account. This may pose a security risk since it grants anyone with the token full access to all its repositories. We recommend that you set up a restricted account which has a read-only access only to the repository of the plugin.
 
 Once you have created the restricted account and the token, you can supply them along with the repository url. The format is the standard HTTP Basic Auth location string. For example with *myAccount* and *myToken*, the the complete plugin url would be:
