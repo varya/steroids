@@ -13,6 +13,10 @@ class Bower
     ensureConfigurationExists ->
 
       ensureMyProjectNotPresent ->
+        console.log "UPDATING BOWER DEPENDENCIES"
+        console.log "==========================="
+        console.log ""
+
         bowerRun = sbawn
           cmd: paths.bower
           args: ["update"]

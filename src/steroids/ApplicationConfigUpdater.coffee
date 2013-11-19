@@ -25,8 +25,12 @@ class ApplicationConfigUpdater extends events.EventEmitter
 
 
   updateNpmPackages: ->
-    console.log "Installing NPM dependencies."
-    console.log "N.B. Versionless modules package.json are NOT updated!"
+    console.log ""
+    console.log "INSTALLING NPM DEPENDENCIES"
+    console.log "==========================="
+    console.log ""
+    console.log "N.B. Versionless modules in package.json are NOT updated!"
+    console.log ""
 
     npmRun = sbawn
       cmd: "npm"
@@ -41,10 +45,13 @@ class ApplicationConfigUpdater extends events.EventEmitter
   upgradeGruntfile: ->
     @checkGruntfileExists (gruntfileExists) =>
       if gruntfileExists
-        console.log "Ok, existing Gruntfile.js found, not creating one."
 
         if !@gruntfileContainsSteroids()
-            console.log "PLEASE NOTE: To use Steroids tasks, include the following in your Gruntfile.js:"
+            console.log ""
+            console.log "EXISTING GRUNTFILE.JS FOUND"
+            console.log "==========================="
+            console.log ""
+            console.log "To use Steroids tasks, include the following in your Gruntfile.js:"
             console.log "   #{paths.application.steroidsTasksString}"
             console.log ""
             console.log "To get rid of this message without enabling Steroids tasks, include the above line"
@@ -52,7 +59,8 @@ class ApplicationConfigUpdater extends events.EventEmitter
             console.log ""
             promptUnderstood (understood) =>
               if !understood
-                console.log "You should read these confirmations. :)"
+                console.log "TL;DR You'll get this same nag again next time. :)"
+                console.log ""
 
               @emit "gruntfileUpgraded"
 
@@ -69,20 +77,26 @@ class ApplicationConfigUpdater extends events.EventEmitter
     @checkPackagejson (packagejsonExists) =>
       # TODO: Nag only if grunt-steroids not found
       if packagejsonExists
-        console.log ""
-        console.log "Existing package.json found, not touching it."
-        console.log "To use Steroids' Grunt tasks in your project, you need to issue the following command:"
-        console.log "  npm install grunt-steroids --save-dev"
-        console.log ""
-        promptRunCommand (agreed) =>
-          if agreed
-            @installGruntSteroids =>
-              console.log "Installed grunt-steroids."
+
+        if !@packagejsonContainsSteroids()
+          console.log ""
+          console.log "EXISTING PACKAGE.JSON FOUND"
+          console.log "==========================="
+          console.log ""
+          console.log "To install Steroids' Grunt dependencies in your project, issue the following command:"
+          console.log "  npm install grunt-steroids --save-dev"
+          console.log ""
+          promptRunCommand (agreed) =>
+            if agreed
+              @installGruntSteroids =>
+                console.log "Installed grunt-steroids."
+
+                @emit "packagejsonUpgraded"
+
+            else
+              console.log "Not installing grunt-steroids now. Plase run the command manually."
+
               @emit "packagejsonUpgraded"
-          else
-            console.log "Not installing grunt-steroids now. Plase run the command manually."
-            console.log ""
-            @emit "packagejsonUpgraded"
 
       else
         console.log "Creating new package.json from Steroids template."
@@ -110,6 +124,10 @@ class ApplicationConfigUpdater extends events.EventEmitter
     gruntfileData = fs.readFileSync paths.application.configs.grunt, 'utf-8'
     return gruntfileData.indexOf(paths.application.steroidsTasksString) > -1
 
+  packagejsonContainsSteroids: ->
+    packagejsonData = fs.readFileSync paths.application.configs.packagejson, 'utf-8'
+    return packagejsonData.indexOf(paths.application.steroidsTasksString) > -1
+
   prompt = (message) -> (done) ->
     inquirer.prompt [
         {
@@ -121,7 +139,7 @@ class ApplicationConfigUpdater extends events.EventEmitter
       ], (answers) ->
         done answers.userAgreed
 
-  promptUnderstood = prompt "I have read this."
+  promptUnderstood = prompt "I understand."
   promptRunCommand = prompt "Do you want to run this command now?"
 
 
