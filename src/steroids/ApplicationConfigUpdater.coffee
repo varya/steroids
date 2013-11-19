@@ -51,16 +51,31 @@ class ApplicationConfigUpdater extends events.EventEmitter
             console.log "EXISTING GRUNTFILE.JS FOUND"
             console.log "==========================="
             console.log ""
-            console.log "To use Steroids tasks, include the following in your Gruntfile.js:"
-            console.log "   #{paths.application.steroidsLoadTasksString}"
+            console.log "Breaking update ahead!"
+            console.log "Steroids now uses Gruntfile.js directly from the project root directory."
+            console.log "Since you already have a Gruntfile.js of your own, steroids update was unable"
+            console.log "to enable default tasks for steroids."
             console.log ""
-            console.log "To get rid of this message without enabling Steroids tasks, include the above line"
-            console.log "to your Gruntfile.js and comment it out."
+            console.log "MANUAL ACTION NEEDED:"
+            console.log ""
+            console.log "To use Steroids tasks, include both of the following lines in your Gruntfile.js:"
+            console.log "   #{paths.application.steroidsLoadTasksString}"
+            console.log "   grunt.registerTask('default', ['steroids-make', 'steroids-compile-sass']);"
+            console.log ""
+            console.log "To get rid of this message without enabling Steroids tasks, include the lines"
+            console.log "to your Gruntfile.js and comment them out."
+            console.log ""
+            console.log "See also: #TODO GUIDE_URL_HERE"
             console.log ""
             promptUnderstood (understood) =>
-              if !understood
-                console.log "TL;DR You'll get this same nag again next time. :)"
+              if understood != "I UNDERSTAND THIS"
                 console.log ""
+                console.log "ABORT!"
+                console.log "======"
+                console.log ""
+                console.log "Please read the instructions again."
+                console.log ""
+                process.exit 1
 
               @emit "gruntfileUpgraded"
 
@@ -68,7 +83,12 @@ class ApplicationConfigUpdater extends events.EventEmitter
           @emit "gruntfileUpgraded"
 
       else
+        console.log "NEW FEATURE"
+        console.log "==========="
+        console.log ""
         console.log "Creating new Gruntfile.js from Steroids template."
+        console.log "- You may now alter Steroids' Grunt tasks directly from your project's own Gruntfile.js."
+        console.log ""
         fs.writeFileSync(paths.application.configs.grunt, fs.readFileSync(paths.templates.gruntfile))
 
         @emit "gruntfileUpgraded"
@@ -132,7 +152,7 @@ class ApplicationConfigUpdater extends events.EventEmitter
     packagejsonData = fs.readFileSync paths.application.configs.packagejson, 'utf-8'
     return packagejsonData.indexOf(paths.application.steroidsPackagejsonString) > -1
 
-  prompt = (message) -> (done) ->
+  promptYesNo = (message) -> (done) ->
     inquirer.prompt [
         {
           type: "confirm"
@@ -143,8 +163,18 @@ class ApplicationConfigUpdater extends events.EventEmitter
       ], (answers) ->
         done answers.userAgreed
 
-  promptUnderstood = prompt "I understand."
-  promptRunCommand = prompt "Do you want to run this command now?"
+  promptInput = (message) -> (done) ->
+    inquirer.prompt [
+        {
+          type: "input"
+          name: "userAgreed"
+          message: message
+        }
+      ], (answers) ->
+        done answers.userAgreed
+
+  promptUnderstood = promptInput "Write here with uppercase letters: I UNDERSTAND THIS"
+  promptRunCommand = promptYesNo "Do you want to run this command now?"
 
 
 
