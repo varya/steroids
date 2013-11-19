@@ -6,6 +6,7 @@ pathExtra.tempdir()
 class Paths
 
   @npm: path.join __dirname, "..", ".."
+  @applicationDir: process.cwd()
 
   @templatesDir: path.join @npm, "templates"
   @templates:
@@ -17,7 +18,7 @@ class Paths
 
   @grunt:
     library: path.join @npm, "node_modules", "grunt", "lib", "grunt"
-    gruntFile: path.join @npm, "src", "steroids", "grunt", "grunt.js"
+    gruntFile: path.join @applicationDir, "Gruntfile.js"
 
   @bower: path.join @npm, "node_modules", "bower", "bin", "bower"
 
@@ -52,7 +53,6 @@ class Paths
       serve: path.join @bannersDir, "legacy-serve"
       debugweinre: path.join @bannersDir, "legacy-debugweinre"
 
-  @applicationDir: process.cwd()
   @application:
     appDir: path.join @applicationDir, "app"
     configDir: path.join @applicationDir, "config"
