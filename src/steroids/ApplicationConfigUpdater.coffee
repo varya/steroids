@@ -52,7 +52,7 @@ class ApplicationConfigUpdater extends events.EventEmitter
             console.log "==========================="
             console.log ""
             console.log "To use Steroids tasks, include the following in your Gruntfile.js:"
-            console.log "   #{paths.application.steroidsTasksString}"
+            console.log "   #{paths.application.steroidsLoadTasksString}"
             console.log ""
             console.log "To get rid of this message without enabling Steroids tasks, include the above line"
             console.log "to your Gruntfile.js and comment it out."
@@ -75,10 +75,12 @@ class ApplicationConfigUpdater extends events.EventEmitter
 
   upgradePackagejson: ->
     @checkPackagejson (packagejsonExists) =>
-      # TODO: Nag only if grunt-steroids not found
       if packagejsonExists
 
-        if !@packagejsonContainsSteroids()
+        if @packagejsonContainsSteroids()
+          @emit "packagejsonUpgraded"
+
+        else
           console.log ""
           console.log "EXISTING PACKAGE.JSON FOUND"
           console.log "==========================="
@@ -107,7 +109,9 @@ class ApplicationConfigUpdater extends events.EventEmitter
   installGruntSteroids: (done) ->
     gruntRun = sbawn
       cmd: "npm"
-      args: ["install", "grunt-steroids", "--save-dev"]
+      # TODO: Change this after grunt-steroids is published
+      #args: ["install", "grunt-steroids", "--save-dev"]
+      args: ["install", "git+ssh://git@github.com/AppGyver/grunt-steroids.git", "--save-dev"]
       stdout: true
       stderr: true
 
@@ -122,11 +126,11 @@ class ApplicationConfigUpdater extends events.EventEmitter
 
   gruntfileContainsSteroids: ->
     gruntfileData = fs.readFileSync paths.application.configs.grunt, 'utf-8'
-    return gruntfileData.indexOf(paths.application.steroidsTasksString) > -1
+    return gruntfileData.indexOf(paths.application.steroidsLoadTasksString) > -1
 
   packagejsonContainsSteroids: ->
     packagejsonData = fs.readFileSync paths.application.configs.packagejson, 'utf-8'
-    return packagejsonData.indexOf(paths.application.steroidsTasksString) > -1
+    return packagejsonData.indexOf(paths.application.steroidsPackagejsonString) > -1
 
   prompt = (message) -> (done) ->
     inquirer.prompt [
