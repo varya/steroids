@@ -6,6 +6,7 @@ Login = require "./Login"
 
 semver = require "semver"
 
+Q = require "q"
 
 class Updater
 
@@ -61,6 +62,7 @@ class Updater
         simulator: simulator
 
   check: (opts={})=>
+    deferred = Q.defer()
 
     currentUserId = @getCurrentUserId()
 
@@ -76,13 +78,19 @@ class Updater
 
       versionGood = semver.satisfies(semver.clean(currentVersion), ">=#{latestVersion}")
 
-      return if versionGood
+      if versionGood
+        deferred.resolve()
+        return
 
       if latestVersion == currentVersion
         console.log "Running latest version of Steroids NPM (#{currentVersion})" if @options.verbose
+        deferred.resolve()
         return
 
       Help.newVersionAvailable(latestVersion)
+      deferred.resolve()
+
+    return deferred.promise
 
 
 module.exports = Updater

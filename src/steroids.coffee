@@ -381,17 +381,17 @@ class Steroids
         updater = new Updater
           verbose: true
 
-        updater.check
+        updater.check(
           from: "update"
-
-        Bower = require "./steroids/Bower"
-        bower = new Bower
-        bower.update()
-
-        ApplicationConfigUpdater = require "./steroids/ApplicationConfigUpdater"
-        applicationConfigUpdater = new ApplicationConfigUpdater
-        applicationConfigUpdater.update()
-
+        ).then( ->
+            ApplicationConfigUpdater = require "./steroids/ApplicationConfigUpdater"
+            applicationConfigUpdater = new ApplicationConfigUpdater
+            applicationConfigUpdater.update()
+        ).then( ->
+            Bower = require "./steroids/Bower"
+            bower = new Bower
+            bower.update()
+        )
 
       when "generate"
         [generatorType, generatorArgs...] = otherOptions

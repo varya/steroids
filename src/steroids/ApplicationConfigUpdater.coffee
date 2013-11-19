@@ -7,19 +7,22 @@ paths = require "./paths"
 sbawn = require "./sbawn"
 
 events = require "events"
+Q = require "q"
 
 class ApplicationConfigUpdater extends events.EventEmitter
 
   update: ->
+    deferred = Q.defer()
+
     @on "applicationStart", @upgradeGruntfile
     @on "gruntfileUpgraded", @upgradePackagejson
     @on "packagejsonUpgraded", @updateNpmPackages
-    @on "npmPackagedUpdated", @finally
+    @on "npmPackagesUpdated", deferred.resolve
 
     @emit "applicationStart"
 
-  finally: ->
-    console.log "ALL DONE!"
+    return deferred.promise
+
 
   updateNpmPackages: ->
     console.log "Installing NPM dependencies."
@@ -30,6 +33,10 @@ class ApplicationConfigUpdater extends events.EventEmitter
       args: ["install"]
       stdout: true
       stderr: true
+
+    npmRun.on "exit", =>
+      @emit "npmPackagesUpdated"
+
 
   upgradeGruntfile: ->
     @checkGruntfileExists (gruntfileExists) =>
@@ -50,9 +57,7 @@ class ApplicationConfigUpdater extends events.EventEmitter
               @emit "gruntfileUpgraded"
 
         else
-          console.log "CONTAINS STEROIDS JEE"
           @emit "gruntfileUpgraded"
-
 
       else
         console.log "Creating new Gruntfile.js from Steroids template."
@@ -62,6 +67,7 @@ class ApplicationConfigUpdater extends events.EventEmitter
 
   upgradePackagejson: ->
     @checkPackagejson (packagejsonExists) =>
+      # TODO: Nag only if grunt-steroids not found
       if packagejsonExists
         console.log ""
         console.log "Existing package.json found, not touching it."
@@ -90,6 +96,9 @@ class ApplicationConfigUpdater extends events.EventEmitter
       args: ["install", "grunt-steroids", "--save-dev"]
       stdout: true
       stderr: true
+
+    gruntRun.on "exit", done
+
 
   checkPackagejson: (cb) ->
     fs.exists paths.application.configs.packagejson, cb

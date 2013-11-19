@@ -13,7 +13,6 @@ class Bower
     ensureConfigurationExists ->
 
       ensureMyProjectNotPresent ->
-        console.log "Installing NPM Dependencies from package.json"
         bowerRun = sbawn
           cmd: paths.bower
           args: ["update"]
