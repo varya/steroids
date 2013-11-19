@@ -1,5 +1,5 @@
 /*
- * grunt-steroids-defaults
+ * grunt-steroids
  * http://www.appgyver.com
  *
  * Licensed under the MIT license.
