@@ -25,6 +25,10 @@
     {
       "name": "Michael Klement",
       "email": "mklement0@gmail.com"
+    },
+    {
+      "name": "Petrus Repo",
+      "email": "petrus.repo@appgyver.com"
     }
   ],
   "main": "./src/main.js",
