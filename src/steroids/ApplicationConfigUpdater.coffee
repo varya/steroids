@@ -116,7 +116,12 @@ class ApplicationConfigUpdater extends events.EventEmitter
                 @emit "packagejsonUpgraded"
 
             else
-              console.log "Not installing grunt-steroids now. Plase run the command manually."
+              console.log ""
+              console.log "ABORT!"
+              console.log "======"
+              console.log ""
+              console.log "Please install grunt-steroids manually or run steroids update again."
+              process.exit 1
 
               @emit "packagejsonUpgraded"
 
