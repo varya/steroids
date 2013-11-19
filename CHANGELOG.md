@@ -1,3 +1,9 @@
+## TODO
+
+Expose Gruntfile.json to the project root.
+Modularized Steroids Grunt tasks provided in grunt-steroids npm package.
+
+
 ## 2.7.38 (TODO)
 
 Bugfixes:
