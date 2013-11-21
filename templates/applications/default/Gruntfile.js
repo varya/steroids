@@ -1,5 +1,5 @@
 /*
- * grunt-steroids
+ * Default Gruntfile for AppGyver Steroids
  * http://www.appgyver.com
  *
  * Licensed under the MIT license.
@@ -9,10 +9,15 @@
 
 module.exports = function(grunt) {
 
-  // These plugins provide necessary tasks.
-  grunt.loadNpmTasks('grunt-steroids');
+  // Load all Grunt task modules in the project first, except for grunt-steroids
+  require('load-grunt-tasks')(grunt, {pattern: ['grunt-*', '!grunt-steroids']});
 
-  // By default, run Steroids make, then compile SASS files to dist/
-  grunt.registerTask('default', ['steroids-make', 'steroids-compile-sass']);
+  // User configs go here
+  grunt.initConfig();
+
+  // grunt-steroids must be loaded separately after grunt.initConfig()
+  grunt.loadNpmTasks("grunt-steroids");
+
+  grunt.registerTask("default", ["steroids-make", "steroids-compile-sass"]);
 
 };

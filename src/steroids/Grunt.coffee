@@ -12,7 +12,7 @@ class Grunt
 
     require(paths.grunt.library).tasks ["default"],
       gruntfile: paths.grunt.gruntFile
-      verbose: true
+      verbose: false
 
     # nothing gets executed here, the grunt steals the whole process somehow.
 

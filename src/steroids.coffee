@@ -379,7 +379,7 @@ class Steroids
 
       when "update"
         updater = new Updater
-          verbose: true
+          verbose: false
 
         updater.check(
           from: "update"

@@ -1,5 +1,7 @@
 sbawn = require "./sbawn"
 util = require "util"
+spawn = require('child_process').spawn
+paths = require "./paths"
 
 class Project
 
@@ -8,9 +10,32 @@ class Project
   initialize: (options={}) =>
     process.chdir(@options.folder)
 
-    @makeOnly
+    @installDependencies
       onSuccess: =>
-        @package(options.onSuccess)
+        @makeOnly
+          onSuccess: =>
+            @package(options.onSuccess)
+
+
+  installDependencies: (options={}) =>
+
+    installNpm = (done) ->
+      gruntRun = spawn "npm", ["install"], {stdio: "inherit"}
+        # cmd: "npm"
+        # args: ["install"]
+        # stdout: true
+        # stderr: true
+
+      gruntRun.on "exit", done
+
+    installBower = (done) ->
+      bowerRun = spawn paths.bower, ["update"], {stdio: "inherit"}
+
+      bowerRun.on "exit", done
+
+    installNpm ->
+      installBower ->
+        options.onSuccess?.call()
 
   push: (options = {}) =>
     steroidsCli.debug "Starting push"
