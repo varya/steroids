@@ -48,7 +48,7 @@ class Sbawned
         args = ["/c", "node", originalCmd].concat(args)
         @spawned = spawn @options.cmd, args, { cwd: @options.cwd, stdio: 'inherit' }
       else
-        @spawned = spawn @options.cmd, args, { cwd: @options.cwd }
+        @spawned = spawn @options.cmd, args, { cwd: @options.cwd, stdio: 'inherit' }
     catch e
       console.log "Failed to spawn a process, error: #{e.code}"
 
@@ -61,8 +61,8 @@ class Sbawned
 
     # windows spawn command inherits stdio from current process to get output working
     unless process.platform is "win32"
-      @spawned.stdout.on "data", @onStdoutData
-      @spawned.stderr.on "data", @onStderrData
+      process.stdout.on "data", @onStdoutData
+      process.stderr.on "data", @onStderrData
     @spawned.on "exit", @onExit
     @spawned.on "error", (err)=>
       console.log err

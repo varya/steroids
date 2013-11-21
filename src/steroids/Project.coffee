@@ -2,6 +2,7 @@ sbawn = require "./sbawn"
 util = require "util"
 spawn = require('child_process').spawn
 paths = require "./paths"
+chalk = require "chalk"
 
 class Project
 
@@ -12,24 +13,40 @@ class Project
 
     @installDependencies
       onSuccess: =>
-        @makeOnly
-          onSuccess: =>
-            @package(options.onSuccess)
+        @package(options.onSuccess)
 
 
   installDependencies: (options={}) =>
 
     installNpm = (done) ->
-      gruntRun = spawn "npm", ["install"], {stdio: "inherit"}
-        # cmd: "npm"
-        # args: ["install"]
-        # stdout: true
-        # stderr: true
+      console.log """
+        \n
+        #{chalk.red("INSTALLING NPM DEPENDENCIES")}
+        #{chalk.red("===========================")}
+        \n
+      """
+
+      gruntRun = sbawn
+        cmd: "npm"
+        args: ["install"]
+        stdout: true
+        stderr: true
 
       gruntRun.on "exit", done
 
     installBower = (done) ->
-      bowerRun = spawn paths.bower, ["update"], {stdio: "inherit"}
+      console.log """
+        \n
+        #{chalk.green("INSTALLING BOWER DEPENDENCIES")}
+        #{chalk.green("=============================")}
+        \n
+      """
+
+      bowerRun = sbawn
+        cmd: paths.bower
+        args: ["update"]
+        stdout: true
+        stderr: true
 
       bowerRun.on "exit", done
 

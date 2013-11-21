@@ -1,7 +1,8 @@
-## TODO
+## 2.7.39 (TODO)
 
-Expose Gruntfile.json to the project root.
-Modularized Steroids Grunt tasks provided in grunt-steroids npm package.
+- Expose Gruntfile.js to the project root.
+- Modularized Steroids Grunt tasks provided in grunt-steroids npm package.
+- Steroids now displays color correctly for spawned processes such as bower and npm
 
 
 ## 2.7.38 (TODO)
