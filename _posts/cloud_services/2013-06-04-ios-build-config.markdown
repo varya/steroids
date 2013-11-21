@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "iOS"
+title:  "iOS  Build Configuration"
 date:   2013-05-24 13:51:34
 categories: cloud_services
 platforms: iOS
@@ -19,9 +19,9 @@ To build iOS apps with the AppGyver Build Service, you need to create a `.p12` c
 
 Sign in with your Apple ID to [developer.apple.com][apple-dev]. Then, open the [Certificate listing][apple-certificate-list] under the iOS Dev Center.
 
-Click on the plus button in the upper right corner. Under the **Distribution** category, select the **App Store and Ad Hoc** option. Click **Continue** and follow the instructions on the screen about creating a Certificate Signing Request via Keychain Access, and uploading it to Apple.
+Click on the plus button in the upper right corner. Under the **Production** category, select the **App Store and Ad Hoc** option. Click **Continue** and follow the instructions on the screen about creating a Certificate Signing Request via Keychain Access, and uploading it to Apple.
 
-After you're done, it takes a couple of moments for Apple to generate the iOS Distribution Certificate for you. You can then find it under the Distribution category:
+After you're done, it takes a couple of moments for Apple to generate the iOS Distribution Certificate for you. You can then find it under the Production category:
 
 <img src="/steroids/images/ios_build/download_certificate.png">
 
@@ -29,7 +29,7 @@ Download the `.cer` file to your computer, and then double-click on it to add it
 
 Next, open Keychain Access and find your **iPhone Distribution certificate**. Expand it: it should have the private key that you generated with your Certificate Signing Request.
 
-<strong>Note: Make sure that you use a <em>Distribution</em> certificate, not a <em>Developer</em> certificate!</strong>
+<strong>Note: Make sure that you use a <em>Distribution</em> certificate, not a <em>Development</em> certificate!</strong>
 
 <img src="/steroids/images/ios_build/export_certificate.png">
 
