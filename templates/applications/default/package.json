@@ -2,13 +2,14 @@
   "name": "mySteroidsProject",
   "version": "0.1.0",
   "description": "My awesome AppGyver Steroids project.",
+  "repository": "N/A",
+  "readme":"README.md",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "grunt-steroids": "git+ssh://git@github.com/AppGyver/grunt-steroids.git",
-    "load-grunt-tasks": "0.2.0"
+    "grunt-steroids": "git+ssh://git@github.com/AppGyver/grunt-steroids.git"
   }
 }
