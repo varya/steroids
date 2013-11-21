@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Android"
+title:  "Android Build Configuration"
 date:   2013-05-23 13:51:34
 categories: cloud_services
 platforms: Android
