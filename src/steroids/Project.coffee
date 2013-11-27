@@ -105,9 +105,6 @@ class Project
     else
       steroidsCli.debug "Spawning Grunt"
 
-      gruntArgs = []
-      gruntArgs.push("--no-sass") if steroidsCli.options.argv.sass == false
-
       gruntSbawn = sbawn
         cmd: "grunt"
         args: []
