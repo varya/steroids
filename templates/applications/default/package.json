@@ -9,7 +9,7 @@
   },
   "author": "",
   "license": "MIT",
-  "dev-dependencies": {
+  "devDependencies": {
     "grunt-steroids": "git+ssh://git@github.com/AppGyver/grunt-steroids.git"
   }
 }

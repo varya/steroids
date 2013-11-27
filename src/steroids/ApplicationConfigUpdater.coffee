@@ -77,13 +77,15 @@ class ApplicationConfigUpdater extends events.EventEmitter
           #{chalk.green.bold("NEW FEATURE")}
           #{chalk.green.bold("===========")}
 
-          To build the #{chalk.bold("dist/")} folder, Steroids now uses a Gruntfile.js file directly from the
-          project root directory. The tasks are defined in the #{chalk.bold("grunt-steroids")} Grunt plugin.
+          To build the #{chalk.bold("dist/")} folder, Steroids now uses a Gruntfile.js file directly from the project
+          root directory. The tasks are defined in the #{chalk.bold("grunt-steroids")} Grunt plugin, installed as a
+          npm dependency.
 
-          We will now add the required Gruntfile.js to your project root from the default template. To read
-          more about the new Grunt setup, see:
+          To learn more about the new Grunt setup, see:
 
             #{chalk.underline("http://guides.appgyver.com/steroids/guides/steroids-js/gruntfile")}
+
+          We will now create the default #{chalk.bold("Gruntfile.js")} and #{chalk.bold("package.json")} files to your project root.
 
           """
         )
@@ -92,13 +94,12 @@ class ApplicationConfigUpdater extends events.EventEmitter
           if understood != "I UNDERSTAND THIS"
             exitAfterUnderstandingFailed()
 
-          console.log(
-            """
-            \nCopying Gruntfile.js to product root...
+          console.log "\nCreating new #{chalk.bold("Gruntfile.js")} in project root..."
 
-            """
-          )
           fs.writeFileSync(paths.application.configs.grunt, fs.readFileSync(paths.templates.gruntfile))
+
+          console.log chalk.green("OK!")
+
           @emit "gruntfileUpgraded"
 
   upgradePackagejson: ->
@@ -153,8 +154,11 @@ class ApplicationConfigUpdater extends events.EventEmitter
               @emit "packagejsonUpgraded"
 
       else
-        console.log "Creating new package.json from Steroids template."
+        console.log "Creating new #{chalk.bold("package.json")} in project root..."
+
         fs.writeFileSync(paths.application.configs.packagejson, fs.readFileSync(paths.templates.packagejson))
+
+        console.log chalk.green("OK!")
         @emit "packagejsonUpgraded"
 
 
