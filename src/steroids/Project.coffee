@@ -14,44 +14,11 @@ class Project
     process.chdir(@options.folder)
     @installDependencies(options.onSuccess)
 
-
   installDependencies: (options={}) =>
-
-    installNpm = (done) ->
-      console.log """
-        \n
-        #{chalk.red("INSTALLING NPM DEPENDENCIES")}
-        #{chalk.red("===========================")}
-        \n
-      """
-
-      gruntRun = sbawn
-        cmd: "npm"
-        args: ["install"]
-        stdout: true
-        stderr: true
-
-      gruntRun.on "exit", done
-
-    installBower = (done) ->
-      console.log """
-        \n
-        #{chalk.green("INSTALLING BOWER DEPENDENCIES")}
-        #{chalk.green("=============================")}
-        \n
-      """
-
-      bowerRun = sbawn
-        cmd: paths.bower
-        args: ["update"]
-        stdout: true
-        stderr: true
-
-      bowerRun.on "exit", done
-
-    installNpm ->
-      installBower ->
-        options.onSuccess?.call()
+    Npm = require "./Npm"
+    npm = new Npm
+    npm.install().then ->
+      options.onSuccess?.call()
 
   push: (options = {}) =>
     steroidsCli.debug "Starting push"

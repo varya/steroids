@@ -7,12 +7,16 @@ paths = require "./paths"
 sbawn = require "./sbawn"
 chalk = require "chalk"
 
+Q = require "q"
+
 class Bower
 
   update: ->
     ensureConfigurationExists ->
 
       ensureMyProjectNotPresent ->
+        deferred = Q.defer()
+
         console.log(
           """
           \n#{chalk.green.bold("UPDATING BOWER DEPENDENCIES")}
@@ -28,6 +32,11 @@ class Bower
           args: ["update"]
           stdout: true
           stderr: true
+
+        bowerRun.on "exit", =>
+          deferred.resolve()
+
+        return deferred.promise
 
   configs = paths.application.configs
   myProjectFolder = path.join paths.application.wwwDir, "components", "myProject"
