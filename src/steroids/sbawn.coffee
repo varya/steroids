@@ -17,7 +17,7 @@ class Sbawned
     newData = buffer.toString()
     @stdout = @stdout + newData
 
-    console.log newData if @options.debug or @options.stdout
+    process.stdout.write newData if @options.debug or @options.stdout
 
   onStderrData: (buffer) =>
     newData = buffer.toString()
