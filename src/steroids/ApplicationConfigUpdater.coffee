@@ -29,10 +29,11 @@ class ApplicationConfigUpdater extends events.EventEmitter
   updateNpmPackages: ->
     console.log(
       """
-      #{chalk.bold.green("INSTALLING NPM DEPENDENCIES")}
+      \n#{chalk.bold.green("INSTALLING NPM DEPENDENCIES")}
       #{chalk.bold.green("===========================")}
 
       Running #{chalk.bold("npm install")} to install project npm dependencies...
+
       """
     )
 
@@ -45,7 +46,6 @@ class ApplicationConfigUpdater extends events.EventEmitter
     npmRun.on "exit", =>
       @emit "npmPackagesUpdated"
 
-
   upgradeGruntfile: ->
     @checkGruntfileExists (gruntfileExists) =>
       if gruntfileExists
@@ -54,8 +54,8 @@ class ApplicationConfigUpdater extends events.EventEmitter
           Help.attention()
           console.log(
             """
-            #{chalk.red.bold("EXISTING GRUNTFILE.JS FOUND")}
-            #{chalk.red.bold("===========================")}
+            #{chalk.red.bold("EXISTING GRUNTFILE.JS DOESN'T LOAD GRUNT-STEROIDS TASKS")}
+            #{chalk.red.bold("=======================================================")}
 
             Breaking update ahead!
 
@@ -93,10 +93,11 @@ class ApplicationConfigUpdater extends events.EventEmitter
           @emit "gruntfileUpgraded"
 
       else
+        Help.attention()
         console.log(
           """
-          NEW FEATURE
-          ===========
+          #{chalk.green.bold("NEW FEATURE")}
+          #{chalk.green.bold("===========")}
 
           To build the #{chalk.bold("dist/")} folder, Steroids now uses a Gruntfile.js file directly from the
           project root directory. The tasks are defined in the #{chalk.bold("grunt-steroids")} Grunt plugin.
@@ -112,6 +113,13 @@ class ApplicationConfigUpdater extends events.EventEmitter
         promptUnderstood (understood) =>
           if understood != "I UNDERSTAND THIS"
             exitAfterUnderstandingFailed()
+
+          console.log(
+            """
+            \nCopying Gruntfile.js to product root...
+
+            """
+          )
           fs.writeFileSync(paths.application.configs.grunt, fs.readFileSync(paths.templates.gruntfile))
           @emit "gruntfileUpgraded"
 
@@ -123,26 +131,45 @@ class ApplicationConfigUpdater extends events.EventEmitter
           @emit "packagejsonUpgraded"
 
         else
-          console.log ""
-          console.log "EXISTING PACKAGE.JSON FOUND"
-          console.log "==========================="
-          console.log ""
-          console.log "To install Steroids' Grunt dependencies in your project, write the following command:"
-          console.log "  npm install grunt-steroids --save-dev"
-          console.log ""
+          Help.attention()
+          console.log(
+            """
+
+            #{chalk.red.bold("EXISTING PACKAGE.JSON FOUND")}
+            #{chalk.red.bold("===========================")}
+
+            Your existing #{chalk.bold("package.json")} file doesn't have the required #{chalk.bold("grunt-steroids")}
+            Grunt plugin as a dependency.
+
+            To install the #{chalk.bold("grunt-steroids")} npm package in your project, run the following command:
+
+              npm install grunt-steroids --save-dev
+
+            """
+          )
           promptRunCommand (agreed) =>
             if agreed
               @installGruntSteroids =>
-                console.log "Installed grunt-steroids."
+                console.log(
+                  """
+                  \n#{chalk.green("OK!")} Installed the #{chalk.bold("grunt-steroids")} npm pacakge successfully.
+
+                  """
+                )
 
                 @emit "packagejsonUpgraded"
 
             else
-              console.log ""
-              console.log "ABORT!"
-              console.log "======"
-              console.log ""
-              console.log "Please install grunt-steroids manually or run steroids update again."
+              Help.error()
+              console.log(
+                """
+                #{chalk.red.bold("GRUNT-STEROIDS INSTALL ABORTED!")}
+                #{chalk.red.bold("===============================")}
+
+                Please install #{chalk.bold("grunt-steroids")} manually or run #{chalk.bold("$ steroids update")} again.
+
+                """
+              )
               process.exit 1
 
               @emit "packagejsonUpgraded"
