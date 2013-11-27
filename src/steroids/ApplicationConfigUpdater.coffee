@@ -37,24 +37,21 @@ class ApplicationConfigUpdater extends events.EventEmitter
 
             Breaking update ahead!
 
-            To build the #{chalk.bold("dist/")} folder, Steroids now uses a Gruntfile.js file directly from the
+            To build the #{chalk.bold("dist/")} folder, Steroids now uses a #{chalk.bold("Gruntfile.js")} file directly from the
             project root directory. The tasks are defined in the #{chalk.bold("grunt-steroids")} Grunt plugin.
-
-            Your existing Gruntfile.js isn't loading the required Steroids tasks.
 
             #{chalk.red.bold("MANUAL ACTION NEEDED")}
             #{chalk.red.bold("====================")}
 
-            You must load the tasks from the #{chalk.bold("grunt-steroids")} npm plugin in your Gruntfile.js:
+            Your existing #{chalk.bold("Gruntfile.js")} isn't loading the required Steroids tasks (defined in the
+            #{chalk.bold("grunt-steroids")} Grunt plugin). To get rid of this message, add the following line to
+            your #{chalk.bold("Gruntfile.js")} (we're installing the #{chalk.bold("grunt-steroids")} npm package next):
 
-               #{paths.application.steroidsLoadTasksString}
+               #{chalk.blue(steroidsLoadTasksString)};
 
             Then, you must configure your default Grunt task to include the required Steroids tasks:
 
-               grunt.registerTask('default', ['steroids-make', 'steroids-compile-sass']);
-
-            To get rid of this message, make sure that the tasks from the #{chalk.bold("grunt-steroids")} plugin are
-            loaded by Grunt.
+               #{chalk.blue("grunt.registerTask('default', ['steroids-make', 'steroids-compile-sass'])")}
 
             To read more about the new Grunt setup, see:
 
@@ -161,7 +158,6 @@ class ApplicationConfigUpdater extends events.EventEmitter
         console.log chalk.green("OK!")
         @emit "packagejsonUpgraded"
 
-
   installGruntSteroids: (done) ->
     gruntRun = sbawn
       cmd: "npm"
@@ -173,7 +169,6 @@ class ApplicationConfigUpdater extends events.EventEmitter
 
     gruntRun.on "exit", done
 
-
   checkPackagejson: (cb) ->
     fs.exists paths.application.configs.packagejson, cb
 
@@ -182,11 +177,11 @@ class ApplicationConfigUpdater extends events.EventEmitter
 
   gruntfileContainsSteroids: ->
     gruntfileData = fs.readFileSync paths.application.configs.grunt, 'utf-8'
-    return gruntfileData.indexOf(paths.application.steroidsLoadTasksString) > -1
+    return gruntfileData.indexOf(steroidsLoadTasksString) > -1
 
   packagejsonContainsSteroids: ->
     packagejsonData = fs.readFileSync paths.application.configs.packagejson, 'utf-8'
-    return packagejsonData.indexOf(paths.application.steroidsPackagejsonString) > -1
+    return packagejsonData.indexOf(steroidsPackagejsonString) > -1
 
   promptYesNo = (message) -> (done) ->
     inquirer.prompt [
@@ -224,5 +219,7 @@ class ApplicationConfigUpdater extends events.EventEmitter
     )
     process.exit 1
 
+  steroidsPackagejsonString = "grunt-steroids"
+  steroidsLoadTasksString = "grunt.loadNpmTasks(\"grunt-steroids\")"
 
 module.exports = ApplicationConfigUpdater
