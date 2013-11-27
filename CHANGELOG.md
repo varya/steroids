@@ -1,9 +1,18 @@
 ## 2.7.39 (TODO)
 
-- Expose Gruntfile.js to the project root.
-- Modularized Steroids Grunt tasks provided in grunt-steroids npm package.
-- Steroids now displays color correctly for spawned processes such as bower and npm
+Steroids Grunt tasks are now configured via `Gruntfile.js` in project root. See the [Gruntfile guide](http://guides.appgyver.com/steroids/guides/steroids-js/gruntfile) for more information about the new Grunt setup.
 
+Features:
+  - `steroids make` (run internally as part of `steroids connect`) now uses `Gruntfile.js` from project root to run make tasks.
+  - Default Steroids Grunt tasks are now configured in the `grunt-steroids` Grunt plugin.
+  - The `grunt-steroids` npm package is included as a dependency for new projects.
+  - `$ steroids update` ensures that existing projects have a proper `Gruntfile.js` and `package.json`
+
+Changes:
+  - Creating a new project installs npm dependencies from the default project template.
+  - `$ steroids update` also installs npm dependencies.
+  - `steroids make` fails without a `Gruntfile.js` in project root.
+  - `--no-sass` argument for `steroids connect` removed. Instead, you can now remove the `steroids-compile-sass` task from the default Grunt task setup in `Gruntfile.js`.
 
 ## 2.7.38 (TODO)
 
