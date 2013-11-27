@@ -5,7 +5,7 @@ rimraf = require "rimraf"
 
 paths = require "./paths"
 sbawn = require "./sbawn"
-
+chalk = require "chalk"
 
 class Bower
 
@@ -13,9 +13,15 @@ class Bower
     ensureConfigurationExists ->
 
       ensureMyProjectNotPresent ->
-        console.log "UPDATING BOWER DEPENDENCIES"
-        console.log "==========================="
-        console.log ""
+        console.log(
+          """
+          \n#{chalk.green.bold("UPDATING BOWER DEPENDENCIES")}
+          #{chalk.green.bold("============================")}
+
+          Running #{chalk.bold("bower update")} to update project Bower packages...
+
+          """
+        )
 
         bowerRun = sbawn
           cmd: paths.bower
@@ -45,7 +51,7 @@ class Bower
       if isConfigured
         done()
       else
-        console.log "Bower configuration not found at #{configs.bower}. Since v2.7.31, Steroids requires a bower.json file at project root."
+        console.log "Bower configuration not found at #{configs.bower}. Since v2.7.31, Steroids requires a #{chalk.bold("bower.json")} file at project root."
         checkLegacyConfiguration (hasLegacyConfiguration) ->
           if hasLegacyConfiguration
             promptConfigurationMigration (userAgreed) ->

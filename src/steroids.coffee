@@ -388,6 +388,10 @@ class Steroids
           applicationConfigUpdater = new ApplicationConfigUpdater
           applicationConfigUpdater.update()
         ).then( ->
+          Npm = require "./steroids/Npm"
+          npm = new Npm
+          npm.install()
+        ).then( ->
           Bower = require "./steroids/Bower"
           bower = new Bower
           bower.update()

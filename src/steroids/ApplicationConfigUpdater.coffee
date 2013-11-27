@@ -18,33 +18,11 @@ class ApplicationConfigUpdater extends events.EventEmitter
 
     @on "applicationStart", @upgradeGruntfile
     @on "gruntfileUpgraded", @upgradePackagejson
-    @on "packagejsonUpgraded", @updateNpmPackages
-    @on "npmPackagesUpdated", deferred.resolve
+    @on "packagejsonUpgraded", deferred.resolve
 
     @emit "applicationStart"
 
     return deferred.promise
-
-
-  updateNpmPackages: ->
-    console.log(
-      """
-      \n#{chalk.bold.green("INSTALLING NPM DEPENDENCIES")}
-      #{chalk.bold.green("===========================")}
-
-      Running #{chalk.bold("npm install")} to install project npm dependencies...
-
-      """
-    )
-
-    npmRun = sbawn
-      cmd: "npm"
-      args: ["install"]
-      stdout: true
-      stderr: true
-
-    npmRun.on "exit", =>
-      @emit "npmPackagesUpdated"
 
   upgradeGruntfile: ->
     @checkGruntfileExists (gruntfileExists) =>
