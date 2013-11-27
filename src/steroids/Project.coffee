@@ -2,6 +2,8 @@ sbawn = require "./sbawn"
 util = require "util"
 paths = require "./paths"
 chalk = require "chalk"
+fs = require "fs"
+Help = require "./Help"
 
 class Project
 
@@ -117,24 +119,41 @@ class Project
 
   makeOnly: (options = {}) => # without hooks
 
-    steroidsCli.debug "Spawning Grunt"
+    if !fs.existsSync(paths.grunt.gruntFile)
+      Help.error()
+      console.log(
+        """
+        No #{chalk.bold("Gruntfile.js")} found in project root. Please run
 
-    gruntArgs = []
-    gruntArgs.push("--no-sass") if steroidsCli.options.argv.sass == false
+          $ steroids update
 
-    gruntSbawn = sbawn
-      cmd: "grunt"
-      args: []
-      stdout: true
-      stderr: true
+        to generate the default Gruntfile. To learn more about the new Steroids Grunt setup, see:
 
-    gruntSbawn.on "exit", () =>
-      if gruntSbawn.code == 137
-        steroidsCli.debug "grunt spawn successful, exited with code 137"
-        options.onSuccess.call() if options.onSuccess?
-      else
-        steroidsCli.debug "grunt spawn exited with code #{gruntSbawn.code}"
-        options.onFailure.call() if options.onFailure?
+          #{chalk.underline("http://guides.appgyver.com/steroids/guides/steroids-js/gruntfile")}
+
+        """
+      )
+      options.onFailure.call() if options.onFailure?
+
+    else
+      steroidsCli.debug "Spawning Grunt"
+
+      gruntArgs = []
+      gruntArgs.push("--no-sass") if steroidsCli.options.argv.sass == false
+
+      gruntSbawn = sbawn
+        cmd: "grunt"
+        args: []
+        stdout: true
+        stderr: true
+
+      gruntSbawn.on "exit", () =>
+        if gruntSbawn.code == 137
+          steroidsCli.debug "grunt spawn successful, exited with code 137"
+          options.onSuccess.call() if options.onSuccess?
+        else
+          steroidsCli.debug "grunt spawn exited with code #{gruntSbawn.code}"
+          options.onFailure.call() if options.onFailure?
 
   make: (options = {}) => # with pre- and post-make hooks
 
