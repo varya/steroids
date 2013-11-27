@@ -1,5 +1,6 @@
 Help = require "./Help"
-paths = require("./paths")
+paths = require "./paths"
+chalk = require "chalk"
 
 class Prompt
 
@@ -8,13 +9,13 @@ class Prompt
   constructor: (@options) ->
     @prompt = require('prompt')
 
-    @prompt.message = "AppGyver ".cyan + "Steroids".magenta
+    @prompt.message = "#{chalk.cyan("AppGyver")} #{chalk.magenta("Steroids")}"
     @prompt.delimiter = " "
 
     @prompt.start();
 
   refresh: () =>
-    process.stdout.write @prompt.message + @prompt.delimiter + "command  ".grey
+    process.stdout.write @prompt.message + @prompt.delimiter + chalk.grey("command  ")
 
   cleanUp: () =>
     console.log "Shutting down Steroids ..."
@@ -26,7 +27,7 @@ class Prompt
 
   connectLoop: =>
 
-    console.log "\nHit [enter] to push updates, type `help` for usage"
+    console.log "\nHit #{chalk.green("[enter]")} to push updates, type #{chalk.bold("help")} for usage"
 
     onInput = (err, result) =>
       command = if result? and result.command?

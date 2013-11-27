@@ -1,6 +1,5 @@
 sbawn = require "./sbawn"
 util = require "util"
-spawn = require('child_process').spawn
 paths = require "./paths"
 chalk = require "chalk"
 
