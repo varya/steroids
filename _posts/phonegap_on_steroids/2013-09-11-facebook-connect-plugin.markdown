@@ -84,6 +84,12 @@ Calling the `login()` function from your app should now switch to the Facebook a
 
 You can see a more robust example implementation in the [Steroids Kitchensink app][kitchensink] – just make sure to replace the Facebook App ID in `app/controllers/facebook.coffee` with your Facebook App ID.
 
+## Known issues
+
+Since there is just a global Facebook App ID field in the Build Config page, building e.g. a Scanner build and an Ad Hoc build will cause both apps to have the same App ID in their `Info.plist` file (generated automatically by the Build Service). This can cause Facebook to return to the wrong app after logging in.
+
+A workaround is to update the settings so that only the build type you're working with at the moment (e.g. Scanner or Ad Hoc) will have the correct Facebook App ID field set when building, and have the field empty for the other build type. Alternatively, you can have two different Facebook Apps for the two different build types, though you still have to change the Facebook App ID field in the Build Service manually between builds.
+
 [custom-plugin-config]: /steroids/guides/cloud_services/plugin-config/
 [plugman]: https://github.com/apache/cordova-plugman
 [ios-build-config]: /steroids/guides/cloud_services/ios-build-config/
