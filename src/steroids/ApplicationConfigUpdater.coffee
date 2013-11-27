@@ -8,6 +8,8 @@ sbawn = require "./sbawn"
 
 events = require "events"
 Q = require "q"
+chalk = require "chalk"
+Help = require "./Help"
 
 class ApplicationConfigUpdater extends events.EventEmitter
 
@@ -25,12 +27,14 @@ class ApplicationConfigUpdater extends events.EventEmitter
 
 
   updateNpmPackages: ->
-    console.log ""
-    console.log "INSTALLING NPM DEPENDENCIES"
-    console.log "==========================="
-    console.log ""
-    console.log "N.B. Versionless modules in package.json are NOT updated!"
-    console.log ""
+    console.log(
+      """
+      #{chalk.bold.green("INSTALLING NPM DEPENDENCIES")}
+      #{chalk.bold.green("===========================")}
+
+      Running #{chalk.bold("npm install")} to install project npm dependencies...
+      """
+    )
 
     npmRun = sbawn
       cmd: "npm"
@@ -47,51 +51,69 @@ class ApplicationConfigUpdater extends events.EventEmitter
       if gruntfileExists
 
         if !@gruntfileContainsSteroids()
-            console.log ""
-            console.log "EXISTING GRUNTFILE.JS FOUND"
-            console.log "==========================="
-            console.log ""
-            console.log "Breaking update ahead!"
-            console.log "Steroids now uses Gruntfile.js directly from the project root directory."
-            console.log "Since you already have a Gruntfile.js of your own, steroids update was unable"
-            console.log "to enable default tasks for steroids."
-            console.log ""
-            console.log "MANUAL ACTION NEEDED:"
-            console.log ""
-            console.log "To use Steroids tasks, include both of the following lines in your Gruntfile.js:"
-            console.log "   #{paths.application.steroidsLoadTasksString}"
-            console.log "   grunt.registerTask('default', ['steroids-make', 'steroids-compile-sass']);"
-            console.log ""
-            console.log "To get rid of this message without enabling Steroids tasks, include the lines"
-            console.log "to your Gruntfile.js and comment them out."
-            console.log ""
-            console.log "See also: #TODO GUIDE_URL_HERE"
-            console.log ""
-            promptUnderstood (understood) =>
-              if understood != "I UNDERSTAND THIS"
-                console.log ""
-                console.log "ABORT!"
-                console.log "======"
-                console.log ""
-                console.log "Please read the instructions again."
-                console.log ""
-                process.exit 1
+          Help.attention()
+          console.log(
+            """
+            #{chalk.red.bold("EXISTING GRUNTFILE.JS FOUND")}
+            #{chalk.red.bold("===========================")}
 
-              @emit "gruntfileUpgraded"
+            Breaking update ahead!
+
+            To build the #{chalk.bold("dist/")} folder, Steroids now uses a Gruntfile.js file directly from the
+            project root directory. The tasks are defined in the #{chalk.bold("grunt-steroids")} Grunt plugin.
+
+            Your existing Gruntfile.js isn't loading the required Steroids tasks.
+
+            #{chalk.red.bold("MANUAL ACTION NEEDED")}
+            #{chalk.red.bold("====================")}
+
+            You must load the tasks from the #{chalk.bold("grunt-steroids")} npm plugin in your Gruntfile.js:
+
+               #{paths.application.steroidsLoadTasksString}
+
+            Then, you must configure your default Grunt task to include the required Steroids tasks:
+
+               grunt.registerTask('default', ['steroids-make', 'steroids-compile-sass']);
+
+            To get rid of this message, make sure that the tasks from the #{chalk.bold("grunt-steroids")} plugin are
+            loaded by Grunt.
+
+            To read more about the new Grunt setup, see:
+
+              #{chalk.underline("http://guides.appgyver.com/steroids/guides/steroids-js/gruntfile")}
+
+            """
+          )
+          promptUnderstood (understood) =>
+            if understood != "I UNDERSTAND THIS"
+              exitAfterUnderstandingFailed()
+            @emit "gruntfileUpgraded"
 
         else
           @emit "gruntfileUpgraded"
 
       else
-        console.log "NEW FEATURE"
-        console.log "==========="
-        console.log ""
-        console.log "Creating new Gruntfile.js from Steroids template."
-        console.log "- You may now alter Steroids' Grunt tasks directly from your project's own Gruntfile.js."
-        console.log ""
-        fs.writeFileSync(paths.application.configs.grunt, fs.readFileSync(paths.templates.gruntfile))
+        console.log(
+          """
+          NEW FEATURE
+          ===========
 
-        @emit "gruntfileUpgraded"
+          To build the #{chalk.bold("dist/")} folder, Steroids now uses a Gruntfile.js file directly from the
+          project root directory. The tasks are defined in the #{chalk.bold("grunt-steroids")} Grunt plugin.
+
+          We will now add the required Gruntfile.js to your project root from the default template. To read
+          more about the new Grunt setup, see:
+
+            #{chalk.underline("http://guides.appgyver.com/steroids/guides/steroids-js/gruntfile")}
+
+          """
+        )
+
+        promptUnderstood (understood) =>
+          if understood != "I UNDERSTAND THIS"
+            exitAfterUnderstandingFailed()
+          fs.writeFileSync(paths.application.configs.grunt, fs.readFileSync(paths.templates.gruntfile))
+          @emit "gruntfileUpgraded"
 
   upgradePackagejson: ->
     @checkPackagejson (packagejsonExists) =>
@@ -105,7 +127,7 @@ class ApplicationConfigUpdater extends events.EventEmitter
           console.log "EXISTING PACKAGE.JSON FOUND"
           console.log "==========================="
           console.log ""
-          console.log "To install Steroids' Grunt dependencies in your project, issue the following command:"
+          console.log "To install Steroids' Grunt dependencies in your project, write the following command:"
           console.log "  npm install grunt-steroids --save-dev"
           console.log ""
           promptRunCommand (agreed) =>
@@ -178,10 +200,20 @@ class ApplicationConfigUpdater extends events.EventEmitter
       ], (answers) ->
         done answers.userAgreed
 
-  promptUnderstood = promptInput "Write here with uppercase letters: I UNDERSTAND THIS"
+  promptUnderstood = promptInput "Write here with uppercase letters #{chalk.bold("I UNDERSTAND THIS")}"
   promptRunCommand = promptYesNo "Do you want to run this command now?"
 
+  exitAfterUnderstandingFailed = ->
+    Help.error()
+    console.log(
+      """
+      #{chalk.red.bold("UPDATE ABORTED")}
+      #{chalk.red.bold("==============")}
 
+      Please read the instructions again.
+      """
+    )
+    process.exit 1
 
 
 module.exports = ApplicationConfigUpdater

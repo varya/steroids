@@ -384,13 +384,13 @@ class Steroids
         updater.check(
           from: "update"
         ).then( ->
-            ApplicationConfigUpdater = require "./steroids/ApplicationConfigUpdater"
-            applicationConfigUpdater = new ApplicationConfigUpdater
-            applicationConfigUpdater.update()
+          ApplicationConfigUpdater = require "./steroids/ApplicationConfigUpdater"
+          applicationConfigUpdater = new ApplicationConfigUpdater
+          applicationConfigUpdater.update()
         ).then( ->
-            Bower = require "./steroids/Bower"
-            bower = new Bower
-            bower.update()
+          Bower = require "./steroids/Bower"
+          bower = new Bower
+          bower.update()
         )
 
       when "generate"

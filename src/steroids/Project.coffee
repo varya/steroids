@@ -9,11 +9,9 @@ class Project
   constructor: (@options={}) ->
 
   initialize: (options={}) =>
-    process.chdir(@options.folder)
 
-    @installDependencies
-      onSuccess: =>
-        @package(options.onSuccess)
+    process.chdir(@options.folder)
+    @installDependencies(options.onSuccess)
 
 
   installDependencies: (options={}) =>
