@@ -118,19 +118,20 @@ class Project
 
   makeOnly: (options = {}) => # without hooks
 
-    steroidsCli.debug "Spawning steroids grunt #{steroidsCli.pathToSelf}"
+    steroidsCli.debug "Spawning Grunt"
 
-    gruntArgs = ["grunt"]
+    gruntArgs = []
     gruntArgs.push("--no-sass") if steroidsCli.options.argv.sass == false
 
     gruntSbawn = sbawn
-      cmd: steroidsCli.pathToSelf
-      args: gruntArgs
+      cmd: "grunt"
+      args: []
       stdout: true
       stderr: true
 
     gruntSbawn.on "exit", () =>
       if gruntSbawn.code == 137
+        steroidsCli.debug "grunt spawn successful, exited with code 137"
         options.onSuccess.call() if options.onSuccess?
       else
         steroidsCli.debug "grunt spawn exited with code #{gruntSbawn.code}"

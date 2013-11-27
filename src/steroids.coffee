@@ -61,7 +61,7 @@ class Steroids
 
 
   ensureProjectIfNeededFor: (command, otherOptions) ->
-    if command in ["push", "make", "package", "grunt", "debug", "simulator", "connect", "update", "generate", "deploy", "test"]
+    if command in ["push", "make", "package", "debug", "simulator", "connect", "update", "generate", "deploy", "test"]
 
       return if @detectSteroidsProject()
       return if command == "generate" and otherOptions.length == 0    # displays usage
@@ -172,13 +172,6 @@ class Steroids
         packager = new Packager
 
         packager.create()
-
-      when "grunt"
-        # Grunt steals the whole node process ...
-        Grunt = require("./steroids/Grunt")
-
-        grunt = new Grunt
-        grunt.run()
 
       when "debug"
         Help.legacy.debugweinre()
@@ -528,6 +521,5 @@ module.exports =
 
     steroidsCli.execute()
 
-  GruntDefaults: require "./steroids/GruntDefaults"
   Help: Help
   paths: paths
