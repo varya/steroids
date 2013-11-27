@@ -1,3 +1,8 @@
+## 2.7.39 (TODO)
+
+Bugfixes:
+  - New projects' default CSS now sets `-webkit-user-select` correctly for elements with the `contenteditable` attribute
+
 ## 2.7.38 (2013-11-15)
 
 New steroids.js, Barcode Scanner plugin inclusion fixed.
