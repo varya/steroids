@@ -91,7 +91,8 @@
     "karma": "0.10.1",
     "karma-coffee-preprocessor": "0.1.0",
     "q": "0.9.7",
-    "chalk": "0.3.0"
+    "chalk": "0.3.0",
+    "generator-steroids": "0.2.x"
   },
   "devDependencies": {
     "jasmine-node": "1.11.x"
