@@ -25,6 +25,8 @@ fs = require("fs")
 Config = require "./steroids/Config"
 Login = require "./steroids/Login"
 
+chalk = require "chalk"
+
 class Steroids
 
   simulator: null
@@ -111,48 +113,27 @@ class Steroids
         console.log @version.formattedVersion()
 
       when "create"
-        if otherOptions[1]?
-          template = otherOptions[0]
-          folder = otherOptions[1]
-        else
-          template = "default"
-          folder = otherOptions[0]
-
-        if template == "tutorial"
-          Help.attention()
-          console.log """
-
-          We changed the way tutorials work.  You can start tutorials by creating a new project and then,
-          in the project directory type:
-
-            $ steroids generate tutorial begin
-
-          """
-
-          process.exit(1)
+        folder = otherOptions[0]
 
         unless folder
-
-          console.log "Usage: steroids create <directoryName>"
-
+          console.log "Usage: " + chalk.bold.green "steroids create " + chalk.bold.cyan "<directoryName>"
           process.exit(1)
 
         ProjectCreator = require("./steroids/ProjectCreator")
         projectCreator = new ProjectCreator
           debug: @options.debug
 
-        projectCreator.clone(folder, template)
+        projectCreator.generate(folder).then ->
 
-        console.log "Initializing Steroids project ... "
+          console.log("INITIALIZE")
+          project = new Project
+                      folder: folder
+                      debug: @options.debug
 
-        project = new Project
-                    folder: folder
-                    debug: @options.debug
-
-        project.initialize
-          onSuccess: () ->
-            Help.logo()
-            Help.welcome()
+          project.initialize
+            onSuccess: () ->
+              Help.logo()
+              Help.welcome()
 
 
       when "push"
