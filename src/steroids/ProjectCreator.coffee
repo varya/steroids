@@ -1,21 +1,31 @@
-steroids = require "../steroids"
-wrench = require "wrench"
-path = require "path"
-fs = require "fs"
+paths = require "./paths"
+
+env = require("yeoman-generator")()
+
+q = require "Q"
 
 class ProjectCreator
 
   constructor: ->
 
-  clone: (targetDirectory, template = "default") ->
+  generate: (targetDirectory) ->
 
-    unless targetDirectory
-      return steroids.Help.usage();
+    deferred = q.defer()
 
-    if (fs.existsSync(targetDirectory))
-      console.log "Error: '#{targetDirectory}' already exists"
-      process.exit(1)
+    env.plugins "node_modules", paths.npm
+    # lookup for every namespaces, within the environments.paths and lookups
+    env.lookup '*:*'
+    #
+    # # env.on 'end', ->
+    #
+    # env.on 'error', (err)->
+    #   console.error 'Error', process.argv.slice(2).join(' '), '\n'
+    #   console.error opts.debug ? err.stack : err.message
+    #   process.exit(err.code || 1)
+    #
+    env.run "steroids:app #{targetDirectory}", { "skip-install": true}, ->
+      deferred.resolve()
 
-    wrench.copyDirSyncRecursive path.join(steroids.paths.templates.applications, template), targetDirectory
+    return deferred.promise
 
 module.exports = ProjectCreator
