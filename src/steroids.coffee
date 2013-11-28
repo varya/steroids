@@ -417,17 +417,6 @@ class Steroids
           util.log "ERROR: #{error.message}"
           process.exit 1
 
-        # ng-resource runs bower internally
-        if generatorOptions.name is not "ng-resource"
-          console.log """
-
-           -- Running bower update --
-
-           """
-
-          Bower = require "./steroids/Bower"
-          bower = new Bower
-          bower.update()
 
       when "login"
         updater = new Updater
