@@ -5,7 +5,6 @@ module.exports = class NgResource extends Base
 
   constructor: (@options) ->
     @args = "steroids:ng-resource"
-    # TODO: fix arguments
     @opts = {}
 
   @usageParams: ->

@@ -1,6 +1,7 @@
 path = require "path"
 paths = require "./paths"
 colorize = require "colorize"
+chalk = require "chalk"
 
 
 class Help
@@ -68,14 +69,18 @@ class Help
     Generators = require "./Generators"
 
     for name, generator of Generators
-      console.log "-------------------------"
-      console.log ""
-      console.log "#{name}:"
-      console.log ""
-      console.log "Usage: steroids generate #{name} #{generator.usageParams()}"
-      console.log ""
-      console.log generator.usage()
-      console.log ""
+      console.log(
+        """
+        -------------------------
+
+        #{chalk.bold(name)}
+
+        Usage: #{chalk.green("steroids generate #{name} #{chalk.cyan(generator.usageParams())}")}
+
+        #{generator.usage()}
+
+        """
+      )
 
   @legacy:
     requiresDetected: ->
