@@ -123,17 +123,7 @@ class Steroids
         projectCreator = new ProjectCreator
           debug: @options.debug
 
-        projectCreator.generate(folder).then ->
-
-          console.log("INITIALIZE")
-          project = new Project
-                      folder: folder
-                      debug: @options.debug
-
-          project.initialize
-            onSuccess: () ->
-              Help.logo()
-              Help.welcome()
+        projectCreator.generate(folder)
 
 
       when "push"

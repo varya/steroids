@@ -23,7 +23,7 @@ class ProjectCreator
     #   console.error opts.debug ? err.stack : err.message
     #   process.exit(err.code || 1)
     #
-    env.run "steroids:app #{targetDirectory}", { "skip-install": true}, ->
+    env.run "steroids:app #{targetDirectory}", ->
       deferred.resolve()
 
     return deferred.promise
