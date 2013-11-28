@@ -12,6 +12,16 @@ If you need a test database, the [Chinook Database](http://chinookdatabase.codep
 
 The `sqliteplugin.js` (in the Steroids plugin repository) defines a `window.sqlitePlugin` object. The syntax to use it is very similar to the Cordova [Storage API](http://docs.appgyver.com/en/edge/cordova_storage_storage.md.html#Storage) (which uses vanilla SQL).
 
+## Ensure that you're using localhost
+
+For the below examples to work, you need to serve your content via localhost. Thus, in `config/application.coffee`, make sure it reads:
+
+{% highlight coffeescript %}
+steroids.config.location = http://localhost/index.html
+{% endhighlight %}
+
+(Or similar, depending on your initial page location.) Read more about the differences between the File protocol and localhost in the [Moving from File protocol to localhost](/steroids/guides/phonegap_on_steroids/file-to-localhost) guide.
+
 ## Setting up your local database
 
 For the example below, we'll put the local database file to `www/data/Chinook_Sqlite.db` in your Steroids project. **Note that you need to rename the file to have the `.db` file extension – otherwise the SQLite plugin will instead create a new file at e.g. `Chinook_Sqlite.sqlite.db`.**
