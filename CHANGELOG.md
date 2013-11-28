@@ -1,20 +1,31 @@
 ## 2.7.39 (TODO)
 
-Steroids Grunt tasks are now configured via `Gruntfile.js` in project root. See the [Gruntfile guide](http://guides.appgyver.com/steroids/guides/steroids-js/gruntfile) for more information about the new Grunt setup.
+Steroids [Grunt.js](http://gruntjs.com) tasks are now defined in the (`grunt-steroids`)[https://github.com/appgyver/grunt-steroids] Grunt plugin and configured via a `Gruntfile.js` in project root. See the [Gruntfile guide](http://guides.appgyver.com/steroids/guides/steroids-js/gruntfile) for more information about the new Grunt setup.
+
+`steroids generate` and `steroids create` now use [Yeoman](http://yeoman.io) to generate
 
 Features:
   - `steroids make` (run internally as part of `steroids connect`) now uses `Gruntfile.js` from project root to run make tasks.
   - Default Steroids Grunt tasks are now configured in the `grunt-steroids` Grunt plugin.
   - The `grunt-steroids` npm package is included as a dependency for new projects.
   - `$ steroids update` ensures that existing projects have a proper `Gruntfile.js` and `package.json`
+  - `steroids generate` uses the [generator-steroids](https://github.com/appgyver/generator-steroids) Genertaors
 
 Changes:
   - Creating a new project installs npm dependencies from the default project template.
   - `$ steroids update` also installs npm dependencies.
   - `steroids make` fails without a `Gruntfile.js` in project root.
   - `--no-sass` argument for `steroids connect` removed. Instead, you can now remove the `steroids-compile-sass` task from the default Grunt task setup in `Gruntfile.js`.
+  - `steroids generate resource` deprecated
 
-## 2.7.38 (TODO)
+
+## 2.7.38 (2013-11-15)
+
+New steroids.js, Barcode Scanner plugin inclusion fixed.
+
+Changes:
+  - Default project's `steroids.js` file updated to v2.7.11
+>>>>>>> release changelog
 
 Bugfixes:
   - Fixed default plugin tag for Barcode Scanner in new projects' `www/config.ios.xml`.
