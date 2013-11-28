@@ -18,6 +18,8 @@ Changes:
   - `--no-sass` argument for `steroids connect` removed. Instead, you can now remove the `steroids-compile-sass` task from the default Grunt task setup in `Gruntfile.js`.
   - `steroids generate resource` deprecated
 
+Bugfixes:
+  - New projects' default CSS now sets `-webkit-user-select` correctly for elements with the `contenteditable` attribute
 
 ## 2.7.38 (2013-11-15)
 
