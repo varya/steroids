@@ -19,8 +19,6 @@ class Base
     @opts = {}
 
   generate: ->
-    console.log("generating")
-
     # Look for generators in CLI's node_modules folder
     env.plugins "node_modules", paths.npm
 
