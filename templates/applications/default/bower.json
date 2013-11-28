@@ -1,16 +1,6 @@
 {
-  "name": "mySteroidsProject",
+  "name": "myProject",
   "version": "0.0.1",
-  "authors": [
-  ],
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "www/components",
-    "www/spec",
-    "test",
-    "tests"
-  ],
   "dependencies": {
     "steroids-js": "2.7.x"
   }

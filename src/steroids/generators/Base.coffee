@@ -3,6 +3,7 @@ path = require "path"
 fs = require "fs"
 ejs = require "ejs"
 util = require "util"
+inquirer = require "inquirer"
 
 class Base
   @usageParams: ->
@@ -69,5 +70,17 @@ class Base
 
   generate: ->
     throw "generators.Base#generate not overridden by subclass!"
+
+  migrateBowerJsonLocation: ->
+    unless fs.existsSync(path.join @applicationPath, "bower.json")
+      question =
+        type: "confirm"
+        name: "moveFiles"
+        message: "bower.json has migrated from config/bower.json to project root. Select Y to move the file automatically or N to exit the generator (your Bower dependencies for this generator will not install)."
+        default: false
+
+      inquirer.prompt [question], (answers)->
+        if moveFiles
+          fs.rename(path.join(@applicationPath, "config", "bower.json"), path.join(@applicationPath, "bower.json"))
 
 module.exports = Base
