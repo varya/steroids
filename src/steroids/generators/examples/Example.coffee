@@ -1,30 +1,25 @@
-steroids = require "../../../steroids"
-spawn = require("child_process").spawn
-path = require "path"
-fs = require "fs"
-ejs = require "ejs"
-util = require "util"
+examples =
+  "accelerometer": require("./accelerometer")
+  # "animation": require("./animation")
+  # "audio": require("./audio")
+  # "camera": require("./camera")
+  # "compass": require("./compass")
+  # "device": require("./device")
+  # "drawer": require("./drawer")
+  # "drumMachine": require("./drumMachine")
+  # "geolocation": require("./geolocation")
+  # "layerStack": require("./layerStack")
+  # "modal": require("./modal")
+  # "notification": require("./notification")
+  # "navigationBar": require("./navigationBar")
+  # "photoGallery": require("./photoGallery")
+  # "preload": require("./preload")
+  # "storage": require("./storage")
+  # "s3upload": require("./s3upload")
 
 Base = require "../Base"
 
-examples =
-  "accelerometer": require("./Examples/accelerometer")
-  "animation": require("./Examples/animation")
-  "audio": require("./Examples/audio")
-  "camera": require("./Examples/camera")
-  "compass": require("./Examples/compass")
-  "device": require("./Examples/device")
-  "drawer": require("./Examples/drawer")
-  "drumMachine": require("./Examples/drumMachine")
-  "geolocation": require("./Examples/geolocation")
-  "layerStack": require("./Examples/layerStack")
-  "modal": require("./Examples/modal")
-  "notification": require("./Examples/notification")
-  "navigationBar": require("./Examples/navigationBar")
-  "photoGallery": require("./Examples/photoGallery")
-  "preload": require("./Examples/preload")
-  "storage": require("./Examples/storage")
-  "s3upload": require("./Examples/s3upload")
+chalk = require "chalk"
 
 class Example extends Base
   @usageParams: ->
@@ -63,14 +58,14 @@ class Example extends Base
     """
 
   generate: ->
-
     ExampleClass = examples[@options.name]
 
     unless ExampleClass
-      console.log "Error: No such example #{@options.name}, see 'steroids generate' for help."
+      console.log "#{chalk.red.bold("Error:")}; No such example #{chalk.bold(@options.name)}, see #{chalk.bold("steroids generate")} for help."
       process.exit(1)
 
     example = new ExampleClass @options
     example.generate()
+
 
 module.exports = Example
