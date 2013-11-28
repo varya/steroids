@@ -1,25 +1,31 @@
 ## 2.7.39 (TODO)
 
-Steroids [Grunt.js](http://gruntjs.com) tasks are now defined in the (`grunt-steroids`)[https://github.com/appgyver/grunt-steroids] Grunt plugin and configured via a `Gruntfile.js` in project root. See the [Gruntfile guide](http://guides.appgyver.com/steroids/guides/steroids-js/gruntfile) for more information about the new Grunt setup.
+Steroids [Grunt.js](http://gruntjs.com) tasks are now defined in the [`grunt-steroids`](https://github.com/appgyver/grunt-steroids) Grunt plugin and configured via a `Gruntfile.js` in project root. See the [Gruntfile guide](http://guides.appgyver.com/steroids/guides/steroids-js/gruntfile) for more information about the new Grunt setup. Run `$ steroids update` to migrate your existing project.
 
-`steroids generate` and `steroids create` now use [Yeoman](http://yeoman.io) to generate
+`$ steroids generate` and `$ steroids create` now use a [Yeoman](http://yeoman.io) Generator internally. You can find the [generator-steroids repo on GitHub](https://github.com/appgyver/generator-steroids).
 
 Features:
-  - `steroids make` (run internally as part of `steroids connect`) now uses `Gruntfile.js` from project root to run make tasks.
-  - Default Steroids Grunt tasks are now configured in the `grunt-steroids` Grunt plugin.
-  - The `grunt-steroids` npm package is included as a dependency for new projects.
-  - `$ steroids update` ensures that existing projects have a proper `Gruntfile.js` and `package.json`
-  - `steroids generate` uses the [generator-steroids](https://github.com/appgyver/generator-steroids) Genertaors
+  - Grunt update:
+    - `steroids make` (run internally as part of `steroids connect`) now uses `Gruntfile.js` from project root to run make tasks.
+    - Default Steroids Grunt tasks (`steroids-make` and `steroids-compile-sass`) are now defined in the `grunt-steroids` Grunt plugin.
+    - The `grunt-steroids` npm package is included as a dependency for new projects.
+    - `$ steroids update` ensures that existing projects have proper `Gruntfile.js` and `package.json`
+  - Yeoman update:
+    - `steroids generate` and `steroids create` use the [generator-steroids](https://github.com/appgyver/generator-steroids) Yeoman generator
 
 Changes:
-  - Creating a new project installs npm dependencies from the default project template.
-  - `$ steroids update` also installs npm dependencies.
+  - Creating a new project also installs npm dependencies from the default project template.
+  - `$ steroids update` installs both Bower and npm dependencies.
   - `steroids make` fails without a `Gruntfile.js` in project root.
   - `--no-sass` argument for `steroids connect` removed. Instead, you can now remove the `steroids-compile-sass` task from the default Grunt task setup in `Gruntfile.js`.
-  - `steroids generate resource` deprecated
+  - `steroids generate resource` deprecated.
 
 Bugfixes:
   - New projects' default CSS now sets `-webkit-user-select` correctly for elements with the `contenteditable` attribute
+
+TODO:
+ - Implement missing generators once they are available in generator-steroids
+ - Fix CLI package.json to have correct repos
 
 ## 2.7.38 (2013-11-15)
 
