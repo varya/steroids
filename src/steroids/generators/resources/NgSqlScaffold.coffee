@@ -16,6 +16,7 @@ module.exports = class NgSqlScaffold extends Base
     an option to switch to Cordova's SQLite plugin.
 
     For a resource named #{chalk.bold("car")}, the following files will be created:
+
         - app/controllers/car.js
         - app/models/car.js
         - app/views/car/index.html
