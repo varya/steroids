@@ -55,7 +55,7 @@ class ApplicationConfigUpdater extends events.EventEmitter
 
             To read more about the new Grunt setup, see:
 
-              #{chalk.underline("http://guides.appgyver.com/steroids/guides/steroids-js/gruntfile")}
+              #{chalk.underline("http://guides.appgyver.com/steroids/guides/project_configuration/gruntfile")}
 
             """
           )
@@ -80,7 +80,7 @@ class ApplicationConfigUpdater extends events.EventEmitter
 
           To learn more about the new Grunt setup, see:
 
-            #{chalk.underline("http://guides.appgyver.com/steroids/guides/steroids-js/gruntfile")}
+            #{chalk.underline("http://guides.appgyver.com/steroids/guides/project_configuration/gruntfile")}
 
           We will now create the default #{chalk.bold("Gruntfile.js")} and #{chalk.bold("package.json")} files to your project root.
 

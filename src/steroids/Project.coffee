@@ -96,7 +96,7 @@ class Project
 
         to generate the default Gruntfile. To learn more about the new Steroids Grunt setup, see:
 
-          #{chalk.underline("http://guides.appgyver.com/steroids/guides/steroids-js/gruntfile")}
+          #{chalk.underline("http://guides.appgyver.com/steroids/guides/project_configuration/gruntfile")}
 
         """
       )
