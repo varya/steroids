@@ -132,10 +132,14 @@ class Steroids
           onSuccess: ->
             steroidsCli.debug "steroids make && steroids package ok."
 
-
       when "make"
         project = new Project
         project.make()
+
+      when "grunt"
+        Grunt = require("./steroids/Grunt")
+        grunt = new Grunt
+        grunt.run()
 
       when "package"
         Packager = require "./steroids/Packager"

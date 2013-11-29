@@ -106,8 +106,8 @@ class Project
       steroidsCli.debug "Spawning Grunt"
 
       gruntSbawn = sbawn
-        cmd: "grunt"
-        args: []
+        cmd: steroidsCli.pathToSelf
+        args: ["grunt"]
         stdout: true
         stderr: true
 
