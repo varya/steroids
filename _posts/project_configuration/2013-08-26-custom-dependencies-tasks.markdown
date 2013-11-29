@@ -13,7 +13,7 @@ platforms: iOS, Android
 
 When you press enter in the Steroids console (i.e. the Terminal running `$ steroids connect`), Steroids CLI runs a series of internal commands. One of these is `$ steroids make`, which creates the `dist/` folder and its contents. The `dist/` folder contains the final app structure that is then copied onto the actual mobile devices.
 
-The `make` task runs a series of [Grunt.js](http://gruntjs.com/) tasks, including compiling SASS and CoffeeScript, merging layouts and views in the `app/` directory, copying everything to the `dist/` folder etc. (You can see the actual tasks that are run in the [GruntDefaults.coffee](https://github.com/AppGyver/steroids/blob/master/src/steroids/GruntDefaults.coffee) file in the Steroids CLI source.)
+The `make` task runs a series of [Grunt.js](http://gruntjs.com/) tasks, including compiling SASS and CoffeeScript, merging layouts and views in the `app/` directory, copying everything to the `dist/` folder etc. The tasks are defined in the [grunt-steroids](http://github.com/appgyver/grunt-steroids) Grunt plugin, which is included as a dependency for new Steroids projects.
 
 The [config/application.coffee][config-application-coffee-guide] file has support for custom pre- and post-make hooks with the `steroids.config.hooks` property. The first hook is run before the `make` command:
 
@@ -41,6 +41,6 @@ To add a custom Bower dependency to your project, simply run `$ bower install pa
 
 ## Custom npm dependencies
 
-A new Steroids project doesn't include any npm dependencies, but you can use `$ npm install package-name` like you would normally.
+You can install npm dependencies to your project normally, with `npm install packageName --save`. The `package.json` file in your project root keeps track of your npm dependencies. Note that `$ steroids update` also updates npm dependencies.
 
 [config-application-coffee-guide]: /steroids/guides/project_configuration/config-application-coffee/
