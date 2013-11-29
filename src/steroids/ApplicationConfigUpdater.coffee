@@ -119,21 +119,42 @@ class ApplicationConfigUpdater extends events.EventEmitter
 
             To install the #{chalk.bold("grunt-steroids")} npm package in your project, run the following command:
 
-              npm install grunt-steroids --save-dev
+              #{chalk.bold("$ npm install grunt-steroids --save-dev")}
 
             """
           )
           promptRunCommand (agreed) =>
             if agreed
-              @installGruntSteroids =>
-                console.log(
-                  """
-                  \n#{chalk.green("OK!")} Installed the #{chalk.bold("grunt-steroids")} npm pacakge successfully.
+              @installGruntSteroids(
+                onSuccess: =>
+                  console.log(
+                    """
+                    \n#{chalk.green("OK!")} Installed the #{chalk.bold("grunt-steroids")} npm pacakge successfully.
 
-                  """
-                )
+                    """
+                  )
 
-                @emit "packagejsonUpgraded"
+                  @emit "packagejsonUpgraded"
+                onFailure: =>
+                  Help.error()
+                  console.log(
+                    """
+                    \nCould not install the #{chalk.bold("grunt-steroids")} npm package.
+
+                    Try running
+
+                      #{chalk.bold("$ steroids update")}
+
+                    again, or install the package manually with
+
+                      #{chalk.bold("$ npm install grunt-steroids --save-dev")}
+
+                    """
+                  )
+              )
+
+
+
 
             else
               Help.error()
@@ -158,14 +179,20 @@ class ApplicationConfigUpdater extends events.EventEmitter
         console.log chalk.green("OK!")
         @emit "packagejsonUpgraded"
 
-  installGruntSteroids: (done) ->
-    gruntRun = sbawn
+  installGruntSteroids: (options = {}) ->
+    npmSbawn = sbawn
       cmd: "npm"
-      args: ["install", "grunt-steroids@0.2.x", "--save-dev"]
+      args: ["install", "grunt-steroids", "--save-dev"]
       stdout: true
       stderr: true
 
-    gruntRun.on "exit", done
+    npmSbawn.on "exit", () =>
+        if npmSbawn.code == 137
+          steroidsCli.debug "npm spawn successful, exited with code 137"
+          options.onSuccess?.call()
+        else
+          steroidsCli.debug "npm spawn exited with code #{npmSbawn.code}"
+          options.onFailure?.call()
 
   checkPackagejson: (cb) ->
     fs.exists paths.application.configs.packagejson, cb

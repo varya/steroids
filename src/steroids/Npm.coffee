@@ -12,6 +12,7 @@ class Npm
       #{chalk.bold.green("===========================")}
 
       Running #{chalk.bold("npm install")} to install project npm dependencies...
+      If this fails, try running the command manually.
 
       """
     )

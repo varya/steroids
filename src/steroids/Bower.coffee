@@ -23,6 +23,7 @@ class Bower
           #{chalk.green.bold("============================")}
 
           Running #{chalk.bold("bower update")} to update project Bower packages...
+          If this fails, try running the command manually.
 
           """
         )
