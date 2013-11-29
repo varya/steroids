@@ -161,9 +161,7 @@ class ApplicationConfigUpdater extends events.EventEmitter
   installGruntSteroids: (done) ->
     gruntRun = sbawn
       cmd: "npm"
-      # TODO: Change this after grunt-steroids is published
-      #args: ["install", "grunt-steroids", "--save-dev"]
-      args: ["install", "git+ssh://git@github.com/AppGyver/grunt-steroids.git", "--save-dev"]
+      args: ["install", "grunt-steroids@0.2.x", "--save-dev"]
       stdout: true
       stderr: true
 
