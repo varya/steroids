@@ -106,11 +106,13 @@ class Deploy
   updateConfigurationFile: (callback)->
     # util.log "Updating #{paths.application.configs.cloud}"
 
-    config = new CloudConfig
+    cloudConfig = new CloudConfig
       id: @cloudApp.id
       identification_hash: @cloudApp.identification_hash
 
-    config.saveSync()
+    cloudConfig.saveSync()
+
+    config = cloudConfig.getCurrentSync()
 
     util.log "Deployment complete"
 
