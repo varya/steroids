@@ -61,6 +61,8 @@ class Paths
     application: path.join @application.configDir, "application.coffee"
     cloud: path.join @application.configDir, "cloud.json"
     bower: path.join @applicationDir, "bower.json"
+    configIosXml: path.join @application.wwwDir, "config.ios.xml"
+    configAndroidXml: path.join @application.wwwDir, "config.android.xml"
     legacy:
       bower: path.join @application.configDir, "bower.json"
 
