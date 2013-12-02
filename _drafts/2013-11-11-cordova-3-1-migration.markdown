@@ -53,7 +53,8 @@ When using the `EnableViewportScale` iOS `config.xml` preference, there's a [kno
 What happens is that the `width=device-width` and `height=device-height` attributes do not set the viewport dimensions correctly. A solution is to remove them, and use the various `scale` attributes instead:
 
 {% highlight html %}
-<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, target-densitydpi=device-dpi" />
+<meta name="viewport" content="user-scalable=no, initial-scale=1,
+maximum-scale=1, minimum-scale=1, target-densitydpi=device-dpi" />
 {% endhighlight %}
 
 [ios-config-xml]: /steroids/guides/project_configuration/config-xml-android/
