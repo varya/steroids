@@ -1,12 +1,12 @@
 ---
 layout: post
-title:  "How to add your AppGyver app to the Tizen App Store"
+title:  "How to add your Steroids app to the Tizen App Store"
 date:   2013-12-02 13:51:34
 categories: tizen
 platforms: Tizen
 ---
 
-AppGyver Steroids now supports Tizen with full PhoneGap/Cordova support. Here are the instructions how to register as a Seller on the Tizen Store, and to add your finished AppGyver app to the Store.
+AppGyver Steroids now supports Tizen with full PhoneGap/Cordova support. Here are the instructions how to register as a Seller on the Tizen Store, and to add your finished Steroids app to the Store.
 
 ## Registering as a Seller on the Tizen Store
 
