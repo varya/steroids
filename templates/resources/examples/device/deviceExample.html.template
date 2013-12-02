@@ -2,11 +2,9 @@
 <html>
   <head>
     <title>Cordova Device Properties Example</title>
-    
+
     <link rel="stylesheet" href="vendor/topcoat/css/topcoat-mobile-light.css" />
     <link rel="stylesheet" href="stylesheets/application.css" />
-
-    <script src="javascripts/onerror.js"></script>
 
     <!-- cordova.js is served from localhost to ensure the correct version -->
     <script src="http://localhost/cordova.js"></script>
@@ -31,11 +29,11 @@
   </head>
   <body>
     <div class="content-padded">
-      
+
       <h2>Device Properties Example</h1>
 
       <p id="deviceProperties">Loading device properties...</p>
-      
+
     </div>
   </body>
 </html>

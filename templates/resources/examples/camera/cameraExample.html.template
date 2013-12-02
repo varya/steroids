@@ -7,8 +7,6 @@
   <link rel="stylesheet" href="vendor/topcoat/css/topcoat-mobile-light.css" />
   <link rel="stylesheet" href="stylesheets/application.css" />
 
-  <script src="javascripts/onerror.js"></script>
-
   <!-- cordova.js is served from localhost to ensure the correct version -->
   <script src="http://localhost/cordova.js"></script>
 
@@ -53,7 +51,7 @@
       navigator.notification.alert('Cordova says: ' + message, null, 'Capturing the photo failed!');
       imgElement.src = latestURI;
       showImage();
-      
+
       // If no previous image URI exists, hide the image element
       if (latestURI == null) {
         imgElement.style.display = "none";
@@ -106,7 +104,7 @@
     from { -webkit-transform: rotate(0deg); }
     to { -webkit-transform: rotate(360deg); }
   }
-  
+
   img#spinner {
     width:36px;
     -webkit-animation-name:            rotate;
@@ -115,7 +113,7 @@
     -webkit-animation-timing-function: linear;
     margin: auto;
     display: none;
-  }  
+  }
   </style>
 
 </head>

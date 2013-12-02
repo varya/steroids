@@ -2,11 +2,9 @@
 <html>
   <head>
     <title>Cordova Notification Example</title>
-    
+
     <link rel="stylesheet" href="vendor/topcoat/css/topcoat-mobile-light.css" />
     <link rel="stylesheet" href="stylesheets/application.css" />
-
-    <script src="javascripts/onerror.js"></script>
 
     <!-- cordova.js is served from localhost to ensure the correct version -->
     <script src="http://localhost/cordova.js"></script>
@@ -24,7 +22,7 @@
         'Done'                  // buttonName
       );
     }
-    
+
     function confirmDismissed(buttonIndex) {
       console.log("User selected button number " + buttonIndex);
     }
@@ -37,7 +35,7 @@
         'Restart,Exit'          // buttonLabels
       );
     }
-    
+
     function promptDismissed(results) {
       console.log("User selected button number " + results.buttonIndex + " and entered the text " + results.input1);
     }
@@ -51,17 +49,17 @@
         'Dolan Duck'               // defaultText
       );
     }
-    
+
     function vibrate() {
       // Vibration duration set in milliseconds
       navigator.notification.vibrate(500);
     }
-    
+
     </script>
   </head>
   <body>
     <div class="content-padded">
-      
+
       <h1>Notification Examples</h1>
 
       <div class="topcoat-button--cta center full" ontouchend="showAlert()">Show alert dialogue</div>
@@ -71,7 +69,7 @@
       <div class="topcoat-button center full" ontouchend="showPrompt()">Show prompt dialogue</div>
       <br><br>
       <div class="topcoat-button center full" ontouchend="vibrate()">Vibrate the device</div>
-      
+
     </div>
   </body>
 </html>
