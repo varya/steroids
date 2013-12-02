@@ -1,19 +1,19 @@
 ---
 layout: post
-title:  "Migrating to Cordova 3.1.0"
+title:  "Migrating to Cordova 3.1"
 date:   2013-05-27 13:51:34
 categories: steroids-js
 platforms: iOS, Android
 ---
 
-Migration to Cordova 3.1.0 will bring about some breaking changes that need to be taken into account in your project.
+Updating all Steroids components (Scanner, Steroids.js, Steroids CLI) to support Cordova 3.1 has brought about some breaking changes that need to be taken into account in your project.
 
 ## cordova.js must be loaded from localhost root
 
-Make sure that `cordova.js` is loaded from localhost root, and not a subfolder:
+Make sure that `cordova.js` is loaded from localhost root, and not a subfolder (previous templates loaded it from `http://localhost/appgyver/cordova.js`):
 
 {% highlight html %}
-<script scr="/cordova.js"></script>
+<script scr="http://localhost/cordova.js"></script>
 {% endhighlight %}
 
 ## config.xml changes
