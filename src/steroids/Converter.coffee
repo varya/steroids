@@ -2,6 +2,7 @@ fs = require "fs"
 
 Paths = require "./paths"
 Config = require "./Config"
+CloudConfig = require "./CloudConfig"
 
 class Converter
   constructor: (@configPath)->
@@ -11,9 +12,14 @@ class Converter
     config = new Config()
     configObject = config.getCurrent()
 
+    cloudConfig = new CloudConfig().getCurrentSync()
+    cloudId = if cloudConfig
+      cloudConfig.id
+    else
+      1
 
     ankaLikeJSON =
-      id: 1
+      id: cloudId
       name: configObject.name||"Default name"
 
     if fs.existsSync Paths.temporaryZip
