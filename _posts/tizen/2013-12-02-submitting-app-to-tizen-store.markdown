@@ -12,21 +12,21 @@ AppGyver Steroids now supports Tizen with full PhoneGap/Cordova support. Here ar
 
 ###1. Go to [seller.tizenstore.com][tizen-store] and click "Join Now"
 
-<img src="/steroids/images/ios_build/tizen_store_step_1.png">
+<img src="/steroids/images/tizen/tizen_store_step_1.png">
 
 ###2. Register as either a private or corporate seller.
 
-<img src="/steroids/images/ios_build/tizen_store_step_2.png">
+<img src="/steroids/images/tizen/tizen_store_step_2.png">
 
 ###3. Fill in the required fields and click "Submit"
 
-<img src="/steroids/images/ios_build/tizen_store_step_3.png">
+<img src="/steroids/images/tizen/tizen_store_step_3.png">
 
 ###4. You will receive a Welcome email from the Tizen Seller Store. Open the email and click "Verify Now"
 
 ###5. Log back into the Tizen Seller Store
 
-<img src="/steroids/images/ios_build/tizen_store_step_4.png">
+<img src="/steroids/images/tizen/tizen_store_step_4.png">
 
 ###6. You will immediately be approved as a seller for the Tizen store and assigned your DeepLink id.
 
@@ -36,17 +36,17 @@ AppGyver Steroids now supports Tizen with full PhoneGap/Cordova support. Here ar
 ###2. Click "+ Add New App."<br>
 ###3. Enter all required fields, upload the file, app icon and 4 screenshots.
 
-<img src="/steroids/images/ios_build/tizen_store_step_5.png">
+<img src="/steroids/images/tizen/tizen_store_step_5.png">
 
-<img src="/steroids/images/ios_build/tizen_store_step_6.png">
+<img src="/steroids/images/tizen/tizen_store_step_6.png">
 
 __IMPORTANT! Enter "appbackr" in the Comments for the Validation Team in the Validation section. This allows appbackr to track the app's progress in Tizen.__
 
-<img src="/steroids/images/ios_build/tizen_store_step_7.png">
+<img src="/steroids/images/tizen/tizen_store_step_7.png">
 
 ###4. Confirm your submission fields and click "Confirm"
 
-<img src="/steroids/images/ios_build/tizen_store_step_8.png">
+<img src="/steroids/images/tizen/tizen_store_step_8.png">
 
 In 48-72 hours, Tizen will verify your app. When it does, it will assign the app a Content ID number.
 
