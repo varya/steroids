@@ -32,7 +32,7 @@ registerMigrationTasks = (grunt)->
     grunt.file.recurse Paths.applicationDir, (abspath, rootdir, subdir, filename)->
       if filename.indexOf(".html") > -1
         contents = grunt.file.read abspath
-        if contents.indexOf("http://localhost/appgyver/cordova.js") > -1
+        if contents.indexOf("/appgyver/cordova.js") > -1
           results.push(subdir + "/" + filename)
 
     if results.length > 0

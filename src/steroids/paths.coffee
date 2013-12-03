@@ -12,7 +12,6 @@ class Paths
     applications: path.join @templatesDir, "applications"
     resources: path.join @templatesDir, "resources"
     scaffolds: path.join @templatesDir, "scaffolds"
-    configs: path.join @templatesDir, "configs"
 
   @grunt:
     library: path.join @npm, "node_modules", "grunt", "lib", "grunt"
