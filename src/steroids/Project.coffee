@@ -1,6 +1,8 @@
 sbawn = require "./sbawn"
 util = require "util"
 Help = require "./Help"
+ConfigXmlValidator = require "./ConfigXmlValidator"
+ApplicationConfigUpdater = require "./ApplicationConfigUpdater"
 
 class Project
 
@@ -79,37 +81,42 @@ class Project
 
   makeOnly: (options = {}) => # without hooks
 
-    ConfigXmlValidator = require "./ConfigXmlValidator"
-    configXmlValidator= new ConfigXmlValidator
-    configXmlValidator.check("ios").then( ->
+    applicationConfigUpdater = new ApplicationConfigUpdater
+    if !(applicationConfigUpdater.validateSteroidsEngineVersion "3.1.0")
+      applicationConfigUpdater.updateTo3_1_0().then( ->
 
-      configXmlValidator.check("android")
+        configXmlValidator = new ConfigXmlValidator
+        configXmlValidator.check("ios")
 
-    ).then( ->
+      ).then( ->
+
+        configXmlValidator.check("android")
+
+      ).then( ->
 
 
-      steroidsCli.debug "Spawning steroids grunt #{steroidsCli.pathToSelf}"
+        steroidsCli.debug "Spawning steroids grunt #{steroidsCli.pathToSelf}"
 
-      gruntArgs = ["grunt"]
-      gruntArgs.push("--no-sass") if steroidsCli.options.argv.sass == false
+        gruntArgs = ["grunt"]
+        gruntArgs.push("--no-sass") if steroidsCli.options.argv.sass == false
 
-      gruntSbawn = sbawn
-        cmd: steroidsCli.pathToSelf
-        args: gruntArgs
-        stdout: true
-        stderr: true
+        gruntSbawn = sbawn
+          cmd: steroidsCli.pathToSelf
+          args: gruntArgs
+          stdout: true
+          stderr: true
 
-      gruntSbawn.on "exit", () =>
-        if gruntSbawn.code == 137
-          options.onSuccess.call() if options.onSuccess?
-        else
-          steroidsCli.debug "grunt spawn exited with code #{gruntSbawn.code}"
-          options.onFailure.call() if options.onFailure?
+        gruntSbawn.on "exit", () =>
+          if gruntSbawn.code == 137
+            options.onSuccess.call() if options.onSuccess?
+          else
+            steroidsCli.debug "grunt spawn exited with code #{gruntSbawn.code}"
+            options.onFailure.call() if options.onFailure?
 
-    ).fail (errorMessage)->
-      Help.attention()
-      console.log errorMessage
-      process.exit(1)
+      ).fail (errorMessage)->
+        Help.attention()
+        console.log errorMessage
+        process.exit(1)
 
   make: (options = {}) => # with pre- and post-make hooks
 
