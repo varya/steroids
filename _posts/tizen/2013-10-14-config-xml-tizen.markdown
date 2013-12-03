@@ -21,13 +21,21 @@ Let's go through the properties in the default `config.tizen.xml` file:
 <?xml version="1.0" encoding="UTF-8"?>
 <widget xmlns="http://www.w3.org/ns/widgets" xmlns:tizen="http://tizen.org/ns/widgets"
   id="http://yourdomain/myapp" version="1.0.0" viewmodes="maximized">
-  <tizen:application id="GN9qxYvRgr.MySteroidsApp" package="GN9qxYvRgr"
+  <tizen:application id="ChangeThis.MySteroidsApp" package="ChangeThis"
     required_version="2.2"/>
 {% endhighlight %}
 
 The `<widget>` tag encloses and defines the whole Tizen Web App. `viewmodes="maximized"` ensures that your app is running in full screen mode without any extra controls, and the `id` attribute is just a unique domain-style string.
 
-The `<tizen:application>` tag's `id` and `package` identify your app on the Tizen device. `package` must be exactly 10 characters long, random string of alphanumerics. `id` begins with your `package` key, followed by a `.` and then a 1-52 character string containing alphanumerics. Remember to change this for a new Steroids project, so you don't get conflicts with existing Steroids projects.
+The `<tizen:application>` tag's `id` (the application id) and `package` (the package id) identify your app on the Tizen device. The `package` id must match the following criteria:
+
+* Exactly 10 characters long
+* Characters may consist of upper and lower case letters and numbers
+* Unique in the context of Tizen Application Store
+
+The application `id` begins with your `package` id, followed by a `.` and then a 1-52 character string containing alphanumerics. Remember to change this for a new Steroids project, so you don't get conflicts with existing Steroids projects.
+
+For example: `id="abcDE12345.MySteroidsApp" package="abcDE12345"`
 
 {% highlight xml %}
 <content src="index.html"/>
