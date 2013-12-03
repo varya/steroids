@@ -1,3 +1,4 @@
+
 ## 3.1.0 (TODO)
 
 Features:
@@ -14,8 +15,13 @@ Changes:
   - All generator examples and resources refactored to work with Cordova 3.1.0.
 
 Bugfixes:
-  - New projects' default CSS now sets `-webkit-user-select` correctly for elements with the `contenteditable` attribute.
   - `onerror.js` removed from examples not on localhost to prevent Android issues.
+
+## 2.7.39  (2013-12-03)
+
+Bugfixes:
+  - New projects' default CSS now sets `-webkit-user-select` correctly for elements with the `contenteditable` attribute
+  - Fixed config.tizen.xml template which had screen resolution which was not accepted by Tizen Application Store.
 
 Changes:
   - If `config/cloud.json` is present (application has been deployed), then application uses the id of deployment in local development mode. If application hasn't been deployed, id is "1" as previously.
