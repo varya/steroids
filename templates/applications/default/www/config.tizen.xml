@@ -6,7 +6,7 @@
   <icon src="icons/steroids.png"/>
   <name>My Steroids App</name>
 
-  <feature name="http://tizen.org/feature/screen.size.normal.480.800"/>
+  <feature name="http://tizen.org/feature/screen.size.normal.720.1280"/>
 
   <tizen:privilege name="http://tizen.org/privilege/application.launch"/>
   <tizen:privilege name="http://tizen.org/privilege/contact.read"/>
