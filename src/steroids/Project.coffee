@@ -81,9 +81,9 @@ class Project
 
     ConfigXmlValidator = require "./ConfigXmlValidator"
     configXmlValidator= new ConfigXmlValidator
-    configXmlValidator.checkIos().then( ->
+    configXmlValidator.check("ios").then( ->
 
-      configXmlValidator.checkAndroid()
+      configXmlValidator.check("android")
 
     ).then( ->
 
