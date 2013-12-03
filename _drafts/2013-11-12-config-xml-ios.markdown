@@ -62,17 +62,6 @@ The following Cordova preferences are currently nonfunctional in Steroids:
 
 * **BackupWebStorage (string, defaults to 'cloud')** – valid values are 'none', 'cloud' and 'local'. Should affect how web storage data is backed up. Currently disabled in Steroids.
 
-##Configuring plugins
-
-By removing `<plugin>` elements from the `config.xml` file, you can disable parts of Cordova. For more information on the API calls associated with each core plugin, see the [Steroids API docs][steroids-api].
-
-###Geolocation plugin
-The Geolocation plugin has a special `onload` attribute. By setting it to true, Steroids will start receiving geolocation data when the app initially loads, allowing for better GPS accuracy:
-
-{% highlight html %}
-<plugin name="Geolocation" value="CDVLocation" onload="false"/>
-{% endhighlight %}
-
 ##Domain whitelisting
 The `<access>` element manages whitelisted domains for your app. For most cases, you are safe to allow all domains:
 
