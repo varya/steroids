@@ -29,13 +29,26 @@ class ApplicationConfigUpdater extends events.EventEmitter
   updateTo3_1_0: ->
     deferred = Q.defer()
 
-    @checkCordovaJsPath().then( ->
-      @ensurePackageJsonExists()
-    ).then( ->
+    Help.attention()
+    console.log(
+      """
+      #{chalk.bold("engine.steroids")} didn't match #{chalk.bold("3.1.0")} in #{chalk.bold("package.json")}.
+
+      This is likely because your project was created with an older version of Steroids CLI. We will
+      now run through a few migration tasks to ensure that your project functions correctly.
+
+      """
+    )
+
+    promptConfirm().then( =>
+      @checkCordovaJsPath()
+    ).then( =>
+      #@ensurePackageJsonExists()
+    ).then( =>
       #@ensureSteroidsEngineIsDefined()
-    ).then( ->
-      #@updateSteroidsEngineVersionTo "3.1.0"
-    ).fail( ->
+    ).then( =>
+
+    ).fail( =>
       deferred.reject("FAIL")
     )
 
@@ -44,18 +57,56 @@ class ApplicationConfigUpdater extends events.EventEmitter
   checkCordovaJsPath: ->
     deferred = Q.defer()
 
-    console.log("Searching for deprecated #{chalk.bold("cordova.js")} load paths in your project's HTML files...")
+    deferred.resolve()
+    console.log(
+      """
+      \nFirst up, the load path for #{chalk.bold("cordova.js")} has changed in Steroids CLI v3.1.0. The deprecated path is
 
-    allFiles = fs.readdirSync paths.applicationDir
-    console.log allFiles
+        #{chalk.underline.red("http://localhost/appgyver/cordova.js")}
 
+      or any subfolder of localhost. The required path for Steroids CLI 3.1.0 and newer is
+
+        #{chalk.underline.green("http://localhost/cordova.js")}
+
+      We will now search through your project's HTML files to see if there are any deprecated load paths.
+
+      """
+    )
+
+    promptConfirm().then( ->
+
+      gruntSbawn = sbawn
+        cmd: steroidsCli.pathToSelf
+        args: ["grunt", "--task=check-cordova-js-paths"]
+        stdout: true
+        stderr: true
+
+      gruntSbawn.on "exit", () =>
+        if gruntSbawn.code == 137
+          promptUnderstood().then( ->
+            deferred.resolve()
+          ).fail ->
+            deferred.fail("#{chalk.bold.red("ABORTED:")} Please run the command and read the instructions again.")
+        else
+          deferred.fail("#{chalk.bold.red("ERROR:")} Could not run grunt task #{chalk.bold("check-cordova-js-paths")}.")
+
+    ).fail ->
+      msg =
+        """
+        \n#{chalk.bold.red("Migration aborted")}
+        #{chalk.bold.red("=================")}
+
+        Please read through the instructions again!
+
+        """
+      deferred.fail(msg)
 
     return deferred.promise
 
   ensurePackageJsonExists: ->
     deferred = Q.defer()
 
-    fs.exists paths.application.configs.packagejson, (exists) ->
+    fs.exists paths.application.configs.packageJson, (exists) ->
       if exists
         deferred.resolve()
       else
@@ -71,7 +122,7 @@ class ApplicationConfigUpdater extends events.EventEmitter
           """
         )
 
-        promptUnderstood.then( ->
+        promptConfirm().then( ->
           fs.writeFileSync(paths.application.configs.packagejson, fs.readFileSync(path.join paths.templates.configs, "pre-steroids-engine-package.json"))
           deferred.resolve()
         ).fail ->
@@ -108,8 +159,26 @@ class ApplicationConfigUpdater extends events.EventEmitter
     return packagejsonData.indexOf(steroidsPackagejsonString) > -1
 
 
+  promptConfirm = ->
+    deferred = Q.defer()
+
+    inquirer.prompt [
+        {
+          type: "confirm"
+          default: true
+          name: "userAgreed"
+          message: "Can we go ahead?"
+        }
+      ], (answers) ->
+        if answers.userAgreed
+          deferred.resolve()
+        else
+          deferred.reject()
+
+    return deferred.promise
+
   promptUnderstood = ->
-    deferred = Q.defer
+    deferred = Q.defer()
 
     inquirer.prompt [
         {

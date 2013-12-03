@@ -174,11 +174,17 @@ class Steroids
         packager.create()
 
       when "grunt"
+
+        task = if argv.task
+          argv.task
+        else
+          "default"
+
         # Grunt steals the whole node process ...
         Grunt = require("./steroids/Grunt")
 
         grunt = new Grunt
-        grunt.run()
+        grunt.run( { task: task } )
 
       when "debug"
         Help.legacy.debugweinre()
