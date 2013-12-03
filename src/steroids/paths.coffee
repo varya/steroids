@@ -12,6 +12,7 @@ class Paths
     applications: path.join @templatesDir, "applications"
     resources: path.join @templatesDir, "resources"
     scaffolds: path.join @templatesDir, "scaffolds"
+    packageJson: path.join @templatesDir, "applications", "default", "package.json"
 
   @grunt:
     library: path.join @npm, "node_modules", "grunt", "lib", "grunt"

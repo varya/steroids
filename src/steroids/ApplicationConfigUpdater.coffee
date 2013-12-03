@@ -42,22 +42,17 @@ class ApplicationConfigUpdater extends events.EventEmitter
       )
 
       promptConfirm().then( =>
-        @checkCordovaJsPath()
+        @checkCordovaJsPaths()
       ).then( =>
         @ensurePackageJsonExists()
       ).then( =>
         @ensureSteroidsEngineIsDefinedWithVersion("3.1.0")
-      ).then( =>
-        Help.success()
-        console.log(
-          """
-          All set! Assuming you checked the #{chalk.bold("cordova.js")} load paths, your project is fully
-          Steroids CLI 3.1.0 compatible. Happy hacking!
-          """
-        )
+      ).then( ->
+        Help.SUCCESS()
+        console.log chalk.green("Migration successful, moving on!")
         deferred.resolve()
-      ).fail ->
-        msg =
+      ).fail (msg)->
+        msg = msg ||
           """
           \n#{chalk.bold.red("Migration aborted")}
           #{chalk.bold.red("=================")}
@@ -69,7 +64,7 @@ class ApplicationConfigUpdater extends events.EventEmitter
 
     return deferred.promise
 
-  checkCordovaJsPath: ->
+  checkCordovaJsPaths: ->
     deferred = Q.defer()
 
     console.log(
@@ -102,72 +97,83 @@ class ApplicationConfigUpdater extends events.EventEmitter
           ).fail ->
             deferred.reject()
         else
-          deferred.reject()
+          console.log("Failed to run Grunt task #{chalk.bold("check-cordova-js-paths")}.")
+          process.exit(1)
 
     ).fail ->
-      msg =
-        """
-        \n#{chalk.bold.red("Migration aborted")}
-        #{chalk.bold.red("=================")}
-
-        Please read through the instructions again!
-
-        """
-      deferred.reject(msg)
+      deferred.reject()
 
     return deferred.promise
 
   ensurePackageJsonExists: ->
     deferred = Q.defer()
 
-    if fs.existsSync paths.application.configs.packageJson
-      console.log chalk.green("\n#{chalk.bold("package.json")} found in project root, moving on!")
-      deferred.resolve()
-    else
-      console.log(
-        """
-          \n#{chalk.red.bold("Could not find package.json in project root")}
-          #{chalk.red.bold("===========================================")}
+    console.log(
+      """
+      \nNext, we're going to create a #{chalk.bold("package.json")} file in your project root. If there
+      already exists one, we'll just add the #{chalk.bold("engines.steroids")} field with the correct
+      version number.
 
-          We could not find a #{chalk.bold("package.json")} file in project root. Starting from Steroids CLI v3.1.0,
-          a #{chalk.bold("package.json")} file is required. We will create the file now.
+      """
+    )
 
-        """
-      )
+    promptConfirm().then( ->
 
-      promptConfirm().then( ->
-        console.log("\nCreating #{chalk.bold("package.json")} in project root...")
-        fs.writeFileSync(paths.application.configs.packageJson, fs.readFileSync(path.join paths.templates.configs, "pre-steroids-engine-package.json"))
-        console.log("#{chalk.green("OK!")}")
+      if fs.existsSync paths.application.configs.packageJson
+        console.log chalk.green("\n#{chalk.bold("package.json")} found in project root, moving on!\n")
         deferred.resolve()
-      ).fail ->
-        deferred.reject "#{chalk.bold.red("ABORTED:")} Please run the command and read the instructions again."
+      else
+        console.log(
+          """
+            \n#{chalk.red.bold("Could not find package.json in project root")}
+            #{chalk.red.bold("===========================================")}
+
+            We could not find a #{chalk.bold("package.json")} file in project root. We will create the file now.
+
+          """
+        )
+
+        promptConfirm().then( ->
+          console.log("\nCreating #{chalk.bold("package.json")} in project root...")
+          fs.writeFileSync paths.application.configs.packageJson, fs.readFileSync(paths.templates.packageJson)
+          console.log("#{chalk.green("OK!")}")
+          deferred.resolve()
+        ).fail ->
+          deferred.reject()
+    ).fail( ->
+      deferred.reject()
+    )
 
     return deferred.promise
 
-  # assumes a package.json file exists
   ensureSteroidsEngineIsDefinedWithVersion: (version)->
     deferred = Q.defer()
 
-    console.log("Ensuring that #{chalk.bold("engine.steroids")} in #{chalk.bold("package.json")} is #{chalk.bold(version)}")
-    if fs.existsSync paths.application.configs.packageJson
-      packageJsonData = fs.readFileSync paths.application.configs.packageJson, 'utf-8'
-      packageJson = JSON.parse(packageJsonData)
-      if !packageJson.engines?
-        packageJson.engines = { steroids: version }
-      else
-        packageJson.engines.steroids = version
-
-      packageJsonData = JSON.stringify(packageJson, null, 4);
-      fs.writeFileSync paths.application.configs.packageJson, packageJsonData
+    if @validateSteroidsEngineVersion(version)
+      console.log("\n#{chalk.bold("engine.steroids")} in #{chalk.bold("package.json")} is #{chalk.bold(version)}, moving on!")
       deferred.resolve()
     else
-      deferred.reject()
+      console.log("Setting #{chalk.bold("engine.steroids")} in #{chalk.bold("package.json")} to #{chalk.bold(version)}...")
+      if fs.existsSync paths.application.configs.packageJson
+        packageJsonData = fs.readFileSync paths.application.configs.packageJson, 'utf-8'
+        packageJson = JSON.parse(packageJsonData)
+        if !packageJson.engines?
+          packageJson.engines = { steroids: version }
+        else
+          packageJson.engines.steroids = version
+
+        packageJsonData = JSON.stringify(packageJson, null, 4);
+        fs.writeFileSync paths.application.configs.packageJson, packageJsonData
+        console.log chalk.green("OK!")
+        deferred.resolve()
+      else
+        deferred.reject()
+
+    return deferred.promise
 
   packagejsonContainsSteroidsEngine: ->
     packagejsonData = fs.readFileSync paths.application.configs.packagejson, 'utf-8'
     return packagejsonData.indexOf(steroidsPackagejsonString) > -1
-
 
   promptConfirm = ->
     deferred = Q.defer()
