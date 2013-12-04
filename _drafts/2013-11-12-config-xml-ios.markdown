@@ -13,6 +13,14 @@ Like Cordova, Steroids uses a `config.xml` file to set universal preferences for
 
 The iOS-specific `config.xml` is located at `www/config.ios.xml` – the plain `www/config.xml` is used as a dummy to ensure project compatibility with [Cordova CLI](https://github.com/apache/cordova-cli).
 
+## Migrating from a 2.7.x version
+
+With Steroids CLI version 3.1.0, the `config.ios.xml` file has undergone some breaking changes, read the [migration guide](/steroids/guides/steroids-js/cordova-3-1-migration/) for more information. The easiest way to migrate is to create a new Steroids project with `steroids create` and then copy your preferences over to the new format.
+
+## <widget> root tag
+
+The root of `config.ios.xml` should be a `<widget>` element with the `id`, `version` and `xmlns` attributes. They are not used by Steroids currently, but should be kept up-to-date to ensure future compatibility.
+
 ## Name, description and author
 
 These fields are not used by Steroids at the moment, but it's good practice to fill them out.
