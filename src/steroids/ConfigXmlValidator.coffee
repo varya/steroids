@@ -43,19 +43,38 @@ module.exports = class ConfigXmlValidator
                 """
               deferred.reject msg
             else if !result.widget?
+              androidAddenum =
+                """
+                \nA project created with Steroids CLI 2.7.x will have a #{chalk.bold("<cordova>")} element as the root element of
+                #{chalk.bold("www/config.android.xml")}. Make sure you replace the #{chalk.bold("<cordova>")} element with the #{chalk.bold("<widget>")} element.
+
+                """
+
               msg =
                 """
                   #{chalk.red.bold("No <widget> root element found in config.#{platform}.xml")}
                   #{chalk.red.bold("================================================")}
 
                   It looks like your #{chalk.bold("www/config.#{platform}.xml")} file has no #{chalk.bold("<widget>")} element at its root.
-                  This element is required for Steroids to function.
+                  This element is required for Steroids to function. A proper #{chalk.bold("<widget>")} element looks something like:
 
+                    #{chalk.bold("<widget id=\"com.appgyver.helloSteroids\" version=\"2.0.0\" xmlns=\"http://www.w3.org/ns/widgets\">")}
+                  #{
+                    if platform is "android"
+                      androidAddenum
+                    else
+                      ""
+                  }
                   Please ensure that your project's #{chalk.bold("www/config.#{platform}.xml")} is properly set up. You can run
 
                     #{chalk.bold("$ steroids create myProjectName")}
 
-                  to create a new project to see how the #{chalk.bold("www/config.#{platform}.xml")} file should look like.
+                  to create a new project to see how the #{chalk.bold("www/config.#{platform}.xml")} file should look like, or
+                  take a look at
+
+                    #{chalk.underline("http://guides.appgyver.com/steroids/guides/project_configuration/config-xml-#{platform}/")}
+
+                  for an overview of the new #{chalk.bold("config.#{platform}.xml")} format.
 
                 """
               deferred.reject msg
