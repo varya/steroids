@@ -4,6 +4,7 @@ title:  "Migrating to Cordova 3.1"
 date:   2013-05-27 13:51:34
 categories: steroids-js
 platforms: iOS, Android
+staging: true
 ---
 
 Updating all Steroids components (Scanner, Steroids.js, Steroids CLI) to support Cordova 3.1 has brought about some breaking changes that need to be taken into account in your project.
@@ -14,6 +15,12 @@ Make sure that `cordova.js` is loaded from localhost root, and not a subfolder (
 
 {% highlight html %}
 <script scr="http://localhost/cordova.js"></script>
+{% endhighlight %}
+
+This also applies if you're not using the `http://localhost/` prefix:
+
+{% highlight html %}
+<script scr="/cordova.js"></script>
 {% endhighlight %}
 
 ## config.xml changes
