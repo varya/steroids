@@ -1,3 +1,7 @@
+## 3.1.1 (2013-12-04)
+
+Clarified validation instructions for `config.android.xml`.
+
 ## 3.1.0 (2013-12-04)
 
 Features:
