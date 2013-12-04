@@ -12,7 +12,9 @@ var module = angular.module('<%= options.className %>Model', []);
 
 // Uncomment below to use the Cordova SQLitePlugin instead of WebSQL.
 
-// window.openDatabase = window.sqlitePlugin.openDatabase
+//document.addEventListener("deviceready", function(){
+//  window.openDatabase = window.sqlitePlugin.openDatabase
+//});
 
 module.factory('<%= options.className %>', function() {
 
