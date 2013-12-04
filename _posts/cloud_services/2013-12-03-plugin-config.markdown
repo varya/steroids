@@ -28,16 +28,18 @@ If your plugin repo is private, please see [the section below](#private_reposito
 
 Once you have added your custom plugins in the Build Service’s Configure iOS/Android Build Settings page, these plugins will be included in all types of builds. So, in addition to the Scanner builds, your custom plugins configurated in the Build Service will be included in Ad Hoc builds and App Store/Google Play builds as well.
 
-**Note:** Steroids currently uses Cordova 3.1.0. The Cordova core features are included by default in Scanner and in Scanner builds, so you don't need to include e.g. the [Vibration Plugin](https://github.com/apache/cordova-plugin-vibration) to use the Vibration API. The same applies to other plugins installed by default such as the [SQLite Plugin](https://github.com/lite4cordova/Cordova-SQLitePlugin). 
+**Note:** Steroids currently uses Cordova 3.1.0. The Cordova core features are included by default in Scanner and in Scanner builds, so you don't need to include e.g. the [Vibration Plugin](https://github.com/apache/cordova-plugin-vibration) to use the Vibration API. The same applies to the other plugins installed by default:
+
+* [Barcode Scanner](https://github.com/AppGyver/BarcodeScanner.git)
+* [SQLite](https://github.com/lite4cordova/Cordova-SQLitePlugin.git)
+* [Google Analytics](https://github.com/AppGyver/GAPlugin.git)
 
 Our Build Service supports two tools, [plugman](https://github.com/apache/cordova-plugman) and Cordova, for adding the plugin JavaScript files automatically to your custom builds. You need to check the plugin.xml file for each plugin you add to see which method they use:
 
-* The <asset> element just includes the plugin's JavaScript file in your app. The file won't show up in the project structure, but will be available on the device. You need to manually include a <script> tag in your HTML to load the JavaScript file.
-* The <js-module> element both includes the plugin's JavaScript file and also injects the relevant <script> tag into the DOM of all WebViews. 
+* The `<asset>` element just includes the plugin's JavaScript file in your app. The file won't show up in the project structure, but will be available on the device. You need to manually include a `<script>` tag in your HTML to load the JavaScript file.
+* The `<js-module>` element both includes the plugin's JavaScript file and also injects the relevant `<script>` tag into the DOM of all WebViews. Thus, **if this element is present, the plugin JavaScript is loaded automatically.**
 
-A properly-coded Cordova plugin should not execute any code on load, but wait for an init() call or similar, so there's no harm in having the <script> tag injected to each view.
-
-**Note that you don't need to include and load any plugin JavaScript files manually in your project.
+A properly-coded Cordova plugin should not execute any code on load, but wait for an `init()` call or similar, so there's no harm in having the `<script>` tag injected to each view.
 
 Certain plugins require you to pass variables to plugman. You can give these as a property of the individual plugin object:
 
@@ -59,14 +61,15 @@ The way to use custom plugins in local development is to build a custom Scanner 
 
 You can then develop locally with the regular Steroids workflow, and you only need to access the build service to build your `.ipa`/`.apk` once you're ready to release your app (or you want to change your plugins).
 
-Please note that all plugins are configured solely via the Build Service. This means that they aren't defined in the local config.ios.xml and config.android.xml files.
+Please note that all plugins are configured solely via the Build Service. This means that they aren't defined in the local `config.ios.xml` and `config.android.xml` files.
 
 ## Private repository in Github
 
 You will need:
-* Restricted account for your plugin
-* Personal access token
-* Url to your plugin’s repository
+
+* A restricted account for your plugin
+* A personal access token
+* The URL to your plugin’s repository
 
 If your plugin’s repository is not public, you need to provide build service with credentials.
 Create a personal access token from *My account* > *Applications*.
