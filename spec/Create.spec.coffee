@@ -73,6 +73,7 @@ describe 'Steroids', ->
       @testHelper.createProjectSync()
       @wwwPath = path.join @testHelper.testAppPath, "www"
       @configPath = path.join @testHelper.testAppPath, "config"
+      @appPath = @testHelper.testAppPath
 
     it "has www/index.html with salutation", ->
       indexHTMLPath = path.join @wwwPath, "index.html"
@@ -86,8 +87,8 @@ describe 'Steroids', ->
       contents = fs.readFileSync(applicationCoffeePath).toString()
       expect( contents ).toMatch(/steroids.config.name = \"My New Application\"/)
 
-    it "has config/bower.json with dependency to steroids.js", ->
-      bowerJsonPath = path.join @configPath, "bower.json"
+    it "has bower.json with dependency to steroids.js", ->
+      bowerJsonPath = path.join @appPath, "bower.json"
 
       contents = fs.readFileSync(bowerJsonPath).toString()
       expect( contents ).toMatch(/\"steroids-js\": \"/)
@@ -98,11 +99,11 @@ describe 'Steroids', ->
       contents = fs.readFileSync(configXmlPath).toString()
       expect( contents ).toMatch(/DisallowOverscroll/)
 
-    it "has www/config.android.xml with key with value org.apache.cordova.GeoBroker", ->
+    it "has www/config.android.xml with key with element </widget>", ->
       configXmlPath = path.join @wwwPath, "config.android.xml"
 
       contents = fs.readFileSync(configXmlPath).toString()
-      expect( contents ).toMatch(/org.apache.cordova.GeoBroker/)
+      expect( contents ).toMatch(/\<\/widget\>/)
 
     it "does not have a folder named app", ->
       appPath = path.join @testHelper.testAppPath, "app"
