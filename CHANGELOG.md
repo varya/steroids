@@ -13,6 +13,7 @@ Changes:
   - **BREAKING:** Default `config.ios.xml` and `config.android.xml` updated to be Cordova 3.1.0 compatible.
   - Default project now loads `index.html` from localhost.
   - All generator examples and resources refactored to work with Cordova 3.1.0.
+  - Ripple emulator disabled due to issues with Cordova 3.1.0.
 
 Bugfixes:
   - `onerror.js` removed from examples not on localhost to prevent Android issues.
