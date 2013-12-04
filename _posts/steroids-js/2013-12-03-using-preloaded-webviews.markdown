@@ -30,7 +30,7 @@ A non-preloaded WebView waits for the DOMContentLoaded event before it can be pu
 
 ##Preload id
 
-Every preloaded WebView has an unique id. You can set the preload id for a WebView using the `ìd` option with ´preload()´. However, using the `id` parameter is optional. If the `id` parameter is not given, the location of the WebView is used as an id. The same applies to the initial WebView of the app: the preload id of the initial view is set to match `steroids.config.location` in `application.json/coffee` or `location` of the first tab, if the tab bar is enabled.
+Every preloaded WebView has an unique id. You can set the preload id for a WebView using the `id` option with ´preload()´. However, using the `id` parameter is optional. If the `id` parameter is not given, the location of the WebView is used as an id. The same applies to the initial WebView of the app: the preload id of the initial view is set to match `steroids.config.location` in `config/application.coffee`. If using the tab bar, the id of each view matches the `location` of the tab.
 
 {% highlight javascript %}
 var webView = new steroids.view.WebView("view.html");
