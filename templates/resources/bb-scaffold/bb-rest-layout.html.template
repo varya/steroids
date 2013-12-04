@@ -10,7 +10,7 @@
   <script src="/javascripts/onerror.js"></script>
   <script src="/javascripts/console.log.js"></script>
 
-  <script src="/appgyver/cordova.js"></script>
+  <script src="/cordova.js"></script>
   <script src="/components/steroids-js/steroids.js"></script>
 
   <script src="/components/jquery/jquery.min.js"></script>

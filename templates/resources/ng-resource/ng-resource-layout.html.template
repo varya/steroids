@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="/vendor/topcoat/css/topcoat-mobile-light.css" />
   <link rel="stylesheet" href="/stylesheets/application.css" />
 
-  <script src="/appgyver/cordova.js"></script>
+  <script src="/cordova.js"></script>
   <script src="/components/steroids-js/steroids.js"></script>
 
 
