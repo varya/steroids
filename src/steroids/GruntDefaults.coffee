@@ -30,9 +30,10 @@ registerMigrationTasks = (grunt)->
   grunt.registerTask 'check-cordova-js-paths', "Checks for deprecated cordova.js paths in all HTML files", ->
     results = []
     grunt.file.recurse Paths.applicationDir, (abspath, rootdir, subdir, filename)->
-      if filename.indexOf(".html") > -1
+      if subdir?.indexOf("dist") != 0 and filename.indexOf(".html") > -1
         contents = grunt.file.read abspath
         if contents.indexOf("/appgyver/cordova.js") > -1
+          subdir = subdir || ""
           results.push(subdir + "/" + filename)
 
     if results.length > 0
