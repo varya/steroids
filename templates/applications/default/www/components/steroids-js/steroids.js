@@ -1,4 +1,4 @@
-/*! steroids-js - v2.7.11 - 2013-11-15 16:02 */
+/*! steroids-js - v3.1.0 - 2013-12-04 14:58 */
 (function(window){
 var Bridge,
   __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
@@ -1398,6 +1398,92 @@ BounceShadow = (function() {
   return BounceShadow;
 
 })();
+;var StatusBar;
+
+StatusBar = (function() {
+  function StatusBar() {}
+
+  StatusBar.prototype.hide = function(options, callbacks) {
+    if (options == null) {
+      options = {};
+    }
+    if (callbacks == null) {
+      callbacks = {};
+    }
+    steroids.debug("steroids.statusBar.hide options: " + (JSON.stringify(options)) + " callbacks: " + (JSON.stringify(callbacks)));
+    return steroids.nativeBridge.nativeCall({
+      method: "hideStatusBar",
+      parameters: {},
+      successCallbacks: [callbacks.onSuccess],
+      failureCallbacks: [callbacks.onFailure]
+    });
+  };
+
+  StatusBar.prototype.show = function(options, callbacks) {
+    var parameters;
+    if (options == null) {
+      options = {};
+    }
+    if (callbacks == null) {
+      callbacks = {};
+    }
+    steroids.debug("steroids.statusBar.show options: " + (JSON.stringify(options)) + " callbacks: " + (JSON.stringify(callbacks)));
+    parameters = options.constructor.name === "Object" ? {
+      style: options.style
+    } : {
+      style: options
+    };
+    return steroids.nativeBridge.nativeCall({
+      method: "showStatusBar",
+      parameters: parameters,
+      successCallbacks: [callbacks.onSuccess],
+      failureCallbacks: [callbacks.onFailure]
+    });
+  };
+
+  return StatusBar;
+
+})();
+;var TabBar;
+
+TabBar = (function() {
+  function TabBar() {}
+
+  TabBar.prototype.hide = function(options, callbacks) {
+    if (options == null) {
+      options = {};
+    }
+    if (callbacks == null) {
+      callbacks = {};
+    }
+    steroids.debug("steroids.tabBar.hide options: " + (JSON.stringify(options)) + " callbacks: " + (JSON.stringify(callbacks)));
+    return steroids.nativeBridge.nativeCall({
+      method: "hideTabBar",
+      parameters: {},
+      successCallbacks: [callbacks.onSuccess],
+      failureCallbacks: [callbacks.onFailure]
+    });
+  };
+
+  TabBar.prototype.show = function(options, callbacks) {
+    if (options == null) {
+      options = {};
+    }
+    if (callbacks == null) {
+      callbacks = {};
+    }
+    steroids.debug("steroids.tabBar.show options: " + (JSON.stringify(options)) + " callbacks: " + (JSON.stringify(callbacks)));
+    return steroids.nativeBridge.nativeCall({
+      method: "showTabBar",
+      parameters: {},
+      successCallbacks: [callbacks.onSuccess],
+      failureCallbacks: [callbacks.onFailure]
+    });
+  };
+
+  return TabBar;
+
+})();
 ;var WebView,
   __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
@@ -1419,6 +1505,7 @@ WebView = (function() {
       options = {};
     }
     this.location = options.constructor.name === "String" ? options : options.location;
+    this.id = options.id != null ? options.id : void 0;
     if (this.location.indexOf("://") === -1) {
       if (window.location.href.indexOf("file://") === -1) {
         this.location = "" + window.location.protocol + "//" + window.location.host + "/" + this.location;
@@ -1438,7 +1525,7 @@ WebView = (function() {
       callbacks = {};
     }
     steroids.debug("preload called for WebView " + (JSON.stringify(this)));
-    proposedId = options.id || this.location;
+    proposedId = options.id || this.id || this.location;
     setIdOnSuccess = function() {
       steroids.debug("preload success: setting id");
       return _this.id = proposedId;
@@ -1452,6 +1539,31 @@ WebView = (function() {
       successCallbacks: [setIdOnSuccess, callbacks.onSuccess],
       failureCallbacks: [callbacks.onFailure]
     });
+  };
+
+  WebView.prototype.unload = function(options, callbacks) {
+    var _ref;
+    if (options == null) {
+      options = {};
+    }
+    if (callbacks == null) {
+      callbacks = {};
+    }
+    steroids.debug("unload called for WebView " + (JSON.stringify(this)));
+    if (this.id != null) {
+      return steroids.nativeBridge.nativeCall({
+        method: "unloadLayer",
+        parameters: {
+          id: this.id
+        },
+        successCallbacks: [callbacks.onSuccess],
+        failureCallbacks: [callbacks.onFailure]
+      });
+    } else {
+      return (_ref = callbacks.onFailure) != null ? _ref.call(this, {
+        errorDescription: "Cannot unload a WebView that is not preloaded"
+      }) : void 0;
+    }
   };
 
   WebView.prototype.getParams = function() {
@@ -2409,16 +2521,15 @@ PostMessage = (function() {
   function PostMessage() {}
 
   PostMessage.postMessage = function(message, targetOrigin) {
-    var callbacks, escapedJSONMessage;
-    callbacks = {};
+    var escapedJSONMessage;
     escapedJSONMessage = escape(JSON.stringify(message));
     return steroids.nativeBridge.nativeCall({
       method: "broadcastJavascript",
       parameters: {
         javascript: "steroids.PostMessage.dispatchMessageEvent('" + escapedJSONMessage + "', '*');"
       },
-      successCallbacks: [callbacks.onSuccess],
-      recurringCallbacks: [callbacks.onFailure]
+      successCallbacks: [],
+      recurringCallbacks: []
     });
   };
 
@@ -2434,7 +2545,7 @@ PostMessage = (function() {
 
 }).call(this);
 ;window.steroids = {
-  version: "2.7.11",
+  version: "3.1.0",
   Animation: Animation,
   XHR: XHR,
   File: File,
@@ -2536,6 +2647,10 @@ window.steroids.modal = new Modal;
 window.steroids.audio = new Audio;
 
 window.steroids.navigationBar = new NavigationBar;
+
+window.steroids.statusBar = new StatusBar;
+
+window.steroids.tabBar = new TabBar;
 
 window.steroids.device = new Device;
 
