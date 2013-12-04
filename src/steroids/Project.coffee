@@ -9,11 +9,8 @@ class Project
   constructor: (@options={}) ->
 
   initialize: (options={}) =>
-    process.chdir(@options.folder)
 
-    @makeOnly
-      onSuccess: =>
-        @package(options.onSuccess)
+    options.onSuccess()
 
   push: (options = {}) =>
     steroidsCli.debug "Starting push"

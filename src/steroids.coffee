@@ -143,7 +143,7 @@ class Steroids
 
         projectCreator.clone(folder, template)
 
-        console.log "Initializing Steroids project ... "
+        console.log "Initializing Steroids project..."
 
         project = new Project
                     folder: folder
@@ -151,7 +151,7 @@ class Steroids
 
         project.initialize
           onSuccess: () ->
-            Help.logo()
+            Help.SUCCESS()
             Help.welcome()
 
 
