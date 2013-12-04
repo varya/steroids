@@ -28,6 +28,19 @@ Popping a preloaded WebView object doesn't remove it from memory, so if you push
 
 A non-preloaded WebView waits for the DOMContentLoaded event before it can be pushed into the layer stack, whereas a preloaded view can be pushed instantly.
 
+##Preload id
+
+Every preloaded WebView has an unique id. You can set the preload id for a WebView using the `ìd` option with ´preload()´. However, using the `id` parameter is optional. If the `id` parameter is not given, the location of the WebView is used as an id. The same applies to the initial WebView of the app: the preload id of the initial view is set to match `steroids.config.location` in `application.json/coffee` or `location` of the first tab, if the tab bar is enabled.
+
+{% highlight javascript %}
+var webView = new steroids.view.WebView("view.html");
+webView.preload({id: "uniqueIdForView"}, {
+  onSuccess: function() {
+    steroids.layers.push(webView);
+  }
+});
+{% endhighlight %}
+
 ## Preload only happens once per WebView
 
 You may have multiple entry points to a single WebView in an application. However, you can only preload a WebView once. In case you have many WebView objects pointing to the same identical URL, only the first preload is successful, and additional ones trigger a failure callback.
