@@ -4,7 +4,6 @@ title:  "Migrating to Cordova 3.1"
 date:   2013-05-27 13:51:34
 categories: steroids-js
 platforms: iOS, Android
-staging: true
 ---
 
 Updating all Steroids components (Scanner, Steroids.js, Steroids CLI) to support Cordova 3.1 has brought about some breaking changes that need to be taken into account in your project.

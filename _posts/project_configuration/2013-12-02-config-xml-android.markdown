@@ -17,7 +17,7 @@ The Android-specific `config.xml` is located at `www/config.android.xml`.
 
 With Steroids CLI version 3.1.0, the `config.android.xml` file has undergone some breaking changes, read the [migration guide](/steroids/guides/steroids-js/cordova-3-1-migration/) for more information. The easiest way to migrate is to create a new Steroids project with `steroids create` and then copy your preferences over to the new format.
 
-## <widget> root tag
+## widget root tag
 
 The root of `config.ios.xml` should be a `<widget>` element with the `id`, `version` and `xmlns` attributes. They are not used by Steroids currently, but should be kept up-to-date to ensure future compatibility.
 
