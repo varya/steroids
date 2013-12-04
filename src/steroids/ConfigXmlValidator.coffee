@@ -74,7 +74,7 @@ module.exports = class ConfigXmlValidator
                 To ensure we don't overwrite any of your custom configs, we won't upgrade your config file automatically.
                 Instead, you should go through the migration steps at
 
-                  #{chalk.underline("http://guides.appgyver.com/steroids/guides/steroids-js/cordova-3-1-migration")}
+                  #{chalk.underline("http://guides.appgyver.com/steroids/guides/steroids-js/cordova-3-1-migration/")}
 
                 """
               deferred.reject msg
