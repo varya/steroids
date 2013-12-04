@@ -47,7 +47,7 @@ registerMigrationTasks = (grunt)->
 
       console.log(
         """
-        #{chalk.bold.red("MANUAL ACTION NEEDED")}
+        \n#{chalk.bold.red("MANUAL ACTION NEEDED")}
         #{chalk.bold.red("====================")}
 
         You need to fix the #{chalk.bold("cordova.js")} load paths for the above files, or your app might not function.
