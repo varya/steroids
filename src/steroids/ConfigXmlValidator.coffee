@@ -68,8 +68,13 @@ module.exports = class ConfigXmlValidator
                 It looks like your #{chalk.bold("www/config.#{platform}.xml")} file has a #{chalk.bold("<plugins>")} element, which is deprecated as of Steroids
                 CLI v3.1.0. This is likely because your project was built with a pre-3.1.0 Steroids CLI version.
 
-                To get rid of this message, you need to remove all plugins from your #{chalk.bold("www/config.#{platform}.xml")}. While you're at it,
-                you should also upgrade your #{chalk.bold("www/config.#{platform}.xml")} to match the new form introduced by Steroids CLI v3.1.0.
+                To get rid of this message, you need to remove the #{chalk.bold("<plugins>")} element (plus all subelements) from your
+                #{chalk.bold("www/config.#{platform}.xml")}. The core plugins (and the necessary JavaScripts) are now included automatically.
+                The same applies to any custom plugins installed via the Build Service. Read more in the migration guide
+                linked below.
+
+                While you're at it, you should also upgrade your #{chalk.bold("www/config.#{platform}.xml")} to match the
+                new form introduced by Steroids CLI v3.1.0.
 
                 To ensure we don't overwrite any of your custom configs, we won't upgrade your config file automatically.
                 Instead, you should go through the migration steps at
