@@ -12,6 +12,7 @@ class Paths
     applications: path.join @templatesDir, "applications"
     resources: path.join @templatesDir, "resources"
     scaffolds: path.join @templatesDir, "scaffolds"
+    packageJson: path.join @templatesDir, "applications", "default", "package.json"
 
   @grunt:
     library: path.join @npm, "node_modules", "grunt", "lib", "grunt"
@@ -61,6 +62,9 @@ class Paths
     application: path.join @application.configDir, "application.coffee"
     cloud: path.join @application.configDir, "cloud.json"
     bower: path.join @applicationDir, "bower.json"
+    configIosXml: path.join @application.wwwDir, "config.ios.xml"
+    configAndroidXml: path.join @application.wwwDir, "config.android.xml"
+    packageJson: path.join @applicationDir, "package.json"
     legacy:
       bower: path.join @application.configDir, "bower.json"
 

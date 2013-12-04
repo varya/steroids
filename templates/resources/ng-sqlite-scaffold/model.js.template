@@ -11,12 +11,10 @@ if ( typeof angular == 'undefined' ) {
 var module = angular.module('<%= options.className %>Model', []);
 
 // Uncomment below to use the Cordova SQLitePlugin instead of WebSQL.
-// Be sure to set up the plugin at www/config.ios.xml or www/config.android.xml.
-// You need to add the following platform-specific tag inside the <plugins> tag:
-// - iOS: <plugin name="SQLitePlugin" value="SQLitePlugin" />
-// - Android: <plugin name="SQLitePlugin" value="com.phonegap.plugin.sqlitePlugin.SQLitePlugin"/>
-// 
-// window.openDatabase = window.sqlitePlugin.openDatabase
+
+//document.addEventListener("deviceready", function(){
+//  window.openDatabase = window.sqlitePlugin.openDatabase
+//});
 
 module.factory('<%= options.className %>', function() {
 

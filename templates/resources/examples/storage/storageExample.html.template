@@ -2,22 +2,20 @@
 <html>
   <head>
     <title>Cordova Storage Example</title>
-    
+
     <link rel="stylesheet" href="vendor/topcoat/css/topcoat-mobile-light.css" />
     <link rel="stylesheet" href="stylesheets/application.css" />
 
-    <script src="javascripts/onerror.js"></script>
-
     <!-- cordova.js is served from localhost to ensure the correct version -->
-    <script src="http://localhost/appgyver/cordova.js"></script>
+    <script src="http://localhost/cordova.js"></script>
     <script>
 
     // Define our Database object
     var db = null;
-    
+
     // Wait for Cordova to load
     document.addEventListener("deviceready", onDeviceReady, false);
-    
+
     // Cordova is ready
     function onDeviceReady() {
       // Create a new database
@@ -27,7 +25,7 @@
         "Cordova Demo",   // database display name
         200000            // database size in bytes
       );
-      
+
       // populate the DB, then run a query
       db.transaction(
         populateDB,     // transaction to run; a SQLTransaction object is passed to the callback function
@@ -35,7 +33,7 @@
         populatingDone  // success callback function; ran after the the transaction is done
       );
     }
-    
+
     function populateDB(tx) {
       tx.executeSql('DROP TABLE IF EXISTS DEMO');
       tx.executeSql('CREATE TABLE IF NOT EXISTS DEMO (id unique, data)');
@@ -81,13 +79,13 @@
   </head>
   <body>
     <div class="content-padded">
-      
+
       <h1>Storage Example</h1>
-      
+
       <span id="status">Creating and populating a database...</span>
       <br><br>
       <a class="topcoat-button--cta center full is-disabled" id="query-button" ontouchend="runQuery()" >Run query</a>
-      
+
     </div>
   </body>
 </html>

@@ -1,16 +1,16 @@
 sbawn = require "./sbawn"
 util = require "util"
+Help = require "./Help"
+ApplicationConfigUpdater = require "./ApplicationConfigUpdater"
+ConfigXmlValidator = require "./ConfigXmlValidator"
 
 class Project
 
   constructor: (@options={}) ->
 
   initialize: (options={}) =>
-    process.chdir(@options.folder)
 
-    @makeOnly
-      onSuccess: =>
-        @package(options.onSuccess)
+    options.onSuccess()
 
   push: (options = {}) =>
     steroidsCli.debug "Starting push"
@@ -78,23 +78,41 @@ class Project
 
   makeOnly: (options = {}) => # without hooks
 
-    steroidsCli.debug "Spawning steroids grunt #{steroidsCli.pathToSelf}"
+    applicationConfigUpdater = new ApplicationConfigUpdater
+    configXmlValidator = new ConfigXmlValidator
+    applicationConfigUpdater.updateTo3_1_0().then( =>
 
-    gruntArgs = ["grunt"]
-    gruntArgs.push("--no-sass") if steroidsCli.options.argv.sass == false
+      configXmlValidator.check("ios")
 
-    gruntSbawn = sbawn
-      cmd: steroidsCli.pathToSelf
-      args: gruntArgs
-      stdout: true
-      stderr: true
+    ).then( =>
 
-    gruntSbawn.on "exit", () =>
-      if gruntSbawn.code == 137
-        options.onSuccess.call() if options.onSuccess?
-      else
-        steroidsCli.debug "grunt spawn exited with code #{gruntSbawn.code}"
-        options.onFailure.call() if options.onFailure?
+      configXmlValidator.check("android")
+
+    ).then( =>
+
+
+      steroidsCli.debug "Spawning steroids grunt #{steroidsCli.pathToSelf}"
+
+      gruntArgs = ["grunt"]
+      gruntArgs.push("--no-sass") if steroidsCli.options.argv.sass == false
+
+      gruntSbawn = sbawn
+        cmd: steroidsCli.pathToSelf
+        args: gruntArgs
+        stdout: true
+        stderr: true
+
+      gruntSbawn.on "exit", () =>
+        if gruntSbawn.code == 137
+          options.onSuccess.call() if options.onSuccess?
+        else
+          steroidsCli.debug "grunt spawn exited with code #{gruntSbawn.code}"
+          options.onFailure.call() if options.onFailure?
+
+    ).fail (errorMessage)->
+      Help.error()
+      console.log errorMessage
+      process.exit(1)
 
   make: (options = {}) => # with pre- and post-make hooks
 

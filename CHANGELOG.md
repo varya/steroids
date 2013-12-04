@@ -1,3 +1,22 @@
+## 3.1.0 (TODO)
+
+Features:
+  - New projects have a `package.json` file (currently, only the `engines.steroids` field is used by Steroids CLI).
+  - `steroids make` checks for `engines.steroids` version in `package.json` and runs a migration script if the version doesn't match the current one.
+  - `steroids make` checks for `config.ios.xml` and `config.android.xml` validity.
+  - iOS Simulator updated to v3.1.0.
+  - Steroids.js updated to v3.1.0.
+
+Changes:
+  - **BREAKING:** `cordova.js` must now be loaded from localhost root, e.g. `http://localhost/cordova.js`.
+  - **BREAKING:** Default `config.ios.xml` and `config.android.xml` updated to be Cordova 3.1.0 compatible.
+  - Default project now loads `index.html` from localhost.
+  - All generator examples and resources refactored to work with Cordova 3.1.0.
+  - Ripple emulator disabled due to issues with Cordova 3.1.0.
+
+Bugfixes:
+  - `onerror.js` removed from examples not on localhost to prevent Android issues.
+
 ## 2.7.39  (2013-12-03)
 
 Bugfixes:
@@ -694,9 +713,6 @@ Changes:
 
 Linux compatibility fix
 
-Features
-  - none
-
 Bugfixes:
   - Fixes `error: Error: Cannot find module './config'` on Linux, we used case insensitive filesystems.
     Thanks to Itzcoatl Calva.
@@ -708,10 +724,6 @@ Support for iOS Scanner 2.3.3
 Features
   - Support for iOS Scanner 2.3.3, refuses to work with 2.2.2 (steroids.js 0.5.0 requires 2.3.3)
 
-Bugfixes:
-  -
-
-
 ## 0.7.2 (2013-03-20)
 
 Changelog started (again)
@@ -720,6 +732,3 @@ Features:
   - QR code can be shown from connect prompt
   - Initial support for launching editors from connect prompt, currently hardcoded "mate"
   - p for push in connect prompt
-
-Bugfixes:
-  -

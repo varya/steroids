@@ -11,6 +11,8 @@ module.exports = function(grunt) {
 
   gruntSteroidsDefaults.registerDefaultTasks(grunt);
 
+  gruntSteroidsDefaults.registerMigrationTasks(grunt);
+
   // Register your custom grunt tasks here
   // grunt.registerTask("custom", "Description", function() {
   //   grunt.file.write(path.join(process.cwd(), "dist", "README"), "Custom Generated Readme");
@@ -19,4 +21,5 @@ module.exports = function(grunt) {
   grunt.registerTask("default", [
     "steroids-default"
   ]);
+
 };

@@ -48,16 +48,11 @@ class NgSqlScaffold extends Base
 
      @ensureDirectory path.join("www", "vendor", "angular-hammer")
      @copyFile path.join("www", "vendor", "angular-hammer", "angular-hammer.js"), path.join("components", "angular-hammer.js")
-     
+
      @ensureDirectory path.join("www", "vendor", "persistencejs")
      @copyFile path.join("www", "vendor", "persistencejs", "persistence.js"), path.join("components", "persistence.js")
      @copyFile path.join("www", "vendor", "persistencejs", "persistence.store.sql.js"), path.join("components", "persistence.store.sql.js")
      @copyFile path.join("www", "vendor", "persistencejs", "persistence.store.websql.js"), path.join("components", "persistence.store.websql.js")
-     
-     @ensureDirectory path.join("www", "javascripts")
-     @ensureDirectory path.join("www", "javascripts", "plugins")
-     @copyFile path.join("www", "javascripts", "plugins", "sqliteplugin.js"), path.join("components", "sqliteplugin.js")
-     @copyFile path.join("www", "javascripts", "plugins", "sqliteplugin.android.js"), path.join("components", "sqliteplugin.android.js")
 
      @ensureDirectory path.join("app")
 

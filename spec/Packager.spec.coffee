@@ -22,11 +22,7 @@ describe 'Packager', ->
 
     it 'should be created', ->
       @testHelper.createProjectSync()
-
-      runs ()=>
-        fs.unlinkSync Paths.temporaryZip
-        expect( fs.existsSync(Paths.temporaryZip) ).toBe(false)
-
+      @testHelper.runMakeInProjectSync()
       @testHelper.runPackageInProjectSync()
 
       runs ()=>

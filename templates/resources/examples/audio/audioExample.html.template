@@ -6,10 +6,8 @@
     <link rel="stylesheet" href="vendor/topcoat/css/topcoat-mobile-light.css" />
     <link rel="stylesheet" href="stylesheets/application.css" />
 
-    <script src="javascripts/onerror.js"></script>
-
     <!-- cordova.js is served from localhost to ensure the correct version -->
-    <script src="http://localhost/appgyver/cordova.js"></script>
+    <script src="http://localhost/cordova.js"></script>
     <script src="components/steroids-js/steroids.js"></script>
     <script>
 
@@ -29,18 +27,18 @@
       // Audio file from http://audio.ibeat.org/content/p1rj1s/p1rj1s_-_rockGuitar.mp3
       // Success callback left as null
       if (device.platform === "iOS") {
-        
+
         // On iOS, serve audio file from localhost to circumvent Cordova File protocol issues
         myMedia = new Media("http://localhost/sounds/rockGuitar.mp3", null, mediaError);
-        
+
       } else {
-        
+
         // On Android, serve audio file via the File protocol
         // The "ready" event listener is required for the steroids.app.absolutePath property
         steroids.on("ready", function() {
           myMedia = new Media("file://" + steroids.app.absolutePath + "/sounds/rockGuitar.mp3", null, mediaError);
         });
-        
+
       }
 
       // onDeviceReady fires after DOM is loaded, so we are safe to set our element

@@ -6,10 +6,9 @@
   <link rel="stylesheet" href="vendor/topcoat/css/topcoat-mobile-light.css" />
   <link rel="stylesheet" href="stylesheets/application.css" />
 
-  <script src="javascripts/onerror.js"></script>
 
   <!-- EXCERCISE 1: You found it! As you can see below, cordova.js is served from http://localhost/ – it doesn't even exist in the project files on your disk. The localhost server is running inside the Steroids app on your device. Since Steroids knows which platform it is running on, it can correctly serve either the iOS or Android version of cordova.js. -->
-  <script src="http://localhost/appgyver/cordova.js"></script>
+  <script src="http://localhost/cordova.js"></script>
   <script src="components/steroids-js/steroids.js"></script>
 </head>
 <body>

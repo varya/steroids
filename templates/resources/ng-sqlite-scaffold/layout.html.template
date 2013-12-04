@@ -9,10 +9,8 @@
   <link rel="stylesheet" href="/stylesheets/<%= yield.controller %>.css" />
 
 
-  <script src="/appgyver/cordova.js"></script>
+  <script src="/cordova.js"></script>
   <script src="/components/steroids-js/steroids.js"></script>
-
-  <script src="/javascripts/plugins/sqliteplugin.js"></script>
 
   <script src="/vendor/persistencejs/persistence.js"></script>
   <script src="/vendor/persistencejs/persistence.store.sql.js"></script>

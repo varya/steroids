@@ -10,18 +10,18 @@
   <script src="javascripts/onerror.js"></script>
 
   <!-- cordova.js is served from localhost to ensure the correct version -->
-  <script src="http://localhost/appgyver/cordova.js"></script>
+  <script src="http://localhost/cordova.js"></script>
   <script src="components/steroids-js/steroids.js"></script>
 
   <script src="vendor/hammerjs/hammer.min.js"></script>
   <script src="javascripts/application.js"></script>
   <script>
-    
+
   document.addEventListener("DOMContentLoaded", function() {
     var examples = document.querySelectorAll("li");
 
     var exampleCount = examples.length;
-    
+
     for (var i = 0; i < exampleCount; i++) {
       Hammer(examples[i]).on("tap", function() {
         var location = this.getAttribute("data-location");
@@ -30,7 +30,7 @@
       });
     }
   });
-  
+
   steroids.navigationBar.show("Generator Examples");
   </script>
 

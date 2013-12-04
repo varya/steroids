@@ -25,6 +25,8 @@ fs = require("fs")
 Config = require "./steroids/Config"
 Login = require "./steroids/Login"
 
+chalk = require "chalk"
+
 class Steroids
 
   simulator: null
@@ -143,7 +145,7 @@ class Steroids
 
         projectCreator.clone(folder, template)
 
-        console.log "Initializing Steroids project ... "
+        console.log "Initializing Steroids project..."
 
         project = new Project
                     folder: folder
@@ -151,7 +153,7 @@ class Steroids
 
         project.initialize
           onSuccess: () ->
-            Help.logo()
+            Help.SUCCESS()
             Help.welcome()
 
 
@@ -174,11 +176,17 @@ class Steroids
         packager.create()
 
       when "grunt"
+
+        task = if argv.task
+          argv.task
+        else
+          "default"
+
         # Grunt steals the whole node process ...
         Grunt = require("./steroids/Grunt")
 
         grunt = new Grunt
-        grunt.run()
+        grunt.run( { task: task } )
 
       when "debug"
         Help.legacy.debugweinre()
@@ -259,11 +267,26 @@ class Steroids
             4000
 
           if argv.ripple
-            ripple = new Ripple
-              servePort: servePort
-              port: argv.ripplePort
+            Help.attention()
+            console.log(
+              """
+              #{chalk.red.bold("Ripple temporarily disabled")}
+              #{chalk.red.bold("===========================")}
 
-            ripple.run()
+              We ran into some issues in getting Ripple to work with Cordova 3.1.
+
+              Ripple will be enabled again in an upcoming release. Apologies for the inconvenience!
+
+              Please run #{chalk.bold("steroids connect --serve")} again without the #{chalk.bold("--ripple")} argument.
+
+              """
+            )
+            process.exit(1)
+            # ripple = new Ripple
+            #   servePort: servePort
+            #   port: argv.ripplePort
+            #
+            # ripple.run()
 
           serve = new Serve servePort,
             ripple: argv.ripple
