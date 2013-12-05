@@ -33,7 +33,7 @@ The `config.ios.xml` and `config.android.xml` files have changed to conform more
 All plugins are now configured solely via the Build Service. This means that they aren't defined anymore in the local `config.ios.xml` and `config.android.xml` files. Any existing `<plugin>` elements should be removed from your config files. This applies to Cordova core features also.
 
 ### Default plugins included in the AppGyver Scanner
-By default, the AppGyver Scanner app includes all Cordova core plugins, as well as the following third-party plugins:
+By default, the AppGyver Scanner app includes Cordova core plugins, excluding [cordova-plugin-file-transfer](https://github.com/apache/cordova-plugin-file-transfer) and [cordova-plugin-console](https://github.com/apache/cordova-plugin-console). In addition, the following third-party plugins are included by default:
 
 * [Barcode Scanner](https://github.com/AppGyver/BarcodeScanner.git)
 * [SQLite](https://github.com/lite4cordova/Cordova-SQLitePlugin.git)
