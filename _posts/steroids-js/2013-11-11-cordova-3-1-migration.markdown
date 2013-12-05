@@ -22,6 +22,8 @@ This also applies if you're not using the `http://localhost/` prefix:
 <script scr="/cordova.js"></script>
 {% endhighlight %}
 
+This is required because of the way `cordova.js` uses a relative path to look for `cordova_plugins.js`. Not loading `cordova.js` from localhost root thus makes all plugins nonfunctional.
+
 ## config.xml changes
 
 The `config.ios.xml` and `config.android.xml` files have changed to conform more srtictly to the [W3C Packaged Web Apps specification](http://www.w3.org/TR/widgets/) – the easiest way to see the changes is to create a new Steroids project with the latest Steroids CLI version. You can also take a look at the updated [iOS config.xml][ios-config-xml] and [Android config.xml][android-config-xml] guides.
