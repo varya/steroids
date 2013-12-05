@@ -1,23 +1,23 @@
 ---
 layout: post
-title:  "Using the integrated Facebook plugin (iOS)"
+title:  "Using the official Facebook plugin"
 date:   2013-06-12 13:51:34
 categories: phonegap_on_steroids
-platforms: iOS
+platforms: iOS, Android
 ---
 
 ### Related guides
 * [Configuring custom plugins for your app][custom-plugin-config]
 
-Note: the integrated Facebook plugin is currently available for iOS only. For Android, any [plugman][plugman]-compatible Facebook plugin should work.
+To use the [official Cordova Facebook plugin](https://github.com/phonegap-build/FacebookConnect), you need to configure your Facebook app in [developers.facebook.com](https://developers.facebook.com), build a custom Scanner app via the [Build Service](http://cloud.appgyver.com) and then load the automatically included JavaScript files in your project via a `<script>` tag.
 
-## Usage
+## 1: Configure your Facebook App
 
-To use the integrated Facebook plugin, you need to configure your Facebook app, build a custom Scanner app and load the plugin JavaScript file in your project.
+In the [developers.facebook.com](https://developers.facebook.com) page of your app, click **Edit** in the upper-right corner.
 
-### 1: Configure your Facebook App
+### iOS
 
-In the [developers.facebook.com](https://developers.facebook.com) page of your app, click **Edit** in the upper-right corner. You then need to enable the **Native iOS App** integration option by clicking on the box. Then
+You need to enable the **Native iOS App** integration option by clicking on the box. Then
 
 * Fill in the **Bundle ID** of your app. The Bundle ID must match the one you enter into the Build Service in Step 2 – if you don't know your custom Scanner's bundle ID yet, input something like `com.mycompany.facebooktest.scanner`.
 * If you don't know your **iPhone App Store ID** and **iPad App Store ID** yet, you can input `0` in both fields.
@@ -26,16 +26,20 @@ In the [developers.facebook.com](https://developers.facebook.com) page of your a
 
 Now your Facebook App is configured to accept login requests from iPhone apps with the given Bundle ID.
 
-### 2: Build a custom Scanner app
+### Android
+
+A more detailed guide on Android setup is coming up soon. In the meantime, read through Facebook's [official Android SDK setup guide](https://developers.facebook.com/docs/android/getting-started/) to get started.
+
+## 2: Build a custom Scanner app
 
 If you haven't already, use `$ steroids deploy` to deploy your app to the AppGyver Cloud. Then, go to [cloud.appgyver.com](http://cloud.appgyver.com), open your deployed app and follow the instructions in the [iOS Build Configuration guide][ios-build-config].
 
-You only need a Scanner build for now, so set that up. Make sure your Scanner app has a **Bundle Identifier** that matches the one you entered in your Facebook App's configuration page.
+You only need a Scanner build for now, so set that up. Make sure your Scanner app has a **Bundle Identifier** (iOS) or **Pacakge Identifier** (Android) that matches the one you entered in your Facebook App's configuration page.
 
-Then, find the Plugins field and include the Facebook plugin's GitHub repo with your app's Facebook App ID and App name: 
+Then, find the **Plugins** field and include the Facebook plugin's GitHub repo with your app's Facebook App ID and App name:
 
 {% highlight javascript %}
-[  
+[
   {
     "source":"https://github.com/phonegap-build/FacebookConnect.git",
     "variables": {
@@ -43,7 +47,7 @@ Then, find the Plugins field and include the Facebook plugin's GitHub repo with 
       "APP_NAME":"my-application"
     }
   }
-]  
+]
 {% endhighlight %}
 
 *Note: also make sure your Scanner app's version is e.g. `3.1.0` (there's currently a bug in Steroids CLI where the version number of custom-built Scanner apps is checked for validity, when the check should only be made for the store-downloaded Scanner app – we're working on fixing that).*
@@ -52,8 +56,8 @@ Finally, request a Scanner build, download it and install it on your device. (Th
 
 ### 3: Set up your Steroids project
 
-The plugin JavaScript files will be added automatically to your build. Just add `<script>` tags in your HTML to load the JS files.
-  
+The plugin JavaScript files will be included automatically to your build. Just add the necessary `<script>` tags in your HTML to load the JS files:
+
 {% highlight html %}
 <script src="http://localhost/cdv-plugin-fb-connect.js"></script>
 <script src="http://localhost/facebook-js-sdk.js"></script>
@@ -97,7 +101,7 @@ You can see a more robust example implementation in the [Steroids Kitchensink ap
 
 ## Known issues
 
-Since there is just a global Facebook App ID field in the Build Config page, building e.g. a Scanner build and an Ad Hoc build will cause both apps to have the same App ID in their `Info.plist` file (generated automatically by the Build Service). This can cause Facebook to return to the wrong app after logging in.
+Since there is just a global Plugins field in the Build Config page, building e.g. a Scanner build and an Ad Hoc build will cause both apps to have the same App ID in their `Info.plist`/`AndroidManifest.xml` file (generated automatically by the Build Service). This can cause Facebook to return to the wrong app after logging in.
 
 A workaround is to update the settings so that only the build type you're working with at the moment (e.g. Scanner or Ad Hoc) will have the correct Facebook App ID field set when building, and have the field empty for the other build type. Alternatively, you can have two different Facebook Apps for the two different build types, though you still have to change the Facebook App ID field in the Build Service manually between builds.
 
