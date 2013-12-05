@@ -13,13 +13,13 @@ Updating all Steroids components (Scanner, Steroids.js, Steroids CLI) to support
 Make sure that `cordova.js` is loaded from localhost root, and not a subfolder (previous templates loaded it from `http://localhost/appgyver/cordova.js`):
 
 {% highlight html %}
-<script scr="http://localhost/cordova.js"></script>
+<script src="http://localhost/cordova.js"></script>
 {% endhighlight %}
 
 This also applies if you're not using the `http://localhost/` prefix:
 
 {% highlight html %}
-<script scr="/cordova.js"></script>
+<script src="/cordova.js"></script>
 {% endhighlight %}
 
 This is required because of the way `cordova.js` uses a relative path to look for `cordova_plugins.js`. Not loading `cordova.js` from localhost root thus makes all plugins nonfunctional.
