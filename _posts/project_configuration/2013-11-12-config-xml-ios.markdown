@@ -17,6 +17,39 @@ The iOS-specific `config.xml` is located at `www/config.ios.xml` – the plain `
 
 With Steroids CLI version 3.1.0, the `config.ios.xml` file has undergone some breaking changes, read the [migration guide](/steroids/guides/steroids-js/cordova-3-1-migration/) for more information. The easiest way to migrate is to create a new Steroids project with `steroids create` and then copy your preferences over to the new format.
 
+## Default config.ios.xml
+
+The default `www/config.ios.xml` looks like this:
+
+{% highlight xml %}
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.appgyver.helloSteroids" version="2.0.0"
+  xmlns="http://www.w3.org/ns/widgets">
+
+    <name>Hello Steroids</name>
+    <description>
+        A sample Steroids application.
+    </description>
+    <author email="contact@appgyver.com" href="http://www.appgyver.com/steroids">
+        AppGyver Steroids Team
+    </author>
+    <access origin="*" />
+    <preference name="AllowInlineMediaPlayback" value="false" />
+    <preference name="DisallowOverscroll" value="false" />
+    <preference name="EnableViewportScale" value="false" />
+    <preference name="HideKeyboardFormAccessoryBar" value="false" />
+    <preference name="KeyboardDisplayRequiresUserAction" value="false" />
+    <preference name="KeyboardShrinksView" value="false" />
+    <preference name="SuppressesIncrementalRendering" value="false" />
+
+
+    <preference name="PaginationMode" value="unpaginated"/>
+    <preference name="PageLength" value="0"/>
+    <preference name="PaginationBreakingMode" value="page"/>
+    <preference name="GapBetweenPages" value="0"/>
+</widget>
+{% endhighlight %}
+
 ## widget root tag
 
 The root of `config.ios.xml` should be a `<widget>` element with the `id`, `version` and `xmlns` attributes. They are not used by Steroids currently, but should be kept up-to-date to ensure future compatibility.
@@ -54,7 +87,6 @@ The following preferences are supported by Steroids:
 * **KeyboardShrinksView (boolean, defaults to false)** – when set to true to, the actual WebView is shrunk when the keyboard comes up, instead of the viewport shrinking and the WebView becoming scrollable. *Known issue: a yellow background flashes when the WebView is beign resized. A yellow background shows through the transparent form accessory bar.*
 
 * **SuppressesIncrementalRendering (boolean, defaults to false)** – when set to true, the WebView suppresses content rendering until it is fully loaded into memory (this affects e.g. complex iFrames). Note that by default, Steroids displays the `loading.html` screen until a new WebView has finished loading.
-
 
 The following Cordova preferences are disabled due to Steroids using its own splashscreen implementation:
 
