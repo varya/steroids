@@ -6,7 +6,7 @@ categories: phonegap_on_steroids
 platforms: iOS, Android
 ---
 
-This guide uses the [Cordova SQLitePlugin](https://github.com/lite4cordova/Cordova-SQLitePlugin), included with AppGyver Scanner. Note that the version of the plugin used by Steroids is slightly modified; you need to download the appropriate JavaScript files from the [steroids-plugins](https://github.com/AppGyver/steroids-plugins/tree/master/sqlite/www) GitHub repo and load them into your project manually instead of using the ones from the official repo.
+This guide uses the [Cordova SQLitePlugin](https://github.com/lite4cordova/Cordova-SQLitePlugin), included with AppGyver Scanner. Starting with Steroids v3.1.0, the JavaScript loading the SQLite plugin is loaded automatically to every WebView, so it's available without any extra work.
 
 If you need a test database, the [Chinook Database](http://chinookdatabase.codeplex.com/releases/view/55681) is a good choice (and used in the code examples below).
 
