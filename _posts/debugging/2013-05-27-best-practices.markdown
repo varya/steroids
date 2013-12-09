@@ -18,7 +18,6 @@ Below is a collection of tips and best practices that we've found useful while d
 
 The output of `console.log` commands from your Steroids app is available in several ways:
 
-* On iOS: by running `$ steroids simulator` (the output is visible in the Terminal window running the command, text only)
 * On iOS: by using the [Safari Web Inspector][safari-wi] (fully functional console log)
 * On Android: by using the [Android Developer Tools][adt] and the LogCat program (text only)
 * On both platforms: by using [Weinre][weinre] (only after Weinre has loaded via JavaScript, otherwise fully functional console log)

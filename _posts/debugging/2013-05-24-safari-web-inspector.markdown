@@ -16,9 +16,9 @@ Even so, the Safari Web Inspector is the only fully functional Web Inspector too
 
 ## Using the Safari Web Inspector
 
-*iOS7 requires your Safari to be updated to version 6.1 or later.* Version 6.1 is currently unreleased to the public, so you need to download it from [developer.apple.com](https://developer.apple.com/devcenter/mac/index.action#downloads) You'll need to restart your computer after updating Safari for the Web Inspector to work.
+*iOS7 requires your Safari to be updated to version 6.1 or later.* You'll need to restart your computer after updating Safari for the Web Inspector to work.
 
-To get started, open your Steroids app in the iOS Simulator by typing `simulator` in the Steroids console (or `$ steroids simulator` in another Terminal window). Please note that `$ steroids connect` needs to be running when calling `simulator` or `$ steroids simulator`. Otherwise the autoconnect fails giving a connection error. 
+To get started, open your Steroids app in the iOS Simulator by typing `simulator` in the Steroids console (or `$ steroids simulator` in another Terminal window). Please note that `$ steroids connect` needs to be running when calling `simulator` or `$ steroids simulator`. Otherwise the autoconnect fails with a connection error.
 
 Next, enable Safari's developer tools. Open Safari's preferences by selecting *Safari* > *Preferences* from the top menu, go to the Advanced tab and check the Show Developer menu checkbox.
 
@@ -28,7 +28,7 @@ You can also skip the Safari menu altogether. When in `steroids connect` prompt,
 
 ###Inspecting a WebView
 
-Select a WebView. You now have direct Web Inspector access to it. You can edit the DOM and use the JavaScript console. The console also displays errors and `console.log` output, although there's currently a bug where loading `cordova.js` causes `console.log` output not to display in the Safari Web Inspector (the output is still displayed in the Terminal window when you run the `simulator` command).
+Select a WebView. You now have direct Web Inspector access to it. You can edit the DOM and use the JavaScript console. The console also displays errors and `console.log` output.
 
 If you type in `window.location.reload();`, the WebView reloads itself, which allows you to see network requests and possible console errors that happen when the WebView loads.
 
