@@ -1,3 +1,8 @@
+## 3.1.2 (2013-12-09)
+
+Dummy update so that 3.1.x is latest in npm
+
+
 ## 3.1.1 (2013-12-04)
 
 Clarified validation instructions for `config.android.xml`.
