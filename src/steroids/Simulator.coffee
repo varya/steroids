@@ -25,7 +25,7 @@ class Simulator
     @running = true
 
     cmd = steroidsSimulators.iosSimPath
-    args = ["launch", steroidsSimulators.latestSimulatorPath]
+    args = ["launch", steroidsSimulators.simulatorPaths["2.7.9"]]
 
     if opts.deviceType?
 

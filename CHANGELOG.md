@@ -1,21 +1,10 @@
 
-## 3.1.0 (TODO)
+## 2.7.40 (2013-12-09)
 
-Features:
-  - New projects have a `package.json` file (currently, only the `engines.steroids` field is used by Steroids CLI).
-  - `steroids make` checks for `engines.steroids` version in `package.json` and runs a migration script if the version doesn't match the current one.
-  - `steroids make` checks for `config.ios.xml` and `config.android.xml` validity.
-  - iOS Simulator updated to v3.1.0.
-  - Steroids.js updated to v3.1.0.
-
-Changes:
-  - **BREAKING:** `cordova.js` must now be loaded from localhost root, e.g. `http://localhost/cordova.js`.
-  - **BREAKING:** Default `config.ios.xml` and `config.android.xml` updated to be Cordova 3.1.0 compatible.
-  - Default project now loads `index.html` from localhost.
-  - All generator examples and resources refactored to work with Cordova 3.1.0.
+Supports 2.7.9 iOS Simulator
 
 Bugfixes:
-  - `onerror.js` removed from examples not on localhost to prevent Android issues.
+  - Launches 2.7.9 Simulator (was launching 3.1.0)
 
 ## 2.7.39  (2013-12-03)
 
