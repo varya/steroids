@@ -65,7 +65,7 @@ What happens is that the `width=device-width` and `height=device-height` attribu
 maximum-scale=1, minimum-scale=1, target-densitydpi=device-dpi" />
 {% endhighlight %}
 
-[ios-config-xml]: /steroids/guides/project_configuration/config-xml-android/
-[android-config-xml]: /steroids/guides/project_configuration/config-xml-ios/
+[ios-config-xml]: /steroids/guides/project_configuration/config-xml-ios/
+[android-config-xml]: /steroids/guides/project_configuration/config-xml-android/
 [ios-build-config]: /steroids/guides/cloud_services/ios_build_config
 [android-build-config]: /steroids/guides/cloud_services/android_build_config
