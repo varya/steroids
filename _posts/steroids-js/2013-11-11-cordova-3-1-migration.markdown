@@ -8,6 +8,10 @@ platforms: iOS, Android
 
 Updating all Steroids components (Scanner, Steroids.js, Steroids CLI) to support Cordova 3.1 has brought about some breaking changes that need to be taken into account in your project.
 
+## Update steroids.js to 3.1.x
+
+Check that your `bower.json` file at your project root lists `3.1.x` as the version for `steroids-js`, then run `$ steroids update` in your project directory to load the latest version of `steroids.js`.
+
 ## cordova.js must be loaded from localhost root
 
 Make sure that `cordova.js` is loaded from localhost root, and not a subfolder (previous templates loaded it from `http://localhost/appgyver/cordova.js`):
