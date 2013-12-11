@@ -71,5 +71,5 @@ maximum-scale=1, minimum-scale=1, target-densitydpi=device-dpi" />
 
 [ios-config-xml]: /steroids/guides/project_configuration/config-xml-ios/
 [android-config-xml]: /steroids/guides/project_configuration/config-xml-android/
-[ios-build-config]: /steroids/guides/cloud_services/ios_build_config
-[android-build-config]: /steroids/guides/cloud_services/android_build_config
+[ios-build-config]: /guides/cloud_services/ios-build-config/
+[android-build-config]: /guides/cloud_services/android-build-config/
