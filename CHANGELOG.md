@@ -1,3 +1,14 @@
+## 2.7.41 (2013-12-11)
+
+Removed accidentally included v3.1.x code.
+
+## 2.7.40 (2013-12-09)
+
+Supports 2.7.9 iOS Simulator.
+
+Bugfixes:
+  - Launches 2.7.9 Simulator (was launching 3.1.0)
+
 ## 2.7.39  (2013-12-03)
 
 Bugfixes:
