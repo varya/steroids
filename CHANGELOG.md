@@ -1,12 +1,10 @@
-## 3.1.3 (TODO)
+## 3.1.3 (2013-12-11)
 
-Changes:
-  - Default license for new projects is "none" instead of "MIT"
+Default license for new projects is now "none" instead of "MIT".
 
 ## 3.1.2 (2013-12-09)
 
-Dummy update so that 3.1.x is latest in npm
-
+Dummy update so that 3.1.x is latest in npm.
 
 ## 3.1.1 (2013-12-04)
 
