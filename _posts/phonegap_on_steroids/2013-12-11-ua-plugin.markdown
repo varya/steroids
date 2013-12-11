@@ -47,7 +47,7 @@ Overview of what you will need in AppGyver Build Service:
 
 * Distribution (production) provisioning profile 
 * Application bundle identifier which has exact match to the identifier defined inside the provisioning profile (defined when you created the file in [developer.apple.com](http://developer.apple.com))
-* Configure UA plugin (https://github.com/AppGyver/phonegap-ua-push) in build service in the `plugins` section add the following:
+* Configure [Urban Airship plugin](https://github.com/AppGyver/phonegap-ua-push) in build service in the `plugins` section add the following:
 
     `[ {"source":"https://github.com/AppGyver/phonegap-ua-push.git"} ]`
 
