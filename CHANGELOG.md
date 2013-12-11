@@ -1,4 +1,35 @@
-## 2.7.39 (TODO)
+## 3.1.3 (2013-12-11)
+
+Default license for new projects is now "none" instead of "MIT".
+
+## 3.1.2 (2013-12-09)
+
+Dummy update so that 3.1.x is latest in npm.
+
+## 3.1.1 (2013-12-04)
+
+Clarified validation instructions for `config.android.xml`.
+
+## 3.1.0 (2013-12-04)
+
+Features:
+  - New projects have a `package.json` file (currently, only the `engines.steroids` field is used by Steroids CLI).
+  - `steroids make` checks for `engines.steroids` version in `package.json` and runs a migration script if the version doesn't match the current one.
+  - `steroids make` checks for `config.ios.xml` and `config.android.xml` validity.
+  - iOS Simulator updated to v3.1.0.
+  - Steroids.js updated to v3.1.0.
+
+Changes:
+  - **BREAKING:** `cordova.js` must now be loaded from localhost root, e.g. `http://localhost/cordova.js`.
+  - **BREAKING:** Default `config.ios.xml` and `config.android.xml` updated to be Cordova 3.1.0 compatible.
+  - Default project now loads `index.html` from localhost.
+  - All generator examples and resources refactored to work with Cordova 3.1.0.
+  - Ripple emulator disabled due to issues with Cordova 3.1.0, will be re-enabled in an upcoming release.
+
+Bugfixes:
+  - `onerror.js` removed from examples not on localhost to prevent Android issues.
+
+## 2.7.39  (2013-12-03)
 
 Steroids [Grunt.js](http://gruntjs.com) tasks are now defined in the [`grunt-steroids`](https://github.com/appgyver/grunt-steroids) Grunt plugin and configured via a `Gruntfile.js` in project root. See the [Gruntfile guide](http://guides.appgyver.com/steroids/guides/project_configuration/gruntfile) for more information about the new Grunt setup. Run `$ steroids update` to migrate your existing project.
 
@@ -22,6 +53,10 @@ Changes:
 
 Bugfixes:
   - New projects' default CSS now sets `-webkit-user-select` correctly for elements with the `contenteditable` attribute
+  - Fixed config.tizen.xml template which had screen resolution which was not accepted by Tizen Application Store.
+
+Changes:
+  - If `config/cloud.json` is present (application has been deployed), then application uses the id of deployment in local development mode. If application hasn't been deployed, id is "1" as previously.
 
 TODO:
  - Implement missing generators once they are available in generator-steroids
@@ -714,9 +749,6 @@ Changes:
 
 Linux compatibility fix
 
-Features
-  - none
-
 Bugfixes:
   - Fixes `error: Error: Cannot find module './config'` on Linux, we used case insensitive filesystems.
     Thanks to Itzcoatl Calva.
@@ -728,10 +760,6 @@ Support for iOS Scanner 2.3.3
 Features
   - Support for iOS Scanner 2.3.3, refuses to work with 2.2.2 (steroids.js 0.5.0 requires 2.3.3)
 
-Bugfixes:
-  -
-
-
 ## 0.7.2 (2013-03-20)
 
 Changelog started (again)
@@ -740,6 +768,3 @@ Features:
   - QR code can be shown from connect prompt
   - Initial support for launching editors from connect prompt, currently hardcoded "mate"
   - p for push in connect prompt
-
-Bugfixes:
-  -

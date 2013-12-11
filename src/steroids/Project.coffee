@@ -4,21 +4,15 @@ paths = require "./paths"
 chalk = require "chalk"
 fs = require "fs"
 Help = require "./Help"
+ApplicationConfigUpdater = require "./ApplicationConfigUpdater"
+ConfigXmlValidator = require "./ConfigXmlValidator"
 
 class Project
 
   constructor: (@options={}) ->
 
   initialize: (options={}) =>
-
-    process.chdir(@options.folder)
-    @installDependencies(options.onSuccess)
-
-  installDependencies: (options={}) =>
-    Npm = require "./Npm"
-    npm = new Npm
-    npm.install().then ->
-      options.onSuccess?.call()
+    options.onSuccess()
 
   push: (options = {}) =>
     steroidsCli.debug "Starting push"
@@ -86,28 +80,26 @@ class Project
 
   makeOnly: (options = {}) => # without hooks
 
-    if !fs.existsSync(paths.grunt.gruntFile)
-      Help.error()
-      console.log(
-        """
-        No #{chalk.bold("Gruntfile.js")} found in project root. Please run
+    applicationConfigUpdater = new ApplicationConfigUpdater
+    configXmlValidator = new ConfigXmlValidator
+    applicationConfigUpdater.updateTo3_1_4().then( =>
 
-          $ steroids update
+      configXmlValidator.check("ios")
 
-        to generate the default Gruntfile. To learn more about the new Steroids Grunt setup, see:
+    ).then( =>
 
-          #{chalk.underline("http://guides.appgyver.com/steroids/guides/project_configuration/gruntfile")}
+      configXmlValidator.check("android")
 
-        """
-      )
-      options.onFailure.call() if options.onFailure?
+    ).then( =>
 
-    else
-      steroidsCli.debug "Spawning Grunt"
+      steroidsCli.debug "Spawning steroids grunt #{steroidsCli.pathToSelf}"
+
+      gruntArgs = ["grunt"]
+      gruntArgs.push("--no-sass") if steroidsCli.options.argv.sass == false
 
       gruntSbawn = sbawn
         cmd: steroidsCli.pathToSelf
-        args: ["grunt"]
+        args: gruntArgs
         stdout: true
         stderr: true
 
@@ -118,6 +110,11 @@ class Project
         else
           steroidsCli.debug "grunt spawn exited with code #{gruntSbawn.code}"
           options.onFailure.call() if options.onFailure?
+
+    ).fail (errorMessage)->
+      Help.error()
+      console.log errorMessage
+      process.exit(1)
 
   make: (options = {}) => # with pre- and post-make hooks
 

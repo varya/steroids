@@ -63,7 +63,7 @@ class Steroids
 
 
   ensureProjectIfNeededFor: (command, otherOptions) ->
-    if command in ["push", "make", "package", "debug", "simulator", "connect", "update", "generate", "deploy", "test"]
+    if command in ["push", "make", "package", "grunt", "debug", "simulator", "connect", "update", "generate", "deploy", "test"]
 
       return if @detectSteroidsProject()
       return if command == "generate" and otherOptions.length == 0    # displays usage
@@ -113,10 +113,11 @@ class Steroids
         console.log @version.formattedVersion()
 
       when "create"
-        folder = otherOptions[0]
 
         unless folder
-          console.log "Usage: " + chalk.bold.green "steroids create " + chalk.bold.cyan "<directoryName>"
+
+          console.log "Usage: steroids create <directoryName>"
+
           process.exit(1)
 
         ProjectCreator = require("./steroids/ProjectCreator")
@@ -136,17 +137,25 @@ class Steroids
         project = new Project
         project.make()
 
-      when "grunt"
-        Grunt = require("./steroids/Grunt")
-        grunt = new Grunt
-        grunt.run()
-
       when "package"
         Packager = require "./steroids/Packager"
 
         packager = new Packager
 
         packager.create()
+
+      when "grunt"
+
+        task = if argv.task
+          argv.task
+        else
+          "default"
+
+        # Grunt steals the whole node process ...
+        Grunt = require("./steroids/Grunt")
+
+        grunt = new Grunt
+        grunt.run( { task: task } )
 
       when "debug"
         Help.legacy.debugweinre()
@@ -227,11 +236,26 @@ class Steroids
             4000
 
           if argv.ripple
-            ripple = new Ripple
-              servePort: servePort
-              port: argv.ripplePort
+            Help.attention()
+            console.log(
+              """
+              #{chalk.red.bold("Ripple temporarily disabled")}
+              #{chalk.red.bold("===========================")}
 
-            ripple.run()
+              We ran into some issues in getting Ripple to work with Cordova 3.1.
+
+              Ripple will be enabled again in an upcoming release. Apologies for the inconvenience!
+
+              Please run #{chalk.bold("steroids connect --serve")} again without the #{chalk.bold("--ripple")} argument.
+
+              """
+            )
+            process.exit(1)
+            # ripple = new Ripple
+            #   servePort: servePort
+            #   port: argv.ripplePort
+            #
+            # ripple.run()
 
           serve = new Serve servePort,
             ripple: argv.ripple

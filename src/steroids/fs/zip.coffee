@@ -12,11 +12,16 @@ class Zip
 
   zipRecursively: (callback)->
 
+    steroidsCli.debug "Removing existing zip..."
+
+    if fs.existsSync @to
+      fs.unlinkSync @to
+      steroidsCli.debug "Existing zip found and removed."
+
     # use 7zip on windows
     if process.platform is "win32"
-      # delete the zip file first
-      if fs.existsSync @to
-        fs.unlinkSync @to
+
+      steroidsCli.debug "Zipping with 7zip..."
 
       zipCommand = path.join Paths.vendor, "7zip", "7za"
       fromPath = path.join @from, "*"
@@ -25,6 +30,8 @@ class Zip
     # use OS supplied zip on OSX/Linux
     else
 
+      steroidsCli.debug "Zipping with OS supplied zip..."
+
       child = childProcess.exec "find . -print | zip -@ -FS #{@to}", {
         cwd: @from
       }, (error, stdout, stderr)->
@@ -32,6 +39,8 @@ class Zip
         #console.log "#{stdout}"
 
         timestamp = (new Date).getTime()
+        steroidsCli.debug "Zip created, timestamp: #{timestamp}"
+
         callback.apply(null, [timestamp]) if callback?
 
 module.exports = Zip

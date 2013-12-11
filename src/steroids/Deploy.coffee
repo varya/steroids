@@ -13,6 +13,8 @@ Login = require "./Login"
 
 Help = require "./Help"
 
+CloudConfig = require "./CloudConfig"
+
 class Deploy
   constructor: (@options={})->
     @cloudConfig = JSON.parse(fs.readFileSync(paths.application.configs.cloud, "utf8")) if fs.existsSync paths.application.configs.cloud
@@ -104,11 +106,13 @@ class Deploy
   updateConfigurationFile: (callback)->
     # util.log "Updating #{paths.application.configs.cloud}"
 
-    config =
+    cloudConfig = new CloudConfig
       id: @cloudApp.id
       identification_hash: @cloudApp.identification_hash
 
-    fs.writeFileSync paths.application.configs.cloud, JSON.stringify(config)
+    cloudConfig.saveSync()
+
+    config = cloudConfig.getCurrentSync()
 
     util.log "Deployment complete"
 
