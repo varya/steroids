@@ -230,7 +230,9 @@ class ApplicationConfigUpdater extends events.EventEmitter
   ensureGruntfileExists: ->
     deferred = Q.defer()
 
+    console.log "Checking to see if #{chalk.bold("Gruntfile.js")} exists in project root..."
     if fs.existsSync paths.application.configs.grunt
+      console.log chalk.green("OK!")
       deferred.resolve()
     else
       Help.attention()
@@ -270,9 +272,12 @@ class ApplicationConfigUpdater extends events.EventEmitter
   ensureGruntfileContainsSteroids: ->
     deferred = Q.defer()
 
+    console.log "Checking to see if project #{chalk.bold("Gruntfile.js")} loads tasks from the #{chalk.bold("grunt-steroids")} plugin..."
+
     gruntfileData = fs.readFileSync paths.application.configs.grunt, 'utf-8'
 
     if gruntfileData.indexOf("grunt.loadNpmTasks(\"grunt-steroids\")") > -1
+      console.log chalk.green("OK!")
       deferred.resolve()
     else
       Help.attention()
@@ -293,7 +298,7 @@ class ApplicationConfigUpdater extends events.EventEmitter
         #{chalk.bold("grunt-steroids")} Grunt plugin). To get rid of this message, add the following line to
         your #{chalk.bold("Gruntfile.js")} (we're installing the #{chalk.bold("grunt-steroids")} npm package next):
 
-           #{chalk.blue(steroidsLoadTasksString)};
+           #{chalk.blue("grunt.loadNpmTasks(\"grunt-steroids\")")};
 
         Then, you must configure your default Grunt task to include the required Steroids tasks:
 
@@ -317,8 +322,10 @@ class ApplicationConfigUpdater extends events.EventEmitter
   ensureGeneratorDependency: ->
     deferred = Q.defer()
 
+    console.log("Checking #{chalk.bold("package.json")} for the #{chalk.bold("grunt-steroids")}} dependency...")
     packagejsonData = fs.readFileSync paths.application.configs.packageJson, 'utf-8'
     if packagejsonData.indexOf("grunt-steroids") > -1
+      console.log chalk.green("OK!")
       deferred.resolve()
     else
       Help.attention()
@@ -341,10 +348,11 @@ class ApplicationConfigUpdater extends events.EventEmitter
         Npm = require "./Npm"
         npm = new Npm
 
-        npm.install("grunt-steroids").then( ->
+        npm.install(["grunt-steroids", "--save-dev"]).then( ->
           console.log(
             """
-            \n#{chalk.green("OK!")} Installed the #{chalk.bold("grunt-steroids")} npm package successfully.
+            \n#{chalk.green("OK!")} Installed the #{chalk.bold("grunt-steroids")} npm package successfully
+            and saved it to #{chalk.bold("package.json")} devDependencies.
 
             """
           )
@@ -378,7 +386,7 @@ class ApplicationConfigUpdater extends events.EventEmitter
     prompt "input", "Write here with uppercase letters #{chalk.bold("I UNDERSTAND THIS")}", "I UNDERSTAND THIS"
 
   promptRunNpmInstall = ->
-    prompt "input", "Write #{chalk.bold("npm install grunt-steroids")} to continue", "npm install grunt-steroids"
+    prompt "input", "Write #{chalk.bold("npm install grunt-steroids --save-dev")} to continue", "npm install grunt-steroids --save-dev"
 
   prompt = (type, message, answer) ->
     deferred = Q.defer()

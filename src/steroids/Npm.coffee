@@ -8,12 +8,13 @@ class Npm
     deferred = Q.defer()
 
     if args?
+      argsString = args.join(" ")
       console.log(
         """
-        \n#{chalk.bold.green("Installing npm package #{args}")}
-        #{chalk.bold.green("==============================")}
+        \n#{chalk.bold.green("Installing npm package")}
+        #{chalk.bold.green("======================")}
 
-        Running #{chalk.bold("npm install #{args}")} to install a project dependency...
+        Running #{chalk.bold("npm install #{argsString}")} to install a project dependency...
         If this fails, try running the command manually.
         """
       )
@@ -32,7 +33,7 @@ class Npm
     argsToRun = ["install"]
 
     if args?
-      argsToRun.push(args)
+      argsToRun = argsToRun.concat(args)
 
     npmRun = sbawn
       cmd: "npm"
