@@ -151,11 +151,15 @@ class Steroids
         else
           "default"
 
+        gruntfile = if argv.gruntfile
+          argv.gruntfile
+
+
         # Grunt steals the whole node process ...
         Grunt = require("./steroids/Grunt")
 
         grunt = new Grunt
-        grunt.run( { task: task } )
+        grunt.run( { task: task, gruntfile: gruntfile } )
 
       when "debug"
         Help.legacy.debugweinre()

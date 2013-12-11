@@ -24,6 +24,7 @@ class ApplicationConfigUpdater extends events.EventEmitter
 
     packageJson?.engines?.steroids
 
+
   # 3.1.0 MIGRATION:
   # - cordova.js not loaded from /appgyver/
   # - package.json exists
@@ -34,26 +35,11 @@ class ApplicationConfigUpdater extends events.EventEmitter
     if @validateSteroidsEngineVersion(">=3.1.0")
       deferred.resolve()
     else
-      Help.attention()
-      console.log(
-        """
-        #{chalk.bold("engine.steroids")} didn't match #{chalk.bold(">=3.1.0")} in #{chalk.bold("package.json")}.
-
-        This is likely because your project was created with an older version of Steroids CLI. We will
-        now run through a few migration tasks to ensure that your project functions correctly.
-
-        """
-      )
-
-      promptConfirm().then( =>
-        @checkCordovaJsPaths()
-      ).then( =>
+      @checkCordovaJsPaths().then( =>
         @ensurePackageJsonExists()
       ).then( =>
         @ensureSteroidsEngineIsDefinedWithVersion("3.1.0")
       ).then( ->
-        Help.SUCCESS()
-        console.log chalk.green("Migration successful, moving on!")
         deferred.resolve()
       ).fail (msg)->
         msg = msg ||
@@ -76,10 +62,11 @@ class ApplicationConfigUpdater extends events.EventEmitter
     if @validateSteroidsEngineVersion(">=3.1.4")
       deferred.resolve()
     else
+      steroidsEngineVersion = @getSteroidsEngineVersion() || "undefined"
       Help.attention()
       console.log(
         """
-        #{chalk.bold("engine.steroids")} was #{chalk.bold(@getSteroidsEngineVersion())} in #{chalk.bold("package.json")}, expected #{chalk.bold(">=3.1.4")}
+        #{chalk.bold("engine.steroids")} was #{chalk.bold(steroidsEngineVersion)} in #{chalk.bold("package.json")}, expected #{chalk.bold(">=3.1.4")}
 
         This is likely because your project was created with an older version of Steroids CLI. We will
         now run through a few migration tasks to ensure that your project functions correctly.
@@ -93,6 +80,8 @@ class ApplicationConfigUpdater extends events.EventEmitter
         @ensureGruntfileExists()
       ).then( =>
         @ensureGruntfileContainsSteroids()
+      ).then( =>
+        @ensurePackageJsonExists()
       ).then( =>
         @ensureGeneratorDependency()
       ).then( =>
@@ -136,7 +125,7 @@ class ApplicationConfigUpdater extends events.EventEmitter
 
       gruntSbawn = sbawn
         cmd: steroidsCli.pathToSelf
-        args: ["grunt", "--task=check-cordova-js-paths"]
+        args: ["grunt", "--task=check-cordova-js-paths", "--gruntfile=#{paths.grunt.gruntfile}"]
         stdout: true
         stderr: true
 
@@ -158,41 +147,32 @@ class ApplicationConfigUpdater extends events.EventEmitter
   ensurePackageJsonExists: ->
     deferred = Q.defer()
 
-    console.log(
-      """
-      \nNext, we're going to create a #{chalk.bold("package.json")} file in your project root. If there
-      already exists one, we'll just add the #{chalk.bold("engines.steroids")} field with the correct
-      version number.
+    console.log("Checking to see if #{chalk.bold("package.json")} exists in project root...")
 
-      """
-    )
+    if fs.existsSync paths.application.configs.packageJson
+      console.log chalk.green("OK!")
+      deferred.resolve()
+    else
+      console.log(
+        """
+          \n#{chalk.red.bold("Could not find package.json in project root")}
+          #{chalk.red.bold("===========================================")}
 
-    promptConfirm().then( ->
+          We could not find a #{chalk.bold("package.json")} file in project root. This is required
+          for project npm dependencies and the #{chalk.bold("engines.steroids")} field.
 
-      if fs.existsSync paths.application.configs.packageJson
-        console.log chalk.green("\n#{chalk.bold("package.json")} found in project root, moving on!\n")
+          We will create the file now.
+
+        """
+      )
+
+      promptConfirm().then( ->
+        console.log("\nCreating #{chalk.bold("package.json")} in project root...")
+        fs.writeFileSync paths.application.configs.packageJson, fs.readFileSync(paths.templates.packageJson)
+        console.log("#{chalk.green("OK!")}")
         deferred.resolve()
-      else
-        console.log(
-          """
-            \n#{chalk.red.bold("Could not find package.json in project root")}
-            #{chalk.red.bold("===========================================")}
-
-            We could not find a #{chalk.bold("package.json")} file in project root. We will create the file now.
-
-          """
-        )
-
-        promptConfirm().then( ->
-          console.log("\nCreating #{chalk.bold("package.json")} in project root...")
-          fs.writeFileSync paths.application.configs.packageJson, fs.readFileSync(paths.templates.packageJson)
-          console.log("#{chalk.green("OK!")}")
-          deferred.resolve()
-        ).fail ->
-          deferred.reject()
-    ).fail( ->
-      deferred.reject()
-    )
+      ).fail ->
+        deferred.reject()
 
     return deferred.promise
 
@@ -322,17 +302,56 @@ class ApplicationConfigUpdater extends events.EventEmitter
   ensureGeneratorDependency: ->
     deferred = Q.defer()
 
-    console.log("Checking #{chalk.bold("package.json")} for the #{chalk.bold("grunt-steroids")}} dependency...")
+    console.log("Checking #{chalk.bold("package.json")} for the #{chalk.bold("grunt-steroids")} dependency...")
     packagejsonData = fs.readFileSync paths.application.configs.packageJson, 'utf-8'
     if packagejsonData.indexOf("grunt-steroids") > -1
       console.log chalk.green("OK!")
-      deferred.resolve()
+
+      console.log(
+        """
+        \n#{chalk.red.bold("npm install required")}
+        #{chalk.red.bold("====================")}
+
+        We need to run
+
+          #{chalk.bold("$ npm install")}
+
+        to ensure that the #{chalk.bold("grunt-steroids")} dependency is installed.
+
+        """
+      )
+
+      promptConfirm().then( =>
+        Npm = require "./Npm"
+        npm = new Npm
+
+        npm.install().then( ->
+          console.log(
+            """
+            \n#{chalk.green("OK!")} npm dependencies installed successfully.
+
+            """
+          )
+          deferred.resolve()
+        ).fail ->
+          msg =
+            """
+            \nCould not install npm dependencies.
+
+            Try running the command again, or install the package with
+
+              #{chalk.bold("$ npm install")}
+
+            """
+          deferred.reject(msg)
+      ).fail ->
+        deferred.reject()
+
     else
       Help.attention()
       console.log(
         """
-
-        #{chalk.red.bold("Existing package.json found without grunt-steroids dependency")}
+        \n#{chalk.red.bold("Existing package.json found without grunt-steroids dependency")}
         #{chalk.red.bold("=============================================================")}
 
         Your existing #{chalk.bold("package.json")} file doesn't have the required #{chalk.bold("grunt-steroids")} Grunt
@@ -362,11 +381,7 @@ class ApplicationConfigUpdater extends events.EventEmitter
             """
             \nCould not install the #{chalk.bold("grunt-steroids")} npm package.
 
-            Try running
-
-              #{chalk.bold("$ steroids update")}
-
-            again, or install the package manually with
+             Try running the command again, or install the package manually with
 
               #{chalk.bold("$ npm install grunt-steroids --save-dev")}
 
