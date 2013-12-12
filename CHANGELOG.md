@@ -1,4 +1,4 @@
-## 3.1.4 (TODO)
+## 3.1.4 (2013-12-12)
 
 Steroids [Grunt.js](http://gruntjs.com) tasks are now defined in the [`grunt-steroids`](https://github.com/appgyver/grunt-steroids) Grunt plugin and configured via a `Gruntfile.js` in project root. See the [Gruntfile guide](http://guides.appgyver.com/steroids/guides/project_configuration/gruntfile) for more information about the new Grunt setup. Run `$ steroids update` to migrate your existing project.
 
