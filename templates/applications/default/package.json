@@ -10,7 +10,7 @@
   },
   "author": "",
   "devDependencies": {
-    "grunt-steroids": "*"
+    "grunt-steroids": "0.1.x"
   },
   "license": "none",
   "engines": {

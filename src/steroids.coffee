@@ -114,6 +114,8 @@ class Steroids
 
       when "create"
 
+        folder = otherOptions[0]
+
         unless folder
 
           console.log "Usage: steroids create <directoryName>"
@@ -379,10 +381,6 @@ class Steroids
 
         updater.check(
           from: "update"
-        ).then( ->
-          ApplicationConfigUpdater = require "./steroids/ApplicationConfigUpdater"
-          applicationConfigUpdater = new ApplicationConfigUpdater
-          applicationConfigUpdater.update()
         ).then( ->
           Npm = require "./steroids/Npm"
           npm = new Npm
