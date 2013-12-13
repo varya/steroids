@@ -392,6 +392,29 @@ class ApplicationConfigUpdater extends events.EventEmitter
 
     return deferred.promise
 
+
+  ensureNodeModulesDir: ->
+    deferred = Q.defer()
+
+    if !fs.existsSync(paths.application.nodeModulesDir)
+      msg =
+        """
+        \n#{chalk.bold.red("node_modules directory not found")}
+        #{chalk.bold.red("================================")}
+
+        Directory #{chalk.bold("node_modules")} not found in project root. Steroid requires
+        certain npm dependencies to work. Please run
+
+          #{chalk.bold("npm install")}
+
+        in your project root now to install the required dependencies.
+
+        """
+      deferred.reject(msg)
+    else
+      deferred.resolve()
+
+    return deferred.promise
   # Inquirer utils
 
   promptConfirm = ->

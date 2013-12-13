@@ -92,6 +92,10 @@ class Project
 
     ).then( =>
 
+      applicationConfigUpdater.ensureNodeModulesDir()
+
+    ).then( =>
+
       steroidsCli.debug "Spawning steroids grunt #{steroidsCli.pathToSelf}"
 
       gruntArgs = ["grunt"]
