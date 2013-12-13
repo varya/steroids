@@ -18,6 +18,21 @@ read
 DEFAULTSEVERITY=patch
 SEVERITY=${1:-$DEFAULTSEVERITY}
 
-npm version $SEVERITY && git push && git push --tags && npm publish ./
+npm version $SEVERITY
+
+cd test
+
+CURRENTVERSION=$(./getversion.js)
+
+./generate ../bin/steroids v$CURRENTVERSION
+
+cd ..
+
+git add test
+git commit -m "generated with $CURRENTVERSION"
+
+exit 1
+
+git push && git push --tags && npm publish ./
 
 echo "DONE, remember that clients will check from updates.appgyver.com"
