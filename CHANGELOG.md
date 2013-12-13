@@ -1,5 +1,7 @@
 ## 3.1.5 (2013-12-13)
 
+Check for existence of `node_modules` in project root before trying to run Grunt tasks.
+
 Features:
   - `steroids make` now checks for existence of `node_modules` directory in project root before trying to run Grunt tasks.
 
