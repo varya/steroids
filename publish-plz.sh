@@ -20,18 +20,21 @@ SEVERITY=${1:-$DEFAULTSEVERITY}
 
 npm version $SEVERITY
 
+echo "Next up: generating a new project with this for testing?"
+read
+
 cd test
 
 CURRENTVERSION=$(./getversion.js)
 
-./generate ../bin/steroids v$CURRENTVERSION
+
+./generate.sh ../bin/steroids v$CURRENTVERSION
 
 cd ..
 
 git add test
 git commit -m "generated with $CURRENTVERSION"
 
-exit 1
 
 git push && git push --tags && npm publish ./
 
