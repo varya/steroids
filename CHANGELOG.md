@@ -1,3 +1,10 @@
+## 3.1.6 (2013-12-14)
+
+Fixes Linux compatibility.
+
+Bugfixes:
+  - "q" package was required as "Q"
+
 ## 3.1.5 (2013-12-13)
 
 Check for existence of `node_modules` in project root before trying to run Grunt tasks.

@@ -2,7 +2,7 @@ paths = require "./paths"
 
 env = require("yeoman-generator")()
 
-q = require "Q"
+q = require "q"
 
 class ProjectCreator
 
