@@ -1,3 +1,10 @@
+## 3.1.7 (2013-12-16)
+
+Fixes Linux compatibility for `steroids generate tutorial`.
+
+Bugfixes:
+  - Tutorial generator had an incorrectly capitalized folder name, leading to errors on Linux/Windows.
+
 ## 3.1.6 (2013-12-14)
 
 Fixes Linux compatibility.
