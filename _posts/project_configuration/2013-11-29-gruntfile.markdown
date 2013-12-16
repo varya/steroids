@@ -10,7 +10,7 @@ platforms: iOS, Android
 
 When you press enter in the Steroids console (i.e. the Terminal running `$ steroids connect`), Steroids CLI runs a series of internal commands. One of these is `$ steroids make`, which creates the `dist/` folder and its contents. The `dist/` folder contains the final app structure that is then copied onto the actual mobile devices.
 
-Starting from version 2.7.39, Steroids CLI uses a `Gruntfile.js` in the project root to configure which tasks are run as part of `steroids make`. The Steroids tasks are loaded from the [`grunt-steroids`](http://github.com/appgyver/grunt-steroids) Grunt plugin, included as an npm dependency in new projects.
+Starting from version 3.1.4, Steroids CLI uses a `Gruntfile.js` in the project root to configure which tasks are run as part of `steroids make`. The Steroids tasks are loaded from the [`grunt-steroids`](http://github.com/appgyver/grunt-steroids) Grunt plugin, included as an npm dependency in new projects.
 
 ## Configuring the default tasks
 
