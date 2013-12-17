@@ -192,7 +192,7 @@ Sets the visibility of the status bar at the top of the screen, showing the devi
 steroids.config.statusBar.style = "default"
 {% endhighlight %}
 
-Sets the style of the status bar on iOS. Available values are `"default"` and `"black"`.
+Sets the style of the status bar on iOS. Available values are `"default"` and `"light"`.
 
 
 ## steroids.config.watch
