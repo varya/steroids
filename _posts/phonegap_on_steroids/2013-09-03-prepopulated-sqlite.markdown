@@ -42,7 +42,7 @@ function onDeviceReady() {
 function initDatabase() {
 
   if ( device.platform == "Android") {
-    var dbName = "file://" + steroids.app.absolutePath + "/data/Chinook_Sqlite.db"
+    var dbName = "file://" + steroids.app.absolutePath + "/data/Chinook_Sqlite.db";
   } else {
     var dbName = steroids.app.path + "/data/Chinook_Sqlite.db";
   }
