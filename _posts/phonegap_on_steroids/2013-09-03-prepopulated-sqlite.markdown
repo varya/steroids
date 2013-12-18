@@ -42,16 +42,16 @@ function onDeviceReady() {
 function initDatabase() {
 
   if ( device.platform == "Android") {
-    var dbName = "file://" + steroids.app.absolutePath + "/data/Chinook_Sqlite"
+    var dbName = "file://" + steroids.app.absolutePath + "/data/Chinook_Sqlite.db"
   } else {
-    var dbName = steroids.app.path + "/data/Chinook_Sqlite";
+    var dbName = steroids.app.path + "/data/Chinook_Sqlite.db";
   }
 
   db = window.sqlitePlugin.openDatabase({name: dbPath});
 }
 {% endhighlight %}
 
-The SQLite plugin works so that if there is a database file with the extension `.db` in the path corresponding to the `name` property (sans extension), then that existing database is used. Otherwise, a new empty database file is created with the given filename plus the `.db` extension.
+The SQLite plugin works so that if there is a database file in the path corresponding to the `name` property, then that existing database is used. The database file has to have a `.db` extension.
 
 You can then run a query on the database – the example code queries the `ARTISTS` table:
 

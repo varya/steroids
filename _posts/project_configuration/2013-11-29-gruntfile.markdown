@@ -21,3 +21,8 @@ The Steroid tasks' code can be found in your project's `node_modules/grunt-stero
 ## Migrating from an old project
 
 If you have a project created with an older version of Steroids CLI, running `$ steroids update` will run you through the steps required to migrate to the current setup.
+
+
+## Using Compass to compile SASS files
+
+Courtesy of Steroids user [Ramin Bozorgzadeh](https://github.com/i8ramin/), you can find modified `Gruntfile.js` and `package.json` files that let you use use Compass to compile SASS files instead of the default `grunt-sass` in this [GitHub Gist](https://gist.github.com/i8ramin/7974067).
