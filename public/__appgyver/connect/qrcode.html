@@ -17,7 +17,6 @@
 
     div#qrcodeCanvas {
       float: left;
-      margin-bottom: 20em;
     }
 
     div#text {
@@ -26,11 +25,34 @@
       width: 42em;
     }
 
+    div#forum {
+      clear: both;
+      padding-top: 2em;
+    }
     hr {
       margin-bottom: 30px;
     }
 
+
   </style>
+
+  <!-- (1) Moot look and feel -->
+  <link rel="stylesheet" href="https://cdn.moot.it/1/moot.css">
+
+  <!-- (4) Custom CSS -->
+  <style>
+
+  .moot {
+     font-size: 18px;
+  }
+  </style>
+
+
+
+  <!-- (1) Moot client application -->
+  <script src="https://cdn.moot.it/1/moot.min.js"></script>
+
+
 </head>
 <body>
   <h1><img src="images/steroids_logo.png" /> AppGyver Steroids</h1>
@@ -39,11 +61,7 @@
   <div id="qrcodeCanvas"></div>
 
   <div id="text">
-    <p>The Steroids server is now running. The server will stay alive as long as the <br>
-    <code>$ steroids connect</code> command is running in the terminal window.</p>
-    <p>You can now connect your device or the iOS Simulator to see your application.</p>
-
-    <p><strong>To connect a device</strong></p>
+    <p><strong>Scan the QR code to connect a device</strong></p>
     <ul>
       <li>Make sure your device is in the same WLAN with this computer</li>
       <li>Scan the QR code on the right with <a href="https://itunes.apple.com/us/app/appgyver-preview/id479747411?mt=8" target="_blank">AppGyver Scanner for iOS</a> or <a href="https://play.google.com/store/apps/details?id=com.appgyver.android">AppGyver Scanner for Android</a></li>
@@ -55,16 +73,33 @@
     </ul>
     </p>
 
-    <p>As you make changes to your project, keep connect running and<br>
-      simply press enter in the console to see your changes. Also try starting <code>connect</code> with <code>--watch</code> to automatically update changes when you save.</p>
+    <p>As you make changes to your project, keep connect running and simply press enter in the console to see your changes.</p>
 
-    <p>(You can also manually type in <code>$ steroids push</code> in another terminal window and more, see <code>$ steroids usage</code>)</p>
-
-    <p><strong>Developer Portal</strong></p>
+    <p><strong>Help and next steps</strong></p>
     <p>Go to our <a href="//developers.appgyver.com">Developer Portal</a> to get access to our tutorials, guides and Steroids.js API documentation.  We are happy to help you out at <a href="//developers.appgyver.com/forums">Developer Forums</a>, so join the discussion there.</p>
 
+    <p>Also remember to keep up to date with <a href="http://blog.appgyver.com/changelog/">the changelog</a> where we post the latest updates.</p>
     <p>Happy hacking!</p>
   </div>
+
+  <div id="forum">
+    <h3>Developer Forums</h3>
+    <p style="margin-bottom: -2em;">Go to <a href="http://forums.appgyver.com">http://forums.appgyver.com</a> and join the discussion.</p>
+    <a id="moot_forum" class="moot" data-label="Got a question? Comments?" href="https://moot.it/i/appgyver/steroids">appgyver forums</a>
+  </div>
+
+  <script>
+  $("#moot_forum").moot({ sso: {} });
+
+  var checkExist = setInterval(function() {
+    if ($("div.m-form.m-create").length) {
+      $("div.m-form.m-create").click(function() {
+        window.open("http://forums.appgyver.com");
+      });
+      clearInterval(checkExist);
+    }
+  }, 100);
+  </script>
 
   <script>
     function getQueryStringByKey(key) {
@@ -79,4 +114,5 @@
       text  : getQueryStringByKey("qrCodeData")
     });
   </script>
+
 </body>

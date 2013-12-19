@@ -1,3 +1,10 @@
+## 3.1.10 (TODO)
+
+AppGyver Forums in connect page.
+
+Changes:
+  - QR Code page cleanup + AppGyver forums embedded
+
 ## 3.1.9 (2013-12-19)
 
 Added migration script to circumvent a rare npm dependency issue.
