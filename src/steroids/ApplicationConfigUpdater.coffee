@@ -125,6 +125,8 @@ class ApplicationConfigUpdater extends events.EventEmitter
       ).then( =>
         @updateTo3_1_4()
       ).then( =>
+        @ensurePackageJsonExists()
+      ).then( =>
         @ensureNoBadGruntDeps()
       ).then( =>
         @ensureSteroidsEngineIsDefinedWithVersion("3.1.9")
@@ -464,13 +466,13 @@ class ApplicationConfigUpdater extends events.EventEmitter
 
     return deferred.promise
 
-
   addGruntSteroidsDependency: ->
     deferred = Q.defer()
 
     console.log("Adding #{chalk.bold("grunt-steroids")} devDependency to #{chalk.bold("package.json")}...")
 
-    packageJson = require(paths.application.configs.packageJson)
+    packageJsonData = fs.readFileSync paths.application.configs.packageJson, 'utf-8'
+    packageJson = JSON.parse(packageJsonData)
 
     if packageJson.devDependencies?
       packageJson.devDependencies["grunt-steroids"] = "0.x"
@@ -492,7 +494,8 @@ class ApplicationConfigUpdater extends events.EventEmitter
 
     console.log "Checking for erroneous npm dependencies..."
 
-    packageJson = require(paths.application.configs.packageJson)
+    packageJsonData = fs.readFileSync paths.application.configs.packageJson, 'utf-8'
+    packageJson = JSON.parse(packageJsonData)
 
     if (packageJson?.devDependencies?["grunt-extend-config"]? ||
        packageJson?.devDependencies?["grunt-contrib-clean"]? ||
