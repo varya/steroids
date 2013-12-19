@@ -18,7 +18,7 @@ read
 DEFAULTSEVERITY=patch
 SEVERITY=${1:-$DEFAULTSEVERITY}
 
-npm version $SEVERITY
+npm version $SEVERITY || exit 1
 
 echo "Next up: generating a new project with this for testing?"
 read
@@ -28,7 +28,7 @@ cd test
 CURRENTVERSION=$(./getversion.js)
 
 
-./generate.sh ../bin/steroids v$CURRENTVERSION
+./generate.sh ../bin/steroids v$CURRENTVERSION || exit 1
 
 cd ..
 
