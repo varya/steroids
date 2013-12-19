@@ -1,4 +1,4 @@
-## 3.1.10 (TODO)
+## 3.1.10 (2013-12-19)
 
 AppGyver Forums in connect page.
 
