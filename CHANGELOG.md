@@ -1,3 +1,10 @@
+## 3.1.8 (2013-12-19)
+
+Includes 3.1.1 simulator for iOS.
+
+Changes:
+  - Updated simulator to 3.1.1
+
 ## 3.1.7 (2013-12-16)
 
 Fixes Linux compatibility for `steroids generate tutorial`.
