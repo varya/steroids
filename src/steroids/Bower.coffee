@@ -19,8 +19,8 @@ class Bower
 
         console.log(
           """
-          \n#{chalk.green.bold("UPDATING BOWER DEPENDENCIES")}
-          #{chalk.green.bold("============================")}
+          \n#{chalk.green.bold("Updating Bower dependencies")}
+          #{chalk.green.bold("===========================")}
 
           Running #{chalk.bold("bower update")} to update project Bower packages...
           If this fails, try running the command manually.
