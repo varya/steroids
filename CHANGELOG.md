@@ -2,6 +2,9 @@
 
 Added migration script to circumvent a rare npm dependency issue.
 
+Changes:
+  - Installation now prints an annoying message.
+
 Bugfixes:
   - Added migration script to fix an issue issue where migrating an old project to 3.1.4, deleting the `node_modules` folder and running `npm install` caused an error.
 
