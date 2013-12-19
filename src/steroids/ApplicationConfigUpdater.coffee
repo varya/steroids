@@ -24,7 +24,6 @@ class ApplicationConfigUpdater extends events.EventEmitter
 
     packageJson?.engines?.steroids
 
-
   # 3.1.0 MIGRATION:
   # - cordova.js not loaded from /appgyver/
   # - package.json exists
@@ -83,9 +82,52 @@ class ApplicationConfigUpdater extends events.EventEmitter
       ).then( =>
         @ensurePackageJsonExists()
       ).then( =>
-        @ensureGeneratorDependency()
+        @ensureGruntDependency()
       ).then( =>
         @ensureSteroidsEngineIsDefinedWithVersion("3.1.4")
+      ).then( =>
+        Help.SUCCESS()
+        console.log chalk.green("Migration successful, moving on!")
+        deferred.resolve()
+      ).fail (msg)->
+        msg = msg ||
+          """
+          \n#{chalk.bold.red("Migration aborted")}
+          #{chalk.bold.red("=================")}
+
+          Please read through the instructions again!
+
+          """
+        deferred.reject(msg)
+
+    return deferred.promise
+
+  updateTo3_1_9: ->
+    deferred = Q.defer()
+
+    if @validateSteroidsEngineVersion(">=3.1.9")
+      deferred.resolve()
+    else
+      steroidsEngineVersion = @getSteroidsEngineVersion() || "undefined"
+      Help.attention()
+      console.log(
+        """
+        #{chalk.bold("engine.steroids")} was #{chalk.bold(steroidsEngineVersion)} in #{chalk.bold("package.json")}, expected #{chalk.bold(">=3.1.9")}
+
+        This is likely because your project was created with an older version of Steroids CLI. We will
+        now run through a few migration tasks to ensure that your project functions correctly.
+
+        """
+      )
+
+      promptConfirm().then( =>
+        @updateTo3_1_0()
+      ).then( =>
+        @updateTo3_1_4()
+      ).then( =>
+        @ensureNoBadGruntDeps()
+      ).then( =>
+        @ensureSteroidsEngineIsDefinedWithVersion("3.1.9")
       ).then( =>
         Help.SUCCESS()
         console.log chalk.green("Migration successful, moving on!")
@@ -187,12 +229,13 @@ class ApplicationConfigUpdater extends events.EventEmitter
       if fs.existsSync paths.application.configs.packageJson
         packageJsonData = fs.readFileSync paths.application.configs.packageJson, 'utf-8'
         packageJson = JSON.parse(packageJsonData)
+
         if !packageJson.engines?
           packageJson.engines = { steroids: version }
         else
           packageJson.engines.steroids = version
 
-        packageJsonData = JSON.stringify(packageJson, null, 4);
+        packageJsonData = JSON.stringify packageJson, null, 2
         fs.writeFileSync paths.application.configs.packageJson, packageJsonData
         console.log chalk.green("OK!")
         deferred.resolve()
@@ -200,11 +243,6 @@ class ApplicationConfigUpdater extends events.EventEmitter
         deferred.reject()
 
     return deferred.promise
-
-  packagejsonContainsSteroidsEngine: ->
-    packagejsonData = fs.readFileSync paths.application.configs.packagejson, 'utf-8'
-    return packagejsonData.indexOf(steroidsPackagejsonString) > -1
-
 
   # 3.1.4 migration tasks
   ensureGruntfileExists: ->
@@ -299,12 +337,13 @@ class ApplicationConfigUpdater extends events.EventEmitter
 
     return deferred.promise
 
-  ensureGeneratorDependency: ->
+  ensureGruntDependency: ->
     deferred = Q.defer()
 
     console.log("Checking #{chalk.bold("package.json")} for the #{chalk.bold("grunt-steroids")} dependency...")
     packagejsonData = fs.readFileSync paths.application.configs.packageJson, 'utf-8'
     if packagejsonData.indexOf("grunt-steroids") > -1
+
       console.log chalk.green("OK!")
 
       console.log(
@@ -357,17 +396,26 @@ class ApplicationConfigUpdater extends events.EventEmitter
         Your existing #{chalk.bold("package.json")} file doesn't have the required #{chalk.bold("grunt-steroids")} Grunt
         plugin as a dependency.
 
-        To install the #{chalk.bold("grunt-steroids")} npm package in your project, run the following command:
+        We will now add the #{chalk.bold("grunt-steroids")} npm package as a dependency to your #{chalk.bold("project.json")}.
 
-          #{chalk.bold("$ npm install grunt-steroids --save-dev")}
+        Then, we will run
+
+          #{chalk.bold("npm install")}
+
+        to install it.
 
         """
       )
-      promptRunNpmInstall().then( =>
+      promptUnderstood().then( =>
+
+        @addGruntSteroidsDependency()
+
+      ).then( =>
+
         Npm = require "./Npm"
         npm = new Npm
 
-        npm.install(["grunt-steroids", "--save-dev"]).then( ->
+        npm.install().then( ->
           console.log(
             """
             \n#{chalk.green("OK!")} Installed the #{chalk.bold("grunt-steroids")} npm package successfully
@@ -415,6 +463,87 @@ class ApplicationConfigUpdater extends events.EventEmitter
       deferred.resolve()
 
     return deferred.promise
+
+
+  addGruntSteroidsDependency: ->
+    deferred = Q.defer()
+
+    console.log("Adding #{chalk.bold("grunt-steroids")} devDependency to #{chalk.bold("package.json")}...")
+
+    packageJson = require(paths.application.configs.packageJson)
+
+    if packageJson.devDependencies?
+      packageJson.devDependencies["grunt-steroids"] = "0.x"
+    else
+      packageJson["devDependencies"] =
+        "grunt-steroids":"0.x"
+
+    packageJsonData = JSON.stringify packageJson, null, 2
+    fs.writeFileSync paths.application.configs.packageJson, packageJsonData
+
+    console.log chalk.green("OK!")
+
+    deferred.resolve()
+
+    return deferred.promise
+
+  ensureNoBadGruntDeps: ->
+    deferred = Q.defer()
+
+    console.log "Checking for erroneous npm dependencies..."
+
+    packageJson = require(paths.application.configs.packageJson)
+
+    if (packageJson?.devDependencies?["grunt-extend-config"]? ||
+       packageJson?.devDependencies?["grunt-contrib-clean"]? ||
+       packageJson?.devDependencies?["grunt-contrib-concat"]? ||
+       packageJson?.devDependencies?["grunt-contrib-copy"]? ||
+       packageJson?.devDependencies?["grunt-contrib-sass"]? ||
+       packageJson?.devDependencies?["grunt-contrib-coffee"]? ||
+       packageJson?.devDependencies?["grunt"]?)
+
+      Help.error()
+      console.log(
+        """
+        #{chalk.red.bold("Erroneous npm dependencies found")}
+        #{chalk.red.bold("================================")}
+
+        Due to an oversight in our previous migration script, migrated projects' #{chalk.bold("package.json")}
+        files ended up having several #{chalk.bold("devDependencies")} that should not be there.
+
+        The misplaced dependencies cause errors if the user removes his #{chalk.bold("node_modules")} directory
+        and then runs #{chalk.bold("npm install")} afterwards (this is due to #{chalk.bold("grunt-steroids")} using absolute
+        version numbers for its peerDependencies, and npm wanting to use the latest patch
+        version).
+
+        Unless you know what you're doing, ensure that your #{chalk.bold("package.json")} has none of the
+        following #{chalk.bold("devDependencies")} by deleting them from the file:
+
+          "grunt-extend-config"
+          "grunt-contrib-clean"
+          "grunt-contrib-concat"
+          "grunt-contrib-copy"
+          "grunt-contrib-sass"
+          "grunt-contrib-coffee"
+          "grunt"
+
+        Note that you shouldn't remove the #{chalk.bold("grunt-steroids")} dependency, as that's required by
+        Steroids CLI to work!
+
+        """
+      )
+
+      promptUnderstood().then( ->
+        deferred.resolve()
+      ).fail ->
+        deferred.reject()
+
+    else
+      console.log chalk.green("OK!")
+      deferred.resolve()
+
+    return deferred.promise
+
   # Inquirer utils
 
   promptConfirm = ->

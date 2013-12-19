@@ -82,7 +82,7 @@ class Project
 
     applicationConfigUpdater = new ApplicationConfigUpdater
     configXmlValidator = new ConfigXmlValidator
-    applicationConfigUpdater.updateTo3_1_4().then( =>
+    applicationConfigUpdater.updateTo3_1_9().then( =>
 
       configXmlValidator.check("ios")
 
