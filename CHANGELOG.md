@@ -1,3 +1,8 @@
+## 3.1.11 (TODO)
+
+Features:
+  - ensures that all bower components are installed when running `$ steroids make`
+
 ## 3.1.10 (2013-12-19)
 
 AppGyver Forums in connect page.
