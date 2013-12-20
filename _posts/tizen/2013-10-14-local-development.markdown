@@ -10,19 +10,15 @@ platforms: Tizen
 - [Tizen Web App preferences in config.tizen.xml][config-xml-tizen-guide]
 - [Installing Tizen apps][installing-tizen-apps-guide]
 
-To develop your app on Tizen locally with Steroids, you need to use our Build Service to build a scanner.
+There is currently no Scanner app available for Tizen. This means you need to develop your Tizen Steroids app with the Tizen web simulator, and then test it on your Tizen device by building it through the Build Service.
 
-## Installing the Scanner app
+## Using the Tizen simulator
 
-[Click here](http://appgyver.assets.s3.amazonaws.com/tizen-scanner.wgt) to download the Tizen Scanner app `.wgt` file, then follow the instructions in the [Installing Tizen apps guide][installing-tizen-apps-guide].
+Open two Terminal windows to your project folder. In the first one, run `$ steroids connect --serve`. In the second one, run `$ steroids simulator --deviceType=tizenweb`.
 
-## Connect to Steroids
+The Tizen web simulator will open in a new Chrome browser. Make changes to your app, and press enter in the Steroids console to push the changes to the simulator – same as you would when developing with a Scanner app.
 
-You should have the Scanner app available on your Tizen device now.
-
-Then, in your project folder, run `$ steroids connect --serve`. Open your Tizen Scanner app on the device (make sure they are in the same WLAN). In the IP field, enter the IP address for your computer running `$ steroids connect`. In the `location` field, enter the location for your initial view (i.e. the value of `steroids.config.location`). Then, click **Connect**.
-
-Your app will load, and any changes made and pushed by pressing enter in the Steroids `connect` console will update on the device. To change the IP address, you need to restart the Scanner app. The refresh is also dependent on `steroids.js` being loaded to memory, so ensure that it is referenced in all views of your app!
+The refresh is dependent on `steroids.js` being loaded to memory, so ensure that it is loaded in all views of your app!
 
 ## Known Steroids.js limitations
 
@@ -34,14 +30,6 @@ The `cordova.tizen.js` file is included to the root of the `dist/` folder automa
 
 {% highlight html %}
 <script src="cordova.tizen.js"></script>
-{% endhighlight %}
-
-## Use the Tizen web emulator
-
-You can also open the bundled Tizen web emulator by running
-
-{% highlight bash %}
-$ steroids simulator --deviceType=tizenweb
 {% endhighlight %}
 
 [config-xml-tizen-guide]: /steroids/guides/tizen/config-xml-tizen/

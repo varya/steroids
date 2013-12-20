@@ -49,7 +49,7 @@ These properties determine the initial location of your app (relative to the roo
 <feature name="http://tizen.org/feature/screen.size.normal.720.1280"/>
 {% endhighlight %}
 
-The screen size feature is required by Tizen [Application Filtering](https://developer.tizen.org/help/index.jsp?topic=%2Forg.tizen.gettingstarted%2Fhtml%2Ftizen_overview%2Fapplication_filtering.htm) and must be present for the app to show up in Tizen App Stores.
+The screen size feature is required by Tizen [Application Filtering](https://developer.tizen.org/help/index.jsp?topic=%2Forg.tizen.gettingstarted%2Fhtml%2Ftizen_overview%2Fapplication_filtering.htm) and must be present for the app to show up in Tizen App Stores. If it is configured improperly, your app will get rejected by the App Stores.
 
 ## Privileges and Tizen settings
 {% highlight xml %}
