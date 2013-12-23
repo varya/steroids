@@ -1,4 +1,6 @@
-## 3.1.11 (TODO)
+## 3.1.11 (2013-12-23)
+
+Ensures that all bower components have been installed
 
 Features:
   - ensures that all bower components are installed when running `$ steroids make`
