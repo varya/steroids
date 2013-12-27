@@ -1,4 +1,4 @@
-## 3.1.12 (TODO)
+## 3.1.12 (2013-12-27)
 
 `$ steroids generate` generators that install Bower dependencies no longer fail on Linux and Windows.
 
