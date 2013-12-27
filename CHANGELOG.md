@@ -1,9 +1,16 @@
+## 3.1.12 (TODO)
+
+`$ steroids generate` generators that install Bower dependencies no longer fail on Linux and Windows.
+
+Bugfixes:
+  - Generators that install Bower dependencies no longer fail on Linux and Windows (fixed by updating `generator-steroids` Node module to 0.2.12).
+
 ## 3.1.11 (2013-12-23)
 
-Ensures that all bower components have been installed
+Ensures that all Bower components have been installed.
 
 Features:
-  - ensures that all bower components are installed when running `$ steroids make`
+  - Ensures that all Bower components are installed when running `$ steroids make`.
 
 ## 3.1.10 (2013-12-19)
 
