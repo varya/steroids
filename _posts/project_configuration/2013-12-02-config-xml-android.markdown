@@ -19,8 +19,6 @@ With Steroids CLI version 3.1.0, the `config.android.xml` file has undergone som
 
 ## Default config.android.xml
 
-## config.ios.xml
-
 The default `www/config.android.xml` looks like this:
 
 {% highlight xml %}
