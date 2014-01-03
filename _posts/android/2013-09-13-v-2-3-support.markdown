@@ -20,4 +20,4 @@ The App Store version code of your app's Android 2.3 version needs to always be 
 The Android v2.3 support is provided as-is, but we are still collecting issues not mentioned above for future versions.
 
 [android-scanner]: https://play.google.com/store/apps/details?id=com.appgyver.android
-[android-cordova-js]: /files/cordova-2.7.7.android.js
+[android-cordova-js]: /steroids/files/cordova-2.7.7.android.js
