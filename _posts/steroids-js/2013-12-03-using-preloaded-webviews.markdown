@@ -12,7 +12,7 @@ Initializing and loading the contents of a new WebView takes a bit of time. In c
 The use of `preload()` is rather straightforward. The following code will perform a preload and push a view onto the layer stack once preloading has successfully started.
 
 {% highlight javascript %}
-var webView = new steroids.view.WebView("view.html");
+var webView = new steroids.views.WebView("view.html");
 webView.preload({}, {
   onSuccess: function() {
     steroids.layers.push(webView);
@@ -33,7 +33,7 @@ A non-preloaded WebView waits for the DOMContentLoaded event before it can be pu
 Every preloaded WebView has an unique id. You can set the preload id for a WebView using the `id` option with ´preload()´. However, using the `id` parameter is optional. If the `id` parameter is not given, the location of the WebView is used as an id. The same applies to the initial WebView of the app: the preload id of the initial view is set to match `steroids.config.location` in `config/application.coffee`. If using the tab bar, the id of each view matches the `location` of the tab.
 
 {% highlight javascript %}
-var webView = new steroids.view.WebView("view.html");
+var webView = new steroids.views.WebView("view.html");
 webView.preload({id: "uniqueIdForView"}, {
   onSuccess: function() {
     steroids.layers.push(webView);
@@ -52,7 +52,7 @@ If you are interested in only whether a preloaded WebView is ready for use and n
 A preloaded webview can be unloaded. Contrary to `steroids.layers.pop()`, unloading a WebView removes it from memory. The use of `unload()` is pretty simple:
 
 {% highlight javascript %}
-var webView = new steroids.view.WebView("view.html");
+var webView = new steroids.views.WebView("view.html");
 webView.unload({}, {
   onSuccess: function() {
     alert("View has been unloaded.");
@@ -68,7 +68,7 @@ webView.unload({}, {
 A small library called [preload.js](https://github.com/knation/steroids-webview-preload) by Kirk Morales provides an example on effectively reusing preloaded WebViews. The same example as above, using preload.js, works as follows.
 
 {% highlight javascript %}
-var webView = new steroids.view.WebView("view.html");
+var webView = new steroids.views.WebView("view.html");
 steroids.preload(webView, 'uniqueIdForView', function() {
   steroids.layers.push(webView);
 });
