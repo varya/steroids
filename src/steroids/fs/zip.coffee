@@ -33,7 +33,8 @@ class Zip
       steroidsCli.debug "Zipping with OS supplied zip..."
 
       child = childProcess.exec "find . -print | zip -@ -FS #{@to}", {
-        cwd: @from
+        cwd: @from,
+        maxBuffer: 1024 * 1000
       }, (error, stdout, stderr)->
         throw error if error?
         #console.log "#{stdout}"
