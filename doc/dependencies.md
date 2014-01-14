@@ -1,6 +1,6 @@
 # npm
 
-As of January 14, 2014  3:18pm. 39 total, _1 unapproved_
+As of January 14, 2014  3:19pm. 39 total, _0 unapproved_
 
 ## Summary
   * 28 MIT
@@ -11,10 +11,6 @@ As of January 14, 2014  3:18pm. 39 total, _1 unapproved_
   * 1 LGPL
 
 
-1 unapproved dependencies
-
-* <a href='#7zip'>7zip</a> (LGPL)
-
 
 ## Items
 
@@ -23,7 +19,7 @@ As of January 14, 2014  3:18pm. 39 total, _1 unapproved_
 
 | Summary | License | Approved? |
 |---------|-------------|---------|
-||<a href='http://www.gnu.org/licenses/lgpl.txt'>LGPL</a>| _*No*_ |
+||<a href='http://www.gnu.org/licenses/lgpl.txt'>LGPL</a>| Yes |
 
 
 
