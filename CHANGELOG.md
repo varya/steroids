@@ -1,3 +1,10 @@
+## 3.1.13 (2014-01-14)
+
+Fixed an issue with the `ng-sql-scaffold` generator.
+
+Bugfixes:
+  - The `ng-sql-scaffold` generator no longer includes the plugin JavaScript file (it is instead included automatically by Cordova).
+
 ## 3.1.12 (2013-12-27)
 
 `$ steroids generate` generators that install Bower dependencies no longer fail on Linux and Windows.
