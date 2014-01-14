@@ -1,0 +1,46 @@
+RedCloth,4.2.9,MIT,RedCloth-4.2.9,Textile parser for Ruby.
+bundler,1.3.5,MIT,The best way to manage your application's dependencies,"Bundler manages an application's dependencies through its entire life, across many machines, systematically and repeatably"
+classifier,1.3.3,LGPL,A general classifier module to allow Bayesian and other types of classifications.,A general classifier module to allow Bayesian and other types of classifications.
+colorator,0.1,MIT,String core extensions for terminal coloring.,Colorize your text in the terminal.
+commander,4.1.5,MIT,The complete solution for Ruby command-line executables,"The complete solution for Ruby command-line executables. Commander bridges the gap between other terminal related libraries you know and love (OptionParser, HighLine), while providing many new features, and an elegant API."
+directory_watcher,1.4.1,MIT,A class for watching files within a directory and generating events when those files change,"The directory watcher operates by scanning a directory at some interval and
+generating a list of files based on a user supplied glob pattern. As the file
+list changes from one interval to the next, events are generated and
+dispatched to registered observers. Three types of events are supported --
+added, modified, and removed."
+fast-stemmer,1.0.2,MIT,Fast Porter stemmer based on a C version of algorithm,Fast Porter stemmer based on a C version of algorithm
+github-pages,8,MIT,Track GitHub Pages dependencies.,Bootstrap the GitHub Pages Jekyll environment locally.
+highline,1.6.20,Ruby,HighLine is a high-level command-line IO library.,"A high-level IO library that provides validation, type conversion, and more for
+command-line interfaces. HighLine also includes a complete menu system that can
+crank out anything from simple list selection to complete shells with just
+minutes of work."
+httparty,0.11.0,MIT,"Makes http fun! Also, makes consuming restful web services dead easy.","Makes http fun! Also, makes consuming restful web services dead easy."
+jekyll,1.2.0,MIT,"A simple, blog aware, static site generator.","Jekyll is a simple, blog aware, static site generator."
+kramdown,1.0.2,MIT,"kramdown is a fast, pure-Ruby Markdown-superset converter.","kramdown is yet-another-markdown-parser but fast, pure Ruby,
+using a strict syntax definition and supporting several common extensions."
+license_finder,0.9.4,MIT,Audit the OSS licenses of your application's dependencies.,"Do you know the licenses of all your application's dependencies? What open source software licenses will your business accept?
+
+  LicenseFinder culls your Gemfile, detects the licenses of the gems in it, and gives you a report that you can act on. If you already know
+  what licenses your business is comfortable with, you can whitelist them, leaving you with an action report of only those dependencies that have
+  licenses that fall outside of the whitelist."
+liquid,2.5.1,MIT,"A secure, non-evaling end user template engine with aesthetic markup.",""
+maruku,0.6.1,GPL-2,Maruku is a Markdown-superset interpreter written in Ruby.,"Maruku is a Markdown interpreter in Ruby.
+	It features native export to HTML and PDF (via Latex). The
+	output is really beautiful!"
+multi_json,1.8.4,MIT,A common interface to multiple JSON libraries.,"A common interface to multiple JSON libraries, including Oj, Yajl, the JSON gem (with C-extensions), the pure-Ruby JSON gem, NSJSONSerialization, gson.rb, JrJackson, and OkJson."
+multi_xml,0.5.5,MIT,A generic swappable back-end for XML parsing,"Provides swappable XML backends utilizing LibXML, Nokogiri, Ox, or REXML."
+posix-spawn,0.3.6,https://github.com/rtomayko/posix-spawn/blob/master/COPYING,posix_spawnp(2) for ruby,posix-spawn uses posix_spawnp(2) for faster process spawning
+pygments.rb,0.5.2,MIT,pygments wrapper for ruby,pygments.rb exposes the pygments syntax highlighter to Ruby
+rake,10.1.1,MIT,Ruby based make-like utility.,Rake is a Make-like program implemented in Ruby. Tasks and dependencies arespecified in standard Ruby syntax.
+rdiscount,1.6.8,BSD,Fast Implementation of Gruber's Markdown in C,""
+redcarpet,2.2.2,ISC,Markdown that smells nice,"A fast, safe and extensible Markdown to (X)HTML parser"
+safe_yaml,0.7.1,MIT,SameYAML provides an alternative implementation of YAML.load suitable for accepting user input in Ruby applications.,"Parse YAML safely, without that pesky arbitrary object deserialization vulnerability"
+sequel,4.6.0,MIT,The Database Toolkit for Ruby,The Database Toolkit for Ruby
+sqlite3,1.3.8,MIT,This module allows Ruby programs to interface with the SQLite3 database engine (http://www.sqlite.org),"This module allows Ruby programs to interface with the SQLite3
+database engine (http://www.sqlite.org).  You must have the
+SQLite engine installed in order to build this module.
+
+Note that this module is only compatible with SQLite 3.6.16 or newer."
+syntax,1.0.0,BSD,Syntax is Ruby library for performing simple syntax highlighting.,""
+thor,0.18.1,MIT,"A scripting framework that replaces rake, sake and rubigen","A scripting framework that replaces rake, sake and rubigen"
+yajl-ruby,1.1.0,MIT,Ruby C bindings to the excellent Yajl JSON stream-based parser library.,""
