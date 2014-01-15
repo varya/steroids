@@ -62,8 +62,6 @@ The success callback passed into `exec` is simply a reference to the callback fu
 
 Cordova has a plugin specification available to enable automated installation of plugins for Android and iOS platforms by using [plugman][plugman]. The Steroids Build Service uses plugman internally, so you need to structure your plugin in a particular way and add a `plugin.xml` manifest file. You also need to host your plugin in a git repo, so that the Build Service can fetch the plugin – we recommend [GitHub][github].
 
-*Note that Steroids currently requires you to include the JavaScript file for your plugin manually in your project; the `<asset>` tag is not supported.*
-
 * [Plugin Specification at (cordova.apache.org)][cordova-plugin-spec]
 
 ##Using Cordova CLI
