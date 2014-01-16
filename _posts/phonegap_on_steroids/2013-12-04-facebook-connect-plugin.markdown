@@ -13,16 +13,17 @@ To use the [official Cordova Facebook plugin](https://github.com/phonegap-build/
 
 ## 1: Configure your Facebook App
 
-In the [developers.facebook.com](https://developers.facebook.com) page of your app, click **Edit** in the upper-right corner.
+Go to [developers.facebook.com/apps](https://developers.facebook.com/apps/).
 
 ### iOS
 
-You need to enable the **Native iOS App** integration option by clicking on the box. Then
+Open [the Getting Started guide](https://developers.facebook.com/docs/ios/getting-started/). Skip Steps 1 and 2. Follow the instructions in **Step 3: Obtain a Facebook App ID**. Skip Steps 4 and 5.
 
-* Fill in the **Bundle ID** of your app. The Bundle ID must match the one you enter into the Build Service in Step 2 – if you don't know your custom Scanner's bundle ID yet, input something like `com.mycompany.facebooktest.scanner`.
+Some tips for configuring your app on Facebook:
+
+* **Bundle ID of your app:** The Bundle ID must match the one you enter into the Build Service in Step 2 – if you don't know your custom Scanner's bundle ID yet, input something like `com.mycompany.facebooktest.scanner`.
 * If you don't know your **iPhone App Store ID** and **iPad App Store ID** yet, you can input `0` in both fields.
-* Enable the **Facebook Login** option.
-* Click **Save Changes**.
+* Remember to enable the **Single Sign On** option.
 
 Now your Facebook App is configured to accept login requests from iPhone apps with the given Bundle ID.
 
