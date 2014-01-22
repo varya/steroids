@@ -1,3 +1,10 @@
+## 3.1.14 (2014-01-22)
+
+Fixes an issue with 3.5" iOS Simulator
+
+Bugfixes:
+  - iOS Simulator for 3.5" device fixed by updating `ios-sim` of `steroids-simulators` package (https://github.com/AppGyver/steroids/issues/56)
+
 ## 3.1.13 (2014-01-14)
 
 Fixed an issue with the `ng-sql-scaffold` generator.
