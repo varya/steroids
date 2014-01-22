@@ -205,6 +205,8 @@ steroids.config.watch.exclude = ["www/my_excluded_file.js", "www/my_excluded_dir
 
 When the Steroids `connect` console is run with the `--watch` option, changes to the files and directories listed in the exclude array will not trigger updates.
 
+It is also possible to exclude files directly from the command line by running `$ steroids connect` with the `--watchExclude path1,path2,path3` flag.
+
 ## steroids.config.hooks
 
 *Defaults:* none

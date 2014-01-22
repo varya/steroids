@@ -24,7 +24,7 @@ Next, enable Safari's developer tools. Open Safari's preferences by selecting *S
 
 Now, you should see a *Develop* menu item in Safari's top menu bar. Open the *Develop* > *iPhone Simulator* menu, and you should see a list of WebViews currently open in your app. (`contextmenu.html`, `loading.html` and `background.html` are used internally by Steroids.)
 
-You can also skip the Safari menu altogether. When in `steroids connect` prompt, you can use `d` or `debug` command to get a list of currently open WebViews in the iOS Simulator. The command takes an argument like `d banana/index.html` to open the Safari Web Inspector for given WebView. Partial file/path names work also.
+You can also skip the Safari menu altogether. When in the `steroids connect` prompt, you can use `d` or `debug` command to get a list of currently open WebViews in the iOS Simulator. The command takes an argument like `d views/banana/index.html` to open the Safari Web Inspector for given WebView. Partial file/path names work also, so if you have an open WebView at `views/car/index.html` path you can simply write e.g. `d car/ind`.
 
 ###Inspecting a WebView
 
