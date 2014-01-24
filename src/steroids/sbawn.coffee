@@ -30,8 +30,8 @@ class Sbawned
     @stderr = @stderr + newData
     console.log newData if @options.debug or @options.stderr
 
-  onExit: (@code) =>
-    @code = 137 unless @code
+  onExit: (code) =>
+    @code = code ? 137
 
     @_performEvents "exit"
 
@@ -53,7 +53,7 @@ class Sbawned
       console.log "Failed to spawn a process, error: #{e.code}"
 
       if e.code == "EMFILE"
-        console.log "The code EMFILE means that the process has run out of file descriptiors, increase this with:\n"
+        console.log "The code EMFILE means that the process has run out of file descriptors, increase this with:\n"
         console.log "  $ ulimit -n 1024"
         console.log "\nAnd start the command again"
 
