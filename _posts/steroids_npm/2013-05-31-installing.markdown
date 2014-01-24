@@ -79,6 +79,8 @@ $ npm install steroids -g
 
 npm might give you a few alerts about some third party libraries. This doesn't affect Steroids. However, if npm fails to install a third party library and gives an error, it can be typically fixed just by running the `$ npm install steroids -g` command again.
 
+If you're getting `ENOTEMPTY` errors while installing, the cause might be some old, incompatible packages that have been cached by npm. You can try `$ npm cache clean` to clean previously cached npm packages from your `~/node_modules` directory.
+
 ##Updating Steroids
 
 <em><strong>NOTE:</strong> if you are updating Steroids after changing your Node.js version, you should use `$ npm install steroids -g` instead of `update`. If you run into any issues, running `$ npm uninstall steroids -g` and re-installing should fix most problems. Let us know on the [forums][forums] if you are still having problems.</em>
