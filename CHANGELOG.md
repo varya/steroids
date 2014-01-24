@@ -1,4 +1,4 @@
-## 3.1.15 (TODO)
+## 3.1.15 (2014-01-24)
 
 Steroids Safari debug command improved (run with `$ steroids safari`, or `debug` in `$ steroids connect` console).
 
