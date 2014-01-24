@@ -174,7 +174,7 @@ class ApplicationConfigUpdater extends events.EventEmitter
         stderr: true
 
       gruntSbawn.on "exit", () =>
-        if gruntSbawn.code == 137
+        if gruntSbawn.code == 0
           promptUnderstood().then( ->
             deferred.resolve()
           ).fail ->

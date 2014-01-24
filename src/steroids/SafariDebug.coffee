@@ -6,57 +6,72 @@ Help = require "./Help"
 
 os = require "os"
 
+Q = require "q"
+
 class SafariDebug
 
   constructor: (@callBackOnExit) ->  # @callBackOnExit is invoked when this class' methods exit - typically used to redisplay the interactive prompt.
 
   listViews: =>
+    @runAppleScript "SafariDebugWebViewLister.scpt"
+
+  open: (argument) =>
+    @runAppleScript "openSafariDevMenu.scpt", argument
+
+  runAppleScript: (scriptFileName, argument)=>
     unless os.type() == "Darwin"
       console.log "Error: Safari Developer Tools debugging requires Mac OS X."
-      return false
+      @callBackOnExit()
 
-    scriptPath = path.join paths.scriptsDir, "SafariDebugWebViewLister.scpt"
+    @ensureAssistiveAccess().then( =>
+      scriptPath = path.join paths.scriptsDir, scriptFileName
 
-    openSafariDebugWebViewLister = sbawn
+      args = [scriptPath]
+      if argument?
+        args.push argument
+
+      osascriptSbawn = sbawn
+        cmd: "osascript"
+        args: args
+
+      osascriptSbawn.on "exit", () =>
+        steroidsCli.debug "SafariDebug started and killed."
+        steroidsCli.debug "stderr: " + osascriptSbawn.stderr
+        steroidsCli.debug "stdout: " + osascriptSbawn.stdout
+
+        if osascriptSbawn.code  # error occurred
+          errMsg = '\nERROR: ' + (/\ execution error: ([\s\S]+)$/.exec(osascriptSbawn.stderr)?[1] || osascriptSbawn.stderr)
+          console.error errMsg.red
+        else unless argument?
+          console.log "\n\n  Found following WebViews in Safari:\n"
+          for line in osascriptSbawn.stdout.split("\n") when line isnt ""
+            console.log "   - #{line}"
+          console.log ''
+
+        @callBackOnExit()
+
+    ).fail (errMsg) =>
+      console.error errMsg.red
+      @callBackOnExit()
+
+  ensureAssistiveAccess: =>
+    deferred = Q.defer()
+
+    scriptPath = path.join paths.scriptsDir, "ensureAssistiveAccess.scpt"
+
+    ensureAssistiveAccessSbawn = sbawn
       cmd: "osascript"
       args: [scriptPath]
 
-    openSafariDebugWebViewLister.on "exit", () =>
-      steroidsCli.debug "SafariDebug started and killed."
-      steroidsCli.debug "stderr: " + openSafariDebugWebViewLister.stderr
-      steroidsCli.debug "stdout: " + openSafariDebugWebViewLister.stdout
+    ensureAssistiveAccessSbawn.on "exit", () =>
+      steroidsCli.debug "Ensure assistive access started and killed"
 
-      if openSafariDebugWebViewLister.code  # error occurred
-        errMsg = '\nERROR: ' + (/\ execution error: ([\s\S]+)$/.exec(openSafariDebugWebViewLister.stderr)?[1] || openSafariDebugWebViewLister.stderr)
-        console.error errMsg.red
+      if ensureAssistiveAccessSbawn.code
+        errMsg = '\nERROR: ' + (/\ execution error: ([\s\S]+)$/.exec(ensureAssistiveAccessSbawn.stderr)?[1] || ensureAssistiveAccessSbawn.stderr)
+        deferred.reject(errMsg)
       else
-        console.log "\n\n  Found following WebViews in Safari:\n"
-        for line in openSafariDebugWebViewLister.stdout.split("\n") when line isnt ""
-          console.log "   - #{line}"
-        console.log ''
+        deferred.resolve()
 
-      @callBackOnExit?()
-
-  open: (argument) =>
-    unless os.type() == "Darwin"
-      console.log "Error: Safari Developer Tools debugging requires Mac OS X."
-      return false
-
-    scriptPath = path.join paths.scriptsDir, "openSafariDevMenu.scpt"
-
-    openSafariDebug = sbawn
-      cmd: "osascript"
-      args: [scriptPath, argument]
-
-    openSafariDebug.on "exit", () =>
-      steroidsCli.debug "SafariDebug started and killed."
-      steroidsCli.debug "stderr: " + openSafariDebug.stderr
-      steroidsCli.debug "stdout: " + openSafariDebug.stdout
-
-      if openSafariDebug.code  # error occurred
-        errMsg = '\nERROR: ' + (/\ execution error: ([\s\S]+)$/.exec(openSafariDebug.stderr)?[1] || openSafariDebug.stderr)
-        console.error errMsg.red
-        
-      @callBackOnExit?()
+    deferred.promise
 
 module.exports = SafariDebug
