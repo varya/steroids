@@ -1,3 +1,18 @@
+## 3.1.15 (TODO)
+
+Steroids Safari debug command improved (run with `$ steroids safari`, or `debug` in `$ steroids connect` console).
+
+Bugfixes:
+ - Safari debug now also works if the iPad is being simulated (not just iPhone).
+ - Safari debug should now also work when Safari runs in localized mode (in a different UI language).
+
+Features:
+ - Proper error handling and reporting for Safari debug.
+ - When running Safari debug from the `$ steroids connect` console, the command prompt doesn't redisplay until after the spawned tasks exit.
+ - Safari debug now tries to turn on Access for Assistive Devices (required by the AppleScript commands).
+ - Safari debug now times out with a helpful message if the relevant menu items in Safari cannot be found.
+ - Safari debug now only activate (as opposed to launch in the background) Safari when it's truly necessary.
+
 ## 3.1.14 (2014-01-22)
 
 Fixes an issue with 3.5" iOS Simulator
