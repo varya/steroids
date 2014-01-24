@@ -1,6 +1,7 @@
 paths = require "./paths"
 path = require "path"
 sbawn = require("./sbawn")
+chalk = require "chalk"
 
 Help = require "./Help"
 
@@ -21,7 +22,7 @@ class SafariDebug
   runAppleScript: (scriptFileName, argument)=>
     unless os.type() == "Darwin"
       console.log "Error: Safari Developer Tools debugging requires Mac OS X."
-      @callBackOnExit()
+      @callBackOnExit?()
 
     @ensureAssistiveAccess().then( =>
       scriptPath = path.join paths.scriptsDir, scriptFileName
@@ -40,19 +41,19 @@ class SafariDebug
         steroidsCli.debug "stdout: " + osascriptSbawn.stdout
 
         if osascriptSbawn.code  # error occurred
-          errMsg = '\nERROR: ' + (/\ execution error: ([\s\S]+)$/.exec(osascriptSbawn.stderr)?[1] || osascriptSbawn.stderr)
-          console.error errMsg.red
+          errMsg = chalk.red '\nERROR: ' + (/\ execution error: ([\s\S]+)$/.exec(osascriptSbawn.stderr)?[1] || osascriptSbawn.stderr)
+          console.error errMsg
         else unless argument?
           console.log "\n\n  Found following WebViews in Safari:\n"
           for line in osascriptSbawn.stdout.split("\n") when line isnt ""
             console.log "   - #{line}"
           console.log ''
 
-        @callBackOnExit()
+        @callBackOnExit?()
 
     ).fail (errMsg) =>
-      console.error errMsg.red
-      @callBackOnExit()
+      console.error chalk.red errMsg
+      @callBackOnExit?()
 
   ensureAssistiveAccess: =>
     deferred = Q.defer()
