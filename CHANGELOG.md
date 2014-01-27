@@ -1,6 +1,11 @@
+## 3.1.16 (TODO)
+
+Bugfixes:
+  - Fixed a bug where a `dist/` folder with too many files could cause a `stdout maxBuffer exceeded` error. Thanks to [@drewrothstein](https://github.com/drewrothstein) for the pull request!
+
 ## 3.1.15 (2014-01-24)
 
-Steroids Safari debug command improved (run with `$ steroids safari`, or `debug` in `$ steroids connect` console).
+Steroids Safari debug command improved (run with `$ steroids safari`, or `debug` in `$ steroids connect` console). Thanks to [@mklement0](https://github.com/mklement0) for the pull request!
 
 Bugfixes:
  - Safari debug now also works if the iPad is being simulated (not just iPhone).
