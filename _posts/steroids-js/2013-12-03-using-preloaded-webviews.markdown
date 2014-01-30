@@ -84,11 +84,9 @@ You can see how setting the `id` property and communicating with the native side
 
 ## WebView ID check happens during steroids.layers.push
 
-When you call `steroids.layers.push(webViewObject)`, the native side checks for the existence of an `id` property in the WebView object. If there's one, it then checks if a preloaded WebView with a matching ID is found. If the native side finds a preloaded layer with the given ID, it'll push that to the layer stack (at this point, the `location` property of the WebView object doesn't matter anymore, since the preloaded view already has its `window.location` set).
+When you call `steroids.layers.push(webViewObject)`, the native side checks for the existence of an `id` property in the WebView object. If there's one, it then checks if a preloaded WebView with a matching ID is found. If the native side finds a preloaded layer with the given ID, it'll push that to the layer stack. If the `id` property doesn't match the ID of any preloaded WebViews, the `steroids.layers.push` call will fail.
 
-If the `id` property doesn't match any preloaded WebViews or it's missing completely, a completely new WebView will be pushed to the layer stack, with the `location` property determining which HTML document is loaded.
-
-Now, it's important to understand that WebViews in the native side memory and the JavaScript objects in each WebView are not synced in any way - the checks only happen during API calls such as `webViewObject.preload()` or `steroids.layers.push(webViewObject)`.
+It's important to understand that WebViews in the native side memory and the JavaScript objects in each WebView are not synced in any way - the checks only happen during API calls such as `webViewObject.preload()` or `steroids.layers.push(webViewObject)`.
 
 ##How to use this in practice?
 
@@ -117,7 +115,7 @@ var aboutView = new steroids.views.WebView({location: "about.html", id:
 steroids.layers.push(settingsView); //pushes the preloaded WebView
 {% endhighlight %}
 
-Now, whenever you do `steroids.layers.push(settingsView)`, the preloaded settings view is used. Note that if the preloaded WebView already exists in the layer stack, it cannot be pushed again before it is first popped.
+Now, whenever you do `steroids.layers.push(settingsView)`, the preloaded settings view is used (given that it is preloaded). Note that if the preloaded WebView already exists in the layer stack, it cannot be pushed again before it is first popped.
 
 ## IDs for initial WebViews
 
@@ -125,11 +123,12 @@ The native preload ID of the initial view is set to match the value of `steroids
 
 ## Unloading a preloaded WebView
 
-A preloaded webview can be unloaded. Contrary to `steroids.layers.pop()`, unloading a WebView removes it from memory. The use of `unload()` is pretty simple:
+A preloaded webview can be unloaded. Unloading a WebView removes it from memory. The use of `unload()` is pretty simple:
 
 {% highlight javascript %}
-var webView = new steroids.views.WebView("view.html");
-webView.unload({}, {
+var settingsView = new steroids.views.WebView({location: "settings.html", 
+  id: "settingsView");
+settingsView.unload({}, {
   onSuccess: function() {
     alert("View has been unloaded.");
   },
@@ -139,4 +138,4 @@ webView.unload({}, {
 });
 {% endhighlight %}
 
-
+You cannot unload a WebView that is currently in the layer stack.
