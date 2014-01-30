@@ -91,9 +91,14 @@ class Karma
 
     @running = true
 
+    karmaCmd = paths.test.karma.binaryPath
+    karmaArgs = ["start", paths.test.karma.configFilePath]
+
+    steroidsCli.debug "Starting karma with: #{karmaCmd} #{karmaArgs}"
+
     @karmaSession = sbawn
-      cmd: paths.test.karma.binaryPath
-      args: ["start", paths.test.karma.configFilePath]
+      cmd: karmaCmd
+      args: karmaArgs
       stdout: true
       stderr: true
 

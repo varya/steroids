@@ -2,6 +2,7 @@
 
 Bugfixes:
   - Fixed a bug where a `dist/` folder with too many files could cause a `stdout maxBuffer exceeded` error. Thanks to [@drewrothstein](https://github.com/drewrothstein) for the pull request!
+  - Steroids karma test runner did not give any debug output
 
 ## 3.1.15 (2014-01-24)
 
