@@ -117,6 +117,12 @@ steroids.layers.push(settingsView); //pushes the preloaded WebView
 
 Now, whenever you do `steroids.layers.push(settingsView)`, the preloaded settings view is used (given that it is preloaded). Note that if the preloaded WebView already exists in the layer stack, it cannot be pushed again before it is first popped.
 
+## Android known issue
+
+On Android, you can only push preloaded WebViews from the same WebView where you preloaded them. Otherwise, it'll simply push a brand new WebView, ignoring the preloaded one. This causes the `loading.png` image to show.
+
+One workaround is to preload all webviews from a preloaded `background.html` WebView, which is never pushed to the navigation stack, and then push all layers from there too. You can then use `window.postMessage` from other WebViews to message `background.html`` every time you want to push a preloaded WebView.
+
 ## IDs for initial WebViews
 
 The native preload ID of the initial view is set to match the value of `steroids.config.location` in `config/application.coffee`. If using the tab bar, the native preload ID of each view matches the `location` property of the tab object.
