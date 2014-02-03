@@ -78,7 +78,8 @@ function gotQueryResults(tx, results) {
 
 // Transaction error callback
 function databaseError(err) {
-  navigator.notification.alert("Error code: " + err.code + "; message: " + err.message, null, "Error processing SQL!");
+  navigator.notification.alert("Error code: " + err.code + "; message: "
+  + err.message, null, "Error processing SQL!");
 }
 {% endhighlight %}
 
