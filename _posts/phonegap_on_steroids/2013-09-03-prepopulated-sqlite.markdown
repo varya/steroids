@@ -42,9 +42,9 @@ function onDeviceReady() {
 function initDatabase() {
 
   if ( device.platform == "Android") {
-    var dbName = "file://" + steroids.app.absolutePath + "/data/Chinook_Sqlite.db";
+    var dbPath = "file://" + steroids.app.absolutePath + "/data/Chinook_Sqlite.db";
   } else {
-    var dbName = steroids.app.path + "/data/Chinook_Sqlite.db";
+    var dbPath = steroids.app.path + "/data/Chinook_Sqlite.db";
   }
 
   db = window.sqlitePlugin.openDatabase({name: dbPath});
@@ -74,6 +74,11 @@ function gotQueryResults(tx, results) {
     result += ("Name =  " + results.rows.item(i).Name + "\n");
   }
   navigator.notification.alert(result, null, "Database query successful!");
+}
+
+// Transaction error callback
+function databaseError(err) {
+  navigator.notification.alert("Error code: " + err.code + "; message: " + err.message, null, "Error processing SQL!");
 }
 {% endhighlight %}
 
