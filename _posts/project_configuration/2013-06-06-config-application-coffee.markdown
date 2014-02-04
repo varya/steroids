@@ -110,6 +110,10 @@ steroids.config.tabBar.tabTitleColor = "#ffffff"
 steroids.config.tabBar.selectedTabTintColor = "#11aeef"
 {% endhighlight %}
 
+Setting `selectedTabTintColor` overrides `tabTitleColor` for the title of the selected tab.
+
+In addition, the default icon tint color of the unselected tab(s) can be disabled with the `<preference name="DisableTabBarUnselectedIconTintColor" value="true" />` tag set in `config.ios.xml`. For further information, see [the config.ios.xml guide][config-xml-ios-guide].
+
 ### Tab bar background image (iOS-only)
 
 On iOS, you can set a background image for the tab bar that will be used throughout the application. Path is relative to the root of the `dist/` folder. Appending a `@2x` before the file extension makes Retina-resolution images scale down correctly. The correct height for a Retina-resolution tab bar is 98px. The background image will repeat horizontally to cover the entire tab bar.

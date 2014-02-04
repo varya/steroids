@@ -88,9 +88,14 @@ The following preferences are supported by Steroids:
 
 * **SuppressesIncrementalRendering (boolean, defaults to false)** – when set to true, the WebView suppresses content rendering until it is fully loaded into memory (this affects e.g. complex iFrames). Note that by default, Steroids displays the `loading.html` screen until a new WebView has finished loading.
 
+* **EnablePopGestureRecognition (boolean, defaults to true)** – when set to true, the back swipe gesture of iOS7 is disabled.
+
+* **DisableTabBarUnselectedIconTintColor (boolean, defaults to false)** when set to true, the default color of the icon tint color of the unselected tab(s) in the native tab bar is disabled.
+
+* **AutoHideSplashScreen** (boolean, defaults to true) – when set to true, the initial splashscreen is not hidden automatically in order to let the user hide it with `steroids.splashscreen.hide`, when approriate.
+
 The following Cordova preferences are disabled due to Steroids using its own splashscreen implementation:
 
-* **AutoHideSplashScreen**
 * **FadeSplashScreen**
 * **FadeSplashScreenDuration**
 * **ShowSplashScreenSpinner**
