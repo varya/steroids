@@ -34,13 +34,14 @@ The default `www/config.android.xml` looks like this:
       AppGyver Steroids Team
   </author>
   <access origin="*" />
+  <preference name="fullscreen" value="false"/>
 </widget>
 {% endhighlight %}
 
 
 ## widget root tag
 
-The root of `config.ios.xml` should be a `<widget>` element with the `id`, `version` and `xmlns` attributes. They are not used by Steroids currently, but should be kept up-to-date to ensure future compatibility.
+The root of `config.android.xml` should be a `<widget>` element with the `id`, `version` and `xmlns` attributes. They are not used by Steroids currently, but should be kept up-to-date to ensure future compatibility.
 
 ## Name, description and author
 
@@ -48,7 +49,9 @@ These fields are not used by Steroids at the moment, but it's good practice to f
 
 ##Configuring preferences
 
-Currently, Steroids doesn't support the preference elements of Cordova's `config.xml` on Android. For more information on the preferences, see the relevant [Cordova documentation][cordova-android-config-xml].
+Currently, Steroids only supports the `fullscreen` preference in `config.android.xml`. The `fullscreen` preference defaults to `false`. Please note that, if set to `true`, the WebView does not scroll when focusing on input elements on the bottom of the WebView (and the input element is covered by the keyboard).
+
+The other preference elements of Cordova's `config.xml` are not supported on Android. For more information on the preferences, see the relevant [Cordova documentation][cordova-android-config-xml].
 
 ##Domain whitelisting
 The `<access>` element manages whitelisted domains for your app. For most cases, you are safe to allow all domains:
