@@ -1,13 +1,13 @@
 ---
 layout: post
-title:  "Android Cordova preferences in config.android.xml"
+title:  "Android preferences in config.android.xml"
 date:   2013-05-20 13:51:34
 categories: project_configuration
 platforms: Android
 ---
 
 ###Related Guides
-* [Cordova preferences in config.xml (iOS)][config-xml-ios-guide]
+* [Preferences in config.xml (iOS)][config-xml-ios-guide]
 
 Like Cordova, Steroids uses a `config.xml` file to set universal preferences for WebViews in your app, manage which Cordova plugins are loaded and set whitelisted domains for your app. The structure of `config.xml` is based on the [W3C Packaged Web Apps (Widgets)][widgets] specification, although only a limited set of the available elements are used.
 
@@ -49,7 +49,7 @@ These fields are not used by Steroids at the moment, but it's good practice to f
 
 ##Configuring preferences
 
-Currently, Steroids only supports the `fullscreen` preference in `config.android.xml`. The `fullscreen` preference defaults to `false`. Please note that, if set to `true`, the WebView does not scroll when focusing on input elements on the bottom of the WebView (and the input element is covered by the keyboard).
+Currently, Steroids only supports the `fullscreen` preference in `config.android.xml`. The `fullscreen` preference defaults to `false`. Please note that, if set to `true`, the WebView does not scroll when focusing on input elements on the bottom of a WebView (meaning the input element gets covered by the keyboard).
 
 The other preference elements of Cordova's `config.xml` are not supported on Android. For more information on the preferences, see the relevant [Cordova documentation][cordova-android-config-xml].
 
