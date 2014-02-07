@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "iOS Cordova preferences in config.ios.xml"
+title:  "iOS preferences in config.ios.xml"
 date:   2013-11-12 13:51:34
 categories: project_configuration
 platforms: iOS
@@ -47,6 +47,10 @@ The default `www/config.ios.xml` looks like this:
     <preference name="PageLength" value="0"/>
     <preference name="PaginationBreakingMode" value="page"/>
     <preference name="GapBetweenPages" value="0"/>
+
+    <preference name="EnablePopGestureRecognition" value="true" />
+    <preference name="DisableTabBarUnselectedIconTintColor" value="false" />
+    <preference name="AutoHideSplashScreen" value="true" />
 </widget>
 {% endhighlight %}
 
@@ -66,7 +70,7 @@ Steroids supports configuring certain preferences for your WebViews. The prefere
 <preference name="DisallowOverscroll" value="false" />
 {% endhighlight %}
 
-The following preferences are supported by Steroids:
+The following Cordova preferences are supported by Steroids:
 
 * **AllowInlineMediaPlayback (boolean, defaults to false)** - when set to true, inline HTML5 video playback is allowed on the iPhone (HTML5 videos are normally opened in a native video dialogue). Note that the `<video>` elements in the HTML document must also include the `webkit-playsinline="true"` attribute. On iPad, this preference is ignored and all HTML5 video files are always played inline. (Inline audio playback works on both devices regardless of this preference.)
 
@@ -87,6 +91,16 @@ The following preferences are supported by Steroids:
 * **KeyboardShrinksView (boolean, defaults to false)** – when set to true to, the actual WebView is shrunk when the keyboard comes up, instead of the viewport shrinking and the WebView becoming scrollable. *Known issue: a yellow background flashes when the WebView is beign resized. A yellow background shows through the transparent form accessory bar.*
 
 * **SuppressesIncrementalRendering (boolean, defaults to false)** – when set to true, the WebView suppresses content rendering until it is fully loaded into memory (this affects e.g. complex iFrames). Note that by default, Steroids displays the `loading.html` screen until a new WebView has finished loading.
+
+* **PaginationMode (string, defaults to `unpaginated`)** - valid values are `unpaginated`, `leftToRight`, `topToBottom`, `bottomToTop`, and `rightToLeft`. This property determines whether content in the WebView is broken up into pages that fill the view one screen at a time, or shown as one long scrolling view. If set to a paginated form, this property toggles a paginated layout on the content, causing the web view to use the values of the `PageLength` and `GapBetweenPages` preferences to relayout its content.
+
+* **PageLength (float, defaults to 0)** - the size of each page, in points, in the direction that the pages flow. When `PaginationMode` is right to left or left to right, this property represents the width of each page. When `PaginationMode` is topToBottom or bottomToTop, this property represents the height of each page. The default value is 0, which means the layout uses the size of the viewport to determine the dimensions of the page.
+
+* **PaginationBreakingMode (string, defaults to `page`)** - valid values are `page` and `column`. The manner in which column- or page-breaking occurs. This property determines whether certain CSS properties regarding column- and page-breaking are honored or ignored. When this property is set to column, the content respects the CSS properties related to column-breaking in place of page-breaking.
+
+* **GapBetweenPages (float, defaults to 0)** - the size of the gap, in points, between pages.
+
+In addition, Steroids adds the following configuration options:
 
 * **EnablePopGestureRecognition (boolean, defaults to true)** – when set to true, the back swipe gesture of iOS7 is disabled.
 
