@@ -1,13 +1,14 @@
-## 3.1.16 (TODO)
+## 3.1.16 (2014-02-10)
 
 Support for Scanner v3.1.2 features in new project's `config.xml` files, updated iOS Simulator to v3.1.2, bugfixes.
 
 Features:
-  - [`generator-steroids`](http://www.appgyver.com/steroids/) dependency updated to v0.2.15 to support deafult projects' new `config.xml` options for Scanner v3.1.2 features.
+  - [`generator-steroids`](http://www.appgyver.com/steroids/) dependency updated to v0.2.16 to support deafult projects' new `config.xml` options for Scanner v3.1.2 features.
+  - Default projects' Steroids.js version updated to v3.1.4.
   - iOS Simulator updated to Scanner v3.1.2.
 
 Bugfixes:
-  - Detects if zip can not be made and aborts connect. Closes https://github.com/AppGyver/grunt-steroids/issues/5
+  - Detects if the temporary zip (containing the project files to be sent to connected devices) can not be made and aborts connect. Closes https://github.com/AppGyver/grunt-steroids/issues/5
   - Fixed a bug where a `dist/` folder with too many files could cause a `stdout maxBuffer exceeded` error. Thanks to [@drewrothstein](https://github.com/drewrothstein) for the pull request!
   - Steroids karma test runner did not give any debug output
 
