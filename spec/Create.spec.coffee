@@ -51,8 +51,6 @@ describe 'Steroids', ->
       runs ->
         expect( @createRun1.code ).toBe(0)
         expect( @createRun2.code ).toBe(1)
-        expect( @createRun2.stdout ).toMatch /Error: 'importantDirectoryDoNotOverwrite' already exists/
-
 
     it "gives usage information when no params are given", ->
       @createRun = new CommandRunner
@@ -85,7 +83,7 @@ describe 'Steroids', ->
       applicationCoffeePath = path.join @configPath, "application.coffee"
 
       contents = fs.readFileSync(applicationCoffeePath).toString()
-      expect( contents ).toMatch(/steroids.config.name = \"My New Application\"/)
+      expect( contents ).toMatch(/steroids.config.name = \"testApp"/)
 
     it "has bower.json with dependency to steroids.js", ->
       bowerJsonPath = path.join @appPath, "bower.json"
