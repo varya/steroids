@@ -147,7 +147,13 @@ class Project
       stderr: true
 
     packageSbawn.on "exit", =>
-      steroidsCli.debug "package exited"
-      options.onSuccess() if options.onSuccess
+
+      steroidsCli.debug "package exited with code #{packageSbawn.code}"
+
+      if packageSbawn.code == 0
+        options.onSuccess() if options.onSuccess
+      else
+        options.onFailure() if options.onFailure
+
 
 module.exports = Project
