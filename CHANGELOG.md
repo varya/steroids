@@ -1,6 +1,7 @@
 ## 3.1.16 (TODO)
 
 Bugfixes:
+  - Detects if zip can not be made and aborts connect. Closes https://github.com/AppGyver/grunt-steroids/issues/5
   - Fixed a bug where a `dist/` folder with too many files could cause a `stdout maxBuffer exceeded` error. Thanks to [@drewrothstein](https://github.com/drewrothstein) for the pull request!
   - Steroids karma test runner did not give any debug output
 
