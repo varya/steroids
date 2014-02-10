@@ -18,6 +18,7 @@ class Ripple
     cmd = paths.rippleBinary
     args = ["emulate", "--remote", "http://localhost:#{@servePort}", "--port", @port]
 
+    steroidsCli.debug "Starting ripple with #{cmd} and #{args}"
     @rippleServer = sbawn
       cmd: cmd
       args: args

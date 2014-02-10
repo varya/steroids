@@ -7,6 +7,9 @@ Features:
   - Default projects' Steroids.js version updated to v3.1.4.
   - iOS Simulator updated to Scanner v3.1.2.
 
+Features:
+  - Ripple updated to latest (Cordova 3.0 is not as good as 2.0)
+
 Bugfixes:
   - Detects if the temporary zip (containing the project files to be sent to connected devices) can not be made and aborts connect. Closes https://github.com/AppGyver/grunt-steroids/issues/5
   - Fixed a bug where a `dist/` folder with too many files could cause a `stdout maxBuffer exceeded` error. Thanks to [@drewrothstein](https://github.com/drewrothstein) for the pull request!

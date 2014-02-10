@@ -34,12 +34,17 @@ class WebServer extends Server
       steroidsCli.debug "config.xml requesteded, sending #{configFile}"
       res.sendfile configFile
       return
-    else if req.path.endsWith("cordova_plugins.json")
-      res.status(status = 200).send("{}")
+    else if req.path.endsWith("cordova_plugins.js")
+      res.sendfile path.join(Paths.appgyverStaticFiles, "browser_overrides", "ripple", "cordova_plugins.js")
+      return
+    else if req.path.endsWith("plugins/org.apache.cordova.device/www/device.js")
+      res.sendfile path.join(Paths.appgyverStaticFiles, "browser_overrides", "ripple", "plugins", "device.js")
+      return
+    else if req.path.endsWith("plugins/org.apache.cordova.vibration/www/vibration.js")
+      res.sendfile path.join(Paths.appgyverStaticFiles, "browser_overrides", "ripple", "plugins", "vibration.js")
       return
     else if req.path.endsWith("cordova.js")
-      rippleCompatibleCordovaFile = path.join Paths.appgyverStaticFiles, "browser_overrides", "ripple_cordova.js"
-      res.sendfile rippleCompatibleCordovaFile
+      res.sendfile path.join(Paths.appgyverStaticFiles, "browser_overrides", "ripple", "cordova.js")
       return
     else if req.path.endsWith("cordova.tizen.js")
       steroidsCli.debug "cordova.tizen.js requested, serving from npm"

@@ -6,12 +6,10 @@ paths = require "./paths"
 
 URL = require "url"
 
+
 class Serve
-  constructor: (@port, @opts = {ripple: false}) ->
-    if @opts.ripple
-      @baseURL = "http://127.0.0.1:#{@opts.ripplePort||4400}/"
-    else
-      @baseURL = "http://127.0.0.1:#{@port}/"
+  constructor: (@port, @opts = {}) ->
+    @baseURL = "http://127.0.0.1:#{@port}/"
 
   start: =>
     config = steroidsCli.config.getCurrent()
@@ -23,14 +21,7 @@ class Serve
 
     startLocationURL = URL.parse(startLocation)
 
-    # add ripple ui enabler parameter
     url = URL.parse(@baseURL + startLocationURL.path)
-
-    # add ripple enabler
-    if @opts.ripple
-      url.query = {} unless url.query?
-      url.query["enableripple"] = "cordova-2.0.0-iPhone5"
-
     url = URL.format(url)
 
     serveServer = Server.start
@@ -43,17 +34,8 @@ class Serve
 
         util.log "Serving application in #{url}"
 
-        return if steroidsCli.platform == "tizen"
-
-
-        if @opts.ripple?
-          console.log "Opening Ripple in Google Chrome"
-
-          if process.platform is "win32"
-            open url, "chrome"
-          else
-            open url, "Google\ Chrome"
-
+        if steroidsCli.platform == "tizen" || @opts.noBrowser
+          return
         else
           open url
 

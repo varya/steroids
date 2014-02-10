@@ -241,32 +241,9 @@ class Steroids
           else
             4000
 
-          if argv.ripple
-            Help.attention()
-            console.log(
-              """
-              #{chalk.red.bold("Ripple temporarily disabled")}
-              #{chalk.red.bold("===========================")}
-
-              We ran into some issues in getting Ripple to work with Cordova 3.1.
-
-              Ripple will be enabled again in an upcoming release. Apologies for the inconvenience!
-
-              Please run #{chalk.bold("steroids connect --serve")} again without the #{chalk.bold("--ripple")} argument.
-
-              """
-            )
-            process.exit(1)
-            # ripple = new Ripple
-            #   servePort: servePort
-            #   port: argv.ripplePort
-            #
-            # ripple.run()
-
           serve = new Serve servePort,
-            ripple: argv.ripple
-            ripplePort: argv.ripplePort
             platform: argv.platform
+            noBrowser: argv.ripple
 
           serve.start()
 
@@ -368,6 +345,16 @@ class Steroids
                       watcher.watch("./config")
 
                     prompt.connectLoop()
+
+                    if argv.ripple
+                      setTimeout =>
+                        ripple = new Ripple
+                          servePort: argv.servePort || 4000
+                          port: argv.ripplePort
+
+                        ripple.run()
+                      , 2000
+
 
 
 
