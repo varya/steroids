@@ -1,3 +1,8 @@
+## 3.1.17 (TODO)
+
+Features:
+  - Ripple updated to latest (Cordova 3.0 is not as good as 2.0)
+
 ## 3.1.16 (2014-02-10)
 
 Support for Scanner v3.1.2 features in new project's `config.xml` files, updated iOS Simulator to v3.1.2, bugfixes.
@@ -6,9 +11,6 @@ Features:
   - [`generator-steroids`](http://www.appgyver.com/steroids/) dependency updated to v0.2.16 to support deafult projects' new `config.xml` options for Scanner v3.1.2 features.
   - Default projects' Steroids.js version updated to v3.1.4.
   - iOS Simulator updated to Scanner v3.1.2.
-
-Features:
-  - Ripple updated to latest (Cordova 3.0 is not as good as 2.0)
 
 Bugfixes:
   - Detects if the temporary zip (containing the project files to be sent to connected devices) can not be made and aborts connect. Closes https://github.com/AppGyver/grunt-steroids/issues/5
