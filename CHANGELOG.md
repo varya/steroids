@@ -1,4 +1,6 @@
-## 3.1.17 (TODO)
+## 3.1.17 (2014-02-11)
+
+Fixed bug with project zipping on Windows, Ripple re-enabled, Karma test runner updated with support for running only one spec.
 
 Bugfixes:
   - Fixed bug where the `steroids_project.zip` file would not be generated on Windows.
@@ -6,7 +8,7 @@ Bugfixes:
 Features:
   - Ripple re-enabled and updated to latest version (N.B. the official 3.x Ripple version is missing a lot of features/APIs that were present in 2.x Ripple).
   - Karma test runner updated to 0.11.14.
-  - Karma test runner can now run only one spec (faster alternative to running the whole suite).
+  - Karma test runner can now run only one spec as a faster alternative to running the whole suite.
 
 ## 3.1.16 (2014-02-10)
 
