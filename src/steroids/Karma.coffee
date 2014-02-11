@@ -81,9 +81,10 @@ class Karma
                     stderr: false
 
   ensureConfigExists: =>
-    exists = fs.existsSync(paths.test.karma.configFilePath)
+    exists = fs.existsSync(paths.test.karma.configFilePath) && fs.existsSync(paths.test.karma.singleConfigFilePath)
+
     unless exists
-      util.log "Could not find karma configuration file. Please run steroids test karma init to generate #{paths.test.karma.configFilePath}"
+      util.log "Could not find all karma configuration files. Please run steroids test karma init to generate #{paths.test.karma.configFilePath} and #{paths.test.karma.singleConfigFilePath}"
       process.exit(1)
 
   startTestRun: (options={})=>

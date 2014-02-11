@@ -120,6 +120,9 @@
         #cyan[init]
           Create an initial configuration file and example spec for Karma in folder test/
 
+        #cyan[SPECFILE]
+          Run a single spec, e.g. $ #cyan[steroids test karma test/unit/exampleSpec.coffee]
+
         Additional arguments for #cyan[karma] are:
           #cyan[--simulator] - run Karma in the Simulator
           #cyan[--deviceType=<deviceType>] - set simulator device type, see #bold[simulator] usage for device types
