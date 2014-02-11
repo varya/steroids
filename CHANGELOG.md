@@ -1,9 +1,12 @@
 ## 3.1.17 (TODO)
 
+Bugfixes:
+  - Fixed bug where the `steroids_project.zip` file would not be generated on Windows.
+
 Features:
-  - Ripple updated to latest (Cordova 3.0 is not as good as 2.0)
-  - Karma test runner updated to 0.11.14
-  - Karma test runner can now run only one spec (faster alternative to running the whole suite)
+  - Ripple re-enabled and updated to latest version (N.B. the official 3.x Ripple version is missing a lot of features/APIs that were present in 2.x Ripple).
+  - Karma test runner updated to 0.11.14.
+  - Karma test runner can now run only one spec (faster alternative to running the whole suite).
 
 ## 3.1.16 (2014-02-10)
 

@@ -7,12 +7,13 @@ class Packager
     @zip = new Zip Paths.application.distDir, Paths.temporaryZip
 
   create: ->
-    try
-      fd = fs.openSync(Paths.temporaryZip, "w")
-    catch err
-      console.log err.message
-      console.log "Ensure that #{Paths.temporaryZip} is writable"
-      process.exit 1
+    unless process.platform is "win32"
+      try
+        fd = fs.openSync(Paths.temporaryZip, "w")
+      catch err
+        console.log err.message
+        console.log "Ensure that #{Paths.temporaryZip} is writable"
+        process.exit 1
 
     @zipDistPath()
 
