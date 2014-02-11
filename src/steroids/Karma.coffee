@@ -68,6 +68,7 @@ class Karma
                     port: @port
 
                 @startTestRun
+                  specFile: opts.firstOption
                   onExit: (exitCode)->
                     steroidsCli.simulator.killall() if opts.simulator.use
                     process.exit(1)
@@ -92,7 +93,17 @@ class Karma
     @running = true
 
     karmaCmd = paths.test.karma.binaryPath
-    karmaArgs = ["start", paths.test.karma.configFilePath]
+    karmaArgs = ["start"]
+
+    karmaArgs.push if options.specFile
+      karmaConfigContents = fs.readFileSync(paths.test.karma.singleConfigFilePath).toString()
+      karmaConfigContents = karmaConfigContents.replace("%%SPECFILE%%", options.specFile)
+
+      fs.writeFileSync(paths.test.karma.singleConfigFileLastRunPath, karmaConfigContents)
+      paths.test.karma.singleConfigFileLastRunPath
+    else
+      paths.test.karma.configFilePath
+
 
     steroidsCli.debug "Starting karma with: #{karmaCmd} #{karmaArgs}"
 
@@ -126,6 +137,13 @@ class Karma
     else
       util.log "Creating karma config file #{paths.test.karma.configFilePath}"
       fs.writeFileSync(paths.test.karma.configFilePath, fs.readFileSync(paths.test.karma.templates.configPath))
+
+    # karmaSingle.coffee
+    if fs.existsSync(paths.test.karma.singleConfigFilePath)
+      util.log "Karma config file #{paths.test.karma.singleConfigFilePath} already exists"
+    else
+      util.log "Creating karma config file #{paths.test.karma.singleConfigFilePath}"
+      fs.writeFileSync(paths.test.karma.singleConfigFilePath, fs.readFileSync(paths.test.karma.templates.singleConfigPath))
 
     # spec example
     exampleSpecPath = path.join paths.test.unitTestPath, "exampleSpec.coffee"
