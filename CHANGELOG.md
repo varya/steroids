@@ -2,6 +2,7 @@
 
 Features:
   - Ripple updated to latest (Cordova 3.0 is not as good as 2.0)
+  - Karma test runner updated to 0.11.14
 
 ## 3.1.16 (2014-02-10)
 
