@@ -13,23 +13,25 @@ To use the [official Cordova Facebook plugin](https://github.com/phonegap-build/
 
 ## 1: Configure your Facebook App
 
-Go to [developers.facebook.com/apps](https://developers.facebook.com/apps/).
+Go to [developers.facebook.com/apps](https://developers.facebook.com/apps/). Select **Apps** > **Create an app**. Fill in the required information. Once your Facebook app is created, select **Settings** from the left-hand navigation.
 
 ### iOS
 
-Open [the Getting Started guide](https://developers.facebook.com/docs/ios/getting-started/). Skip Steps 1 and 2. Follow the instructions in **Step 3: Obtain a Facebook App ID**. Skip Steps 4 and 5.
-
-Some tips for configuring your app on Facebook:
+Click **Add Platform** and select **iOS**. Enter the proper config options:
 
 * **Bundle ID of your app:** The Bundle ID must match the one you enter into the Build Service in Step 2 – if you don't know your custom Scanner's bundle ID yet, input something like `com.mycompany.facebooktest.scanner`.
 * If you don't know your **iPhone App Store ID** and **iPad App Store ID** yet, you can input `0` in both fields.
 * Remember to enable the **Single Sign On** option.
 
-Now your Facebook App is configured to accept login requests from iPhone apps with the given Bundle ID.
+Now your Facebook App is configured to accept login requests from iOS apps with the given Bundle ID.
 
 ### Android
 
-A more detailed guide on Android setup is coming up soon. In the meantime, read through Facebook's [official Android SDK setup guide](https://developers.facebook.com/docs/android/getting-started/) to get started.
+Proper guide for Android setup is coming soon. In the meanwhile, you can take a look at [Facebook's Android Getting Started Guide](https://developers.facebook.com/docs/android/getting-started/), which has all the necessary information.
+
+### Making your app publicly available
+
+Then, open the **Status & Review** page from the left-hand navigation. Set the **Do you want to make this app and all its live features available to the general public?** option to **Yes**.
 
 ## 2: Build a custom Scanner app
 
