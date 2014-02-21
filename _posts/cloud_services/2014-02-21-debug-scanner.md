@@ -65,7 +65,7 @@ Select the devices you want to be able to use your Debug build and click Continu
 
 ## Configure your app in the Build Service
 
-Go to the [AppGyver Build Service](http://cloud.appgyver.com/applications) and select your app ([read more about deploying apps to the cloud][cloud-deploy-guide]. Click on the Configure iOS Build Settings button. Under the Certificates section, upload your `.p12` certificate and enter your password:
+Go to the [AppGyver Build Service](http://cloud.appgyver.com/applications) and select your app ([read more about deploying apps to the cloud][cloud-deploy-guide]). Click on the Configure iOS Build Settings button. Under the Certificates section, upload your `.p12` certificate and enter your password:
 
 <img src="/steroids/images/debug_scanner/build_config_certificate.png">
 
