@@ -16,17 +16,21 @@ The Safari Web Inspector is the only fully functional Web Inspector tool current
 
 ## Using the Safari Web Inspector
 
+### iOS Simulator
+Remote debugging is enabled in the iOS Simulator by default. Open your Steroids app in the iOS Simulator by typing `simulator` in the Steroids console (or `$ steroids simulator` in another Terminal window). Please note that `$ steroids connect` needs to be running when calling `simulator` or `$ steroids simulator`. Otherwise the autoconnect fails with a connection error.
+
+### Physical device
+
+Alternatively, you can use a [Debug Scanner or Debug Ad Hoc build](/steroids/guides/cloud_services/debug-build/) for debugging your app. Afer you have downloaded and installed the Debug IPA, you need to enable Web Inspector for Safari on your iOS device. Go to Settings > Safari > Advanced and enable the Web Inspector option. Then, connect your device to your computer with a wire.
+
+### Enabling Safari Develop menu
 *Note that your Safari must be version 6.1 or later. You'll need to restart your computer after updating Safari for the Web Inspector to work.*
-
-To get started, open your Steroids app in the iOS Simulator by typing `simulator` in the Steroids console (or `$ steroids simulator` in another Terminal window). Please note that `$ steroids connect` needs to be running when calling `simulator` or `$ steroids simulator`. Otherwise the autoconnect fails with a connection error.
-
-Alternatively, you can use a [Debug Scanner or Debug Ad Hoc build](/steroids/guides/cloud_services/debug-build/) for debugging your app. **When using a physical device, you need to connect your device to your computer with a wire.**
 
 Next, enable Safari's developer tools. Open Safari's preferences by selecting *Safari* > *Preferences* from the top menu, go to the Advanced tab and check the Show Developer menu checkbox.
 
-Now, you should see a *Develop* menu item in Safari's top menu bar. Open the *Develop* > *iPhone Simulator* menu, and you should see a list of WebViews currently open in your app. (`contextmenu.html`, `loading.html` and `background.html` are used internally by Steroids.)
+Now, you should see a *Develop* menu item in Safari's top menu bar. Open the *Develop* > *iPhone Simulator* (or your iOS device's name) menu, and you should see a list of WebViews currently open in your app. (`contextmenu.html`, `loading.html` and `background.html` are used internally by Steroids.)
 
-You can also skip the Safari menu altogether. When in the `steroids connect` prompt, you can use `d` or `debug` command to get a list of currently open WebViews in the iOS Simulator. The command takes an argument like `d views/banana/index.html` to open the Safari Web Inspector for given WebView. Partial file/path names work also, so if you have an open WebView at `views/car/index.html` path you can simply write e.g. `d car/ind`.
+When using the Simulator, you can also skip the Safari menu altogether. When in the `steroids connect` prompt, you can use `d` or `debug` command to get a list of currently open WebViews in the iOS Simulator. The command takes an argument like `d views/banana/index.html` to open the Safari Web Inspector for given WebView. Partial file/path names work also, so if you have an open WebView at `views/car/index.html` path you can simply write e.g. `d car/ind`.
 
 If you cannot see any WebViews in your Safari Develop menu, restarting your computer might help.
 
