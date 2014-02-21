@@ -28,6 +28,8 @@ Now, you should see a *Develop* menu item in Safari's top menu bar. Open the *De
 
 You can also skip the Safari menu altogether. When in the `steroids connect` prompt, you can use `d` or `debug` command to get a list of currently open WebViews in the iOS Simulator. The command takes an argument like `d views/banana/index.html` to open the Safari Web Inspector for given WebView. Partial file/path names work also, so if you have an open WebView at `views/car/index.html` path you can simply write e.g. `d car/ind`.
 
+If you cannot see any WebViews in your Safari Develop menu, restarting your computer might help.
+
 ###Inspecting a WebView
 
 Select a WebView. You now have direct Web Inspector access to it. You can edit the DOM and use the JavaScript console. The console also displays errors and `console.log` output.
