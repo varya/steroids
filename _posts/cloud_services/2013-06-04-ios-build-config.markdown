@@ -8,6 +8,7 @@ platforms: iOS
 
 ### Related Guides
 * [Configuring custom plugins for your app][custom-plugin-config]
+* [Building a Debug build](/steroids/guides/cloud_services/debug-build/)
 
 The AppGyver Build Service lets you create an IPA package of your application that you can distribute either ad hoc or submit to the Apple App Store.
 
@@ -128,6 +129,8 @@ On the top row, you have to:
 * Configure your [custom plugins][custom-plugin-config].
 
 The Scanner Build is a special build of your application intended for development with the Steroids CLI. It allows you to create a Scanner app that includes the custom plugins defined in the plugins field. As such, a Scanner Build doesn't show your actual application, but rather lets you scan a QR code to connect to a computer running the Steroids server. It's a good idea to create a separate `.mobileprovision` file and App/Bundle ID for your Scanner Build.
+
+For information about Debug builds, see the [Building a Debug Build guide](/steroids/guides/cloud_services/debug-build/).
 
 Note that there's a known issue where Steroids CLI checks for the version number of custom-built Scanner apps also. To ensure that Steroids CLI lets you connect, make sure your Scanner app's semantic Version number is higher than 2.7.0.
 
