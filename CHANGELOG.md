@@ -1,3 +1,8 @@
+## 3.1.18 (TODO)
+
+Bugfixes:
+  - Fixed tests (`npm test`) to work again
+
 ## 3.1.17 (2014-02-11)
 
 Fixed bug with project zipping on Windows, Ripple re-enabled, Karma test runner updated with support for running only one spec.
