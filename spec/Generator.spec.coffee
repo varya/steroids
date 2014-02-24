@@ -10,7 +10,6 @@ describe 'Generator', ->
 
   beforeEach ->
     @testHelper = new TestHelper
-
     @testHelper.bootstrap()
     @testHelper.changeToWorkingDirectory()
 
@@ -29,7 +28,7 @@ describe 'Generator', ->
         args: ["tutorial"]
 
       runs ->
-        expect( cmd.stdout ).toMatch(/Error: missing name of the generator, see 'steroids generate' for help./)
+        expect( cmd.stderr ).toMatch(/Error: You must specify a valid tutorial name./)
 
     it "gives a friendly error message when tutorial is not found", ->
 
@@ -37,16 +36,10 @@ describe 'Generator', ->
         args: ["tutorial", "neverGonnaExistTutorial"]
 
       runs ->
-        expect( cmd.stdout ).toMatch(/Error: No such tutorial neverGonnaExistTutorial, see 'steroids generate' for help./)
+        expect( cmd.stderr ).toMatch(/Error: You must specify a valid tutorial name/)
 
-    it "complains about overwriting the application.coffee", ->
+    xit "prompts on overwriting the application.coffee", ->
 
-      cmd = @testHelper.runInProjectSync "generate",
-        args: ["tutorial", "steroids"]
-
-      runs ()=>
-        expect( cmd.code ).toBe(1)
-        expect( cmd.stdout).toMatch(/One more thing! Remove the file/)
 
     it "generates begin tutorial", ->
 
@@ -55,12 +48,13 @@ describe 'Generator', ->
 
       runs ->
         expect( cmd.code ).toBe(0)
-        expect( cmd.stdout ).toMatch(/steroids.config.location = "tutorial.html"/)
+        expect( cmd.stderr ).toMatch(/steroids.config.location = \"http:\/\/localhost\/tutorial.html\"/)
 
         tutorialFileLocation = path.join(@testHelper.testAppPath, "www", "tutorial.html")
         expect( fs.existsSync tutorialFileLocation ).toBe true
 
         expect( fs.readFileSync( tutorialFileLocation ).toString() ).toMatch(/Awesome, welcome!/)
+
 
     it "generates steroids tutorial", ->
 
@@ -72,7 +66,7 @@ describe 'Generator', ->
 
       runs ->
         expect( cmd.code ).toBe(0)
-        expect( cmd.stdout).toMatch(/edit config\/application\.coffee and uncomment some lines/)
+        expect( cmd.stderr).toMatch(/and uncomment some lines/)
 
         tutorialStartHTMLPath = path.join(@testHelper.testAppPath, "app", "views", "steroidsTutorial", "index.html")
         expect( fs.existsSync tutorialStartHTMLPath ).toBe true
@@ -92,7 +86,7 @@ describe 'Generator', ->
 
       runs ->
         expect( cmd.code ).toBe(0)
-        expect( cmd.stdout ).toMatch(/Now change the first tab in config\/application\.coffee/)
+        expect( cmd.stderr ).toMatch(/Now change the first tab in config\/application\.coffee/)
 
         controllersStartHTMLPath = path.join(@testHelper.testAppPath, "app", "views", "steroidsTutorial", "controllers.html")
         expect( fs.existsSync controllersStartHTMLPath ).toBe true
@@ -104,9 +98,10 @@ describe 'Generator', ->
       cmd = @testHelper.runInProjectSync "generate",
         args: ["tutorial", "controllers"]
 
+
       runs ->
         expect( cmd.code ).toBe(1)
-        expect( cmd.stdout ).toMatch(/Please make sure you've generated the 'steroids' tutorial/)
+        expect( cmd.stderr ).toMatch(/Please make sure you've generated the steroids tutorial/)
 
         controllersStartHTMLPath = path.join(@testHelper.testAppPath, "app", "views", "steroidsTutorial", "controllers.html")
         expect( fs.existsSync controllersStartHTMLPath ).toBe false
@@ -123,7 +118,7 @@ describe 'Generator', ->
         args: ["example"]
 
       runs ->
-        expect( cmd.stdout ).toMatch(/Error: missing name of the generator, see 'steroids generate' for help./)
+        expect( cmd.stderr ).toMatch(/Error: Example undefined not found/)
 
     it "gives a friendly error message when example is not found", ->
 
@@ -131,7 +126,7 @@ describe 'Generator', ->
         args: ["example", "neverGonnaExistExample"]
 
       runs ->
-        expect( cmd.stdout ).toMatch(/Error: No such example neverGonnaExistExample, see 'steroids generate' for help./)
+        expect( cmd.stderr ).toMatch(/Error: Example neverGonnaExistExample not found/)
 
 
     describe "cordova examples", ->
@@ -141,42 +136,42 @@ describe 'Generator', ->
           args: ["example", "accelerometer"]
 
         runs ->
-          expect( cmd.stdout ).toMatch("www/accelerometerExample.html")
+          expect( cmd.stderr ).toMatch("www/accelerometerExample.html")
 
       it "generates audio example", ->
         cmd = @testHelper.runInProjectSync "generate",
           args: ["example", "audio"]
 
         runs ->
-          expect( cmd.stdout ).toMatch("www/audioExample.html")
+          expect( cmd.stderr ).toMatch("www/audioExample.html")
 
       it "generates camera example", ->
         cmd = @testHelper.runInProjectSync "generate",
           args: ["example", "camera"]
 
         runs ->
-          expect( cmd.stdout ).toMatch("www/cameraExample.html")
+          expect( cmd.stderr ).toMatch("www/cameraExample.html")
 
       it "generates compass example", ->
         cmd = @testHelper.runInProjectSync "generate",
           args: ["example", "compass"]
 
         runs ->
-          expect( cmd.stdout ).toMatch("www/compassExample.html")
+          expect( cmd.stderr ).toMatch("www/compassExample.html")
 
       it "generates device example", ->
         cmd = @testHelper.runInProjectSync "generate",
           args: ["example", "device"]
 
         runs ->
-          expect( cmd.stdout ).toMatch("www/deviceExample.html")
+          expect( cmd.stderr ).toMatch("www/deviceExample.html")
 
       it "generates geolocation example", ->
         cmd = @testHelper.runInProjectSync "generate",
           args: ["example", "geolocation"]
 
         runs ->
-          expect( cmd.stdout ).toMatch("www/geolocationExample.html")
+          expect( cmd.stderr ).toMatch("www/geolocationExample.html")
 
       # REQUIRES CORDOVA 2.7.0
       # it "generates notification example", ->
@@ -202,56 +197,56 @@ describe 'Generator', ->
           args: ["example", "animation"]
 
         runs ->
-          expect( cmd.stdout ).toMatch("app/views/layouts/animationExample.html")
+          expect( cmd.stderr ).toMatch("app/views/layouts/animationExample.html")
 
       it "generates drawer example", ->
         cmd = @testHelper.runInProjectSync "generate",
           args: ["example", "drawer"]
 
         runs ->
-          expect( cmd.stdout ).toMatch("app/views/layouts/drawerExample.html")
+          expect( cmd.stderr ).toMatch("app/views/layouts/drawerExample.html")
 
       it "generates drumMachine example", ->
         cmd = @testHelper.runInProjectSync "generate",
           args: ["example", "drumMachine"]
 
         runs ->
-          expect( cmd.stdout ).toMatch("app/views/layouts/drumMachineExample.html")
+          expect( cmd.stderr ).toMatch("app/views/layouts/drumMachineExample.html")
 
       it "generates layerStack example", ->
         cmd = @testHelper.runInProjectSync "generate",
           args: ["example", "layerStack"]
 
         runs ->
-          expect( cmd.stdout ).toMatch("app/views/layouts/layerStackExample.html")
+          expect( cmd.stderr ).toMatch("app/views/layouts/layerStackExample.html")
 
       it "generates modal example", ->
         cmd = @testHelper.runInProjectSync "generate",
           args: ["example", "modal"]
 
         runs ->
-          expect( cmd.stdout ).toMatch("app/views/layouts/modalExample.html")
+          expect( cmd.stderr ).toMatch("app/views/layouts/modalExample.html")
 
       it "generates navigationBar example", ->
         cmd = @testHelper.runInProjectSync "generate",
           args: ["example", "navigationBar"]
 
         runs ->
-          expect( cmd.stdout ).toMatch("app/views/layouts/navigationBarExample.html")
+          expect( cmd.stderr ).toMatch("app/views/layouts/navigationBarExample.html")
 
       it "generates photoGallery example", ->
         cmd = @testHelper.runInProjectSync "generate",
           args: ["example", "photoGallery"]
 
         runs ->
-          expect( cmd.stdout ).toMatch("app/views/layouts/photoGalleryExample.html")
+          expect( cmd.stderr ).toMatch("app/views/layouts/photoGalleryExample.html")
 
       it "generates preload example", ->
         cmd = @testHelper.runInProjectSync "generate",
           args: ["example", "preload"]
 
         runs ->
-          expect( cmd.stdout ).toMatch("app/views/layouts/preloadExample.html")
+          expect( cmd.stderr ).toMatch("app/views/layouts/preloadExample.html")
 
 
   describe 'usage', ->
@@ -265,7 +260,7 @@ describe 'Generator', ->
         args: []
 
       runs =>
-        expect( cmd.stdout ).toMatch(/Usage: steroids generate resource <resource>/)
+        expect( cmd.stdout ).toMatch(/Usage: steroids generate ng-resource/)
 
 
     it "gives friendly error message when generator is not found", ->
@@ -275,51 +270,15 @@ describe 'Generator', ->
 
       runs =>
         expect( cmd.code ).toBe(1)
-        expect( cmd.stderr ).toEqual ""
         expect( cmd.stdout ).toMatch(/No such generator: neverGonnaExistGenerator/)
 
 
 
-  describe "resource", ->
-    it "creates a resource", ->
-      @testHelper.createProjectSync()
-
-      cmd = @testHelper.runInProjectSync "generate",
-        args: ["resource", "cars"]
-
-      runs ()=>
-        expect( cmd.code ).toBe(0)
-
-        ctrlPath = path.join(@testHelper.testAppPath, "app", "controllers", "cars.js")
-        expect(fs.existsSync ctrlPath).toBe true
-        expect(fs.readFileSync(ctrlPath).toString()).toMatch(/window.CarsController/)
-
-        expect(fs.existsSync path.join(@testHelper.testAppPath, "app", "views", "cars", "index.html")).toBe true
-
-
-    it "fails when trying to overwrite existing files", ->
-      @testHelper.createProjectSync()
-
-      runs ->
-        @cmd1 = @testHelper.runInProjectSync "generate",
-          args: ["resource", "cars"]
-
-      runs ->
-        @cmd2 = @testHelper.runInProjectSync "generate",
-          args: ["resource", "cars"]
-
-      runs ()=>
-        expect( @cmd1.code ).toBe(0)
-        expect( @cmd2.code ).toBe(1)
-
-        ctrlPath = path.join(@testHelper.testAppPath, "app", "controllers", "cars.js")
-        expect(fs.existsSync ctrlPath).toBe true
-
-        expect(@cmd2.stdout).toMatch(/would be overwritten by this command/)
 
     describe "ng-resource", ->
 
-      it "creates a angular resource", ->
+      # TODO: requires user input
+      xit "creates a angular resource", ->
         @testHelper.createProjectSync()
 
         cmd = @testHelper.runInProjectSync "generate",
@@ -335,8 +294,8 @@ describe 'Generator', ->
           expect(fs.existsSync path.join(@testHelper.testAppPath, "app", "views", "ngCars", "index.html")).toBe true
           expect(fs.existsSync path.join(@testHelper.testAppPath, "app", "views", "ngCars", "show.html")).toBe true
 
-
-      it "fails when trying to overwrite existing files", ->
+      # TODO: requires user input
+      xit "fails when trying to overwrite existing files", ->
         @testHelper.createProjectSync()
 
         runs ->

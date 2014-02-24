@@ -25,6 +25,8 @@ describe 'Steroids', ->
       @createRun = new CommandRunner
         cmd: TestHelper.steroidsBinPath
         args: ["create", "myApp"]
+        debug: false
+        timeout: 15000  # steroids create installs from npm nowadays...
 
       runs ()=>
         @createRun.run()
@@ -37,6 +39,7 @@ describe 'Steroids', ->
       @createRun1 = new CommandRunner
         cmd: TestHelper.steroidsBinPath
         args: ["create", "importantDirectoryDoNotOverwrite"]
+        timeout: 15000  # steroids create installs from npm nowadays...
 
       @createRun2 = new CommandRunner
         cmd: TestHelper.steroidsBinPath
@@ -51,6 +54,7 @@ describe 'Steroids', ->
       runs ->
         expect( @createRun1.code ).toBe(0)
         expect( @createRun2.code ).toBe(1)
+
 
     it "gives usage information when no params are given", ->
       @createRun = new CommandRunner
@@ -109,13 +113,13 @@ describe 'Steroids', ->
       expect( fs.existsSync(appPath) ).not.toBe true
 
 
-  # describe 'create', ->
-  #   it "prints usage instructions when no parameters", ->
-  #     @testHelper.createProjectSync()
-  #
-  #     cmd = @testHelper.runInProjectSync "generate",
-  #       args: []
-  #
-  #     runs ()=>
-  #       expect( cmd.stdout ).toMatch(/Usage: steroids generate resource/)
+  describe 'create', ->
+    it "prints usage instructions when no parameters", ->
+      @testHelper.createProjectSync()
+
+      cmd = @testHelper.runInProjectSync "generate",
+        args: []
+
+      runs ()=>
+        expect( cmd.stdout ).toMatch(/Usage: steroids generate ng-resource/)
 

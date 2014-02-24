@@ -30,7 +30,7 @@ describe 'Generator', ->
 
       runs ->
         expect( cmd.code ).toBe(0)
-        expect( cmd.stdout ).toMatch(/steroids.config.location = "tutorial.html"/)
+        expect( cmd.stderr ).toMatch(/steroids.config.location = "http:\/\/localhost\/tutorial.html"/)
 
         tutorialFileLocation = path.join(@testHelper.testAppPath, "www", "tutorial.html")
         expect( fs.existsSync tutorialFileLocation ).toBe true

@@ -20,7 +20,9 @@ describe 'Version', ->
 
       runs ()=>
         packageJSON = require "../package.json"
-        expect( @versionRun.stdout ).toBe("AppGyver Steroids #{packageJSON.version}\n")
+
+        versionString = "AppGyver Steroids #{packageJSON.version}\n"
+        expect( @versionRun.stdout ).toMatch(versionString)
 
     it 'prints version with version', ->
 
@@ -34,5 +36,6 @@ describe 'Version', ->
       runs ()=>
         packageJSON = require "../package.json"
 
-        expect( @versionRun.stdout ).toBe("AppGyver Steroids #{packageJSON.version}\n")
+        versionString = "AppGyver Steroids #{packageJSON.version}\n"
+        expect( @versionRun.stdout ).toMatch(versionString)
 
