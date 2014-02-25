@@ -6,9 +6,10 @@ categories: steroids-js
 platforms: iOS
 ---
 
-On iOS, each WebView (i.e. layer, modal or drawer) will have its own background color. This is the color shown when the HTML content is scrolled past its boundary. In the image below, the darker grey background is the WebView background:
+On iOS, each WebView (i.e. layer, modal or drawer) will have its own background color. This is the color shown when the HTML content is scrolled past its boundary:
 
-<img src="/steroids/images/steroids-js/webview_background_color.png">
+<img src="/steroids/images/steroids-js/webview_background_color.png" width="50%">
+*The darker grey background is the WebView's default background color.*
 
 The API call [`steroids.view.setBackgroundColor("#FFFFFF")`](http://docs.appgyver.com/en/edge/steroids_Steroids%20Native%20UI_steroids.view_view.setBackgroundColor.md.html) is used to set the background color for a WebView to the given hex color. It must be called separately for each WebView.
 
@@ -16,12 +17,12 @@ The API call [`steroids.view.setBackgroundColor("#FFFFFF")`](http://docs.appgyve
 
 For a new WebView, the HTML content rendering starts below the status bar. This means that the WebView background color will be shown under the status bar when you first load the page:
 
-<img src="/steroids/images/steroids-js/statusbar_background_color_1.png">
+<img src="/steroids/images/steroids-js/statusbar_background_color_1.png" width="50%">
 *WebView background color is set to `#FF0000`*
 
 Now, if we set the WebView background to match the page background, it looks seamless:
 
-<img src="/steroids/images/steroids-js/statusbar_background_color_2.png">
+<img src="/steroids/images/steroids-js/statusbar_background_color_2.png" width="50%">
 *WebView background color is set to `#DFE2E2`, matching the `body` `background-color`*
 
 ## Navigation bar and background color
