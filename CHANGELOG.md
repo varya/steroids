@@ -1,7 +1,10 @@
-## 3.1.18 (TODO)
+## 3.1.18 (2014-02-26)
+
+Fixes Karma testing
 
 Bugfixes:
   - Fixed tests (`npm test`) to work again
+  - Fixes missing `karma-jasmine` dependency for `steroids test karma`
 
 ## 3.1.17 (2014-02-11)
 
