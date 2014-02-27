@@ -1,10 +1,14 @@
+## 3.1.19 (2014-02-27)
+
+Updated iOS Simulator's Scanner binary to v3.1.3. Updated `grunt-steroids` dependency to v0.2.18.
+
 ## 3.1.18 (2014-02-26)
 
-Fixes Karma testing
+Fixes Karma testing.
 
 Bugfixes:
-  - Fixed tests (`npm test`) to work again
-  - Fixes missing `karma-jasmine` dependency for `steroids test karma`
+  - Fixed tests (`npm test`) to work again.
+  - Fixes missing `karma-jasmine` dependency for `steroids test karma`.
 
 ## 3.1.17 (2014-02-11)
 
