@@ -9,11 +9,13 @@ platforms: iOS, Android
 ### Related guides
 * [Configuring custom plugins for your app][custom-plugin-config]
 
-To use the [official Cordova Facebook plugin](https://github.com/phonegap-build/FacebookConnect), you need to configure your Facebook app in [developers.facebook.com](https://developers.facebook.com), build a custom Scanner app via the [Build Service](http://cloud.appgyver.com) and then load the automatically included JavaScript files in your project via a `<script>` tag.
+The Steroids-supported way to use the official Facebook plugin is to use [Steroids Add-ons](http://www.appgyver.com/steroids/addons). To use the Facebook plugin without the Facebook Add-on, refer to the documentation on the [plugin's GitHub Page](https://github.com/phonegap-build/FacebookConnect), though note that we only offer support for users using the Facebook plugin via the Steroids Facebook Add-on.
 
-## 1: Configure your Facebook App
+However, to help you get started, we've included below instructions on how to configure your app in Facebook's Developer portal, and how to create a custom build that has the Facebook plugin included.
 
-Go to [developers.facebook.com/apps](https://developers.facebook.com/apps/). Select **Apps** > **Create an app**. Fill in the required information. Once your Facebook app is created, select **Settings** from the left-hand navigation.
+## Configuring your Facebook App
+
+Go to [developers.facebook.com/apps](https://developers.facebook.com/apps/). If you don't already have an app, select **Apps** > **Create an app**. Fill in the required information. Once your Facebook app is created, select **Settings** from the left-hand navigation.
 
 ### iOS
 
@@ -33,7 +35,7 @@ Proper guide for Android setup is coming soon. In the meanwhile, you can take a 
 
 Then, open the **Status & Review** page from the left-hand navigation. Set the **Do you want to make this app and all its live features available to the general public?** option to **Yes**.
 
-## 2: Build a custom Scanner app
+## Including the Facebook plugin
 
 If you haven't already, use `$ steroids deploy` to deploy your app to the AppGyver Cloud. Then, go to [cloud.appgyver.com](http://cloud.appgyver.com), open your deployed app and follow the instructions in the [iOS Build Configuration guide][ios-build-config].
 
@@ -53,54 +55,9 @@ Then, find the **Plugins** field and include the Facebook plugin's GitHub repo w
 ]
 {% endhighlight %}
 
-*Note: also make sure your Scanner app's version is e.g. `3.1.0` (there's currently a bug in Steroids CLI where the version number of custom-built Scanner apps is checked for validity, when the check should only be made for the store-downloaded Scanner app – we're working on fixing that).*
-
 Finally, request a Scanner build, download it and install it on your device. (The Facebook Plugin is not usable via the Simulator at the moment.)
 
-### 3: Set up your Steroids project
-
-The plugin JavaScript files will be included automatically to your build. Just add the necessary `<script>` tags in your HTML to load the JS files:
-
-{% highlight html %}
-<script src="http://localhost/cdv-plugin-fb-connect.js"></script>
-<script src="http://localhost/facebook-js-sdk.js"></script>
-{% endhighlight %}
-
-Now, we'll initialize the Facebook plugin via the Facebook JavaScript SDK:
-
-{% highlight javascript %}
-FB.init({
-  appId: 123412341234,
-  nativeInterface: CDV.FB
-})
-{% endhighlight %}
-
-The `appId` field must match your Facebook App ID. By passing the Corodva Facebook plugin object `CDV.FB` as `nativeInterface`, we overwrite certain Facebook JavaScript SDK functionalities with native ones, e.g. logins and dialogs.
-
-This doesn't do much, so let's add a login function:
-
-{% highlight javascript %}
-function login() {
-  FB.login(function(response) {
-    if (response.session) {
-      console.log('Welcome!  Fetching your information.... ');
-      FB.api('/me', function(response) {
-        alert('Good to see you, ' + response.name + '.');
-      });
-    } else {
-      console.log('User cancelled login or did not fully authorize.');
-    }
-  });
-}
-{% endhighlight %}
-
-Run `$ steroids connect` and scan the QR code with your custom-built Scanner.
-
-Calling the `login()` function from your app should now switch to the Facebook app (or Facebook website, if the app is not installed) for login, after which Facebook API requests can be made.
-
-## Kitchensink Example
-
-You can see a more robust example implementation in the [Steroids Kitchensink app][kitchensink] – just make sure to replace the Facebook App ID in `app/controllers/facebook.coffee` with your Facebook App ID.
+Once you want to test a stand-alone version of your app, you can simply add the configurations for an Ad Hoc or App Store build – the plugin works the same.
 
 ## Known issues
 
@@ -111,4 +68,3 @@ A workaround is to update the settings so that only the build type you're workin
 [custom-plugin-config]: /steroids/guides/cloud_services/plugin-config/
 [plugman]: https://github.com/apache/cordova-plugman
 [ios-build-config]: /steroids/guides/cloud_services/ios-build-config/
-[kitchensink]: https://github.com/appgyver/kitchensink/
