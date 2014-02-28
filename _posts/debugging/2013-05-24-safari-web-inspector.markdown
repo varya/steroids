@@ -41,3 +41,19 @@ Select a WebView. You now have direct Web Inspector access to it. You can edit t
 If you type in `window.location.reload();`, the WebView reloads itself, which allows you to see network requests and possible console errors that happen when the WebView loads.
 
 You can even debug JavaScript by inserting breakpoints: open a .js file in the Safari Web Inspector (e.g. from the *Resource* tab) and click on the line numbers to insert break points. Then, reload the WebView. JavaScript execution will pause at the breakpoints, and the Debug tab shows the current call stack.
+
+## Troubleshooting
+
+If you cannot see any WebViews listed in Safari's Develop menu even though your Simulator is running, the cause might be ghost Simulator processes left behind. In your Terminal, run
+
+{% highlight bash %}
+$ ps aux | grep imulator
+{% endhighlight %}
+
+This finds all running processes and then filters the output to those that match the regexp `imulator`. If you see multiple Simulator processes running, that's probably the cause of your problem. You can kill all Simulator processes with the command
+
+{% highlight bash %}
+$ pkill -f imulator
+{% endhighlight %}
+
+This kills all processes whose name matches `imulator`. Then, simply open the Simulator again and your WebViews should be listed fine.
