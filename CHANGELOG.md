@@ -1,3 +1,13 @@
+## 3.1.20 (TODO)
+
+Karma test runner improvment.
+
+Features:
+  - Karma runner cleans up `test/karmaSingle.lastrun.coffee` after done
+
+Chores:
+  - Initial tests for Karma
+
 ## 3.1.19 (2014-02-27)
 
 Updated iOS Simulator's Scanner binary to v3.1.3. Updated `grunt-steroids` dependency to v0.2.18.
