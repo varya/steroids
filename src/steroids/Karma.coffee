@@ -100,6 +100,7 @@ class Karma
       karmaConfigContents = fs.readFileSync(paths.test.karma.singleConfigFilePath).toString()
       karmaConfigContents = karmaConfigContents.replace("%%SPECFILE%%", options.specFile)
 
+      console.log "Creating #{paths.test.karma.singleConfigFileLastRunPath}"
       fs.writeFileSync(paths.test.karma.singleConfigFileLastRunPath, karmaConfigContents)
       paths.test.karma.singleConfigFileLastRunPath
     else
@@ -115,6 +116,10 @@ class Karma
       stderr: true
 
     @karmaSession.on "exit", () =>
+      if fs.existsSync(paths.test.karma.singleConfigFileLastRunPath)
+        console.log "\nRemoving #{paths.test.karma.singleConfigFileLastRunPath}"
+        fs.unlinkSync(paths.test.karma.singleConfigFileLastRunPath)
+
       @running = false
 
       options.onExit() if options.onExit?
