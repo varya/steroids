@@ -33,6 +33,7 @@ class Server
     @app = express()
 
     @app.use express.static(paths.staticFiles)
+    @app.use(express.json())
 
     @port = @options.port
 

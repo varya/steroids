@@ -3,11 +3,13 @@ Converter = require "../Converter"
 util = require "util"
 request = require "request"
 semver = require "semver"
+chalk = require "chalk"
 
 fs = require "fs"
 Paths = require "../paths"
 
 Updater = require "../Updater"
+
 
 class ClientResolver
 
@@ -114,6 +116,22 @@ class BuildServer extends Server
 
       res.on "close", ()->
         clearInterval id
+
+
+
+    @app.options "/__appgyver/logger", (req, res) =>
+      res.header "Access-Control-Allow-Origin", "*"
+      res.header "Access-Control-Allow-Headers", "Content-Type"
+
+      res.end('')
+
+    @app.post "/__appgyver/logger", (req, res) =>
+      res.header "Access-Control-Allow-Origin", "*"
+      res.header "Access-Control-Allow-Headers", "Content-Type"
+      res.end('')
+
+      logMessage = req.body
+      console.log "[#{chalk.cyan('steroids logger')}] #{logMessage.date} - #{logMessage.location} - tab: #{logMessage.screen_id}, layer: #{logMessage.layer_id} \n#{logMessage.message}\n"
 
 
     @app.get "/refresh_client?:timestamp", (req, res) =>

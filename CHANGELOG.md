@@ -5,6 +5,9 @@ Karma test runner improvment.
 Features:
   - Karma runner cleans up `test/karmaSingle.lastrun.coffee` after done
 
+Secret features:
+  - Initial support for `steroids.logger.log()`
+
 Chores:
   - Initial tests for Karma
 
