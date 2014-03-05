@@ -1,6 +1,6 @@
-## 3.1.20 (TODO)
+## 3.1.20 (2014-03-05)
 
-Karma test runner improvment.
+Karma test runner improvement. Support for `steroids.logger`
 
 Features:
   - Karma runner cleans up `test/karmaSingle.lastrun.coffee` after done
