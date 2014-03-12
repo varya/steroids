@@ -110,10 +110,49 @@ class Prompt
 
         when "help", "?", "usage"
           Help.connect()
+        when "c", "console"
+          @consoleOpened = true
+          console.log "---[ steroids console ]-------------------------------------------------------------------"
+
+          @consolePrompt = require('prompt')
+
+          @consolePrompt.message = ">"
+          @consolePrompt.delimiter = " "
+
+          @consolePrompt.start();
+
+          @consoleLoop = =>
+            @consolePrompt.get
+              properties:
+                command:
+                  message: ""
+            , (err, result) =>
+              inputLine = if result? and result.command?
+                result.command
+              else
+                undefined
+
+              switch inputLine
+                when "quit", "exit"
+                  console.log "-- console closed --"
+                  @consoleOpened = false
+
+                  @prompt.message = "#{chalk.cyan("AppGyver")} #{chalk.magenta("Steroids")}"
+                  @prompt.delimiter = " "
+
+                  @connectLoop()
+                  break
+                else
+                  steroidsCli.evalString = inputLine
+                  @consoleLoop()
+
+          @consoleLoop()
+
         else
           console.log "Did not recognize input: #{result.command}, type help for usage."
 
-      @connectLoop()
+      unless @consoleOpened
+        @connectLoop()
 
     @get
       onInput: onInput

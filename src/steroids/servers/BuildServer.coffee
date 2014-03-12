@@ -118,6 +118,22 @@ class BuildServer extends Server
         clearInterval id
 
 
+    @app.options "/__appgyver/evals", (req, res) =>
+      res.header "Access-Control-Allow-Origin", "*"
+      res.header "Access-Control-Allow-Headers", "Content-Type"
+
+      res.end('')
+
+    @app.get "/__appgyver/evals", (req, res) =>
+      res.header "Access-Control-Allow-Origin", "*"
+      res.header "Access-Control-Allow-Headers", "Content-Type"
+
+      evalTask =
+        string: steroidsCli.evalString
+        targetWebView: 2
+
+      res.send(JSON.stringify(evalTask))
+      steroidsCli.evalString = undefined
 
     @app.options "/__appgyver/logger", (req, res) =>
       res.header "Access-Control-Allow-Origin", "*"
