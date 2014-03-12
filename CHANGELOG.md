@@ -1,3 +1,10 @@
+## 3.1.21 (2014-03-12)
+
+Fixes XCode 5.1 issue with simulator
+
+Bugfixes:
+  - simulator could not start with XCode 5.1
+
 ## 3.1.20 (2014-03-05)
 
 Karma test runner improvement. Support for `steroids.logger`
