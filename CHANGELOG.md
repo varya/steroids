@@ -1,9 +1,13 @@
+## 3.1.22 (2014-04-03)
+
+Update `generator-steroids` dependency to [v0.2.20](https://github.com/AppGyver/scanner/blob/master/changelog-ios.md#314-2014-04-03). Updated iOS Simulator binary to [v3.1.4](https://github.com/AppGyver/scanner/blob/master/changelog-ios.md#314-2014-04-03).
+
 ## 3.1.21 (2014-03-12)
 
-Fixes XCode 5.1 issue with simulator
+Fixes XCode 5.1 issue with iOS Simulator.
 
 Bugfixes:
-  - simulator could not start with XCode 5.1
+  - iOS Simulator could not start with XCode 5.1.
 
 ## 3.1.20 (2014-03-05)
 
@@ -47,12 +51,10 @@ Features:
 Support for Scanner v3.1.2 features in new project's `config.xml` files, updated iOS Simulator to v3.1.2, bugfixes.
 
 Features:
-  - [`generator-steroids`](http://www.appgyver.com/steroids/) dependency updated to v0.2.16 to support deafult projects' new `config.xml` options for Scanner v3.1.2 features.
-  - Default projects' Steroids.js version updated to v3.1.4.
+  - [`generator-steroids`](http://www.appgyver.com/steroids/) dependency updated to v0.2.15 to support deafult projects' new `config.xml` options for Scanner v3.1.2 features.
   - iOS Simulator updated to Scanner v3.1.2.
 
 Bugfixes:
-  - Detects if the temporary zip (containing the project files to be sent to connected devices) can not be made and aborts connect. Closes https://github.com/AppGyver/grunt-steroids/issues/5
   - Fixed a bug where a `dist/` folder with too many files could cause a `stdout maxBuffer exceeded` error. Thanks to [@drewrothstein](https://github.com/drewrothstein) for the pull request!
   - Steroids karma test runner did not give any debug output
 
