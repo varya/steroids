@@ -106,7 +106,11 @@ In addition, Steroids adds the following configuration options:
 
 * **DisableTabBarUnselectedIconTintColor (boolean, defaults to false)** when set to true, the default color of the icon tint color of the unselected tab(s) in the native tab bar is disabled.
 
-* **AutoHideSplashScreen** (boolean, defaults to true) – when set to true, the initial splashscreen is not hidden automatically in order to let the user hide it with `steroids.splashscreen.hide`, when approriate.
+* **AutoHideSplashScreen (boolean, defaults to true)** – when set to true, the initial splashscreen is not hidden automatically in order to let the user hide it with `steroids.splashscreen.hide`, when approriate.
+
+* **DisableDoubleTapToFocus (boolean, defaults to false)** – when set to true, double-tapping on a part of the WebView no longer scrolls the WebView to that position. Setting this to true also removes the 300ms delay with JavaScript `click` events.
+
+* **ViewIgnoresStatusBar (boolean, defaults to false)** – when set to true, WebViews will start rendering from the top of the screen, instead of below the status bar. This makes the WebView background initially stretch to cover the whole screen, with the status bar rendered on top of the WebView.
 
 The following Cordova preferences are disabled due to Steroids using its own splashscreen implementation:
 
