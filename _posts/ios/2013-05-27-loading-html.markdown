@@ -19,7 +19,17 @@ On iOS, the loading screen is a `steroids.views.WebView` that always shows the `
 
 To disble the loading screen, simply remove the `loading.html` file. Note that without the file, the push animation for a new `WebView` will start only after the `DOMContentLoaded` event has fired, which can lead to noticable unresponsiveness.
 
-## Removing the loading screen manually
+## Displaying loading.html programmatically
+
+You can display the `loading.html` programmatically, with the API call:
+
+{% highlight javascript %}
+steroids.view.displayLoading();
+{% endhighlight %}
+
+Note that you need to programmatically trigger `steroids.view.removeLoading()` after this – there's no other way to dismiss the `loading.html` screen.
+
+## Removing loading.html programmatically
 
 If you call `steroids.layers.push` or `steroids.modal.show` with the options object parameter `keepLoading: true`, the loading screen will not be removed automatically. Rather, you need to call
 
