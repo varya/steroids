@@ -41,4 +41,4 @@ Like other WebViews, the drawer WebView's HTML content will start rendering belo
 
 For the cleanest native-like look, you should use a single background color for your WebView (at least on the top and bottom edge of the HTML content) and use `steroids.view.setBackgroundColor()` to match the background color. This way, it looks like you have transparent HTML content scrolling on top of a static background, like in native apps.
 
-If you have a view where you've disabled scrolling via JavaScript (e.g. a login modal), you can use `window.scrollTo(0,20)` as a trick to scroll the page vertically down 20px, so that the WebView background is no longer visible under the status bar. This allows you to use a background image and have the status bar display nicely on top of the background.
+You can use the `<preference name="ViewIgnoresStatusBar" value="false" />` in `www/config.ios.xml` to make the WebView start under the status bar, so that the WebView background color becomes visible only when scrolling.
