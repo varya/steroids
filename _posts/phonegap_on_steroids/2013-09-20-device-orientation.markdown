@@ -10,11 +10,7 @@ platforms: iOS, Android
 * [Android Build Configuration][android-build-config]
 * [iOS Build Configuration][ios-build-config]
 
-By default, a Steroids project opened via the Scanner app runs in the portrait orientation only. There are two ways to change this behavior.
-
-## JavaScript
-
-The [steroids.view.setAllowedRotations][api-view-setAllowedRotations] API call allows you to override the default allowed device orientations, affecting the current view only. See the link for full API documentation (iOS only).
+By default, a Steroids project opened via the Scanner app runs in the portrait orientation only. To change this behavior, you need to create a custom build.
 
 ## Custom Build
 
@@ -26,7 +22,9 @@ In the [Android build configuration][android-build-config] page, the **Shared Se
 ### iOS
 In the [iOS build configuration][ios-build-config] page, the **Shared Settings** section has checkboxes for allowed rotations in both iPhone and iPad separately.
 
-Note that the `steroids.view.setAllowedRotations` API call can override these values.
+## Limiting allowed rotations via JavaScript (iOS)
+
+On iOS, the [steroids.view.setAllowedRotations][api-view-setAllowedRotations] API call allows you to override the default allowed device orientations, affecting the current view only. Note that this is only effective if you have built a custom build that has multiple orientations allowed – in effect, `setAllowedRotations` can only limit the set of orientations allowed during the build config phase.
 
 [android-build-config]: /steroids/guides/cloud_services/android-build-config/
 [ios-build-config]: /steroids/guides/cloud_services/ios-build-config/
