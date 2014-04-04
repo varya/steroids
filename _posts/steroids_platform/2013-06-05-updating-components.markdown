@@ -18,9 +18,7 @@ $ npm update steroids -g
 
 This will check for the latest version and update it if needed. The `-g` option sets the update to affect your global Steroids install.
 
-*If you are running a non-NVM-installed version of Node.js and npm, you'll probably need to write `$ sudo npm update steroids -g` for the update to run correctly.*
-
-The Steroids CLI keeps its integrated iOS Simulator app automatically updated to the latest version.
+The Steroids CLI keeps the integrated iOS Simulator app automatically updated to the latest version.
 
 ##Updating Steroids.js in your project
 
