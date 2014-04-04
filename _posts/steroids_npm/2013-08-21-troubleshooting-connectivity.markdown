@@ -50,7 +50,7 @@ There's a known issue where some Android devices fail to open Steroids projects 
 
 ## Does the iOS Simulator open?
 
-Does running the `$ steroids simulator` command while `$ steroids connect` is running open the iOS Simulator wtihout any hiccups? (Note that this step only works on a Mac running OS X.)
+Does running the `$ steroids simulator` command while `$ steroids connect` is running open the iOS Simulator without any hiccups? (Note that this step only works on a Mac running OS X.)
 
 ## Still out of luck?
 
