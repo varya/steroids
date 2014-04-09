@@ -51,6 +51,8 @@ The default `www/config.ios.xml` looks like this:
     <preference name="EnablePopGestureRecognition" value="true" />
     <preference name="DisableTabBarUnselectedIconTintColor" value="false" />
     <preference name="AutoHideSplashScreen" value="true" />
+    <preference name="DisableDoubleTapToFocus" value="false" />
+    <preference name="ViewIgnoresStatusBar" value="false" />
 </widget>
 {% endhighlight %}
 
