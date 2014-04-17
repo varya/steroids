@@ -83,8 +83,6 @@ function databaseError(err) {
 
 Note that since the SQLite database is now in the app file directory (which changes each time you update changes to your phone in order to circumvent cache issues, and is read-only), inserts into the database won't be saved. If you need to modify the database and not just read from it, you should keep it in the `steroids.app.absoluteUserFilesPath` path. You need to copy it there (e.g. via Cordova's [File API](http://docs.appgyver.com/en/edge/cordova_file_file.md.html#File)) when the app first starts and then open it from that directory.
 
-You can view an [example project on GitHub](https://github.com/AppGyver/academy-examples/tree/master/deeper_into_steroids/prepopulated_sqlite) for iOS.
-
 ## Downloading and using an external database
 
 You can also easily use an external database on a remote server: simply download it with e.g. Cordova's [File API](http://docs.appgyver.com/en/edge/cordova_file_file.md.html#File) and pass the downloaded database file's location to the SQLitePlugin.
