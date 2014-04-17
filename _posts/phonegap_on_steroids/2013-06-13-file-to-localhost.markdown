@@ -19,7 +19,7 @@ platforms: Android, iOS
 
 PhoneGap serves your files via the **File protocol**. This means that all HTML documents and other assets in your app are accessed via either absolute paths that start with `file://` or via relative paths, e.g. `<img src="../../images/dolan.png">`.
 
-##Why the File protocol is inconvenient
+## Why the File protocol is inconvenient
 Relative paths can only be used when the location of the current document is known, e.g. in CSS files or with HTML elements' `src` attributes. If your document structure changes, you have to update all affected relative paths.
 
 In addition, many Cordova API calls require an absolute URL. Since the folder structure from the root of the device's file system to your app is rather complex, specifying the absolute URL can be tedious (the [steroids.app.absolutePath][steroids.app.absolutePath] property is a convenient helper).
@@ -28,7 +28,7 @@ As an alternative, Steroids allows you to serve your project files from a local 
 
 To move your project to localhost, go through the following steps.
 
-##Serve HTML pages from localhost
+## Serve HTML pages from localhost
 
 The first step is simple: change the `steroids.config.location` property in `config/application.coffee` to load from localhost:
 
@@ -38,7 +38,7 @@ steroids.config.location = "http://localhost/index.html"
 
 Any `window.location` changes, `href` attributes and so on in your project should be similarly changed to load from localhost.
 
-##Switch your assets to absolute URL paths
+## Switch your assets to absolute URL paths
 
 In HTML documents loaded from localhost, starting a URL string with `/` is equivalent to starting it with `http://localhost/`. The web server at localhost serves files from your application directory (equivalent to the contents of the `dist/` folder that the Steroids CLI creates). Thus, instead of writing
 
@@ -64,13 +64,13 @@ The same absolute paths can be used with HTML elements' `src` attributes and ins
 
 Steroids can save files created by the user (e.g. camera pictures) or downloaded from the Web to the User Files directory, accessible via [`steroids.app.absoulteUserFilesPath`][steroids.app.absoluteUserFilesPath]. Localhost looks for files both in the App files and the User Files directories, so you don't need to use absolute File protocol paths for e.g. images. Read more in the [App structure on the device][app-structure-on-device] guide.
 
-##Ensure that cross-domain requests work
+## Ensure that cross-domain requests work
 
 When serving a HTML document via the File protocol, [same origin policy][same-origin-policy-wikipedia] is disabled, since the WebKit engine trusts HTML documents coming from the local file system. Thus, AJAX requests to external domains succeed without using [CORS][cors-wikipedia].
 
 However, when serving your project from localhost, WebKit's same origin policy kicks in. You need to configure the CORS HTTP headers in your external locations to correctly respond to your app's requests.
 
-##Ensure that nothing is served from file://
+## Ensure that nothing is served from file://
 
 If you happen to reference any assets via their absolute File URL path (e.g. starting with `file://`), they will fail to load. This is because the localhost web server is operating with the `http://` protocol, which makes WebKit consider everything from the `file://` protocol to be unsafe and deny the request (otherwise malicous sites could access your computer's files at will).
 
@@ -81,6 +81,19 @@ var audio = new Media("/sounds/macgyver_theme.mp3");
 {% endhighlight %}
 
 This would load a file that is in your project at `www/sounds/macgyver_theme.mp3`.
+
+## Serving a single WebView via File protocol
+
+While we are committed to making localhost awesome, there's still a few open issues. One is CORS (outlined above), the other one is [local media files served via localhost not working in <audio> and <video> tags](https://github.com/AppGyver/steroids/issues/132). As a workaround while we work on fixing these issues, you can serve a single WebView in your application via the File protocol, allowing CORS to work and `<audio>` and `<video>` tags to function.
+
+To do this, you need to construct the whole File protocol URL, using `steroids.app.absolutePath`. The gotcha is that `steroids.app.absolutePath` doesn't return a proper URI, so you need to pass the result through the JS `encodeURI` method to ensure the URL is correct:
+
+{% highlight javascript %}
+path = encodeURI("file://" + steroids.app.absolutePath + "/index.html");
+var fileProtocolView = new steroids.views.WebView(path);
+
+steroids.layers.push(fileProtocolView);
+{% endhighlight %}
 
 [same-origin-policy-wikipedia]: http://en.wikipedia.org/wiki/Same_origin_policy
 [cors-wikipedia]: http://en.wikipedia.org/wiki/Cross-origin_resource_sharing
