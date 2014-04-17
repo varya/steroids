@@ -3,7 +3,7 @@ layout: post
 title:  "Using a local prepopulated SQLite database"
 date:   2013-06-12 13:51:34
 categories: phonegap_on_steroids
-platforms: iOS, Android
+platforms: iOS
 ---
 
 This guide uses the [Cordova SQLitePlugin](https://github.com/lite4cordova/Cordova-SQLitePlugin), included with AppGyver Scanner. Starting with Steroids v3.1.0, the JavaScript loading the SQLite plugin is loaded automatically to every WebView, so it's available without any extra work.
@@ -41,11 +41,7 @@ function onDeviceReady() {
 
 function initDatabase() {
 
-  if ( device.platform == "Android") {
-    var dbPath = "file://" + steroids.app.absolutePath + "/data/Chinook_Sqlite.db";
-  } else {
-    var dbPath = steroids.app.path + "/data/Chinook_Sqlite.db";
-  }
+  var dbPath = steroids.app.path + "/data/Chinook_Sqlite.db";
 
   db = window.sqlitePlugin.openDatabase({name: dbPath});
 }
