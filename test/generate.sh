@@ -3,7 +3,7 @@
 APPNAME=$2
 STEROIDSCMD=$1
 
-EXAMPLES="accelerometer animation audio camera compass device drawer geolocation layerStack modal navigationBar notification photoGallery preload s3upload storage"
+EXAMPLES="accelerometer animation audio compass device geolocation modal notification preload storage"
 TUTORIALS="begin"
 
 
