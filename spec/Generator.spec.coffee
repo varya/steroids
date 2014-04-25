@@ -118,7 +118,7 @@ describe 'Generator', ->
         args: ["example"]
 
       runs ->
-        expect( cmd.stderr ).toMatch(/Error: Example undefined not found/)
+        expect( cmd.stderr ).toMatch(/Error: You must specify a valid example name/)
 
     it "gives a friendly error message when example is not found", ->
 
@@ -145,13 +145,6 @@ describe 'Generator', ->
         runs ->
           expect( cmd.stderr ).toMatch("www/audioExample.html")
 
-      it "generates camera example", ->
-        cmd = @testHelper.runInProjectSync "generate",
-          args: ["example", "camera"]
-
-        runs ->
-          expect( cmd.stderr ).toMatch("www/cameraExample.html")
-
       it "generates compass example", ->
         cmd = @testHelper.runInProjectSync "generate",
           args: ["example", "compass"]
@@ -173,21 +166,19 @@ describe 'Generator', ->
         runs ->
           expect( cmd.stderr ).toMatch("www/geolocationExample.html")
 
-      # REQUIRES CORDOVA 2.7.0
-      # it "generates notification example", ->
-      #   cmd = @testHelper.runInProjectSync "generate",
-      #     args: ["example", "notification"]
-      #
-      #   runs ->
-      #     expect( cmd.stdout ).toMatch("www/notificationExample.html")
+      it "generates notification example", ->
+        cmd = @testHelper.runInProjectSync "generate",
+          args: ["example", "notification"]
 
-      # REQUIRES CORDOVA 2.7.0
-      # it "generates storage example", ->
-      #   cmd = @testHelper.runInProjectSync "generate",
-      #     args: ["example", "storage"]
-      #
-      #   runs ->
-      #     expect( cmd.stdout ).toMatch("www/storageExample.html")
+        runs ->
+          expect( cmd.stderr ).toMatch("www/notificationExample.html")
+
+      it "generates storage example", ->
+        cmd = @testHelper.runInProjectSync "generate",
+          args: ["example", "storage"]
+
+        runs ->
+          expect( cmd.stderr ).toMatch("www/storageExample.html")
 
 
     describe "steroids examples", ->
@@ -199,13 +190,6 @@ describe 'Generator', ->
         runs ->
           expect( cmd.stderr ).toMatch("app/views/layouts/animationExample.html")
 
-      it "generates drawer example", ->
-        cmd = @testHelper.runInProjectSync "generate",
-          args: ["example", "drawer"]
-
-        runs ->
-          expect( cmd.stderr ).toMatch("app/views/layouts/drawerExample.html")
-
       it "generates drumMachine example", ->
         cmd = @testHelper.runInProjectSync "generate",
           args: ["example", "drumMachine"]
@@ -213,33 +197,12 @@ describe 'Generator', ->
         runs ->
           expect( cmd.stderr ).toMatch("app/views/layouts/drumMachineExample.html")
 
-      it "generates layerStack example", ->
-        cmd = @testHelper.runInProjectSync "generate",
-          args: ["example", "layerStack"]
-
-        runs ->
-          expect( cmd.stderr ).toMatch("app/views/layouts/layerStackExample.html")
-
       it "generates modal example", ->
         cmd = @testHelper.runInProjectSync "generate",
           args: ["example", "modal"]
 
         runs ->
           expect( cmd.stderr ).toMatch("app/views/layouts/modalExample.html")
-
-      it "generates navigationBar example", ->
-        cmd = @testHelper.runInProjectSync "generate",
-          args: ["example", "navigationBar"]
-
-        runs ->
-          expect( cmd.stderr ).toMatch("app/views/layouts/navigationBarExample.html")
-
-      it "generates photoGallery example", ->
-        cmd = @testHelper.runInProjectSync "generate",
-          args: ["example", "photoGallery"]
-
-        runs ->
-          expect( cmd.stderr ).toMatch("app/views/layouts/photoGalleryExample.html")
 
       it "generates preload example", ->
         cmd = @testHelper.runInProjectSync "generate",
