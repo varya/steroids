@@ -1,13 +1,13 @@
-## 3.1.23 (TODO)
+## 3.1.23 (2014-04-25)
 
-`generator-steroids` updated to [v0.3.0](changelog_link), changes listed below:
+`generator-steroids` updated to [v0.3.0](https://github.com/AppGyver/generator-steroids/blob/master/CHANGELOG.md#030-2014-04-25), changes listed below:
 
 Changes:
-  - New projects include the Ionic CSS framework instead of Topcoat
-  - `ng-resource` generator updated to use the Ionic CSS framework and the latest version of AngularJS
-  - `tutorial` generators updated to use the Ionic CSS framework
+  - New projects include the Ionic CSS framework instead of Topcoat.
+  - `ng-resource` generator updated to use the Ionic CSS framework and the latest version of AngularJS.
+  - `tutorial` generators updated to use the Ionic CSS framework.
   - `example` generators updated to use the Ionic CSS framework, several example generators deprecated.
-  - `bb-scaffold`, `ng-scaffold`, `ng-sql-scaffold` and `ng-touchdb-resource` generators deprecated (new scaffolds coming soon!)
+  - `bb-scaffold`, `ng-scaffold`, `ng-sql-scaffold` and `ng-touchdb-resource` generators deprecated.
 
 ## 3.1.22 (2014-04-03)
 
