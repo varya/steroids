@@ -12,7 +12,7 @@ platforms: iOS
 
 The AppGyver Build Service lets you create an IPA package of your application that you can distribute either ad hoc or submit to the Apple App Store.
 
-All iOS application builds need to be signed with an app provisioning profile and a developer certificate. To get these, you need to sign up to the Apple Developer Program, as well as have a Mac for genereating the necessary files.
+All iOS application builds need to be signed with an app provisioning profile and a developer certificate. To get these, you need to sign up to the Apple Developer Program, as well as have a Mac for generating the necessary files.
 
 To build iOS apps with the AppGyver Build Service, you need to create a `.p12` certificate file and a `.mobileprovision` provisioning profile file. The following sections will tell you how to do this.
 
