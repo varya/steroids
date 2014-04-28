@@ -16,5 +16,9 @@ There is currently no way to set up a custom splashscreen for a Steroids project
 
 See the [Android][android-build-config] and [iOS][ios-build-config] Build Configuration guides for more information on setting up the splashscreens.
 
+## Android gotchas
+
+On Android, the  [onPageFinished()](http://developer.android.com/reference/android/webkit/WebViewClient.html#onPageFinished(android.webkit.WebView, java.lang.String)) event is the one that causes the splashscreen to hide. This can cause a black screen to briefly show before the initial HTML page is shown. This will be fixed by the [Fresh Android splashscreen implementation](https://github.com/AppGyver/steroids/issues/159).
+
 [android-build-config]: /steroids/guides/cloud_services/android-build-config/
 [ios-build-config]: /steroids/guides/cloud_services/ios-build-config/
