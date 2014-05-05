@@ -22,6 +22,9 @@ class Config
       buttonShadowColor:          ""
       buttonTintColor:            ""
 
+      borderSize:                 ""
+      borderColor:                ""
+
     @theme = "black"
 
     @location = "http://localhost/index.html"

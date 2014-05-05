@@ -7,6 +7,7 @@ Help = require "./Help"
 ApplicationConfigUpdater = require "./ApplicationConfigUpdater"
 ConfigXmlValidator = require "./ConfigXmlValidator"
 BowerComponentsValidator = require "./BowerComponentsValidator"
+AppSettings = require "./AppSettings"
 
 class Project
 
@@ -130,11 +131,14 @@ class Project
   make: (options = {}) => # with pre- and post-make hooks
 
     steroidsCli.debug "Making with hooks."
+    appSettings = new AppSettings
 
     @preMake
       onSuccess: =>
         @makeOnly
           onSuccess: =>
+            steroidsCli.debug "Creating dist/__appgyver_settings.json..."
+            appSettings.createJSONFile()
             @postMake options
 
   package: (options = {}) =>
