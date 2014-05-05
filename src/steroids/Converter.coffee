@@ -27,6 +27,7 @@ class Converter
 
     ankaLikeJSON.configuration = @configurationObject(configObject)
     ankaLikeJSON.appearance = @appearanceObject(configObject)
+    ankaLikeJSON.preloads = @preloadsObject(configObject)
 
     ankaLikeJSON.files = []
     ankaLikeJSON.archives = []
@@ -116,6 +117,16 @@ class Converter
       nav_bar_border_size: "#{config.navigationBar.borderSize}"
       nav_bar_border_color: "#{config.navigationBar.borderColor}"
     }
+
+  preloadsObject: (config)->
+    return [] unless config.preloads?.length
+
+    preloads = []
+
+    for preloadView in config.preloads
+      preloads.push preloadView
+
+    return preloads
 
   legacyAuthenticationObject: ->
     return {
