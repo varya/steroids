@@ -1,3 +1,15 @@
+## 3.1.24 (2014-05-06)
+
+New projects now include Steroids.js v3.1.9 by default. Simulator app updated to v3.1.5 runtime.
+
+Changes:
+  - `generator-steroids` updated to [v0.3.1]
+  - Simulator app updated to v3.1.5.
+
+Secret features:
+  - `config/application.coffee` supports `steroids.navigationBar.borderSize` and `steroids.navigationBar.borderColor` properties for setting a border on the bottom of the navigation bar (iOS only).
+  - `config/application.coffee` supports `steroids.preloads`, an array of WebViews to preload before the app starts in the format `{ id: "myId", location: "myLocation.html" }`
+
 ## 3.1.23 (2014-04-25)
 
 `generator-steroids` updated to [v0.3.0](https://github.com/AppGyver/generator-steroids/blob/master/CHANGELOG.md#030-2014-04-25), changes listed below:
