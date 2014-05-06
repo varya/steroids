@@ -116,10 +116,10 @@ class Converter
       loading_screen_color: "#{config.loadingScreen.tintColor}"
 
     # legacy support: bug in 3.1.5 client causes empty strings for these values to crash
-    unless config.navigationBar.borderSize is null
+    unless config.navigationBar.borderSize is null or config.navigationBar.borderSize is ""
       appearanceObject.nav_bar_border_size = "#{config.navigationBar.borderSize}"
 
-    unless config.navigationBar.borderColor is null
+    unless config.navigationBar.borderColor is null or config.navigationBar.borderColor is ""
       appearanceObject.nav_bar_border_color = "#{config.navigationBar.borderColor}"
 
     return appearanceObject
