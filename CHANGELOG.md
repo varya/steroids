@@ -1,3 +1,7 @@
+## 3.1.25 (2014-05-06)
+
+Fixed crashing bug caused by an error with how `steroids.navigationBar.borderSize` and `steroids.navigationBar.borderColor` were handled.
+
 ## 3.1.24 (2014-05-06)
 
 New projects now include Steroids.js v3.1.9 by default. Simulator app updated to v3.1.5 runtime.
