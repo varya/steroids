@@ -21,9 +21,10 @@ class Deploy
 
     @converter = new DeployConverter paths.application.configs.application
 
+    ankaURL = if steroidsCli.options.argv.ankaURL? then steroidsCli.options.argv.ankaURL else "https://anka.appgyver.com"
+
     @client = restify.createJsonClient
-      # url: 'https://appgyver-staging.herokuapp.com'
-      url: 'https://anka.appgyver.com'
+      url: ankaURL
 
   uploadToCloud: (callback=->)->
     @client.basicAuth Login.currentAccessToken(), 'X'
