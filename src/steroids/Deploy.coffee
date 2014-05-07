@@ -119,8 +119,10 @@ class Deploy
 
     Help.deployCompleted()
 
-    util.log "Opening URL http://share.appgyver.com/?id=#{config.id}&hash=#{config.identification_hash} in default web browser...\n"
-    open "http://share.appgyver.com/?id=#{config.id}&hash=#{config.identification_hash}"
+    shareURL = if steroidsCli.options.argv.shareURL? then steroidsCli.options.argv.shareURL else "http://share.appgyver.com"
+
+    util.log "Opening URL #{shareURL}/?id=#{config.id}&hash=#{config.identification_hash} in default web browser...\n"
+    open "#{shareURL}/?id=#{config.id}&hash=#{config.identification_hash}"
 
     callback()
 
