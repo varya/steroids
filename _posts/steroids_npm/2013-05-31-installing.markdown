@@ -28,7 +28,7 @@ Install Node.js with the [official Windows installer](http://nodejs.org/download
 The easiest and recommended way to install Node.js on OS X is with [Node Version Manager (NVM)][nvm]. Install NVM with:
 
 <pre class="terminal">
-$ curl https://raw.github.com/creationix/nvm/master/install.sh | sh
+$ curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | sh
 </pre>
 
 Note that by default NVM adds initialization lines to `.bash_profile`, so you need to make sure these lines are loaded (by restarting Terminal).
