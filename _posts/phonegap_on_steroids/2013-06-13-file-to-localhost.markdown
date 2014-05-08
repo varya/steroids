@@ -84,7 +84,7 @@ This would load a file that is in your project at `www/sounds/macgyver_theme.mp3
 
 ## Serving a single WebView via File protocol
 
-While we are committed to making localhost awesome, there's still a few open issues. One is CORS (outlined above), the other one is [local media files served via localhost not working in <audio> and <video> tags](https://github.com/AppGyver/steroids/issues/132). As a workaround while we work on fixing these issues, you can serve a single WebView in your application via the File protocol, allowing CORS to work and `<audio>` and `<video>` tags to function.
+While we are committed to making localhost awesome, there's still a few open issues. One is CORS (outlined above), the other one is [local media files served via localhost not working in audio and video tags](https://github.com/AppGyver/steroids/issues/132). As a workaround while we work on fixing these issues, you can serve a single WebView in your application via the File protocol, allowing CORS to work and `<audio>` and `<video>` tags to function.
 
 To do this, you need to construct the whole File protocol URL, using `steroids.app.absolutePath`. The gotcha is that `steroids.app.absolutePath` doesn't return a proper URI, so you need to pass the result through the JS `encodeURI` method to ensure the URL is correct:
 
