@@ -136,6 +136,23 @@ The icon can be bigger than the tab area, which will cause it to overflow the ta
 
 If you add `@2` before the file extension (like in the above example), iOS will scale down the image to 50% size while keeping the amount of pixels the same. This allows the image to be displayed properly on Retina displays.
 
+##steroids.config.preloads (iOS-only)
+
+You can specify an array of WebViews to be preloaded before the app starts. For each WebView, you set the `location` of the HTML document (inlcuding the `http://localhost/` prefix), as well as the `id` that the preloaded WebView can the be accessed with.
+
+{% highlight coffeescript %}
+steroids.config.preloads = [
+  {
+    id: "carsShow"
+    location: "http://localhost/views/cars/show.html"
+  }
+  {
+    id: "carsEdit"
+    location: "http://localhost/views/cars/edit.html"
+  }
+]
+{% endhighlight %}
+
 ##steroids.config.navigationBar
 
 Configures your app's native nagivation bar. The navigation bar is enabled for each WebView independently by calling [steroids.view.navigationBar.show()][steroids.view.navigationBar.show].
@@ -151,6 +168,15 @@ steroids.config.navigationBar.titleColor = "#ffffff"
 # Set the tint and title text color of navigation bar buttons
 steroids.config.navigationBar.buttonTintColor = "#363636"
 steroids.config.navigationBar.buttonTitleColor = "#ffffff"
+{% endhighlight %}
+
+###Navigation bar border (iOS only)
+
+On iOS, you can set a solid-color border to be shown at the bottom of the navigation bar. This allows you to e.g. have a white navigation bar and a white app background, while still visually separating the two. `borderColor` sets the color (as a hex value) of the border, while `borderSize` sets the thickness of the border (in pixels).
+
+{% highlight coffeescript %}
+steroids.config.navigationBar.borderColor = "#000000"
+steorids.config.navigationBar.borderSize = 2
 {% endhighlight %}
 
 ###Navigation bar background images (iOS only)
