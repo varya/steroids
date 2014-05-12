@@ -30,7 +30,7 @@ AppGyver Steroids is PhoneGap on Steroids, providing native UI elements, multipl
 
 We recommend installing with NVM, see [https://github.com/creationix/nvm](https://github.com/creationix/nvm): it allows you to run multiple versions of node and does not require sudo at any point.
 
-    $ curl https://raw.github.com/creationix/nvm/master/install.sh | sh
+    $ curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | sh
 
 Note that by default NVM adds initialization lines to `.bash_profile`, so you need to make sure these lines are loaded.
 
