@@ -95,9 +95,9 @@ Basically, you want to only call `webViewObject.preload()` once per each view yo
 You can achieve this by ensuring that during your app initialization, a single view (e.g. the initial `index.html`) calls `preload()` for each view you want to preload:
 
 {% highlight javascript %}
-var settingsView = new steroids.views.WebView({location: "settings.html", 
+var settingsView = new steroids.views.WebView({location: "settings.html",
   id: "settingsView");
-var aboutView = new steroids.views.WebView({location: "about.html", 
+var aboutView = new steroids.views.WebView({location: "about.html",
   id: "aboutView");
 
 settingsView.preload();
@@ -107,9 +107,9 @@ aboutView.preload();
 Then, in every other view that might push preloaded views to the layer stack, you set the `id` property in the WebView constructor – you never have to call `preload()`:
 
 {% highlight javascript %}
-var settingsView = new steroids.views.WebView({location: "settings.html", 
+var settingsView = new steroids.views.WebView({location: "settings.html",
   id: "settingsView");
-var aboutView = new steroids.views.WebView({location: "about.html", id: 
+var aboutView = new steroids.views.WebView({location: "about.html", id:
   "aboutView");
 
 steroids.layers.push(settingsView); //pushes the preloaded WebView
@@ -127,12 +127,16 @@ One workaround is to preload all webviews from a preloaded `background.html` Web
 
 The native preload ID of the initial view is set to match the value of `steroids.config.location` in `config/application.coffee`. If using the tab bar, the native preload ID of each view matches the `location` property of the tab object.
 
+## Preloading modals
+
+Like with layers, when a modal is preloaded, it uses and retains its own navigation bar, so you can use `window.postMessage` to trigger the modal to run `steroids.view.navigationBar.update` before showing it. However, modals do not show the navigation bar by default, so to have a modal show the navigation bar when it opens, you need to call `steroids.modal.show` with the `navigationBar: true` option.
+
 ## Unloading a preloaded WebView
 
 A preloaded webview can be unloaded. Unloading a WebView removes it from memory. The use of `unload()` is pretty simple:
 
 {% highlight javascript %}
-var settingsView = new steroids.views.WebView({location: "settings.html", 
+var settingsView = new steroids.views.WebView({location: "settings.html",
   id: "settingsView");
 settingsView.unload({}, {
   onSuccess: function() {
