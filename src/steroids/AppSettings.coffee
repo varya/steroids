@@ -4,12 +4,21 @@ fs = require "fs"
 
 class AppSettings
 
+  WHITELISTED_SETTING_KEYS = [
+    "appearance"
+    "preloads"
+  ]
+
   constructor: ->
 
   getJSON: ->
     converter = new Converter
 
-    settingsObject = converter.configToAnkaFormat()
+    tempSettingsObject = converter.configToAnkaFormat()
+
+    settingsObject = {}
+    for whitelisted_keys in WHITELISTED_SETTING_KEYS
+      settingsObject[whitelisted_keys] = tempSettingsObject[whitelisted_keys]
 
     JSON.stringify settingsObject
 
