@@ -1,10 +1,13 @@
-## 3.1.26(TODO)
+## 3.1.26 (2014-05-14)
+
+Support for new `config/application.coffee` features introduced with iOS v3.1.5 runtime.
 
 Features:
+  - `generator-steroids` dependency updated to v0.3.2.
   - `config/application.coffee` supports `steroids.config.navigationBar.borderSize` and `steroids.navigationBar.borderColor` properties for setting a border on the bottom of the navigation bar (iOS only).
   - `config/application.coffee` supports `steroids.config.preloads`, an array of WebViews to preload before the application starts in the format `{ id: "myId", location: "myLocation.html" }`.
   - `config/application.coffee` supports `sterods.config.drawers` for setting up drawers before the application starts.
-  - New projects' `config/application.coffee` includes example usage for all new config properties
+  - New projects' `config/application.coffee` includes example usage for all new config properties.
 
 Changes:
   - `dist/__appgyver_settings.json` (used by CLI to read new configs) now includes only preferences actually used.
