@@ -137,8 +137,9 @@ class Project
       onSuccess: =>
         @makeOnly
           onSuccess: =>
-            steroidsCli.debug "Creating dist/__appgyver_settings.json..."
-            appSettings.createJSONFile()
+            unless steroidsCli.options.argv.noSettingsJson == true
+              steroidsCli.debug "Creating dist/__appgyver_settings.json..."
+              appSettings.createJSONFile()
             @postMake options
 
   package: (options = {}) =>

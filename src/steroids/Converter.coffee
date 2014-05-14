@@ -28,6 +28,7 @@ class Converter
     ankaLikeJSON.configuration = @configurationObject(configObject)
     ankaLikeJSON.appearance = @appearanceObject(configObject)
     ankaLikeJSON.preloads = @preloadsObject(configObject)
+    ankaLikeJSON.drawers = @drawersObject(configObject)
 
     ankaLikeJSON.files = []
     ankaLikeJSON.archives = []
@@ -133,6 +134,17 @@ class Converter
       preloads.push preloadView
 
     return preloads
+
+  drawersObject: (config)->
+    return {} unless config.drawers?
+
+    drawersObject = config.drawers
+
+    # strechDrawer typo fix
+    if drawersObject.options?.stretchDrawer?
+      drawersObject.options.strechDrawer = drawersObject.options.stretchDrawer
+
+    return drawersObject
 
   legacyAuthenticationObject: ->
     return {

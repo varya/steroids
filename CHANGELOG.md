@@ -1,3 +1,17 @@
+## 3.1.26(TODO)
+
+Features:
+  - `config/application.coffee` supports `steroids.config.navigationBar.borderSize` and `steroids.navigationBar.borderColor` properties for setting a border on the bottom of the navigation bar (iOS only).
+  - `config/application.coffee` supports `steroids.config.preloads`, an array of WebViews to preload before the application starts in the format `{ id: "myId", location: "myLocation.html" }`.
+  - `config/application.coffee` supports `sterods.config.drawers` for setting up drawers before the application starts.
+  - New projects' `config/application.coffee` includes example usage for all new config properties
+
+Changes:
+  - `dist/__appgyver_settings.json` (used by CLI to read new configs) now includes only preferences actually used.
+
+Secret features:
+  - `--noSettingsJson` flag for `steroids make` (and thus `steroids) to not create the `dist/__appgyver_settings.json` file.
+
 ## 3.1.25 (2014-05-06)
 
 Fixed crashing bug caused by an error with how `steroids.navigationBar.borderSize` and `steroids.navigationBar.borderColor` were handled.
@@ -11,8 +25,8 @@ Changes:
   - Simulator app updated to v3.1.5.
 
 Secret features:
-  - `config/application.coffee` supports `steroids.navigationBar.borderSize` and `steroids.navigationBar.borderColor` properties for setting a border on the bottom of the navigation bar (iOS only).
-  - `config/application.coffee` supports `steroids.preloads`, an array of WebViews to preload before the app starts in the format `{ id: "myId", location: "myLocation.html" }`
+  - `config/application.coffee` supports `steroids.config.navigationBar.borderSize` and `steroids.navigationBar.borderColor` properties for setting a border on the bottom of the navigation bar (iOS only).
+  - `config/application.coffee` supports `steroids.config.preloads`, an array of WebViews to preload before the app starts in the format `{ id: "myId", location: "myLocation.html" }`
 
 ## 3.1.23 (2014-04-25)
 
