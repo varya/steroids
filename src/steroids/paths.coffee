@@ -37,7 +37,7 @@ class Paths
     error: path.join @bannersDir, "error"
     awesome: path.join @bannersDir, "awesome"
     usage: path.join @bannersDir, "usage"
-    welcome: path.join @bannersDir, "welcome"
+    ready: path.join @bannersDir, "ready"
     resetiOSSim: path.join @bannersDir, "iossim-reset"
     newVersionAvailable: path.join @bannersDir, "new-version-available"
     newClientVersionAvailable: path.join @bannersDir, "new-client-version-available"

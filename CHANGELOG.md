@@ -1,3 +1,8 @@
+## 3.1.x (TODO)
+
+Changes:
+  - `steroids create` tries to be more informative after npm install
+
 ## 3.1.26 (2014-05-14)
 
 Support for new `config/application.coffee` features introduced with iOS v3.1.5 runtime.

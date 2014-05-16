@@ -27,8 +27,20 @@ class Help
   @connect: ->
     @printBanner(paths.banners.connect, true)
 
-  @welcome: ->
-    @printBanner(paths.banners.welcome, true)
+  @projectCreated: (path)->
+    @printBanner(paths.banners.ready, true)
+    console.log(
+      """
+        Now go to your project directory with
+
+          #{chalk.bold("$ cd #{path}")}
+
+        And then type
+
+          #{chalk.bold("$ steroids connect")} or #{chalk.bold("$ steroids usage")} for more options
+
+      """
+    )
 
   @logo: ->
     @printBanner(paths.banners.logo, true)
