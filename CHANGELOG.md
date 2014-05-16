@@ -1,3 +1,8 @@
+## NEXT
+
+Feature:
+  - Support for `steroids.config.initialView` in `config/application.coffee`to set an initial view that will be shown before the rest of the app is loaded.
+
 ## 3.1.26 (2014-05-14)
 
 Support for new `config/application.coffee` features introduced with iOS v3.1.5 runtime.

@@ -8,6 +8,7 @@ class AppSettings
     "appearance"
     "preloads"
     "drawers"
+    "initialView"
   ]
 
   constructor: ->
