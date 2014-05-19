@@ -14,7 +14,7 @@ To help us track down the root cause of your issue, we ask you to create a repro
 
 Now, for a good bug reproduction, it's very important that a bare minimum of HTML/CSS/JavaScript is used. This prevents false diagnoses – when the app is complex, it might look like something is broken on the native side, when in reality it's just a JavaScript error caused by a misconfigured framework, a CSS style acting up etc. You should strive to have just the issue and nothing else in your project. To demonstrate this, we created [a very simple project](https://github.com/AppGyver/steroids-repro-template/tree/topic/replaces-breaks-layers-push) to determine if using `steroids.layers.replace` messes up `steroids.layers.push` ([an actual issue](https://github.com/AppGyver/scanner/issues/101) that has since been fixed).
 
-The way to let us know something is broken is create a new issue on [the Scanner Github issue tracker](https://github.com/AppGyver/scanner/issues) and link your repro case to the issue (or link your repro to an existing issue, if it is related).
+The way to let us know something is broken is create a new issue on [the Steroids GitHub issue tracker](https://github.com/AppGyver/steroids/issues) and link your repro case to the issue (or link your repro to an existing issue, if it is related).
 
 To create an excellent reproduction for an issue, you have two options.
 
