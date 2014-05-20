@@ -29,7 +29,11 @@ class Converter
     ankaLikeJSON.appearance = @appearanceObject(configObject)
     ankaLikeJSON.preloads = @preloadsObject(configObject)
     ankaLikeJSON.drawers = @drawersObject(configObject)
-    ankaLikeJSON.initialView = @initialViewObject(configObject)
+
+    # runtime crashes with empty initialView object
+    initialViewObject = @initialViewObject(configObject)
+    if initialViewObject?
+      ankaLikeJSON.initialView = initialViewObject
 
     ankaLikeJSON.files = []
     ankaLikeJSON.archives = []
@@ -148,7 +152,7 @@ class Converter
     return drawersObject
 
   initialViewObject: (config)->
-    return config.initialView || {}
+    return config.initialView || null # runtime crashes with empty object
 
   legacyAuthenticationObject: ->
     return {
