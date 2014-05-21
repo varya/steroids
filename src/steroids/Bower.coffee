@@ -11,6 +11,31 @@ Q = require "q"
 
 class Bower
 
+  install: ->
+    deferred = Q.defer()
+
+    console.log(
+      """
+      \n#{chalk.green.bold("Installing Bower dependencies")}
+      #{chalk.green.bold("=============================")}
+
+      Running #{chalk.bold("bower install")} to install project Bower dependencies...
+      If this fails, try running #{chalk.bold("steroids update")} in your project directory.
+
+      """
+    )
+
+    bowerRun = sbawn
+      cmd: paths.bower
+      args: ["install"]
+      stdout: true
+      stderr: true
+
+    bowerRun.on "exit", =>
+      deferred.resolve()
+
+    return deferred.promise
+
   update: ->
     ensureConfigurationExists ->
 

@@ -15,7 +15,7 @@ class Npm
         #{chalk.bold.green("======================")}
 
         Running #{chalk.bold("npm install #{argsString}")} to install a project dependency...
-        If this fails, try running the command manually.
+        If this fails, try running the command manually in the project directory.
         """
       )
     else

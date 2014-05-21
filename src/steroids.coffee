@@ -128,9 +128,14 @@ class Steroids
 
         projectCreator.generate(folder).then(
           ->
-            Npm = require "./steroids/npm"
+            Npm = require "./steroids/Npm"
             npm = new Npm()
             npm.install()
+        ).then(
+          ->
+            Bower = require "./steroids/Bower"
+            bower = new Bower()
+            bower.install()
         ).then(
           ->
             Help.projectCreated(folder)
