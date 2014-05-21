@@ -1,7 +1,12 @@
-## NEXT
+## 3.1.27
+
+Support for the [Initial View](http://academy.appgyver.com/guides/107/); fixes iOS Simulator starting with black screen; iOS Simulator updated to use v3.1.6-p3 native runtime;
 
 Feature:
   - Support for `steroids.config.initialView` in `config/application.coffee`to set an initial view that will be shown before the rest of the app is loaded.
+Bugfixes:
+  - `ios-sim` has been updated to fix simulator starting with black screen https://github.com/phonegap/ios-sim/issues/86
+  - iOS Simulator updated to use native runtime v3.1.6-p3
 
 ## 3.1.26 (2014-05-14)
 
