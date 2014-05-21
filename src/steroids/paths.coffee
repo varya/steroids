@@ -117,4 +117,7 @@ class Paths
       singleConfigPath: path.join @npm, "templates", "tests", "karma", "karmaSingle.coffee"
       exampleSpecPath: path.join @npm, "templates", "tests", "karma", "spec", "exampleSpec.coffee"
 
+  @iosSim =
+    path: path.join @npm, "node_modules", "ios-sim", "dist", "ios-sim"
+
 module.exports = Paths

@@ -1,3 +1,10 @@
+## 3.1.27 (TODO)
+
+Fixes iOS Simulator black screen
+
+Bugfixes:
+  - `ios-sim` has been updated to fix simulator starting with black screen https://github.com/phonegap/ios-sim/issues/86
+
 ## 3.1.26 (2014-05-14)
 
 Support for new `config/application.coffee` features introduced with iOS v3.1.5 runtime.

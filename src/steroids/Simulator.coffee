@@ -5,6 +5,7 @@ sbawn = require("./sbawn")
 Help = require "./Help"
 
 os = require "os"
+paths = require "./paths"
 
 class Simulator
 
@@ -24,7 +25,7 @@ class Simulator
 
     @running = true
 
-    cmd = steroidsSimulators.iosSimPath
+    cmd = paths.iosSim.path
     args = ["launch", steroidsSimulators.latestSimulatorPath]
 
     if opts.deviceType?
