@@ -1,12 +1,14 @@
-## 3.1.27
+## 3.1.27 (2014-05-21)
 
-Support for the [Initial View](http://academy.appgyver.com/guides/107/); fixes iOS Simulator starting with black screen; iOS Simulator updated to use v3.1.6-p3 native runtime;
+Support for the [Initial View](http://academy.appgyver.com/guides/107/); iOS Simulator updated to use v3.1.6-p3 native runtime (with bugfixes); new projects install Steroids.js via Bowwer.
 
 Feature:
   - Support for `steroids.config.initialView` in `config/application.coffee`to set an initial view that will be shown before the rest of the app is loaded.
+  - `generator-steroids` dependency updated to v0.3.3.
 
 Changes:
   - `steroids create` tries to be more informative after npm install
+  - `ios-sim` is now included as its own npm package instead of being included with `steroids-simulators`
 
 Bugfixes:
   - `ios-sim` has been updated to fix simulator starting with black screen https://github.com/phonegap/ios-sim/issues/86
