@@ -4,6 +4,10 @@ Support for the [Initial View](http://academy.appgyver.com/guides/107/); fixes i
 
 Feature:
   - Support for `steroids.config.initialView` in `config/application.coffee`to set an initial view that will be shown before the rest of the app is loaded.
+
+Changes:
+  - `steroids create` tries to be more informative after npm install
+
 Bugfixes:
   - `ios-sim` has been updated to fix simulator starting with black screen https://github.com/phonegap/ios-sim/issues/86
   - iOS Simulator updated to use native runtime v3.1.6-p3

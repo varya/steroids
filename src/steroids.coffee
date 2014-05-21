@@ -126,8 +126,15 @@ class Steroids
         projectCreator = new ProjectCreator
           debug: @options.debug
 
-        projectCreator.generate(folder)
-
+        projectCreator.generate(folder).then(
+          ->
+            Npm = require "./steroids/npm"
+            npm = new Npm()
+            npm.install()
+        ).then(
+          ->
+            Help.projectCreated(folder)
+        )
 
       when "push"
         project = new Project
