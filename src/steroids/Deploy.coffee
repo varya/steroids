@@ -21,7 +21,7 @@ class Deploy
 
     @converter = new DeployConverter paths.application.configs.application
 
-    ankaURL = if steroidsCli.options.argv.ankaURL? then steroidsCli.options.argv.ankaURL else "https://anka.appgyver.com"
+    ankaURL = steroidsCli.options.argv.ankaURL || "https://anka.appgyver.com"
 
     @client = restify.createJsonClient
       url: ankaURL
@@ -119,7 +119,7 @@ class Deploy
 
     Help.deployCompleted()
 
-    shareURL = if steroidsCli.options.argv.shareURL? then steroidsCli.options.argv.shareURL else "http://share.appgyver.com"
+    shareURL = steroidsCli.options.argv.shareURL || "https://share.appgyver.com"
 
     util.log "Opening URL #{shareURL}/?id=#{config.id}&hash=#{config.identification_hash} in default web browser...\n"
     open "#{shareURL}/?id=#{config.id}&hash=#{config.identification_hash}"

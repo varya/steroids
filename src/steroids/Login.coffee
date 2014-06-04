@@ -7,14 +7,6 @@ paths = require "./paths"
 Help = require "./Help"
 
 class Login
-  settings:
-    clientId:      "3ceba0084a474f1502c20ef05e0489546a1f89c1b5fb0e7e6666e720c7977c96"
-    clientSecret:  "f635ef74e2c759134f968d801a35e075f8a9c250292f1793e22141827d327777"
-    baseUrl:       "https://accounts.appgyver.com"
-    authPath:      "/auth/appgyver_id/authorize"
-    tokenPath:     "/auth/appgyver_id/access_token"
-    userPath:      "/auth/appgyver_id/user.json"
-    responseType:  "code"
 
   @authTokenExists: ()->
     fs.existsSync paths.oauthTokenPath
@@ -38,6 +30,15 @@ class Login
     return token.access_token
 
   constructor: (@options={})->
+    @settings =
+      clientId:      steroidsCli.options.argv.authID || "3ceba0084a474f1502c20ef05e0489546a1f89c1b5fb0e7e6666e720c7977c96"
+      clientSecret:  steroidsCli.options.argv.authSecret || "f635ef74e2c759134f968d801a35e075f8a9c250292f1793e22141827d327777"
+      baseUrl:       steroidsCli.options.argv.authURL || "https://accounts.appgyver.com"
+      authPath:      "/auth/appgyver_id/authorize"
+      tokenPath:     "/auth/appgyver_id/access_token"
+      userPath:      "/auth/appgyver_id/user.json"
+      responseType:  "code"
+
     @oauth = new OAuth2(
       @settings.clientId, @settings.clientSecret,
       @settings.baseUrl,
