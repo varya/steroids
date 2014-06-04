@@ -7,6 +7,8 @@ Help = require "./Help"
 os = require "os"
 paths = require "./paths"
 
+Q = require "q"
+
 class Simulator
 
   DEFAULT_DEVICE_TYPE: "iphone_retina_4_inch"
@@ -46,47 +48,52 @@ class Simulator
       if iOSVersion?
         args.push "--sdk", iOSVersion
 
-    steroidsCli.debug "Spawning #{cmd}"
-    steroidsCli.debug "with params: #{args}"
+    @killall().then( =>
+      steroidsCli.debug "Spawning #{cmd}"
+      steroidsCli.debug "with params: #{args}"
 
-    @simulatorSession = sbawn
-      cmd: cmd
-      args: args
-      stdout: if opts.stdout? then opts.stdout  else true
-      stderr: if opts.stderr? then opts.stderr else true
+      @simulatorSession = sbawn
+        cmd: cmd
+        args: args
+        stdout: if opts.stdout? then opts.stdout  else true
+        stderr: if opts.stderr? then opts.stderr else true
 
-    @simulatorSession.on "exit", () =>
-      @running = false
+      @simulatorSession.on "exit", () =>
+        @running = false
 
-      steroidsCli.debug "Killing iOS Simulator ..."
+        steroidsCli.debug "Killing iOS Simulator ..."
 
-      @killall()
+        @killall()
 
-      console.log "PRO TIP: use `steroids [simulator|connect] --deviceType <device>` to specify device type, see `steroids usage` for help."
+        console.log "PRO TIP: use `steroids [simulator|connect] --deviceType <device>` to specify device type, see `steroids usage` for help."
 
-      return unless ( @simulatorSession.stderr.indexOf('Session could not be started') == 0 )
+        return unless ( @simulatorSession.stderr.indexOf('Session could not be started') == 0 )
 
-      Help.attention()
-      Help.resetiOSSim()
+        Help.attention()
+        Help.resetiOSSim()
 
-      setTimeout () =>
-        resetSimulator = sbawn
-                  cmd: steroidsSimulators.iosSimPath
-                  args: ["start"]
-                  debug: true
-      , 250
-
+        setTimeout () =>
+          resetSimulator = sbawn
+                    cmd: steroidsSimulators.iosSimPath
+                    args: ["start"]
+                    debug: true
+        , 250
+    )
 
   stop: () =>
     @simulatorSession.kill() if @simulatorSession
 
   killall: ()=>
+    deferred = Q.defer()
 
     killSimulator = sbawn
       cmd: "/usr/bin/killall"
-      args: ["iPhone Simulator"]
+      args: ["launchd_sim", "iPhone Simulator"]
 
     killSimulator.on "exit", () =>
-      steroidsCli.debug "killed."
+      steroidsCli.debug "Killed iOS Simulator."
+      deferred.resolve()
+
+    return deferred.promise
 
 module.exports = Simulator

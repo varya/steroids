@@ -1,3 +1,8 @@
+## 3.1.28 (TODO)
+
+Bugfixes:
+- Bettered the fix for the iOS Simulator starting with black screen.
+
 ## 3.1.27 (2014-05-21)
 
 Support for the [Initial View](http://academy.appgyver.com/guides/107/); iOS Simulator updated to use v3.1.6-p3 native runtime (with bugfixes); new projects install Steroids.js via Bowwer.
