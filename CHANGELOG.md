@@ -1,4 +1,9 @@
-## 3.1.28 (TODO)
+## 3.1.28 (2014-06-04)
+
+Updated iOS Simulator runtime, Simulator bugfixes.
+
+Features:
+- iOS Simulator runtime updated to [v3.1.6-p4](https://github.com/AppGyver/scanner/blob/master/changelog-ios-patch-edge.md#316-p3-2014-06-03).
 
 Bugfixes:
 - Bettered the fix for the iOS Simulator starting with black screen.
@@ -7,7 +12,7 @@ Bugfixes:
 
 Support for the [Initial View](http://academy.appgyver.com/guides/107/); iOS Simulator updated to use v3.1.6-p3 native runtime (with bugfixes); new projects install Steroids.js via Bowwer.
 
-Feature:
+Features:
   - Support for `steroids.config.initialView` in `config/application.coffee`to set an initial view that will be shown before the rest of the app is loaded.
   - `generator-steroids` dependency updated to v0.3.3.
 
