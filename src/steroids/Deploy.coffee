@@ -21,9 +21,10 @@ class Deploy
 
     @converter = new DeployConverter paths.application.configs.application
 
+    ankaURL = if steroidsCli.options.argv.ankaURL? then steroidsCli.options.argv.ankaURL else "https://anka.appgyver.com"
+
     @client = restify.createJsonClient
-      # url: 'https://appgyver-staging.herokuapp.com'
-      url: 'https://anka.appgyver.com'
+      url: ankaURL
 
   uploadToCloud: (callback=->)->
     @client.basicAuth Login.currentAccessToken(), 'X'
@@ -118,8 +119,10 @@ class Deploy
 
     Help.deployCompleted()
 
-    util.log "Opening URL http://share.appgyver.com/?id=#{config.id}&hash=#{config.identification_hash} in default web browser...\n"
-    open "http://share.appgyver.com/?id=#{config.id}&hash=#{config.identification_hash}"
+    shareURL = if steroidsCli.options.argv.shareURL? then steroidsCli.options.argv.shareURL else "http://share.appgyver.com"
+
+    util.log "Opening URL #{shareURL}/?id=#{config.id}&hash=#{config.identification_hash} in default web browser...\n"
+    open "#{shareURL}/?id=#{config.id}&hash=#{config.identification_hash}"
 
     callback()
 
