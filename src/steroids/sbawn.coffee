@@ -48,7 +48,7 @@ class Sbawned
         args = ["/c", "node", originalCmd].concat(args)
         @spawned = spawn @options.cmd, args, { cwd: @options.cwd, stdio: 'inherit' }
       else
-        @spawned = spawn @options.cmd, args, { cwd: @options.cwd }
+        @spawned = spawn @options.cmd, args, { cwd: @options.cwd, stdio: 'inherit' }
     catch e
       console.log "Failed to spawn a process, error: #{e.code}"
 
