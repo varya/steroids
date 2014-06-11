@@ -35,6 +35,14 @@ class Steroids
     @simulator = new Simulator
       debug: @options.debug
 
+    if @options.env.root
+      console.log(
+        """
+        \n#{chalk.red.bold("Warning!")} You are running steroids with #{chalk.bold("sudo")} which is not recommended.\n
+        Use #{chalk.green("Node Version Manager")}.
+        """
+      )
+
     @version = new Version
     @pathToSelf = process.argv[1]
     @config = new Config
@@ -509,6 +517,8 @@ module.exports =
     global.steroidsCli = new Steroids
       debug: argv.debug
       argv: argv
+      env:
+        root: process.getuid() == 0
 
     steroidsCli.execute()
 
