@@ -516,7 +516,7 @@ module.exports =
         root: process.getuid() == 0
 
     deferred = Q.defer()
-    if process.getuid() == 0
+    if process.getuid() == 0 and not process.env['STEROIDSROOT']
         inquirer.prompt [
             {
             type: "input"
@@ -530,6 +530,7 @@ module.exports =
         ], (answers) ->
             cont = answers.toContinue
             if cont == "Y" or cont.toLowerCase() == ''
+              process.env['STEROIDSROOT'] = true
               deferred.resolve()
             else
               deferred.reject()
