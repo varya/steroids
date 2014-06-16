@@ -15,6 +15,9 @@ util = require "util"
 Version = require "./steroids/Version"
 paths = require "./steroids/paths"
 
+Q = require "q"
+inquirer = require "inquirer"
+
 Karma = require "./steroids/Karma"
 
 argv = require('optimist').argv
@@ -34,14 +37,6 @@ class Steroids
   constructor: (@options = {}) ->
     @simulator = new Simulator
       debug: @options.debug
-
-    if @options.env.root
-      console.log(
-        """
-        \n#{chalk.red.bold("Warning!")} You are running steroids with #{chalk.bold("sudo")} which is not recommended.\n
-        Use #{chalk.green("Node Version Manager")}.
-        """
-      )
 
     @version = new Version
     @pathToSelf = process.argv[1]
@@ -520,7 +515,29 @@ module.exports =
       env:
         root: process.getuid() == 0
 
-    steroidsCli.execute()
+    deferred = Q.defer()
+    if process.getuid() == 0
+        inquirer.prompt [
+            {
+            type: "input"
+            name: "toContinue"
+            message: """
+              \n#{chalk.red.bold("Warning!")} You are running steroids with #{chalk.bold("sudo")} which is not recommended.\n
+              Use #{chalk.green("Node Version Manager")}.\n
+              Would you like to continue #{chalk.bold("with sudo")}? [Y/n]:
+              """
+            }
+        ], (answers) ->
+            cont = answers.toContinue
+            if cont == "Y" or cont.toLowerCase() == ''
+              deferred.resolve()
+            else
+              deferred.reject()
+      else
+        deferred.resolve()
+
+    deferred.promise.then ()->
+      steroidsCli.execute()
 
   Help: Help
   paths: paths
