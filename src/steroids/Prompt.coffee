@@ -7,17 +7,19 @@ class Prompt
   prompt: null
 
   constructor: (@options) ->
-    @prompt = require('prompt')
+    @prompt = new (require "sticky-prompt")()
 
-    @prompt.message = "#{chalk.cyan("AppGyver")} #{chalk.magenta("Steroids")}"
-    @prompt.delimiter = " "
+    @prompt.prompt.message = "#{chalk.cyan("AppGyver")} #{chalk.magenta("Steroids")}"
+    @prompt.prompt.delimiter = " "
+    @prompt.consoleHackEnable()
 
-    @prompt.start();
+    #@prompt.start();
 
   refresh: () =>
     process.stdout.write @prompt.message + @prompt.delimiter + chalk.grey("command  ")
 
   cleanUp: () =>
+    @prompt.stop()
     console.log "Shutting down Steroids ..."
 
     steroidsCli.simulator.stop()
@@ -33,6 +35,7 @@ class Prompt
       command = if result? and result.command?
         result.command
       else
+        @prompt.stop()
         "quit"
 
       [mainCommand, commandOptions...] = command.split(' ')
@@ -53,11 +56,12 @@ class Prompt
             onSuccess: =>
               project.package
                 onSuccess: =>
-                  @refresh()
+                  @prompt.log ''
+                  #@refresh()
 
         when "d", "debug"
           SafariDebug = require "./SafariDebug"
-          safariDebug = new SafariDebug => @connectLoop()
+          safariDebug = new SafariDebug
           if commandOptions[0]?
             safariDebug.open(commandOptions[0])
           else
@@ -113,7 +117,7 @@ class Prompt
         else
           console.log "Did not recognize input: #{result.command}, type help for usage."
 
-      @connectLoop()
+      #@connectLoop()
 
     @get
       onInput: onInput
@@ -121,11 +125,15 @@ class Prompt
 
 
   get: (options)->
-    @prompt.get
-      properties:
-        command:
-          message: ""
-    , (options.onInput ? @options.onInput?)
+    @prompt.get [{
+        name: 'command'
+        message: 'command'
+    }],
+    (options.onInput ? @options.onInput?),
+    {
+        next: 'cycle'
+        redraw: ' '
+    }
 
 
 
